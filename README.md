@@ -13,7 +13,7 @@ using **Jetpack Compose** and on iOS using **SwiftUI**
 
 ### SwiftUI Code
 
-```
+```swift
 struct ContentView: View {
     @ObservedObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
 
@@ -45,7 +45,7 @@ struct PersonView : View {
 
 ### Jetpack Compose code
 
-```
+```kotlin
 class MainActivity : AppCompatActivity() {
     private val peopleInSpaceViewModel: PeopleInSpaceViewModel by viewModel()
 
