@@ -1,0 +1,108 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'org.jetbrains.kotlin.native.cocoapods'
+
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+kotlin {
+    targets {
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
+                              ? presets.iosArm64 : presets.iosX64
+
+        fromPreset(iOSTarget, 'iOS') {
+            binaries {
+                framework('common')
+            }
+        }
+
+        fromPreset(presets.android, 'android')
+    }
+
+
+
+    cocoapods {
+        // Configure fields required by CocoaPods.
+        summary = "Some description for a Kotlin/Native module"
+        homepage = "Link to a Kotlin/Native module homepage"
+    }
+
+
+    sourceSets {
+        commonMain.dependencies {
+            // Kotlin
+            implementation "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
+
+            // Coroutines
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.kotlinCoroutines}"
+
+            // Ktor
+            implementation "io.ktor:ktor-client-core:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization:${Versions.ktor}"
+
+            // Serialize
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
+        }
+
+        androidMain.dependencies {
+            // Kotlin
+            implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+
+            // Coroutines
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+
+            // Ktor
+            implementation "io.ktor:ktor-client-android:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-core-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
+
+            // Serialize
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+        }
+
+        iOSMain.dependencies {
+            // Coroutines
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.kotlinCoroutines}"
+
+            // Ktor
+            implementation "io.ktor:ktor-client-ios:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-core-native:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json-native:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging-native:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization-native:${Versions.ktor}"
+
+            // Serialize
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
+        }
+
+    }
+}
