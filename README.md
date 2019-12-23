@@ -9,9 +9,10 @@ using **Jetpack Compose** and on iOS using **SwiftUI**
 **Note**: You need to use Android Studio v4.0 (currently on Canary 6).  Have tested on XCode v11.3
 
 
+The following is pretty much all the code used (along with gradle files/resources etc).  I did say it was *minimal*!!
 
 
-### SwiftUI Code
+### iOS SwiftUI Code
 
 ```swift
 struct ContentView: View {
@@ -43,7 +44,28 @@ struct PersonView : View {
     }
 ```
 
-### Jetpack Compose code
+### iOS Swift ViewModel
+
+```swift
+class PeopleInSpaceViewModel: ObservableObject {
+    @Published var people = [Assignment]()
+
+    private let repository: PeopleInSpaceRepository
+    init(repository: PeopleInSpaceRepository) {
+        self.repository = repository
+    }
+    
+    func fetch() {
+        repository.fetchPeople(success: { data in
+            self.people = data
+        })
+    }
+}
+```
+
+
+
+### Android Jetpack Compose code
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -77,6 +99,70 @@ fun Row(person: Assignment) {
     }
 }
 ```
+
+### Android Kotlin ViewModel
+
+```kotlin
+class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) : ViewModel() {
+    val peopleInSpace = MutableLiveData<List<Assignment>>(emptyList())
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            val people = peopleInSpaceRepository.fetchPeople()
+            peopleInSpace.postValue(people)
+        }
+    }
+}
+```
+
+
+### Shared Kotlin Repository
+
+```kotlin
+class PeopleInSpaceRepository {
+    private val peopleInSpaceApi = PeopleInSpaceApi()
+
+    suspend fun fetchPeople() : List<Assignment> {
+        val result = peopleInSpaceApi.fetchPeople()
+        return result.people
+    }
+
+
+    fun fetchPeople(success: (List<Assignment>) -> Unit) {
+        GlobalScope.launch(ApplicationDispatcher) {
+            success(fetchPeople())
+        }
+    }
+}
+```
+
+
+### Shared Kotlin API Client Code (using **Ktor** and **Kotlinx Serialization** library)
+
+```kotlin
+@Serializable
+data class AstroResult(val message: String, val number: Int, val people: List<Assignment>)
+
+@Serializable
+data class Assignment(val craft: String, val name: String)
+
+class PeopleInSpaceApi {
+    private val baseUrl = "http://api.open-notify.org/astros.json"
+
+    private val client by lazy {
+        HttpClient() {
+            install(JsonFeature) {
+                serializer = KotlinxSerializer(Json(JsonConfiguration(strictMode = false)))
+            }
+        }
+    }
+
+    suspend fun fetchPeople(): AstroResult {
+        return client.get("$baseUrl")
+    }
+}
+```
+
 
 
 
