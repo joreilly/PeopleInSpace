@@ -107,9 +107,9 @@ class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) :
     val peopleInSpace = MutableLiveData<List<Assignment>>(emptyList())
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val people = peopleInSpaceRepository.fetchPeople()
-            peopleInSpace.postValue(people)
+            peopleInSpace.value = people
         }
     }
 }
@@ -129,7 +129,7 @@ class PeopleInSpaceRepository {
 
 
     fun fetchPeople(success: (List<Assignment>) -> Unit) {
-        GlobalScope.launch(ApplicationDispatcher) {
+        GlobalScope.launch(Dispatchers.Main) {
             success(fetchPeople())
         }
     }
