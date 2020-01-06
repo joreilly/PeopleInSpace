@@ -40,17 +40,23 @@ kotlin {
             }
         }
 
+        final def watchTarget = System.getenv('SDK_NAME')?.startsWith("watchos") \
+            ? presets.watchosArm64 : presets.watchosX86
+
+        fromPreset(watchTarget, 'watch') {
+            binaries {
+                framework('common')
+            }
+        }
+
         fromPreset(presets.android, 'android')
     }
-
-
 
     cocoapods {
         // Configure fields required by CocoaPods.
         summary = "Some description for a Kotlin/Native module"
         homepage = "Link to a Kotlin/Native module homepage"
     }
-
 
     sourceSets {
         commonMain.dependencies {
@@ -109,5 +115,19 @@ kotlin {
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
         }
 
+        watchMain.dependencies {
+            // Coroutines
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.kotlinCoroutines}"
+
+            // Ktor
+            implementation "io.ktor:ktor-client-ios:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-core-native:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json-native:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging-native:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization-native:${Versions.ktor}"
+
+            // Serialize
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
+        }
     }
 }
