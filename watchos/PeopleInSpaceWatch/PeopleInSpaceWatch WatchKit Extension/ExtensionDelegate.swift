@@ -2,9 +2,6 @@
 //  ExtensionDelegate.swift
 //  PeopleInSpaceWatch WatchKit Extension
 //
-//  Created by Neal Sanche on 2020-01-02.
-//  Copyright © 2020 Neal Sanche. All rights reserved.
-//
 
 import WatchKit
 

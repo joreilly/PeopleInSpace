@@ -15,8 +15,6 @@
 		FD254FAE23BE528700C19A05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD254FAD23BE528700C19A05 /* ContentView.swift */; };
 		FD254FB023BE528700C19A05 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD254FAF23BE528700C19A05 /* HostingController.swift */; };
 		FD254FB223BE528700C19A05 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD254FB123BE528700C19A05 /* ExtensionDelegate.swift */; };
-		FD254FB423BE528700C19A05 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD254FB323BE528700C19A05 /* NotificationController.swift */; };
-		FD254FB623BE528700C19A05 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD254FB523BE528700C19A05 /* NotificationView.swift */; };
 		FD254FB823BE528800C19A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD254FB723BE528800C19A05 /* Assets.xcassets */; };
 		FD254FBB23BE528800C19A05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD254FBA23BE528800C19A05 /* Preview Assets.xcassets */; };
 		FD254FCC23BE55DA00C19A05 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD254FCB23BE55DA00C19A05 /* ViewModel.swift */; };
@@ -77,8 +75,6 @@
 		FD254FAD23BE528700C19A05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD254FAF23BE528700C19A05 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		FD254FB123BE528700C19A05 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		FD254FB323BE528700C19A05 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		FD254FB523BE528700C19A05 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		FD254FB723BE528800C19A05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD254FBA23BE528800C19A05 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD254FBC23BE528800C19A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -166,8 +162,6 @@
 				FD254FAD23BE528700C19A05 /* ContentView.swift */,
 				FD254FAF23BE528700C19A05 /* HostingController.swift */,
 				FD254FB123BE528700C19A05 /* ExtensionDelegate.swift */,
-				FD254FB323BE528700C19A05 /* NotificationController.swift */,
-				FD254FB523BE528700C19A05 /* NotificationView.swift */,
 				FD254FB723BE528800C19A05 /* Assets.xcassets */,
 				FD254FBC23BE528800C19A05 /* Info.plist */,
 				FD254FBD23BE528800C19A05 /* PushNotificationPayload.apns */,
@@ -343,10 +337,8 @@
 			files = (
 				FD254FB023BE528700C19A05 /* HostingController.swift in Sources */,
 				FD254FAE23BE528700C19A05 /* ContentView.swift in Sources */,
-				FD254FB423BE528700C19A05 /* NotificationController.swift in Sources */,
 				FD254FB223BE528700C19A05 /* ExtensionDelegate.swift in Sources */,
 				FD254FCC23BE55DA00C19A05 /* ViewModel.swift in Sources */,
-				FD254FB623BE528700C19A05 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +496,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.nosuch.apps.PeopleInSpaceWatch.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -529,7 +521,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.nosuch.apps.PeopleInSpaceWatch.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -548,7 +540,7 @@
 				DEVELOPMENT_TEAM = PBH8V487HB;
 				IBSC_MODULE = PeopleInSpaceWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "PeopleInSpaceWatch WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.nosuch.apps.PeopleInSpaceWatch.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -567,7 +559,7 @@
 				DEVELOPMENT_TEAM = PBH8V487HB;
 				IBSC_MODULE = PeopleInSpaceWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "PeopleInSpaceWatch WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.nosuch.apps.PeopleInSpaceWatch.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -584,7 +576,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PBH8V487HB;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.nosuch.apps.PeopleInSpaceWatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -597,7 +589,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PBH8V487HB;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.nosuch.apps.PeopleInSpaceWatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

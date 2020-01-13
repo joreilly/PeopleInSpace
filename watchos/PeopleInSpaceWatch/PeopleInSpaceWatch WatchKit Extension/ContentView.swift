@@ -2,9 +2,6 @@
 //  ContentView.swift
 //  PeopleInSpaceWatch WatchKit Extension
 //
-//  Created by Neal Sanche on 2020-01-02.
-//  Copyright © 2020 Neal Sanche. All rights reserved.
-//
 
 import SwiftUI
 import common
@@ -18,7 +15,6 @@ struct ContentView: View {
             List(peopleInSpaceViewModel.people, id: \.name) { person in
                 PersonView(person: person)
             }
-            //.navigationBarTitle(Text("PeopleInSpace"), displayMode: .large)
             .onAppear(perform: {
                 self.peopleInSpaceViewModel.fetch()
             })
@@ -30,12 +26,7 @@ struct PersonView : View {
     var person: Assignment
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(person.name).font(.headline)
-                Text(person.craft).font(.subheadline)
-            }
-        }
+        NavigationLink(person.name, destination: Text(person.craft).font(.subheadline))
     }
 }
 
