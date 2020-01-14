@@ -8,6 +8,8 @@ using **Jetpack Compose** and on iOS using **SwiftUI**
 
 **Note**: You need to use Android Studio v4.0 (currently on Canary 6).  Have tested on XCode v11.3
 
+**Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche). That  
+also includes use of `NavigationLink`
 
 The following is pretty much all the code used (along with gradle files/resources etc).  I did say it was *minimal*!!
 
@@ -43,6 +45,36 @@ struct PersonView : View {
         }
     }
 ```
+
+
+### WatchOS SwiftUI Code
+
+```swift
+struct ContentView: View {
+    @ObservedObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
+    
+    var body: some View {
+        VStack {
+            List(peopleInSpaceViewModel.people, id: \.name) { person in
+                PersonView(person: person)
+            }
+            .onAppear(perform: {
+                self.peopleInSpaceViewModel.fetch()
+            })
+        }
+    }
+}
+
+struct PersonView : View {
+    var person: Assignment
+    
+    var body: some View {
+        NavigationLink(person.name, destination: Text(person.craft).font(.subheadline))
+    }
+}
+```
+
+
 
 ### iOS Swift ViewModel
 
