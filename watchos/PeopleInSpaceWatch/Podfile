@@ -1,0 +1,4 @@
+target 'PeopleInSpaceWatch WatchKit Extension' do
+    pod 'common', :path => '../../common'
+end
+
