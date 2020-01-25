@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'org.jetbrains.kotlin.native.cocoapods'
-
+apply plugin: "com.squareup.sqldelight"
 
 
 android {
@@ -74,6 +74,10 @@ kotlin {
 
             // Serialize
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
+
+            // SQL Delight
+            implementation "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+            implementation "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
         }
 
         androidMain.dependencies {
@@ -93,6 +97,10 @@ kotlin {
 
             // Serialize
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+
+            // SQL Delight
+            implementation "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
+            implementation "com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}"
         }
 
         iOSMain.dependencies {
@@ -113,6 +121,9 @@ kotlin {
 
             // Serialize
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
+
+            // SQL Delight
+            implementation "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         }
 
         watchMain.dependencies {
@@ -132,6 +143,16 @@ kotlin {
 
             // Serialize
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
+
+            // SQL Delight
+            implementation "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         }
+    }
+}
+
+sqldelight {
+    PeopleInSpaceDatabase {
+        packageName = "com.surrus.peopleinspace.db"
+        sourceFolders = ["sqldelight"]
     }
 }

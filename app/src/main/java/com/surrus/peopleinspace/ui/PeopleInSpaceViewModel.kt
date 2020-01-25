@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surrus.common.remote.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) : ViewModel() {
@@ -12,8 +13,10 @@ class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) :
 
     init {
         viewModelScope.launch {
-            val people = peopleInSpaceRepository.fetchPeople()
-            peopleInSpace.value = people
+            peopleInSpaceRepository.fetchPeopleAsFlow().collect {
+                peopleInSpace.value = it
+            }
         }
+
     }
 }

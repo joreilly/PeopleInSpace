@@ -1,0 +1,12 @@
+
+CREATE TABLE People(
+name TEXT NOT NULL PRIMARY KEY,
+craft TEXT NOT NULL
+);
+
+insertItem:
+INSERT OR REPLACE INTO People(name, craft)VALUES(?,?);
+
+selectAll:
+SELECT * FROM People;
+

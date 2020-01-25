@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A40FE1923DB5C35008428A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */; };
 		1ABD44FA23B00008008387E3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABD44F923B00008008387E3 /* ViewModel.swift */; };
 		1ABFB8BE23AFF5CC003D807E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFB8BD23AFF5CC003D807E /* AppDelegate.swift */; };
 		1ABFB8C023AFF5CC003D807E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFB8BF23AFF5CC003D807E /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1ABD44F923B00008008387E3 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1ABFB8BA23AFF5CC003D807E /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABFB8BD23AFF5CC003D807E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A40FE1923DB5C35008428A6 /* libsqlite3.tbd in Frameworks */,
 				1E1255057DE614781855FC02 /* libPods-PeopleInSpaceSwiftUI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +100,7 @@
 		D0F1ED5C992B526EA33236F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */,
 				28681F6577A67864E2C2D9B4 /* libPods-PeopleInSpaceSwiftUI.a */,
 			);
 			name = Frameworks;
