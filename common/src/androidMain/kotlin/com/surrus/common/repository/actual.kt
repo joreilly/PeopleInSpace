@@ -11,3 +11,5 @@ actual fun createDb(): PeopleInSpaceDatabase {
     val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema, appContext, "peopleinspace.db")
     return PeopleInSpaceDatabase(driver)
 }
+
+actual fun runBlocking(block: suspend () -> Unit) = kotlinx.coroutines.runBlocking { block() }

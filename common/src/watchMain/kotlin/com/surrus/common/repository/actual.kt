@@ -7,3 +7,5 @@ actual fun createDb(): PeopleInSpaceDatabase {
     val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema, "peopleinspace.db")
     return PeopleInSpaceDatabase(driver)
 }
+
+actual fun runBlocking(block: suspend () -> Unit) = kotlinx.coroutines.runBlocking { block() }

@@ -3,14 +3,16 @@ package com.surrus.common.repository
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.surrus.common.remote.Assignment
+import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 expect fun createDb() : PeopleInSpaceDatabase
+
+expect fun runBlocking(block: suspend () -> Unit)
+
 
 class PeopleInSpaceRepository {
     private val peopleInSpaceApi = PeopleInSpaceApi()
@@ -18,7 +20,7 @@ class PeopleInSpaceRepository {
     private val peopleInSpaceQueries = peopleInSpaceDatabase.peopleInSpaceQueries
 
     init {
-        GlobalScope.launch (Dispatchers.Main) {
+        runBlocking {
             fetchAndStorePeople()
         }
     }
@@ -27,7 +29,7 @@ class PeopleInSpaceRepository {
             Assignment(name = name, craft = craft)
         }).asFlow().mapToList()
 
-    suspend fun fetchAndStorePeople()  {
+    private suspend fun fetchAndStorePeople()  {
         val result = peopleInSpaceApi.fetchPeople()
 
         // this is very basic implementation for now that removes all existing rows
@@ -38,12 +40,19 @@ class PeopleInSpaceRepository {
         }
     }
 
-    // called from iOS/watchOS client
+    // called from iOS/watchOS/macOS client
     fun fetchPeople(success: (List<Assignment>) -> Unit) {
         GlobalScope.launch(Dispatchers.Main) {
             fetchPeopleAsFlow().collect {
                 success(it)
             }
+        }
+    }
+
+    fun fetchISSPosition(success: (IssPosition) -> Unit) {
+        runBlocking {
+            val result = peopleInSpaceApi.fetchISSPosition()
+            success(result.iss_position)
         }
     }
 }

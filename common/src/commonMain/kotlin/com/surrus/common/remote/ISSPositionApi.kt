@@ -9,26 +9,13 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 
-@Serializable
-data class AstroResult(val message: String, val number: Int, val people: List<Assignment>)
-
-@Serializable
-data class Assignment(val craft: String, val name: String)
-
-@Serializable
-data class IssPosition(val latitude: Double, val longitude: Double)
-
-@Serializable
-data class IssResponse(val message: String, val iss_position: IssPosition, val timestamp: Long)
 
 
-@UnstableDefault
-class PeopleInSpaceApi {
-    private val baseUrl = "http://api.open-notify.org"
+class ISSPositionApi {
+    private val url = "http://api.open-notify.org/iss-now.json"
 
     private val client by lazy {
         HttpClient() {
@@ -42,6 +29,5 @@ class PeopleInSpaceApi {
         }
     }
 
-    suspend fun fetchPeople() = client.get<AstroResult>("$baseUrl/astros.json")
-    suspend fun fetchISSPosition() = client.get<IssResponse>("$baseUrl/iss-now.json")
+    suspend fun fetchISSPosition() = client.get<IssResponse>(url)
 }

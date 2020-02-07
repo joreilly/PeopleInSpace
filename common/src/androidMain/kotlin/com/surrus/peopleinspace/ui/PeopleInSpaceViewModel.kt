@@ -17,6 +17,5 @@ class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) :
                 peopleInSpace.value = it
             }
         }
-
     }
 }

@@ -1,10 +1,10 @@
 
 object Versions {
-    const val androidBuildToolsVersion = "4.1.0-alpha04"
+    const val androidBuildToolsVersion = "4.1.0-alpha05"
 
     const val kotlin = "1.3.71"
-    const val kotlinCoroutines = "1.3.5"
-    const val koin = "2.0.0"
+    const val kotlinCoroutines = "1.3.5-native-mt"
+    const val koin = "2.1.2"
     const val ktor = "1.3.2"
     const val kotlinxSerialization = "0.20.0"
     const val sqlDelight = "1.3.0"

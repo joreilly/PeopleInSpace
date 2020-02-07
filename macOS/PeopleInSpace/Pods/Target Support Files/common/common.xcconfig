@@ -1,0 +1,17 @@
+CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/common
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../../common/build/cocoapods/framework"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+KOTLIN_TARGET[sdk=appletvos*] = tvos_arm64
+KOTLIN_TARGET[sdk=appletvsimulator*] = tvos_x64
+KOTLIN_TARGET[sdk=iphoneos*] = ios_arm
+KOTLIN_TARGET[sdk=iphonesimulator*] = ios_x64
+KOTLIN_TARGET[sdk=macosx*] = macos_x64
+KOTLIN_TARGET[sdk=watchos*] = watchos_arm
+KOTLIN_TARGET[sdk=watchsimulator*] = watchos_x86
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}
+PODS_TARGET_SRCROOT = ${PODS_ROOT}/../../../common
+PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
+SKIP_INSTALL = YES
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

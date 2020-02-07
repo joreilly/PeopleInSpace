@@ -49,6 +49,12 @@ kotlin {
             }
         }
 
+        fromPreset(presets.macosX64, 'macOS') {
+            binaries {
+                framework('common')
+            }
+        }
+
         fromPreset(presets.android, 'android')
     }
 
@@ -102,10 +108,9 @@ kotlin {
             implementation "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
             implementation "com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}"
 
-            // ViewModel (TEMP moved here until Compose can work in same module as Coroutines)
-            implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+            implementation 'androidx.core:core-ktx:1.2.0'
             implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-
+            implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
         }
 
         iOSMain.dependencies {
@@ -115,7 +120,6 @@ kotlin {
                     strictly '1.3.5-native-mt'
                 }
             }
-
 
             // Ktor
             implementation "io.ktor:ktor-client-ios:${Versions.ktor}"
@@ -151,6 +155,26 @@ kotlin {
 
             // SQL Delight
             implementation "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
+        }
+
+        macOSMain.dependencies {
+            // Coroutines
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-macosx64:${Versions.kotlinCoroutines}"
+
+
+            // Ktor
+            implementation "io.ktor:ktor-client-curl:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-core-macosx64:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json-macosx64:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging-macosx64:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization-macosx64:${Versions.ktor}"
+
+            // Serialize
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-macosx64:${Versions.kotlinxSerialization}"
+
+            // SQL Delight
+            implementation "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
+            implementation "com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}"
         }
     }
 }

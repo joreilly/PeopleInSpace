@@ -1,0 +1,5 @@
+
+target 'PeopleInSpace' do
+    pod 'common', :path => '../../common'
+end
+
