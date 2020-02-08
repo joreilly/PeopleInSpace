@@ -8,11 +8,15 @@ using **Jetpack Compose** and on iOS using **SwiftUI**
 
 **Note**: You need to use Android Studio v4.0 (currently on Canary 6).  Have tested on XCode v11.3
 
+
 **Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche). That  
 also includes use of `NavigationLink`
 
 The following is pretty much all the code used (along with gradle files/resources etc).  I did say it was *minimal*!!
 
+**Update Jan 25th 2020**: Have added SQLDelight support for locally persisting data (across all the platforms).
+I haven't updated code below yet as I think it still has value in demonstrating what a minimum Kotlin
+Multiplatform project would be. 
 
 ### iOS SwiftUI Code
 
