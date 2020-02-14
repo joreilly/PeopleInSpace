@@ -29,6 +29,10 @@ class PeopleInSpaceRepository {
 
     suspend fun fetchAndStorePeople()  {
         val result = peopleInSpaceApi.fetchPeople()
+
+        // this is very basic implementation for now that removes all existing rows
+        // in db and then inserts reults from api request
+        peopleInSpaceQueries.deleteAll()
         result.people.forEach {
             peopleInSpaceQueries.insertItem(it.name, it.craft)
         }
