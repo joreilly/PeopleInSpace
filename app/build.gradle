@@ -13,6 +13,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "${Versions.compose}"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -34,11 +43,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
 
-    implementation 'androidx.ui:ui-framework:0.1.0-dev05'
-    implementation 'androidx.ui:ui-layout:0.1.0-dev05'
-    implementation 'androidx.ui:ui-material:0.1.0-dev05'
-    implementation 'androidx.ui:ui-tooling:0.1.0-dev05'
-    implementation 'androidx.ui:ui-graphics:0.1.0-dev05'
+    implementation "androidx.ui:ui-framework:${Versions.compose}"
+    implementation "androidx.ui:ui-layout:${Versions.compose}"
+    implementation "androidx.ui:ui-material:${Versions.compose}"
+    implementation "androidx.ui:ui-tooling:${Versions.compose}"
+    implementation "androidx.ui:ui-graphics:${Versions.compose}"
 
 
     implementation 'com.google.android.material:material:1.0.0'

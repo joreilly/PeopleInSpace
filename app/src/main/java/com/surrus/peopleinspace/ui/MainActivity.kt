@@ -3,34 +3,45 @@ package com.surrus.peopleinspace.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.*
-import androidx.lifecycle.LiveData
+import androidx.compose.frames.ModelList
 import androidx.lifecycle.Observer
 import androidx.ui.core.Text
 import androidx.ui.core.setContent
 import androidx.ui.layout.Column
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.material.MaterialTheme
+import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.surrus.common.remote.Assignment
 import org.koin.android.viewmodel.ext.android.viewModel
 
+
+@Model
+class PeopleState(var peopleInSpace: ModelList<Assignment> = ModelList())
+
 class MainActivity : AppCompatActivity() {
     private val peopleInSpaceViewModel: PeopleInSpaceViewModel by viewModel()
+    private val peopleState = PeopleState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        peopleInSpaceViewModel.peopleInSpace.observe(this, Observer {
+            peopleState.peopleInSpace.clear()
+            peopleState.peopleInSpace.addAll(it)
+        })
+
         setContent {
-            mainLayout(peopleInSpaceViewModel)
+            mainLayout(peopleState)
         }
     }
 }
 
 @Composable
-fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
+fun mainLayout(peopleState: PeopleState) {
     MaterialTheme {
-        val people = observe(peopleInSpaceViewModel.peopleInSpace)
         Column {
-            people?.forEach { person ->
+            peopleState.peopleInSpace.forEach { person ->
                 Row(person)
             }
         }
@@ -47,19 +58,11 @@ fun Row(person: Assignment) {
 }
 
 
-// from https://medium.com/swlh/android-mvi-with-jetpack-compose-b0890f5156ac
-// update: since dev05, version from that article was updated based
-// on https://twitter.com/intelligibabble/status/1205318193960472576
-@Composable fun <T> observe(data: LiveData<T>) : T? {
-    val result = state<T?> { data.value }
-    val observer = remember { Observer<T> { result.value = it } }
 
-    onCommit(data) {
-        data.observeForever(observer)
-        onDispose { data.removeObserver(observer) }
+@Preview
+@Composable
+fun DefaultPreview() {
+    MaterialTheme {
+        Row(Assignment("ISS", "John O'Reilly"))
     }
-
-    return result.value
 }
-
-
