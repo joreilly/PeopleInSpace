@@ -1,13 +1,13 @@
 
 object Versions {
-    const val androidBuildToolsVersion = "4.1.0-alpha03"
+    const val androidBuildToolsVersion = "4.1.0-alpha04"
 
-    const val kotlin = "1.3.61"
-    const val kotlinCoroutines = "1.3.3"
+    const val kotlin = "1.3.71"
+    const val kotlinCoroutines = "1.3.5"
     const val koin = "2.0.0"
-    const val ktor = "1.3.0-rc"
-    const val kotlinxSerialization = "0.14.0"
-    const val sqlDelight = "1.2.2"
+    const val ktor = "1.3.2"
+    const val kotlinxSerialization = "0.20.0"
+    const val sqlDelight = "1.3.0"
     const val retrofit = "2.4.0"
     const val okHttp = "3.12.0"
     const val ktx = "1.0.1"
