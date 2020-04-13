@@ -9,11 +9,12 @@ struct MapView {
     }
     
     func updateMapView(_ view: MKMapView, context: Context) {
-        let span = MKCoordinateSpan(latitudeDelta: 2, longitudeDelta: 2)
+        let span = MKCoordinateSpan(latitudeDelta: 150, longitudeDelta: 150)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         view.showsZoomControls = true
         view.setRegion(region, animated: false)
         
+        view.removeAnnotations(view.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         view.addAnnotation(annotation)

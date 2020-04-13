@@ -4,6 +4,7 @@ import common
 
 struct ContentView: View {
     @ObservedObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
 
@@ -12,23 +13,18 @@ struct ContentView: View {
                 PersonView(person: person)
             }
             .listStyle(SidebarListStyle())
+            .onReceive(timer) { _ in
+                self.peopleInSpaceViewModel.fetchISSPosition()
+            }
             .onAppear(perform: {
                 self.peopleInSpaceViewModel.fetchPeople()
                 self.peopleInSpaceViewModel.fetchISSPosition()
             })
             
+                
+            
             MapView(coordinate: CLLocationCoordinate2DMake(peopleInSpaceViewModel.issPosition.latitude, peopleInSpaceViewModel.issPosition.longitude))
         }
-    }
-}
-
-
-struct DetailView: View {
-    let text: String
-
-    var body: some View {
-        Text(text)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
