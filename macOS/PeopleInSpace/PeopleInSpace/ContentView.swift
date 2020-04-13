@@ -4,7 +4,7 @@ import common
 
 struct ContentView: View {
     @ObservedObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
 
     var body: some View {
 
