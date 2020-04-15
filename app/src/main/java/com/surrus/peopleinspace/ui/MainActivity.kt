@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.*
 import androidx.compose.frames.ModelList
 import androidx.lifecycle.Observer
-import androidx.ui.core.Text
 import androidx.ui.core.setContent
+import androidx.ui.foundation.Text
 import androidx.ui.layout.Column
 import androidx.ui.layout.LayoutPadding
+import androidx.ui.livedata.observeAsState
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
@@ -16,32 +17,23 @@ import com.surrus.common.remote.Assignment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-@Model
-class PeopleState(var peopleInSpace: ModelList<Assignment> = ModelList())
-
 class MainActivity : AppCompatActivity() {
     private val peopleInSpaceViewModel: PeopleInSpaceViewModel by viewModel()
-    private val peopleState = PeopleState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        peopleInSpaceViewModel.peopleInSpace.observe(this, Observer {
-            peopleState.peopleInSpace.clear()
-            peopleState.peopleInSpace.addAll(it)
-        })
-
         setContent {
-            mainLayout(peopleState)
+            mainLayout(peopleInSpaceViewModel.peopleInSpace.observeAsState())
         }
     }
 }
 
 @Composable
-fun mainLayout(peopleState: PeopleState) {
+fun mainLayout(peopleState: State<List<Assignment>?>) {
     MaterialTheme {
         Column {
-            peopleState.peopleInSpace.forEach { person ->
+            peopleState.value?.forEach { person ->
                 Row(person)
             }
         }

@@ -51,6 +51,7 @@ dependencies {
     implementation "androidx.ui:ui-material:${Versions.compose}"
     implementation "androidx.ui:ui-tooling:${Versions.compose}"
     implementation "androidx.ui:ui-graphics:${Versions.compose}"
+    implementation "androidx.ui:ui-livedata:${Versions.compose}"
 
 
     implementation 'com.google.android.material:material:1.1.0'
