@@ -1,22 +1,28 @@
 # PeopleInSpace
 
-Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI
+Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI.  Currently running on
+* Android
+* iOS
+* watchOS
+* macOS
 
 It makes use of basic API (http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
 space (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  The list is shown on Android
 using **Jetpack Compose** and on iOS using **SwiftUI**
 
-**Note**: You need to use Android Studio v4.0 (currently on Canary 6).  Have tested on XCode v11.3
+**Note**: You need to use Android Studio v4.1 (currently on Canary 5).  Have tested on XCode v11.3
 
 
-**Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche). That  
-also includes use of `NavigationLink`
+**Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche)
 
 The following is pretty much all the code used (along with gradle files/resources etc).  I did say it was *minimal*!!
 
 **Update Jan 25th 2020**: Have added SQLDelight support for locally persisting data (across all the platforms).
 I haven't updated code below yet as I think it still has value in demonstrating what a minimum Kotlin
 Multiplatform project would be. 
+
+**Update April 15th 2020**: Added macOS support
+
 
 ### iOS SwiftUI Code
 
@@ -183,7 +189,7 @@ data class AstroResult(val message: String, val number: Int, val people: List<As
 data class Assignment(val craft: String, val name: String)
 
 class PeopleInSpaceApi {
-    private val baseUrl = "http://api.open-notify.org/astros.json"
+    private val baseUrl = "http://api.open-notify.org"
 
     private val client by lazy {
         HttpClient() {
@@ -193,9 +199,7 @@ class PeopleInSpaceApi {
         }
     }
 
-    suspend fun fetchPeople(): AstroResult {
-        return client.get("$baseUrl")
-    }
+    suspend fun fetchPeople() = client.get<AstroResult>("$baseUrl/astros.json")
 }
 ```
 
