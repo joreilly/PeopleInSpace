@@ -3,11 +3,9 @@ package com.surrus.peopleinspace.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.*
-import androidx.compose.frames.ModelList
-import androidx.lifecycle.Observer
 import androidx.ui.core.setContent
+import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Text
-import androidx.ui.layout.Column
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.livedata.observeAsState
 import androidx.ui.material.MaterialTheme
@@ -24,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            mainLayout(peopleInSpaceViewModel.peopleInSpace.observeAsState())
+            val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState()
+            mainLayout(peopleState)
         }
     }
 }
@@ -32,10 +31,8 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun mainLayout(peopleState: State<List<Assignment>?>) {
     MaterialTheme {
-        Column {
-            peopleState.value?.forEach { person ->
-                Row(person)
-            }
+        AdapterList(data = peopleState.value!!) { person ->
+            Row(person)
         }
     }
 }
