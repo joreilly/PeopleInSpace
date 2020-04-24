@@ -7,10 +7,12 @@ import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
 import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Text
+import androidx.ui.layout.Column
 import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.padding
 import androidx.ui.livedata.observeAsState
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.TopAppBar
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import com.surrus.common.remote.Assignment
@@ -33,8 +35,16 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun mainLayout(peopleState: State<List<Assignment>?>) {
     MaterialTheme {
-        AdapterList(data = peopleState.value!!) { person ->
-            Row(person)
+        Column {
+            TopAppBar(
+                title = {
+                    Text("People In Space")
+                }
+            )
+            AdapterList(data = peopleState.value!!) { person ->
+                Row(person)
+            }
+
         }
     }
 }
