@@ -8,6 +8,7 @@ object Versions {
     const val ktor = "1.3.2"
     const val kotlinxSerialization = "0.20.0"
     const val sqlDelight = "1.3.0"
+    const val sqliteJdbcDriver = "3.30.1"
     const val retrofit = "2.4.0"
     const val okHttp = "3.12.0"
     const val ktx = "1.0.1"

@@ -56,6 +56,7 @@ kotlin {
         }
 
         fromPreset(presets.android, 'android')
+        jvm()
     }
 
     cocoapods {
@@ -111,6 +112,29 @@ kotlin {
             implementation 'androidx.core:core-ktx:1.2.0'
             implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
             implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+        }
+
+        jvmMain.dependencies {
+            // Kotlin
+            implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+
+            // Coroutines
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+
+            // Ktor
+            implementation "io.ktor:ktor-client-core-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-apache:${Versions.ktor}"
+
+
+            // Serialize
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+
+            // SQL Delight
+            implementation "org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}"
+            implementation "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
         }
 
         iOSMain.dependencies {
