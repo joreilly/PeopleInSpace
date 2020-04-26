@@ -13,7 +13,7 @@ class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) :
 
     init {
         viewModelScope.launch {
-            peopleInSpaceRepository.fetchPeopleAsFlow().collect {
+            peopleInSpaceRepository.fetchPeopleAsFlow()?.collect {
                 peopleInSpace.value = it
             }
         }
