@@ -1,4 +1,0 @@
-enableFeaturePreview('GRADLE_METADATA')
-
-include ':app', ':common'
-rootProject.name='PeopleInSpace'
