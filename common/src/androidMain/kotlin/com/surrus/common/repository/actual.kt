@@ -3,6 +3,9 @@ package com.surrus.common.repository
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 lateinit var appContext: Context
@@ -12,4 +15,6 @@ actual fun createDb(): PeopleInSpaceDatabase {
     return PeopleInSpaceDatabase(driver)
 }
 
-actual fun runBlocking(block: suspend () -> Unit) = kotlinx.coroutines.runBlocking { block() }
+actual fun ktorScope(block: suspend () -> Unit) {
+    GlobalScope.launch(Dispatchers.Main) { block() }
+}

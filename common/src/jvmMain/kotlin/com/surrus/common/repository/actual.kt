@@ -10,4 +10,4 @@ actual fun createDb(): PeopleInSpaceDatabase {
     return PeopleInSpaceDatabase(driver)
 }
 
-actual fun runBlocking(block: suspend () -> Unit) = kotlinx.coroutines.runBlocking { block() }
+actual fun ktorScope(block: suspend () -> Unit) = kotlinx.coroutines.runBlocking { block() }

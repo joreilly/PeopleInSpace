@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.collect
 
 expect fun createDb() : PeopleInSpaceDatabase
 
-expect fun runBlocking(block: suspend () -> Unit)
+// TEMP until following is resolved https://github.com/ktorio/ktor/issues/1622
+expect fun ktorScope(block: suspend () -> Unit)
 
 
 class PeopleInSpaceRepository {
@@ -20,7 +21,7 @@ class PeopleInSpaceRepository {
     private val peopleInSpaceQueries = peopleInSpaceDatabase.peopleInSpaceQueries
 
     init {
-        runBlocking {
+        ktorScope {
             fetchAndStorePeople()
         }
     }
@@ -50,9 +51,10 @@ class PeopleInSpaceRepository {
     }
 
     fun fetchISSPosition(success: (IssPosition) -> Unit) {
-        runBlocking {
+        ktorScope {
             val result = peopleInSpaceApi.fetchISSPosition()
             success(result.iss_position)
         }
     }
 }
+
