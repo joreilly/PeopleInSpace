@@ -19,10 +19,8 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+        maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
     }
 }
 
-tasks.register("clean").configure {
-    delete("build")
-}
 

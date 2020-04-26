@@ -1,23 +1,17 @@
-package com.surrus
-
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import org.litote.kmongo.*
-import org.litote.kmongo.async.*
-import org.litote.kmongo.coroutine.*
-import org.litote.kmongo.async.getCollection
-import com.mongodb.ConnectionString
 import com.surrus.common.repository.PeopleInSpaceRepository
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import kotlinx.coroutines.GlobalScope
+import io.ktor.http.ContentType
+import io.ktor.http.content.resources
+import io.ktor.http.content.static
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import javax.xml.bind.JAXBElement
+
 
 fun main() {
     val repository = PeopleInSpaceRepository()
@@ -28,8 +22,20 @@ fun main() {
         }
 
         routing {
+
+            get("/") {
+                call.respondText(
+                    this::class.java.classLoader.getResource("index.html")!!.readText(),
+                    ContentType.Text.Html
+                )
+            }
+
+            static("/") {
+                resources("")
+            }
+
             get("/people") {
-                repository.fetchPeopleAsFlow().collect {
+                repository.fetchPeopleAsFlow()?.collect {
                     call.respond(it)
                 }
             }

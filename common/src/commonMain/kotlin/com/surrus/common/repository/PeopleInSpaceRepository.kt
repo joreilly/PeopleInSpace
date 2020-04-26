@@ -9,7 +9,7 @@ import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
-expect fun createDb() : PeopleInSpaceDatabase
+expect fun createDb() : PeopleInSpaceDatabase?
 
 // TEMP until following is resolved https://github.com/ktorio/ktor/issues/1622
 expect fun ktorScope(block: suspend () -> Unit)
@@ -18,7 +18,7 @@ expect fun ktorScope(block: suspend () -> Unit)
 class PeopleInSpaceRepository {
     private val peopleInSpaceApi = PeopleInSpaceApi()
     private val peopleInSpaceDatabase = createDb()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase.peopleInSpaceQueries
+    private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
 
     init {
         ktorScope {
@@ -26,25 +26,25 @@ class PeopleInSpaceRepository {
         }
     }
 
-    fun fetchPeopleAsFlow()  = peopleInSpaceQueries.selectAll(mapper = { name, craft ->
+    fun fetchPeopleAsFlow()  = peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
             Assignment(name = name, craft = craft)
-        }).asFlow().mapToList()
+        })?.asFlow()?.mapToList()
 
     private suspend fun fetchAndStorePeople()  {
         val result = peopleInSpaceApi.fetchPeople()
 
         // this is very basic implementation for now that removes all existing rows
         // in db and then inserts reults from api request
-        peopleInSpaceQueries.deleteAll()
+        peopleInSpaceQueries?.deleteAll()
         result.people.forEach {
-            peopleInSpaceQueries.insertItem(it.name, it.craft)
+            peopleInSpaceQueries?.insertItem(it.name, it.craft)
         }
     }
 
     // called from iOS/watchOS/macOS client
     fun fetchPeople(success: (List<Assignment>) -> Unit) {
         GlobalScope.launch(Dispatchers.Main) {
-            fetchPeopleAsFlow().collect {
+            fetchPeopleAsFlow()?.collect {
                 success(it)
             }
         }

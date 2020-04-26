@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-actual fun createDb(): PeopleInSpaceDatabase {
+actual fun createDb(): PeopleInSpaceDatabase? {
     val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema, "peopleinspace.db")
     return PeopleInSpaceDatabase(driver)
 }

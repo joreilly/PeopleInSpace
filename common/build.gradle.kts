@@ -10,7 +10,6 @@ android {
     compileSdkVersion(29)
     buildToolsVersion("29.0.2")
 
-
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(29)
@@ -55,6 +54,11 @@ kotlin {
         // Configure fields required by CocoaPods.
         summary = "Some description for a Kotlin/Native module"
         homepage = "Link to a Kotlin/Native module homepage"
+    }
+
+    js {
+        browser {
+        }
     }
 
     sourceSets {
@@ -123,9 +127,6 @@ kotlin {
 
                 // Ktor
                 implementation("io.ktor:ktor-server-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
-                implementation("io.ktor:ktor-websockets:${Versions.ktor}")
-                implementation("org.litote.kmongo:kmongo-coroutine-serialization:3.12.2")
 
                 implementation("io.ktor:ktor-client-core-jvm:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json-jvm:${Versions.ktor}")
@@ -206,6 +207,27 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}")
             }
         }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-js"))
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.kotlinCoroutines}")
+
+                // ktor
+                implementation("io.ktor:ktor-client-js:${Versions.ktor}") //include http&websockets
+                implementation("io.ktor:ktor-client-json-js:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-logging-js:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-serialization-js:${Versions.ktor}")
+
+                // Serialize
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.kotlinxSerialization}")
+
+                // SQL Delight
+                //implementation("com.squareup.sqldelight:sqljs-driver:${Versions.sqlDelight}")
+                implementation("com.squareup.sqldelight:runtime-js:${Versions.sqlDelight}")
+            }
+        }
     }
 }
 
@@ -215,3 +237,4 @@ sqldelight {
         sourceFolders = listOf("sqldelight")
     }
 }
+
