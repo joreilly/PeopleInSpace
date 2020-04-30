@@ -115,20 +115,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
-            mainLayout(peopleInSpaceViewModel)
+            val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState()
+            mainLayout(peopleState)
         }
     }
 }
 
 @Composable
-fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
+fun mainLayout(peopleState: State<List<Assignment>?>) {
     MaterialTheme {
-        val people = +observe(peopleInSpaceViewModel.peopleInSpace)
         Column {
-            people?.forEach { person ->
+            TopAppBar(
+                title = {
+                    Text("People In Space")
+                }
+            )
+            AdapterList(data = peopleState.value!!) { person ->
                 Row(person)
             }
+
         }
     }
 }
@@ -136,9 +143,10 @@ fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
 
 @Composable
 fun Row(person: Assignment) {
-    Padding(16.dp) {
-        Text(text = "${person.name} (${person.craft})")
-    }
+    Text(
+        text = "${person.name} (${person.craft})",
+        modifier = Modifier.padding(16.dp)
+    )
 }
 ```
 
