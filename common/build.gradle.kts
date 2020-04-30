@@ -109,11 +109,6 @@ kotlin {
                 // SQL Delight
                 implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
                 implementation("com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}")
-
-                implementation("androidx.core:core-ktx:1.2.0")
-                implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-
             }
         }
 
