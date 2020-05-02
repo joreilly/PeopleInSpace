@@ -4,10 +4,11 @@ import react.*
 import react.dom.*
 import kotlinx.coroutines.*
 
-val scope = MainScope()
-val api = PeopleInSpaceApi()
 
 val App = functionalComponent<RProps> { _ ->
+    val scope = MainScope()
+    val api = PeopleInSpaceApi()
+
     val (people, setPeople) = useState(emptyList<Assignment>())
 
     useEffect(dependencies = listOf()) {

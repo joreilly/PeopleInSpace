@@ -207,6 +207,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-js"))
 
+                // Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.kotlinCoroutines}")
 
                 // ktor
