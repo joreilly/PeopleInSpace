@@ -11,7 +11,14 @@ It makes use of basic API (http://open-notify.org/Open-Notify-API/People-In-Spac
 space (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  The list is shown on Android
 using **Jetpack Compose** and on iOS using **SwiftUI**
 
-**Note**: You need to use Android Studio v4.1 (currently on Canary 5).  Have tested on XCode v11.3
+Related posts:
+* [Minimal Kotlin Multiplatform project using Compose and SwiftUI](https://johnoreilly.dev/posts/minimal-kotlin-platform-compose-swiftui/)
+* [Adding some Storage (to) Space](https://johnoreilly.dev/posts/adding-sqldelight-to-peopleinspace/)
+* [Kotlin Multiplatform running on macOS](https://johnoreilly.dev/posts/kotlinmultiplatform-macos/)
+* [PeopleInSpace hits the web with Kotlin/JS and React](https://johnoreilly.dev/posts/peopleinspace-kotlinjs/)
+
+
+**Note**: You need to use Android Studio v4.1 (currently on Canary 8).  Have tested on XCode v11.3
 
 
 **Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche)
