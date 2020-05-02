@@ -5,6 +5,7 @@ Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI.  Cur
 * iOS
 * watchOS
 * macOS
+* Web
 
 It makes use of basic API (http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
 space (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  The list is shown on Android
@@ -23,6 +24,7 @@ Multiplatform project would be.
 
 **Update April 15th 2020**: Added macOS support
 
+**Update May 2nd 2020**: Added basic Kotlin/JS support
 
 ### iOS SwiftUI Code
 
@@ -165,6 +167,33 @@ class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) :
 }
 ```
 
+### Kotlin/JS client
+
+```kotlin
+val App = functionalComponent<RProps> { _ ->
+    val scope = MainScope()
+    val api = PeopleInSpaceApi()
+
+    val (people, setPeople) = useState(emptyList<Assignment>())
+
+    useEffect(dependencies = listOf()) {
+        scope.launch {
+            setPeople(api.fetchPeople().people)
+        }
+    }
+
+    h1 {
+        +"People In Space"
+    }
+    ul {
+        people.forEach { item ->
+            li {
+                +"${item.name} (${item.craft})"
+            }
+        }
+    }
+}
+```
 
 ### Shared Kotlin Repository
 
