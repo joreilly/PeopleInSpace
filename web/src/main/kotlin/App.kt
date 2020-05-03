@@ -1,20 +1,22 @@
 import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.PeopleInSpaceApi
 import react.*
 import react.dom.*
 import kotlinx.coroutines.*
 
 
+
 val App = functionalComponent<RProps> { _ ->
-    val scope = MainScope()
-    val api = PeopleInSpaceApi()
+    val mainScope = MainScope()
+    val appDependencies = useContext(AppDependenciesContext)
+    val peopleInSpaceApi = appDependencies.peopleInSpaceApi
 
     val (people, setPeople) = useState(emptyList<Assignment>())
 
-    useEffect(dependencies = listOf()) {
-        scope.launch {
-            setPeople(api.fetchPeople().people)
+    useEffectWithCleanup(dependencies = listOf()) {
+        mainScope.launch {
+            setPeople(peopleInSpaceApi.fetchPeople().people)
         }
+        return@useEffectWithCleanup { mainScope.cancel() }
     }
 
     h1 {
