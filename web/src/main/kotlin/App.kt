@@ -6,13 +6,14 @@ import kotlinx.coroutines.*
 
 
 val App = functionalComponent<RProps> { _ ->
-    val mainScope = MainScope()
     val appDependencies = useContext(AppDependenciesContext)
     val peopleInSpaceApi = appDependencies.peopleInSpaceApi
 
     val (people, setPeople) = useState(emptyList<Assignment>())
 
     useEffectWithCleanup(dependencies = listOf()) {
+        val mainScope = MainScope()
+
         mainScope.launch {
             setPeople(peopleInSpaceApi.fetchPeople().people)
         }
