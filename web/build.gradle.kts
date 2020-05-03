@@ -25,5 +25,9 @@ dependencies {
 }
 
 
-kotlin.target.browser { }
-
+kotlin {
+    target {
+        useCommonJs()
+        browser()
+    }
+}
