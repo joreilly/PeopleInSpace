@@ -26,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState()
+            val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState(emptyList())
             mainLayout(peopleState)
         }
     }
 }
 
 @Composable
-fun mainLayout(peopleState: State<List<Assignment>?>) {
+fun mainLayout(peopleState: State<List<Assignment>>) {
     MaterialTheme {
         Column {
             TopAppBar(
@@ -41,7 +41,7 @@ fun mainLayout(peopleState: State<List<Assignment>?>) {
                     Text("People In Space")
                 }
             )
-            AdapterList(data = peopleState.value!!) { person ->
+            AdapterList(data = peopleState.value) { person ->
                 Row(person)
             }
 

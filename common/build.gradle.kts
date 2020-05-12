@@ -128,6 +128,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging-jvm:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
+                implementation(Ktor.slf4j)
 
 
                 // Serialize

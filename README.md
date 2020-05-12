@@ -18,6 +18,11 @@ Related posts:
 * [PeopleInSpace hits the web with Kotlin/JS and React](https://johnoreilly.dev/posts/peopleinspace-kotlinjs/)
 
 
+Note that this repository very much errs on side of mimimalism to help more clearly illustrate key moving parts of a Koltin
+Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time.  If you're at stage of moving
+beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit)
+
+
 **Note**: You need to use Android Studio v4.1 (currently on Canary 8).  Have tested on XCode v11.3
 
 

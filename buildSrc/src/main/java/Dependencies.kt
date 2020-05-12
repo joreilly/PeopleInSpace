@@ -9,8 +9,7 @@ object Versions {
     const val kotlinxSerialization = "0.20.0"
     const val sqlDelight = "1.3.0"
     const val sqliteJdbcDriver = "3.30.1"
-    const val retrofit = "2.4.0"
-    const val okHttp = "3.12.0"
+    const val slf4j = "1.7.30"
     const val ktx = "1.0.1"
     const val nav = "2.1.0-alpha04"
     const val work = "2.1.0-alpha02"
@@ -91,6 +90,7 @@ object Ktor {
     const val clientSerializationJs = "io.ktor:ktor-client-serialization-js:${Versions.ktor}"
     const val freemaker = "io.ktor:ktor-freemarker:${Versions.ktor}"
     const val locations = "io.ktor:ktor-locations:${Versions.ktor}"
+    const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
 }
 
 object AndroidSdk {
@@ -126,19 +126,6 @@ object Firebase {
 object PlayServices {
     val location = "com.google.android.gms:play-services-location:16.0.0"
     val maps = "com.google.android.gms:play-services-maps:16.1.0"
-}
-
-
-object Okhttp {
-    val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
-    val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
-}
-
-object Retrofit {
-    val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    val converterScalars = "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
-    val coroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
 }
 
 object Testing {
