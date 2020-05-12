@@ -18,8 +18,9 @@ Related posts:
 * [PeopleInSpace hits the web with Kotlin/JS and React](https://johnoreilly.dev/posts/peopleinspace-kotlinjs/)
 
 
-Note that this repository very much errs on side of mimimalism to help more clearly illustrate key moving parts of a Koltin
-Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time.  If you're at stage of moving
+Note that this repository very much errs on the side of mimimalism to help more clearly illustrate key moving parts of a Koltin
+Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time (and is of course
+primarily focussed on use of Jetpack Compose and SwiftUI).  If you're at stage of moving
 beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit)
 
 
