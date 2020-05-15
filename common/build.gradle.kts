@@ -84,6 +84,8 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:${Versions.sqlDelight}")
                 implementation("com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}")
 
+                // koin
+                implementation("org.koin:koin-core:${Versions.koin}")
             }
         }
 

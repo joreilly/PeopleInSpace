@@ -19,6 +19,7 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+        maven( "https://dl.bintray.com/ekito/koin")
         maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
     }
 }

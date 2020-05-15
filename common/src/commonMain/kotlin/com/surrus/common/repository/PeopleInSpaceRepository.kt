@@ -8,6 +8,8 @@ import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 expect fun createDb() : PeopleInSpaceDatabase?
 
@@ -15,8 +17,8 @@ expect fun createDb() : PeopleInSpaceDatabase?
 expect fun ktorScope(block: suspend () -> Unit)
 
 
-class PeopleInSpaceRepository {
-    private val peopleInSpaceApi = PeopleInSpaceApi()
+class PeopleInSpaceRepository() : KoinComponent {
+    private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val peopleInSpaceDatabase = createDb()
     private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
 

@@ -4,11 +4,12 @@
 //
 
 import WatchKit
+import common
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
+        KoinKt.doInitKoin()
     }
 
     func applicationDidBecomeActive() {

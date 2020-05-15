@@ -1,11 +1,12 @@
 package com.surrus.peopleinspace
 
 import android.app.Application
+import com.surrus.common.di.commonModule
+import com.surrus.common.di.initKoin
 import com.surrus.common.repository.appContext
 import com.surrus.peopleinspace.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 
 class PeopleInSpaceApplication : Application() {
 
@@ -14,10 +15,10 @@ class PeopleInSpaceApplication : Application() {
 
         appContext = this
 
-        startKoin {
+        initKoin {
             androidLogger()
             androidContext(this@PeopleInSpaceApplication)
-            modules(appModule)
+            modules(appModule, commonModule)
         }
     }
 }
