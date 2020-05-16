@@ -47,7 +47,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
 
-    implementation "androidx.ui:ui-framework:${Versions.compose}"
+    implementation "androidx.ui:ui-core:${Versions.compose}"
     implementation "androidx.ui:ui-layout:${Versions.compose}"
     implementation "androidx.ui:ui-material:${Versions.compose}"
     implementation "androidx.ui:ui-tooling:${Versions.compose}"

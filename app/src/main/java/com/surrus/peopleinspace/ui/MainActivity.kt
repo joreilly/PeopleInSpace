@@ -8,7 +8,6 @@ import androidx.ui.core.setContent
 import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Text
 import androidx.ui.layout.Column
-import androidx.ui.layout.LayoutPadding
 import androidx.ui.layout.padding
 import androidx.ui.livedata.observeAsState
 import androidx.ui.material.MaterialTheme
