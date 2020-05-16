@@ -3,19 +3,18 @@ import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.common.remote.AstroResult
+import com.surrus.common.remote.Assignment
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
 import io.ktor.http.ContentType
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
-import kotlinx.coroutines.flow.collect
 
 
 fun main() {
-    val repository = PeopleInSpaceRepository()
     val peopleInSpaceApi = PeopleInSpaceApi()
 
     embeddedServer(Netty, 9090) {
@@ -36,14 +35,16 @@ fun main() {
                 resources("")
             }
 
-            get("/people") {
-                repository.fetchPeopleAsFlow()?.collect {
-                    call.respond(it)
-                }
-            }
-
             get("/astros.json") {
                 val result = peopleInSpaceApi.fetchPeople()
+                call.respond(result)
+            }
+
+            get("/astros_local.json") {
+                val result = AstroResult("success", 3,
+                    listOf(Assignment("ISS", "Chris Cassidy"),
+                        Assignment("ISS", "Anatoly Ivanishin"),
+                        Assignment("ISS", "Ivan Vagner")))
                 call.respond(result)
             }
 
