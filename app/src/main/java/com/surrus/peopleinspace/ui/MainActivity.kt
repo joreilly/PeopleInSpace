@@ -6,14 +6,20 @@ import androidx.compose.*
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
 import androidx.ui.foundation.AdapterList
+import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
+import androidx.ui.graphics.Color
+import androidx.ui.graphics.vector.VectorAsset
 import androidx.ui.layout.Column
+import androidx.ui.layout.Row
 import androidx.ui.layout.padding
 import androidx.ui.livedata.observeAsState
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.TopAppBar
+import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import androidx.ui.unit.sp
 import com.surrus.common.remote.Assignment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -41,7 +47,7 @@ fun mainLayout(peopleState: State<List<Assignment>>) {
                 }
             )
             AdapterList(data = peopleState.value) { person ->
-                Row(person)
+                PersonView(person)
             }
 
         }
@@ -50,11 +56,14 @@ fun mainLayout(peopleState: State<List<Assignment>>) {
 
 
 @Composable
-fun Row(person: Assignment) {
-    Text(
-        text = "${person.name} (${person.craft})",
-        modifier = Modifier.padding(16.dp)
-    )
+fun PersonView(person: Assignment) {
+    Row(modifier = Modifier.padding(16.dp)) {
+        Column {
+
+            Text(text = person.name, style = TextStyle(fontSize = 20.sp))
+            Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+        }
+    }
 }
 
 
@@ -63,6 +72,6 @@ fun Row(person: Assignment) {
 @Composable
 fun DefaultPreview() {
     MaterialTheme {
-        Row(Assignment("ISS", "John O'Reilly"))
+        PersonView(Assignment("ISS", "John O'Reilly"))
     }
 }
