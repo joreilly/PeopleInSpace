@@ -43,6 +43,8 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
+    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
+    
     // called from iOS/watchOS/macOS client
     fun fetchPeople(success: (List<Assignment>) -> Unit) {
         GlobalScope.launch(Dispatchers.Main) {
