@@ -25,7 +25,7 @@ primarily focussed on use of Jetpack Compose and SwiftUI).  If you're at stage o
 beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit)
 
 
-**Note**: You need to use Android Studio v4.1 (currently on Canary 8).  Have tested on XCode v11.3
+**Note**: You need to use Android Studio v4.2 (currently preview/alpha version).  Have tested on XCode v11.3
 
 
 **Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche)
@@ -39,6 +39,8 @@ Multiplatform project would be.
 **Update April 15th 2020**: Added macOS support
 
 **Update May 2nd 2020**: Added basic Kotlin/JS support
+
+**Update May 15th 2020**: Using Koin in shared multiplatform code
 
 ### iOS SwiftUI Code
 
