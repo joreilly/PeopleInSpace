@@ -6,10 +6,8 @@ import androidx.compose.*
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
 import androidx.ui.foundation.AdapterList
-import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
 import androidx.ui.graphics.Color
-import androidx.ui.graphics.vector.VectorAsset
 import androidx.ui.layout.Column
 import androidx.ui.layout.Row
 import androidx.ui.layout.padding
@@ -18,6 +16,8 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.TopAppBar
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
+import androidx.ui.tooling.preview.PreviewParameter
+import androidx.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.surrus.common.remote.Assignment
@@ -66,12 +66,17 @@ fun PersonView(person: Assignment) {
     }
 }
 
-
+class PersonProvider : CollectionPreviewParameterProvider<Assignment>(
+    listOf(
+        Assignment("ISS", "Chris Cassidy"),
+        Assignment("ISS", "Anatoli Ivanishin")
+    )
+)
 
 @Preview
 @Composable
-fun DefaultPreview() {
+fun DefaultPreview(@PreviewParameter(PersonProvider::class) person: Assignment) {
     MaterialTheme {
-        PersonView(Assignment("ISS", "John O'Reilly"))
+        PersonView(person)
     }
 }
