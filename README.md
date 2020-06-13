@@ -25,7 +25,8 @@ primarily focussed on use of Jetpack Compose and SwiftUI).  If you're at stage o
 beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit)
 
 
-**Note**: You need to use Android Studio v4.2 (currently preview/alpha version).  Have tested on XCode v11.3
+**Note**: You need to use Android Studio v4.2 (currently preview/alpha version).  Have tested on XCode v11.3.  When opening iOS/macOS
+projects remember to open `.xcworkspace` file (and not `.xcodeproj` one)
 
 
 **Update Jan 14th 2020**: This now also includes WatchOS version thanks to [Neal Sanche](https://github.com/nealsanche)
