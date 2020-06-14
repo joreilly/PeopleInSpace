@@ -17,6 +17,7 @@ object Versions {
     const val lifecycle = "2.2.0-alpha01"
     const val fragment = "1.1.0-alpha09"
     const val compose = "0.1.0-dev13"
+    const val coliVersion = "0.1.5"
 
     const val junit = "4.12"
     const val coreTesting = "2.0.0"
