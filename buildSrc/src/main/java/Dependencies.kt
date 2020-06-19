@@ -1,6 +1,6 @@
 
 object Versions {
-    const val androidBuildToolsVersion = "4.2.0-alpha01"
+    const val androidBuildToolsVersion = "4.2.0-alpha02"
 
     const val kotlin = "1.3.72"
     const val kotlinCoroutines = "1.3.5-native-mt"
