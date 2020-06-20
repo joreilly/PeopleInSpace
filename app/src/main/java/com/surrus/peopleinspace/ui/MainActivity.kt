@@ -6,13 +6,11 @@ import androidx.compose.*
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
-import androidx.ui.foundation.AdapterList
-import androidx.ui.foundation.Text
+import androidx.ui.foundation.*
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.livedata.observeAsState
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.TopAppBar
+import androidx.ui.material.*
 import androidx.ui.text.TextStyle
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
@@ -39,21 +37,35 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun mainLayout(peopleState: State<List<Assignment>>) {
+    val scaffoldState = remember { ScaffoldState() }
     MaterialTheme {
-        Column {
-            TopAppBar(
-                title = {
-                    Text("People In Space")
+        MaterialTheme {
+            Scaffold(
+                scaffoldState = scaffoldState,
+                topAppBar = {
+                    TopAppBar(
+                        title = {
+                            Text("People In Space")
+                        }
+                    )
+                },
+                bodyContent = {
+                    when (val screen = PeopleInSpaceNavigation.currentScreen) {
+                        is Screen.Home -> PersonList(peopleState)
+                        is Screen.PersonDetails -> PersonDetailsView(screen.person)
+                    }
                 }
             )
-            AdapterList(data = peopleState.value) { person ->
-                PersonView(person)
-            }
-
         }
     }
 }
 
+@Composable
+fun PersonList(peopleState: State<List<Assignment>>) {
+    AdapterList(data = peopleState.value) { person ->
+        PersonView(person, itemClick = { navigateTo(Screen.PersonDetails(it)) })
+    }
+}
 
 val personImages = mapOf(
     "Chris Cassidy" to "https://www.nasa.gov/sites/default/files/styles/side_image/public/thumbnails/image/9368855148_f79942efb7_o.jpg?itok=-w5yoryN",
@@ -64,21 +76,36 @@ val personImages = mapOf(
 )
 
 @Composable
-fun PersonView(person: Assignment) {
-    Row(modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(), verticalGravity = Alignment.CenterVertically) {
+fun PersonView(person: Assignment, itemClick : (person : Assignment) -> Unit) {
+    Row(
+        modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth()
+                + Modifier.clickable(onClick = { itemClick(person) }),
+        verticalGravity = Alignment.CenterVertically
+    ) {
 
-        CoilImage(
-            data = personImages[person.name]!!,
-            modifier = Modifier.preferredSize(60.dp)
-        )
+        personImages[person.name]?.let { imageUrl ->
+            CoilImage(
+                data = imageUrl,
+                modifier = Modifier.preferredSize(60.dp)
+            )
+        } ?: Spacer(modifier = Modifier.preferredSize(60.dp))
+
 
         Spacer(modifier = Modifier.preferredSize(12.dp))
 
         Column {
             Text(text = person.name, style = TextStyle(fontSize = 20.sp))
-            Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+            Text(
+                text = person.craft,
+                style = TextStyle(color = Color.DarkGray, fontSize = 14.sp)
+            )
         }
     }
+}
+
+@Composable
+fun PersonDetailsView(person: Assignment) {
+    Text(person.name, style = TextStyle(fontSize = 20.sp))
 }
 
 class PersonProvider : CollectionPreviewParameterProvider<Assignment>(
@@ -92,6 +119,6 @@ class PersonProvider : CollectionPreviewParameterProvider<Assignment>(
 @Composable
 fun DefaultPreview(@PreviewParameter(PersonProvider::class) person: Assignment) {
     MaterialTheme {
-        PersonView(person)
+        PersonView(person, itemClick = {})
     }
 }

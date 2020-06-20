@@ -1,6 +1,6 @@
 
 object Versions {
-    const val androidBuildToolsVersion = "4.2.0-alpha01"
+    const val androidBuildToolsVersion = "4.2.0-alpha02"
 
     const val kotlin = "1.3.72"
     const val kotlinCoroutines = "1.3.5-native-mt"
@@ -17,7 +17,7 @@ object Versions {
     const val lifecycle = "2.2.0-alpha01"
     const val fragment = "1.1.0-alpha09"
     const val compose = "0.1.0-dev13"
-    const val coliVersion = "0.1.5"
+    const val coilVersion = "0.1.5"
 
     const val junit = "4.12"
     const val coreTesting = "2.0.0"
