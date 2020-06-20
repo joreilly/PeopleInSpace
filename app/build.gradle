@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.3.72"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.3.0'
 
@@ -54,7 +54,7 @@ dependencies {
     implementation "androidx.ui:ui-graphics:${Versions.compose}"
     implementation "androidx.ui:ui-livedata:${Versions.compose}"
 
-    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.1.5"
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:${Versions.coilVersion}"
 
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
