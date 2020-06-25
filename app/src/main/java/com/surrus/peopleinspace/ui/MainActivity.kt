@@ -3,10 +3,12 @@ package com.surrus.peopleinspace.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.*
+import androidx.compose.State
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
 import androidx.ui.foundation.*
+import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.livedata.observeAsState
@@ -42,7 +44,7 @@ fun mainLayout(peopleState: State<List<Assignment>>) {
         MaterialTheme {
             Scaffold(
                 scaffoldState = scaffoldState,
-                topAppBar = {
+                topBar = {
                     TopAppBar(
                         title = {
                             Text("People In Space")
@@ -62,7 +64,7 @@ fun mainLayout(peopleState: State<List<Assignment>>) {
 
 @Composable
 fun PersonList(peopleState: State<List<Assignment>>) {
-    AdapterList(data = peopleState.value) { person ->
+    LazyColumnItems(items = peopleState.value) { person ->
         PersonView(person, itemClick = { navigateTo(Screen.PersonDetails(it)) })
     }
 }
