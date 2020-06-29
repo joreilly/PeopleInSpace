@@ -263,7 +263,7 @@ class PeopleInSpaceApi {
 ### Languages, libraries and tools used
 
 * [Kotlin](https://kotlinlang.org/)
-* [Kotlin Corooutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+* [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
 * [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization)
 * [Ktor client library](https://github.com/ktorio/ktor)
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
