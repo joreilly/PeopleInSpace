@@ -7,11 +7,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.androidBuildToolsVersion}")
+        classpath("com.android.tools.build:gradle:4.2.0-alpha03")
         classpath(kotlin("gradle-plugin", version = Versions.kotlin))
         classpath(kotlin("serialization", version = Versions.kotlin))
         classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
-        classpath("com.juliozynger.floorplan:floorplan-gradle-plugin:${Versions.floorPlan}")
+        //classpath("com.juliozynger.floorplan:floorplan-gradle-plugin:${Versions.floorPlan}")
     }
 }
 
