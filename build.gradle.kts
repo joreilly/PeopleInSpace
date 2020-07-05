@@ -11,6 +11,7 @@ buildscript {
         classpath(kotlin("gradle-plugin", version = Versions.kotlin))
         classpath(kotlin("serialization", version = Versions.kotlin))
         classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
+        classpath("com.juliozynger.floorplan:floorplan-gradle-plugin:${Versions.floorPlan}")
     }
 }
 

@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
+    id("com.juliozynger.floorplan")
 }
 
 android {
@@ -234,6 +235,16 @@ sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
         sourceFolders = listOf("sqldelight")
+        schemaOutputDirectory = file("$projectDir/sqldelight-schemas")
     }
 }
 
+floorPlan {
+    schemaLocation.value("$projectDir/sqldelight-schemas")
+    outputLocation.value("$projectDir/floorplan-output")
+    outputFormat {
+        svg {
+            enabled(true)
+        }
+    }
+}

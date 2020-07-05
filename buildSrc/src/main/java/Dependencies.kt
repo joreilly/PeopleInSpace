@@ -9,6 +9,7 @@ object Versions {
     const val kotlinxSerialization = "0.20.0"
     const val sqlDelight = "1.3.0"
     const val sqliteJdbcDriver = "3.30.1"
+    const val floorPlan = "0.2"
     const val slf4j = "1.7.30"
     const val ktx = "1.0.1"
     const val nav = "2.1.0-alpha04"
