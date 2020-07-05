@@ -234,6 +234,7 @@ sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
         sourceFolders = listOf("sqldelight")
+        schemaOutputDirectory = file("$projectDir/sqldelight-schemas")
     }
 }
 
