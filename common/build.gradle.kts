@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
+    id("com.juliozynger.floorplan")
 }
 
 android {
@@ -238,3 +239,12 @@ sqldelight {
     }
 }
 
+floorPlan {
+    schemaLocation.value("$projectDir/sqldelight-schemas")
+    outputLocation.value("$projectDir/floorplan-output")
+    outputFormat {
+        svg {
+            enabled(true)
+        }
+    }
+}
