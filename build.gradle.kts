@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.0-alpha03")
+        classpath("com.android.tools.build:gradle:4.2.0-alpha05")
         classpath(kotlin("gradle-plugin", version = Versions.kotlin))
         classpath(kotlin("serialization", version = Versions.kotlin))
         classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
