@@ -12,7 +12,6 @@ struct ContentView: View {
             List(peopleInSpaceViewModel.people, id: \.name) { person in
                 PersonView(person: person)
             }
-            .listStyle(SidebarListStyle())
             .onReceive(timer) { _ in
                 self.peopleInSpaceViewModel.fetchISSPosition()
             }
@@ -20,8 +19,6 @@ struct ContentView: View {
                 self.peopleInSpaceViewModel.fetchPeople()
                 self.peopleInSpaceViewModel.fetchISSPosition()
             })
-            
-                
             
             MapView(coordinate: CLLocationCoordinate2DMake(peopleInSpaceViewModel.issPosition.latitude, peopleInSpaceViewModel.issPosition.longitude))
         }

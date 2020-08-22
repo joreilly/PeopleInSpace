@@ -2,26 +2,30 @@ package com.surrus.peopleinspace.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.*
-import androidx.compose.State
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.core.setContent
-import androidx.ui.foundation.*
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.graphics.Color
-import androidx.ui.layout.*
-import androidx.ui.livedata.observeAsState
-import androidx.ui.material.*
-import androidx.ui.text.TextStyle
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnItems
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
 import androidx.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
 import com.surrus.common.remote.Assignment
 import dev.chrisbanes.accompanist.coil.CoilImage
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,11 +43,9 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun mainLayout(peopleState: State<List<Assignment>>) {
-    val scaffoldState = remember { ScaffoldState() }
     MaterialTheme {
         MaterialTheme {
             Scaffold(
-                scaffoldState = scaffoldState,
                 topBar = {
                     TopAppBar(
                         title = {

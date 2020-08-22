@@ -13,17 +13,13 @@ import org.koin.core.inject
 
 expect fun createDb() : PeopleInSpaceDatabase?
 
-// TEMP until following is resolved https://github.com/ktorio/ktor/issues/1622
-expect fun ktorScope(block: suspend () -> Unit)
-
-
 class PeopleInSpaceRepository() : KoinComponent {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val peopleInSpaceDatabase = createDb()
     private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
 
     init {
-        ktorScope {
+        GlobalScope.launch(Dispatchers.Main) {
             fetchAndStorePeople()
         }
     }
@@ -43,22 +39,10 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
+    @Throws(Exception::class)
     suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
     
-    // called from iOS/watchOS/macOS client
-    fun fetchPeople(success: (List<Assignment>) -> Unit) {
-        GlobalScope.launch(Dispatchers.Main) {
-            fetchPeopleAsFlow()?.collect {
-                success(it)
-            }
-        }
-    }
-
-    fun fetchISSPosition(success: (IssPosition) -> Unit) {
-        ktorScope {
-            val result = peopleInSpaceApi.fetchISSPosition()
-            success(result.iss_position)
-        }
-    }
+    @Throws(Exception::class)
+    suspend fun fetchISSPosition() = peopleInSpaceApi.fetchISSPosition().iss_position
 }
 

@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1A27B2F823E9FA550099850C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A27B2F723E9FA550099850C /* ViewModel.swift */; };
-		1A27B2FA23EA004C0099850C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A27B2F923EA004C0099850C /* libsqlite3.tbd */; };
+		1A3F8B7924F7AFCC00F3FA0A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A27B2F923EA004C0099850C /* libsqlite3.tbd */; };
 		1A64632E23F7F74A00CAFA88 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64632D23F7F74A00CAFA88 /* MapView.swift */; };
 		1A7026CD23E9F32100D2BB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7026CC23E9F32100D2BB6D /* AppDelegate.swift */; };
 		1A7026CF23E9F32100D2BB6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7026CE23E9F32100D2BB6D /* ContentView.swift */; };
 		1A7026D123E9F32300D2BB6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A7026D023E9F32300D2BB6D /* Assets.xcassets */; };
 		1A7026D423E9F32300D2BB6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A7026D323E9F32300D2BB6D /* Preview Assets.xcassets */; };
 		1A7026D723E9F32300D2BB6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7026D523E9F32300D2BB6D /* Main.storyboard */; };
-		1ADB387023EC9526003FDF68 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ADB386823EC6E4B003FDF68 /* libcurl.tbd */; };
 		4573EB68E7DE506E65549594 /* libPods-PeopleInSpace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C770DE7226D9ACBB8A48B8 /* libPods-PeopleInSpace.a */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADB387023EC9526003FDF68 /* libcurl.tbd in Frameworks */,
-				1A27B2FA23EA004C0099850C /* libsqlite3.tbd in Frameworks */,
+				1A3F8B7924F7AFCC00F3FA0A /* libsqlite3.tbd in Frameworks */,
 				4573EB68E7DE506E65549594 /* libPods-PeopleInSpace.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +353,7 @@
 				CODE_SIGN_ENTITLEMENTS = PeopleInSpace/PeopleInSpace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpace/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PeopleInSpace/Info.plist;
@@ -362,7 +361,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -385,6 +384,7 @@
 				CODE_SIGN_ENTITLEMENTS = PeopleInSpace/PeopleInSpace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpace/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PeopleInSpace/Info.plist;
@@ -392,7 +392,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

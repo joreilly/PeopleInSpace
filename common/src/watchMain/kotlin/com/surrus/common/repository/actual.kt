@@ -11,6 +11,3 @@ actual fun createDb(): PeopleInSpaceDatabase? {
     return PeopleInSpaceDatabase(driver)
 }
 
-actual fun ktorScope(block: suspend () -> Unit) {
-    GlobalScope.launch(Dispatchers.Main) { block() }
-}

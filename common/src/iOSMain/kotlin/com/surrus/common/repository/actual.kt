@@ -10,7 +10,3 @@ actual fun createDb(): PeopleInSpaceDatabase? {
     val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema, "peopleinspace.db")
     return PeopleInSpaceDatabase(driver)
 }
-
-actual fun ktorScope(block: suspend () -> Unit) {
-    GlobalScope.launch(Dispatchers.Main) { block() }
-}

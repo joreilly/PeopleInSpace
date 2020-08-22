@@ -9,5 +9,3 @@ actual fun createDb(): PeopleInSpaceDatabase? {
         .also { PeopleInSpaceDatabase.Schema.create(it) }
     return PeopleInSpaceDatabase(driver)
 }
-
-actual fun ktorScope(block: suspend () -> Unit) = kotlinx.coroutines.runBlocking { block() }

@@ -34,7 +34,7 @@ kotlin {
 
         val isiOSDevice = sdkName.orEmpty().startsWith("iphoneos")
         if (isiOSDevice) {
-            iosArm64("iOS64")
+            iosArm64("iOS")
         } else {
             iosX64("iOS")
         }
@@ -65,21 +65,19 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // Kotlin
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}")
-
                 // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.kotlinCoroutines}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
+                    isForce = true
+                }
 
                 // Ktor
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
-                implementation("io.ktor:ktor-serialization:${Versions.ktor}")
 
                 // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
 
                 // SQL Delight
                 implementation("com.squareup.sqldelight:runtime:${Versions.sqlDelight}")
@@ -92,93 +90,37 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                // Kotlin
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
-
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
-
-                // Ktor
                 implementation("io.ktor:ktor-client-android:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-core-jvm:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json-jvm:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging-jvm:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
 
                 // SQL Delight
                 implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
-                implementation("com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}")
+                //implementation("com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}")
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                // Kotlin
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
-
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
-
-                // Ktor
-                implementation("io.ktor:ktor-server-core:${Versions.ktor}")
-
-                implementation("io.ktor:ktor-client-core-jvm:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json-jvm:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging-jvm:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
                 implementation(Ktor.slf4j)
-
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
 
                 // SQL Delight
                 implementation("org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}")
                 implementation("com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}")
-
             }
         }
 
         val iOSMain by getting {
             dependencies {
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.kotlinCoroutines}")
-
-                // Ktor
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-core-native:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json-native:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging-native:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization-native:${Versions.ktor}")
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}")
+                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
 
                 // SQL Delight
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
-
             }
         }
 
         val watchMain by getting {
             dependencies {
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.kotlinCoroutines}")
-
-                // Ktor
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-core-native:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json-native:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging-native:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization-native:${Versions.ktor}")
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}")
+                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
 
                 // SQL Delight
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
@@ -187,45 +129,21 @@ kotlin {
 
         val macOSMain by getting {
             dependencies {
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-macosx64:${Versions.kotlinCoroutines}")
-
-
-                // Ktor
-                implementation("io.ktor:ktor-client-curl:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-core-macosx64:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json-macosx64:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging-macosx64:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization-macosx64:${Versions.ktor}")
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-macosx64:${Versions.kotlinxSerialization}")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
 
                 // SQL Delight
                 implementation("com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}")
-                implementation("com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}")
+                //implementation("com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}")
             }
         }
 
         val jsMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-js"))
-
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.kotlinCoroutines}")
-
-                // ktor
-                implementation("io.ktor:ktor-client-js:${Versions.ktor}") //include http&websockets
-                implementation("io.ktor:ktor-client-json-js:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging-js:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization-js:${Versions.ktor}")
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.kotlinxSerialization}")
+                implementation("io.ktor:ktor-client-js:${Versions.ktor}")
 
                 // SQL Delight
                 //implementation("com.squareup.sqldelight:sqljs-driver:${Versions.sqlDelight}")
-                implementation("com.squareup.sqldelight:runtime-js:${Versions.sqlDelight}")
+                //implementation("com.squareup.sqldelight:runtime-js:${Versions.sqlDelight}")
             }
         }
     }

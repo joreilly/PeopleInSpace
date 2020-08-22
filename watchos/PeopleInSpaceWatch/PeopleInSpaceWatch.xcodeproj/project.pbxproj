@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		085909C1847583547B705454 /* libPods-PeopleInSpaceWatch WatchKit Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0B69EEAC732E1562EBD3CE /* libPods-PeopleInSpaceWatch WatchKit Extension.a */; };
 		1A40FE1E23DB5FC5008428A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1A23DB5C89008428A6 /* libsqlite3.tbd */; };
+		1ACB547624FAD1C50056FEF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */; };
+		1ACB547724FAD1DF0056FEF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */; };
 		FD254F9A23BE528600C19A05 /* PeopleInSpaceWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FD254F9923BE528600C19A05 /* PeopleInSpaceWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD254FA023BE528600C19A05 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD254F9E23BE528600C19A05 /* Interface.storyboard */; };
 		FD254FA223BE528700C19A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD254FA123BE528700C19A05 /* Assets.xcassets */; };
@@ -66,6 +68,7 @@
 /* Begin PBXFileReference section */
 		1A40FE1A23DB5C89008428A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1A40FE1C23DB5D26008428A6 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.2.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		484BF1F88A8D35F5F047B20A /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceWatch WatchKit Extension/Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		BCCDA205D8481581F21A6528 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceWatch WatchKit Extension/Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0B69EEAC732E1562EBD3CE /* libPods-PeopleInSpaceWatch WatchKit Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PeopleInSpaceWatch WatchKit Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACB547624FAD1C50056FEF1 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACB547724FAD1DF0056FEF1 /* libsqlite3.0.tbd in Frameworks */,
 				085909C1847583547B705454 /* libPods-PeopleInSpaceWatch WatchKit Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				1A40FE1C23DB5D26008428A6 /* libsqlite3.0.tbd */,
+				1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */,
 				1A40FE1A23DB5C89008428A6 /* libsqlite3.tbd */,
 				FD0B69EEAC732E1562EBD3CE /* libPods-PeopleInSpaceWatch WatchKit Extension.a */,
 			);

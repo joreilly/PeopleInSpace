@@ -14,7 +14,3 @@ actual fun createDb(): PeopleInSpaceDatabase? {
     val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema, appContext, "peopleinspace.db")
     return PeopleInSpaceDatabase(driver)
 }
-
-actual fun ktorScope(block: suspend () -> Unit) {
-    GlobalScope.launch(Dispatchers.Main) { block() }
-}
