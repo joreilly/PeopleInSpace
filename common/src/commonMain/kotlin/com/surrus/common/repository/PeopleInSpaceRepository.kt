@@ -32,7 +32,7 @@ class PeopleInSpaceRepository() : KoinComponent {
         val result = peopleInSpaceApi.fetchPeople()
 
         // this is very basic implementation for now that removes all existing rows
-        // in db and then inserts reults from api request
+        // in db and then inserts results from api request
         peopleInSpaceQueries?.deleteAll()
         result.people.forEach {
             peopleInSpaceQueries?.insertItem(it.name, it.craft)

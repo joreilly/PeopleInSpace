@@ -4,13 +4,10 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
-    //id("com.juliozynger.floorplan")
 }
 
 android {
     compileSdkVersion(29)
-    buildToolsVersion("29.0.2")
-
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(29)
@@ -18,13 +15,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        getByName("release") {
-            minifyEnabled(false)
-        }
     }
 }
 
@@ -91,10 +81,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:${Versions.ktor}")
-
-                // SQL Delight
                 implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
-                //implementation("com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}")
             }
         }
 
@@ -102,8 +89,6 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
                 implementation(Ktor.slf4j)
-
-                // SQL Delight
                 implementation("org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}")
                 implementation("com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}")
             }
@@ -112,8 +97,6 @@ kotlin {
         val iOSMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
-
-                // SQL Delight
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
             }
         }
@@ -121,8 +104,6 @@ kotlin {
         val watchMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
-
-                // SQL Delight
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
             }
         }
@@ -130,20 +111,13 @@ kotlin {
         val macOSMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-
-                // SQL Delight
                 implementation("com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}")
-                //implementation("com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}")
             }
         }
 
         val jsMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-js:${Versions.ktor}")
-
-                // SQL Delight
-                //implementation("com.squareup.sqldelight:sqljs-driver:${Versions.sqlDelight}")
-                //implementation("com.squareup.sqldelight:runtime-js:${Versions.sqlDelight}")
             }
         }
     }
@@ -153,16 +127,6 @@ sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
         sourceFolders = listOf("sqldelight")
-        //schemaOutputDirectory = file("$projectDir/sqldelight-schemas")
     }
 }
 
-//floorPlan {
-//    schemaLocation.value("$projectDir/sqldelight-schemas")
-//    outputLocation.value("$projectDir/floorplan-output")
-//    outputFormat {
-//        svg {
-//            enabled(true)
-//        }
-//    }
-//}
