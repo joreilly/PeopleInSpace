@@ -96,21 +96,21 @@ kotlin {
 
         val iOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
             }
         }
 
         val watchMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
             }
         }
 
         val macOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
                 implementation("com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}")
             }
         }
