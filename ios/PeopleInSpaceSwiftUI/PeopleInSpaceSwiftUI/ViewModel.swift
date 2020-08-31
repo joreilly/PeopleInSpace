@@ -11,11 +11,9 @@ class PeopleInSpaceViewModel: ObservableObject {
     }
     
     func fetch() {
-        repository.fetchPeople { (data, error) in
-            if let people = data {
-                self.people = people
-            }
-        }
+        repository.fetchPeople(success: { data in
+            self.people = data
+        })        
     }
 }
 

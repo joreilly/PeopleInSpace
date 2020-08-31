@@ -39,8 +39,13 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
-    @Throws(Exception::class)
-    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
+    fun fetchPeople(success: (List<Assignment>) -> Unit) {
+        GlobalScope.launch(Dispatchers.Main) {
+            fetchPeopleAsFlow()?.collect {
+                success(it)
+            }
+        }
+    }
     
     @Throws(Exception::class)
     suspend fun fetchISSPosition() = peopleInSpaceApi.fetchISSPosition().iss_position
