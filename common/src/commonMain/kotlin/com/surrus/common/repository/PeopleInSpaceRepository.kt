@@ -27,7 +27,7 @@ class PeopleInSpaceRepository() : KoinComponent {
     fun fetchPeopleAsFlow()  = peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
             Assignment(name = name, craft = craft)
         })?.asFlow()?.mapToList()
-
+    
     private suspend fun fetchAndStorePeople()  {
         val result = peopleInSpaceApi.fetchPeople()
 
@@ -39,6 +39,8 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
+
+    // called from Kotlin/Native clients
     fun fetchPeople(success: (List<Assignment>) -> Unit) {
         GlobalScope.launch(Dispatchers.Main) {
             fetchPeopleAsFlow()?.collect {
@@ -46,7 +48,7 @@ class PeopleInSpaceRepository() : KoinComponent {
             }
         }
     }
-    
+
     @Throws(Exception::class)
     suspend fun fetchISSPosition() = peopleInSpaceApi.fetchISSPosition().iss_position
 }
