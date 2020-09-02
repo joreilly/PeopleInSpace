@@ -67,7 +67,7 @@ sealed class Routing {
 
 @Composable
 fun mainLayout(peopleState: State<List<Assignment>>, defaultRouting: Routing) {
-    MaterialTheme {
+    PeopleInSpaceTheme {
         Router(defaultRouting) { backStack ->
             when (val routing = backStack.last()) {
                 is Routing.PeopleList -> PersonList(
@@ -135,7 +135,7 @@ fun PersonDetailsView(person: Assignment, backStack: BackStack<Routing>) {
                 horizontalGravity = Alignment.CenterHorizontally
             ) {
 
-                Text(person.name, style = TextStyle(fontSize = 20.sp))
+                Text(person.name, style = MaterialTheme.typography.h4)
                 Spacer(modifier = Modifier.preferredSize(12.dp))
 
                 personImages[person.name]?.let { imageUrl ->
@@ -144,7 +144,7 @@ fun PersonDetailsView(person: Assignment, backStack: BackStack<Routing>) {
 
                 Spacer(modifier = Modifier.preferredSize(24.dp))
 
-                personBios[person.name]?.let { bio -> Text(bio) }
+                personBios[person.name]?.let { bio -> Text(bio, style = MaterialTheme.typography.body1) }
             }
         }
     )
