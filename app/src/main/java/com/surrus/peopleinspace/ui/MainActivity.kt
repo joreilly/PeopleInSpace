@@ -43,11 +43,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Providers(
-                AmbientBackPressHandler provides backPressHandler
-            ) {
-                val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState(emptyList())
-                mainLayout(peopleState, Routing.PeopleList)
+            Providers(AmbientBackPressHandler provides backPressHandler) {
+                mainLayout(peopleInSpaceViewModel, Routing.PeopleList)
             }
         }
     }
@@ -66,7 +63,9 @@ sealed class Routing {
 }
 
 @Composable
-fun mainLayout(peopleState: State<List<Assignment>>, defaultRouting: Routing) {
+fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel, defaultRouting: Routing) {
+    val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState(emptyList())
+
     PeopleInSpaceTheme {
         Router(defaultRouting) { backStack ->
             when (val routing = backStack.last()) {
@@ -76,7 +75,7 @@ fun mainLayout(peopleState: State<List<Assignment>>, defaultRouting: Routing) {
                         backStack.push(Routing.PersonDetails(it))
                     }
                 )
-                is Routing.PersonDetails -> PersonDetailsView(routing.person, backStack)
+                is Routing.PersonDetails -> PersonDetailsView(peopleInSpaceViewModel, routing.person, backStack)
             }
         }
     }
@@ -118,7 +117,7 @@ fun PersonView(person: Assignment, personSelected : (person : Assignment) -> Uni
 }
 
 @Composable
-fun PersonDetailsView(person: Assignment, backStack: BackStack<Routing>) {
+fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, person: Assignment, backStack: BackStack<Routing>) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -144,7 +143,8 @@ fun PersonDetailsView(person: Assignment, backStack: BackStack<Routing>) {
 
                 Spacer(modifier = Modifier.preferredSize(24.dp))
 
-                personBios[person.name]?.let { bio -> Text(bio, style = MaterialTheme.typography.body1) }
+                val bio = peopleInSpaceViewModel.getPersonBio(person.name)
+                Text(bio, style = MaterialTheme.typography.body1)
             }
         }
     )

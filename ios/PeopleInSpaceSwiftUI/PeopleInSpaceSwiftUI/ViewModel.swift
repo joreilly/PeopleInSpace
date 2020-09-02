@@ -15,5 +15,9 @@ class PeopleInSpaceViewModel: ObservableObject {
             self.people = data
         })        
     }
+    
+    func getPersonBio(personName: String) -> String {
+        return repository.getPersonBio(personName: personName)
+    }
 }
 

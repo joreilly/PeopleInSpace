@@ -8,7 +8,7 @@ import com.surrus.common.repository.PeopleInSpaceRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) : ViewModel() {
+class PeopleInSpaceViewModel(private val peopleInSpaceRepository: PeopleInSpaceRepository) : ViewModel() {
     val peopleInSpace = MutableLiveData<List<Assignment>>(emptyList())
 
     init {
@@ -17,5 +17,9 @@ class PeopleInSpaceViewModel(peopleInSpaceRepository: PeopleInSpaceRepository) :
                 peopleInSpace.value = it
             }
         }
+    }
+
+    fun getPersonBio(personName: String): String {
+        return peopleInSpaceRepository.getPersonBio(personName)
     }
 }

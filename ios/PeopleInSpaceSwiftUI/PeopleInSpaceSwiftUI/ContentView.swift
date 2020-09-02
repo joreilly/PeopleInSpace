@@ -8,7 +8,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(peopleInSpaceViewModel.people, id: \.name) { person in
-                PersonView(person: person)
+                
+                NavigationLink(destination: PersonDetailsView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)) {
+                    PersonView(person: person)
+                }
+                
             }
             .navigationBarTitle(Text("PeopleInSpace"), displayMode: .large)
             .onAppear(perform: {
@@ -18,7 +22,7 @@ struct ContentView: View {
     }
 }
 
-struct PersonView : View {
+struct PersonView: View {
     var person: Assignment
     
     var body: some View {
@@ -28,6 +32,21 @@ struct PersonView : View {
                 Text(person.craft).font(.subheadline)
             }
         }
+    }
+}
+
+
+struct PersonDetailsView: View {
+    var peopleInSpaceViewModel: PeopleInSpaceViewModel
+    var person: Assignment
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 10) {
+            Text(person.name).font(.headline)
+                
+            Text(peopleInSpaceViewModel.getPersonBio(personName: person.name)).font(.body)
+        }
+        .padding(.leading)
     }
 }
 
