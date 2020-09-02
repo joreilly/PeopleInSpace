@@ -64,6 +64,7 @@ dependencies {
     implementation(Compose.material)
     implementation(Compose.runtimeLiveData)
     implementation "dev.chrisbanes.accompanist:accompanist-coil:${Versions.coilVersion}"
+    implementation "com.github.zsoltk:compose-router:${Versions.composeRouterVersion}"
 
 
     implementation Koin.core

@@ -18,6 +18,7 @@ object Versions {
     const val fragment = "1.1.0-alpha09"
     const val compose = "1.0.0-alpha01"
     const val coilVersion = "0.2.0"
+    const val composeRouterVersion = "0.17.0"
 
     const val junit = "4.12"
     const val coreTesting = "2.0.0"

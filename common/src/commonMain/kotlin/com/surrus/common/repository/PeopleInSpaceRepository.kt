@@ -27,7 +27,7 @@ class PeopleInSpaceRepository() : KoinComponent {
     fun fetchPeopleAsFlow()  = peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
             Assignment(name = name, craft = craft)
         })?.asFlow()?.mapToList()
-    
+
     private suspend fun fetchAndStorePeople()  {
         val result = peopleInSpaceApi.fetchPeople()
 
