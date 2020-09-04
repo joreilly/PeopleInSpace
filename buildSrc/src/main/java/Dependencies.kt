@@ -16,9 +16,9 @@ object Versions {
     const val room = "2.1.0-beta01"
     const val lifecycle = "2.2.0-alpha01"
     const val fragment = "1.1.0-alpha09"
-    const val compose = "1.0.0-alpha01"
-    const val coilVersion = "0.2.0"
-    const val composeRouterVersion = "0.17.0"
+    const val compose = "1.0.0-alpha02"
+    const val coilVersion = "0.2.1"
+    const val composeRouterVersion = "0.18.0"
 
     const val junit = "4.12"
     const val coreTesting = "2.0.0"
