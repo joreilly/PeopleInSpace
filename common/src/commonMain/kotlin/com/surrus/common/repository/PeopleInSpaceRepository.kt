@@ -53,7 +53,8 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
-    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople()
+    // Used by web client atm
+    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
 
     fun getPersonBio(personName: String): String {
         return personBios[personName] ?: ""
