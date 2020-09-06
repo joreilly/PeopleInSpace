@@ -53,6 +53,8 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
+    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople()
+
     fun getPersonBio(personName: String): String {
         return personBios[personName] ?: ""
     }

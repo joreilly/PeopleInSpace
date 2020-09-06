@@ -15,7 +15,7 @@ val App = functionalComponent<RProps> { _ ->
         val mainScope = MainScope()
 
         mainScope.launch {
-            setPeople(repository.fetchPeople())
+            setPeople(repository.fetchPeople().people)
         }
         return@useEffectWithCleanup { mainScope.cancel() }
     }
