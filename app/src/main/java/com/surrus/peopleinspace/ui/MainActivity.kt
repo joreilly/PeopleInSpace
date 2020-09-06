@@ -64,13 +64,12 @@ sealed class Routing {
 
 @Composable
 fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel, defaultRouting: Routing) {
-    val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState(emptyList())
 
     PeopleInSpaceTheme {
         Router(defaultRouting) { backStack ->
             when (val routing = backStack.last()) {
                 is Routing.PeopleList -> PersonList(
-                    peopleState = peopleState,
+                    peopleInSpaceViewModel = peopleInSpaceViewModel,
                     personSelected = {
                         backStack.push(Routing.PersonDetails(it))
                     }
@@ -82,30 +81,35 @@ fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel, defaultRouting: R
 }
 
 @Composable
-fun PersonList(peopleState: State<List<Assignment>>, personSelected : (person : Assignment) -> Unit) {
+fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : (person : Assignment) -> Unit) {
+    val peopleState = peopleInSpaceViewModel.peopleInSpace.observeAsState(emptyList())
+
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
         },
         bodyContent = {
             LazyColumnFor(items = peopleState.value, itemContent = { person ->
-                PersonView(person, personSelected)
+                val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
+                PersonView(personImageUrl, person, personSelected)
             })
         }
     )
 }
 
 @Composable
-fun PersonView(person: Assignment, personSelected : (person : Assignment) -> Unit) {
+fun PersonView(personImageUrl: String, person: Assignment, personSelected : (person : Assignment) -> Unit) {
     Row(
         modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth()
                 + Modifier.clickable(onClick = { personSelected(person) }),
         verticalGravity = Alignment.CenterVertically
     ) {
 
-        personImages[person.name]?.let { imageUrl ->
-            CoilImage(data = imageUrl, modifier = Modifier.preferredSize(60.dp))
-        } ?: Spacer(modifier = Modifier.preferredSize(60.dp))
+        if (personImageUrl.isNotEmpty()) {
+            CoilImage(data = personImageUrl, modifier = Modifier.preferredSize(60.dp))
+        } else {
+            Spacer(modifier = Modifier.preferredSize(60.dp))
+        }
 
         Spacer(modifier = Modifier.preferredSize(12.dp))
 
@@ -137,10 +141,10 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, person: As
                 Text(person.name, style = MaterialTheme.typography.h4)
                 Spacer(modifier = Modifier.preferredSize(12.dp))
 
-                personImages[person.name]?.let { imageUrl ->
+                val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
+                if (imageUrl.isNotEmpty()) {
                     CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp))
                 }
-
                 Spacer(modifier = Modifier.preferredSize(24.dp))
 
                 val bio = peopleInSpaceViewModel.getPersonBio(person.name)
@@ -155,6 +159,6 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, person: As
 @Composable
 fun DefaultPreview(@PreviewParameter(PersonProvider::class) person: Assignment) {
     MaterialTheme {
-        PersonView(person, personSelected = {})
+        PersonView("", person, personSelected = {})
     }
 }

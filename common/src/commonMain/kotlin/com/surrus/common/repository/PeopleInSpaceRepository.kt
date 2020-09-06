@@ -57,6 +57,10 @@ class PeopleInSpaceRepository() : KoinComponent {
         return personBios[personName] ?: ""
     }
 
+    fun getPersonImage(personName: String): String {
+        return personImages[personName] ?: ""
+    }
+
     // called from Kotlin/Native clients
     fun fetchPeople(success: (List<Assignment>) -> Unit) {
         GlobalScope.launch(Dispatchers.Main) {

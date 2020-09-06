@@ -22,4 +22,8 @@ class PeopleInSpaceViewModel(private val peopleInSpaceRepository: PeopleInSpaceR
     fun getPersonBio(personName: String): String {
         return peopleInSpaceRepository.getPersonBio(personName)
     }
+
+    fun getPersonImage(personName: String): String {
+        return peopleInSpaceRepository.getPersonImage(personName)
+    }
 }
