@@ -25,3 +25,9 @@ gradle-app.setting
 /build
 /captures
 
+
+*.xcworkspacedata
+*.xcuserstate
+*.xcscheme
+xcschememanagement.plist
+*.xcbkptlist
