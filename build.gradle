@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.0-alpha09")
+        classpath('com.android.tools.build:gradle:4.2.0-alpha10')
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
         classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
@@ -20,7 +20,6 @@ allprojects {
         jcenter()
         maven { url = "https://dl.bintray.com/ekito/koin" }
         maven { url = "https://kotlin.bintray.com/kotlin-js-wrappers/" }
-        maven { url = "https://dl.bintray.com/touchlabpublic/kotlin" }
         maven { url 'https://jitpack.io' }
     }
 }
