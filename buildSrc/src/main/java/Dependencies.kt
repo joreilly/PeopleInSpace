@@ -1,6 +1,6 @@
 
 object Versions {
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.4.10"
     const val kotlinCoroutines = "1.3.9-native-mt"
     const val ktor = "1.4.0"
     const val kotlinxSerialization = "1.0.0-RC"
