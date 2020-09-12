@@ -2,6 +2,7 @@ package com.surrus.peopleinspace
 
 import com.surrus.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class PeopleInSpaceTest {
@@ -10,6 +11,6 @@ class PeopleInSpaceTest {
         val peopleInSpaceApi = PeopleInSpaceApi()
         val result = peopleInSpaceApi.fetchPeople()
         println(result)
-        assert(result.people.isNotEmpty())
+        assertTrue(result.people.isNotEmpty())
     }
 }

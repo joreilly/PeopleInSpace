@@ -89,6 +89,12 @@ kotlin {
                 implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
             }
         }
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+                implementation("junit:junit:${Versions.junit}")
+            }
+        }
 
         val jvmMain by getting {
             dependencies {
@@ -105,6 +111,7 @@ kotlin {
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
             }
         }
+        val iOSTest by getting
 
         val watchMain by getting {
             dependencies {
