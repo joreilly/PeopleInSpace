@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -6,8 +8,12 @@ plugins {
     id("com.squareup.sqldelight")
 }
 
+// CocoaPods requires the podspec to have a version.
+version = "1.0"
+
 android {
     compileSdkVersion(29)
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(29)
@@ -19,27 +25,26 @@ android {
 }
 
 kotlin {
-    targets {
-        val sdkName: String? = System.getenv("SDK_NAME")
 
-        val isiOSDevice = sdkName.orEmpty().startsWith("iphoneos")
-        if (isiOSDevice) {
-            iosArm64("iOS")
-        } else {
-            iosX64("iOS")
-        }
+    val sdkName: String? = System.getenv("SDK_NAME")
 
-        val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
-        if (isWatchOSDevice) {
-            watchosArm64("watch")
-        } else {
-            watchosX86("watch")
-        }
-
-        macosX64("macOS")
-        android()
-        jvm()
+    val isiOSDevice = sdkName.orEmpty().startsWith("iphoneos")
+    if (isiOSDevice) {
+        iosArm64("iOS")
+    } else {
+        iosX64("iOS")
     }
+
+    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
+    if (isWatchOSDevice) {
+        watchosArm64("watch")
+    } else {
+        watchosX86("watch")
+    }
+
+    macosX64("macOS")
+    android()
+    jvm()
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -88,7 +93,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
-                implementation(Ktor.slf4j)
+                implementation("org.slf4j:slf4j-simple:${Versions.slf4j}")
                 implementation("org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}")
                 implementation("com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}")
             }

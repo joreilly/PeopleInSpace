@@ -4,10 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.surrus.peopleinspace"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -72,9 +71,8 @@ dependencies {
     implementation Koin.androidViewModel
 
 
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "junit:junit:${Versions.junit}"
+    androidTestImplementation "androidx.test:runner:${Versions.testRunner}"
 
     implementation project(":common")
 }
