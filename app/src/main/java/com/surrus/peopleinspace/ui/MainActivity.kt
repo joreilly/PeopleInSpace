@@ -101,7 +101,7 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
     Row(
         modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth()
                 + Modifier.clickable(onClick = { personSelected(person) }),
-        verticalGravity = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (personImageUrl.isNotEmpty()) {
@@ -134,7 +134,7 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, person: As
         },
         bodyContent = {
             Column(modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
-                horizontalGravity = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 Text(person.name, style = MaterialTheme.typography.h4)
