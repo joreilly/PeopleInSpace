@@ -28,7 +28,7 @@ beyond this then I'd definitely recommend checking out [KaMPKit](https://github.
 
 
 ### Building
-You need to use Android Studio v4.2 (currently preview/canary version).  Have tested on XCode v11 and v12 beta.  When opening
+You need to use Android Studio v4.2 (currently preview/canary version).  Have tested on XCode v11 and v12.  When opening
 iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). To exercise web client run `./gradlew :web:browserDevelopmentRun`.
 
 
