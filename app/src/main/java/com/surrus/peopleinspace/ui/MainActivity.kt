@@ -14,7 +14,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,57 +22,48 @@ import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.bundleOf
+import androidx.navigation.compose.*
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
-import com.github.zsoltk.compose.backpress.AmbientBackPressHandler
-import com.github.zsoltk.compose.backpress.BackPressHandler
-import com.github.zsoltk.compose.router.BackStack
-import com.github.zsoltk.compose.router.Router
 import com.surrus.common.remote.Assignment
 import dev.chrisbanes.accompanist.coil.CoilImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : AppCompatActivity() {
-    private val backPressHandler = BackPressHandler()
     private val peopleInSpaceViewModel: PeopleInSpaceViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Providers(AmbientBackPressHandler provides backPressHandler) {
-                mainLayout(peopleInSpaceViewModel, Routing.PeopleList)
-            }
-        }
-    }
-
-    override fun onBackPressed() {
-        if (!backPressHandler.handle()) {
-            super.onBackPressed()
+            MainLayout(peopleInSpaceViewModel)
         }
     }
 }
 
 
-sealed class Routing {
-    object PeopleList : Routing()
-    data class PersonDetails(val person: Assignment) : Routing()
+sealed class Screen(val title: String) {
+    object PersonListScreen : Screen("PersonList")
+    object PersonDetailsDetails : Screen("PersonDetails")
 }
 
 @Composable
-fun mainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel, defaultRouting: Routing) {
+fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
+    val navController = rememberNavController()
 
     PeopleInSpaceTheme {
-        Router(defaultRouting) { backStack ->
-            when (val routing = backStack.last()) {
-                is Routing.PeopleList -> PersonList(
-                    peopleInSpaceViewModel = peopleInSpaceViewModel,
+        NavHost(navController, startDestination = Screen.PersonListScreen.title) {
+            composable(Screen.PersonListScreen.title) {
+                PersonList(peopleInSpaceViewModel = peopleInSpaceViewModel,
                     personSelected = {
-                        backStack.push(Routing.PersonDetails(it))
+                        navController.navigate(Screen.PersonDetailsDetails.title, bundleOf("person" to it.name))
                     }
                 )
-                is Routing.PersonDetails -> PersonDetailsView(peopleInSpaceViewModel, routing.person, backStack)
+            }
+            composable(Screen.PersonDetailsDetails.title) { backStackEntry ->
+                PersonDetailsView(peopleInSpaceViewModel, backStackEntry.arguments?.get("person") as String)
             }
         }
     }
@@ -120,13 +110,14 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
 }
 
 @Composable
-fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, person: Assignment, backStack: BackStack<Routing>) {
+fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName: String) {
+    val navController = AmbientNavController.current
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(person.name) },
+                title = { Text(personName) },
                 navigationIcon = {
-                    IconButton(onClick = { backStack.pop() }) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Filled.ArrowBack)
                     }
                 }
@@ -137,17 +128,20 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, person: As
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                Text(person.name, style = MaterialTheme.typography.h4)
-                Spacer(modifier = Modifier.preferredSize(12.dp))
+                val person = peopleInSpaceViewModel.getPerson(personName)
+                person?.let {
+                    Text(person.name, style = MaterialTheme.typography.h4)
+                    Spacer(modifier = Modifier.preferredSize(12.dp))
 
-                val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
-                if (imageUrl.isNotEmpty()) {
-                    CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp))
+                    val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
+                    if (imageUrl.isNotEmpty()) {
+                        CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp))
+                    }
+                    Spacer(modifier = Modifier.preferredSize(24.dp))
+
+                    val bio = peopleInSpaceViewModel.getPersonBio(person.name)
+                    Text(bio, style = MaterialTheme.typography.body1)
                 }
-                Spacer(modifier = Modifier.preferredSize(24.dp))
-
-                val bio = peopleInSpaceViewModel.getPersonBio(person.name)
-                Text(bio, style = MaterialTheme.typography.body1)
             }
         }
     )

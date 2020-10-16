@@ -26,4 +26,9 @@ class PeopleInSpaceViewModel(private val peopleInSpaceRepository: PeopleInSpaceR
     fun getPersonImage(personName: String): String {
         return peopleInSpaceRepository.getPersonImage(personName)
     }
+
+    fun getPerson(personName: String): Assignment? {
+        return peopleInSpace.value.find { it.name == personName}
+
+    }
 }

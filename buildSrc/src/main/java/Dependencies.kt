@@ -18,7 +18,6 @@ object Versions {
     const val fragment = "1.1.0-alpha09"
     const val compose = "1.0.0-alpha05"
     const val coilVersion = "0.3.1"
-    const val composeRouterVersion = "0.18.0"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
@@ -37,7 +36,8 @@ object Compose {
     const val uiTooling = "androidx.ui:ui-tooling:${Versions.compose}"
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
-    const val runtimeLiveData =  "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    const val navigation = "androidx.navigation:navigation-compose:1.0.0-SNAPSHOT"
 
 }
 
