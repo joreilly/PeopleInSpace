@@ -41,15 +41,17 @@ struct PersonDetailsView: View {
     var person: Assignment
     
     var body: some View {
-        VStack(alignment: .center, spacing: 32) {
-            Text(person.name).font(.title)
-            
-            ImageView(withURL: peopleInSpaceViewModel.getPersonImage(personName: person.name), width: 240, height: 240)
-            
-            Text(peopleInSpaceViewModel.getPersonBio(personName: person.name)).font(.body)
-            Spacer()
+        ScrollView {
+            VStack(alignment: .center, spacing: 32) {
+                Text(person.name).font(.title)
+                
+                ImageView(withURL: peopleInSpaceViewModel.getPersonImage(personName: person.name), width: 240, height: 240)
+                
+                Text(peopleInSpaceViewModel.getPersonBio(personName: person.name)).font(.body)
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
