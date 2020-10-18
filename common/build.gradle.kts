@@ -12,11 +12,11 @@ plugins {
 version = "1.0"
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(AndroidSdk.compile)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
         versionCode = 1
         versionName = "1.0"
 
@@ -25,7 +25,6 @@ android {
 }
 
 kotlin {
-
     val sdkName: String? = System.getenv("SDK_NAME")
 
     val isiOSDevice = sdkName.orEmpty().startsWith("iphoneos")
@@ -58,79 +57,71 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
-                    isForce = true
-                }
-
-                // Ktor
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
-
-                // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
-
-                // SQL Delight
-                implementation("com.squareup.sqldelight:runtime:${Versions.sqlDelight}")
-                implementation("com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}")
-
-                // koin
-                api("org.koin:koin-core:${Versions.koin}")
+        sourceSets["commonMain"].dependencies {
+            // Coroutines
+//            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core") {
+//                version {
+//                    strictly(Versions.kotlinCoroutines)
+//                }
+//            }
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
+                isForce = true
             }
+
+            // Ktor
+            implementation(Ktor.clientCore)
+            implementation(Ktor.clientJson)
+            implementation(Ktor.clientLogging)
+            implementation(Ktor.clientSerialization)
+
+            // Kotlinx Serialization
+            implementation(Serialization.core)
+
+            // SQL Delight
+            implementation(SqlDelight.runtime)
+            implementation(SqlDelight.coroutineExtensions)
+
+            // koin
+            api(Koin.core)
+        }
+        sourceSets["commonTest"].dependencies {
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
-                implementation("com.squareup.sqldelight:android-driver:${Versions.sqlDelight}")
-            }
+        sourceSets["androidMain"].dependencies {
+            implementation(Ktor.clientAndroid)
+            implementation(SqlDelight.androidDriver)
         }
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:${Versions.junit}")
-            }
+        sourceSets["androidTest"].dependencies {
+            implementation(kotlin("test-junit"))
+            implementation(Test.junit)
         }
 
-        val jvmMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
-                implementation("org.slf4j:slf4j-simple:${Versions.slf4j}")
-                implementation("org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}")
-                implementation("com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}")
-            }
+        sourceSets["jvmMain"].dependencies {
+            implementation(Ktor.clientApache)
+            implementation(Ktor.slf4j)
+            implementation(SqlDelight.jdbcDriver)
+            implementation(SqlDelight.sqlliteDriver)
         }
 
-        val iOSMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-                implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
-            }
+        sourceSets["iOSMain"].dependencies {
+            implementation(Ktor.clientIos)
+            implementation(SqlDelight.nativeDriver)
         }
-        val iOSTest by getting
-
-        val watchMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
-                implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
-            }
+        sourceSets["iOSTest"].dependencies {
         }
 
-        val macOSMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
-                implementation("com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}")
-            }
+        sourceSets["watchMain"].dependencies {
+            implementation(Ktor.clientIos)
+            implementation(SqlDelight.nativeDriver)
         }
 
-        val jsMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-js:${Versions.ktor}")
-            }
+        sourceSets["macOSMain"].dependencies {
+            implementation(Ktor.clientCio)
+            implementation(SqlDelight.nativeDriverMacos)
+        }
+
+        sourceSets["jsMain"].dependencies {
+            implementation(Ktor.clientJs)
         }
     }
 }
