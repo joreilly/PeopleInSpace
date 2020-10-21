@@ -5,7 +5,7 @@ object Versions {
     const val ktor = "1.4.0"
     const val kotlinxSerialization = "1.0.0-RC"
     const val koin = "3.0.0-alpha-4"
-    const val sqlDelight = "1.4.2"
+    const val sqlDelight = "1.4.4"
 
     const val sqliteJdbcDriver = "3.30.1"
     const val slf4j = "1.7.30"
