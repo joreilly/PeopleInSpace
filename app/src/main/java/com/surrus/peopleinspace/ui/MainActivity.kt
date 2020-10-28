@@ -91,9 +91,8 @@ fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : 
 @Composable
 fun PersonView(personImageUrl: String, person: Assignment, personSelected : (person : Assignment) -> Unit) {
     Row(
-        modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth()
-                + Modifier.clickable(onClick = { personSelected(person) }),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =  Modifier.fillMaxWidth() + Modifier.clickable(onClick = { personSelected(person) })
+                + Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (personImageUrl.isNotEmpty()) {

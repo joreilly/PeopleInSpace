@@ -30,7 +30,7 @@ class PeopleInSpaceApi {
     private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
     private val client by lazy {
-        HttpClient() {
+        HttpClient {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(nonStrictJson)
             }

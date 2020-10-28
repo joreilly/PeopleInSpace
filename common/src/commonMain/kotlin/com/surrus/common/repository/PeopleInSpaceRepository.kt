@@ -17,11 +17,12 @@ expect fun createDb() : PeopleInSpaceDatabase?
 
 class PeopleInSpaceRepository() : KoinComponent {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
+    private val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase = createDb()
     private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
 
     init {
-        GlobalScope.launch(Dispatchers.Main) {
+        coroutineScope.launch {
             fetchAndStorePeople()
         }
     }

@@ -57,13 +57,9 @@ kotlin {
     }
 
     sourceSets {
+
         sourceSets["commonMain"].dependencies {
             // Coroutines
-//            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core") {
-//                version {
-//                    strictly(Versions.kotlinCoroutines)
-//                }
-//            }
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
                 isForce = true
             }
