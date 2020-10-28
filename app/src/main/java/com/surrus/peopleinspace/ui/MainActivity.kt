@@ -24,6 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
+import androidx.navigation.NavController
 import androidx.navigation.compose.*
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
@@ -59,12 +60,12 @@ fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
             composable(Screen.PersonListScreen.title) {
                 PersonList(peopleInSpaceViewModel = peopleInSpaceViewModel,
                     personSelected = {
-                        navController.navigate(Screen.PersonDetailsDetails.title, bundleOf("person" to it.name))
+                        navController.navigate(Screen.PersonDetailsDetails.title + "/${it.name}")
                     }
                 )
             }
-            composable(Screen.PersonDetailsDetails.title) { backStackEntry ->
-                PersonDetailsView(peopleInSpaceViewModel, backStackEntry.arguments?.get("person") as String)
+            composable(Screen.PersonDetailsDetails.title + "/{person}") { backStackEntry ->
+                PersonDetailsView(navController, peopleInSpaceViewModel, backStackEntry.arguments?.get("person") as String)
             }
         }
     }
@@ -111,8 +112,7 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
 }
 
 @Composable
-fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName: String) {
-    val navController = AmbientNavController.current
+fun PersonDetailsView(navController: NavController, peopleInSpaceViewModel: PeopleInSpaceViewModel, personName: String) {
     Scaffold(
         topBar = {
             TopAppBar(
