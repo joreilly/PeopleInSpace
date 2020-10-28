@@ -10,8 +10,8 @@ object Versions {
     const val sqliteJdbcDriver = "3.30.1"
     const val slf4j = "1.7.30"
     const val compose = "1.0.0-alpha06"
-    const val nav_compose_version = "1.0.0-alpha01"
-    const val coilVersion = "0.3.1"
+    const val nav_compose = "1.0.0-alpha01"
+    const val accompanist = "0.3.2"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
@@ -35,8 +35,8 @@ object Compose {
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
-    const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose_version}"
-    const val accompanist= "dev.chrisbanes.accompanist:accompanist-coil:${Versions.coilVersion}"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
+    const val accompanist= "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"
 }
 
 object Koin {
