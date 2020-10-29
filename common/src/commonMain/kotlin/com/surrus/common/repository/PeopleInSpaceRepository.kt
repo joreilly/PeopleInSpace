@@ -1,5 +1,6 @@
 package com.surrus.common.repository
 
+import co.touchlab.kermit.Kermit
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.surrus.common.model.personBios
@@ -12,11 +13,10 @@ import kotlinx.coroutines.flow.collect
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-expect fun createDb() : PeopleInSpaceDatabase?
-
 
 class PeopleInSpaceRepository() : KoinComponent {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
+    private val logger: Kermit by inject()
     private val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase = createDb()
     private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
@@ -32,6 +32,7 @@ class PeopleInSpaceRepository() : KoinComponent {
         })?.asFlow()?.mapToList()
 
     private suspend fun fetchAndStorePeople()  {
+        logger.d { "fetchAndStorePeople" }
         val result = peopleInSpaceApi.fetchPeople()
 
         // this is very basic implementation for now that removes all existing rows

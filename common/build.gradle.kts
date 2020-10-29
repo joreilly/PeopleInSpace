@@ -79,6 +79,9 @@ kotlin {
 
             // koin
             api(Koin.core)
+
+            // kermit
+            api(Deps.kermit)
         }
         sourceSets["commonTest"].dependencies {
         }
