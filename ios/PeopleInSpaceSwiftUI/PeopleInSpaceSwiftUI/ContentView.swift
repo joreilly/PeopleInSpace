@@ -13,9 +13,11 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle(Text("PeopleInSpace"), displayMode: .large)
-            .onAppear(perform: {
-                self.peopleInSpaceViewModel.fetch()
-            })
+            .onAppear {
+                self.peopleInSpaceViewModel.startObserving()
+            }.onDisappear {
+                self.peopleInSpaceViewModel.stopObserving()
+            }
         }
     }
 }

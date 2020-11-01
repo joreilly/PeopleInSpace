@@ -10,7 +10,7 @@ class PeopleInSpaceViewModel: ObservableObject {
     }
     
     func fetch() {
-        repository.fetchPeople(success: { data in
+        repository.startObservingPeopleUpdates(success: { data in
             self.people = data
         })        
     }

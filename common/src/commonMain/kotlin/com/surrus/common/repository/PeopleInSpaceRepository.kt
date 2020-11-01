@@ -55,12 +55,18 @@ class PeopleInSpaceRepository() : KoinComponent {
     }
 
     // called from Kotlin/Native clients
-    fun fetchPeople(success: (List<Assignment>) -> Unit) {
-        GlobalScope.launch(Dispatchers.Main) {
+    fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
+        logger.d { "startObservingPeopleUpdates" }
+        coroutineScope.launch {
             fetchPeopleAsFlow()?.collect {
                 success(it)
             }
         }
+    }
+
+    fun stopObservingPeopleUpdates() {
+        logger.d { "stopObservingPeopleUpdates" }
+        coroutineScope.cancel()
     }
 
     @Throws(Exception::class)

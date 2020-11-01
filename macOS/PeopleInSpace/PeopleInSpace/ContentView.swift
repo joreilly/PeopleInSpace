@@ -15,10 +15,12 @@ struct ContentView: View {
             .onReceive(timer) { _ in
                 self.peopleInSpaceViewModel.fetchISSPosition()
             }
-            .onAppear(perform: {
-                self.peopleInSpaceViewModel.fetchPeople()
+            .onAppear {
+                self.peopleInSpaceViewModel.startObserving()
                 self.peopleInSpaceViewModel.fetchISSPosition()
-            })
+            }.onDisappear {
+                self.peopleInSpaceViewModel.stopObserving()
+            }
             
             MapView(coordinate: CLLocationCoordinate2DMake(peopleInSpaceViewModel.issPosition.latitude, peopleInSpaceViewModel.issPosition.longitude))
         }
