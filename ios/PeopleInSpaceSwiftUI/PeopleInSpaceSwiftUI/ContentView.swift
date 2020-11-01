@@ -7,16 +7,27 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(peopleInSpaceViewModel.people, id: \.name) { person in
-                NavigationLink(destination: PersonDetailsView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)) {
-                    PersonView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)
+            VStack {
+                let issPosition = String(format: "ISS Position = (%f, %f)", peopleInSpaceViewModel.issPosition.latitude, peopleInSpaceViewModel.issPosition.longitude )
+                HStack {
+                    Text(issPosition)
                 }
-            }
-            .navigationBarTitle(Text("PeopleInSpace"), displayMode: .large)
-            .onAppear {
-                self.peopleInSpaceViewModel.startObserving()
-            }.onDisappear {
-                self.peopleInSpaceViewModel.stopObserving()
+                .padding(EdgeInsets(top: 18, leading: 16, bottom: 0, trailing: 16))
+                                   
+                
+                List(peopleInSpaceViewModel.people, id: \.name) { person in
+                    NavigationLink(destination: PersonDetailsView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)) {
+                        PersonView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)
+                    }
+                }
+                .navigationBarTitle(Text("People In Space"))
+                .onAppear {
+                    self.peopleInSpaceViewModel.startObservingPeopleUpdates()
+                    self.peopleInSpaceViewModel.startObservingISSPosition()
+                }.onDisappear {
+                    self.peopleInSpaceViewModel.stopObservingPeopleUpdates()
+                    self.peopleInSpaceViewModel.stopObservingISSPosition()
+                }
             }
         }
     }

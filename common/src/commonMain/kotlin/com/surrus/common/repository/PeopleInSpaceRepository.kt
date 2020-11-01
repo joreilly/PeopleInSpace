@@ -6,12 +6,14 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.surrus.common.model.personBios
 import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
+import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -19,9 +21,13 @@ import org.koin.core.inject
 class PeopleInSpaceRepository() : KoinComponent {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val logger: Kermit by inject()
+
     private val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase = createDb()
     private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
+
+    var peopleJob: Job? = null
+    var issPositionJob: Job? = null
 
     init {
         coroutineScope.launch {
@@ -63,19 +69,45 @@ class PeopleInSpaceRepository() : KoinComponent {
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
         logger.d { "startObservingPeopleUpdates" }
-        coroutineScope.launch {
-            fetchPeopleAsFlow()?.collect {
+        peopleJob = coroutineScope.launch {
+            fetchPeopleAsFlow().collect {
                 success(it)
             }
         }
     }
 
     fun stopObservingPeopleUpdates() {
-        logger.d { "stopObservingPeopleUpdates" }
-        coroutineScope.cancel()
+        logger.d { "stopObservingPeopleUpdates, peopleJob = $peopleJob" }
+        peopleJob?.cancel()
     }
 
-    @Throws(Exception::class)
-    suspend fun fetchISSPosition() = peopleInSpaceApi.fetchISSPosition().iss_position
+
+    fun startObservingISSPosition(success: (IssPosition) -> Unit) {
+        logger.d { "startObservingISSPosition" }
+        issPositionJob = coroutineScope.launch {
+            pollISSPosition().collect {
+                success(it)
+            }
+        }
+    }
+
+    fun stopObservingISSPosition() {
+        logger.d { "stopObservingISSPosition, peopleJob = $issPositionJob" }
+        issPositionJob?.cancel()
+    }
+
+
+    fun pollISSPosition(): Flow<IssPosition> = flow {
+        while (true) {
+            val position = peopleInSpaceApi.fetchISSPosition().iss_position
+            emit(position)
+            logger.d("PeopleInSpaceRepository") { position.toString() }
+            delay(POLL_INTERVAL)
+        }
+    }
+
+    companion object {
+        private const val POLL_INTERVAL = 10000L
+    }
 }
 
