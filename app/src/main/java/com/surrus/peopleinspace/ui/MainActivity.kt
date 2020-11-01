@@ -7,24 +7,26 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.Ambient
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.os.bundleOf
-import androidx.navigation.NavController
 import androidx.navigation.compose.*
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.tooling.preview.PreviewParameter
 import com.surrus.common.remote.Assignment
+import com.surrus.common.remote.IssPosition
+import com.surrus.common.repository.getLogger
 import dev.chrisbanes.accompanist.coil.CoilImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,6 +40,16 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MainLayout(peopleInSpaceViewModel)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getLogger().d("MainActivity", "onStart")
+    }
+
+    override fun onStop() {
+        getLogger().d("MainActivity", "onStop")
+        super.onStop()
     }
 }
 
@@ -71,19 +83,34 @@ fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
 
 @Composable
 fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : (person : Assignment) -> Unit) {
-    val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState(emptyList())
+    val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
+
+    val issPosition = peopleInSpaceViewModel.issPosition.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
         },
         bodyContent = {
-            LazyColumnFor(items = peopleState.value, itemContent = { person ->
-                val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
-                PersonView(personImageUrl, person, personSelected)
-            })
+            Column {
+                ISSPosition(issPosition.value)
+                Divider(thickness = 2.dp)
+                LazyColumnFor(items = peopleState.value, itemContent = { person ->
+                    val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
+                    PersonView(personImageUrl, person, personSelected)
+                })
+            }
         }
     )
+}
+
+@Composable
+fun ISSPosition(issPosition: IssPosition) {
+    Text(text = "ISS Position = (${issPosition.latitude}, ${issPosition.longitude})",
+        Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
+        textAlign = TextAlign.Center,
+        style = typography.h6)
+
 }
 
 @Composable
