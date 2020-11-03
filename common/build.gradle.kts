@@ -3,26 +3,12 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
-    id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
 }
 
 // CocoaPods requires the podspec to have a version.
 version = "1.0"
-
-android {
-    compileSdkVersion(AndroidSdk.compile)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-}
 
 kotlin {
     val sdkName: String? = System.getenv("SDK_NAME")
@@ -42,7 +28,6 @@ kotlin {
     }
 
     macosX64("macOS")
-    android()
     jvm()
 
     cocoapods {
@@ -84,15 +69,6 @@ kotlin {
             api(Deps.kermit)
         }
         sourceSets["commonTest"].dependencies {
-        }
-
-        sourceSets["androidMain"].dependencies {
-            implementation(Ktor.clientAndroid)
-            implementation(SqlDelight.androidDriver)
-        }
-        sourceSets["androidTest"].dependencies {
-            implementation(kotlin("test-junit"))
-            implementation(Test.junit)
         }
 
         sourceSets["jvmMain"].dependencies {
