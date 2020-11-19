@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.runtime.Ambient
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -60,7 +61,9 @@ fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
                 )
             }
             composable(Screen.PersonDetailsDetails.title + "/{person}") { backStackEntry ->
-                PersonDetailsView(navController, peopleInSpaceViewModel, backStackEntry.arguments?.get("person") as String)
+                PersonDetailsView(peopleInSpaceViewModel,
+                    backStackEntry.arguments?.get("person") as String,
+                    popBack = { navController.popBackStack() })
             }
         }
     }
@@ -106,13 +109,13 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
 }
 
 @Composable
-fun PersonDetailsView(navController: NavController, peopleInSpaceViewModel: PeopleInSpaceViewModel, personName: String) {
+fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName: String, popBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(personName) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { popBack() }) {
                         Icon(Icons.Filled.ArrowBack)
                     }
                 }
