@@ -9,7 +9,9 @@ import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOf
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -27,9 +29,13 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
-    fun fetchPeopleAsFlow()  = peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
+    fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
+        // the main reason we need to do this check is that sqldelight isn't currently
+        // setup for javascript client
+        return peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
             Assignment(name = name, craft = craft)
-        })?.asFlow()?.mapToList()
+        })?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
+    }
 
     private suspend fun fetchAndStorePeople()  {
         logger.d { "fetchAndStorePeople" }

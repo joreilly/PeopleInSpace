@@ -4,20 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surrus.common.remote.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 
 class PeopleInSpaceViewModel(private val peopleInSpaceRepository: PeopleInSpaceRepository) : ViewModel() {
-    val peopleInSpace = MutableStateFlow<List<Assignment>>(emptyList())
-
-    init {
-        viewModelScope.launch {
-            peopleInSpaceRepository.fetchPeopleAsFlow()?.collect {
-                peopleInSpace.value = it
-            }
-        }
-    }
+    val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
+            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     fun getPersonBio(personName: String): String {
         return peopleInSpaceRepository.getPersonBio(personName)
@@ -29,6 +21,5 @@ class PeopleInSpaceViewModel(private val peopleInSpaceRepository: PeopleInSpaceR
 
     fun getPerson(personName: String): Assignment? {
         return peopleInSpace.value.find { it.name == personName}
-
     }
 }
