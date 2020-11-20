@@ -97,7 +97,7 @@ class PeopleInSpaceRepository() : KoinComponent {
     }
 
 
-    private fun pollISSPosition(): Flow<IssPosition> = flow {
+    fun pollISSPosition(): Flow<IssPosition> = flow {
         while (true) {
             val position = peopleInSpaceApi.fetchISSPosition().iss_position
             emit(position)
