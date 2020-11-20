@@ -17,7 +17,7 @@ android {
     }
 
     buildFeatures {
-        compose = truetw
+        compose = true
     }
 
     composeOptions {
