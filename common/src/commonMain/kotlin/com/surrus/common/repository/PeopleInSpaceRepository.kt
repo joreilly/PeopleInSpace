@@ -64,7 +64,7 @@ class PeopleInSpaceRepository() : KoinComponent {
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
         logger.d { "startObservingPeopleUpdates" }
         coroutineScope.launch {
-            fetchPeopleAsFlow()?.collect {
+            fetchPeopleAsFlow().collect {
                 success(it)
             }
         }
