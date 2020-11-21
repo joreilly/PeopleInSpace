@@ -15,10 +15,10 @@ class PeopleInSpaceViewModel(
 ) : ViewModel() {
 
     val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
-            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     val issPosition = peopleInSpaceRepository.pollISSPosition()
-        .stateIn(viewModelScope, SharingStarted.Eagerly, IssPosition(0.0, 0.0))
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), IssPosition(0.0, 0.0))
 
 
     fun getPersonBio(personName: String): String {
