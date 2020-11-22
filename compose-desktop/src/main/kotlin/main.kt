@@ -1,3 +1,4 @@
+import androidx.compose.animation.animate
 import androidx.compose.desktop.Window
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -47,7 +48,7 @@ fun main() = Window {
                     Box(Modifier.width(250.dp).fillMaxHeight(),
                         backgroundColor = Color.LightGray)
                     {
-                        PersonList(peopleState) {
+                        PersonList(peopleState, selectedPerson) {
                             selectedPerson = it.name
                         }
                     }
@@ -66,22 +67,25 @@ fun main() = Window {
 
 
 @Composable
-fun PersonList(people: List<Assignment>, personSelected : (person : Assignment) -> Unit) {
+fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected : (person : Assignment) -> Unit) {
 
     LazyColumnFor(items = people, itemContent = { person ->
-        PersonView(person, personSelected)
+        PersonView(person, selectedPerson, personSelected)
     })
 }
 
 @Composable
-fun PersonView(person: Assignment, personSelected : (person : Assignment) -> Unit) {
+fun PersonView(person: Assignment, selectedPerson: String, personSelected : (person : Assignment) -> Unit) {
     Row(
         modifier =  Modifier.fillMaxWidth() + Modifier.clickable(onClick = { personSelected(person) })
-                + Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically
+                + Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically
     ) {
 
         Column {
-            Text(text = person.name, style = TextStyle(fontSize = 18.sp))
+            Text(person.name,
+                style = if (person.name == selectedPerson) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+            )
+
             Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
         }
     }
