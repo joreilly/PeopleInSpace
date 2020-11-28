@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -85,7 +86,7 @@ fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
 fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : (person : Assignment) -> Unit) {
     val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
-    val issPosition = peopleInSpaceViewModel.issPosition.collectAsState()
+    val issPosition = peopleInSpaceViewModel.issPosition.observeAsState(IssPosition(0.0, 0.0))
 
     Scaffold(
         topBar = {
@@ -112,6 +113,8 @@ fun ISSPosition(issPosition: IssPosition) {
         style = typography.h6)
 
 }
+
+
 
 @Composable
 fun PersonView(personImageUrl: String, person: Assignment, personSelected : (person : Assignment) -> Unit) {

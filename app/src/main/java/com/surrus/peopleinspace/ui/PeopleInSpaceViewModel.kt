@@ -1,6 +1,8 @@
 package com.surrus.peopleinspace.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Kermit
 import com.surrus.common.remote.Assignment
@@ -17,9 +19,7 @@ class PeopleInSpaceViewModel(
     val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-    val issPosition = peopleInSpaceRepository.pollISSPosition()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), IssPosition(0.0, 0.0))
-
+    val issPosition: LiveData<IssPosition> = peopleInSpaceRepository.pollISSPosition().asLiveData()
 
     fun getPersonBio(personName: String): String {
         return peopleInSpaceRepository.getPersonBio(personName)
