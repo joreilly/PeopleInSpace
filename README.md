@@ -20,7 +20,7 @@ Related posts:
 * [PeopleInSpace hits the web with Kotlin/JS and React](https://johnoreilly.dev/posts/peopleinspace-kotlinjs/)
 * [Using Koin in a Kotlin Multiplatform Project](https://johnoreilly.dev/posts/kotlinmultiplatform-koin/)
 * [Jetpack Compose for the Desktop!](https://johnoreilly.dev/posts/jetpack-compose-desktop/)
-
+* [Comparing use of LiveData and StateFlow in a Jetpack Compose project](https://johnoreilly.dev/posts/jetpack-compose-stateflow-livedata/)
 
 Note that this repository very much errs on the side of mimimalism to help more clearly illustrate key moving parts of a Koltin
 Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time (and is of course
