@@ -5,7 +5,7 @@ Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI.  Cur
 * iOS (SwiftUI)
 * watchOS (SwiftUI)
 * macOS (SwiftUI)
-* Desktop (Jetpack Compose for Desktop)
+* Desktop (Compose for Desktop)
 * Web (Kotlin/JS + React Wrapper)
 * JVM (small Ktor back end service)
 
