@@ -1,15 +1,16 @@
 import androidx.compose.animation.animate
 import androidx.compose.desktop.Window
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.*
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageAsset
-import androidx.compose.ui.graphics.asImageAsset
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +33,7 @@ fun main() = Window {
     var selectedPerson by remember { mutableStateOf("") }
     val peopleInSpaceApi = PeopleInSpaceApi()
 
-    launchInComposition {
+    LaunchedEffect(true) {
         peopleState = peopleInSpaceApi.fetchPeople().people
     }
 
@@ -45,9 +46,7 @@ fun main() = Window {
 
                 Row(Modifier.fillMaxSize()) {
 
-                    Box(Modifier.width(250.dp).fillMaxHeight(),
-                        backgroundColor = Color.LightGray)
-                    {
+                    Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray))  {
                         PersonList(peopleState, selectedPerson) {
                             selectedPerson = it.name
                         }
@@ -77,8 +76,8 @@ fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected 
 @Composable
 fun PersonView(person: Assignment, selectedPerson: String, personSelected : (person : Assignment) -> Unit) {
     Row(
-        modifier =  Modifier.fillMaxWidth() + Modifier.clickable(onClick = { personSelected(person) })
-                + Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically
+        modifier =  Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
+                .padding(8.dp), verticalAlignment = Alignment.CenterVertically
     ) {
 
         Column {
@@ -94,7 +93,7 @@ fun PersonView(person: Assignment, selectedPerson: String, personSelected : (per
 
 @Composable
 fun PersonDetailsView(personName: String) {
-    ScrollableColumn(modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
+    ScrollableColumn(modifier = Modifier.padding(16.dp).fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -117,12 +116,12 @@ fun PersonDetailsView(personName: String) {
 
 
 @Composable
-fun fetchImage(url: String): ImageAsset? {
-    var image by remember(url) { mutableStateOf<ImageAsset?>(null) }
+fun fetchImage(url: String): ImageBitmap? {
+    var image by remember(url) { mutableStateOf<ImageBitmap?>(null) }
 
-    launchInComposition(url) {
+    LaunchedEffect(url) {
         loadFullImage(url)?.let {
-            image = Image.makeFromEncoded(toByteArray(it)).asImageAsset()
+            image = Image.makeFromEncoded(toByteArray(it)).asImageBitmap()
         }
     }
 
