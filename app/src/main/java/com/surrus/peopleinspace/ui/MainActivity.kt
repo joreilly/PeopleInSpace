@@ -20,11 +20,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.*
-import androidx.ui.tooling.preview.Preview
-import androidx.ui.tooling.preview.PreviewParameter
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.repository.getLogger
@@ -108,7 +108,7 @@ fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : 
 @Composable
 fun ISSPosition(issPosition: IssPosition) {
     Text(text = "ISS Position = (${issPosition.latitude}, ${issPosition.longitude})",
-        Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
+        Modifier.padding(16.dp).fillMaxWidth(),
         textAlign = TextAlign.Center,
         style = typography.h6)
 
@@ -119,8 +119,8 @@ fun ISSPosition(issPosition: IssPosition) {
 @Composable
 fun PersonView(personImageUrl: String, person: Assignment, personSelected : (person : Assignment) -> Unit) {
     Row(
-        modifier =  Modifier.fillMaxWidth() + Modifier.clickable(onClick = { personSelected(person) })
-                + Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically
+        modifier =  Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
+            .padding(16.dp), verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (personImageUrl.isNotEmpty()) {
@@ -152,7 +152,7 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName
             )
         },
         bodyContent = {
-            ScrollableColumn(modifier = Modifier.padding(16.dp) + Modifier.fillMaxWidth(),
+            ScrollableColumn(modifier = Modifier.padding(16.dp).fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
