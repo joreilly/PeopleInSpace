@@ -2,7 +2,6 @@ package com.surrus.peopleinspace
 
 import android.app.Application
 import co.touchlab.kermit.Kermit
-import co.touchlab.kermit.LogcatLogger
 import com.surrus.common.di.commonModule
 import com.surrus.common.di.initKoin
 import com.surrus.common.repository.appContext
@@ -23,7 +22,7 @@ class PeopleInSpaceApplication : Application(), KoinComponent {
         initKoin {
             androidLogger()
             androidContext(this@PeopleInSpaceApplication)
-            modules(appModule, commonModule)
+            modules(appModule, commonModule(enableNetworkLogs = true))
         }
 
         logger.d { "PeopleInSpaceApplication" }
