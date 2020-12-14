@@ -22,7 +22,7 @@ class PeopleInSpaceApplication : Application(), KoinComponent {
         initKoin {
             androidLogger()
             androidContext(this@PeopleInSpaceApplication)
-            modules(appModule, commonModule(enableNetworkLogs = true))
+            modules(appModule)
         }
 
         logger.d { "PeopleInSpaceApplication" }
