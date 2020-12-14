@@ -1,3 +1,4 @@
+import com.surrus.common.di.initKoin
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
@@ -15,7 +16,8 @@ import io.ktor.http.content.static
 
 
 fun main() {
-    val peopleInSpaceApi = PeopleInSpaceApi()
+    val koin = initKoin(enableNetworkLogs = true).koin
+    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
 
     embeddedServer(Netty, 9090) {
         install(ContentNegotiation) {

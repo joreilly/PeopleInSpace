@@ -79,6 +79,7 @@ kotlin {
 
             // koin
             api(Koin.core)
+            api(Koin.test)
 
             // kermit
             api(Deps.kermit)
