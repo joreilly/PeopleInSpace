@@ -1,15 +1,13 @@
 package com.surrus
 
+import com.surrus.common.di.initKoin
 import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.common.repository.PeopleInSpaceRepository
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 
-fun main()  {
+fun main() {
     runBlocking {
-        val api = PeopleInSpaceApi()
+        val koin = initKoin(enableNetworkLogs = true).koin
+        val api = koin.get<PeopleInSpaceApi>()
         println(api.fetchPeople())
-
     }
 }
