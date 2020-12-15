@@ -69,8 +69,10 @@ dependencies {
     implementation(Koin.android)
     implementation(Koin.androidViewModel)
 
-    testImplementation("junit:junit:4.13")
-    androidTestImplementation("androidx.test:runner:1.2.0")
+    testImplementation("junit:junit:4.13.1")
+    testImplementation("androidx.test:core:1.3.0")
+    testImplementation("org.robolectric:robolectric:4.4")
+    androidTestImplementation("androidx.test:runner:1.3.0")
 
     implementation(project(":common"))
 }

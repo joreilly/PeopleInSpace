@@ -46,6 +46,7 @@ object Compose {
 
 object Koin {
     val core = "org.koin:koin-core:${Versions.koin}"
+    val test = "org.koin:koin-test:${Versions.koin}"
     val android = "org.koin:koin-android:${Versions.koin}"
     val androidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 }

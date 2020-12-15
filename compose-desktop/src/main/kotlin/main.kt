@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.surrus.common.di.initKoin
 import com.surrus.common.model.personBios
 import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
@@ -31,7 +32,9 @@ import javax.imageio.ImageIO
 fun main() = Window {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
     var selectedPerson by remember { mutableStateOf("") }
-    val peopleInSpaceApi = PeopleInSpaceApi()
+
+    val koin = initKoin(enableNetworkLogs = true).koin
+    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
 
     LaunchedEffect(true) {
         peopleState = peopleInSpaceApi.fetchPeople().people

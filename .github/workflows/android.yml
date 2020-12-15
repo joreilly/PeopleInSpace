@@ -15,6 +15,8 @@ jobs:
         java-version: 11
     - name: Build android app
       run: ./gradlew assembleDebug
+    - name: Run Unit Tests
+      run: ./gradlew test
     - name: Build web app
       run: ./gradlew :web:assemble
     - name: Build iOS shared code
