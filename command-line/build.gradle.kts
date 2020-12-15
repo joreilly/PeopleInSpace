@@ -5,7 +5,13 @@ plugins {
 kotlin {
     macosX64("native") {
         binaries {
-            executable()
+            executable {
+                linkerOpts.add("-lsqlite3")
+            }
         }
     }
+}
+
+dependencies {
+    commonMainImplementation(project(":common"))
 }
