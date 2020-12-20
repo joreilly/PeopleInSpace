@@ -3,7 +3,7 @@ import common
 
 
 struct ContentView: View {
-    @ObservedObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
+    @StateObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
     
     var body: some View {
         NavigationView {
