@@ -5,7 +5,7 @@ import common
 
 class PeopleInSpaceViewModel: ObservableObject {
     @Published var people = [Assignment]()
-    @Published var issPosition = IssPosition(latitude: 0.0, longitude: 0.0)
+    @Published var issPositionString = ""
     
     private var subscription: AnyCancellable?
     
@@ -14,7 +14,8 @@ class PeopleInSpaceViewModel: ObservableObject {
         self.repository = repository
         
         subscription = IssPositionPublisher(repository: repository)
-            .assign(to: \.issPosition, on: self)
+            .map { position in String(format: "ISS Position = (%f, %f)", position.latitude, position.longitude ) }
+            .assign(to: \.issPositionString, on: self)
     }
     
     func startObservingPeopleUpdates() {

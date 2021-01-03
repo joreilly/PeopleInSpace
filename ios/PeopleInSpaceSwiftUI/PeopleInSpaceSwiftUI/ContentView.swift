@@ -8,10 +8,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                let issPosition = peopleInSpaceViewModel.issPosition
-                let issPositionString = String(format: "ISS Position = (%f, %f)", issPosition.latitude, issPosition.longitude )
                 HStack {
-                    Text(issPositionString)
+                    Text(peopleInSpaceViewModel.issPositionString)
                 }
                 .padding(EdgeInsets(top: 18, leading: 16, bottom: 0, trailing: 16))
                                    
