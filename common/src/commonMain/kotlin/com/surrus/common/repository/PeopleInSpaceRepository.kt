@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import kotlin.coroutines.CoroutineContext
 
 
 class PeopleInSpaceRepository() : KoinComponent {
@@ -82,21 +83,6 @@ class PeopleInSpaceRepository() : KoinComponent {
     }
 
 
-    fun startObservingISSPosition(success: (IssPosition) -> Unit) {
-        logger.d { "startObservingISSPosition" }
-        issPositionJob = coroutineScope.launch {
-            pollISSPosition().collect {
-                success(it)
-            }
-        }
-    }
-
-    fun stopObservingISSPosition() {
-        logger.d { "stopObservingISSPosition, peopleJob = $issPositionJob" }
-        issPositionJob?.cancel()
-    }
-
-
     fun pollISSPosition(): Flow<IssPosition> = flow {
         while (true) {
             val position = peopleInSpaceApi.fetchISSPosition().iss_position
@@ -106,8 +92,32 @@ class PeopleInSpaceRepository() : KoinComponent {
         }
     }
 
+
+
+    val iosScope: CoroutineScope = object : CoroutineScope {
+        override val coroutineContext: CoroutineContext
+            get() = SupervisorJob() + Dispatchers.Main
+    }
+
+    fun iosPollISSPosition() = KotlinNativeFlowWrapper<IssPosition>(pollISSPosition())
+
+
     companion object {
         private const val POLL_INTERVAL = 10000L
     }
+}
+
+
+class KotlinNativeFlowWrapper<T>(private val flow: Flow<T>) {
+    fun subscribe(
+        scope: CoroutineScope,
+        onEach: (item: T) -> Unit,
+        onComplete: () -> Unit,
+        onThrow: (error: Throwable) -> Unit
+    ) = flow
+        .onEach { onEach(it) }
+        .catch { onThrow(it) }
+        .onCompletion { onComplete() }
+        .launchIn(scope)
 }
 
