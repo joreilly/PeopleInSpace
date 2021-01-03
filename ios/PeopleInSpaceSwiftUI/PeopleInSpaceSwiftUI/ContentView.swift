@@ -15,18 +15,21 @@ struct ContentView: View {
                 .padding(EdgeInsets(top: 18, leading: 16, bottom: 0, trailing: 16))
                                    
                 
+                Button(action: {
+                    peopleInSpaceViewModel.cancel()
+                }) {
+                    Text("Cancel")
+                }
                 List(peopleInSpaceViewModel.people, id: \.name) { person in
-                    NavigationLink(destination: PersonDetailsView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)) {
+                    NavigationLink(destination: PersonDetailsView(peopleInSpaceViewModel: peopleInSpaceViewModel, person: person)) {
                         PersonView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)
                     }
                 }
                 .navigationBarTitle(Text("People In Space"))
                 .onAppear {
                     self.peopleInSpaceViewModel.startObservingPeopleUpdates()
-                    self.peopleInSpaceViewModel.startObservingISSPosition()
                 }.onDisappear {
                     self.peopleInSpaceViewModel.stopObservingPeopleUpdates()
-                    self.peopleInSpaceViewModel.stopObservingISSPosition()
                 }
             }
         }
@@ -59,7 +62,7 @@ struct PersonDetailsView: View {
                 Text(person.name).font(.title)
                 
                 ImageView(withURL: peopleInSpaceViewModel.getPersonImage(personName: person.name), width: 240, height: 240)
-                
+
                 Text(peopleInSpaceViewModel.getPersonBio(personName: person.name)).font(.body)
                 Spacer()
             }
