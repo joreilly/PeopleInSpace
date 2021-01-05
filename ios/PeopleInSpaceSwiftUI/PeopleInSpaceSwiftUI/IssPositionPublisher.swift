@@ -31,7 +31,7 @@ public struct IssPositionPublisher: Publisher {
                 onEach: { position in
                     subscriber.receive(position!)
                 },
-                onComplete: { debugPrint("onComplete") },
+                onComplete: { subscriber.receive(completion: .finished) },
                 onThrow: { error in debugPrint(error) }
             )
         }
