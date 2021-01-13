@@ -10,9 +10,9 @@ object Versions {
 
     const val sqliteJdbcDriver = "3.30.1"
     const val slf4j = "1.7.30"
-    const val compose = "1.0.0-alpha09"
-    const val nav_compose = "1.0.0-alpha04"
-    const val accompanist = "0.4.1"
+    const val compose = "1.0.0-alpha10"
+    const val nav_compose = "1.0.0-alpha05"
+    const val accompanist = "0.4.2"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
