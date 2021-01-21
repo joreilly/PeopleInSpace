@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 // CocoaPods requires the podspec to have a version.
@@ -144,6 +145,14 @@ sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
         sourceFolders = listOf("sqldelight")
+    }
+}
+
+multiplatformSwiftPackage {
+    packageName("PeopleInSpace")
+    swiftToolsVersion("5.3")
+    targetPlatforms {
+        iOS { v("13") }
     }
 }
 
