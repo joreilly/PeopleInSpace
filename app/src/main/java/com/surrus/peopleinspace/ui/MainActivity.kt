@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
@@ -96,10 +97,12 @@ fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : 
             Column {
                 ISSPosition(issPosition.value)
                 Divider(thickness = 2.dp)
-                LazyColumnFor(items = peopleState.value, itemContent = { person ->
-                    val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
-                    PersonView(personImageUrl, person, personSelected)
-                })
+                LazyColumn {
+                    items(peopleState.value) { person ->
+                        val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
+                        PersonView(personImageUrl, person, personSelected)
+                    }
+                }
             }
         }
     )
@@ -124,7 +127,7 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
     ) {
 
         if (personImageUrl.isNotEmpty()) {
-            CoilImage(data = personImageUrl, modifier = Modifier.preferredSize(60.dp))
+            CoilImage(data = personImageUrl, modifier = Modifier.preferredSize(60.dp), contentDescription = null)
         } else {
             Spacer(modifier = Modifier.preferredSize(60.dp))
         }
@@ -146,7 +149,7 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName
                 title = { Text(personName) },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 }
             )
@@ -163,7 +166,7 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName
 
                     val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
                     if (imageUrl.isNotEmpty()) {
-                        CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp))
+                        CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp), contentDescription = null)
                     }
                     Spacer(modifier = Modifier.preferredSize(24.dp))
 
