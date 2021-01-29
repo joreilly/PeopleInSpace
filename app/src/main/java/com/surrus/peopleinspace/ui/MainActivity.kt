@@ -127,7 +127,7 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
     ) {
 
         if (personImageUrl.isNotEmpty()) {
-            CoilImage(data = personImageUrl, modifier = Modifier.preferredSize(60.dp), contentDescription = null)
+            CoilImage(data = personImageUrl, modifier = Modifier.preferredSize(60.dp), contentDescription = person.name)
         } else {
             Spacer(modifier = Modifier.preferredSize(60.dp))
         }
@@ -149,7 +149,7 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName
                 title = { Text(personName) },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -166,7 +166,7 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName
 
                     val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
                     if (imageUrl.isNotEmpty()) {
-                        CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp), contentDescription = null)
+                        CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp), contentDescription = person.name)
                     }
                     Spacer(modifier = Modifier.preferredSize(24.dp))
 
