@@ -1,6 +1,7 @@
 import co.touchlab.kermit.Kermit
 import com.surrus.common.di.initKoin
 import com.surrus.common.repository.PeopleInSpaceRepository
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.core.KoinComponent
 import org.koin.core.get
 import react.child
@@ -21,6 +22,7 @@ object AppDependencies : KoinComponent {
 val AppDependenciesContext = createContext<AppDependencies>()
 
 
+@InternalCoroutinesApi
 fun main() {
     render(kotlinx.browser.document.getElementById("root")) {
         AppDependenciesContext.Provider(AppDependencies) {
