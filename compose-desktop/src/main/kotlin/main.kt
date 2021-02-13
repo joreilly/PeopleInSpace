@@ -4,6 +4,7 @@ import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -99,24 +100,33 @@ fun PersonView(person: Assignment, selectedPerson: String, personSelected : (per
 
 @Composable
 fun PersonDetailsView(personName: String) {
-    ScrollableColumn(modifier = Modifier.padding(16.dp).fillMaxWidth(),
+    LazyColumn(
+        modifier = Modifier.padding(16.dp).fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // use `item` for separate elements like headers
+        // and `items` for lists of identical elements
+        item {
 
-        Text(personName, style = MaterialTheme.typography.h4)
-        Spacer(modifier = Modifier.preferredSize(12.dp))
+            Text(personName, style = MaterialTheme.typography.h4)
+            Spacer(modifier = Modifier.preferredSize(12.dp))
 
-        val imageUrl = personImages[personName]
-        imageUrl?.let {
-            val imageAsset = fetchImage(it)
-            imageAsset?.let {
-                Image(it, modifier = Modifier.preferredSize(240.dp))
+            val imageUrl = personImages[personName]
+            imageUrl?.let {
+                val imageAsset = fetchImage(it)
+                imageAsset?.let {
+                    Image(
+                        it,
+                        contentDescription = "personName",
+                        modifier = Modifier.preferredSize(240.dp)
+                    )
+                }
             }
-        }
-        Spacer(modifier = Modifier.preferredSize(24.dp))
+            Spacer(modifier = Modifier.preferredSize(24.dp))
 
-        val bio = personBios[personName] ?: ""
-        Text(bio, style = MaterialTheme.typography.body1)
+            val bio = personBios[personName] ?: ""
+            Text(bio, style = MaterialTheme.typography.body1)
+        }
     }
 }
 
