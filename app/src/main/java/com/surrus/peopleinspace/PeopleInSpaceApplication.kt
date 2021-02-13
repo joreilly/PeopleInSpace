@@ -8,8 +8,8 @@ import com.surrus.common.repository.appContext
 import com.surrus.peopleinspace.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class PeopleInSpaceApplication : Application(), KoinComponent {
     private val logger: Kermit by inject()

@@ -8,27 +8,25 @@ import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.*
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 import kotlin.coroutines.CoroutineContext
 
 
 class PeopleInSpaceRepository() : KoinComponent {
-    private val peopleInSpaceApi: PeopleInSpaceApi by inject()
-    private val logger: Kermit by inject()
+    private val peopleInSpaceApi: PeopleInSpaceApi = get()
+    private val logger: Kermit = get()
 
     private val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase = createDb()
     private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
 
     var peopleJob: Job? = null
-    var issPositionJob: Job? = null
 
     init {
         coroutineScope.launch {

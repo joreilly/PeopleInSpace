@@ -1,8 +1,8 @@
 package com.surrus.peopleinspace.ui
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,13 +12,11 @@ import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -92,8 +90,7 @@ fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : 
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
-        },
-        bodyContent = {
+        }) {
             Column {
                 ISSPosition(issPosition.value)
                 Divider(thickness = 2.dp)
@@ -105,7 +102,6 @@ fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : 
                 }
             }
         }
-    )
 }
 
 @Composable
@@ -127,12 +123,12 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
     ) {
 
         if (personImageUrl.isNotEmpty()) {
-            CoilImage(data = personImageUrl, modifier = Modifier.preferredSize(60.dp), contentDescription = person.name)
+            CoilImage(data = personImageUrl, modifier = Modifier.size(60.dp), contentDescription = person.name)
         } else {
-            Spacer(modifier = Modifier.preferredSize(60.dp))
+            Spacer(modifier = Modifier.size(60.dp))
         }
 
-        Spacer(modifier = Modifier.preferredSize(12.dp))
+        Spacer(modifier = Modifier.size(12.dp))
 
         Column {
             Text(text = person.name, style = TextStyle(fontSize = 20.sp))
@@ -153,29 +149,26 @@ fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName
                     }
                 }
             )
-        },
-        bodyContent = {
-            ScrollableColumn(modifier = Modifier.padding(16.dp).fillMaxWidth(),
+        }) {
+            Column(modifier = Modifier.padding(16.dp).fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 val person = peopleInSpaceViewModel.getPerson(personName)
                 person?.let {
                     Text(person.name, style = MaterialTheme.typography.h4)
-                    Spacer(modifier = Modifier.preferredSize(12.dp))
+                    Spacer(modifier = Modifier.size(12.dp))
 
                     val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
                     if (imageUrl.isNotEmpty()) {
-                        CoilImage(data = imageUrl, modifier = Modifier.preferredSize(240.dp), contentDescription = person.name)
+                        CoilImage(data = imageUrl, modifier = Modifier.size(240.dp), contentDescription = person.name)
                     }
-                    Spacer(modifier = Modifier.preferredSize(24.dp))
+                    Spacer(modifier = Modifier.size(24.dp))
 
                     val bio = peopleInSpaceViewModel.getPersonBio(person.name)
                     Text(bio, style = MaterialTheme.typography.body1)
                 }
             }
         }
-    )
 }
 
 

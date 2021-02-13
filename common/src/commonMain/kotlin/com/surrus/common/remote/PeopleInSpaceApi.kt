@@ -3,7 +3,7 @@ package com.surrus.common.remote
 import io.ktor.client.*
 import io.ktor.client.request.*
 import kotlinx.serialization.Serializable
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
 @Serializable
 data class AstroResult(val message: String, val number: Int, val people: List<Assignment>)

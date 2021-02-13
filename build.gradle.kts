@@ -18,7 +18,6 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
-        maven(url = "https://dl.bintray.com/ekito/koin")
         maven(url = "https://kotlin.bintray.com/kotlin-js-wrappers/")
         maven(url = "https://jitpack.io")
     }
