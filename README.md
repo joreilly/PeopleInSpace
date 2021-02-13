@@ -7,7 +7,7 @@ Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI.  Cur
 * macOS (SwiftUI)
 * Desktop (Compose for Desktop)
 * Web (Kotlin/JS + React Wrapper)
-* JVM (small Ktor back end service)
+* JVM (small Ktor back end service + `Main.kt` in `common` module)
 
 It makes use of basic API (http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
 space (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  The list is shown on Android
@@ -25,7 +25,7 @@ Related posts:
 * [Using Swift Packages in a Kotlin Multiplatform project](https://johnoreilly.dev/posts/kotlinmultiplatform-swift-package/)
 
 
-Note that this repository very much errs on the side of mimimalism to help more clearly illustrate key moving parts of a Koltin
+Note that this repository very much errs on the side of minimalism to help more clearly illustrate key moving parts of a Koltin
 Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time (and is of course
 primarily focussed on use of Jetpack Compose and SwiftUI).  If you're at stage of moving
 beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit)
@@ -37,8 +37,7 @@ iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcode
 
 ### Jetpack Compose for Desktop client
 
-This client is available in `compose-desktop` module.  Note that you currently need to use EAP version of kotlin
-plugin and also use appropriate JVM when running (works for example with Java 11)
+This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 
 ### Languages, libraries and tools used
 
