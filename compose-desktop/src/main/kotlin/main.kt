@@ -1,11 +1,10 @@
 import androidx.compose.desktop.Window
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -48,8 +47,7 @@ fun main() = Window {
         Scaffold(
             topBar = {
                 TopAppBar(title = { Text("People In Space") })
-            },
-            bodyContent = {
+            }) {
 
                 Row(Modifier.fillMaxSize()) {
 
@@ -59,15 +57,13 @@ fun main() = Window {
                         }
                     }
 
-                    Spacer(modifier = Modifier.preferredWidth(1.dp).fillMaxHeight())
+                    Spacer(modifier = Modifier.width(1.dp).fillMaxHeight())
 
                     Box(Modifier.fillMaxHeight()) {
                         PersonDetailsView(selectedPerson)
                     }
                 }
             }
-        )
-
     }
 }
 
@@ -75,9 +71,12 @@ fun main() = Window {
 @Composable
 fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected : (person : Assignment) -> Unit) {
 
-    LazyColumnFor(items = people, itemContent = { person ->
-        PersonView(person, selectedPerson, personSelected)
-    })
+    LazyColumn {
+        items(people) { person ->
+            PersonView(person, selectedPerson, personSelected)
+        }
+    }
+
 }
 
 @Composable
@@ -109,7 +108,7 @@ fun PersonDetailsView(personName: String) {
         item {
 
             Text(personName, style = MaterialTheme.typography.h4)
-            Spacer(modifier = Modifier.preferredSize(12.dp))
+            Spacer(modifier = Modifier.size(12.dp))
 
             val imageUrl = personImages[personName]
             imageUrl?.let {
@@ -118,11 +117,11 @@ fun PersonDetailsView(personName: String) {
                     Image(
                         it,
                         contentDescription = "personName",
-                        modifier = Modifier.preferredSize(240.dp)
+                        modifier = Modifier.size(240.dp)
                     )
                 }
             }
-            Spacer(modifier = Modifier.preferredSize(24.dp))
+            Spacer(modifier = Modifier.size(24.dp))
 
             val bio = personBios[personName] ?: ""
             Text(bio, style = MaterialTheme.typography.body1)
