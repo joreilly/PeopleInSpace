@@ -17,7 +17,7 @@ class PeopleInSpaceViewModel(
 ) : ViewModel() {
 
     val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     val issPosition: LiveData<IssPosition> = peopleInSpaceRepository.pollISSPosition().asLiveData()
 
