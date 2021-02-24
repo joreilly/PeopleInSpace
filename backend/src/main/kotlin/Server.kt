@@ -13,43 +13,46 @@ import io.ktor.features.ContentNegotiation
 import io.ktor.http.ContentType
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
+import io.vertx.core.Vertx
+import io.grpc.examples.helloworld.GreeterGrpc
+import io.grpc.examples.helloworld.HelloReply
+import io.grpc.examples.helloworld.HelloRequest
+import io.grpc.stub.StreamObserver
+import io.vertx.core.AbstractVerticle
+import io.vertx.grpc.VertxServerBuilder
 
 
-fun main() {
-    val koin = initKoin(enableNetworkLogs = true).koin
-    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
 
-    embeddedServer(Netty, 9090) {
-        install(ContentNegotiation) {
-            json()
-        }
+//class Service : GreeterGrpc.GreeterImplBase() {
+//    override fun sayHello(request: HelloRequest, responseObserver: StreamObserver<HelloReply>) {
+//        val reply = HelloReply.newBuilder().setMessage("Hello " + request.name).build()
+//        responseObserver.onNext(reply)
+//        responseObserver.onCompleted()
+//    }
+//}
+//
+//class HelloVerticle : AbstractVerticle() {
+//    private val dao = IslandsDao()
 
-        routing {
+//    private val router = Router.router(vertx).apply {
 
-            get("/") {
-                call.respondText(
-                    this::class.java.classLoader.getResource("index.html")!!.readText(),
-                    ContentType.Text.Html
-                )
-            }
+    // Convenience method so you can run it in your IDE
+//    @JvmStatic
+//    fun main(args: Array<String>) {
+//        Runner.runExample(Server::class.java)
+//    }
 
-            static("/") {
-                resources("")
-            }
+//    override fun start() {
 
-            get("/astros.json") {
-                val result = peopleInSpaceApi.fetchPeople()
-                call.respond(result)
-            }
-
-            get("/astros_local.json") {
-                val result = AstroResult("success", 3,
-                    listOf(Assignment("ISS", "Chris Cassidy"),
-                        Assignment("ISS", "Anatoly Ivanishin"),
-                        Assignment("ISS", "Ivan Vagner")))
-                call.respond(result)
-            }
-
-        }
-    }.start(wait = true)
-}
+    //        val server = VertxServerBuilder.forAddress(vertx, "localhost", 8080).addService(Service()).build()
+//        server.start { ar ->
+//            if (ar.succeeded()) {
+//                println("gRPC service started")
+//            } else {
+//                println("Could not start server " + ar.cause().message)
+//            }
+//        }
+//    }
+//    open fun start() {
+//    }
+//}
