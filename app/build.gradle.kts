@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdkVersion(30)
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
+        minSdkVersion(28)
+        targetSdkVersion(29)
 
         versionCode = 1
         versionName = "1.0"
@@ -32,19 +32,19 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         useIR = true
     }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
         freeCompilerArgs = listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check",
                 "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
         )
@@ -56,7 +56,7 @@ dependencies {
     implementation("com.google.android.material:material:1.2.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
 
     implementation(Compose.ui)
     implementation(Compose.uiGraphics)

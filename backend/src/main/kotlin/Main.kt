@@ -1,32 +1,41 @@
 import io.grpc.examples.helloworld.GreeterGrpcKt
 import io.grpc.examples.helloworld.HelloReply
 import io.grpc.examples.helloworld.HelloRequest
+import io.vertx.core.AbstractVerticle
 import io.vertx.core.Promise
+import io.vertx.core.Verticle
 import io.vertx.core.Vertx
 import io.vertx.grpc.VertxServerBuilder
 
-fun main() {
-    val vertx = Vertx.vertx()
-//    vertx.deployVerticle(HelloVerticle()) // TODO coroutine
-    // The rcp service
-    // The rcp service
-    val service: GreeterGrpcKt.GreeterCoroutineImplBase =
-        object : GreeterGrpcKt.GreeterCoroutineImplBase() {
-            fun sayHello(request: HelloRequest, future: Promise<HelloReply>) {
-                future.complete(HelloReply.newBuilder().build())
-            }
-        }
-
-    val gRPCServer = VertxServerBuilder
-        .forPort(vertx, 12345)
-        .addService(service)
-        .build()
-
-    gRPCServer.start { ar ->
-        if (ar.failed()) {
-            ar.cause().printStackTrace()
+class BackendApplication {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            HelloWorldServer(12345).start()
         }
     }
+}
+
+class HelloVerticle : AbstractVerticle() {
+    override fun start() {
+        HelloWorldServer(12345).start()
+    }
+}
+//fun main() {
+//    val vertx = Vertx.vertx()
+////    vertx.deployVerticle(HelloVerticle()) // TODO coroutine
+//
+//
+//    val gRPCServer = VertxServerBuilder
+//        .forPort(vertx, 12345)
+//        .addService(GreeterService())
+//        .build()
+//
+//    gRPCServer.start { ar ->
+//        if (ar.failed()) {
+//            ar.cause().printStackTrace()
+//        }
+//    }
 
 
 //    val koin = initKoin(enableNetworkLogs = true).koin
@@ -65,4 +74,4 @@ fun main() {
 //
 //        }
 //    }.start(wait = true)
-}
+//}

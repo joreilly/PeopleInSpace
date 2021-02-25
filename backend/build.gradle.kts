@@ -6,15 +6,15 @@ import com.google.protobuf.gradle.protoc
 
 plugins {
     kotlin("jvm")
-    id("java")
-    application
     kotlin("plugin.serialization")
+    application
     id("com.google.protobuf")
+    id("io.vertx.vertx-plugin")
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
-    compileOnly("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("javax.annotation:javax.annotation-api:1.3.2") // compile only
 
     // KOTLINX
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
@@ -27,9 +27,9 @@ dependencies {
     implementation("io.ktor:ktor-websockets:${Versions.ktor}")
 
     // VERTX
-    compile("io.vertx:vertx-core:${Versions.vertx}")
-    compile("io.vertx:vertx-lang-kotlin:${Versions.vertx}")
-    compile("io.vertx:vertx-grpc:${Versions.vertx}")
+    implementation("io.vertx:vertx-core:${Versions.vertx}")
+    implementation("io.vertx:vertx-lang-kotlin:${Versions.vertx}")
+    implementation("io.vertx:vertx-grpc:${Versions.vertx}")
 
     // GRPC
     implementation("io.grpc:grpc-protobuf:${Versions.grpc}")
@@ -48,15 +48,15 @@ dependencies {
 
 java {
     sourceSets.getByName("main").resources.srcDir("src/main/proto")
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
+    sourceCompatibility = "15"
+    targetCompatibility = "15"
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "15"
         apiVersion = "1.4"
         languageVersion = "1.4"
 //        allWarningsAsErrors = true
@@ -69,9 +69,6 @@ sourceSets["main"].java {
     srcDir("build/generated/source/proto/main/grpckt")
 }
 
-application {
-//    mainClass.set("ServerKt")
-}
 
 protobuf {
     protoc {
@@ -93,4 +90,41 @@ protobuf {
             }
         }
     }
+}
+
+application {
+    mainClass.set("BackendApplication")
+}
+
+//tasks.startScripts {
+//    applicationName = "mercado-backend"
+//}
+//
+//tasks.distZip {
+//    archiveBaseName.set("mercado-backend")
+//}
+//
+//val helloWorldServerStartScripts = tasks.register<CreateStartScripts>("greeterServerStartScripts") {
+//    mainClassName = "HelloWorldServer"
+//    applicationName = "greeter-server"
+//    outputDir = tasks.named<CreateStartScripts>("startScripts").get().outputDir
+//    classpath = tasks.named<CreateStartScripts>("startScripts").get().classpath
+//}
+//
+//tasks.named("startScripts") {
+//    dependsOn(helloWorldServerStartScripts)
+//}
+
+vertx {
+    mainVerticle = "HelloWorldServer"  // (2)
+}
+
+//applicationDistribution.into('bin') {
+//    from(helloWorldServerStartScripts)
+//    fileMode = 0755
+//}
+
+// Heroku
+tasks.register("stage") {
+    dependsOn("build", "vertxRun")
 }
