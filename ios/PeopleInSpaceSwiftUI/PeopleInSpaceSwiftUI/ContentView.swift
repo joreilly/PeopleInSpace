@@ -1,29 +1,42 @@
 import SwiftUI
+import Combine
 import common
 
 
 struct ContentView: View {
-    @StateObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
+    @StateObject var viewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
+
+    var body: some View {
+        TabView {
+            PeopleListView(viewModel: viewModel)
+                .tabItem {
+                    Label("People", systemImage: "person")
+                }
+            ISSMapView(issPosition: $viewModel.issPosition)
+                .tabItem {
+                    Label("Map", systemImage: "location")
+                }
+        }
+    }
+}
+
+struct PeopleListView: View {
+    @ObservedObject var viewModel: PeopleInSpaceViewModel
     
     var body: some View {
         NavigationView {
-            VStack {
-                HStack {
-                    Text(peopleInSpaceViewModel.issPositionString)
-                }
-                .padding(EdgeInsets(top: 18, leading: 16, bottom: 0, trailing: 16))
-                                   
+            VStack {                                   
                 
-                List(peopleInSpaceViewModel.people, id: \.name) { person in
-                    NavigationLink(destination: PersonDetailsView(peopleInSpaceViewModel: peopleInSpaceViewModel, person: person)) {
-                        PersonView(peopleInSpaceViewModel: self.peopleInSpaceViewModel, person: person)
+                List(viewModel.people, id: \.name) { person in
+                    NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+                        PersonView(viewModel: viewModel, person: person)
                     }
                 }
                 .navigationBarTitle(Text("People In Space"))
                 .onAppear {
-                    self.peopleInSpaceViewModel.startObservingPeopleUpdates()
+                    viewModel.startObservingPeopleUpdates()
                 }.onDisappear {
-                    self.peopleInSpaceViewModel.stopObservingPeopleUpdates()
+                    viewModel.stopObservingPeopleUpdates()
                 }
             }
         }
@@ -31,12 +44,12 @@ struct ContentView: View {
 }
 
 struct PersonView: View {
-    var peopleInSpaceViewModel: PeopleInSpaceViewModel
+    var viewModel: PeopleInSpaceViewModel
     var person: Assignment
     
     var body: some View {
         HStack {
-            ImageView(withURL: peopleInSpaceViewModel.getPersonImage(personName: person.name), width: 64, height: 64)
+            ImageView(withURL: viewModel.getPersonImage(personName: person.name), width: 64, height: 64)
             VStack(alignment: .leading) {
                 Text(person.name).font(.headline)
                 Text(person.craft).font(.subheadline)
@@ -47,7 +60,7 @@ struct PersonView: View {
 
 
 struct PersonDetailsView: View {
-    var peopleInSpaceViewModel: PeopleInSpaceViewModel
+    var viewModel: PeopleInSpaceViewModel
     var person: Assignment
     
     var body: some View {
@@ -55,9 +68,9 @@ struct PersonDetailsView: View {
             VStack(alignment: .center, spacing: 32) {
                 Text(person.name).font(.title)
                 
-                ImageView(withURL: peopleInSpaceViewModel.getPersonImage(personName: person.name), width: 240, height: 240)
+                ImageView(withURL: viewModel.getPersonImage(personName: person.name), width: 240, height: 240)
 
-                Text(peopleInSpaceViewModel.getPersonBio(personName: person.name)).font(.body)
+                Text(viewModel.getPersonBio(personName: person.name)).font(.body)
                 Spacer()
             }
             .padding()
