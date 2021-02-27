@@ -39,6 +39,15 @@ iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcode
 
 This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 
+
+### Screenshots
+|Platform|Screenshot|
+|---|---|
+|iOS![Simulator Screen Shot - iOS1](https://user-images.githubusercontent.com/6302/109386671-2733ed80-78f4-11eb-93e3-02682930e8b4.png)
+ ![Simulator Screen Shot iOS2](https://user-images.githubusercontent.com/6302/109386629-c4425680-78f3-11eb-9f2b-cec752bf16c7.png)|
+
+
+
 ### Languages, libraries and tools used
 
 * [Kotlin](https://kotlinlang.org/)
