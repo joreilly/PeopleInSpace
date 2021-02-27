@@ -41,10 +41,7 @@ This client is available in `compose-desktop` module.  Note that you need to use
 
 
 ### Screenshots
-|Platform|Screenshot|
-|---|---|
-|iOS![Simulator Screen Shot - iOS1](https://user-images.githubusercontent.com/6302/109386671-2733ed80-78f4-11eb-93e3-02682930e8b4.png)
- ![Simulator Screen Shot iOS2](https://user-images.githubusercontent.com/6302/109386629-c4425680-78f3-11eb-9f2b-cec752bf16c7.png)|
+<img width="546" alt="Screenshot 2021-02-27 at 12 09 02" src="https://user-images.githubusercontent.com/6302/109386736-ac1f0700-78f4-11eb-812e-4bf971a8c2a7.png">
 
 
 
