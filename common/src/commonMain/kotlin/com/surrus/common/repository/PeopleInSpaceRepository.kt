@@ -14,13 +14,13 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
+import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
 
 
 class PeopleInSpaceRepository : KoinComponent  {
-    private val peopleInSpaceApi: PeopleInSpaceApi = get()
-    private val logger: Kermit = get()
+    private val peopleInSpaceApi: PeopleInSpaceApi by inject()
+    private val logger: Kermit by inject()
 
     private val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase = createDb()
