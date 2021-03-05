@@ -29,17 +29,15 @@ import com.surrus.common.remote.IssPosition
 import com.surrus.common.repository.getLogger
 import dev.chrisbanes.accompanist.coil.CoilImage
 import org.koin.androidx.compose.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : ComponentActivity() {
-    private val peopleInSpaceViewModel: PeopleInSpaceViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MainLayout(peopleInSpaceViewModel)
+            MainLayout()
         }
     }
 
@@ -61,20 +59,20 @@ sealed class Screen(val title: String) {
 }
 
 @Composable
-fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
+fun MainLayout() {
     val navController = rememberNavController()
 
     PeopleInSpaceTheme {
         NavHost(navController, startDestination = Screen.PersonListScreen.title) {
             composable(Screen.PersonListScreen.title) {
-                PersonList(peopleInSpaceViewModel = peopleInSpaceViewModel,
+                PersonList(
                     personSelected = {
                         navController.navigate(Screen.PersonDetailsDetails.title + "/${it.name}")
                     }
                 )
             }
             composable(Screen.PersonDetailsDetails.title + "/{person}") { backStackEntry ->
-                PersonDetailsView(peopleInSpaceViewModel,
+                PersonDetailsView(
                     backStackEntry.arguments?.get("person") as String,
                     popBack = { navController.popBackStack() })
             }
@@ -83,8 +81,8 @@ fun MainLayout(peopleInSpaceViewModel: PeopleInSpaceViewModel) {
 }
 
 @Composable
-fun PersonList(peopleInSpaceViewModel: PeopleInSpaceViewModel, personSelected : (person : Assignment) -> Unit) {
-    //val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
+fun PersonList(personSelected : (person : Assignment) -> Unit) {
+    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
     val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
     val issPosition = peopleInSpaceViewModel.issPosition.observeAsState(IssPosition(0.0, 0.0))
@@ -140,7 +138,9 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
 }
 
 @Composable
-fun PersonDetailsView(peopleInSpaceViewModel: PeopleInSpaceViewModel, personName: String, popBack: () -> Unit) {
+fun PersonDetailsView(personName: String, popBack: () -> Unit) {
+    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
+
     Scaffold(
         topBar = {
             TopAppBar(
