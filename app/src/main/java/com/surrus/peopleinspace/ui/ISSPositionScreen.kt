@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
@@ -19,7 +20,8 @@ fun ISSPositionScreen() {
     val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
     val issPosition = peopleInSpaceViewModel.issPosition.observeAsState(IssPosition(0.0, 0.0))
 
-    val map = MapView(LocalContext.current)
+    val context = LocalContext.current
+    val map = remember { MapView(context) }
 
     Scaffold(topBar = {
         TopAppBar(title = { Text("ISS Position") })
