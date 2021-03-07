@@ -3,174 +3,110 @@ package com.surrus.peopleinspace.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.*
 import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.repository.getLogger
-import dev.chrisbanes.accompanist.coil.CoilImage
-import org.koin.androidx.compose.getViewModel
-
+import com.surrus.peopleinspace.BuildConfig
+import org.osmdroid.config.Configuration
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // needed for osmandroid
+        Configuration.getInstance().userAgentValue = BuildConfig.APPLICATION_ID
+
         setContent {
             MainLayout()
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        getLogger().d("MainActivity", "onStart")
-    }
-
-    override fun onStop() {
-        getLogger().d("MainActivity", "onStop")
-        super.onStop()
     }
 }
 
 
 sealed class Screen(val title: String) {
-    object PersonListScreen : Screen("PersonList")
-    object PersonDetailsDetails : Screen("PersonDetails")
+    object PersonList : Screen("PersonList")
+    object PersonDetails : Screen("PersonDetails")
+    object ISSPositionScreen : Screen("ISSPosition")
 }
+
+data class BottomNavigationitem(
+    val route: String,
+    val icon: ImageVector,
+    val iconContentDescription: String
+)
+
+val bottomNavigationItems = listOf(
+    BottomNavigationitem(
+        Screen.PersonList.title,
+        Icons.Default.Person,
+        "People"
+    ),
+    BottomNavigationitem(
+        Screen.ISSPositionScreen.title,
+        Icons.Filled.LocationOn,
+        "ISS Position"
+    )
+)
 
 @Composable
 fun MainLayout() {
     val navController = rememberNavController()
 
     PeopleInSpaceTheme {
-        NavHost(navController, startDestination = Screen.PersonListScreen.title) {
-            composable(Screen.PersonListScreen.title) {
-                PersonList(
-                    personSelected = {
-                        navController.navigate(Screen.PersonDetailsDetails.title + "/${it.name}")
+        Scaffold(
+            bottomBar = {
+                BottomNavigation {
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
+
+                    bottomNavigationItems.forEach { bottomNavigationitem ->
+                        BottomNavigationItem(
+                            icon = {
+                                Icon(
+                                    bottomNavigationitem.icon,
+                                    contentDescription = bottomNavigationitem.iconContentDescription
+                                )
+                            },
+                            selected = currentRoute == bottomNavigationitem.route,
+                            onClick = {
+                                navController.navigate(bottomNavigationitem.route) {
+                                    popUpTo = navController.graph.startDestination
+                                    launchSingleTop = true
+                                }
+                            }
+                        )
                     }
-                )
+                }
             }
-            composable(Screen.PersonDetailsDetails.title + "/{person}") { backStackEntry ->
-                PersonDetailsView(
-                    backStackEntry.arguments?.get("person") as String,
-                    popBack = { navController.popBackStack() })
+        ) {
+            NavHost(navController, startDestination = Screen.PersonList.title) {
+                composable(Screen.PersonList.title) {
+                    PersonListScreen(
+                        personSelected = {
+                            navController.navigate(Screen.PersonDetails.title + "/${it.name}")
+                        }
+                    )
+                }
+                composable(Screen.PersonDetails.title + "/{person}") { backStackEntry ->
+                    PersonDetailsScreen(
+                        backStackEntry.arguments?.get("person") as String,
+                        popBack = { navController.popBackStack() })
+                }
+                composable(Screen.ISSPositionScreen.title) {
+                    ISSPositionScreen()
+                }
             }
         }
     }
-}
-
-@Composable
-fun PersonList(personSelected : (person : Assignment) -> Unit) {
-    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
-    val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
-
-    val issPosition = peopleInSpaceViewModel.issPosition.observeAsState(IssPosition(0.0, 0.0))
-
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text("People In Space") })
-        }) {
-            Column {
-                ISSPosition(issPosition.value)
-                Divider(thickness = 2.dp)
-                LazyColumn {
-                    items(peopleState.value) { person ->
-                        val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
-                        PersonView(personImageUrl, person, personSelected)
-                    }
-                }
-            }
-        }
-}
-
-@Composable
-fun ISSPosition(issPosition: IssPosition) {
-    Text(text = "ISS Position = (${issPosition.latitude}, ${issPosition.longitude})",
-        Modifier.padding(16.dp).fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        style = typography.h6)
-
-}
-
-
-
-@Composable
-fun PersonView(personImageUrl: String, person: Assignment, personSelected : (person : Assignment) -> Unit) {
-    Row(
-        modifier =  Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
-            .padding(16.dp), verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        if (personImageUrl.isNotEmpty()) {
-            CoilImage(data = personImageUrl, modifier = Modifier.size(60.dp), contentDescription = person.name)
-        } else {
-            Spacer(modifier = Modifier.size(60.dp))
-        }
-
-        Spacer(modifier = Modifier.size(12.dp))
-
-        Column {
-            Text(text = person.name, style = TextStyle(fontSize = 20.sp))
-            Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
-        }
-    }
-}
-
-@Composable
-fun PersonDetailsView(personName: String, popBack: () -> Unit) {
-    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(personName) },
-                navigationIcon = {
-                    IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }) {
-            Column(modifier = Modifier.padding(16.dp).fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                val person = peopleInSpaceViewModel.getPerson(personName)
-                person?.let {
-                    Text(person.name, style = MaterialTheme.typography.h4)
-                    Spacer(modifier = Modifier.size(12.dp))
-
-                    val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
-                    if (imageUrl.isNotEmpty()) {
-                        CoilImage(data = imageUrl, modifier = Modifier.size(240.dp), contentDescription = person.name)
-                    }
-                    Spacer(modifier = Modifier.size(24.dp))
-
-                    val bio = peopleInSpaceViewModel.getPersonBio(person.name)
-                    Text(bio, style = MaterialTheme.typography.body1)
-                }
-            }
-        }
 }
 
 
