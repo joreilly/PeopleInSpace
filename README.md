@@ -32,7 +32,7 @@ beyond this then I'd definitely recommend checking out [KaMPKit](https://github.
 
 
 ### Building
-You need to use Android Studio Canary version.  Have tested on XCode v11 and v12.  When opening
+You need to use Android Studio Canary version (**note: Java 11 is now the minimum version required**).  Have tested on XCode v11 and v12.  When opening
 iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). To exercise web client run `./gradlew :web:browserDevelopmentRun`.
 
 ### Jetpack Compose for Desktop client
