@@ -87,10 +87,10 @@ fun MainLayout() {
                     }
                 }
             }
-        ) {
+        ) { paddingValues ->
             NavHost(navController, startDestination = Screen.PersonList.title) {
                 composable(Screen.PersonList.title) {
-                    PersonListScreen(
+                    PersonListScreen(paddingValues = paddingValues,
                         personSelected = {
                             navController.navigate(Screen.PersonDetails.title + "/${it.name}")
                         }
