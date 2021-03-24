@@ -1,13 +1,12 @@
 package com.surrus.peopleinspace.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Kermit
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.repository.PeopleInSpaceRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 
@@ -19,7 +18,7 @@ class PeopleInSpaceViewModel(
     val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
-    val issPosition: LiveData<IssPosition> = peopleInSpaceRepository.pollISSPosition().asLiveData()
+    val issPosition = peopleInSpaceRepository.pollISSPosition()
 
     fun getPersonBio(personName: String): String {
         return peopleInSpaceRepository.getPersonBio(personName)

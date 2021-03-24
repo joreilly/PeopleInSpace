@@ -3,11 +3,15 @@ package com.surrus.peopleinspace.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import com.surrus.common.remote.IssPosition
 import org.koin.androidx.compose.getViewModel
 import org.osmdroid.util.GeoPoint
@@ -18,7 +22,13 @@ import org.osmdroid.views.overlay.Marker
 @Composable
 fun ISSPositionScreen() {
     val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
-    val issPosition = peopleInSpaceViewModel.issPosition.observeAsState(IssPosition(0.0, 0.0))
+
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val locationFlowLifecycleAware = remember(peopleInSpaceViewModel.issPosition, lifecycleOwner) {
+        peopleInSpaceViewModel.issPosition.flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+    }
+
+    val issPosition = locationFlowLifecycleAware.collectAsState(IssPosition(0.0, 0.0))
 
     val context = LocalContext.current
     val map = remember { MapView(context) }
