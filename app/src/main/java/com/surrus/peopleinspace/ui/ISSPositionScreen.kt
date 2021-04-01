@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -28,7 +29,7 @@ fun ISSPositionScreen() {
         peopleInSpaceViewModel.issPosition.flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
     }
 
-    val issPosition = locationFlowLifecycleAware.collectAsState(IssPosition(0.0, 0.0))
+    val issPosition by locationFlowLifecycleAware.collectAsState(IssPosition(0.0, 0.0))
 
     val context = LocalContext.current
     val map = remember { MapView(context) }
@@ -45,7 +46,7 @@ fun ISSPositionScreen() {
 
                     val mapController = map.controller
                     mapController.setZoom(5.0)
-                    val issPositionPoint = GeoPoint(issPosition.value.latitude, issPosition.value.longitude)
+                    val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
                     mapController.setCenter(issPositionPoint)
 
                     map.overlays.clear()
