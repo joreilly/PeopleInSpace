@@ -23,6 +23,8 @@ import com.surrus.common.model.personBios
 import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.jetbrains.skija.Image
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
@@ -149,8 +151,8 @@ fun toByteArray(bitmap: BufferedImage) : ByteArray {
     return baos.toByteArray()
 }
 
-fun loadFullImage(source: String): BufferedImage? {
-    return try {
+suspend fun loadFullImage(source: String): BufferedImage? = withContext(Dispatchers.IO) {
+    runCatching {
         val url = URL(source)
         val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
         connection.connectTimeout = 5000
@@ -159,9 +161,6 @@ fun loadFullImage(source: String): BufferedImage? {
         val input: InputStream = connection.inputStream
         val bitmap: BufferedImage? = ImageIO.read(input)
         bitmap
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
-    }
+    }.getOrNull()
 }
 
