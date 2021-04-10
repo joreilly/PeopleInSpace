@@ -10,7 +10,7 @@ fun main() {
     runBlocking {
         val koin = initKoin(enableNetworkLogs = true){
             modules(module {
-                createDbClient()
+                single {  createDbClient() }
             })
         }.koin
         val api = koin.get<PeopleInSpaceApi>()

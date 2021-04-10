@@ -17,7 +17,7 @@ object AppDependencies : KoinComponent {
     init {
         initKoin{
             modules(module {
-                createDbClient()
+                single {  createDbClient() }
             })
         }
         repository = get()
