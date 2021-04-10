@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.surrus.common.di.createDbClient
 import com.surrus.common.di.initKoin
 import com.surrus.common.model.personBios
 import com.surrus.common.model.personImages
@@ -26,6 +27,7 @@ import com.surrus.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.skija.Image
+import org.koin.dsl.module
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -33,7 +35,11 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.imageio.ImageIO
 
-private val koin = initKoin(enableNetworkLogs = true).koin
+private val koin = initKoin(enableNetworkLogs = true){
+    modules(module {
+        createDbClient()
+    })
+}.koin
 
 fun main() = Window {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
