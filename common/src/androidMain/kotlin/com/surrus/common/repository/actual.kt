@@ -4,18 +4,17 @@ import android.content.Context
 import co.touchlab.kermit.LogcatLogger
 import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.android.AndroidSqliteDriver
-import com.surrus.common.di.IDatabaseDependencyProvider
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
-actual fun createDb(dependencyProvider: IDatabaseDependencyProvider): PeopleInSpaceDatabase? {
-    return if(dependencyProvider is AndroidDatabaseDependencyProvider) {
-        val driver =
-            AndroidSqliteDriver(PeopleInSpaceDatabase.Schema, dependencyProvider.context, "peopleinspace.db")
-      PeopleInSpaceDatabase(driver)
-    } else null
+lateinit var appContext: Context
+
+actual fun createDb(): PeopleInSpaceDatabase? {
+    val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema, appContext, "peopleinspace.db")
+    return PeopleInSpaceDatabase(driver)
 }
 
 actual fun getLogger(): Logger = LogcatLogger()
-
-class AndroidDatabaseDependencyProvider(val context: Context):IDatabaseDependencyProvider

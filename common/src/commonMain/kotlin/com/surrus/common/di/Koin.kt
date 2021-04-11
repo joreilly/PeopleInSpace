@@ -20,11 +20,7 @@ fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclarat
     }
 
 // called by iOS etc
-fun initKoin() = initKoin(enableNetworkLogs = false) {
-    modules(module {
-        single { createDbClient() } //default implementation
-    })
-}
+fun initKoin() = initKoin(enableNetworkLogs = false) {}
 
 fun commonModule(enableNetworkLogs: Boolean) = module {
     single { createJson() }
