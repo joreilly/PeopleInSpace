@@ -1,11 +1,9 @@
 import co.touchlab.kermit.Kermit
-import com.surrus.common.di.createDbClient
 import com.surrus.common.di.initKoin
 import com.surrus.common.repository.PeopleInSpaceRepository
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import org.koin.dsl.module
 import react.child
 import react.createContext
 import react.dom.render
