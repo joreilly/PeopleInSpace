@@ -1,8 +1,8 @@
 package com.surrus.common.repository
 
 import co.touchlab.kermit.Logger
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import org.koin.core.module.Module
 
-expect fun createDb() : PeopleInSpaceDatabase?
+expect fun platformModule(): Module
 
 expect fun getLogger(): Logger
