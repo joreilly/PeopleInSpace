@@ -15,11 +15,7 @@ object AppDependencies : KoinComponent {
     val logger: Kermit
 
     init {
-        initKoin{
-            modules(module {
-                single {  createDbClient() }
-            })
-        }
+        initKoin()
         repository = get()
         logger = get()
     }
