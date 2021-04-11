@@ -4,6 +4,7 @@ import co.touchlab.kermit.Kermit
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.getLogger
+import com.surrus.common.repository.platformModule
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -16,7 +17,7 @@ import org.koin.dsl.module
 fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
         appDeclaration()
-        modules(commonModule(enableNetworkLogs = enableNetworkLogs))
+        modules(commonModule(enableNetworkLogs = enableNetworkLogs), platformModule())
     }
 
 // called by iOS etc

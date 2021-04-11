@@ -3,11 +3,13 @@ package com.surrus.common.repository
 import co.touchlab.kermit.Kermit
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
+import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.common.model.personBios
 import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -23,8 +25,8 @@ class PeopleInSpaceRepository : KoinComponent  {
     private val logger: Kermit by inject()
 
     private val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceDatabase = createDb()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase?.peopleInSpaceQueries
+    private val peopleInSpaceDatabase : PeopleInSpaceDatabaseWrapper by inject()
+    private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
 
     var peopleJob: Job? = null
 

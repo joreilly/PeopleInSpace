@@ -1,20 +1,19 @@
 package com.surrus.common.repository
 
-import android.content.Context
 import co.touchlab.kermit.LogcatLogger
 import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.android.AndroidSqliteDriver
+import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import org.koin.dsl.module
 
+actual fun platformModule() = module {
+    single {
+        val driver =
+            AndroidSqliteDriver(PeopleInSpaceDatabase.Schema, get(), "peopleinspace.db")
 
-lateinit var appContext: Context
-
-actual fun createDb(): PeopleInSpaceDatabase? {
-    val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema, appContext, "peopleinspace.db")
-    return PeopleInSpaceDatabase(driver)
+        PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
+    }
 }
 
 actual fun getLogger(): Logger = LogcatLogger()
