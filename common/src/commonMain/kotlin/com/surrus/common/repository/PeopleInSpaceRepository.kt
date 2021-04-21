@@ -6,10 +6,9 @@ import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
-import io.realm.Realm
-import io.realm.RealmConfiguration
-import io.realm.RealmObject
+import io.realm.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
@@ -44,10 +43,18 @@ class PeopleInSpaceRepository : KoinComponent  {
     }
 
     fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
-        val allPeople = realm.objects<AssignmentDb>().toList().map {
-            Assignment(name = it.name, craft = it.craft)
+        return callbackFlow {
+            val callback = Callback<RealmResults<AssignmentDb>> {
+                val allPeople = it.toList().map {
+                    Assignment(name = it.name, craft = it.craft)
+                }
+                offer(allPeople)
+            }
+            realm.objects<AssignmentDb>().observe(callback)
+
+            awaitClose {
+            }
         }
-        return flowOf(allPeople)
     }
 
     private suspend fun fetchAndStorePeople()  {
