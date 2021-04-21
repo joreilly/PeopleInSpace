@@ -5,10 +5,9 @@ object Versions {
     const val ktor = "1.5.3"
     const val kotlinxSerialization = "1.1.0"
     const val koin = "3.0.1-beta-1"
-    const val sqlDelight = "1.4.3"
+    const val realm = "0.0.1-SNAPSHOT"
     const val kermit = "0.1.8"
 
-    const val sqliteJdbcDriver = "3.30.1"
     const val slf4j = "1.7.30"
     const val compose = "1.0.0-beta05"
     const val nav_compose = "1.0.0-alpha10"
@@ -27,6 +26,7 @@ object AndroidSdk {
 
 object Deps {
     const val kermit = "co.touchlab:kermit:${Versions.kermit}"
+    const val realm = "io.realm.kotlin:library:0.0.1-SNAPSHOT"
 }
 
 object Test {
@@ -67,16 +67,5 @@ object Ktor {
 
 object Serialization {
     val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
-}
-
-object SqlDelight {
-    val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-    val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
-    val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-
-    val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
-    val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
-    val jdbcDriver = "org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}"
-    val sqlliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
 }
 

@@ -1,15 +1,14 @@
 package com.surrus.common.repository
 
 import co.touchlab.kermit.Kermit
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
-import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.common.model.personBios
 import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import io.realm.RealmObject
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -20,13 +19,21 @@ import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
 
 
+class AssignmentDb : RealmObject {
+    var name: String = ""
+    var craft: String = ""
+}
+
+
 class PeopleInSpaceRepository : KoinComponent  {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val logger: Kermit by inject()
 
     private val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceDatabase : PeopleInSpaceDatabaseWrapper by inject()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
+
+    val configuration = RealmConfiguration(schema = setOf(AssignmentDb::class))
+    val realm = Realm.open(configuration)
+
 
     var peopleJob: Job? = null
 
@@ -37,11 +44,10 @@ class PeopleInSpaceRepository : KoinComponent  {
     }
 
     fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
-        // the main reason we need to do this check is that sqldelight isn't currently
-        // setup for javascript client
-        return peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
-            Assignment(name = name, craft = craft)
-        })?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
+        val allPeople = realm.objects<AssignmentDb>().toList().map {
+            Assignment(name = it.name, craft = it.craft)
+        }
+        return flowOf(allPeople)
     }
 
     private suspend fun fetchAndStorePeople()  {
@@ -50,10 +56,16 @@ class PeopleInSpaceRepository : KoinComponent  {
 
         // this is very basic implementation for now that removes all existing rows
         // in db and then inserts results from api request
-        peopleInSpaceQueries?.deleteAll()
+        realm.beginTransaction()
+        realm.objects<AssignmentDb>().delete()
+
         result.people.forEach {
-            peopleInSpaceQueries?.insertItem(it.name, it.craft)
+            realm.create<AssignmentDb>().apply {
+                name = it.name
+                craft = it.craft
+            }
         }
+        realm.commitTransaction()
     }
 
     // Used by web client atm

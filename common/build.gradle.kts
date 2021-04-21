@@ -5,7 +5,7 @@ plugins {
     id("kotlinx-serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
-    id("com.squareup.sqldelight")
+    id("realm-kotlin")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
@@ -35,16 +35,16 @@ kotlin {
         iosX64("iOS")
     }
 
-    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
-    if (isWatchOSDevice) {
-        watchosArm64("watch")
-    } else {
-        watchosX86("watch")
-    }
+//    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
+//    if (isWatchOSDevice) {
+//        watchosArm64("watch")
+//    } else {
+//        watchosX86("watch")
+//    }
 
     macosX64("macOS")
     android()
-    jvm()
+    //jvm()
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -52,10 +52,10 @@ kotlin {
         homepage = "Link to a Kotlin/Native module homepage"
     }
 
-    js {
-        browser {
-        }
-    }
+//    js {
+//        browser {
+//        }
+//    }
 
     sourceSets {
 
@@ -74,9 +74,8 @@ kotlin {
             // Kotlinx Serialization
             implementation(Serialization.core)
 
-            // SQL Delight
-            implementation(SqlDelight.runtime)
-            implementation(SqlDelight.coroutineExtensions)
+            // Realm
+            implementation(Deps.realm)
 
             // koin
             api(Koin.core)
@@ -90,49 +89,37 @@ kotlin {
 
         sourceSets["androidMain"].dependencies {
             implementation(Ktor.clientAndroid)
-            implementation(SqlDelight.androidDriver)
         }
         sourceSets["androidTest"].dependencies {
             implementation(kotlin("test-junit"))
             implementation(Test.junit)
         }
 
-        sourceSets["jvmMain"].dependencies {
-            implementation(Ktor.clientApache)
-            implementation(Ktor.slf4j)
-            implementation(SqlDelight.jdbcDriver)
-            implementation(SqlDelight.sqlliteDriver)
-        }
+//        sourceSets["jvmMain"].dependencies {
+//            implementation(Ktor.clientApache)
+//            implementation(Ktor.slf4j)
+//        }
 
         sourceSets["iOSMain"].dependencies {
             implementation(Ktor.clientIos)
-            implementation(SqlDelight.nativeDriver)
         }
         sourceSets["iOSTest"].dependencies {
         }
 
-        sourceSets["watchMain"].dependencies {
-            implementation(Ktor.clientIos)
-            implementation(SqlDelight.nativeDriver)
-        }
+//        sourceSets["watchMain"].dependencies {
+//            implementation(Ktor.clientIos)
+//        }
 
         sourceSets["macOSMain"].dependencies {
             implementation(Ktor.clientCio)
-            implementation(SqlDelight.nativeDriverMacos)
         }
 
-        sourceSets["jsMain"].dependencies {
-            implementation(Ktor.clientJs)
-        }
+//        sourceSets["jsMain"].dependencies {
+//            implementation(Ktor.clientJs)
+//        }
     }
 }
 
-sqldelight {
-    database("PeopleInSpaceDatabase") {
-        packageName = "com.surrus.peopleinspace.db"
-        sourceFolders = listOf("sqldelight")
-    }
-}
 
 multiplatformSwiftPackage {
     packageName("PeopleInSpace")

@@ -12,6 +12,4 @@ rootProject.name = "PeopleInSpace"
 
 enableFeaturePreview("GRADLE_METADATA")
 
-include(":app", ":common", ":compose-desktop")
-include(":web")
-include(":backend")
+include(":app", ":common")
