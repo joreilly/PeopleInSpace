@@ -24,6 +24,7 @@ class AssignmentDb : RealmObject {
 }
 
 
+@ExperimentalCoroutinesApi
 class PeopleInSpaceRepository : KoinComponent  {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val logger: Kermit by inject()
@@ -44,14 +45,12 @@ class PeopleInSpaceRepository : KoinComponent  {
 
     fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         return callbackFlow {
-            val callback = Callback<RealmResults<AssignmentDb>> {
+            realm.objects<AssignmentDb>().observe {
                 val allPeople = it.toList().map {
                     Assignment(name = it.name, craft = it.craft)
                 }
                 offer(allPeople)
             }
-            realm.objects<AssignmentDb>().observe(callback)
-
             awaitClose {
             }
         }
