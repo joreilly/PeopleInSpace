@@ -25,7 +25,7 @@ Related posts:
 * [Using Swift Packages in a Kotlin Multiplatform project](https://johnoreilly.dev/posts/kotlinmultiplatform-swift-package/)
 
 
-Note that this repository very much errs on the side of minimalism to help more clearly illustrate key moving parts of a Koltin
+Note that this repository very much errs on the side of minimalism to help more clearly illustrate key moving parts of a Kotlin
 Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time (and is of course
 primarily focussed on use of Jetpack Compose and SwiftUI).  If you're at stage of moving
 beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit)
