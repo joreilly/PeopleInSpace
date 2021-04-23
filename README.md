@@ -10,7 +10,7 @@ Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI.  Cur
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
 
 It makes use of basic API (http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
-space (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  The list is shown on Android
+space and also the position of the International Space Station (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  The list is shown on Android
 using **Jetpack Compose**, on iOS using **SwiftUI** and on Web using Kotlin/JS React wrapper.
 
 Related posts:

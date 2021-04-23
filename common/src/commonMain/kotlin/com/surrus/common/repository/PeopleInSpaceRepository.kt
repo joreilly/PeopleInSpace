@@ -59,13 +59,9 @@ class PeopleInSpaceRepository : KoinComponent  {
     // Used by web client atm
     suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
 
-    fun getPersonBio(personName: String): String {
-        return personBios[personName] ?: ""
-    }
+    fun getPersonBio(personName: String) = personBios[personName] ?: ""
+    fun getPersonImage(personName: String) = personImages[personName] ?: ""
 
-    fun getPersonImage(personName: String): String {
-        return personImages[personName] ?: ""
-    }
 
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
