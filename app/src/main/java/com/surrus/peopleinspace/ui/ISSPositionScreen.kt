@@ -3,18 +3,14 @@ package com.surrus.peopleinspace.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import com.surrus.common.remote.IssPosition
-import com.surrus.peopleinspace.util.rememberWithLifecycle
+import com.surrus.peopleinspace.util.collectAsStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
@@ -28,8 +24,10 @@ fun ISSPositionScreen() {
     val lifecycleOwner = LocalLifecycleOwner.current
 
     val issPosition by peopleInSpaceViewModel.issPosition
-        .rememberWithLifecycle(lifecycleOwner)
-        .collectAsState(IssPosition(0.0, 0.0))
+        .collectAsStateWithLifecycle(
+            owner = lifecycleOwner,
+            initial = IssPosition(0.0, 0.0)
+        )
 
     val context = LocalContext.current
     val map = remember { MapView(context) }
