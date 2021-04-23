@@ -24,10 +24,7 @@ fun ISSPositionScreen() {
     val lifecycleOwner = LocalLifecycleOwner.current
 
     val issPosition by peopleInSpaceViewModel.issPosition
-        .collectAsStateWithLifecycle(
-            owner = lifecycleOwner,
-            initial = IssPosition(0.0, 0.0)
-        )
+        .collectAsStateWithLifecycle(lifecycleOwner, IssPosition(0.0, 0.0))
 
     val context = LocalContext.current
     val map = remember { MapView(context) }
