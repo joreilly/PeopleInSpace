@@ -28,9 +28,8 @@ Related posts:
 Note that this repository very much errs on the side of minimalism to help more clearly illustrate key moving parts of a Kotlin
 Multiplatform project and also to hopefully help someone just starting to explore KMP to get up and running for first time (and is of course
 primarily focussed on use of Jetpack Compose and SwiftUI).  If you're at stage of moving
-beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit).
-I also have the following samples that demonstrate use of a variety of Kotlin Multiplatform libraries (
-and also using Jetpack Compose and SwiftUI).
+beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit) from Touchlab.
+I also have the following samples that demonstrate the use of a variety of Kotlin Multiplatform libraries (and also use Jetpack Compose and SwiftUI).
 
 * [BikeShare](https://github.com/joreilly/BikeShare)
 * [GalwayBus](https://github.com/joreilly/GalwayBus)
