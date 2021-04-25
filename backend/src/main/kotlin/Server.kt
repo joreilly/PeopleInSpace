@@ -10,9 +10,6 @@ import com.surrus.common.remote.Assignment
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import io.ktor.http.ContentType
-import io.ktor.http.content.resources
-import io.ktor.http.content.static
 
 
 fun main() {
@@ -25,17 +22,6 @@ fun main() {
         }
 
         routing {
-
-            get("/") {
-                call.respondText(
-                    this::class.java.classLoader.getResource("index.html")!!.readText(),
-                    ContentType.Text.Html
-                )
-            }
-
-            static("/") {
-                resources("")
-            }
 
             get("/astros.json") {
                 val result = peopleInSpaceApi.fetchPeople()
