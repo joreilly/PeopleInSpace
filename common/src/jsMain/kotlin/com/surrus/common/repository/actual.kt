@@ -10,6 +10,6 @@ actual fun platformModule() = module {
     single {
         PeopleInSpaceDatabaseWrapper(null)
     }
-}
 
-actual fun getLogger(): Logger = CommonLogger()
+    single<Logger>{ CommonLogger() }
+}

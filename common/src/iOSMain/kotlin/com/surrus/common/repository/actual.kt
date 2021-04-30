@@ -12,6 +12,5 @@ actual fun platformModule() = module {
         val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema, "peopleinspace.db")
         PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
     }
+    single<Logger>{ NSLogLogger() }
 }
-
-actual fun getLogger(): Logger = NSLogLogger()

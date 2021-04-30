@@ -3,7 +3,6 @@ package com.surrus.common.di
 import co.touchlab.kermit.Kermit
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.repository.PeopleInSpaceRepository
-import com.surrus.common.repository.getLogger
 import com.surrus.common.repository.platformModule
 import io.ktor.client.*
 import io.ktor.client.features.json.*
@@ -28,7 +27,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
     single { createHttpClient(get(), enableNetworkLogs = enableNetworkLogs) }
     single { PeopleInSpaceRepository() }
     single { PeopleInSpaceApi(get()) }
-    single { Kermit(getLogger()) }
+    single { Kermit(logger = get()) }
 }
 
 fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }

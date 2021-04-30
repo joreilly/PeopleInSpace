@@ -14,6 +14,6 @@ actual fun platformModule() = module {
 
         PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
     }
+    single<Logger>{ LogcatLogger() }
 }
 
-actual fun getLogger(): Logger = LogcatLogger()
