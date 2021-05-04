@@ -52,9 +52,9 @@ kotlin {
         homepage = "Link to a Kotlin/Native module homepage"
     }
 
-    js {
-        browser {
-        }
+    js(IR) {
+        useCommonJs()
+        browser()
     }
 
     sourceSets {

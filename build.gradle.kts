@@ -1,6 +1,12 @@
 
 buildscript {
     repositories {
+        mavenLocal() {
+            content {
+                includeGroup("io.insert-koin")
+                includeGroup("co.touchlab")
+            }
+        }
         google()
         mavenCentral()
         jcenter()
@@ -15,6 +21,12 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal() {
+            content {
+                includeGroup("io.insert-koin")
+                includeGroup("co.touchlab")
+            }
+        }
         google()
         mavenCentral()
         jcenter()
