@@ -1,13 +1,12 @@
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "0.0.0-web-dev-11"
+    id("org.jetbrains.compose") version "0.0.0-web-dev-12"
 }
 
 version = "1.0"
 
 repositories {
-    jcenter()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }

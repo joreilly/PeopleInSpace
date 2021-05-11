@@ -4,35 +4,52 @@ import androidx.compose.web.renderComposable
 import androidx.compose.web.elements.*
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.common.remote.IssPosition
+import com.surrus.common.repository.PeopleInSpaceRepository
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import org.jetbrains.compose.common.foundation.layout.Column
+import org.jetbrains.compose.common.foundation.layout.Row
 
 
 private val koin = initKoin(enableNetworkLogs = true).koin
 
+@InternalCoroutinesApi
 fun main() {
-    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
+    val repo = koin.get<PeopleInSpaceRepository>()
 
     renderComposable(rootElementId = "root") {
         var people by remember { mutableStateOf(emptyList<Assignment>()) }
 
         LaunchedEffect(true) {
-            people = peopleInSpaceApi.fetchPeople().people
+            people = repo.fetchPeople()
         }
+
+        val issPosition by produceState(initialValue = IssPosition(0.0, 0.0), repo) {
+            repo.pollISSPosition().collect { value = it }
+        }
+
 
         Div(style = { padding(16.px) }) {
             Column {
                 H1(attrs = { classes(TextStyles.titleText) }) {
                     Text("People In Space")
                 }
-                Ul(attrs = { classes(TextStyles.personText) }) {
-                    people.forEach { person ->
-                        Li {
-                            Text(person.name)
-                        }
-                    }
+                H2 {
+                    Text("ISS Position: latitude = ${issPosition.latitude}, longitude = ${issPosition.longitude}")
                 }
 
+                people.forEach { person ->
+                    Row {
+                        val imageUrl = repo.getPersonImage(person.name)
+                        Img(src = imageUrl, style = {
+                            width(48.px)
+                            property("padding-right", value(16.px))
+                        })
+
+                        Text("${person.name} (${person.craft})")
+                    }
+                }
             }
         }
     }
