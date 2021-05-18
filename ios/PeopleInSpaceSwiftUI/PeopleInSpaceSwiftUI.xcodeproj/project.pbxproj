@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1A40FE1923DB5C35008428A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */; };
 		1AA82EED25052E1E00193051 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA82EEC25052E1E00193051 /* ImageView.swift */; };
-		1ABA38FF258B6705000F7CBD /* src in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA38FE258B6705000F7CBD /* src */; };
 		1ABD44FA23B00008008387E3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABD44F923B00008008387E3 /* ViewModel.swift */; };
 		1ABFB8BE23AFF5CC003D807E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFB8BD23AFF5CC003D807E /* AppDelegate.swift */; };
 		1ABFB8C023AFF5CC003D807E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFB8BF23AFF5CC003D807E /* SceneDelegate.swift */; };
@@ -25,7 +24,6 @@
 /* Begin PBXFileReference section */
 		1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1AA82EEC25052E1E00193051 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		1ABA38FE258B6705000F7CBD /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../../common/src; sourceTree = "<group>"; };
 		1ABD44F923B00008008387E3 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1ABFB8BA23AFF5CC003D807E /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABFB8BD23AFF5CC003D807E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,18 +62,9 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		1ABA38FD258B66E3000F7CBD /* SharedCode */ = {
-			isa = PBXGroup;
-			children = (
-				1ABA38FE258B6705000F7CBD /* src */,
-			);
-			path = SharedCode;
-			sourceTree = "<group>";
-		};
 		1ABFB8B123AFF5CC003D807E = {
 			isa = PBXGroup;
 			children = (
-				1ABA38FD258B66E3000F7CBD /* SharedCode */,
 				1ABFB8BC23AFF5CC003D807E /* PeopleInSpaceSwiftUI */,
 				1ABFB8BB23AFF5CC003D807E /* Products */,
 				0682AAA6A83414CA1CC104C4 /* Pods */,
@@ -188,7 +177,6 @@
 				1ABFB8CA23AFF5CE003D807E /* LaunchScreen.storyboard in Resources */,
 				1ABFB8C723AFF5CE003D807E /* Preview Assets.xcassets in Resources */,
 				1ABFB8C423AFF5CE003D807E /* Assets.xcassets in Resources */,
-				1ABA38FF258B6705000F7CBD /* src in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
