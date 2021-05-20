@@ -6,6 +6,7 @@ Minimal **Kotlin Multiplatform** project using Jetpack Compose and SwiftUI.  Cur
 * watchOS (SwiftUI)
 * macOS (SwiftUI)
 * Desktop (Compose for Desktop)
+* Web (Compose for Web)
 * Web (Kotlin/JS + React Wrapper)
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
 
@@ -41,13 +42,19 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 
 ### Building
 You need to use Android Studio Canary version (**note: Java 11 is now the minimum version required**). Have tested with XCode v11 and v12.  When opening
-iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). To exercise web client run `./gradlew :web:browserDevelopmentRun`.
+iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 To run backend you can either run `./gradlew :backend:run` or run `Server.kt` directly from Android Studio.
 After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
 **UPDATE**: now also works in stable version of Android Studio.
 
-### Jetpack Compose for Desktop client
+
+### Compose for Web client
+
+The Compose for Web client resides in the `compose-web` module and can be run by
+invoking ``./gradlew :compose-web:jsBrowserDevelopmentRun`
+
+### Compose for Desktop client
 
 This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 

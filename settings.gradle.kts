@@ -14,4 +14,5 @@ enableFeaturePreview("GRADLE_METADATA")
 
 include(":app", ":common", ":compose-desktop")
 include(":web")
+include(":compose-web")
 include(":backend")

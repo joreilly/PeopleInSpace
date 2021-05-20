@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -22,6 +20,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
@@ -52,9 +54,9 @@ kotlin {
         homepage = "Link to a Kotlin/Native module homepage"
     }
 
-    js {
-        browser {
-        }
+    js(IR) {
+        useCommonJs()
+        browser()
     }
 
     sourceSets {
@@ -124,6 +126,12 @@ kotlin {
         sourceSets["jsMain"].dependencies {
             implementation(Ktor.clientJs)
         }
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
