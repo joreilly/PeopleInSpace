@@ -52,7 +52,7 @@ After doing that you should then for example be able to open `http://localhost:9
 ### Compose for Web client
 
 The Compose for Web client resides in the `compose-web` module and can be run by
-invoking ``./gradlew :compose-web:jsBrowserDevelopmentRun`
+invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 
 ### Compose for Desktop client
 
