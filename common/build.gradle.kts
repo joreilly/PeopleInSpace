@@ -102,7 +102,6 @@ kotlin {
         sourceSets["jvmMain"].dependencies {
             implementation(Ktor.clientApache)
             implementation(Ktor.slf4j)
-            implementation(SqlDelight.jdbcDriver)
             implementation(SqlDelight.sqlliteDriver)
         }
 

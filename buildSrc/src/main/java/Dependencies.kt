@@ -8,7 +8,6 @@ object Versions {
     const val sqlDelight = "1.5.0"
     const val kermit = "0.1.9"
 
-    const val sqliteJdbcDriver = "3.30.1"
     const val slf4j = "1.7.30"
     const val compose = "1.0.0-beta06"
     const val nav_compose = "1.0.0-alpha10"
@@ -75,7 +74,6 @@ object SqlDelight {
 
     val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
     val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
-    val jdbcDriver = "org.xerial:sqlite-jdbc:${Versions.sqliteJdbcDriver}"
     val sqlliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
 }
 
