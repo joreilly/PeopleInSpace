@@ -42,12 +42,11 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 
 
 ### Building
-You need to use Android Studio Canary version (**note: Java 11 is now the minimum version required**). Have tested with XCode v11 and v12.  When opening
+You need to use Android Studio Arctic Fox (**note: Java 11 is now the minimum version required**). Have tested with XCode v11 and v12.  When opening
 iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 To run backend you can either run `./gradlew :backend:run` or run `Server.kt` directly from Android Studio.
 After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
-**UPDATE**: now also works in stable version of Android Studio.
 
 
 ### Compose for Web client
