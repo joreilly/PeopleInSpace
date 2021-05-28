@@ -1,7 +1,7 @@
 
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version "0.0.0-web-dev-12"
+    id("org.jetbrains.compose") version "0.0.0-web-dev-14.1"
 }
 
 version = "1.0"
@@ -20,10 +20,10 @@ kotlin {
 
     sourceSets {
 
-        val commonMain by getting {
+        val jsMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
-                implementation(compose.web.web)
+                implementation(compose.web.widgets)
+                implementation(compose.web.core)
                 implementation(compose.runtime)
 
                 implementation(project(":common"))

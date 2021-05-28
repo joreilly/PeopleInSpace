@@ -1,7 +1,7 @@
 import androidx.compose.runtime.*
-import androidx.compose.web.css.*
-import androidx.compose.web.renderComposable
-import androidx.compose.web.elements.*
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.renderComposable
+import org.jetbrains.compose.web.dom.*
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
@@ -34,7 +34,7 @@ fun main() {
         }
 
 
-        Div(style = { padding(16.px) }) {
+        Div(attrs = { style { padding(16.px) } }) {
             Column {
                 H1(attrs = { classes(TextStyles.titleText) }) {
                     Text("People In Space")
@@ -44,16 +44,16 @@ fun main() {
                 }
 
                 people.forEach { person ->
-                    Div(style = {
+                    Div(attrs = { style {
                         display(DisplayStyle.Flex)
                         alignItems(AlignItems.Center)
-                    }) {
+                    }}) {
 
                         val imageUrl = repo.getPersonImage(person.name)
-                        Img(src = imageUrl, style = {
+                        Img(src = imageUrl, attrs = { style {
                             width(48.px)
                             property("padding-right", value(16.px))
-                        })
+                        }})
 
                         Span(attrs = { classes(TextStyles.personText) }) {
                             Text("${person.name} (${person.craft})")

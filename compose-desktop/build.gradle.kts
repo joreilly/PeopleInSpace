@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version "0.4.0-build189"
+    id("org.jetbrains.compose") version "0.4.0"
     application
 }
 
@@ -11,7 +11,6 @@ group = "me.joreilly"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    jcenter()
     mavenCentral()
     maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }

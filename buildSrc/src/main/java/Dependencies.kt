@@ -1,6 +1,6 @@
 
 object Versions {
-    const val kotlin = "1.5.0"
+    const val kotlin = "1.5.10"
     const val kotlinCoroutines = "1.5.0-native-mt"
     const val ktor = "1.6.0"
     const val kotlinxSerialization = "1.2.1"
@@ -9,9 +9,9 @@ object Versions {
     const val kermit = "0.1.9"
 
     const val slf4j = "1.7.30"
-    const val compose = "1.0.0-beta06"
-    const val nav_compose = "1.0.0-alpha10"
-    const val accompanist = "0.9.0"
+    const val compose = "1.0.0-beta08"
+    const val nav_compose = "2.4.0-alpha02"
+    const val accompanist = "0.11.1"
 
     const val junit = "4.13"
     const val testRunner = "1.3.0"
