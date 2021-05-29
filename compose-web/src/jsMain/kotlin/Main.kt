@@ -10,6 +10,8 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import org.jetbrains.compose.common.foundation.layout.Column
 import org.jetbrains.compose.common.foundation.layout.Row
+import org.jetbrains.compose.common.ui.Alignment
+import org.jetbrains.compose.common.ui.Modifier
 
 
 private val koin = initKoin(enableNetworkLogs = true).koin
@@ -42,7 +44,11 @@ fun main() {
                 }
 
                 people.forEach { person ->
-                    Row {
+                    Div(style = {
+                        display(DisplayStyle.Flex)
+                        alignItems(AlignItems.Center)
+                    }) {
+
                         val imageUrl = repo.getPersonImage(person.name)
                         Img(src = imageUrl, style = {
                             width(48.px)
