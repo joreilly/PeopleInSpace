@@ -19,6 +19,8 @@ fun main() {
     val repo = koin.get<PeopleInSpaceRepository>()
 
     renderComposable(rootElementId = "root") {
+        Style(TextStyles)
+
         var people by remember { mutableStateOf(emptyList<Assignment>()) }
 
         LaunchedEffect(true) {
@@ -47,7 +49,9 @@ fun main() {
                             property("padding-right", value(16.px))
                         })
 
-                        Text("${person.name} (${person.craft})")
+                        Span(attrs = { classes(TextStyles.personText) }) {
+                            Text("${person.name} (${person.craft})")
+                        }
                     }
                 }
             }
@@ -64,7 +68,6 @@ object TextStyles : StyleSheet() {
         property("letter-spacing", value((-1.5).px))
         property("font-weight", value(900))
         property("line-height", value(58.px))
-        property("line-height", AppCSSVariables.wtHeroLineHeight.value(64.px))
 
         media(maxWidth(640.px)) {
             self style {
@@ -81,12 +84,11 @@ object TextStyles : StyleSheet() {
 
     val personText by style {
         color("#27282c")
-        fontSize(28.px)
+        fontSize(24.px)
         property("font-size", AppCSSVariables.wtSubtitle2FontSize.value(28.px))
         property("letter-spacing", value("normal"))
         property("font-weight", value(300))
         property("line-height", value(40.px))
-        property("line-height", AppCSSVariables.wtSubtitle2LineHeight.value(40.px))
 
         media(maxWidth(640.px)) {
             self style {
