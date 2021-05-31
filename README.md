@@ -64,12 +64,25 @@ invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 
 
-### Screenshots
+### Screenshots 
+
+iOS (SwiftUI)
+<br/>
 <img width="546" alt="Screenshot 2021-02-27 at 12 09 02" src="https://user-images.githubusercontent.com/6302/109386736-ac1f0700-78f4-11eb-812e-4bf971a8c2a7.png">
 
+Android (Jetpack Compose)
+<br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 03 46" src="https://user-images.githubusercontent.com/6302/110248059-2ab81c00-7f67-11eb-9b3a-2b04d1be43ef.png">
 
+Compose for Desktop 
+<br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 05 31" src="https://user-images.githubusercontent.com/6302/110248116-69e66d00-7f67-11eb-8942-ab18fb8e48ff.png">
+
+Compose for Web
+<br/>
+<img width="564" alt="Screenshot 2021-05-31 at 21 29 53" src="https://user-images.githubusercontent.com/6302/120240074-9dc7ea80-c257-11eb-9884-5870a3f4ef95.png">
+
+
 
 
 ### Languages, libraries and tools used
