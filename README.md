@@ -70,6 +70,11 @@ iOS (SwiftUI)
 <br/>
 <img width="546" alt="Screenshot 2021-02-27 at 12 09 02" src="https://user-images.githubusercontent.com/6302/109386736-ac1f0700-78f4-11eb-812e-4bf971a8c2a7.png">
 
+macOS (SwiftUI)
+<br/>
+<img width="937" alt="Screenshot 2021-06-01 at 20 02 31" src="https://user-images.githubusercontent.com/6302/120376983-6ec37e80-c314-11eb-8279-7acc0c2d5206.png">
+
+
 Android (Jetpack Compose)
 <br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 03 46" src="https://user-images.githubusercontent.com/6302/110248059-2ab81c00-7f67-11eb-9b3a-2b04d1be43ef.png">
