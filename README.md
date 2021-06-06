@@ -87,7 +87,7 @@ Compose for Web
 <br/>
 <img width="564" alt="Screenshot 2021-05-31 at 21 29 53" src="https://user-images.githubusercontent.com/6302/120240074-9dc7ea80-c257-11eb-9884-5870a3f4ef95.png">
 
-Web App (Kotlin/JS + React)
+Web App (Kotlin/JS + React) (contributed by https://github.com/PatilShreyas)
 <br/>
 <img width="612" alt="Screenshot 2021-06-06 at 23 50 00" src="https://user-images.githubusercontent.com/19620536/120935764-eda82500-c721-11eb-9042-f15ade7473f7.png">
 
