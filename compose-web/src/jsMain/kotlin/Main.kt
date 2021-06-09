@@ -26,7 +26,7 @@ fun main() {
         var people by remember { mutableStateOf(emptyList<Assignment>()) }
 
         LaunchedEffect(true) {
-            people = repo.fetchPeople()
+            people = repo.fetchPeople(0)
         }
 
         val issPosition by produceState(initialValue = IssPosition(0.0, 0.0), repo) {

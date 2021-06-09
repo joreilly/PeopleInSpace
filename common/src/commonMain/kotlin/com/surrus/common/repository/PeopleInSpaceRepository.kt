@@ -57,7 +57,16 @@ class PeopleInSpaceRepository : KoinComponent  {
     }
 
     // Used by web client atm
-    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
+    //suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
+
+
+    @Throws(Exception::class)
+    suspend fun fetchPeople(delayMs: Long): List<Assignment> {
+        delay(delayMs)
+        val people = peopleInSpaceApi.fetchPeople().people
+        return people
+    }
+
 
     fun getPersonBio(personName: String) = personBios[personName] ?: ""
     fun getPersonImage(personName: String) = personImages[personName] ?: ""
