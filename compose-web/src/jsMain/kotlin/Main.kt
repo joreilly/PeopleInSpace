@@ -52,7 +52,7 @@ fun main() {
                         val imageUrl = repo.getPersonImage(person.name)
                         Img(src = imageUrl, attrs = { style {
                             width(48.px)
-                            property("padding-right", value(16.px))
+                            property("padding-right", 16.px)
                         }})
 
                         Span(attrs = { classes(TextStyles.personText) }) {
@@ -70,62 +70,39 @@ object TextStyles : StyleSheet() {
     val titleText by style {
         color("#27282c")
         fontSize(50.px)
-        property("font-size", AppCSSVariables.wtHeroFontSize.value(50.px))
-        property("letter-spacing", value((-1.5).px))
-        property("font-weight", value(900))
-        property("line-height", value(58.px))
+        property("font-size", 50.px)
+        property("letter-spacing", (-1.5).px)
+        property("font-weight", 900)
+        property("line-height", 58.px)
 
         media(maxWidth(640.px)) {
             self style {
-                AppCSSVariables.wtHeroFontSize(42.px)
-                AppCSSVariables.wtHeroLineHeight(48.px)
+                42.px
+                48.px
             }
         }
 
-        property(
-                "font-family",
-                value("Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif")
-        )
+        property("font-family",
+                "Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif")
     }
 
     val personText by style {
         color("#27282c")
         fontSize(24.px)
-        property("font-size", AppCSSVariables.wtSubtitle2FontSize.value(28.px))
-        property("letter-spacing", value("normal"))
-        property("font-weight", value(300))
-        property("line-height", value(40.px))
+        property("font-size", 28.px)
+        property("letter-spacing", "normal")
+        property("font-weight", 300)
+        property("line-height", 40.px)
 
         media(maxWidth(640.px)) {
             self style {
-                AppCSSVariables.wtSubtitle2FontSize(24.px)
-                AppCSSVariables.wtSubtitle2LineHeight(32.px)
+                24.px
+                32.px
             }
         }
 
-        property(
-                "font-family",
-                value("Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif")
-        )
+        property("font-family",
+                "Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif")
     }
 }
 
-object AppCSSVariables : CSSVariables {
-    val wtColorGreyLight by variable<Color>()
-    val wtColorGreyDark by variable<Color>()
-
-    val wtOffsetTopUnit by variable<CSSSizeValue>()
-    val wtHorizontalLayoutGutter by variable<CSSSizeValue>()
-    val wtFlowUnit by variable<CSSSizeValue>()
-
-    val wtHeroFontSize by variable<CSSSizeValue>()
-    val wtHeroLineHeight by variable<CSSSizeValue>()
-    val wtSubtitle2FontSize by variable<CSSSizeValue>()
-    val wtSubtitle2LineHeight by variable<CSSSizeValue>()
-    val wtH2FontSize by variable<CSSSizeValue>()
-    val wtH2LineHeight by variable<CSSSizeValue>()
-    val wtH3FontSize by variable<CSSSizeValue>()
-    val wtH3LineHeight by variable<CSSSizeValue>()
-
-    val wtColCount by variable<Int>()
-}
