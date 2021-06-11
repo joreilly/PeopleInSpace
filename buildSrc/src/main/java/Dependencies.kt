@@ -4,7 +4,7 @@ object Versions {
     const val kotlinCoroutines = "1.5.0-native-mt"
     const val ktor = "1.6.0"
     const val kotlinxSerialization = "1.2.1"
-    const val koin = "3.0.2"
+    const val koin = "3.1.0"
     const val sqlDelight = "1.5.0"
     const val kermit = "0.1.9"
 
@@ -46,7 +46,7 @@ object Koin {
     val core = "io.insert-koin:koin-core:${Versions.koin}"
     val test = "io.insert-koin:koin-test:${Versions.koin}"
     val android = "io.insert-koin:koin-android:${Versions.koin}"
-    val compose = "io.insert-koin:koin-androidx-compose:3.0.1"
+    val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
 }
 
 object Ktor {

@@ -19,8 +19,6 @@ class TestKoinGraph  {
         initKoin {
             androidContext(context)
             modules(appModule)
-        }.checkModules {
-
         }
     }
 }
