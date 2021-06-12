@@ -77,7 +77,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.test:core:1.3.0")
     testImplementation("org.robolectric:robolectric:4.4")
-    androidTestImplementation("androidx.test:runner:1.3.0")
+
+    testImplementation(Koin.test)
+    testImplementation(Koin.testJUnit4)
+    testImplementation(Test.mockito)
+
+    androidTestImplementation(Test.testRunner)
 
     implementation(project(":common"))
 }

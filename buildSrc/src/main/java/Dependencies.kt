@@ -14,6 +14,7 @@ object Versions {
     const val accompanist = "0.11.1"
 
     const val junit = "4.13"
+    const val mockito = "3.7.7"
     const val testRunner = "1.3.0"
 }
 
@@ -30,6 +31,8 @@ object Deps {
 
 object Test {
     const val junit = "junit:junit:${Versions.junit}"
+    const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
+    const val testRunner = "androidx.test:runner:${Versions.testRunner}"
 }
 
 object Compose {
@@ -45,6 +48,7 @@ object Compose {
 object Koin {
     val core = "io.insert-koin:koin-core:${Versions.koin}"
     val test = "io.insert-koin:koin-test:${Versions.koin}"
+    val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koin}"
     val android = "io.insert-koin:koin-android:${Versions.koin}"
     val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
 }
