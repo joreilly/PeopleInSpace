@@ -42,7 +42,8 @@ object Compose {
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
-    const val accompanist= "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
+    const val accompanistCoil = "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
+    const val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder:${Versions.accompanist}"
 }
 
 object Koin {

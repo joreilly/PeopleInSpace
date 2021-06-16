@@ -66,7 +66,8 @@ dependencies {
     implementation(Compose.foundationLayout)
     implementation(Compose.material)
     implementation(Compose.navigation)
-    implementation(Compose.accompanist)
+    implementation(Compose.accompanistCoil)
+    implementation(Compose.accompanistPlaceholder)
 
     implementation(Koin.core)
     implementation(Koin.android)
