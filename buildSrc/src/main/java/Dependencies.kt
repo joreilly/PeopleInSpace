@@ -9,9 +9,9 @@ object Versions {
     const val kermit = "0.1.9"
 
     const val slf4j = "1.7.30"
-    const val compose = "1.0.0-beta08"
-    const val nav_compose = "2.4.0-alpha02"
-    const val accompanist = "0.11.1"
+    const val compose = "1.0.0-beta09"
+    const val nav_compose = "2.4.0-alpha03"
+    const val accompanist = "0.12.0"
 
     const val junit = "4.13"
     const val mockito = "3.7.7"
