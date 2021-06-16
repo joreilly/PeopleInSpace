@@ -64,6 +64,16 @@ invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 
 
+### Deploying backend code
+
+Have tested this out in Google App Engine deployment.  Using shadowJar plugin to create an "uber" jar and then deploying it as shown below.  Should be possible to deploy this jar to other services as well.
+
+```
+./gradlew :backend:shadowJar
+gcloud app deploy backend/build/libs/backend-all.jar 
+```
+
+
 ### Screenshots 
 
 iOS (SwiftUI)

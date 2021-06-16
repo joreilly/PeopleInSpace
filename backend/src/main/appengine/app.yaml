@@ -1,0 +1,2 @@
+runtime: java11
+entrypoint: java -Xmx64m -jar server.jar

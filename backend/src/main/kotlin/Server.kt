@@ -7,24 +7,30 @@ import io.ktor.server.netty.*
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.remote.AstroResult
 import com.surrus.common.remote.Assignment
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.ContentNegotiation
-
+import io.ktor.application.*
+import io.ktor.features.*
 
 fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin
     val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
+    peopleInSpaceApi.baseUrl = "http://api.open-notify.org"
 
-    embeddedServer(Netty, 9090) {
+    val port = System.getenv().getOrDefault("PORT", "8080").toInt()
+    embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             json()
         }
+        install(CORS)
 
         routing {
 
             get("/astros.json") {
                 val result = peopleInSpaceApi.fetchPeople()
+                call.respond(result)
+            }
+
+            get("/iss-now.json") {
+                val result = peopleInSpaceApi.fetchISSPosition()
                 call.respond(result)
             }
 
