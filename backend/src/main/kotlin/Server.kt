@@ -9,6 +9,7 @@ import com.surrus.common.remote.AstroResult
 import com.surrus.common.remote.Assignment
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.http.*
 
 fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin
@@ -20,7 +21,20 @@ fun main() {
         install(ContentNegotiation) {
             json()
         }
-        install(CORS)
+
+        install(CORS) {
+            method(HttpMethod.Options)
+            method(HttpMethod.Put)
+            method(HttpMethod.Delete)
+            method(HttpMethod.Patch)
+            header(HttpHeaders.Authorization)
+            header(HttpHeaders.ContentType)
+            header(HttpHeaders.AccessControlAllowOrigin)
+            //header("any header") if you want to add any header
+            allowCredentials = true
+            allowNonSimpleContentTypes = true
+            anyHost()
+        }
 
         routing {
 
