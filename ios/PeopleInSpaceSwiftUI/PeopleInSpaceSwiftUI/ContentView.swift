@@ -25,19 +25,16 @@ struct PeopleListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {                                   
-                
-                List(viewModel.people, id: \.name) { person in
-                    NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
-                        PersonView(viewModel: viewModel, person: person)
-                    }
+            List(viewModel.people, id: \.name) { person in
+                NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+                    PersonView(viewModel: viewModel, person: person)
                 }
-                .navigationBarTitle(Text("People In Space"))
-                .onAppear {
-                    viewModel.startObservingPeopleUpdates()
-                }.onDisappear {
-                    viewModel.stopObservingPeopleUpdates()
-                }
+            }
+            .navigationBarTitle(Text("People In Space"))
+            .onAppear {
+                viewModel.startObservingPeopleUpdates()
+            }.onDisappear {
+                viewModel.stopObservingPeopleUpdates()
             }
         }
     }
