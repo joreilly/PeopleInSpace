@@ -18,6 +18,9 @@ val personImages = mapOf(
     "Megan McArthur" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010823.jpg",
     "Akihiko Hoshide" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010825.jpg",
     "Thomas Pesquet" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010826.jpg",
+    "Nie Haisheng" to "http://images.china.cn/attachement/jpg/site1007/20080912/001109b42f980a34222404.jpg",
+    "Liu Boming" to "http://images.china.cn/attachement/jpg/site1007/20080925/001109b42f980a45513a2b.jpg",
+    "Tang Hongbo" to "http://www.xinhuanet.com/english/2021-06/16/1310010141_16238070077111n.jpg",
 )
 
 val personBios = mapOf(
@@ -38,4 +41,7 @@ val personBios = mapOf(
     "Megan McArthur" to "Katherine Megan McArthur (born August 30, 1971) is an American oceanographer, engineer, and a National Aeronautics and Space Administration (NASA) astronaut. She has served as a Capsule Communicator (CAPCOM) for both the space shuttle and space station. Megan McArthur has flown one space shuttle mission, STS-125. She is known as the last person to be hands on with the Hubble Space Telescope via the Canadarm. McArthur has served in a number of positions including working in the Shuttle Avionics Laboratory (SAIL).",
     "Akihiko Hoshide" to "Akihiko Hoshide (星出 彰彦, Hoshide Akihiko, born December 28, 1968) is a Japanese engineer and JAXA astronaut. On August 30, 2012, Hoshide became the third Japanese astronaut to walk in space.",
     "Thomas Pesquet" to "Thomas Gautier Pesquet (French pronunciation: \u200B[tɔma gotje pɛskɛ]; born 27 February 1978 in Rouen) is a French aerospace engineer, pilot, and European Space Agency astronaut. Pesquet was selected by ESA as a candidate in May 2009, and he successfully completed his basic training in November 2010. From November 2016 to June 2017, Pesquet was part of Expedition 50 and Expedition 51 as a flight engineer.Pesquet returned to space in April 2021 on board the SpaceX Crew Dragon for a second six-month stay on the ISS.",
+    "Nie Haisheng" to "Nie Haisheng (simplified Chinese: 聂海胜; traditional Chinese: 聶海勝; pinyin: Niè Hǎishèng; born 13 October 1964) is a Chinese military pilot and CNSA astronaut.",
+    "Liu Boming" to "Liu Boming (simplified Chinese: 刘伯明; traditional Chinese: 劉伯明; pinyin: Liú Bómíng; born September 1966) is a Chinese pilot selected as part of the Shenzhou program. A fighter pilot in the People's Liberation Army Air Force, he was selected to be an CNSA member in 1998.",
+    "Tang Hongbo" to "Tang Hongbo (Chinese: 汤洪波; born October 1975) is a Chinese pilot selected as part of the Shenzhou program.",
 )
