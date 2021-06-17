@@ -18,9 +18,9 @@ val personImages = mapOf(
     "Megan McArthur" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010823.jpg",
     "Akihiko Hoshide" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010825.jpg",
     "Thomas Pesquet" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010826.jpg",
-    "Nie Haisheng" to "http://images.china.cn/attachement/jpg/site1007/20080912/001109b42f980a34222404.jpg",
-    "Liu Boming" to "http://images.china.cn/attachement/jpg/site1007/20080925/001109b42f980a45513a2b.jpg",
-    "Tang Hongbo" to "http://www.xinhuanet.com/english/2021-06/16/1310010141_16238070077111n.jpg",
+    "Nie Haisheng" to "http://www.spacefacts.de/more/taikonauts/photo/nie_haisheng_2.jpg",
+    "Liu Boming" to "http://www.april12.eu/chinaastron/photo/liuboming.jpg",
+    "Tang Hongbo" to "https://upload.wikimedia.org/wikipedia/commons/3/35/Tang_Hongbo.png",
 )
 
 val personBios = mapOf(
