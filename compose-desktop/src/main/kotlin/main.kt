@@ -105,9 +105,8 @@ fun PersonDetailsView(personName: String) {
         modifier = Modifier.padding(16.dp).fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // use `item` for separate elements like headers
-        // and `items` for lists of identical elements
-        item {
+
+        item(personName) {
 
             Text(personName, style = MaterialTheme.typography.h4)
             Spacer(modifier = Modifier.size(12.dp))

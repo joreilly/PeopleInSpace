@@ -1,5 +1,6 @@
 package com.surrus.peopleinspace.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
 
@@ -46,7 +47,8 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
     ) {
 
         if (personImageUrl.isNotEmpty()) {
-            CoilImage(data = personImageUrl, modifier = Modifier.size(60.dp), contentDescription = person.name)
+            Image(painter = rememberCoilPainter(personImageUrl),
+                modifier = Modifier.size(60.dp), contentDescription = person.name)
         } else {
             Spacer(modifier = Modifier.size(60.dp))
         }

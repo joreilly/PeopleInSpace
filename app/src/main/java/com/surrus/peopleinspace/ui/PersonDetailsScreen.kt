@@ -1,5 +1,6 @@
 package com.surrus.peopleinspace.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -8,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -36,7 +37,8 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
 
                 val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
                 if (imageUrl.isNotEmpty()) {
-                    CoilImage(data = imageUrl, modifier = Modifier.size(240.dp), contentDescription = person.name)
+                    Image(painter = rememberCoilPainter(imageUrl),
+                        modifier = Modifier.size(240.dp), contentDescription = person.name)
                 }
                 Spacer(modifier = Modifier.size(24.dp))
 
