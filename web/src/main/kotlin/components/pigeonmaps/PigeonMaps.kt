@@ -1,7 +1,7 @@
 @file:JsModule("pigeon-maps")
 @file:JsNonModule
 
-package components.materialui
+package components.pigeonmaps
 
 import react.*
 
