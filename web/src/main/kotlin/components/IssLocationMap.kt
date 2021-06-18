@@ -1,8 +1,8 @@
 package components
 
 import com.surrus.common.remote.IssPosition
-import components.materialui.Map
-import components.materialui.Marker
+import components.pigeonmaps.Map
+import components.pigeonmaps.Marker
 import react.RBuilder
 
 fun RBuilder.IssLocationMap(issPosition: IssPosition) {
