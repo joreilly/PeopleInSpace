@@ -1,23 +1,30 @@
 package components
 
 import kotlinx.css.Align
+import kotlinx.css.ObjectFit
 import kotlinx.css.alignSelf
+import kotlinx.css.borderRadius
 import kotlinx.css.margin
+import kotlinx.css.objectFit
 import kotlinx.css.padding
+import kotlinx.css.pct
 import kotlinx.css.px
 import model.Person
 import react.RBuilder
-import react.dom.img
 import styled.css
 import styled.styledDiv
+import styled.styledImg
 
 fun RBuilder.PersonDetails(person: Person) {
     styledDiv {
         css {
             padding(32.px)
         }
-
-        img(alt = person.assignment.name, src = person.imageUrl) {
+        styledImg(alt = person.assignment.name, src = person.imageUrl) {
+            css {
+                objectFit = ObjectFit.cover
+                borderRadius = 50.pct
+            }
             attrs {
                 height = "128"
                 width = "128"
