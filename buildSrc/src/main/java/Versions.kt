@@ -12,7 +12,7 @@ object Versions {
     const val nav_compose = "2.4.0-alpha03"
     const val accompanist = "0.12.0"
 
-    const val junit = "4.13"
+    const val junit = "4.13.2"
     const val mockito = "3.7.7"
     const val testRunner = "1.3.0"
 
