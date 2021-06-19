@@ -14,7 +14,7 @@ class PeopleInSpaceViewModel(
 ) : ViewModel() {
 
     val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
-            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     val issPosition = peopleInSpaceRepository.pollISSPosition()
 
@@ -27,6 +27,6 @@ class PeopleInSpaceViewModel(
     }
 
     fun getPerson(personName: String): Assignment? {
-        return peopleInSpace.value.find { it.name == personName}
+        return peopleInSpace.value.find { it.name == personName }
     }
 }

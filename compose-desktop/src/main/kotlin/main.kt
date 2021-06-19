@@ -49,47 +49,48 @@ fun main() = Window {
         Scaffold(
             topBar = {
                 TopAppBar(title = { Text("People In Space") })
-            }) {
+            }
+        ) {
 
-                Row(Modifier.fillMaxSize()) {
+            Row(Modifier.fillMaxSize()) {
 
-                    Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray))  {
-                        PersonList(peopleState, selectedPerson) {
-                            selectedPerson = it.name
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.width(1.dp).fillMaxHeight())
-
-                    Box(Modifier.fillMaxHeight()) {
-                        PersonDetailsView(selectedPerson)
+                Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray)) {
+                    PersonList(peopleState, selectedPerson) {
+                        selectedPerson = it.name
                     }
                 }
+
+                Spacer(modifier = Modifier.width(1.dp).fillMaxHeight())
+
+                Box(Modifier.fillMaxHeight()) {
+                    PersonDetailsView(selectedPerson)
+                }
             }
+        }
     }
 }
 
-
 @Composable
-fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected : (person : Assignment) -> Unit) {
+fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected: (person: Assignment) -> Unit) {
 
     LazyColumn {
         items(people) { person ->
             PersonView(person, selectedPerson, personSelected)
         }
     }
-
 }
 
 @Composable
-fun PersonView(person: Assignment, selectedPerson: String, personSelected : (person : Assignment) -> Unit) {
+fun PersonView(person: Assignment, selectedPerson: String, personSelected: (person: Assignment) -> Unit) {
     Row(
-        modifier =  Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
-                .padding(8.dp), verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
         Column {
-            Text(person.name,
+            Text(
+                person.name,
                 style = if (person.name == selectedPerson) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
             )
 
@@ -97,7 +98,6 @@ fun PersonView(person: Assignment, selectedPerson: String, personSelected : (per
         }
     }
 }
-
 
 @Composable
 fun PersonDetailsView(personName: String) {
@@ -130,7 +130,6 @@ fun PersonDetailsView(personName: String) {
     }
 }
 
-
 @Composable
 fun fetchImage(url: String): ImageBitmap? {
     var image by remember(url) { mutableStateOf<ImageBitmap?>(null) }
@@ -144,7 +143,7 @@ fun fetchImage(url: String): ImageBitmap? {
     return image
 }
 
-fun toByteArray(bitmap: BufferedImage) : ByteArray {
+fun toByteArray(bitmap: BufferedImage): ByteArray {
     val baos = ByteArrayOutputStream()
     ImageIO.write(bitmap, "png", baos)
     return baos.toByteArray()
@@ -162,4 +161,3 @@ suspend fun loadFullImage(source: String): BufferedImage? = withContext(Dispatch
         bitmap
     }.getOrNull()
 }
-

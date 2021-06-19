@@ -26,8 +26,12 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
                     }
                 }
             )
-        }) {
-        Column(modifier = Modifier.padding(16.dp).fillMaxWidth(),
+        }
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val person = peopleInSpaceViewModel.getPerson(personName)
@@ -37,8 +41,10 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
 
                 val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
                 if (imageUrl.isNotEmpty()) {
-                    Image(painter = rememberCoilPainter(imageUrl),
-                        modifier = Modifier.size(240.dp), contentDescription = person.name)
+                    Image(
+                        painter = rememberCoilPainter(imageUrl),
+                        modifier = Modifier.size(240.dp), contentDescription = person.name
+                    )
                 }
                 Spacer(modifier = Modifier.size(24.dp))
 

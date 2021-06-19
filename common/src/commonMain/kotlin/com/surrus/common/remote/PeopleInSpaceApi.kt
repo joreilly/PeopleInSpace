@@ -17,7 +17,6 @@ data class IssPosition(val latitude: Double, val longitude: Double)
 @Serializable
 data class IssResponse(val message: String, val iss_position: IssPosition, val timestamp: Long)
 
-
 class PeopleInSpaceApi(
     private val client: HttpClient,
     var baseUrl: String = "https://people-in-space-proxy.ew.r.appspot.com",

@@ -1,7 +1,4 @@
 import androidx.compose.runtime.*
-import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.renderComposable
-import org.jetbrains.compose.web.dom.*
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
@@ -9,10 +6,9 @@ import com.surrus.common.repository.PeopleInSpaceRepository
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import org.jetbrains.compose.common.foundation.layout.Column
-import org.jetbrains.compose.common.foundation.layout.Row
-import org.jetbrains.compose.common.ui.Alignment
-import org.jetbrains.compose.common.ui.Modifier
-
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.renderComposable
 
 private val koin = initKoin(enableNetworkLogs = true).koin
 
@@ -33,7 +29,6 @@ fun main() {
             repo.pollISSPosition().collect { value = it }
         }
 
-
         Div(attrs = { style { padding(16.px) } }) {
             Column {
                 H1(attrs = { classes(TextStyles.titleText) }) {
@@ -44,16 +39,25 @@ fun main() {
                 }
 
                 people.forEach { person ->
-                    Div(attrs = { style {
-                        display(DisplayStyle.Flex)
-                        alignItems(AlignItems.Center)
-                    }}) {
+                    Div(
+                        attrs = {
+                            style {
+                                display(DisplayStyle.Flex)
+                                alignItems(AlignItems.Center)
+                            } 
+                        }
+                    ) {
 
                         val imageUrl = repo.getPersonImage(person.name)
-                        Img(src = imageUrl, attrs = { style {
-                            width(48.px)
-                            property("padding-right", 16.px)
-                        }})
+                        Img(
+                            src = imageUrl,
+                            attrs = {
+                                style {
+                                    width(48.px)
+                                    property("padding-right", 16.px)
+                                } 
+                            }
+                        )
 
                         Span(attrs = { classes(TextStyles.personText) }) {
                             Text("${person.name} (${person.craft})")
@@ -82,8 +86,10 @@ object TextStyles : StyleSheet() {
             }
         }
 
-        property("font-family",
-                "Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif")
+        property(
+            "font-family",
+            "Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif"
+        )
     }
 
     val personText by style {
@@ -101,8 +107,9 @@ object TextStyles : StyleSheet() {
             }
         }
 
-        property("font-family",
-                "Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif")
+        property(
+            "font-family",
+            "Gotham SSm A,Gotham SSm B,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Droid Sans,Helvetica Neue,Arial,sans-serif"
+        )
     }
 }
-

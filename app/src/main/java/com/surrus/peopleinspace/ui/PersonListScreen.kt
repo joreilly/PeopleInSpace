@@ -21,14 +21,15 @@ import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun PersonListScreen(paddingValues: PaddingValues, personSelected : (person : Assignment) -> Unit) {
+fun PersonListScreen(paddingValues: PaddingValues, personSelected: (person: Assignment) -> Unit) {
     val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
     val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
-        }) {
+        }
+    ) {
         LazyColumn(contentPadding = paddingValues) {
             items(peopleState.value) { person ->
                 val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
@@ -38,17 +39,25 @@ fun PersonListScreen(paddingValues: PaddingValues, personSelected : (person : As
     }
 }
 
-
 @Composable
-fun PersonView(personImageUrl: String, person: Assignment, personSelected : (person : Assignment) -> Unit) {
+fun PersonView(
+    personImageUrl: String,
+    person: Assignment,
+    personSelected: (person: Assignment) -> Unit
+) {
     Row(
-        modifier =  Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
-            .padding(16.dp), verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { personSelected(person) })
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (personImageUrl.isNotEmpty()) {
-            Image(painter = rememberCoilPainter(personImageUrl),
-                modifier = Modifier.size(60.dp), contentDescription = person.name)
+            Image(
+                painter = rememberCoilPainter(personImageUrl),
+                modifier = Modifier.size(60.dp), contentDescription = person.name
+            )
         } else {
             Spacer(modifier = Modifier.size(60.dp))
         }
@@ -61,4 +70,3 @@ fun PersonView(personImageUrl: String, person: Assignment, personSelected : (per
         }
     }
 }
-

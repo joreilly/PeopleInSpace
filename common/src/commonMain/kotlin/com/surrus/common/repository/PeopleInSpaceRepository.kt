@@ -9,23 +9,21 @@ import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
 
-
-class PeopleInSpaceRepository : KoinComponent  {
+class PeopleInSpaceRepository : KoinComponent {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val logger: Kermit by inject()
 
     private val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceDatabase : PeopleInSpaceDatabaseWrapper by inject()
+    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper by inject()
     private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
 
     var peopleJob: Job? = null
@@ -39,12 +37,14 @@ class PeopleInSpaceRepository : KoinComponent  {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
-        return peopleInSpaceQueries?.selectAll(mapper = { name, craft ->
-            Assignment(name = name, craft = craft)
-        })?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
+        return peopleInSpaceQueries?.selectAll(
+            mapper = { name, craft ->
+                Assignment(name = name, craft = craft)
+            }
+        )?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
     }
 
-    private suspend fun fetchAndStorePeople()  {
+    private suspend fun fetchAndStorePeople() {
         logger.d { "fetchAndStorePeople" }
         val result = peopleInSpaceApi.fetchPeople()
 
@@ -62,7 +62,6 @@ class PeopleInSpaceRepository : KoinComponent  {
     fun getPersonBio(personName: String) = personBios[personName] ?: ""
     fun getPersonImage(personName: String) = personImages[personName] ?: ""
 
-
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
         logger.d { "startObservingPeopleUpdates" }
@@ -78,7 +77,6 @@ class PeopleInSpaceRepository : KoinComponent  {
         peopleJob?.cancel()
     }
 
-
     fun pollISSPosition(): Flow<IssPosition> = flow {
         while (true) {
             val position = peopleInSpaceApi.fetchISSPosition().iss_position
@@ -88,8 +86,6 @@ class PeopleInSpaceRepository : KoinComponent  {
         }
     }
 
-
-
     val iosScope: CoroutineScope = object : CoroutineScope {
         override val coroutineContext: CoroutineContext
             get() = SupervisorJob() + Dispatchers.Main
@@ -97,12 +93,10 @@ class PeopleInSpaceRepository : KoinComponent  {
 
     fun iosPollISSPosition() = KotlinNativeFlowWrapper<IssPosition>(pollISSPosition())
 
-
     companion object {
         private const val POLL_INTERVAL = 10000L
     }
 }
-
 
 class KotlinNativeFlowWrapper<T>(private val flow: Flow<T>) {
     fun subscribe(
@@ -116,4 +110,3 @@ class KotlinNativeFlowWrapper<T>(private val flow: Flow<T>) {
         .onCompletion { onComplete() }
         .launchIn(scope)
 }
-
