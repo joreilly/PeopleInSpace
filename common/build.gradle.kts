@@ -79,21 +79,21 @@ kotlin {
             }
 
             // Ktor
-            implementation(Ktor.clientCore)
-            implementation(Ktor.clientJson)
-            implementation(Ktor.clientLogging)
-            implementation(Ktor.clientSerialization)
+            implementation(Deps.Ktor.clientCore)
+            implementation(Deps.Ktor.clientJson)
+            implementation(Deps.Ktor.clientLogging)
+            implementation(Deps.Ktor.clientSerialization)
 
             // Kotlinx Serialization
-            implementation(Serialization.core)
+            implementation(Deps.Serialization.core)
 
             // SQL Delight
-            implementation(SqlDelight.runtime)
-            implementation(SqlDelight.coroutineExtensions)
+            implementation(Deps.SqlDelight.runtime)
+            implementation(Deps.SqlDelight.coroutineExtensions)
 
             // koin
-            api(Koin.core)
-            api(Koin.test)
+            api(Deps.Koin.core)
+            api(Deps.Koin.test)
 
             // kermit
             api(Deps.kermit)
@@ -102,39 +102,39 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
-            implementation(Ktor.clientAndroid)
-            implementation(SqlDelight.androidDriver)
+            implementation(Deps.Ktor.clientAndroid)
+            implementation(Deps.SqlDelight.androidDriver)
         }
         sourceSets["androidTest"].dependencies {
             implementation(kotlin("test-junit"))
-            implementation(Test.junit)
+            implementation(Deps.Test.junit)
         }
 
         sourceSets["jvmMain"].dependencies {
-            implementation(Ktor.clientApache)
-            implementation(Ktor.slf4j)
-            implementation(SqlDelight.sqlliteDriver)
+            implementation(Deps.Ktor.clientApache)
+            implementation(Deps.Ktor.slf4j)
+            implementation(Deps.SqlDelight.sqlliteDriver)
         }
 
         sourceSets["iOSMain"].dependencies {
-            implementation(Ktor.clientIos)
-            implementation(SqlDelight.nativeDriver)
+            implementation(Deps.Ktor.clientIos)
+            implementation(Deps.SqlDelight.nativeDriver)
         }
         sourceSets["iOSTest"].dependencies {
         }
 
         sourceSets["watchMain"].dependencies {
-            implementation(Ktor.clientIos)
-            implementation(SqlDelight.nativeDriver)
+            implementation(Deps.Ktor.clientIos)
+            implementation(Deps.SqlDelight.nativeDriver)
         }
 
         sourceSets["macOSMain"].dependencies {
-            implementation(Ktor.clientCio)
-            implementation(SqlDelight.nativeDriverMacos)
+            implementation(Deps.Ktor.clientCio)
+            implementation(Deps.SqlDelight.nativeDriverMacos)
         }
 
         sourceSets["jsMain"].dependencies {
-            implementation(Ktor.clientJs)
+            implementation(Deps.Ktor.clientJs)
         }
     }
 }
