@@ -1,4 +1,3 @@
-
 object Versions {
     const val kotlin = "1.5.10"
     const val kotlinCoroutines = "1.5.0-native-mt"
@@ -17,8 +16,9 @@ object Versions {
     const val mockito = "3.7.7"
     const val testRunner = "1.3.0"
 
-    const val shadow = "7.0.0"
+    const val gradle = "7.1.0-alpha02"
     const val kotlinterGradle = "3.4.5"
+    const val shadow = "7.0.0"
 }
 
 
