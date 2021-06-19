@@ -113,7 +113,7 @@ kotlin {
         sourceSets["jvmMain"].dependencies {
             implementation(Deps.Ktor.clientApache)
             implementation(Deps.Ktor.slf4j)
-            implementation(Deps.SqlDelight.sqlliteDriver)
+            implementation(Deps.SqlDelight.sqliteDriver)
         }
 
         sourceSets["iOSMain"].dependencies {
