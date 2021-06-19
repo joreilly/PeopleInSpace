@@ -63,31 +63,34 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01")
     implementation("androidx.activity:activity-compose:1.3.0-beta2")
 
+    with(Deps.Compose) {
+        implementation(ui)
+        implementation(uiGraphics)
+        implementation(uiTooling)
+        implementation(foundationLayout)
+        implementation(material)
+        implementation(navigation)
+        implementation(accompanistCoil)
+        implementation(accompanistPlaceholder)
+    }
 
-    implementation(Deps.Compose.ui)
-    implementation(Deps.Compose.uiGraphics)
-    implementation(Deps.Compose.uiTooling)
-    implementation(Deps.Compose.foundationLayout)
-    implementation(Deps.Compose.material)
-    implementation(Deps.Compose.navigation)
-    implementation(Deps.Compose.accompanistCoil)
-    implementation(Deps.Compose.accompanistPlaceholder)
+    with(Deps.Koin) {
+        implementation(core)
+        implementation(android)
+        implementation(compose)
+        testImplementation(test)
+        testImplementation(testJUnit4)
+    }
 
-    implementation(Deps.Koin.core)
-    implementation(Deps.Koin.android)
-    implementation(Deps.Koin.compose)
+    with(Deps.Test) {
+        testImplementation(junit)
+        testImplementation("androidx.test:core:1.3.0")
+        testImplementation("org.robolectric:robolectric:4.4")
+        testImplementation(mockito)
+        androidTestImplementation(testRunner)
+    }
 
     implementation("org.osmdroid:osmdroid-android:6.1.10")
-
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.test:core:1.3.0")
-    testImplementation("org.robolectric:robolectric:4.4")
-
-    testImplementation(Deps.Koin.test)
-    testImplementation(Deps.Koin.testJUnit4)
-    testImplementation(Deps.Test.mockito)
-
-    androidTestImplementation(Deps.Test.testRunner)
 
     implementation(project(":common"))
 }
