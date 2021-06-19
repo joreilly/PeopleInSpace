@@ -14,7 +14,7 @@ import org.mockito.Mockito
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class TestKoinGraph  {
+class TestKoinGraph {
     private val context = getApplicationContext<Context>()
 
     @get:Rule

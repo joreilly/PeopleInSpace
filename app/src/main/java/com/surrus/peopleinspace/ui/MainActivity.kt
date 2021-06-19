@@ -12,7 +12,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.BuildConfig
 import org.osmdroid.config.Configuration
@@ -30,7 +33,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 sealed class Screen(val title: String) {
     object PersonList : Screen("PersonList")
@@ -90,7 +92,8 @@ fun MainLayout() {
         ) { paddingValues ->
             NavHost(navController, startDestination = Screen.PersonList.title) {
                 composable(Screen.PersonList.title) {
-                    PersonListScreen(paddingValues = paddingValues,
+                    PersonListScreen(
+                        paddingValues = paddingValues,
                         personSelected = {
                             navController.navigate(Screen.PersonDetails.title + "/${it.name}")
                         }
@@ -99,7 +102,8 @@ fun MainLayout() {
                 composable(Screen.PersonDetails.title + "/{person}") { backStackEntry ->
                     PersonDetailsScreen(
                         backStackEntry.arguments?.get("person") as String,
-                        popBack = { navController.popBackStack() })
+                        popBack = { navController.popBackStack() }
+                    )
                 }
                 composable(Screen.ISSPositionScreen.title) {
                     ISSPositionScreen()
@@ -108,7 +112,6 @@ fun MainLayout() {
         }
     }
 }
-
 
 @Preview
 @Composable

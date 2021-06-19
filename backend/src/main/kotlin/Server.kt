@@ -1,15 +1,15 @@
 import com.surrus.common.di.initKoin
+import com.surrus.common.remote.Assignment
+import com.surrus.common.remote.AstroResult
+import com.surrus.common.remote.PeopleInSpaceApi
+import io.ktor.application.*
+import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.common.remote.AstroResult
-import com.surrus.common.remote.Assignment
-import io.ktor.application.*
-import io.ktor.features.*
-import io.ktor.http.*
 
 fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin
@@ -30,7 +30,7 @@ fun main() {
             header(HttpHeaders.Authorization)
             header(HttpHeaders.ContentType)
             header(HttpHeaders.AccessControlAllowOrigin)
-            //header("any header") if you want to add any header
+            // header("any header") if you want to add any header
             allowCredentials = true
             allowNonSimpleContentTypes = true
             anyHost()
@@ -49,13 +49,16 @@ fun main() {
             }
 
             get("/astros_local.json") {
-                val result = AstroResult("success", 3,
-                    listOf(Assignment("ISS", "Chris Cassidy"),
+                val result = AstroResult(
+                    "success", 3,
+                    listOf(
+                        Assignment("ISS", "Chris Cassidy"),
                         Assignment("ISS", "Anatoly Ivanishin"),
-                        Assignment("ISS", "Ivan Vagner")))
+                        Assignment("ISS", "Ivan Vagner")
+                    )
+                )
                 call.respond(result)
             }
-
         }
     }.start(wait = true)
 }

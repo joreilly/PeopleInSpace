@@ -14,5 +14,5 @@ actual fun platformModule() = module {
         PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
     }
 
-    single<Logger>{ CommonLogger() }
+    single<Logger> { CommonLogger() }
 }

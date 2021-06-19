@@ -1,7 +1,11 @@
 package com.surrus.peopleinspace.ui
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -29,9 +33,11 @@ fun ISSPositionScreen() {
     val context = LocalContext.current
     val map = remember { MapView(context) }
 
-    Scaffold(topBar = {
-        TopAppBar(title = { Text("ISS Position") })
-    }) {
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text("ISS Position") })
+        }
+    ) {
         Column {
 
             Box {
@@ -54,4 +60,3 @@ fun ISSPositionScreen() {
         }
     }
 }
-
