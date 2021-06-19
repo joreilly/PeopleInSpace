@@ -12,9 +12,14 @@ buildscript {
         classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
         classpath("gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0")
     }
+    plugins {
+        id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradle
+    }
 }
 
 allprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
+
     repositories {
         google()
         mavenCentral()
@@ -22,5 +27,3 @@ allprojects {
         maven(url = "https://jitpack.io")
     }
 }
-
-
