@@ -64,18 +64,18 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.3.0-beta2")
 
 
-    implementation(Compose.ui)
-    implementation(Compose.uiGraphics)
-    implementation(Compose.uiTooling)
-    implementation(Compose.foundationLayout)
-    implementation(Compose.material)
-    implementation(Compose.navigation)
-    implementation(Compose.accompanistCoil)
-    implementation(Compose.accompanistPlaceholder)
+    implementation(Deps.Compose.ui)
+    implementation(Deps.Compose.uiGraphics)
+    implementation(Deps.Compose.uiTooling)
+    implementation(Deps.Compose.foundationLayout)
+    implementation(Deps.Compose.material)
+    implementation(Deps.Compose.navigation)
+    implementation(Deps.Compose.accompanistCoil)
+    implementation(Deps.Compose.accompanistPlaceholder)
 
-    implementation(Koin.core)
-    implementation(Koin.android)
-    implementation(Koin.compose)
+    implementation(Deps.Koin.core)
+    implementation(Deps.Koin.android)
+    implementation(Deps.Koin.compose)
 
     implementation("org.osmdroid:osmdroid-android:6.1.10")
 
@@ -83,11 +83,11 @@ dependencies {
     testImplementation("androidx.test:core:1.3.0")
     testImplementation("org.robolectric:robolectric:4.4")
 
-    testImplementation(Koin.test)
-    testImplementation(Koin.testJUnit4)
-    testImplementation(Test.mockito)
+    testImplementation(Deps.Koin.test)
+    testImplementation(Deps.Koin.testJUnit4)
+    testImplementation(Deps.Test.mockito)
 
-    androidTestImplementation(Test.testRunner)
+    androidTestImplementation(Deps.Test.testRunner)
 
     implementation(project(":common"))
 }
