@@ -16,6 +16,8 @@ object Versions {
     const val junit = "4.13"
     const val mockito = "3.7.7"
     const val testRunner = "1.3.0"
+
+    const val ktlintGradle = "10.1.0"
 }
 
 
