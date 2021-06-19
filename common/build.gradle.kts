@@ -11,11 +11,11 @@ plugins {
 version = "1.0"
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = Versions.androidCompileSdk
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
