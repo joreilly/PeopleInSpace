@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = Versions.androidCompileSdk
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
 
         versionCode = 1
         versionName = "1.0"
