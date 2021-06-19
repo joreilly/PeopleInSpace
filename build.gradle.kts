@@ -12,9 +12,8 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
         classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
-        classpath("gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0")
-        // kotlinter-gradle
-        classpath("org.jmailen.gradle:kotlinter-gradle:3.4.5")
+        classpath("gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}")
+        classpath("org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}")
     }
 }
 
