@@ -11,6 +11,8 @@ object Deps {
     const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val osmdroidAndroid = "org.osmdroid:osmdroid-android:${Versions.osmdroidAndroid}"
+    const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+    const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
 
     object Test {
         const val junit = "junit:junit:${Versions.junit}"
@@ -40,14 +42,19 @@ object Deps {
     }
 
     object Ktor {
+        const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
+        const val serverNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
+        const val serialization = "io.ktor:ktor-serialization:${Versions.ktor}"
         const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
         const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
-
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-        const val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
+
         const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
+        const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
+        const val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
         const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"

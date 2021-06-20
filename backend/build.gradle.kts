@@ -6,16 +6,18 @@ plugins {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
+    with (Deps){
+        implementation(Deps.Serialization.core) // JVM dependency
+        implementation(kotlinCoroutinesCore)
+        implementation(logback)
+    }
 
-    implementation("io.ktor:ktor-server-core:${Versions.ktor}")
-    implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
-    implementation("io.ktor:ktor-serialization:${Versions.ktor}")
-
-    implementation("ch.qos.logback:logback-classic:1.2.3")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}") // JVM dependency
-    implementation("io.ktor:ktor-websockets:${Versions.ktor}")
+    with(Deps.Ktor){
+        implementation(serverCore)
+        implementation(serverNetty)
+        implementation(serialization)
+        implementation(websockets)
+    }
 
     implementation(project(":common"))
 }
