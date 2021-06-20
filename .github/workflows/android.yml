@@ -1,6 +1,6 @@
 name: Android CI
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -8,28 +8,28 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Build android app
-        run: ./gradlew assembleDebug
-      - name: Run Unit Tests
-        run: ./gradlew test
-      - name: Build web app
-        run: ./gradlew :web:assemble
-      - name: Build iOS shared code
-        run: ./gradlew :common:compileKotlinIOS
-      - name: Build macOS shared code
-        run: ./gradlew :common:compileKotlinMacOS
+    - uses: actions/checkout@v1
+    - name: set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Build android app
+      run: ./gradlew assembleDebug
+    - name: Run Unit Tests
+      run: ./gradlew test
+    - name: Build web app
+      run: ./gradlew :web:assemble
+    - name: Build iOS shared code
+      run: ./gradlew :common:compileKotlinIOS
+    - name: Build macOS shared code
+      run: ./gradlew :common:compileKotlinMacOS
 
-      # If main branch update, deploy to gh-pages
-      - name: Deploy
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: web/build/distributions # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+    # If main branch update, deploy to gh-pages
+    - name: Deploy
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: web/build/distributions # The folder the action should deploy.
+        CLEAN: true # Automatically remove deleted files from the deploy branch
