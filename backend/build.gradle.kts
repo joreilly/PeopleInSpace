@@ -9,8 +9,8 @@ plugins {
 
 dependencies {
     with(Deps) {
-        implementation(Deps.Serialization.core) // JVM dependency
-        implementation(kotlinCoroutinesCore)
+        implementation(Deps.Kotlinx.serializationCore) // JVM dependency
+        implementation(Deps.Kotlinx.coroutinesCore)
         implementation(logback)
     }
 

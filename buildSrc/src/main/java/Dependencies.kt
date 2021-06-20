@@ -47,8 +47,6 @@ object Versions {
 object Deps {
     const val kermit = "co.touchlab:kermit:${Versions.kermit}"
     const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
-    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
     const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
     const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
     const val kotlinterGradle = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
@@ -57,13 +55,7 @@ object Deps {
     const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val osmdroidAndroid = "org.osmdroid:osmdroid-android:${Versions.osmdroidAndroid}"
-    const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
     const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
-    const val kotlinxHtmlJs = "org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtmlJs}"
-    const val kotlinStyled = "org.jetbrains:kotlin-styled:${Versions.kotlinStyled}"
-    const val kotlinReact = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
-    const val kotlinReactDom = "org.jetbrains:kotlin-react-dom:${Versions.kotlinReactDom}"
-    const val kotlinReactRouterDom = "org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}"
     const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
 
     object Test {
@@ -72,6 +64,24 @@ object Deps {
         const val testRunner = "androidx.test:runner:${Versions.testRunner}"
         const val testCore = "androidx.test:core:${Versions.testCore}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    }
+
+    object Kotlin {
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+        const val serialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+        const val styled = "org.jetbrains:kotlin-styled:${Versions.kotlinStyled}"
+    }
+
+    object Kotlinx {
+        const val serializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+        const val htmlJs = "org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtmlJs}"
+    }
+
+    object React {
+        const val react = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
+        const val dom = "org.jetbrains:kotlin-react-dom:${Versions.kotlinReactDom}"
+        const val routerDom = "org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}"
     }
 
     object Compose {
@@ -107,10 +117,6 @@ object Deps {
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
         const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
-    }
-
-    object Serialization {
-        const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
     }
 
     object SqlDelight {
