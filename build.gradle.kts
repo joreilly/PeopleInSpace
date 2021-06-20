@@ -8,12 +8,12 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.gradle}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
-        classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
-        classpath("gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}")
-        classpath("org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}")
+        classpath(Deps.gradle)
+        classpath(Deps.kotlin)
+        classpath(Deps.kotlinSerialization)
+        classpath(Deps.sqlDelight)
+        classpath(Deps.shadow)
+        classpath(Deps.kotlinterGradle)
     }
 }
 

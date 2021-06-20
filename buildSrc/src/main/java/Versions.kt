@@ -15,10 +15,22 @@ object Versions {
     const val junit = "4.13.2"
     const val mockito = "3.7.7"
     const val testRunner = "1.3.0"
+    const val testCore = "1.3.0"
+    const val robolectric = "4.4"
 
     const val gradle = "7.1.0-alpha02"
     const val kotlinterGradle = "3.4.5"
     const val shadow = "7.0.0"
+
+    const val material = "1.3.0"
+
+    const val lifecycleKtx = "2.4.0-alpha01"
+    const val lifecycleRuntimeKtx = lifecycleKtx
+    const val lifecycleViewmodelKtx = lifecycleKtx
+
+    const val activityCompose = "1.3.0-beta2"
+
+    const val osmdroidAndroid = "6.1.10"
 
     const val androidMinSdk = 21
     const val androidCompileSdk = 29
