@@ -1,3 +1,49 @@
+object Versions {
+    const val kotlin = "1.5.10"
+    const val kotlinCoroutines = "1.5.0-native-mt"
+    const val ktor = "1.6.0"
+    const val kotlinxSerialization = "1.2.1"
+    const val koin = "3.1.0"
+    const val sqlDelight = "1.5.0"
+    const val kermit = "0.1.9"
+    const val kotlinxHtmlJs = "0.7.3"
+    const val kotlinStyled = "5.2.1-pre.146-kotlin-1.4.30"
+    const val kotlinReact = "17.0.1-pre.146-kotlin-1.4.30"
+    const val kotlinReactDom = "17.0.1-pre.146-kotlin-1.4.30"
+    const val kotlinReactRouterDom = "5.1.2-pre.110-kotlin-1.4.0"
+
+    const val slf4j = "1.7.30"
+    const val compose = "1.0.0-beta09"
+    const val nav_compose = "2.4.0-alpha03"
+    const val accompanist = "0.12.0"
+
+    const val logback = "1.2.3"
+
+    const val junit = "4.13.2"
+    const val mockito = "3.7.7"
+    const val testRunner = "1.3.0"
+    const val testCore = "1.3.0"
+    const val robolectric = "4.4"
+
+    const val gradle = "7.1.0-alpha02"
+    const val kotlinterGradle = "3.4.5"
+    const val shadow = "7.0.0"
+
+    const val material = "1.3.0"
+
+    const val lifecycleKtx = "2.4.0-alpha01"
+    const val lifecycleRuntimeKtx = lifecycleKtx
+    const val lifecycleViewmodelKtx = lifecycleKtx
+
+    const val activityCompose = "1.3.0-beta2"
+
+    const val osmdroidAndroid = "6.1.10"
+
+    const val androidMinSdk = 21
+    const val androidCompileSdk = 29
+    const val androidTargetSdk = androidCompileSdk
+}
+
 object Deps {
     const val kermit = "co.touchlab:kermit:${Versions.kermit}"
     const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
@@ -18,6 +64,7 @@ object Deps {
     const val kotlinReact = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
     const val kotlinReactDom = "org.jetbrains:kotlin-react-dom:${Versions.kotlinReactDom}"
     const val kotlinReactRouterDom = "org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}"
+    const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
 
     object Test {
         const val junit = "junit:junit:${Versions.junit}"
@@ -50,15 +97,12 @@ object Deps {
         const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
         const val serverNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
         const val serialization = "io.ktor:ktor-serialization:${Versions.ktor}"
+        const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
         const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
-
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
         const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-
-        const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
-        const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
         const val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
@@ -73,7 +117,6 @@ object Deps {
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
         const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
         const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-
         const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         const val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
         const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
