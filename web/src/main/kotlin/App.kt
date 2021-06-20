@@ -1,9 +1,5 @@
 import com.surrus.common.remote.IssPosition
-import components.IssLocationMap
-import components.PeopleList
-import components.PersonDetails
-import components.Space
-import components.Typography
+import components.*
 import components.materialui.AppBar
 import components.materialui.Card
 import components.materialui.Grid

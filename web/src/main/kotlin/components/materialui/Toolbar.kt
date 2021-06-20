@@ -3,7 +3,7 @@
 
 package components.materialui
 
-import react.*
+import react.RClass
 
 @JsName("Toolbar")
 external val Toolbar: RClass<dynamic>

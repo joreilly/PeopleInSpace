@@ -3,7 +3,7 @@
 
 package components.materialui
 
-import react.*
+import react.RClass
 
 @JsName("List")
 external val List: RClass<dynamic>

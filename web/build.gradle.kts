@@ -23,7 +23,6 @@ dependencies {
     implementation(project(":common"))
 }
 
-
 kotlin {
     js(IR) {
         browser()

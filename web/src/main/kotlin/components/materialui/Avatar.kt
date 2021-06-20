@@ -3,7 +3,7 @@
 
 package components.materialui
 
-import react.*
+import react.RClass
 
 @JsName("Avatar")
 external val Avatar: RClass<dynamic>
