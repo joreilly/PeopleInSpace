@@ -13,6 +13,11 @@ object Deps {
     const val osmdroidAndroid = "org.osmdroid:osmdroid-android:${Versions.osmdroidAndroid}"
     const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
     const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
+    const val kotlinxHtmlJs = "org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtmlJs}"
+    const val kotlinStyled = "org.jetbrains:kotlin-styled:${Versions.kotlinStyled}"
+    const val kotlinReact = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
+    const val kotlinReactDom = "org.jetbrains:kotlin-react-dom:${Versions.kotlinReactDom}"
+    const val kotlinReactRouterDom = "org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}"
 
     object Test {
         const val junit = "junit:junit:${Versions.junit}"

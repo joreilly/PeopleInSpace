@@ -71,31 +71,32 @@ kotlin {
     }
 
     sourceSets {
-
         sourceSets["commonMain"].dependencies {
             // Coroutines
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
+            implementation(Deps.kotlinCoroutinesCore) {
                 isForce = true
             }
 
-            // Ktor
-            implementation(Deps.Ktor.clientCore)
-            implementation(Deps.Ktor.clientJson)
-            implementation(Deps.Ktor.clientLogging)
-            implementation(Deps.Ktor.clientSerialization)
+            with(Deps.Ktor){
+                implementation(clientCore)
+                implementation(clientJson)
+                implementation(clientLogging)
+                implementation(clientSerialization)
+            }
 
             // Kotlinx Serialization
             implementation(Deps.Serialization.core)
 
-            // SQL Delight
-            implementation(Deps.SqlDelight.runtime)
-            implementation(Deps.SqlDelight.coroutineExtensions)
+            with(Deps.SqlDelight){
+                implementation(runtime)
+                implementation(coroutineExtensions)
+            }
 
-            // koin
-            api(Deps.Koin.core)
-            api(Deps.Koin.test)
+            with(Deps.Koin){
+                api(core)
+                api(test)
+            }
 
-            // kermit
             api(Deps.kermit)
         }
         sourceSets["commonTest"].dependencies {
