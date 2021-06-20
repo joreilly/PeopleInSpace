@@ -6,6 +6,11 @@ object Versions {
     const val koin = "3.1.0"
     const val sqlDelight = "1.5.0"
     const val kermit = "0.1.9"
+    const val kotlinxHtmlJs = "0.7.3"
+    const val kotlinStyled = "5.2.1-pre.146-kotlin-1.4.30"
+    const val kotlinReact = "17.0.1-pre.146-kotlin-1.4.30"
+    const val kotlinReactDom = "17.0.1-pre.146-kotlin-1.4.30"
+    const val kotlinReactRouterDom = "5.1.2-pre.110-kotlin-1.4.0"
 
     const val slf4j = "1.7.30"
     const val compose = "1.0.0-beta09"
