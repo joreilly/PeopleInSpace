@@ -1,10 +1,23 @@
 object Deps {
     const val kermit = "co.touchlab:kermit:${Versions.kermit}"
+    const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+    const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
+    const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
+    const val kotlinterGradle = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
+    const val material = "com.google.android.material:material:${Versions.material}"
+    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
+    const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
+    const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    const val osmdroidAndroid = "org.osmdroid:osmdroid-android:${Versions.osmdroidAndroid}"
 
     object Test {
         const val junit = "junit:junit:${Versions.junit}"
         const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
         const val testRunner = "androidx.test:runner:${Versions.testRunner}"
+        const val testCore = "androidx.test:core:${Versions.testCore}"
+        const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
     }
 
     object Compose {

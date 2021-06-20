@@ -58,10 +58,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha01")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01")
-    implementation("androidx.activity:activity-compose:1.3.0-beta2")
+    with(Deps){
+        implementation(material)
+        implementation(lifecycleRuntimeKtx)
+        implementation(lifecycleViewmodelKtx)
+        implementation(activityCompose)
+
+        implementation(osmdroidAndroid)
+    }
 
     with(Deps.Compose) {
         implementation(ui)
@@ -84,13 +88,11 @@ dependencies {
 
     with(Deps.Test) {
         testImplementation(junit)
-        testImplementation("androidx.test:core:1.3.0")
-        testImplementation("org.robolectric:robolectric:4.4")
+        testImplementation(testCore)
+        testImplementation(robolectric)
         testImplementation(mockito)
         androidTestImplementation(testRunner)
     }
-
-    implementation("org.osmdroid:osmdroid-android:6.1.10")
 
     implementation(project(":common"))
 }
