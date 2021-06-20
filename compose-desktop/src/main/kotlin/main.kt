@@ -71,7 +71,11 @@ fun main() = Window {
 }
 
 @Composable
-fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected: (person: Assignment) -> Unit) {
+fun PersonList(
+    people: List<Assignment>,
+    selectedPerson: String,
+    personSelected: (person: Assignment) -> Unit
+) {
 
     LazyColumn {
         items(people) { person ->
@@ -81,7 +85,11 @@ fun PersonList(people: List<Assignment>, selectedPerson: String, personSelected:
 }
 
 @Composable
-fun PersonView(person: Assignment, selectedPerson: String, personSelected: (person: Assignment) -> Unit) {
+fun PersonView(
+    person: Assignment,
+    selectedPerson: String,
+    personSelected: (person: Assignment) -> Unit
+) {
     Row(
         modifier = Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
             .padding(8.dp),

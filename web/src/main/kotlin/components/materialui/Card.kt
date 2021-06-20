@@ -3,7 +3,7 @@
 
 package components.materialui
 
-import react.*
+import react.RClass
 
 @JsName("Card")
 external val Card: RClass<dynamic>

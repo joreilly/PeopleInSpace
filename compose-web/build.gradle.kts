@@ -1,4 +1,3 @@
-
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose") version "0.5.0-build225"
@@ -12,14 +11,12 @@ repositories {
 }
 
 kotlin {
-
     js(IR) {
         browser()
         binaries.executable()
     }
 
     sourceSets {
-
         val jsMain by getting {
             dependencies {
                 implementation(compose.web.widgets)
@@ -37,4 +34,3 @@ compose.desktop {
         mainClass = ""
     }
 }
-

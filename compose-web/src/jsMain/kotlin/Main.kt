@@ -44,7 +44,7 @@ fun main() {
                             style {
                                 display(DisplayStyle.Flex)
                                 alignItems(AlignItems.Center)
-                            } 
+                            }
                         }
                     ) {
 
@@ -55,7 +55,7 @@ fun main() {
                                 style {
                                     width(48.px)
                                     property("padding-right", 16.px)
-                                } 
+                                }
                             }
                         )
 

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("kotlin-platform-jvm")
     application
@@ -6,13 +8,13 @@ plugins {
 }
 
 dependencies {
-    with (Deps){
+    with(Deps) {
         implementation(Deps.Serialization.core) // JVM dependency
         implementation(kotlinCoroutinesCore)
         implementation(logback)
     }
 
-    with(Deps.Ktor){
+    with(Deps.Ktor) {
         implementation(serverCore)
         implementation(serverNetty)
         implementation(serialization)
@@ -22,7 +24,7 @@ dependencies {
     implementation(project(":common"))
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 

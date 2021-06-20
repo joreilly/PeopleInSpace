@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -37,7 +39,6 @@ android {
     }
 }
 
-
 kotlin {
     val sdkName: String? = System.getenv("SDK_NAME")
 
@@ -72,27 +73,27 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            // Coroutines
             implementation(Deps.kotlinCoroutinesCore) {
                 isForce = true
             }
 
-            with(Deps.Ktor){
+            with(Deps.Ktor) {
                 implementation(clientCore)
                 implementation(clientJson)
                 implementation(clientLogging)
                 implementation(clientSerialization)
             }
 
-            // Kotlinx Serialization
-            implementation(Deps.Serialization.core)
+            with(Deps.Serialization) {
+                implementation(core)
+            }
 
-            with(Deps.SqlDelight){
+            with(Deps.SqlDelight) {
                 implementation(runtime)
                 implementation(coroutineExtensions)
             }
 
-            with(Deps.Koin){
+            with(Deps.Koin) {
                 api(core)
                 api(test)
             }
@@ -140,7 +141,7 @@ kotlin {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -160,4 +161,3 @@ multiplatformSwiftPackage {
         iOS { v("13") }
     }
 }
-

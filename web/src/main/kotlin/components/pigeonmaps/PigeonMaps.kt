@@ -3,7 +3,7 @@
 
 package components.pigeonmaps
 
-import react.*
+import react.RClass
 
 @JsName("Map")
 external val Map: RClass<dynamic>
