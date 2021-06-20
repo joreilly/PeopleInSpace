@@ -3,17 +3,16 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
-        // For kotlinter-gradle
-        maven(uri("https://plugins.gradle.org/m2/"))
+        maven(uri("https://plugins.gradle.org/m2/")) // For kotlinter-gradle
     }
 
     dependencies {
-        classpath(Deps.Kotlin.kotlin)
-        classpath(Deps.Kotlin.serialization)
-        classpath(Deps.gradle)
-        classpath(Deps.sqlDelight)
-        classpath(Deps.shadow)
-        classpath(Deps.kotlinterGradle)
+        classpath(Deps.Gradle.kotlin)
+        classpath(Deps.Gradle.kotlinSerialization)
+        classpath(Deps.Gradle.androidGradle)
+        classpath(Deps.Gradle.sqlDelight)
+        classpath(Deps.Gradle.shadow)
+        classpath(Deps.Gradle.kotlinter)
     }
 }
 

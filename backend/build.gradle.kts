@@ -8,10 +8,9 @@ plugins {
 }
 
 dependencies {
-    with(Deps) {
-        implementation(Deps.Kotlinx.serializationCore) // JVM dependency
-        implementation(Deps.Kotlinx.coroutinesCore)
-        implementation(logback)
+    with(Deps.Kotlinx) {
+        implementation(serializationCore) // JVM dependency
+        implementation(coroutinesCore)
     }
 
     with(Deps.Ktor) {
@@ -19,6 +18,10 @@ dependencies {
         implementation(serverNetty)
         implementation(serialization)
         implementation(websockets)
+    }
+
+    with(Deps.Log) {
+        implementation(logback)
     }
 
     implementation(project(":common"))

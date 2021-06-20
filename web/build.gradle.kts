@@ -6,11 +6,17 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-js"))
 
-    implementation(Deps.Kotlinx.htmlJs)
-    implementation(Deps.Kotlin.styled)
-    implementation(Deps.React.react)
-    implementation(Deps.React.dom)
-    implementation(Deps.React.routerDom)
+    with(Deps.Kotlinx) {
+        implementation(htmlJs)
+    }
+
+    with(Deps.React) {
+        implementation(styled)
+        implementation(react)
+        implementation(dom)
+        implementation(routerDom)
+    }
+
     implementation(npm("react", "16.13.0"))
     implementation(npm("react-dom", "16.13.0"))
 

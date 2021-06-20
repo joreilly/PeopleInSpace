@@ -18,7 +18,6 @@ android {
     defaultConfig {
         minSdk = Versions.androidMinSdk
         targetSdk = Versions.androidTargetSdk
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -27,7 +26,7 @@ android {
     }
 }
 
-// workaround for https://youtrack.jetbrains.com/issue/KT-43944
+// Workaround for https://youtrack.jetbrains.com/issue/KT-43944
 android {
     configurations {
         create("androidTestApi")
@@ -98,7 +97,9 @@ kotlin {
                 api(test)
             }
 
-            api(Deps.kermit)
+            with(Deps.Log) {
+                api(kermit)
+            }
         }
         sourceSets["commonTest"].dependencies {
         }
@@ -115,7 +116,7 @@ kotlin {
         sourceSets["jvmMain"].dependencies {
             implementation(Deps.Ktor.clientApache)
             implementation(Deps.SqlDelight.sqliteDriver)
-            implementation(Deps.slf4j)
+            implementation(Deps.Log.slf4j)
         }
 
         sourceSets["iOSMain"].dependencies {

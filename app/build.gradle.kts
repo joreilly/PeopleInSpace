@@ -60,13 +60,15 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
-    with(Deps) {
+    with(Deps.Android) {
         implementation(material)
+        implementation(osmdroidAndroid)
+    }
+
+    with(Deps.AndroidX) {
         implementation(lifecycleRuntimeKtx)
         implementation(lifecycleViewmodelKtx)
         implementation(activityCompose)
-
-        implementation(osmdroidAndroid)
     }
 
     with(Deps.Compose) {

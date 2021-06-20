@@ -45,31 +45,13 @@ object Versions {
 }
 
 object Deps {
-    const val kermit = "co.touchlab:kermit:${Versions.kermit}"
-    const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
-    const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
-    const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
-    const val kotlinterGradle = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
-    const val material = "com.google.android.material:material:${Versions.material}"
-    const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
-    const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
-    const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
-    const val osmdroidAndroid = "org.osmdroid:osmdroid-android:${Versions.osmdroidAndroid}"
-    const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
-    const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
-
-    object Test {
-        const val junit = "junit:junit:${Versions.junit}"
-        const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
-        const val testRunner = "androidx.test:runner:${Versions.testRunner}"
-        const val testCore = "androidx.test:core:${Versions.testCore}"
-        const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    }
-
-    object Kotlin {
+    object Gradle {
+        const val androidGradle = "com.android.tools.build:gradle:${Versions.gradle}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        const val serialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
-        const val styled = "org.jetbrains:kotlin-styled:${Versions.kotlinStyled}"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+        const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
+        const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
+        const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
     }
 
     object Kotlinx {
@@ -78,10 +60,23 @@ object Deps {
         const val htmlJs = "org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtmlJs}"
     }
 
-    object React {
-        const val react = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
-        const val dom = "org.jetbrains:kotlin-react-dom:${Versions.kotlinReactDom}"
-        const val routerDom = "org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}"
+    object Android {
+        const val material = "com.google.android.material:material:${Versions.material}"
+        const val osmdroidAndroid = "org.osmdroid:osmdroid-android:${Versions.osmdroidAndroid}"
+    }
+
+    object AndroidX {
+        const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
+        const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
+        const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    }
+
+    object Test {
+        const val junit = "junit:junit:${Versions.junit}"
+        const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
+        const val testRunner = "androidx.test:runner:${Versions.testRunner}"
+        const val testCore = "androidx.test:core:${Versions.testCore}"
+        const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
     }
 
     object Compose {
@@ -126,5 +121,18 @@ object Deps {
         const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         const val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
         const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
+    }
+
+    object React {
+        const val react = "org.jetbrains:kotlin-react:${Versions.kotlinReact}"
+        const val dom = "org.jetbrains:kotlin-react-dom:${Versions.kotlinReactDom}"
+        const val routerDom = "org.jetbrains:kotlin-react-router-dom:${Versions.kotlinReactRouterDom}"
+        const val styled = "org.jetbrains:kotlin-styled:${Versions.kotlinStyled}"
+    }
+
+    object Log {
+        const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
+        const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
+        const val kermit = "co.touchlab:kermit:${Versions.kermit}"
     }
 }
