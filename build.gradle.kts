@@ -7,12 +7,14 @@ buildscript {
     }
 
     dependencies {
-        classpath(Deps.Gradle.kotlin)
-        classpath(Deps.Gradle.kotlinSerialization)
-        classpath(Deps.Gradle.androidGradle)
-        classpath(Deps.Gradle.sqlDelight)
-        classpath(Deps.Gradle.shadow)
-        classpath(Deps.Gradle.kotlinter)
+        with(Deps.Gradle) {
+            classpath(kotlin)
+            classpath(kotlinSerialization)
+            classpath(androidGradle)
+            classpath(sqlDelight)
+            classpath(shadow)
+            classpath(kotlinter)
+        }
     }
 }
 
