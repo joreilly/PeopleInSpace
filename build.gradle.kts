@@ -8,9 +8,9 @@ buildscript {
     }
 
     dependencies {
+        classpath(Deps.Kotlin.kotlin)
+        classpath(Deps.Kotlin.serialization)
         classpath(Deps.gradle)
-        classpath(Deps.kotlin)
-        classpath(Deps.kotlinSerialization)
         classpath(Deps.sqlDelight)
         classpath(Deps.shadow)
         classpath(Deps.kotlinterGradle)

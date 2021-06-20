@@ -73,7 +73,7 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            implementation(Deps.kotlinCoroutinesCore) {
+            implementation(Deps.Kotlinx.coroutinesCore) {
                 isForce = true
             }
 
@@ -84,8 +84,8 @@ kotlin {
                 implementation(clientSerialization)
             }
 
-            with(Deps.Serialization) {
-                implementation(core)
+            with(Deps.Kotlinx) {
+                implementation(serializationCore)
             }
 
             with(Deps.SqlDelight) {
