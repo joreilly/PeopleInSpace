@@ -3,7 +3,7 @@ object Versions {
     const val androidCompileSdk = 29
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlin = "1.5.10"
+    const val kotlin = "1.5.20"
     const val gradle = "7.1.0-alpha02"
 
     const val kotlinCoroutines = "1.5.0-native-mt"
