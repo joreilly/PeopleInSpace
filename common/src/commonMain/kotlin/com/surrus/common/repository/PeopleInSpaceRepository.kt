@@ -47,9 +47,12 @@ class PeopleInSpaceRepository : KoinComponent {
 
         // this is very basic implementation for now that removes all existing rows
         // in db and then inserts results from api request
-        peopleInSpaceQueries?.deleteAll()
-        result.people.forEach {
-            peopleInSpaceQueries?.insertItem(it.name, it.craft)
+        // using "transaction" accelerate the batch of queries, especially inserting
+        peopleInSpaceQueries?.transaction {
+            peopleInSpaceQueries?.deleteAll()
+            result.people.forEach {
+                peopleInSpaceQueries?.insertItem(it.name, it.craft)
+            }
         }
     }
 
