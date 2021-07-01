@@ -91,6 +91,10 @@ Android (Jetpack Compose)
 <br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 03 46" src="https://user-images.githubusercontent.com/6302/110248059-2ab81c00-7f67-11eb-9b3a-2b04d1be43ef.png">
 
+Wear OS (Jetpack Compose)
+<br/>
+<img width="199" alt="Screenshot 2021-07-01 at 20 47 56" src="https://user-images.githubusercontent.com/6302/124182153-647cd780-daae-11eb-8397-915e9fd1d7d6.png">
+
 Compose for Desktop 
 <br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 05 31" src="https://user-images.githubusercontent.com/6302/110248116-69e66d00-7f67-11eb-8942-ab18fb8e48ff.png">
