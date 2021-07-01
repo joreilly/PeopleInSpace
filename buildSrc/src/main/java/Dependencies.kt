@@ -1,6 +1,6 @@
 object Versions {
     const val androidMinSdk = 21
-    const val androidCompileSdk = 29
+    const val androidCompileSdk = 30
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlin = "1.5.10"
@@ -12,8 +12,8 @@ object Versions {
     const val kotlinxSerialization = "1.2.1"
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val compose = "1.0.0-beta09"
-    const val navCompose = "2.4.0-alpha03"
+    const val compose = "1.0.0-rc01"
+    const val navCompose = "2.4.0-alpha04"
     const val accompanist = "0.12.0"
 
     const val junit = "4.13.2"
