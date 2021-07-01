@@ -27,7 +27,7 @@ object Versions {
     const val kotlinterGradle = "3.4.5"
 
     const val material = "1.3.0"
-    const val activityCompose = "1.3.0-beta2"
+    const val activityCompose = "1.3.0-rc01"
     const val lifecycleKtx = "2.4.0-alpha01"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
