@@ -13,6 +13,7 @@ object Versions {
     const val kotlinxHtmlJs = "0.7.3"
 
     const val compose = "1.0.0-rc01"
+    const val wearCompose = "1.0.0-alpha01"
     const val navCompose = "2.4.0-alpha04"
     const val accompanist = "0.13.0"
 
@@ -85,6 +86,10 @@ object Deps {
         const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
         const val material = "androidx.compose.material:material:${Versions.compose}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
+
+        const val wearFoundation = "androidx.wear.compose:compose-foundation:${Versions.wearCompose}"
+        const val wearMaterial = "androidx.wear.compose:compose-material:${Versions.wearCompose}"
+
         const val accompanistCoil = "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
         const val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder:${Versions.accompanist}"
     }

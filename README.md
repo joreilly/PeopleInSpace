@@ -2,6 +2,7 @@
 
 Minimal **Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose for Desktop, Compose for Web, and Kotlin/JS + React clients along with Ktor backend. Currently running on
 * Android (Jetpack Compose)
+* Wear OS (Jetpack Compose)  
 * iOS (SwiftUI)
 * watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
 * macOS (SwiftUI)
