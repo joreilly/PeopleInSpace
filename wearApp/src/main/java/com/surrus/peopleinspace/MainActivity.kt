@@ -92,8 +92,8 @@ fun PersonView(
         Spacer(modifier = Modifier.size(12.dp))
 
         Column {
-            Text(text = person.name, style = TextStyle(fontSize = 16.sp))
-            Text(text = person.craft, style = TextStyle(color = Color.Gray, fontSize = 14.sp))
+            Text(text = person.name, style = TextStyle(fontSize = 15.sp))
+            Text(text = person.craft, style = TextStyle(color = Color.Gray, fontSize = 13.sp))
         }
     }
 }
