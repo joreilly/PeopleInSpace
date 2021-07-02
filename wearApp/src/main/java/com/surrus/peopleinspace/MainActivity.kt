@@ -3,31 +3,41 @@ package com.surrus.peopleinspace
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
+import co.touchlab.kermit.Kermit
+import com.google.accompanist.coil.rememberCoilPainter
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.common.repository.PeopleInSpaceRepository
+import org.koin.android.ext.android.inject
+import org.koin.core.component.inject
 
 class MainActivity : ComponentActivity() {
 
-    private val koin = initKoin(enableNetworkLogs = true).koin
-    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
+    private val peopleInSpaceRepository: PeopleInSpaceRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             MaterialTheme {
-                PersonList(peopleInSpaceApi)
+                PersonList(peopleInSpaceRepository) {
+
+                }
             }
         }
 
@@ -35,11 +45,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PersonList(peopleInSpaceApi: PeopleInSpaceApi) {
+fun PersonList(peopleInSpaceRepository: PeopleInSpaceRepository, personSelected: (person: Assignment) -> Unit) {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
 
     LaunchedEffect(true) {
-        peopleState = peopleInSpaceApi.fetchPeople().people
+        peopleState = peopleInSpaceRepository.fetchPeople()
     }
 
     Column {
@@ -48,8 +58,42 @@ fun PersonList(peopleInSpaceApi: PeopleInSpaceApi) {
 
         LazyColumn {
             items(peopleState) { person ->
-                Text("${person.name} (${person.craft})")
+                val personImageUrl = peopleInSpaceRepository.getPersonImage(person.name)
+                PersonView(personImageUrl, person, personSelected)
             }
+        }
+    }
+}
+
+
+@Composable
+fun PersonView(
+    personImageUrl: String,
+    person: Assignment,
+    personSelected: (person: Assignment) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { personSelected(person) })
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        if (personImageUrl.isNotEmpty()) {
+            Image(
+                painter = rememberCoilPainter(personImageUrl),
+                modifier = Modifier.size(50.dp), contentDescription = person.name
+            )
+        } else {
+            Spacer(modifier = Modifier.size(50.dp))
+        }
+
+        Spacer(modifier = Modifier.size(12.dp))
+
+        Column {
+            Text(text = person.name, style = TextStyle(fontSize = 16.sp))
+            Text(text = person.craft, style = TextStyle(color = Color.Gray, fontSize = 14.sp))
         }
     }
 }

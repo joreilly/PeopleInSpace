@@ -40,6 +40,13 @@ dependencies {
     with(Deps.Compose) {
         implementation(wearFoundation)
         implementation(wearMaterial)
+        implementation(accompanistCoil)
+    }
+
+    with(Deps.Koin) {
+        implementation(core)
+        implementation(android)
+        implementation(compose)
     }
 
     implementation(project(":common"))
