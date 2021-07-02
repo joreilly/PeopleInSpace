@@ -50,9 +50,7 @@ When opening iOS/watchOS/macOS projects remember to open `.xcworkspace` file (an
 
 To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 
-To run backend you can either run `./gradlew :backend:run` or run `Server.kt` directly from Android Studio.
-
-After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
+To run backend you can either run `./gradlew :backend:run` or run `Server.kt` directly from Android Studio. After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
 
 
@@ -78,32 +76,33 @@ gcloud app deploy backend/build/libs/backend-all.jar
 
 ### Screenshots 
 
-iOS (SwiftUI)
+**iOS (SwiftUI)**
 <br/>
 <img width="546" alt="Screenshot 2021-02-27 at 12 09 02" src="https://user-images.githubusercontent.com/6302/109386736-ac1f0700-78f4-11eb-812e-4bf971a8c2a7.png">
 
-macOS (SwiftUI)
+**macOS (SwiftUI)**
 <br/>
 <img width="937" alt="Screenshot 2021-06-01 at 20 02 31" src="https://user-images.githubusercontent.com/6302/120376983-6ec37e80-c314-11eb-8279-7acc0c2d5206.png">
 
 
-Android (Jetpack Compose)
+**Android (Jetpack Compose)**
 <br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 03 46" src="https://user-images.githubusercontent.com/6302/110248059-2ab81c00-7f67-11eb-9b3a-2b04d1be43ef.png">
 
-Wear OS (Jetpack Compose)
+**Wear OS (Jetpack Compose)**
 <br/>
-<img width="199" alt="Screenshot 2021-07-01 at 20 47 56" src="https://user-images.githubusercontent.com/6302/124182153-647cd780-daae-11eb-8397-915e9fd1d7d6.png">
+<img width="359" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/124310127-aa47a780-db63-11eb-97e5-78e1dbf20cf9.png">
 
-Compose for Desktop 
+
+**Compose for Desktop**
 <br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 05 31" src="https://user-images.githubusercontent.com/6302/110248116-69e66d00-7f67-11eb-8942-ab18fb8e48ff.png">
 
-Compose for Web
+**Compose for Web**
 <br/>
 <img width="564" alt="Screenshot 2021-05-31 at 21 29 53" src="https://user-images.githubusercontent.com/6302/120240074-9dc7ea80-c257-11eb-9884-5870a3f4ef95.png">
 
-Web App (Kotlin/JS + React)
+**Web App (Kotlin/JS + React)**
 <br/>
 <img width="612" alt="Screenshot 2021-06-06 at 23 50 00" src="https://user-images.githubusercontent.com/19620536/120935764-eda82500-c721-11eb-9042-f15ade7473f7.png">
 
