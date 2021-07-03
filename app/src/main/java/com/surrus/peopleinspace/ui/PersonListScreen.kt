@@ -32,27 +32,22 @@ fun PersonListScreen(paddingValues: PaddingValues, personSelected: (person: Assi
     ) {
         LazyColumn(contentPadding = paddingValues) {
             items(peopleState.value) { person ->
-                val personImageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
-                PersonView(personImageUrl, person, personSelected)
+                PersonView(person, personSelected)
             }
         }
     }
 }
 
 @Composable
-fun PersonView(
-    personImageUrl: String,
-    person: Assignment,
-    personSelected: (person: Assignment) -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
+fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
+
+    Row(modifier = Modifier.fillMaxWidth()
             .clickable(onClick = { personSelected(person) })
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
+        val personImageUrl = person.personImageUrl ?: ""
         if (personImageUrl.isNotEmpty()) {
             Image(
                 painter = rememberCoilPainter(personImageUrl),

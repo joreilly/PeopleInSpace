@@ -27,16 +27,6 @@ class PeopleInSpaceViewModel: ObservableObject {
         repository.stopObservingPeopleUpdates()
     }
     
-    func getPersonBio(personName: String) -> String {
-        return repository.getPersonBio(personName: personName)
-    }
-    
-    func getPersonImage(personName: String) -> String {
-        return repository.getPersonImage(personName: personName)
-    }
-
-
-    
 }
 
 

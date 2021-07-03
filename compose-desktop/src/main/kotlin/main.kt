@@ -19,8 +19,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.surrus.common.di.initKoin
-import com.surrus.common.model.personBios
-import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.Dispatchers
@@ -37,12 +35,13 @@ private val koin = initKoin(enableNetworkLogs = true).koin
 
 fun main() = Window {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
-    var selectedPerson by remember { mutableStateOf("") }
+    var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
 
     val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
 
     LaunchedEffect(true) {
         peopleState = peopleInSpaceApi.fetchPeople().people
+        selectedPerson = peopleState.first()
     }
 
     MaterialTheme {
@@ -56,14 +55,16 @@ fun main() = Window {
 
                 Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray)) {
                     PersonList(peopleState, selectedPerson) {
-                        selectedPerson = it.name
+                        selectedPerson = it
                     }
                 }
 
                 Spacer(modifier = Modifier.width(1.dp).fillMaxHeight())
 
                 Box(Modifier.fillMaxHeight()) {
-                    PersonDetailsView(selectedPerson)
+                    selectedPerson?.let {
+                        PersonDetailsView(it)
+                    }
                 }
             }
         }
@@ -73,7 +74,7 @@ fun main() = Window {
 @Composable
 fun PersonList(
     people: List<Assignment>,
-    selectedPerson: String,
+    selectedPerson: Assignment?,
     personSelected: (person: Assignment) -> Unit
 ) {
 
@@ -87,7 +88,7 @@ fun PersonList(
 @Composable
 fun PersonView(
     person: Assignment,
-    selectedPerson: String,
+    selectedPerson: Assignment?,
     personSelected: (person: Assignment) -> Unit
 ) {
     Row(
@@ -99,7 +100,7 @@ fun PersonView(
         Column {
             Text(
                 person.name,
-                style = if (person.name == selectedPerson) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                style = if (person.name == selectedPerson?.name) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
             )
 
             Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
@@ -108,18 +109,18 @@ fun PersonView(
 }
 
 @Composable
-fun PersonDetailsView(personName: String) {
+fun PersonDetailsView(person: Assignment) {
     LazyColumn(
         modifier = Modifier.padding(16.dp).fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        item(personName) {
+        item(person) {
 
-            Text(personName, style = MaterialTheme.typography.h4)
+            Text(person.name, style = MaterialTheme.typography.h4)
             Spacer(modifier = Modifier.size(12.dp))
 
-            val imageUrl = personImages[personName]
+            val imageUrl = person.personImageUrl
             imageUrl?.let {
                 val imageAsset = fetchImage(it)
                 imageAsset?.let {
@@ -132,7 +133,7 @@ fun PersonDetailsView(personName: String) {
             }
             Spacer(modifier = Modifier.size(24.dp))
 
-            val bio = personBios[personName] ?: ""
+            val bio = person.personBio ?: ""
             Text(bio, style = MaterialTheme.typography.body1)
         }
     }

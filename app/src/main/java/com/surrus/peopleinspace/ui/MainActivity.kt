@@ -117,6 +117,6 @@ fun MainLayout() {
 @Composable
 fun DefaultPreview(@PreviewParameter(PersonProvider::class) person: Assignment) {
     MaterialTheme {
-        PersonView("", person, personSelected = {})
+        PersonView(person, personSelected = {})
     }
 }

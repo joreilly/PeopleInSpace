@@ -48,7 +48,7 @@ fun main() {
                         }
                     ) {
 
-                        val imageUrl = repo.getPersonImage(person.name)
+                        val imageUrl = person.personImageUrl ?: ""
                         Img(
                             src = imageUrl,
                             attrs = {

@@ -1,23 +1,23 @@
 package components
 
+import com.surrus.common.remote.Assignment
 import components.materialui.Avatar
 import components.materialui.ListItem
 import components.materialui.ListItemAvatar
 import components.materialui.ListItemText
-import model.Person
 import react.RBuilder
 
 fun RBuilder.PeopleList(
-    people: List<Person>,
-    selectedPerson: Person?,
-    onSelect: (Person) -> Unit
+    people: List<Assignment>,
+    selectedPerson: Assignment?,
+    onSelect: (Assignment) -> Unit
 ) {
     components.materialui.List {
         people.forEach { item ->
             ListItem {
                 attrs {
                     button = true
-                    key = item.assignment.name
+                    key = item.name
                     selected = item == selectedPerson
                     onClick = {
                         onSelect(item)
@@ -25,11 +25,11 @@ fun RBuilder.PeopleList(
                 }
                 ListItemAvatar {
                     Avatar {
-                        attrs.src = item.imageUrl
+                        attrs.src = item.personImageUrl
                     }
                 }
                 ListItemText {
-                    +"${item.assignment.name} (${item.assignment.craft})"
+                    +"${item.name} (${item.craft})"
                 }
             }
         }

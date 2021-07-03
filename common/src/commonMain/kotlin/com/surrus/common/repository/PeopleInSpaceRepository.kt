@@ -4,8 +4,6 @@ import co.touchlab.kermit.Kermit
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
-import com.surrus.common.model.personBios
-import com.surrus.common.model.personImages
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
@@ -35,8 +33,8 @@ class PeopleInSpaceRepository : KoinComponent {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
         return peopleInSpaceQueries?.selectAll(
-            mapper = { name, craft ->
-                Assignment(name = name, craft = craft)
+            mapper = { name, craft, personImageUrl, personBio ->
+                Assignment(name = name, craft = craft, personImageUrl = personImageUrl, personBio = personBio)
             }
         )?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
     }
@@ -49,18 +47,15 @@ class PeopleInSpaceRepository : KoinComponent {
         // in db and then inserts results from api request
         // using "transaction" accelerate the batch of queries, especially inserting
         peopleInSpaceQueries?.transaction {
-            peopleInSpaceQueries?.deleteAll()
+            peopleInSpaceQueries.deleteAll()
             result.people.forEach {
-                peopleInSpaceQueries?.insertItem(it.name, it.craft)
+                peopleInSpaceQueries.insertItem(it.name, it.craft, it.personImageUrl, it.personBio)
             }
         }
     }
 
     // Used by web client atm
     suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
-
-    fun getPersonBio(personName: String) = personBios[personName] ?: ""
-    fun getPersonImage(personName: String) = personImages[personName] ?: ""
 
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {

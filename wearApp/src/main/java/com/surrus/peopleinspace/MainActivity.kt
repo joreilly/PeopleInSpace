@@ -58,8 +58,7 @@ fun PersonList(peopleInSpaceRepository: PeopleInSpaceRepository, personSelected:
 
         LazyColumn {
             items(peopleState) { person ->
-                val personImageUrl = peopleInSpaceRepository.getPersonImage(person.name)
-                PersonView(personImageUrl, person, personSelected)
+                PersonView(person, personSelected)
             }
         }
     }
@@ -67,11 +66,7 @@ fun PersonList(peopleInSpaceRepository: PeopleInSpaceRepository, personSelected:
 
 
 @Composable
-fun PersonView(
-    personImageUrl: String,
-    person: Assignment,
-    personSelected: (person: Assignment) -> Unit
-) {
+fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -80,6 +75,7 @@ fun PersonView(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
+        val personImageUrl = person.personImageUrl ?: ""
         if (personImageUrl.isNotEmpty()) {
             Image(
                 painter = rememberCoilPainter(personImageUrl),
