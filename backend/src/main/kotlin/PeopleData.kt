@@ -1,5 +1,3 @@
-package com.surrus.common.model
-
 val personImages = mapOf(
     "Chris Cassidy" to "https://www.nasa.gov/sites/default/files/styles/side_image/public/thumbnails/image/9368855148_f79942efb7_o.jpg?itok=-w5yoryN",
     "Anatoly Ivanishin" to "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Anatoli_Ivanishin_2011.jpg/440px-Anatoli_Ivanishin_2011.jpg",
@@ -18,7 +16,7 @@ val personImages = mapOf(
     "Megan McArthur" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010823.jpg",
     "Akihiko Hoshide" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010825.jpg",
     "Thomas Pesquet" to "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010826.jpg",
-    "Nie Haisheng" to "https://cdn.bignewsnetwork.com/xih1623833052.jpg",
+    "Nie Haisheng" to "http://www.spacefacts.de/more/taikonauts/photo/nie_haisheng_1.jpg",
     "Liu Boming" to "http://www.april12.eu/chinaastron/photo/liuboming.jpg",
     "Tang Hongbo" to "https://upload.wikimedia.org/wikipedia/commons/3/35/Tang_Hongbo.png",
 )

@@ -1,3 +1,4 @@
+import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import components.*
 import components.materialui.AppBar
@@ -9,7 +10,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.css.margin
 import kotlinx.css.padding
 import kotlinx.css.px
-import model.Person
 import react.*
 import react.dom.*
 import styled.css
@@ -20,24 +20,17 @@ val App = functionalComponent<RProps> {
     val appDependencies = useContext(AppDependenciesContext)
     val repository = appDependencies.repository
 
-    val (people, setPeople) = useState(emptyList<Person>())
+    val (people, setPeople) = useState(emptyList<Assignment>())
     val (issPosition, setIssPosition) = useState(IssPosition(0.0, 0.0))
-    val (selectedPerson, setSelectedPerson) = useState<Person?>(null)
+    val (selectedPerson, setSelectedPerson) = useState<Assignment?>(null)
 
     useEffectWithCleanup(dependencies = listOf()) {
         val mainScope = MainScope()
 
         mainScope.launch {
-            repository.fetchPeople()
-                .map {
-                    val bio = repository.getPersonBio(it.name)
-                    val imageUrl = repository.getPersonImage(it.name)
-
-                    Person(it, bio, imageUrl)
-                }.let {
-                    setPeople(it)
-                    setSelectedPerson(it.first())
-                }
+            val people = repository.fetchPeople()
+            setPeople(people)
+            setSelectedPerson(people.first())
 
             repository.pollISSPosition().collect {
                 setIssPosition(it)

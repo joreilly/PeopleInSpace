@@ -39,7 +39,7 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
                 Text(person.name, style = MaterialTheme.typography.h4)
                 Spacer(modifier = Modifier.size(12.dp))
 
-                val imageUrl = peopleInSpaceViewModel.getPersonImage(person.name)
+                val imageUrl = person.personImageUrl ?: ""
                 if (imageUrl.isNotEmpty()) {
                     Image(
                         painter = rememberCoilPainter(imageUrl),
@@ -48,7 +48,7 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
                 }
                 Spacer(modifier = Modifier.size(24.dp))
 
-                val bio = peopleInSpaceViewModel.getPersonBio(person.name)
+                val bio = person.personBio ?: ""
                 Text(bio, style = MaterialTheme.typography.body1)
             }
         }

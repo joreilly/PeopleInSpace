@@ -46,7 +46,7 @@ struct PersonView: View {
     
     var body: some View {
         HStack {
-            ImageView(withURL: viewModel.getPersonImage(personName: person.name), width: 64, height: 64)
+            ImageView(withURL: person.personImageUrl ?? "", width: 64, height: 64)
             VStack(alignment: .leading) {
                 Text(person.name).font(.headline)
                 Text(person.craft).font(.subheadline)
@@ -65,9 +65,9 @@ struct PersonDetailsView: View {
             VStack(alignment: .center, spacing: 32) {
                 Text(person.name).font(.title)
                 
-                ImageView(withURL: viewModel.getPersonImage(personName: person.name), width: 240, height: 240)
+                ImageView(withURL: person.personImageUrl ?? "", width: 240, height: 240)
 
-                Text(viewModel.getPersonBio(personName: person.name)).font(.body)
+                Text(person.personBio ?? "").font(.body)
                 Spacer()
             }
             .padding()
