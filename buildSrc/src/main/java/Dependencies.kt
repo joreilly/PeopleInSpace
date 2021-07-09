@@ -17,7 +17,7 @@ object Versions {
     const val navCompose = "2.4.0-alpha04"
     const val accompanist = "0.13.0"
 
-    const val junit = "4.13.2"
+    const val junit = "4.12"
     const val mockito = "3.7.7"
     const val testCore = "1.3.0"
     const val testRunner = "1.3.0"
@@ -77,6 +77,10 @@ object Deps {
         const val testRunner = "androidx.test:runner:${Versions.testRunner}"
         const val testCore = "androidx.test:core:${Versions.testCore}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+
+        const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
+        const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+        const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
     }
 
     object Compose {

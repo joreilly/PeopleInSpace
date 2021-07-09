@@ -21,8 +21,10 @@ import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun PersonListScreen(paddingValues: PaddingValues, personSelected: (person: Assignment) -> Unit) {
-    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
+fun PersonListScreen(paddingValues: PaddingValues,
+     personSelected: (person: Assignment) -> Unit,
+     peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
+) {
     val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
     Scaffold(

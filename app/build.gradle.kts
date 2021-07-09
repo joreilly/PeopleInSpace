@@ -45,6 +45,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    packagingOptions {
+        exclude("META-INF/licenses/**")
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
 }
 
 tasks.withType<KotlinCompile> {
@@ -96,6 +102,11 @@ dependencies {
         testImplementation(robolectric)
         testImplementation(mockito)
         androidTestImplementation(testRunner)
+
+        // Compose testing dependencies
+        androidTestImplementation(composeUiTest)
+        androidTestImplementation(composeUiTestJUnit)
+        debugImplementation(composeUiTestManifest)
     }
 
     implementation(project(":common"))

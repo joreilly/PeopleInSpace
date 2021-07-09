@@ -13,7 +13,13 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
 
-class PeopleInSpaceRepository : KoinComponent {
+
+interface PeopleInSpaceRepositoryInterface {
+    fun fetchPeopleAsFlow(): Flow<List<Assignment>>
+    fun pollISSPosition(): Flow<IssPosition>
+}
+
+class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
     private val logger: Kermit by inject()
 
@@ -29,7 +35,7 @@ class PeopleInSpaceRepository : KoinComponent {
         }
     }
 
-    fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
+    override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
         return peopleInSpaceQueries?.selectAll(
@@ -72,7 +78,7 @@ class PeopleInSpaceRepository : KoinComponent {
         peopleJob?.cancel()
     }
 
-    fun pollISSPosition(): Flow<IssPosition> = flow {
+    override fun pollISSPosition(): Flow<IssPosition> = flow {
         while (true) {
             val position = peopleInSpaceApi.fetchISSPosition().iss_position
             emit(position)
