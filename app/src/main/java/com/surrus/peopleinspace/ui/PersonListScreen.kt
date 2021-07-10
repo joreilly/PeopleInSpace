@@ -24,7 +24,7 @@ import org.koin.androidx.compose.getViewModel
 const val PersonListTag = "PersonList"
 
 @Composable
-fun PersonListScreen(paddingValues: PaddingValues,
+fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
      personSelected: (person: Assignment) -> Unit,
      peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
 ) {
