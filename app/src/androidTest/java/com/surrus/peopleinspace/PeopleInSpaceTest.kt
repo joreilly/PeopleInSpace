@@ -1,11 +1,9 @@
 package com.surrus.peopleinspace
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.surrus.peopleinspace.ui.PeopleInSpaceViewModel
-import com.surrus.peopleinspace.ui.PersonListScreen
-import com.surrus.peopleinspace.ui.PersonListTag
+import com.surrus.common.remote.IssPosition
+import com.surrus.peopleinspace.ui.*
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,7 +15,7 @@ class PeopleInSpaceTest {
     private val peopleInSpaceViewModel = PeopleInSpaceViewModel(peopleInSpaceRepository)
 
     @Test
-    fun testGetPeople() {
+    fun testPeopleListScreen() {
         composeTestRule.setContent {
             PersonListScreen(personSelected = {},
                 peopleInSpaceViewModel = peopleInSpaceViewModel
@@ -35,4 +33,19 @@ class PeopleInSpaceTest {
             rowNode.assertTextContains(person.craft)
         }
     }
+
+    @Test
+    fun testISSPositionScreen() {
+        composeTestRule.setContent {
+            ISSPositionScreen(peopleInSpaceViewModel = peopleInSpaceViewModel)
+        }
+
+        composeTestRule.onNodeWithTag(ISSPositionMapTag).assertIsDisplayed()
+
+        val expectedIssPosition = peopleInSpaceRepository.issPosition
+        composeTestRule
+            .onNode(SemanticsMatcher.expectValue(IssPositionKey, expectedIssPosition))
+            .assertExists()
+    }
+
 }

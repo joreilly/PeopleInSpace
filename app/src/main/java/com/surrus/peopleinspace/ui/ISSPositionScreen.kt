@@ -12,6 +12,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.SemanticsPropertyKey
+import androidx.compose.ui.semantics.SemanticsPropertyReceiver
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.viewinterop.AndroidView
 import com.surrus.common.remote.IssPosition
 import com.surrus.peopleinspace.util.collectAsStateWithLifecycle
@@ -21,9 +25,14 @@ import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
+
+const val ISSPositionMapTag = "ISSPositionMap"
+
+val IssPositionKey = SemanticsPropertyKey<IssPosition>("IssPosition")
+var SemanticsPropertyReceiver.observedIssPosition by IssPositionKey
+
 @Composable
-fun ISSPositionScreen() {
-    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
+fun ISSPositionScreen(peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -41,7 +50,10 @@ fun ISSPositionScreen() {
         Column {
 
             Box {
-                AndroidView({ map }, modifier = Modifier.fillMaxHeight()) { map ->
+                AndroidView({ map }, modifier = Modifier
+                        .fillMaxHeight().testTag(ISSPositionMapTag)
+                        .semantics { observedIssPosition = issPosition }
+                ){ map ->
                     map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
                     map.setMultiTouchControls(true)
 
