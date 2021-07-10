@@ -8,8 +8,10 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 
 class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
+    val peopleList = listOf(Assignment("Apollo 11", "Neil Armstrong"),
+        Assignment("Apollo 11", "Buzz Aldrin"))
+
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
-        val peopleList = listOf(Assignment("ISS", "Megan McArthur"))
         return flowOf(peopleList)
     }
 

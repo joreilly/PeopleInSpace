@@ -13,12 +13,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.coil.rememberCoilPainter
 import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
+
+const val PersonListTag = "PersonList"
 
 @Composable
 fun PersonListScreen(paddingValues: PaddingValues,
@@ -32,7 +35,7 @@ fun PersonListScreen(paddingValues: PaddingValues,
             TopAppBar(title = { Text("People In Space") })
         }
     ) {
-        LazyColumn(contentPadding = paddingValues) {
+        LazyColumn(contentPadding = paddingValues, modifier = Modifier.testTag(PersonListTag)) {
             items(peopleState.value) { person ->
                 PersonView(person, personSelected)
             }

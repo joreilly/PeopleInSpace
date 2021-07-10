@@ -1,11 +1,11 @@
 package com.surrus.peopleinspace
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithText
 import com.surrus.peopleinspace.ui.PeopleInSpaceViewModel
 import com.surrus.peopleinspace.ui.PersonListScreen
+import com.surrus.peopleinspace.ui.PersonListTag
 import org.junit.Rule
 import org.junit.Test
 
@@ -26,9 +26,16 @@ class PeopleInSpaceTest {
                 peopleInSpaceViewModel = peopleInSpaceViewModel
             )
         }
-        
-        composeTestRule
-            .onNodeWithText("Megan McArthur")
-            .assertIsDisplayed()
+
+        val peopleList = peopleInSpaceRepository.peopleList
+
+        composeTestRule.onNodeWithTag(PersonListTag).assertIsDisplayed()
+        composeTestRule.onNodeWithTag(PersonListTag).onChildren().assertCountEquals(peopleList.size)
+
+        peopleList.forEach { person ->
+            composeTestRule
+                .onNodeWithText(person.name)
+                .assertExists()
+        }
     }
 }
