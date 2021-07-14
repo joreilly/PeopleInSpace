@@ -12,10 +12,10 @@ object Versions {
     const val kotlinxSerialization = "1.2.1"
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val compose = "1.0.0-rc01"
+    const val compose = "1.0.0-rc02"
     const val wearCompose = "1.0.0-alpha01"
     const val navCompose = "2.4.0-alpha04"
-    const val accompanist = "0.13.0"
+    const val accompanist = "0.14.0"
 
     const val junit = "4.12"
     const val mockito = "3.7.7"
@@ -27,8 +27,8 @@ object Versions {
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
-    const val material = "1.3.0"
-    const val activityCompose = "1.3.0-rc01"
+    const val material = "1.4.0"
+    const val activityCompose = "1.3.0-rc02"
     const val lifecycleKtx = "2.4.0-alpha01"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx

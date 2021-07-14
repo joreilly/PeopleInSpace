@@ -34,18 +34,18 @@ class PeopleInSpaceTest {
         }
     }
 
-    @Test
-    fun testISSPositionScreen() {
-        composeTestRule.setContent {
-            ISSPositionScreen(peopleInSpaceViewModel = peopleInSpaceViewModel)
-        }
-
-        composeTestRule.onNodeWithTag(ISSPositionMapTag).assertIsDisplayed()
-
-        val expectedIssPosition = peopleInSpaceRepository.issPosition
-        composeTestRule
-            .onNode(SemanticsMatcher.expectValue(IssPositionKey, expectedIssPosition))
-            .assertExists()
+@Test
+fun testISSPositionScreen() {
+    composeTestRule.setContent {
+        ISSPositionScreen(peopleInSpaceViewModel = peopleInSpaceViewModel)
     }
+
+    composeTestRule.onNodeWithTag(ISSPositionMapTag).assertIsDisplayed()
+
+    val expectedIssPosition = peopleInSpaceRepository.issPosition
+    composeTestRule
+        .onNode(SemanticsMatcher.expectValue(IssPositionKey, expectedIssPosition))
+        .assertExists()
+}
 
 }
