@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -42,7 +42,7 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
                 val imageUrl = person.personImageUrl ?: ""
                 if (imageUrl.isNotEmpty()) {
                     Image(
-                        painter = rememberCoilPainter(imageUrl),
+                        painter = rememberImagePainter(imageUrl),
                         modifier = Modifier.size(240.dp), contentDescription = person.name
                     )
                 }

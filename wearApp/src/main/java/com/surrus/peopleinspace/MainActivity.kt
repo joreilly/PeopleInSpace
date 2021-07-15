@@ -17,14 +17,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import co.touchlab.kermit.Kermit
-import com.google.accompanist.coil.rememberCoilPainter
-import com.surrus.common.di.initKoin
+import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.repository.PeopleInSpaceRepository
 import org.koin.android.ext.android.inject
-import org.koin.core.component.inject
 
 class MainActivity : ComponentActivity() {
 
@@ -78,7 +74,7 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
         val personImageUrl = person.personImageUrl ?: ""
         if (personImageUrl.isNotEmpty()) {
             Image(
-                painter = rememberCoilPainter(personImageUrl),
+                painter = rememberImagePainter(personImageUrl),
                 modifier = Modifier.size(50.dp), contentDescription = person.name
             )
         } else {

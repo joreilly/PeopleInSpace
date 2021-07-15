@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
 
@@ -55,7 +55,7 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
         val personImageUrl = person.personImageUrl ?: ""
         if (personImageUrl.isNotEmpty()) {
             Image(
-                painter = rememberCoilPainter(personImageUrl),
+                painter = rememberImagePainter(personImageUrl),
                 modifier = Modifier.size(60.dp), contentDescription = person.name
             )
         } else {
