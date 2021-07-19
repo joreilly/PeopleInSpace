@@ -43,7 +43,6 @@ jobs:
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
-          arch: x86
-          disable-animations: true
+          api-level: 28
+          target: google_apis
           script: ./gradlew connectedAndroidTest
