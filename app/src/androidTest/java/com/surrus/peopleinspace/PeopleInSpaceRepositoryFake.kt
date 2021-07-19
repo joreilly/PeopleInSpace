@@ -19,4 +19,8 @@ class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
     override fun pollISSPosition(): Flow<IssPosition> {
         return flowOf(issPosition)
     }
+
+    override suspend fun fetchPeople(): List<Assignment> {
+        return emptyList()
+    }
 }
