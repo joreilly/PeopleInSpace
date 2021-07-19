@@ -3,6 +3,7 @@ import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.repository.PeopleInSpaceRepository
+import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import org.jetbrains.compose.common.foundation.layout.Column
@@ -14,7 +15,7 @@ private val koin = initKoin(enableNetworkLogs = true).koin
 
 @InternalCoroutinesApi
 fun main() {
-    val repo = koin.get<PeopleInSpaceRepository>()
+    val repo = koin.get<PeopleInSpaceRepositoryInterface>()
 
     renderComposable(rootElementId = "root") {
         Style(TextStyles)

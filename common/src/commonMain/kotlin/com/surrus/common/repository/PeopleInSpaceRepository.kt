@@ -17,6 +17,7 @@ import kotlin.coroutines.CoroutineContext
 interface PeopleInSpaceRepositoryInterface {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
+    suspend fun fetchPeople(): List<Assignment>
 }
 
 class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface {
@@ -61,7 +62,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     }
 
     // Used by web client atm
-    suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
+    override suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
 
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
