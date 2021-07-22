@@ -18,10 +18,10 @@ object Versions {
     const val accompanist = "0.14.0"
 
     const val junit = "4.12"
-    const val mockito = "3.7.7"
+    const val mockito = "3.11.2"
     const val testCore = "1.3.0"
     const val testRunner = "1.3.0"
-    const val robolectric = "4.4"
+    const val robolectric = "4.6.1"
 
     const val sqlDelight = "1.5.0"
     const val shadow = "7.0.0"
