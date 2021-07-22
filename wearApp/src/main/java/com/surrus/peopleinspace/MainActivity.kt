@@ -20,11 +20,12 @@ import androidx.wear.compose.material.Text
 import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepository
+import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    private val peopleInSpaceRepository: PeopleInSpaceRepository by inject()
+    private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PersonList(peopleInSpaceRepository: PeopleInSpaceRepository, personSelected: (person: Assignment) -> Unit) {
+fun PersonList(peopleInSpaceRepository: PeopleInSpaceRepositoryInterface, personSelected: (person: Assignment) -> Unit) {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
 
     LaunchedEffect(true) {
