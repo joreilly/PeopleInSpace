@@ -19,7 +19,6 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
-import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import org.koin.android.ext.android.inject
 
