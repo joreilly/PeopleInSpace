@@ -4,7 +4,6 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlin = "1.5.10"
-    const val gradle = "7.0.0-beta05"
 
     const val kotlinCoroutines = "1.5.0-native-mt"
     const val koin = "3.1.1"
@@ -46,7 +45,6 @@ object Versions {
 
 object Deps {
     object Gradle {
-        const val androidGradle = "com.android.tools.build:gradle:${Versions.gradle}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
         const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"

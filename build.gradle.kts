@@ -7,10 +7,12 @@ buildscript {
     }
 
     dependencies {
+        // keeping this here to allow AS to automatically update
+        classpath("com.android.tools.build:gradle:7.0.0-rc01")
+
         with(Deps.Gradle) {
             classpath(kotlin)
             classpath(kotlinSerialization)
-            classpath(androidGradle)
             classpath(sqlDelight)
             classpath(shadow)
             classpath(kotlinter)
