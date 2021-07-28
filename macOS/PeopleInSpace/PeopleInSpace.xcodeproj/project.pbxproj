@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A27B2F823E9FA550099850C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A27B2F723E9FA550099850C /* ViewModel.swift */; };
 		1A3F8B7924F7AFCC00F3FA0A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A27B2F923EA004C0099850C /* libsqlite3.tbd */; };
+		1A61254A26B2019E002F3C8D /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ADB386823EC6E4B003FDF68 /* libcurl.tbd */; };
 		1A64632E23F7F74A00CAFA88 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64632D23F7F74A00CAFA88 /* MapView.swift */; };
 		1A7026CD23E9F32100D2BB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7026CC23E9F32100D2BB6D /* AppDelegate.swift */; };
 		1A7026CF23E9F32100D2BB6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7026CE23E9F32100D2BB6D /* ContentView.swift */; };
@@ -45,6 +46,7 @@
 			files = (
 				1A3F8B7924F7AFCC00F3FA0A /* libsqlite3.tbd in Frameworks */,
 				4573EB68E7DE506E65549594 /* libPods-PeopleInSpace.a in Frameworks */,
+				1A61254A26B2019E002F3C8D /* libcurl.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
