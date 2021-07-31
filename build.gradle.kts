@@ -1,4 +1,7 @@
 buildscript {
+    val kotlinVersion: String by project
+    println("kotlinVersion = $kotlinVersion")
+
     repositories {
         google()
         mavenCentral()
@@ -10,9 +13,12 @@ buildscript {
         // keeping this here to allow AS to automatically update
         classpath("com.android.tools.build:gradle:7.0.0")
 
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
+
         with(Deps.Gradle) {
-            classpath(kotlin)
-            classpath(kotlinSerialization)
+//            classpath(kotlin)
+//            classpath(kotlinSerialization)
             classpath(sqlDelight)
             classpath(shadow)
             classpath(kotlinter)
