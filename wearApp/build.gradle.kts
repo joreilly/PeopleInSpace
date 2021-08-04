@@ -40,7 +40,7 @@ dependencies {
     with(Deps.Compose) {
         implementation(wearFoundation)
         implementation(wearMaterial)
-        implementation(accompanistCoil)
+        implementation(coilCompose)
     }
 
     with(Deps.Koin) {
