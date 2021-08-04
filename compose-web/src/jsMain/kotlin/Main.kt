@@ -73,19 +73,12 @@ fun main() {
 object TextStyles : StyleSheet() {
 
     val titleText by style {
-        color("#27282c")
+        color(rgb(23,24, 28))
         fontSize(50.px)
         property("font-size", 50.px)
         property("letter-spacing", (-1.5).px)
         property("font-weight", 900)
         property("line-height", 58.px)
-
-        media(maxWidth(640.px)) {
-            self style {
-                42.px
-                48.px
-            }
-        }
 
         property(
             "font-family",
@@ -94,19 +87,12 @@ object TextStyles : StyleSheet() {
     }
 
     val personText by style {
-        color("#27282c")
+        color(rgb(23,24, 28))
         fontSize(24.px)
         property("font-size", 28.px)
         property("letter-spacing", "normal")
         property("font-weight", 300)
         property("line-height", 40.px)
-
-        media(maxWidth(640.px)) {
-            self style {
-                24.px
-                32.px
-            }
-        }
 
         property(
             "font-family",

@@ -3,16 +3,16 @@ object Versions {
     const val androidCompileSdk = 30
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlin = "1.5.10"
+    const val kotlin = "1.5.21"
 
-    const val kotlinCoroutines = "1.5.0-native-mt"
+    const val kotlinCoroutines = "1.5.1-native-mt"
     const val koin = "3.1.1"
-    const val ktor = "1.6.1"
-    const val kotlinxSerialization = "1.2.1"
+    const val ktor = "1.6.2"
+    const val kotlinxSerialization = "1.2.2"
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val compose = "1.0.0"
-    const val wearCompose = "1.0.0-alpha02"
+    const val compose = "1.0.1"
+    const val wearCompose = "1.0.0-alpha03"
     const val navCompose = "2.4.0-alpha04"
     const val accompanist = "0.15.0"
 
