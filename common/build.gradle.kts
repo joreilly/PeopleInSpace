@@ -109,12 +109,15 @@ kotlin {
             implementation(Deps.SqlDelight.androidDriver)
         }
         sourceSets["androidTest"].dependencies {
-            implementation(kotlin("test-junit"))
+            // having issue with following after update to Kotlin 1.5.21
+            // need to investigate further
+            //implementation(Deps.Test.kotlinTest)
+            //implementation(Deps.Test.kotlinTestJUnit)
             implementation(Deps.Test.junit)
         }
 
         sourceSets["jvmMain"].dependencies {
-            implementation(Deps.Ktor.clientApache)
+            implementation(Deps.Ktor.clientJava)
             implementation(Deps.SqlDelight.sqliteDriver)
             implementation(Deps.Log.slf4j)
         }

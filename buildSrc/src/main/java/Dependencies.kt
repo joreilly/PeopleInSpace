@@ -6,7 +6,7 @@ object Versions {
     const val kotlin = "1.5.21"
 
     const val kotlinCoroutines = "1.5.1-native-mt"
-    const val koin = "3.1.1"
+    const val koin = "3.1.2"
     const val ktor = "1.6.2"
     const val kotlinxSerialization = "1.2.2"
     const val kotlinxHtmlJs = "0.7.3"
@@ -76,6 +76,9 @@ object Deps {
         const val testCore = "androidx.test:core:${Versions.testCore}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
 
+        const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
+        const val kotlinTestJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
+
         const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
         const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
         const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
@@ -115,6 +118,7 @@ object Deps {
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
         const val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
+        const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
         const val clientCurl = "io.ktor:ktor-client-curl:${Versions.ktor}"
