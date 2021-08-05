@@ -13,7 +13,7 @@ object Versions {
 
     const val compose = "1.0.1"
     const val wearCompose = "1.0.0-alpha03"
-    const val navCompose = "2.4.0-alpha04"
+    const val navCompose = "2.4.0-alpha06"
     const val accompanist = "0.16.0"
 
     const val junit = "4.12"
@@ -96,7 +96,6 @@ object Deps {
         const val wearMaterial = "androidx.wear.compose:compose-material:${Versions.wearCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:1.3.1"
-        //const val accompanistCoil = "com.google.accompanist:accompanist-coil:${Versions.accompanist}"
         const val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder:${Versions.accompanist}"
     }
 
