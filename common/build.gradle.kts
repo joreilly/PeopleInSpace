@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
+    id("com.rickclephas.kmp.nativecoroutines") version "0.4.2"
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 

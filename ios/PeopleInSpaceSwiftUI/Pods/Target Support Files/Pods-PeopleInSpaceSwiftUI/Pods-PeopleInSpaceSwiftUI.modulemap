@@ -1,0 +1,6 @@
+module Pods_PeopleInSpaceSwiftUI {
+  umbrella header "Pods-PeopleInSpaceSwiftUI-umbrella.h"
+
+  export *
+  module * { export * }
+}

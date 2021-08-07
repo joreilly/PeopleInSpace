@@ -1,0 +1,6 @@
+module KMPNativeCoroutinesCore {
+  umbrella header "KMPNativeCoroutinesCore-umbrella.h"
+
+  export *
+  module * { export * }
+}

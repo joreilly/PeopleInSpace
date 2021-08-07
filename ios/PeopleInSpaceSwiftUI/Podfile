@@ -1,5 +1,6 @@
 
 target 'PeopleInSpaceSwiftUI' do
     pod 'common', :path => '../../common'
+    pod 'KMPNativeCoroutinesCombine'
 end
 
