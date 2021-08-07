@@ -71,7 +71,7 @@ dependencies {
         implementation(material)
         implementation(navigation)
         implementation(coilCompose)
-        implementation(accompanistPlaceholder)
+        implementation(accompanistNavigationAnimation)
     }
 
     with(Deps.Koin) {

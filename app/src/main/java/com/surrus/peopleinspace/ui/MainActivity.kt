@@ -3,6 +3,8 @@ package com.surrus.peopleinspace.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -12,10 +14,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.BuildConfig
 import org.osmdroid.config.Configuration
@@ -59,9 +61,10 @@ val bottomNavigationItems = listOf(
     )
 )
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainLayout() {
-    val navController = rememberNavController()
+    val navController = rememberAnimatedNavController()
 
     PeopleInSpaceTheme {
         Scaffold(
@@ -90,8 +93,18 @@ fun MainLayout() {
                 }
             }
         ) { paddingValues ->
-            NavHost(navController, startDestination = Screen.PersonList.title) {
-                composable(Screen.PersonList.title) {
+
+            AnimatedNavHost(navController, startDestination = Screen.PersonList.title) {
+                composable(
+                    route = Screen.PersonList.title,
+                    exitTransition = { _, _ ->
+                        slideOutHorizontally() +
+                        fadeOut(animationSpec = tween(1000))
+                    },
+                    popEnterTransition = { _, _ ->
+                        slideInHorizontally()
+                    }
+                ) {
                     PersonListScreen(
                         paddingValues = paddingValues,
                         personSelected = {
@@ -99,7 +112,16 @@ fun MainLayout() {
                         }
                     )
                 }
-                composable(Screen.PersonDetails.title + "/{person}") { backStackEntry ->
+                composable(
+                    route = Screen.PersonDetails.title + "/{person}",
+                    enterTransition = { _, _ ->
+                        slideInHorizontally() +
+                        fadeIn(animationSpec = tween(1000))
+                    },
+                    popExitTransition = { _, _ ->
+                        slideOutHorizontally()
+                    }
+                ) { backStackEntry ->
                     PersonDetailsScreen(
                         backStackEntry.arguments?.get("person") as String,
                         popBack = { navController.popBackStack() }
