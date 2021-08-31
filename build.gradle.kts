@@ -4,6 +4,9 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
         maven(uri("https://plugins.gradle.org/m2/")) // For kotlinter-gradle
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
+        }
     }
 
     dependencies {
@@ -28,5 +31,14 @@ allprojects {
         mavenCentral()
         maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
         maven(url = "https://jitpack.io")
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
+        }
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
+        }
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
+        }
     }
 }
