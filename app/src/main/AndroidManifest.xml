@@ -15,6 +15,7 @@
             android:theme="@style/Theme.PeopleInSpace">
         <activity
                 android:name=".ui.MainActivity"
+                android:exported="true"
                 android:theme="@style/Theme.PeopleInSpace.NoActionBar"
                 android:label="@string/app_name">
             <intent-filter>
