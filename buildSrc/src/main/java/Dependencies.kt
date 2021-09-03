@@ -17,18 +17,15 @@ object Versions {
     const val accompanist = "0.17.0"
 
     const val junit = "4.12"
-    const val mockito = "3.11.2"
-    const val testCore = "1.3.0"
-    const val testRunner = "1.3.0"
-    const val robolectric = "4.6.1"
+    const val androidXTestJUnit = "1.1.3"
 
     const val sqlDelight = "1.5.0"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
     const val material = "1.4.0"
-    const val activityCompose = "1.3.0"
-    const val lifecycleKtx = "2.4.0-alpha01"
+    const val activityCompose = "1.3.1"
+    const val lifecycleKtx = "2.4.0-alpha03"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
     const val osmdroidAndroid = "6.1.10"
@@ -71,10 +68,7 @@ object Deps {
 
     object Test {
         const val junit = "junit:junit:${Versions.junit}"
-        const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
-        const val testRunner = "androidx.test:runner:${Versions.testRunner}"
-        const val testCore = "androidx.test:core:${Versions.testCore}"
-        const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+        const val androidXTestJUnit = "androidx.test.ext:junit:${Versions.androidXTestJUnit}"
 
         const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
         const val kotlinTestJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"

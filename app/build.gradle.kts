@@ -66,12 +66,12 @@ dependencies {
     with(Deps.Compose) {
         implementation(ui)
         implementation(uiGraphics)
-        implementation(uiTooling)
         implementation(foundationLayout)
         implementation(material)
         implementation(navigation)
         implementation(coilCompose)
         implementation(accompanistNavigationAnimation)
+        debugImplementation(uiTooling)
     }
 
     with(Deps.Koin) {
@@ -84,10 +84,7 @@ dependencies {
 
     with(Deps.Test) {
         testImplementation(junit)
-        testImplementation(testCore)
-        testImplementation(robolectric)
-        testImplementation(mockito)
-        androidTestImplementation(testRunner)
+        androidTestImplementation(androidXTestJUnit)
 
         // Compose testing dependencies
         androidTestImplementation(composeUiTest)
