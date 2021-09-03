@@ -18,6 +18,9 @@ object Versions {
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
+    const val testCore = "1.3.0"
+    const val mockito = "3.11.2"
+    const val robolectric = "4.6.1"
 
     const val sqlDelight = "1.5.0"
     const val shadow = "7.0.0"
@@ -69,6 +72,9 @@ object Deps {
     object Test {
         const val junit = "junit:junit:${Versions.junit}"
         const val androidXTestJUnit = "androidx.test.ext:junit:${Versions.androidXTestJUnit}"
+        const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
+        const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+        const val testCore = "androidx.test:core:${Versions.testCore}"
 
         const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
         const val kotlinTestJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"

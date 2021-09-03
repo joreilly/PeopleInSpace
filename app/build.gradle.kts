@@ -85,6 +85,9 @@ dependencies {
     with(Deps.Test) {
         testImplementation(junit)
         androidTestImplementation(androidXTestJUnit)
+        testImplementation(testCore)
+        testImplementation(robolectric)
+        testImplementation(mockito)
 
         // Compose testing dependencies
         androidTestImplementation(composeUiTest)
