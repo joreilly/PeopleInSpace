@@ -71,7 +71,7 @@ dependencies {
         implementation(navigation)
         implementation(coilCompose)
         implementation(accompanistNavigationAnimation)
-        debugImplementation(uiTooling)
+        implementation(uiTooling)
     }
 
     with(Deps.Koin) {
