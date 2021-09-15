@@ -4,15 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdk = Versions.androidCompileSdk
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
-        minSdk = 30
-        targetSdk = 30
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 25
+        targetSdk = Versions.androidTargetSdk
     }
 
     buildFeatures {

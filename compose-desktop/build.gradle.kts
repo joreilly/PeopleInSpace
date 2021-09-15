@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version "1.0.0-alpha2"
+    id("org.jetbrains.compose") version "1.0.0-alpha4-build348"
     application
 }
 

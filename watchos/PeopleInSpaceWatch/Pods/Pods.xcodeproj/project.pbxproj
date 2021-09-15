@@ -9,9 +9,9 @@
 /* Begin PBXAggregateTarget section */
 		8217FBB9D1218C346C0781D0B8F2BBE8 /* common */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 22394E93158CF2B7CD93BED2C7C16E84 /* Build configuration list for PBXAggregateTarget "common" */;
+			buildConfigurationList = F11FEA02DA0EC11D42BB6656A90E71FA /* Build configuration list for PBXAggregateTarget "common" */;
 			buildPhases = (
-				1507B811A92121AABDBE5909D1BD0742 /* [CP-User] Build common */,
+				43D98DE986E8E206E7884FFE41159824 /* [CP-User] Build common */,
 			);
 			dependencies = (
 			);
@@ -20,11 +20,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		976C749918FF25BF3E6DB522154ED8B5 /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1D18ADBD5345A01CAE24C0079CBD0F /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m */; };
+		0C749D8AAF913DDEC47FDD0DE771B069 /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1D18ADBD5345A01CAE24C0079CBD0F /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		91F8FC0B9E57B565D8646F5DD5FED220 /* PBXContainerItemProxy */ = {
+		EE04E8D3C6A27073C3FCC773DECD080C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -34,20 +34,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		119841385FF18F63B759D038AF309492 /* common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.debug.xcconfig; sourceTree = "<group>"; };
 		149B6A848B81890030D6253DD114E942 /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
-		902B4113DC06F6372260E0AF2571D67B /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
+		2AD7B05D8490BEB737073DC7016F31FD /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E3FDD244DB653FA5E4C1E97E6367222 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		A7520423EC3A8725256FE2ADEBDCBDE4 /* Pods-PeopleInSpaceWatch WatchKit Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeopleInSpaceWatch WatchKit Extension-acknowledgements.plist"; sourceTree = "<group>"; };
-		B80D442752296BE83B96879500B188C1 /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		D86A92CEA9CE35E4D6CD95F4F4D562F8 /* common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.xcconfig; sourceTree = "<group>"; };
+		CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.release.xcconfig; sourceTree = "<group>"; };
 		DAB8033F282232D40C2644C0FBD6F995 /* Pods-PeopleInSpaceWatch WatchKit Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeopleInSpaceWatch WatchKit Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DC1D18ADBD5345A01CAE24C0079CBD0F /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m"; sourceTree = "<group>"; };
 		F1FACE141F597243D0441CDA0F8EA5F9 /* libPods-PeopleInSpaceWatch WatchKit Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PeopleInSpaceWatch WatchKit Extension.a"; path = "libPods-PeopleInSpaceWatch WatchKit Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F82413CE0FCFD04402DCEE32C7E3542A /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C3C02C9ABB51C0D1FD713B709A5F17EE /* Frameworks */ = {
+		0B27656A9FD73AE1C79682B421216737 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -57,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D9EB16E9DA5DD26FCC61C66283B6C89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F82413CE0FCFD04402DCEE32C7E3542A /* common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		17A9B9613A3C5DA9922EBA3659C2A5B7 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,32 +74,33 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		4217982DA34E4E0FF50878CE106EA834 /* common */ = {
+		715F8FF7EBB034DF99D4F60663952A87 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FB5E3FB695DBF1A40AACA0783432385F /* Frameworks */,
-				510480DD1DFA7B7B3259CF63608B049C /* Pod */,
-				7AEE0193694C8B1329AAFF3E9A4B7E48 /* Support Files */,
+				119841385FF18F63B759D038AF309492 /* common.debug.xcconfig */,
+				CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../watchos/PeopleInSpaceWatch/Pods/Target Support Files/common";
+			sourceTree = "<group>";
+		};
+		9368F09DCFEA1D84CDA1E6046BF31BD3 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				0D9EB16E9DA5DD26FCC61C66283B6C89 /* Frameworks */,
+				C0179FCAD1B83EEAFDDEF0C02C98EF56 /* Pod */,
+				715F8FF7EBB034DF99D4F60663952A87 /* Support Files */,
 			);
 			name = common;
 			path = ../../../common;
 			sourceTree = "<group>";
 		};
-		510480DD1DFA7B7B3259CF63608B049C /* Pod */ = {
+		C0179FCAD1B83EEAFDDEF0C02C98EF56 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				B80D442752296BE83B96879500B188C1 /* common.podspec */,
+				2AD7B05D8490BEB737073DC7016F31FD /* common.podspec */,
 			);
 			name = Pod;
-			sourceTree = "<group>";
-		};
-		7AEE0193694C8B1329AAFF3E9A4B7E48 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D86A92CEA9CE35E4D6CD95F4F4D562F8 /* common.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../watchos/PeopleInSpaceWatch/Pods/Target Support Files/common";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -114,7 +124,7 @@
 		E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4217982DA34E4E0FF50878CE106EA834 /* common */,
+				9368F09DCFEA1D84CDA1E6046BF31BD3 /* common */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -132,14 +142,6 @@
 			path = "Target Support Files/Pods-PeopleInSpaceWatch WatchKit Extension";
 			sourceTree = "<group>";
 		};
-		FB5E3FB695DBF1A40AACA0783432385F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				902B4113DC06F6372260E0AF2571D67B /* common.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		FED7A9DE4382F6F1CF2FCE315EBFC126 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +153,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		72CF36946A42600337AEDCBD357694D4 /* Headers */ = {
+		B9ABBE4EC232D19B4E7349B9CC59169C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -163,16 +165,16 @@
 /* Begin PBXNativeTarget section */
 		4580107691245E4D9B22511BB71D0CFD /* Pods-PeopleInSpaceWatch WatchKit Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC674E0849A2558F900A14E0BBE4D4C0 /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceWatch WatchKit Extension" */;
+			buildConfigurationList = 9FC55EE579AC901DF6357BBBD4DB19AC /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceWatch WatchKit Extension" */;
 			buildPhases = (
-				72CF36946A42600337AEDCBD357694D4 /* Headers */,
-				CB3EDE7E960D2D4D65D16C4FD4DAFAEA /* Sources */,
-				C3C02C9ABB51C0D1FD713B709A5F17EE /* Frameworks */,
+				B9ABBE4EC232D19B4E7349B9CC59169C /* Headers */,
+				56E796D9F97CBFFC2C2D86E089073DDB /* Sources */,
+				0B27656A9FD73AE1C79682B421216737 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F2F71677BE507642830C5C343B1DBBBB /* PBXTargetDependency */,
+				A1C0840897375D6F9A0D747A47ED879D /* PBXTargetDependency */,
 			);
 			name = "Pods-PeopleInSpaceWatch WatchKit Extension";
 			productName = "Pods-PeopleInSpaceWatch WatchKit Extension";
@@ -208,7 +210,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1507B811A92121AABDBE5909D1BD0742 /* [CP-User] Build common */ = {
+		43D98DE986E8E206E7884FFE41159824 /* [CP-User] Build common */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,32 +218,44 @@
 			name = "[CP-User] Build common";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" :common:syncFramework                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n";
+			shellScript = "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CB3EDE7E960D2D4D65D16C4FD4DAFAEA /* Sources */ = {
+		56E796D9F97CBFFC2C2D86E089073DDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				976C749918FF25BF3E6DB522154ED8B5 /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m in Sources */,
+				0C749D8AAF913DDEC47FDD0DE771B069 /* Pods-PeopleInSpaceWatch WatchKit Extension-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F2F71677BE507642830C5C343B1DBBBB /* PBXTargetDependency */ = {
+		A1C0840897375D6F9A0D747A47ED879D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = common;
 			target = 8217FBB9D1218C346C0781D0B8F2BBE8 /* common */;
-			targetProxy = 91F8FC0B9E57B565D8646F5DD5FED220 /* PBXContainerItemProxy */;
+			targetProxy = EE04E8D3C6A27073C3FCC773DECD080C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1E34F27F5E5CFE2E6F5823DA67BFA4E8 /* Release */ = {
+		0B111895A7AE97EC60FD8B781FA7CC72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 119841385FF18F63B759D038AF309492 /* common.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		1A5736533A2B7B75D49836A2FC39CC84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 149B6A848B81890030D6253DD114E942 /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */;
 			buildSettings = {
@@ -262,19 +276,7 @@
 			};
 			name = Release;
 		};
-		1FB60239666BEC12721F040F5B2F99A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D86A92CEA9CE35E4D6CD95F4F4D562F8 /* common.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		C8625A4A0A7FC50E74F0517F51D54319 /* Debug */ = {
+		3E2E076D87D6AFE5B0D66EF03D75DB95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9E3FDD244DB653FA5E4C1E97E6367222 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
@@ -293,6 +295,19 @@
 				WATCHOS_DEPLOYMENT_TARGET = 6.1;
 			};
 			name = Debug;
+		};
+		8346672A1828A890BA99B12718363CAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
 		};
 		D51956542E1F2A75D23A41318D65FA37 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -358,19 +373,6 @@
 			};
 			name = Debug;
 		};
-		EB22998F3D73623796B2BABE70C214D6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D86A92CEA9CE35E4D6CD95F4F4D562F8 /* common.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
 		F46900EF7BED262D107B1A0457CCC609 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -434,15 +436,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22394E93158CF2B7CD93BED2C7C16E84 /* Build configuration list for PBXAggregateTarget "common" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1FB60239666BEC12721F040F5B2F99A8 /* Debug */,
-				EB22998F3D73623796B2BABE70C214D6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -452,11 +445,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC674E0849A2558F900A14E0BBE4D4C0 /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceWatch WatchKit Extension" */ = {
+		9FC55EE579AC901DF6357BBBD4DB19AC /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceWatch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C8625A4A0A7FC50E74F0517F51D54319 /* Debug */,
-				1E34F27F5E5CFE2E6F5823DA67BFA4E8 /* Release */,
+				3E2E076D87D6AFE5B0D66EF03D75DB95 /* Debug */,
+				1A5736533A2B7B75D49836A2FC39CC84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F11FEA02DA0EC11D42BB6656A90E71FA /* Build configuration list for PBXAggregateTarget "common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B111895A7AE97EC60FD8B781FA7CC72 /* Debug */,
+				8346672A1828A890BA99B12718363CAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

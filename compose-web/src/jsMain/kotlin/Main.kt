@@ -31,38 +31,36 @@ fun main() {
         }
 
         Div(attrs = { style { padding(16.px) } }) {
-            Column {
-                H1(attrs = { classes(TextStyles.titleText) }) {
-                    Text("People In Space")
-                }
-                H2 {
-                    Text("ISS Position: latitude = ${issPosition.latitude}, longitude = ${issPosition.longitude}")
-                }
+            H1(attrs = { classes(TextStyles.titleText) }) {
+                Text("People In Space")
+            }
+            H2 {
+                Text("ISS Position: latitude = ${issPosition.latitude}, longitude = ${issPosition.longitude}")
+            }
 
-                people.forEach { person ->
-                    Div(
+            people.forEach { person ->
+                Div(
+                    attrs = {
+                        style {
+                            display(DisplayStyle.Flex)
+                            alignItems(AlignItems.Center)
+                        }
+                    }
+                ) {
+
+                    val imageUrl = person.personImageUrl ?: ""
+                    Img(
+                        src = imageUrl,
                         attrs = {
                             style {
-                                display(DisplayStyle.Flex)
-                                alignItems(AlignItems.Center)
+                                width(48.px)
+                                property("padding-right", 16.px)
                             }
                         }
-                    ) {
+                    )
 
-                        val imageUrl = person.personImageUrl ?: ""
-                        Img(
-                            src = imageUrl,
-                            attrs = {
-                                style {
-                                    width(48.px)
-                                    property("padding-right", 16.px)
-                                }
-                            }
-                        )
-
-                        Span(attrs = { classes(TextStyles.personText) }) {
-                            Text("${person.name} (${person.craft})")
-                        }
+                    Span(attrs = { classes(TextStyles.personText) }) {
+                        Text("${person.name} (${person.craft})")
                     }
                 }
             }
