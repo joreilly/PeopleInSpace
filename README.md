@@ -44,7 +44,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 
 
 ### Building
-You need to use Android Studio Arctic Fox (**note: Java 11 is now the minimum version required**). Have tested with XCode v11 and v12.  
+You need to use Android Studio Arctic Fox (**note: Java 11 is now the minimum version required**). Most recently tested with XCode v12 and v13.  
 
 When opening iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). 
 
