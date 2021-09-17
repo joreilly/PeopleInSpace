@@ -41,6 +41,8 @@ object Versions {
     const val slf4j = "1.7.30"
     const val logback = "1.2.3"
     const val kermit = "0.1.9"
+
+    const val gradleVersionsPlugin = "0.39.0"
 }
 
 object Deps {
@@ -50,6 +52,7 @@ object Deps {
         const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
         const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
         const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
+        const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
     }
 
     object Kotlinx {

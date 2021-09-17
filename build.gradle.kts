@@ -16,6 +16,7 @@ buildscript {
             classpath(sqlDelight)
             classpath(shadow)
             classpath(kotlinter)
+            classpath(gradleVersionsPlugin)
         }
     }
 }
