@@ -96,7 +96,8 @@ gcloud app deploy backend/build/libs/backend-all.jar
 
 **Compose for Desktop**
 <br/>
-<img width="555" alt="Screenshot 2021-03-07 at 17 05 31" src="https://user-images.githubusercontent.com/6302/110248116-69e66d00-7f67-11eb-8942-ab18fb8e48ff.png">
+<img width="912" alt="Screenshot 2021-10-01 at 16 45 06" src="https://user-images.githubusercontent.com/6302/135652185-4ce9d8e3-f06e-4e9d-9930-3e900267f8bd.png">
+
 
 **Compose for Web**
 <br/>
