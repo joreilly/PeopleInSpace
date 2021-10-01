@@ -1,4 +1,3 @@
-import androidx.compose.desktop.Window
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -6,9 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,6 +15,9 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.application
+import androidx.compose.ui.window.rememberWindowState
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
@@ -33,7 +33,9 @@ import javax.imageio.ImageIO
 
 private val koin = initKoin(enableNetworkLogs = true).koin
 
-fun main() = Window {
+fun main() = application {
+    val windowState = rememberWindowState()
+
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
     var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
 
@@ -44,30 +46,29 @@ fun main() = Window {
         selectedPerson = peopleState.first()
     }
 
-    MaterialTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(title = { Text("People In Space") })
-            }
-        ) {
+    Window(
+        onCloseRequest = ::exitApplication,
+        state = windowState,
+        title = "People In Space"
+    ) {
 
-            Row(Modifier.fillMaxSize()) {
+        Row(Modifier.fillMaxSize()) {
 
-                Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray)) {
-                    PersonList(peopleState, selectedPerson) {
-                        selectedPerson = it
-                    }
+            Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray)) {
+                PersonList(peopleState, selectedPerson) {
+                    selectedPerson = it
                 }
+            }
 
-                Spacer(modifier = Modifier.width(1.dp).fillMaxHeight())
+            Spacer(modifier = Modifier.width(1.dp).fillMaxHeight())
 
-                Box(Modifier.fillMaxHeight()) {
-                    selectedPerson?.let {
-                        PersonDetailsView(it)
-                    }
+            Box(Modifier.fillMaxHeight()) {
+                selectedPerson?.let {
+                    PersonDetailsView(it)
                 }
             }
         }
+
     }
 }
 

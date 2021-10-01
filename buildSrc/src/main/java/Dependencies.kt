@@ -7,14 +7,14 @@ object Versions {
 
     const val kotlinCoroutines = "1.5.2-native-mt"
     const val koin = "3.1.2"
-    const val ktor = "1.6.3"
+    const val ktor = "1.6.4"
     const val kotlinxSerialization = "1.2.2"
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val compose = "1.1.0-alpha04"
-    const val wearCompose = "1.0.0-alpha06"
-    const val navCompose = "2.4.0-alpha09"
-    const val accompanist = "0.18.0"
+    const val compose = "1.0.3"
+    const val wearCompose = "1.0.0-alpha07"
+    const val navCompose = "2.4.0-alpha10"
+    const val accompanist = "0.19.0"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
@@ -27,8 +27,8 @@ object Versions {
     const val kotlinterGradle = "3.4.5"
 
     const val material = "1.4.0"
-    const val activityCompose = "1.3.1"
-    const val lifecycleKtx = "2.4.0-alpha03"
+    const val activityCompose = "1.4.0-beta01"
+    const val lifecycleKtx = "2.4.0-rc01"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
     const val osmdroidAndroid = "6.1.10"
