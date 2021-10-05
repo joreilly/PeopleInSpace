@@ -79,9 +79,12 @@ fun PersonList(
     personSelected: (person: Assignment) -> Unit
 ) {
 
-    LazyColumn {
-        items(people) { person ->
-            PersonView(person, selectedPerson, personSelected)
+    // workaround for compose desktop but if LazyColumn is empty
+    if (people.isNotEmpty()) {
+        LazyColumn {
+            items(people) { person ->
+                PersonView(person, selectedPerson, personSelected)
+            }
         }
     }
 }

@@ -23,6 +23,9 @@ val personImages = mapOf(
     "Hayley Arceneaux" to "https://pbs.twimg.com/media/E_RKiXIXEAECmiP.jpg",
     "Sian Procto" to "https://pbs.twimg.com/media/E_VcnA2XsAgp4r-.jpg",
     "Jared Isaacman" to "https://pbs.twimg.com/media/E_OTuR-XsAEhsln.jpg",
+    "Anton Shkaplerov" to "https://alchetron.com/cdn/anton-shkaplerov-799e7545-54ae-4145-83d1-18f906d22b1-resize-750.jpeg",
+    "Klim Shipenko" to "https://upload.wikimedia.org/wikipedia/pt/f/f9/Shipenko_klim.jpg",
+    "Yulia Pereslid" to "https://metro.co.uk/wp-content/uploads/2021/10/PRI_203475964.jpg?quality=90&strip=all&zoom=1&resize=540%2C810",
 )
 
 val personBios = mapOf(
@@ -50,4 +53,7 @@ val personBios = mapOf(
     "Hayley Arceneaux" to "Hayley Arceneaux is a St. Jude Children's Research Hospital employee, bone cancer survivor and private astronaut who is now a physician assistant; she joined billionaire Jared Isaacman on SpaceX's first private spaceflight Inspiration4 launched on September 15, 2021. At age 29, Arceneaux became the youngest American in space.",
     "Sian Procto" to "Sian Hayley Proctor is an American geology professor, science communicator, and commercial astronaut. She was selected as the pilot for the Inspiration4 private orbital spaceflight conducted on 15th September 2021, aboard a SpaceX-operated Crew Dragon space capsule.She is a geology professor at South Mountain Community College in Arizona.She is also a major in the Civil Air Patrol where she serves as the aerospace education officer for its Arizona Wing.",
     "Jared Isaacman" to "Jared Isaacman (born February 11, 1983) is an American billionaire businessman, pilot and amateur astronaut. He is the founder and CEO of Shift4 Payments, a payment processor. Isaacman served as commander of the SpaceX flight Inspiration4, launched September 15, 2021",
+    "Anton Shkaplerov" to "Anton Nikolaevich Shkaplerov (Russian: Антон Николаевич Шкаплеров; born 20 February 1972) is a Russian cosmonaut. He is a veteran of four spaceflights and is a former Commander of the International Space Station.",
+    "Klim Shipenko" to "Klim Alekseevich Shipenko (Russian: Клим Алексеевич Шипенко; born 16 June 1983) is a Russian film director, screenwriter, actor and producer. In 2021, Shipenko is planning to shoot portions of a science fiction film aboard the International Space Station. It is to be the second narrative film shot in space, and first feature film shot in space.",
+    "Yulia Pereslid" to "Yulia Sergeevna Peresild (Russian: Ю́лия Серге́евна Переси́льд; born 5 September 1984) is a Russian stage and film actress. ",
 )
