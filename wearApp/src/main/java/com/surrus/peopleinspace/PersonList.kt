@@ -3,6 +3,7 @@ package com.surrus.peopleinspace
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,7 +39,9 @@ fun PersonList(
         peopleState = peopleInSpaceRepository.fetchPeople()
     }
 
-    ScalingLazyColumn {
+    ScalingLazyColumn(
+        contentPadding = PaddingValues(start = 8.dp, end = 8.dp, top = 50.dp, bottom = 50.dp)
+    ) {
         items(peopleState.size) { offset ->
             PersonView(peopleState[offset], personSelected)
         }
