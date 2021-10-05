@@ -100,6 +100,8 @@ object Deps {
 
         const val coilCompose = "io.coil-kt:coil-compose:1.3.1"
         const val accompanistNavigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
+
+        const val composePreview = "androidx.compose.ui:ui-tooling:1.1.0-alpha05"
     }
 
     object Koin {

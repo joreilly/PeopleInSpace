@@ -1,6 +1,5 @@
 import co.touchlab.kermit.Kermit
 import com.surrus.common.di.initKoin
-import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.core.component.KoinComponent
@@ -21,7 +20,6 @@ object AppDependencies : KoinComponent {
 }
 
 val AppDependenciesContext = createContext<AppDependencies>()
-
 
 @InternalCoroutinesApi
 fun main() {
