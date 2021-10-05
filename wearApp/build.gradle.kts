@@ -20,6 +20,10 @@ android {
         kotlinCompilerExtensionVersion = Versions.compose
     }
 
+    kotlinOptions {
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -38,6 +42,7 @@ dependencies {
         implementation(wearFoundation)
         implementation(wearMaterial)
         implementation(coilCompose)
+        debugImplementation(composePreview)
     }
 
     with(Deps.Koin) {
