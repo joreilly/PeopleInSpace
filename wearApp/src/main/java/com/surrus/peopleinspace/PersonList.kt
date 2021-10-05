@@ -16,7 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Card
@@ -39,8 +41,9 @@ fun PersonList(
         peopleState = peopleInSpaceRepository.fetchPeople()
     }
 
+    val paddingHeight = if (LocalConfiguration.current.isScreenRound) 50.dp else 8.dp
     ScalingLazyColumn(
-        contentPadding = PaddingValues(start = 8.dp, end = 8.dp, top = 50.dp, bottom = 50.dp)
+        contentPadding = PaddingValues(start = 8.dp, end = 8.dp, top = paddingHeight, bottom = paddingHeight)
     ) {
         items(peopleState.size) { offset ->
             PersonView(peopleState[offset], personSelected)
@@ -61,7 +64,7 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
             if (personImageUrl.isNotEmpty()) {
                 Image(
                     painter = rememberImagePainter(personImageUrl),
-                    modifier = Modifier.size(50.dp),
+                    modifier = Modifier.size(50.dp).clip(MaterialTheme.shapes.medium),
                     contentDescription = person.name
                 )
             } else {

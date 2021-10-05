@@ -42,7 +42,7 @@ dependencies {
         implementation(wearFoundation)
         implementation(wearMaterial)
         implementation(coilCompose)
-        debugImplementation(composePreview)
+        implementation(composePreview)
     }
 
     with(Deps.Koin) {
