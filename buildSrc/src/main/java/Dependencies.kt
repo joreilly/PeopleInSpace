@@ -146,6 +146,11 @@ object Deps {
         const val styled = "org.jetbrains:kotlin-styled:${Versions.kotlinStyled}"
     }
 
+    object Ok {
+        const val okhttp = "com.squareup.okhttp3:okhttp:4.9.2"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.2"
+    }
+
     object Log {
         const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
         const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
