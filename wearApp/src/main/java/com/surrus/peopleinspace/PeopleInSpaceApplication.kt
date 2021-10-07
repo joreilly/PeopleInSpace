@@ -44,8 +44,14 @@ fun imageLoader(application: PeopleInSpaceApplication) = module {
                 // Not all images have consistent cache headers.
                 val cacheControlInterceptor = Interceptor {
                     val response = it.proceed(it.request())
-                    response.newBuilder().header("Cache-Control", "max-age=604800,public")
-                        .build()
+
+                    if (response.code != 200) {
+                        response
+                    } else {
+                        response.newBuilder()
+                            .header("Cache-Control", "max-age=604800,public")
+                            .build()
+                    }
                 }
 
                 // Lazily create the OkHttpClient that is used for network operations.
