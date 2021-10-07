@@ -51,5 +51,10 @@ dependencies {
         implementation(compose)
     }
 
+    with (Deps.Ok) {
+        implementation(okhttp)
+        implementation(loggingInterceptor)
+    }
+
     implementation(project(":common"))
 }
