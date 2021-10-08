@@ -18,6 +18,7 @@ interface PeopleInSpaceRepositoryInterface {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
     suspend fun fetchPeople(): List<Assignment>
+    suspend fun fetchAndStorePeople()
 }
 
 class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface {
@@ -30,11 +31,11 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
 
     var peopleJob: Job? = null
 
-    init {
-        coroutineScope.launch {
-            fetchAndStorePeople()
-        }
-    }
+//    init {
+//        coroutineScope.launch {
+//            fetchAndStorePeople()
+//        }
+//    }
 
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
@@ -46,7 +47,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
         )?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
     }
 
-    private suspend fun fetchAndStorePeople() {
+    override suspend fun fetchAndStorePeople() {
         logger.d { "fetchAndStorePeople" }
         val result = peopleInSpaceApi.fetchPeople()
 
@@ -62,7 +63,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     }
 
     // Used by web client atm
-    override suspend fun fetchPeople() = peopleInSpaceApi.fetchPeople().people
+    override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (List<Assignment>) -> Unit) {
@@ -71,6 +72,9 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
             fetchPeopleAsFlow().collect {
                 success(it)
             }
+        }
+        coroutineScope.launch {
+            fetchAndStorePeople()
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,10 @@ fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
 ) {
     val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
+    LaunchedEffect(true) {
+        peopleInSpaceViewModel.peopleInSpaceRepository.fetchAndStorePeople()
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
@@ -46,9 +51,10 @@ fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
 @Composable
 fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
 
-    Row(modifier = Modifier.fillMaxWidth()
-            .clickable(onClick = { personSelected(person) })
-            .padding(16.dp),
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .clickable(onClick = { personSelected(person) })
+        .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 

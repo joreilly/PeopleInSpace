@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,10 +36,12 @@ fun PersonList(
     peopleInSpaceRepository: PeopleInSpaceRepositoryInterface,
     personSelected: (person: Assignment) -> Unit
 ) {
-    var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
+    val peopleState by peopleInSpaceRepository
+        .fetchPeopleAsFlow()
+        .collectAsState(initial = listOf())
 
     LaunchedEffect(true) {
-        peopleState = peopleInSpaceRepository.fetchPeople()
+        peopleInSpaceRepository.fetchAndStorePeople()
     }
 
     val paddingHeight = if (LocalConfiguration.current.isScreenRound) 50.dp else 8.dp
@@ -64,7 +67,9 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
             if (personImageUrl.isNotEmpty()) {
                 Image(
                     painter = rememberImagePainter(personImageUrl),
-                    modifier = Modifier.size(50.dp).clip(MaterialTheme.shapes.medium),
+                    modifier = Modifier
+                        .size(50.dp)
+                        .clip(MaterialTheme.shapes.medium),
                     contentDescription = person.name
                 )
             } else {
