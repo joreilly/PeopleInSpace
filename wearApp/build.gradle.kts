@@ -10,6 +10,7 @@ android {
         applicationId = "com.surrus.peopleinspace"
         minSdk = 25
         targetSdk = Versions.androidTargetSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -30,6 +31,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/licenses/**")
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -42,7 +49,7 @@ dependencies {
         implementation(wearFoundation)
         implementation(wearMaterial)
         implementation(coilCompose)
-        implementation(composePreview)
+        implementation(uiTooling)
     }
 
     with(Deps.Koin) {
@@ -54,6 +61,19 @@ dependencies {
     with (Deps.Ok) {
         implementation(okhttp)
         implementation(loggingInterceptor)
+    }
+
+    with(Deps.Test) {
+        testImplementation(junit)
+        androidTestImplementation(androidXTestJUnit)
+        testImplementation(testCore)
+        testImplementation(robolectric)
+        testImplementation(mockito)
+
+        // Compose testing dependencies
+        androidTestImplementation(composeUiTest)
+        androidTestImplementation(composeUiTestJUnit)
+        debugImplementation(composeUiTestManifest)
     }
 
     implementation(project(":common"))
