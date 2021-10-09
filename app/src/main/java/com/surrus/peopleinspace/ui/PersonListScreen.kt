@@ -31,10 +31,6 @@ fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
 ) {
     val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
-    LaunchedEffect(true) {
-        peopleInSpaceViewModel.peopleInSpaceRepository.fetchAndStorePeople()
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
