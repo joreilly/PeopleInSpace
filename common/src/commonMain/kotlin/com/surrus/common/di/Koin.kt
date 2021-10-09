@@ -12,7 +12,6 @@ import io.ktor.client.features.logging.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -33,14 +32,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
 
     single { CoroutineScope(Dispatchers.Default + SupervisorJob() ) }
 
-    single<PeopleInSpaceRepositoryInterface> {
-        PeopleInSpaceRepository()
-            .also {
-                get<CoroutineScope>().launch {
-                    it.fetchAndStorePeople()
-                }
-            }
-    }
+    single<PeopleInSpaceRepositoryInterface> { PeopleInSpaceRepository() }
 
     single { PeopleInSpaceApi(get()) }
     single { Kermit(logger = get()) }
