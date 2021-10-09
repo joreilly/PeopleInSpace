@@ -9,12 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,10 +35,6 @@ fun PersonList(
     val peopleState by peopleInSpaceRepository
         .fetchPeopleAsFlow()
         .collectAsState(initial = listOf())
-
-    LaunchedEffect(true) {
-        peopleInSpaceRepository.fetchAndStorePeople()
-    }
 
     val paddingHeight = if (LocalConfiguration.current.isScreenRound) 50.dp else 8.dp
     ScalingLazyColumn(
