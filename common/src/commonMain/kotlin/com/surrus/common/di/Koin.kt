@@ -33,7 +33,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
 
     single { CoroutineScope(Dispatchers.Default + SupervisorJob() ) }
 
-    single<PeopleInSpaceRepositoryInterface>(createdAtStart = true) {
+    single<PeopleInSpaceRepositoryInterface> {
         PeopleInSpaceRepository()
             .also {
                 get<CoroutineScope>().launch {
