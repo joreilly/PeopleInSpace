@@ -13,7 +13,6 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
 
-
 interface PeopleInSpaceRepositoryInterface {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
@@ -31,12 +30,6 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
 
     var peopleJob: Job? = null
 
-//    init {
-//        coroutineScope.launch {
-//            fetchAndStorePeople()
-//        }
-//    }
-
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
@@ -44,7 +37,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
             mapper = { name, craft, personImageUrl, personBio ->
                 Assignment(name = name, craft = craft, personImageUrl = personImageUrl, personBio = personBio)
             }
-        )?.asFlow()?.mapToList() ?: flowOf(emptyList<Assignment>())
+        )?.asFlow()?.mapToList() ?: flowOf(emptyList())
     }
 
     override suspend fun fetchAndStorePeople() {
@@ -73,9 +66,6 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
                 success(it)
             }
         }
-        coroutineScope.launch {
-            fetchAndStorePeople()
-        }
     }
 
     fun stopObservingPeopleUpdates() {
@@ -97,7 +87,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
             get() = SupervisorJob() + Dispatchers.Main
     }
 
-    fun iosPollISSPosition() = KotlinNativeFlowWrapper<IssPosition>(pollISSPosition())
+    fun iosPollISSPosition() = KotlinNativeFlowWrapper(pollISSPosition())
 
     companion object {
         private const val POLL_INTERVAL = 10000L

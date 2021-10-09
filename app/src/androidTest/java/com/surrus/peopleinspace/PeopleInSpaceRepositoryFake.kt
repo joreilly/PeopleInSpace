@@ -23,4 +23,7 @@ class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
     override suspend fun fetchPeople(): List<Assignment> {
         return emptyList()
     }
+
+    override suspend fun fetchAndStorePeople() {
+    }
 }
