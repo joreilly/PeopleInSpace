@@ -10,8 +10,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 
 class PeopleInSpaceViewModel(
-    val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
+    private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
 ) : ViewModel() {
+
     val peopleInSpace = peopleInSpaceRepository.fetchPeopleAsFlow()
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
