@@ -30,6 +30,12 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
 
     var peopleJob: Job? = null
 
+    init {
+        coroutineScope.launch {
+            fetchAndStorePeople()
+        }
+    }
+
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
@@ -42,16 +48,26 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
 
     override suspend fun fetchAndStorePeople() {
         logger.d { "fetchAndStorePeople" }
-        val result = peopleInSpaceApi.fetchPeople()
+        try {
+            val result = peopleInSpaceApi.fetchPeople()
 
-        // this is very basic implementation for now that removes all existing rows
-        // in db and then inserts results from api request
-        // using "transaction" accelerate the batch of queries, especially inserting
-        peopleInSpaceQueries?.transaction {
-            peopleInSpaceQueries.deleteAll()
-            result.people.forEach {
-                peopleInSpaceQueries.insertItem(it.name, it.craft, it.personImageUrl, it.personBio)
+            // this is very basic implementation for now that removes all existing rows
+            // in db and then inserts results from api request
+            // using "transaction" accelerate the batch of queries, especially inserting
+            peopleInSpaceQueries?.transaction {
+                peopleInSpaceQueries.deleteAll()
+                result.people.forEach {
+                    peopleInSpaceQueries.insertItem(
+                        it.name,
+                        it.craft,
+                        it.personImageUrl,
+                        it.personBio
+                    )
+                }
             }
+        } catch (e: Exception) {
+            // TODO report error up to UI
+            logger.w(e) { "Exception during fetchAndStorePeople: $e" }
         }
     }
 
