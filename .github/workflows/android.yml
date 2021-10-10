@@ -47,9 +47,16 @@ jobs:
         with:
           java-version: 11
 
-      - name: Instrumentation Tests
+      - name: Wear Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 28
+          target: android-wear
+          script: ./gradlew wear:connectedAndroidTest
+
+      - name: Android Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           target: google_apis
-          script: ./gradlew connectedAndroidTest
+          script: ./gradlew app:connectedAndroidTest common:connectedAndroidTest
