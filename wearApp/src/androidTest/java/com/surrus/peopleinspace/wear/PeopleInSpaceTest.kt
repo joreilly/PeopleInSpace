@@ -1,9 +1,13 @@
 package com.surrus.peopleinspace.wear
 
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertContentDescriptionEquals
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onParent
 import com.surrus.common.remote.Assignment
-import com.surrus.peopleinspace.PersonList
+import com.surrus.peopleinspace.PersonListScreen
 import com.surrus.peopleinspace.PersonListTag
 import org.junit.Rule
 import org.junit.Test
@@ -26,9 +30,19 @@ class PeopleInSpaceTest {
     )
 
     @Test
+    fun testPeopleListScreenEmpty() {
+        composeTestRule.setContent {
+            PersonListScreen(personSelected = {}, people = listOf())
+        }
+
+        composeTestRule.onNodeWithText("No people in space!")
+            .assertIsDisplayed()
+    }
+
+    @Test
     fun testPeopleListScreen() {
         composeTestRule.setContent {
-            PersonList(personSelected = {}, peopleState = peopleList)
+            PersonListScreen(personSelected = {}, people = peopleList)
         }
 
         val personListNode = composeTestRule.onNodeWithTag(PersonListTag)

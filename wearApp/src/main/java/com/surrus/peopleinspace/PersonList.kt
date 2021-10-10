@@ -1,11 +1,16 @@
 package com.surrus.peopleinspace
 
 import android.content.res.Configuration
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -33,6 +38,7 @@ import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 
 const val PersonListTag = "PersonList"
 const val PersonTag = "Person"
+const val NoPeopleTag = "NoPeople"
 
 @Composable
 fun PersonListScreen(
@@ -41,16 +47,43 @@ fun PersonListScreen(
 ) {
     val peopleState by peopleInSpaceRepository
         .fetchPeopleAsFlow()
-        .collectAsState(initial = listOf())
+        .collectAsState(initial = null)
 
+    PersonListScreen(peopleState, personSelected)
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+@Composable
+fun PersonListScreen(
+    people: List<Assignment>?,
+    personSelected: (person: Assignment) -> Unit
+) {
     MaterialTheme {
-        PersonList(peopleState, personSelected)
+        AnimatedVisibility(
+            visible = people != null,
+            enter = slideInVertically()
+        ) {
+            if (people != null) {
+                if (people.isNotEmpty()) {
+                    PersonList(people, personSelected)
+                } else {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Card(
+                            onClick = { },
+                            modifier = Modifier.testTag(NoPeopleTag)
+                        ) {
+                            Text("No people in space!")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 @Composable
 fun PersonList(
-    peopleState: List<Assignment>,
+    people: List<Assignment>,
     personSelected: (person: Assignment) -> Unit
 ) {
     val paddingHeight = if (LocalConfiguration.current.isScreenRound) 50.dp else 8.dp
@@ -63,8 +96,8 @@ fun PersonList(
         ),
         modifier = Modifier.testTag(PersonListTag)
     ) {
-        items(peopleState.size) { offset ->
-            PersonView(peopleState[offset], personSelected)
+        items(people.size) { offset ->
+            PersonView(people[offset], personSelected)
         }
     }
 }
@@ -72,10 +105,13 @@ fun PersonList(
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
-    Card(onClick = { personSelected(person) },
-        modifier = Modifier.testTag(PersonTag).semantics(mergeDescendants = true) {
-            contentDescription = person.name + " on " + person.craft
-        },
+    Card(
+        onClick = { personSelected(person) },
+        modifier = Modifier
+            .testTag(PersonTag)
+            .semantics(mergeDescendants = true) {
+                contentDescription = person.name + " on " + person.craft
+            },
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -141,7 +177,7 @@ fun PersonViewPreview() {
 )
 @Composable
 fun PersonListSquarePreview() {
-    PersonList(peopleState = listOf(
+    PersonListScreen(people = listOf(
         Assignment(
             "Apollo 11",
             "Neil Armstrong",
@@ -153,4 +189,17 @@ fun PersonListSquarePreview() {
             "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
         )
     ), personSelected = {})
+}
+
+@Preview(
+    widthDp = 300,
+    heightDp = 300,
+    apiLevel = 26,
+    uiMode = Configuration.UI_MODE_TYPE_WATCH,
+    backgroundColor = 0x000000,
+    showBackground = true
+)
+@Composable
+fun PersonListSquareEmptyPreview() {
+    PersonListScreen(people = listOf(), personSelected = {})
 }
