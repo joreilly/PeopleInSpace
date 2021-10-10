@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -82,9 +83,14 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
         ) {
             Image(
                 painter = rememberImagePainter(person.personImageUrl) {
-                    // TODO improve images for error and fallback
+                    // Use the generic astronaut SVG for missing or error (404?).
                     fallback(R.drawable.ic_american_astronaut)
                     error(R.drawable.ic_american_astronaut)
+
+                    if (LocalInspectionMode.current) {
+                        // Show error image instead of blank in @Preview
+                        placeholder(R.drawable.ic_american_astronaut)
+                    }
                 },
                 modifier = Modifier
                     .size(50.dp)
