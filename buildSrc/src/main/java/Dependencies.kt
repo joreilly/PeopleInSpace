@@ -97,6 +97,7 @@ object Deps {
 
         const val wearFoundation = "androidx.wear.compose:compose-foundation:${Versions.wearCompose}"
         const val wearMaterial = "androidx.wear.compose:compose-material:${Versions.wearCompose}"
+        const val wearNavigation = "androidx.wear.compose:compose-navigation:${Versions.wearCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:1.3.1"
         const val accompanistNavigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
