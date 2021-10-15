@@ -7,6 +7,7 @@ import coil.ImageLoader
 import coil.util.CoilUtils
 import coil.util.DebugLogger
 import com.surrus.common.di.initKoin
+import com.surrus.peopleinspace.di.appModule
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.LoggingEventListener
@@ -27,6 +28,7 @@ class PeopleInSpaceApplication : Application(), KoinComponent {
             androidContext(this@PeopleInSpaceApplication)
 
             modules(imageLoader(this@PeopleInSpaceApplication))
+            modules(appModule)
         }
 
         logger.d { "PeopleInSpaceApplication" }

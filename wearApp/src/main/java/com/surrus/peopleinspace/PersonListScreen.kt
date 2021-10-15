@@ -35,6 +35,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import org.koin.androidx.compose.getViewModel
 
 const val PersonListTag = "PersonList"
 const val PersonTag = "Person"
@@ -42,12 +43,10 @@ const val NoPeopleTag = "NoPeople"
 
 @Composable
 fun PersonListScreen(
-    peopleInSpaceRepository: PeopleInSpaceRepositoryInterface,
-    personSelected: (person: Assignment) -> Unit
+    personSelected: (person: Assignment) -> Unit,
+    peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
 ) {
-    val peopleState by peopleInSpaceRepository
-        .fetchPeopleAsFlow()
-        .collectAsState(initial = null)
+    val peopleState by peopleInSpaceViewModel.peopleInSpace.collectAsState()
 
     PersonListScreen(peopleState, personSelected)
 }

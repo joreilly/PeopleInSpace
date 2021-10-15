@@ -48,6 +48,7 @@ dependencies {
     with(Deps.Compose) {
         implementation(wearFoundation)
         implementation(wearMaterial)
+        implementation(wearNavigation)
         implementation(coilCompose)
         implementation(uiTooling)
     }
