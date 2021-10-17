@@ -91,7 +91,10 @@ gcloud app deploy backend/build/libs/backend-all.jar
 
 **Wear OS (Jetpack Compose)**
 <br/>
-<img width="359" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/124310127-aa47a780-db63-11eb-97e5-78e1dbf20cf9.png">
+<img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
+<img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137623550-48696de2-a74a-479c-b9b0-4220e56267a2.png">
+
+
 
 
 **Compose for Desktop**
@@ -106,7 +109,6 @@ gcloud app deploy backend/build/libs/backend-all.jar
 **Web App (Kotlin/JS + React)**
 <br/>
 <img width="612" alt="Screenshot 2021-06-06 at 23 50 00" src="https://user-images.githubusercontent.com/19620536/120935764-eda82500-c721-11eb-9042-f15ade7473f7.png">
-
 
 
 
