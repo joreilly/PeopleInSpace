@@ -92,8 +92,7 @@ gcloud app deploy backend/build/libs/backend-all.jar
 **Wear OS (Jetpack Compose)**
 <br/>
 <img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
-<img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137623550-48696de2-a74a-479c-b9b0-4220e56267a2.png">
-
+<img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137640396-851489bb-e41d-47ef-badb-e2d22454eee4.png">
 
 
 
