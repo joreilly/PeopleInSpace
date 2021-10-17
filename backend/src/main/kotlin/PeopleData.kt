@@ -26,6 +26,9 @@ val personImages = mapOf(
     "Anton Shkaplerov" to "https://alchetron.com/cdn/anton-shkaplerov-799e7545-54ae-4145-83d1-18f906d22b1-resize-750.jpeg",
     "Klim Shipenko" to "https://upload.wikimedia.org/wikipedia/pt/f/f9/Shipenko_klim.jpg",
     "Yulia Pereslid" to "https://metro.co.uk/wp-content/uploads/2021/10/PRI_203475964.jpg?quality=90&strip=all&zoom=1&resize=540%2C810",
+    "Zhai Zhigang" to "https://lh3.googleusercontent.com/proxy/xk_cyKyl2J0L0evVWqscwKjb2Ypsnr4PuoT2WciVGi_r6ALDFw-1Rlw4cU37z24n3ePXZm5RrRCJIVzi-UbPdEEidf3GJVb0uUhoPlXv67S-1-56yhNxaM-i0Ug4IX8RNYyfTn4zx9drQ_A",
+    "Wang Yaping" to "https://alchetron.com/cdn/wang-yaping-2f869150-f66f-4884-b638-62ff678084a-resize-750.jpeg",
+    "Ye Guangfu" to "https://lh3.googleusercontent.com/proxy/ffO0hJN-y4tkAuta240ninzvANaZnhMtszxxdHIMx0RuUWloi8QSkFSC6VejW8pytRDr11pQ8UfgrAioJNQjBTwthSVlilElwBDanfZH0UgXmjIMfjwmGXQDQIkEiNrDjhIwgVHQdQ",
 )
 
 val personBios = mapOf(
@@ -56,4 +59,7 @@ val personBios = mapOf(
     "Anton Shkaplerov" to "Anton Nikolaevich Shkaplerov (Russian: Антон Николаевич Шкаплеров; born 20 February 1972) is a Russian cosmonaut. He is a veteran of four spaceflights and is a former Commander of the International Space Station.",
     "Klim Shipenko" to "Klim Alekseevich Shipenko (Russian: Клим Алексеевич Шипенко; born 16 June 1983) is a Russian film director, screenwriter, actor and producer. In 2021, Shipenko is planning to shoot portions of a science fiction film aboard the International Space Station. It is to be the second narrative film shot in space, and first feature film shot in space.",
     "Yulia Pereslid" to "Yulia Sergeevna Peresild (Russian: Ю́лия Серге́евна Переси́льд; born 5 September 1984) is a Russian stage and film actress. ",
+    "Zhai Zhigang" to "Zhai Zhigang (born October 10, 1966) is a major general of the People's Liberation Army Strategic Support Force (PLASSF) in active service as a People's Liberation Army Astronaut Corps (PLAAC) taikonaut. During the Shenzhou 7 mission in 2008, he became the first Chinese citizen to carry out a spacewalk. He was a People's Liberation Army Air Force (PLAAF) fighter pilot.",
+    "Wang Yaping" to "Colonel Wang Yaping (born 27 January 1980) is a Chinese military pilot and astronaut. Wang was the second female astronaut selected to the People's Liberation Army Astronaut Corps, and the second Chinese woman in space.",
+    "Ye Guangfu" to "Colonel Ye Guangfu (Chinese: 叶光富; born 1 September 1980[1]) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) astronaut selected as part of the Shenzhou program.",
 )
