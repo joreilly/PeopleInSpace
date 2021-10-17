@@ -5,17 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import coil.ImageLoader
 import coil.compose.LocalImageLoader
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import org.koin.android.ext.android.inject
-
 
 sealed class Screen(val route: String) {
     object PersonList : Screen("personList")

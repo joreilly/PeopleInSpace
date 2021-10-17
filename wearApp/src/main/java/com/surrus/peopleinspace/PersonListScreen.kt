@@ -34,7 +34,6 @@ import androidx.wear.compose.material.Text
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import org.koin.androidx.compose.getViewModel
 
 const val PersonListTag = "PersonList"
@@ -117,16 +116,7 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
-                painter = rememberImagePainter(person.personImageUrl) {
-                    // Use the generic astronaut SVG for missing or error (404?).
-                    fallback(R.drawable.ic_american_astronaut)
-                    error(R.drawable.ic_american_astronaut)
-
-                    if (LocalInspectionMode.current) {
-                        // Show error image instead of blank in @Preview
-                        placeholder(R.drawable.ic_american_astronaut)
-                    }
-                },
+                painter = rememberAstronautPainter(person),
                 modifier = Modifier
                     .size(50.dp)
                     .clip(MaterialTheme.shapes.medium),
@@ -146,6 +136,20 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
         }
     }
 }
+
+@OptIn(ExperimentalCoilApi::class)
+@Composable
+fun rememberAstronautPainter(person: Assignment?) =
+    rememberImagePainter(person?.personImageUrl) {
+        // Use the generic astronaut SVG for missing or error (404?).
+        fallback(R.drawable.ic_american_astronaut)
+        error(R.drawable.ic_american_astronaut)
+
+        if (LocalInspectionMode.current) {
+            // Show error image instead of blank in @Preview
+            placeholder(R.drawable.ic_american_astronaut)
+        }
+    }
 
 @Preview(
     widthDp = 300,

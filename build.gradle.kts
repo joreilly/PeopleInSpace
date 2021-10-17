@@ -8,7 +8,7 @@ buildscript {
 
     dependencies {
         // keeping this here to allow AS to automatically update
-        classpath("com.android.tools.build:gradle:7.0.2")
+        classpath("com.android.tools.build:gradle:7.0.3")
 
         with(Deps.Gradle) {
             classpath(kotlin)
