@@ -28,8 +28,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            CompositionLocalProvider(LocalImageLoader provides imageLoader) {
+            val rotaryEventDispatcher = RotaryEventDispatcher()
+
+            CompositionLocalProvider(
+                LocalImageLoader provides imageLoader,
+                LocalRotaryEventDispatcher provides rotaryEventDispatcher,
+            ) {
                 val navController = rememberSwipeDismissableNavController()
+
+                RotaryEventHandlerSetup(rotaryEventDispatcher)
 
                 SwipeDismissableNavHost(
                     navController = navController,

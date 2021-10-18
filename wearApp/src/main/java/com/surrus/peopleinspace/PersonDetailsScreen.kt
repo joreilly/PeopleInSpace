@@ -55,6 +55,7 @@ fun PersonDetailsScreen(personName: String) {
 @Composable
 private fun PersonDetailsScreen(person: Assignment?) {
     val scrollState = rememberScrollState()
+    RotaryEventState(scrollState)
 
     MaterialTheme {
         Scaffold(
