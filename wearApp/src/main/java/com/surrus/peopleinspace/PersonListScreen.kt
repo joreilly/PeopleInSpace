@@ -31,6 +31,7 @@ import androidx.wear.compose.material.Card
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
@@ -84,6 +85,8 @@ fun PersonList(
     people: List<Assignment>,
     personSelected: (person: Assignment) -> Unit
 ) {
+    val scrollState = rememberScalingLazyListState()
+    RotaryEventState(scrollState)
     val paddingHeight = if (LocalConfiguration.current.isScreenRound) 50.dp else 8.dp
     ScalingLazyColumn(
         contentPadding = PaddingValues(
@@ -92,7 +95,8 @@ fun PersonList(
             top = paddingHeight,
             bottom = paddingHeight
         ),
-        modifier = Modifier.testTag(PersonListTag)
+        modifier = Modifier.testTag(PersonListTag),
+        state = scrollState,
     ) {
         items(people.size) { offset ->
             PersonView(people[offset], personSelected)
