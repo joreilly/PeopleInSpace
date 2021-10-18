@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Card
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.ScalingLazyColumn
+import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.annotation.ExperimentalCoilApi
@@ -64,7 +65,9 @@ fun PersonListScreen(
         ) {
             if (people != null) {
                 if (people.isNotEmpty()) {
-                    PersonList(people, personSelected)
+                    val scrollState = rememberScalingLazyListState()
+                    RotaryEventState(scrollState)
+                    PersonList(people, personSelected, scrollState)
                 } else {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Card(
@@ -83,10 +86,9 @@ fun PersonListScreen(
 @Composable
 fun PersonList(
     people: List<Assignment>,
-    personSelected: (person: Assignment) -> Unit
+    personSelected: (person: Assignment) -> Unit,
+    scrollState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
-    val scrollState = rememberScalingLazyListState()
-    RotaryEventState(scrollState)
     val paddingHeight = if (LocalConfiguration.current.isScreenRound) 50.dp else 8.dp
     ScalingLazyColumn(
         contentPadding = PaddingValues(
