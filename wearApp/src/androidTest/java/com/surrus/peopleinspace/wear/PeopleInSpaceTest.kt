@@ -1,5 +1,6 @@
 package com.surrus.peopleinspace.wear
 
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -7,8 +8,10 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
 import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.LocalRotaryEventDispatcher
 import com.surrus.peopleinspace.PersonListScreen
 import com.surrus.peopleinspace.PersonListTag
+import com.surrus.peopleinspace.RotaryEventDispatcher
 import org.junit.Rule
 import org.junit.Test
 
@@ -16,7 +19,7 @@ class PeopleInSpaceTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    val peopleList = listOf(
+    private val peopleList = listOf(
         Assignment(
             "Apollo 11",
             "Neil Armstrong",
