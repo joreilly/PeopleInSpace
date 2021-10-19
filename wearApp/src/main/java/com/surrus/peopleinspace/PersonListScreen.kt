@@ -48,15 +48,17 @@ fun PersonListScreen(
     peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
 ) {
     val peopleState by peopleInSpaceViewModel.peopleInSpace.collectAsState()
-
-    PersonListScreen(peopleState, personSelected)
+    val scrollState = rememberScalingLazyListState()
+    RotaryEventState(scrollState)
+    PersonListScreen(peopleState, personSelected, scrollState)
 }
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun PersonListScreen(
     people: List<Assignment>?,
-    personSelected: (person: Assignment) -> Unit
+    personSelected: (person: Assignment) -> Unit,
+    scrollState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
     MaterialTheme {
         AnimatedVisibility(
@@ -65,8 +67,6 @@ fun PersonListScreen(
         ) {
             if (people != null) {
                 if (people.isNotEmpty()) {
-                    val scrollState = rememberScalingLazyListState()
-                    RotaryEventState(scrollState)
                     PersonList(people, personSelected, scrollState)
                 } else {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
