@@ -26,9 +26,9 @@ val personImages = mapOf(
     "Anton Shkaplerov" to "https://alchetron.com/cdn/anton-shkaplerov-799e7545-54ae-4145-83d1-18f906d22b1-resize-750.jpeg",
     "Klim Shipenko" to "https://upload.wikimedia.org/wikipedia/pt/f/f9/Shipenko_klim.jpg",
     "Yulia Pereslid" to "https://metro.co.uk/wp-content/uploads/2021/10/PRI_203475964.jpg?quality=90&strip=all&zoom=1&resize=540%2C810",
-    "Zhai Zhigang" to "https://lh3.googleusercontent.com/proxy/xk_cyKyl2J0L0evVWqscwKjb2Ypsnr4PuoT2WciVGi_r6ALDFw-1Rlw4cU37z24n3ePXZm5RrRCJIVzi-UbPdEEidf3GJVb0uUhoPlXv67S-1-56yhNxaM-i0Ug4IX8RNYyfTn4zx9drQ_A",
+    "Zhai Zhigang" to "https://lh3.googleusercontent.com/proxy/lWh12ncF8OJvAf51jP49Slc3jbtKBNsexI19tHqXSkhv1pChXeuOF1xjGC3IcsoMlDh9ch_E_f7f7j1LdsFeJND5VRwmI2dOGDJ6invQEhqDTjJqfiSZ2SPmELoHyPYuNPOPM4bHUcFb44s",
     "Wang Yaping" to "https://alchetron.com/cdn/wang-yaping-2f869150-f66f-4884-b638-62ff678084a-resize-750.jpeg",
-    "Ye Guangfu" to "https://lh3.googleusercontent.com/proxy/ffO0hJN-y4tkAuta240ninzvANaZnhMtszxxdHIMx0RuUWloi8QSkFSC6VejW8pytRDr11pQ8UfgrAioJNQjBTwthSVlilElwBDanfZH0UgXmjIMfjwmGXQDQIkEiNrDjhIwgVHQdQ",
+    "Ye Guangfu" to "https://lh3.googleusercontent.com/proxy/gRPPtJvE3yJ3gKbFKcO2_AacsmfNXebiSlibtt7D7i-7S0cxTdc94i08JpLuVFxYdue4pnHGwh7mhpL1zwwA2UaawIUeQ1V0-PKKMhWHmp9c4zSeIfp9oh6ET31jWv6-QkFmYYT6ug",
 )
 
 val personBios = mapOf(
