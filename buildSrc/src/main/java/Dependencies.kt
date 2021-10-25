@@ -22,7 +22,7 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.6.1"
 
-    const val sqlDelight = "1.5.0"
+    const val sqlDelight = "1.5.2"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
