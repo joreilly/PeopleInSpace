@@ -187,8 +187,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -243,11 +243,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0B111895A7AE97EC60FD8B781FA7CC72 /* Debug */ = {
+		106EBB578E2A6E1D6C5744C2CD9122D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 119841385FF18F63B759D038AF309492 /* common.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "-x86_64";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -255,11 +257,27 @@
 			};
 			name = Debug;
 		};
-		1A5736533A2B7B75D49836A2FC39CC84 /* Release */ = {
+		2C4566AEB44F9ABEAC90CFB7029824B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "-x86_64";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		397978944C72CD4B9525327B629E4EB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 149B6A848B81890030D6253DD114E942 /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "-x86_64";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -276,40 +294,7 @@
 			};
 			name = Release;
 		};
-		3E2E076D87D6AFE5B0D66EF03D75DB95 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E3FDD244DB653FA5E4C1E97E6367222 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Debug;
-		};
-		8346672A1828A890BA99B12718363CAE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		D51956542E1F2A75D23A41318D65FA37 /* Debug */ = {
+		83B407616769AA4DF5197FD61F141F38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -335,6 +320,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -373,7 +359,28 @@
 			};
 			name = Debug;
 		};
-		F46900EF7BED262D107B1A0457CCC609 /* Release */ = {
+		AD31D2C2ABD9E2B623A24C742A25D16D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E3FDD244DB653FA5E4C1E97E6367222 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "-x86_64";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		F85C80B72A24509D9B2E0467F217CECE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -399,6 +406,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -439,8 +447,8 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D51956542E1F2A75D23A41318D65FA37 /* Debug */,
-				F46900EF7BED262D107B1A0457CCC609 /* Release */,
+				83B407616769AA4DF5197FD61F141F38 /* Debug */,
+				F85C80B72A24509D9B2E0467F217CECE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -448,8 +456,8 @@
 		9FC55EE579AC901DF6357BBBD4DB19AC /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceWatch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E2E076D87D6AFE5B0D66EF03D75DB95 /* Debug */,
-				1A5736533A2B7B75D49836A2FC39CC84 /* Release */,
+				AD31D2C2ABD9E2B623A24C742A25D16D /* Debug */,
+				397978944C72CD4B9525327B629E4EB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -457,8 +465,8 @@
 		F11FEA02DA0EC11D42BB6656A90E71FA /* Build configuration list for PBXAggregateTarget "common" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0B111895A7AE97EC60FD8B781FA7CC72 /* Debug */,
-				8346672A1828A890BA99B12718363CAE /* Release */,
+				106EBB578E2A6E1D6C5744C2CD9122D5 /* Debug */,
+				2C4566AEB44F9ABEAC90CFB7029824B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

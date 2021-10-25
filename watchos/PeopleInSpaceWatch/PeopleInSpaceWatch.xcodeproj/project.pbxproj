@@ -497,10 +497,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCDA205D8481581F21A6528 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceWatch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = PBH8V487HB;
+				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PeopleInSpaceWatch WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -522,10 +523,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 484BF1F88A8D35F5F047B20A /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */;
 			buildSettings = {
+				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceWatch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = PBH8V487HB;
+				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PeopleInSpaceWatch WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -549,7 +551,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PBH8V487HB;
+				DEVELOPMENT_TEAM = NT77748GS8;
 				IBSC_MODULE = PeopleInSpaceWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "PeopleInSpaceWatch WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch.watchkitapp;
@@ -568,7 +570,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PBH8V487HB;
+				DEVELOPMENT_TEAM = NT77748GS8;
 				IBSC_MODULE = PeopleInSpaceWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "PeopleInSpaceWatch WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch.watchkitapp;
@@ -586,7 +588,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PBH8V487HB;
+				DEVELOPMENT_TEAM = NT77748GS8;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch;
@@ -600,7 +602,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PBH8V487HB;
+				DEVELOPMENT_TEAM = NT77748GS8;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceWatch;
