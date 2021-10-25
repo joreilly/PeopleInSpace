@@ -52,7 +52,7 @@ kotlin {
     if (isWatchOSDevice) {
         watchosArm64("watch")
     } else {
-        watchosX86("watch")
+        watchosX64("watch")
     }
 
     macosX64("macOS")
