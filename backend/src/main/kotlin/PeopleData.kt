@@ -26,9 +26,13 @@ val personImages = mapOf(
     "Anton Shkaplerov" to "https://alchetron.com/cdn/anton-shkaplerov-799e7545-54ae-4145-83d1-18f906d22b1-resize-750.jpeg",
     "Klim Shipenko" to "https://upload.wikimedia.org/wikipedia/pt/f/f9/Shipenko_klim.jpg",
     "Yulia Pereslid" to "https://metro.co.uk/wp-content/uploads/2021/10/PRI_203475964.jpg?quality=90&strip=all&zoom=1&resize=540%2C810",
-    "Zhai Zhigang" to "https://lh3.googleusercontent.com/proxy/lWh12ncF8OJvAf51jP49Slc3jbtKBNsexI19tHqXSkhv1pChXeuOF1xjGC3IcsoMlDh9ch_E_f7f7j1LdsFeJND5VRwmI2dOGDJ6invQEhqDTjJqfiSZ2SPmELoHyPYuNPOPM4bHUcFb44s",
+    "Zhai Zhigang" to "https://dingyue.ws.126.net/2021/0701/aaa7e1e7j00qvkk13001hc000hs00lzg.jpg",
     "Wang Yaping" to "https://alchetron.com/cdn/wang-yaping-2f869150-f66f-4884-b638-62ff678084a-resize-750.jpeg",
-    "Ye Guangfu" to "https://lh3.googleusercontent.com/proxy/gRPPtJvE3yJ3gKbFKcO2_AacsmfNXebiSlibtt7D7i-7S0cxTdc94i08JpLuVFxYdue4pnHGwh7mhpL1zwwA2UaawIUeQ1V0-PKKMhWHmp9c4zSeIfp9oh6ET31jWv6-QkFmYYT6ug",
+    "Ye Guangfu" to "https://upload.wikimedia.org/wikipedia/commons/a/a2/Ye_Guangfu_in_2021.jpg",
+    "Raja Chari" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_RajaChari.jpg",
+    "Tom Marshburn" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_TomMarshburn.jpg",
+    "Kayla Barron" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_KaylaBarron.jpg",
+    "Matthias Maurer" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_MathiasMaurer.jpg",
 )
 
 val personBios = mapOf(
@@ -62,4 +66,8 @@ val personBios = mapOf(
     "Zhai Zhigang" to "Zhai Zhigang (born October 10, 1966) is a major general of the People's Liberation Army Strategic Support Force (PLASSF) in active service as a People's Liberation Army Astronaut Corps (PLAAC) taikonaut. During the Shenzhou 7 mission in 2008, he became the first Chinese citizen to carry out a spacewalk. He was a People's Liberation Army Air Force (PLAAF) fighter pilot.",
     "Wang Yaping" to "Colonel Wang Yaping (born 27 January 1980) is a Chinese military pilot and astronaut. Wang was the second female astronaut selected to the People's Liberation Army Astronaut Corps, and the second Chinese woman in space.",
     "Ye Guangfu" to "Colonel Ye Guangfu (Chinese: 叶光富; born 1 September 1980[1]) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) astronaut selected as part of the Shenzhou program.",
+    "Raja Chari" to "Raja Jon Vurputoor \"Grinder\" Chari (born June 24, 1977; Colonel, United States Air Force) is an American test pilot and NASA astronaut. He is a graduate of the U.S. Air Force Academy, Massachusetts Institute of Technology, and U.S. Naval Test Pilot School, and has over 2,000 flying hours.",
+    "Tom Marshburn" to "Thomas Henry \"Tom\" Marshburn (born August 29, 1960) is an American physician and a NASA astronaut. He is a veteran of two spaceflights to the International Space Station.",
+    "Kayla Barron" to "Kayla Jane Barron (born September 19, 1987; LCDR, USN) is an American submarine warfare officer, engineer and NASA astronaut.",
+    "Matthias Maurer" to "Matthias Josef Maurer (born 18 March 1970 in St. Wendel, Saarland) is a German European Space Agency astronaut and materials scientist, who was selected in 2015 to take part in space training.",
 )
