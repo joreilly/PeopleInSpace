@@ -32,7 +32,9 @@ struct PersonView: View {
             ImageView(withURL: person.personImageUrl ?? "", width: 50, height: 50)
             VStack(alignment: .leading) {
                 Text(person.name).font(.caption)
-                Text(person.craft).font(.caption)
+                Text(person.craft)
+                    .font(.caption)
+                    .fontWeight(.thin)
             }
         }
     }

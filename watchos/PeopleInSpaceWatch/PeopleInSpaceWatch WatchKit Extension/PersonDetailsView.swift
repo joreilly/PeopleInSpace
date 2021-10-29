@@ -8,11 +8,14 @@ struct PersonDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text(person.name).font(.subheadline)
-                
                 ImageView(withURL: person.personImageUrl ?? "", width: 120, height: 120)
 
-                Text(person.personBio ?? "").font(.body).multilineTextAlignment(.center)
+                Text(person.name).font(.headline)
+                Spacer()
+
+                Text(person.personBio ?? "").font(.body)
+                    .fontWeight(.thin)
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
             .padding()
