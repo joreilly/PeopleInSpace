@@ -91,9 +91,9 @@ gcloud app deploy backend/build/libs/backend-all.jar
 
 **Wear OS (Wear Compose)**
 <br/>
-<img width="300" alt="Wear Compose Screenshot 1" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
-<img width="300" alt="Wear Compose Screenshot 2" src="https://user-images.githubusercontent.com/6302/137640396-851489bb-e41d-47ef-badb-e2d22454eee4.png">
-<img width="300" alt="Wear Compose Screenshot 3" src="https://user-images.githubusercontent.com/6302/139468900-16ad4e95-41dc-427f-977c-b893b1751c78.png">
+<img width="250" alt="Wear Compose Screenshot 1" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
+<img width="250" alt="Wear Compose Screenshot 2" src="https://user-images.githubusercontent.com/6302/137640396-851489bb-e41d-47ef-badb-e2d22454eee4.png">
+<img width="250" alt="Wear Compose Screenshot 3" src="https://user-images.githubusercontent.com/6302/139468900-16ad4e95-41dc-427f-977c-b893b1751c78.png">
 
 
 **Compose for Desktop**
