@@ -27,8 +27,11 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // temporary hack for local testing of release builds
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
