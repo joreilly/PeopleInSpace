@@ -243,41 +243,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		106EBB578E2A6E1D6C5744C2CD9122D5 /* Debug */ = {
+		4BE259480D05FDF5FD37D2DD9297C06F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 119841385FF18F63B759D038AF309492 /* common.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "-x86_64";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		2C4566AEB44F9ABEAC90CFB7029824B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "-x86_64";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		397978944C72CD4B9525327B629E4EB2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 149B6A848B81890030D6253DD114E942 /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */;
+			baseConfigurationReference = 9E3FDD244DB653FA5E4C1E97E6367222 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "-x86_64";
+				ARCHS = x86_64;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -289,10 +260,9 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 6.1;
 			};
-			name = Release;
+			name = Debug;
 		};
 		83B407616769AA4DF5197FD61F141F38 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -359,12 +329,12 @@
 			};
 			name = Debug;
 		};
-		AD31D2C2ABD9E2B623A24C742A25D16D /* Debug */ = {
+		8AE9E677D65E3CBD1054ED7A54A7BF45 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E3FDD244DB653FA5E4C1E97E6367222 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */;
+			baseConfigurationReference = 149B6A848B81890030D6253DD114E942 /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "-x86_64";
+				ARCHS = x86_64;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -376,7 +346,37 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		B44B4DF9B78A390632694BBC5A08A346 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE9575AD15C56E1BE14733BC55F1D2F0 /* common.release.xcconfig */;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		E1C370CA6282126A6B25C8B893594418 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 119841385FF18F63B759D038AF309492 /* common.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -456,8 +456,8 @@
 		9FC55EE579AC901DF6357BBBD4DB19AC /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceWatch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD31D2C2ABD9E2B623A24C742A25D16D /* Debug */,
-				397978944C72CD4B9525327B629E4EB2 /* Release */,
+				4BE259480D05FDF5FD37D2DD9297C06F /* Debug */,
+				8AE9E677D65E3CBD1054ED7A54A7BF45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -465,8 +465,8 @@
 		F11FEA02DA0EC11D42BB6656A90E71FA /* Build configuration list for PBXAggregateTarget "common" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				106EBB578E2A6E1D6C5744C2CD9122D5 /* Debug */,
-				2C4566AEB44F9ABEAC90CFB7029824B8 /* Release */,
+				E1C370CA6282126A6B25C8B893594418 /* Debug */,
+				B44B4DF9B78A390632694BBC5A08A346 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

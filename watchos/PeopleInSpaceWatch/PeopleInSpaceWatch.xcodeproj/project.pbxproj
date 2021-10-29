@@ -11,6 +11,8 @@
 		1A40FE1E23DB5FC5008428A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1A23DB5C89008428A6 /* libsqlite3.tbd */; };
 		1ACB547624FAD1C50056FEF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */; };
 		1ACB547724FAD1DF0056FEF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */; };
+		1AFDDD1B272C7C9800FE7CB6 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDDD1A272C7C9800FE7CB6 /* ImageView.swift */; };
+		1AFDDD1D272C7E8500FE7CB6 /* PersonDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDDD1C272C7E8500FE7CB6 /* PersonDetailsView.swift */; };
 		FD254F9A23BE528600C19A05 /* PeopleInSpaceWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FD254F9923BE528600C19A05 /* PeopleInSpaceWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD254FA023BE528600C19A05 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD254F9E23BE528600C19A05 /* Interface.storyboard */; };
 		FD254FA223BE528700C19A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD254FA123BE528700C19A05 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		1A40FE1A23DB5C89008428A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1A40FE1C23DB5D26008428A6 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		1ACB547524FAD1C00056FEF1 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.2.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
+		1AFDDD1A272C7C9800FE7CB6 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		1AFDDD1C272C7E8500FE7CB6 /* PersonDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsView.swift; sourceTree = "<group>"; };
 		484BF1F88A8D35F5F047B20A /* Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceWatch WatchKit Extension/Pods-PeopleInSpaceWatch WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		BCCDA205D8481581F21A6528 /* Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceWatch WatchKit Extension/Pods-PeopleInSpaceWatch WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0B69EEAC732E1562EBD3CE /* libPods-PeopleInSpaceWatch WatchKit Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PeopleInSpaceWatch WatchKit Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 				FD254FBD23BE528800C19A05 /* PushNotificationPayload.apns */,
 				FD254FB923BE528800C19A05 /* Preview Content */,
 				FD254FCB23BE55DA00C19A05 /* ViewModel.swift */,
+				1AFDDD1A272C7C9800FE7CB6 /* ImageView.swift */,
+				1AFDDD1C272C7E8500FE7CB6 /* PersonDetailsView.swift */,
 			);
 			path = "PeopleInSpaceWatch WatchKit Extension";
 			sourceTree = "<group>";
@@ -347,6 +353,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AFDDD1D272C7E8500FE7CB6 /* PersonDetailsView.swift in Sources */,
+				1AFDDD1B272C7C9800FE7CB6 /* ImageView.swift in Sources */,
 				FD254FB023BE528700C19A05 /* HostingController.swift in Sources */,
 				FD254FAE23BE528700C19A05 /* ContentView.swift in Sources */,
 				FD254FB223BE528700C19A05 /* ExtensionDelegate.swift in Sources */,

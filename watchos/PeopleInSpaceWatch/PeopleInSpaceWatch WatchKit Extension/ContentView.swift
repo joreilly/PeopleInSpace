@@ -8,25 +8,33 @@ import common
 
 struct ContentView: View {
     
-    @ObservedObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
+    @ObservedObject var viewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
     
     var body: some View {
         VStack {
-            List(peopleInSpaceViewModel.people, id: \.name) { person in
-                PersonView(person: person)
+            List(viewModel.people, id: \.name) { person in
+                NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+                    PersonView(person: person)
+                }
             }
             .onAppear(perform: {
-                self.peopleInSpaceViewModel.fetch()
+                self.viewModel.fetch()
             })
         }
     }
 }
 
-struct PersonView : View {
+struct PersonView: View {
     var person: Assignment
     
     var body: some View {
-        NavigationLink(person.name, destination: Text(person.craft).font(.subheadline))
+        HStack {
+            ImageView(withURL: person.personImageUrl ?? "", width: 50, height: 50)
+            VStack(alignment: .leading) {
+                Text(person.name).font(.caption)
+                Text(person.craft).font(.caption)
+            }
+        }
     }
 }
 
