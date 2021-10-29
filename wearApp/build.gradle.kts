@@ -41,6 +41,10 @@ android {
 
 dependencies {
 
+    with(Deps.Android) {
+        implementation(osmdroidAndroid)
+    }
+
     with(Deps.AndroidX) {
         implementation(activityCompose)
     }
