@@ -89,11 +89,11 @@ gcloud app deploy backend/build/libs/backend-all.jar
 <br/>
 <img width="555" alt="Screenshot 2021-03-07 at 17 03 46" src="https://user-images.githubusercontent.com/6302/110248059-2ab81c00-7f67-11eb-9b3a-2b04d1be43ef.png">
 
-**Wear OS (Jetpack Compose)**
+**Wear OS (Wear Compose)**
 <br/>
-<img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
-<img width="300" alt="Screenshot 2021-07-02 at 18 30 03" src="https://user-images.githubusercontent.com/6302/137640396-851489bb-e41d-47ef-badb-e2d22454eee4.png">
-
+<img width="300" alt="Wear Compose Screenshot 1" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
+<img width="300" alt="Wear Compose Screenshot 2" src="https://user-images.githubusercontent.com/6302/137640396-851489bb-e41d-47ef-badb-e2d22454eee4.png">
+<img width="300" alt="Wear Compose Screenshot 3" src="https://user-images.githubusercontent.com/6302/139468900-16ad4e95-41dc-427f-977c-b893b1751c78.png">
 
 
 **Compose for Desktop**
