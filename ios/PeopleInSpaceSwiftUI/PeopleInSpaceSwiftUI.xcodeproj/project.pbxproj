@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2873952733F5C600D7C25E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */; };
+		1A287396273427B300D7C25E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA82EEC25052E1E00193051 /* ImageView.swift */; };
+		1A28791D2733F257008EC881 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A28791C2733F257008EC881 /* WidgetKit.framework */; };
+		1A28791F2733F257008EC881 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A28791E2733F257008EC881 /* SwiftUI.framework */; };
+		1A2879222733F257008EC881 /* PeopleInSpaceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2879212733F257008EC881 /* PeopleInSpaceWidget.swift */; };
+		1A2879242733F259008EC881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2879232733F259008EC881 /* Assets.xcassets */; };
+		1A2879282733F259008EC881 /* PeopleInSpaceWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A28791B2733F257008EC881 /* PeopleInSpaceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1A40FE1923DB5C35008428A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */; };
 		1AA82EED25052E1E00193051 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA82EEC25052E1E00193051 /* ImageView.swift */; };
 		1ABD44FA23B00008008387E3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABD44F923B00008008387E3 /* ViewModel.swift */; };
@@ -19,9 +26,42 @@
 		1AC2439025A1D57700F17D2F /* IssPositionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2438F25A1D57700F17D2F /* IssPositionPublisher.swift */; };
 		1AD2EC6A25E9984900CCEE81 /* ISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2EC6925E9984900CCEE81 /* ISSMapView.swift */; };
 		1E1255057DE614781855FC02 /* libPods-PeopleInSpaceSwiftUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28681F6577A67864E2C2D9B4 /* libPods-PeopleInSpaceSwiftUI.a */; };
+		EB26652EEED4D2D4BCFA681D /* libPods-PeopleInSpaceWidgetExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0873B836B9801BC514F9A555 /* libPods-PeopleInSpaceWidgetExtension.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1A2879262733F259008EC881 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1ABFB8B223AFF5CC003D807E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A28791A2733F257008EC881;
+			remoteInfo = PeopleInSpaceWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1A28792C2733F259008EC881 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1A2879282733F259008EC881 /* PeopleInSpaceWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0873B836B9801BC514F9A555 /* libPods-PeopleInSpaceWidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PeopleInSpaceWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18A371146E3D470DBF29C172 /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceWidgetExtension/Pods-PeopleInSpaceWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		1A28791B2733F257008EC881 /* PeopleInSpaceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeopleInSpaceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A28791C2733F257008EC881 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1A28791E2733F257008EC881 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1A2879212733F257008EC881 /* PeopleInSpaceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInSpaceWidget.swift; sourceTree = "<group>"; };
+		1A2879232733F259008EC881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A2879252733F259008EC881 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1AA82EEC25052E1E00193051 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		1ABD44F923B00008008387E3 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -37,10 +77,22 @@
 		1AD2EC6925E9984900CCEE81 /* ISSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSMapView.swift; sourceTree = "<group>"; };
 		28681F6577A67864E2C2D9B4 /* libPods-PeopleInSpaceSwiftUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PeopleInSpaceSwiftUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CD7101BBBC60F561BFB049 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceSwiftUI/Pods-PeopleInSpaceSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		BD4D317D12DFE46788F27B26 /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceWidgetExtension/Pods-PeopleInSpaceWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		E9A29AFE5FFFB564C509840A /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceSwiftUI/Pods-PeopleInSpaceSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1A2879182733F257008EC881 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A28791F2733F257008EC881 /* SwiftUI.framework in Frameworks */,
+				1A28791D2733F257008EC881 /* WidgetKit.framework in Frameworks */,
+				1A2873952733F5C600D7C25E /* libsqlite3.tbd in Frameworks */,
+				EB26652EEED4D2D4BCFA681D /* libPods-PeopleInSpaceWidgetExtension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1ABFB8B723AFF5CC003D807E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,14 +110,27 @@
 			children = (
 				E9A29AFE5FFFB564C509840A /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */,
 				56CD7101BBBC60F561BFB049 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */,
+				18A371146E3D470DBF29C172 /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */,
+				BD4D317D12DFE46788F27B26 /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		1A2879202733F257008EC881 /* PeopleInSpaceWidget */ = {
+			isa = PBXGroup;
+			children = (
+				1A2879212733F257008EC881 /* PeopleInSpaceWidget.swift */,
+				1A2879232733F259008EC881 /* Assets.xcassets */,
+				1A2879252733F259008EC881 /* Info.plist */,
+			);
+			path = PeopleInSpaceWidget;
 			sourceTree = "<group>";
 		};
 		1ABFB8B123AFF5CC003D807E = {
 			isa = PBXGroup;
 			children = (
 				1ABFB8BC23AFF5CC003D807E /* PeopleInSpaceSwiftUI */,
+				1A2879202733F257008EC881 /* PeopleInSpaceWidget */,
 				1ABFB8BB23AFF5CC003D807E /* Products */,
 				0682AAA6A83414CA1CC104C4 /* Pods */,
 				D0F1ED5C992B526EA33236F9 /* Frameworks */,
@@ -76,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				1ABFB8BA23AFF5CC003D807E /* PeopleInSpaceSwiftUI.app */,
+				1A28791B2733F257008EC881 /* PeopleInSpaceWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +177,9 @@
 			children = (
 				1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */,
 				28681F6577A67864E2C2D9B4 /* libPods-PeopleInSpaceSwiftUI.a */,
+				1A28791C2733F257008EC881 /* WidgetKit.framework */,
+				1A28791E2733F257008EC881 /* SwiftUI.framework */,
+				0873B836B9801BC514F9A555 /* libPods-PeopleInSpaceWidgetExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,6 +187,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1A28791A2733F257008EC881 /* PeopleInSpaceWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2879292733F259008EC881 /* Build configuration list for PBXNativeTarget "PeopleInSpaceWidgetExtension" */;
+			buildPhases = (
+				CB56E28CF58AE58B52E5412F /* [CP] Check Pods Manifest.lock */,
+				1A2879172733F257008EC881 /* Sources */,
+				1A2879182733F257008EC881 /* Frameworks */,
+				1A2879192733F257008EC881 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeopleInSpaceWidgetExtension;
+			productName = PeopleInSpaceWidgetExtension;
+			productReference = 1A28791B2733F257008EC881 /* PeopleInSpaceWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		1ABFB8B923AFF5CC003D807E /* PeopleInSpaceSwiftUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1ABFB8CE23AFF5CE003D807E /* Build configuration list for PBXNativeTarget "PeopleInSpaceSwiftUI" */;
@@ -126,10 +213,12 @@
 				1ABFB8B623AFF5CC003D807E /* Sources */,
 				1ABFB8B723AFF5CC003D807E /* Frameworks */,
 				1ABFB8B823AFF5CC003D807E /* Resources */,
+				1A28792C2733F259008EC881 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1A2879272733F259008EC881 /* PBXTargetDependency */,
 			);
 			name = PeopleInSpaceSwiftUI;
 			productName = PeopleInSpaceSwiftUI;
@@ -142,10 +231,13 @@
 		1ABFB8B223AFF5CC003D807E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "John O'Reilly";
 				TargetAttributes = {
+					1A28791A2733F257008EC881 = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					1ABFB8B923AFF5CC003D807E = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -165,11 +257,20 @@
 			projectRoot = "";
 			targets = (
 				1ABFB8B923AFF5CC003D807E /* PeopleInSpaceSwiftUI */,
+				1A28791A2733F257008EC881 /* PeopleInSpaceWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1A2879192733F257008EC881 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2879242733F259008EC881 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1ABFB8B823AFF5CC003D807E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,9 +306,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CB56E28CF58AE58B52E5412F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PeopleInSpaceWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1A2879172733F257008EC881 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A287396273427B300D7C25E /* ImageView.swift in Sources */,
+				1A2879222733F257008EC881 /* PeopleInSpaceWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1ABFB8B623AFF5CC003D807E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,6 +356,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1A2879272733F259008EC881 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A28791A2733F257008EC881 /* PeopleInSpaceWidgetExtension */;
+			targetProxy = 1A2879262733F259008EC881 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		1ABFB8C823AFF5CE003D807E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -236,6 +376,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1A28792A2733F259008EC881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18A371146E3D470DBF29C172 /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PeopleInSpaceWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 John O'Reilly. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceSwiftUI.PeopleInSpaceWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A28792B2733F259008EC881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD4D317D12DFE46788F27B26 /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PeopleInSpaceWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 John O'Reilly. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.PeopleInSpaceSwiftUI.PeopleInSpaceWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		1ABFB8CC23AFF5CE003D807E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -286,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -340,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -354,6 +554,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9A29AFE5FFFB564C509840A /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceSwiftUI/Preview Content\"";
@@ -375,6 +576,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 56CD7101BBBC60F561BFB049 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceSwiftUI/Preview Content\"";
@@ -395,6 +597,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1A2879292733F259008EC881 /* Build configuration list for PBXNativeTarget "PeopleInSpaceWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A28792A2733F259008EC881 /* Debug */,
+				1A28792B2733F259008EC881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1ABFB8B523AFF5CC003D807E /* Build configuration list for PBXProject "PeopleInSpaceSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
