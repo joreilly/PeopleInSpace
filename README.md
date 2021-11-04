@@ -4,6 +4,7 @@ Minimal **Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose 
 * Android (Jetpack Compose)
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
 * iOS (SwiftUI)
+* iOS App Widget (SwiftUI)
 * watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
 * macOS (SwiftUI)
 * Desktop (Compose for Desktop)
