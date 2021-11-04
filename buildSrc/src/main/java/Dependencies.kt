@@ -11,10 +11,10 @@ object Versions {
     const val kotlinxSerialization = "1.2.2"
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val compose = "1.0.4"
-    const val wearCompose = "1.0.0-alpha08"
-    const val navCompose = "2.4.0-alpha10"
-    const val accompanist = "0.19.0"
+    const val compose = "1.0.5"
+    const val wearCompose = "1.0.0-alpha10"
+    const val navCompose = "2.4.0-beta02"
+    const val accompanist = "0.21.0-beta"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
