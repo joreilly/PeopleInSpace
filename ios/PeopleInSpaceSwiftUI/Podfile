@@ -3,3 +3,6 @@ target 'PeopleInSpaceSwiftUI' do
     pod 'common', :path => '../../common'
 end
 
+target 'PeopleInSpaceWidgetExtension' do
+    pod 'common', :path => '../../common'
+end

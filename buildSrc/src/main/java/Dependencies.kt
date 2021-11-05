@@ -12,8 +12,8 @@ object Versions {
     const val kotlinxHtmlJs = "0.7.3"
 
     const val compose = "1.1.0-beta01"
-    const val wearCompose = "1.0.0-alpha08"
-    const val navCompose = "2.4.0-alpha10"
+    const val wearCompose = "1.0.0-alpha10"
+    const val navCompose = "2.4.0-beta02"
     const val accompanist = "0.21.0-beta"
 
     const val junit = "4.12"
