@@ -29,6 +29,6 @@ allprojects {
         mavenCentral()
         maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
         maven(url = "https://jitpack.io")
-        maven(url = "https://androidx.dev/snapshots/latest/artifacts/repository")
+        maven(url = "https://androidx.dev/snapshots/builds/7888785/artifacts/repository")
     }
 }
