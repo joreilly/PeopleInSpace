@@ -14,7 +14,7 @@ object Versions {
     const val compose = "1.0.5"
     const val wearCompose = "1.0.0-alpha10"
     const val navCompose = "2.4.0-beta02"
-    const val accompanist = "0.21.0-beta"
+    const val accompanist = "0.20.2"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
