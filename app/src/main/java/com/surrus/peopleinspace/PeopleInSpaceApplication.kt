@@ -4,16 +4,25 @@ import android.app.Application
 import co.touchlab.kermit.Kermit
 import com.surrus.common.di.initKoin
 import com.surrus.peopleinspace.di.appModule
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.osmdroid.config.Configuration
+import java.io.File
 
-class PeopleInSpaceApplication : Application(), KoinComponent {
+class PeopleInSpaceApplication : Application() {
     private val logger: Kermit by inject()
 
     override fun onCreate() {
         super.onCreate()
+
+        // needed for osmandroid
+        Configuration.getInstance().userAgentValue = BuildConfig.APPLICATION_ID
+        Configuration.getInstance().osmdroidTileCache = File(cacheDir, "osm").also {
+            it.mkdir()
+        }
 
         initKoin {
             androidLogger()
