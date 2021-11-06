@@ -128,7 +128,6 @@ object Deps {
         const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
-        const val clientCurl = "io.ktor:ktor-client-curl:${Versions.ktor}"
         const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
     }
 
