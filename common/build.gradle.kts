@@ -135,7 +135,7 @@ kotlin {
         }
 
         sourceSets["macOSMain"].dependencies {
-            implementation(Deps.Ktor.clientCurl)
+            implementation(Deps.Ktor.clientIos)
             implementation(Deps.SqlDelight.nativeDriverMacos)
         }
 
