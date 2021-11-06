@@ -54,16 +54,10 @@ class ISSMapWidget : BaseGlanceAppWidget<ISSMapWidget.Data>() {
 
         val bitmap = withContext(Dispatchers.Main) {
             suspendCoroutine<Bitmap> { cont ->
-                println("mapSnapshot suspendCoroutine")
-
-//                val cache = TileWriter()
-
                 val mapSnapshot = MapSnapshot(
                     {
-                        println("mapSnapshot status " + it.status)
                         if (it.status == MapSnapshot.Status.CANVAS_OK) {
                             val bitmap = Bitmap.createBitmap(it.bitmap)
-                            println("mapSnapshot returning " + bitmap.width)
                             cont.resume(bitmap)
                         }
                     },
@@ -74,13 +68,10 @@ class ISSMapWidget : BaseGlanceAppWidget<ISSMapWidget.Data>() {
                 )
 
                 launch(Dispatchers.IO) {
-                    println("mapSnapshot launch")
                     mapSnapshot.run()
                 }
             }
         }
-
-        println("mapSnapshot returning data " + bitmap.width)
 
         return Data(bitmap)
     }

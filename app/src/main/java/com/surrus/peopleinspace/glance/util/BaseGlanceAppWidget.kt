@@ -35,8 +35,6 @@ abstract class BaseGlanceAppWidget<T>(initialData: T? = null) : GlanceAppWidget(
 
             val currentGlanceId = snapshotFlow { glanceId }.filterNotNull().firstOrNull()
 
-            println("initiateLoad $currentGlanceId")
-
             if (currentGlanceId != null) {
                 update(context, currentGlanceId)
             }
