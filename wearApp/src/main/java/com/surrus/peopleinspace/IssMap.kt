@@ -64,7 +64,6 @@ fun IssMap() {
                     .testTag(ISSPositionMapTag)
                     .semantics { observedIssPosition = issPosition },
                 update = { map ->
-                    println(issPosition)
                     val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
                     map.controller.setCenter(issPositionPoint)
 

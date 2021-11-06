@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
-        minSdk = 25
+        minSdk = 26
         targetSdk = Versions.androidTargetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -83,6 +83,8 @@ dependencies {
         androidTestImplementation(composeUiTestJUnit)
         debugImplementation(composeUiTestManifest)
     }
+
+    implementation("androidx.glance:glance-wear:1.0.0-SNAPSHOT")
 
     implementation(project(":common"))
 }
