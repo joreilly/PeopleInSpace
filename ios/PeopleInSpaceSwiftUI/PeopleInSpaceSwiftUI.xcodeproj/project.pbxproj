@@ -23,7 +23,6 @@
 		1ABFB8C423AFF5CE003D807E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABFB8C323AFF5CE003D807E /* Assets.xcassets */; };
 		1ABFB8C723AFF5CE003D807E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABFB8C623AFF5CE003D807E /* Preview Assets.xcassets */; };
 		1ABFB8CA23AFF5CE003D807E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABFB8C823AFF5CE003D807E /* LaunchScreen.storyboard */; };
-		1AC2439025A1D57700F17D2F /* IssPositionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2438F25A1D57700F17D2F /* IssPositionPublisher.swift */; };
 		1AD2EC6A25E9984900CCEE81 /* ISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2EC6925E9984900CCEE81 /* ISSMapView.swift */; };
 		1E1255057DE614781855FC02 /* libPods-PeopleInSpaceSwiftUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28681F6577A67864E2C2D9B4 /* libPods-PeopleInSpaceSwiftUI.a */; };
 		EB26652EEED4D2D4BCFA681D /* libPods-PeopleInSpaceWidgetExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0873B836B9801BC514F9A555 /* libPods-PeopleInSpaceWidgetExtension.a */; };
@@ -73,7 +72,6 @@
 		1ABFB8C623AFF5CE003D807E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1ABFB8C923AFF5CE003D807E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ABFB8CB23AFF5CE003D807E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1AC2438F25A1D57700F17D2F /* IssPositionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssPositionPublisher.swift; sourceTree = "<group>"; };
 		1AD2EC6925E9984900CCEE81 /* ISSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSMapView.swift; sourceTree = "<group>"; };
 		28681F6577A67864E2C2D9B4 /* libPods-PeopleInSpaceSwiftUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PeopleInSpaceSwiftUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CD7101BBBC60F561BFB049 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleInSpaceSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-PeopleInSpaceSwiftUI/Pods-PeopleInSpaceSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 				1ABFB8C523AFF5CE003D807E /* Preview Content */,
 				1ABD44F923B00008008387E3 /* ViewModel.swift */,
 				1AA82EEC25052E1E00193051 /* ImageView.swift */,
-				1AC2438F25A1D57700F17D2F /* IssPositionPublisher.swift */,
 				1AD2EC6925E9984900CCEE81 /* ISSMapView.swift */,
 			);
 			path = PeopleInSpaceSwiftUI;
@@ -345,7 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AA82EED25052E1E00193051 /* ImageView.swift in Sources */,
-				1AC2439025A1D57700F17D2F /* IssPositionPublisher.swift in Sources */,
 				1ABFB8BE23AFF5CC003D807E /* AppDelegate.swift in Sources */,
 				1ABFB8C023AFF5CC003D807E /* SceneDelegate.swift in Sources */,
 				1AD2EC6A25E9984900CCEE81 /* ISSMapView.swift in Sources */,

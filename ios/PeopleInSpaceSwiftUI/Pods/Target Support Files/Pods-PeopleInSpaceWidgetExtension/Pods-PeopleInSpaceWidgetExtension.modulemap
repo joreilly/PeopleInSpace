@@ -1,0 +1,6 @@
+module Pods_PeopleInSpaceWidgetExtension {
+  umbrella header "Pods-PeopleInSpaceWidgetExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

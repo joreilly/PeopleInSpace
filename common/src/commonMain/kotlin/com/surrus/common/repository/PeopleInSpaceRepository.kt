@@ -70,7 +70,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
         }
     }
 
-    // Used by web client atm
+    // Used by web and apple clients atm
     override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
     override fun pollISSPosition(): Flow<IssPosition> {
