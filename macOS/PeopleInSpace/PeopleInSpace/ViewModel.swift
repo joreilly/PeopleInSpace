@@ -1,76 +1,41 @@
 import Foundation
 import Combine
 import common
+import KMPNativeCoroutinesCombine
 
 
 class PeopleInSpaceViewModel: ObservableObject {
     @Published var people = [Assignment]()
     @Published var issPosition = IssPosition(latitude: 0.0, longitude: 0.0)
     
-    private var subscription: AnyCancellable?
+    private var positionCancellable: AnyCancellable?
+    private var peopleCancellable: AnyCancellable?
     
     private let repository: PeopleInSpaceRepository
     init(repository: PeopleInSpaceRepository) {
         self.repository = repository
         
-        subscription = IssPositionPublisher(repository: repository)
-            .assign(to: \.issPosition, on: self)
+        positionCancellable = createPublisher(for: repository.pollISSPositionNative())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                debugPrint(completion)
+            }, receiveValue: { [weak self] value in
+                self?.issPosition = value
+            })
     }
     
     func startObservingPeopleUpdates() {
-        repository.startObservingPeopleUpdates(success: { data in
-            self.people = data
-        })
+        peopleCancellable = createPublisher(for: repository.fetchPeopleAsFlowNative())
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                debugPrint(completion)
+            }, receiveValue: { [weak self] value in
+                self?.people = value
+            })
     }
     
     func stopObservingPeopleUpdates() {
-        repository.stopObservingPeopleUpdates()
+        peopleCancellable?.cancel()
     }
     
 }
-
-
-
-public struct IssPositionPublisher: Publisher {
-    public typealias Output = IssPosition
-    public typealias Failure = Never
-
-    private let repository: PeopleInSpaceRepository
-    public init(repository: PeopleInSpaceRepository) {
-        self.repository = repository
-    }
-
-    public func receive<S: Subscriber>(subscriber: S) where S.Input == IssPosition, S.Failure == Failure {
-        let subscription = IssPositionSubscription(repository: repository, subscriber: subscriber)
-        subscriber.receive(subscription: subscription)
-    }
-
-    final class IssPositionSubscription<S: Subscriber>: Subscription where S.Input == IssPosition, S.Failure == Failure {
-        private var subscriber: S?
-        private var job: Kotlinx_coroutines_coreJob? = nil
-
-        private let repository: PeopleInSpaceRepository
-
-        init(repository: PeopleInSpaceRepository, subscriber: S) {
-            self.repository = repository
-            self.subscriber = subscriber
-
-            job = repository.iosPollISSPosition().subscribe(
-                scope: repository.iosScope,
-                onEach: { position in
-                    subscriber.receive(position!)
-                },
-                onComplete: { subscriber.receive(completion: .finished) },
-                onThrow: { error in debugPrint(error) }
-            )
-        }
-
-        func cancel() {
-            subscriber = nil
-            job?.cancel(cause: nil)
-        }
-
-        func request(_ demand: Subscribers.Demand) {}
-    }
-}
-

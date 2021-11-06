@@ -1,0 +1,6 @@
+module Pods_PeopleInSpaceWatch_WatchKit_Extension {
+  umbrella header "Pods-PeopleInSpaceWatch WatchKit Extension-umbrella.h"
+
+  export *
+  module * { export * }
+}

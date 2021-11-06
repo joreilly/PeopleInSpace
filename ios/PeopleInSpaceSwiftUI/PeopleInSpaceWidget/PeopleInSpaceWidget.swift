@@ -2,24 +2,16 @@ import WidgetKit
 import SwiftUI
 import Combine
 import common
+import KMPNativeCoroutinesCombine
 
 final class Provider: TimelineProvider {
-    var timelineCancellable: AnyCancellable?
+    
+    private let repository: PeopleInSpaceRepository
+    private var timelineCancellable: AnyCancellable?
 
     init() {
         KoinKt.doInitKoin()
-    }
-
-    private var entryPublisher: AnyPublisher<PeopleInSpaceListEntry, Never> {
-
-        let future = Future<PeopleInSpaceListEntry, Never> { promise in
-            let repository =  PeopleInSpaceRepository()
-
-            repository.startObservingPeopleUpdates(success: { data in
-                promise(.success(PeopleInSpaceListEntry(date: Date(), peopleList: data)))
-            })
-        }
-        return AnyPublisher(future)
+        repository = PeopleInSpaceRepository()
     }
 
     func placeholder(in context: Context) -> PeopleInSpaceListEntry {
@@ -32,10 +24,15 @@ final class Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        timelineCancellable = entryPublisher
-            .map { Timeline(entries: [$0], policy: .atEnd) }
+        timelineCancellable = createFuture(for: repository.fetchPeopleNative())
+            .map { data in
+                let entry = PeopleInSpaceListEntry(date: Date(), peopleList: data)
+                return Timeline(entries: [entry], policy: .atEnd)
+            }
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: completion)
+            .sink(receiveCompletion: { completion in
+                debugPrint(completion)
+            }, receiveValue: completion)
     }
 }
 

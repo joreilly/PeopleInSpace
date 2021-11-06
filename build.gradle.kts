@@ -17,6 +17,7 @@ buildscript {
             classpath(shadow)
             classpath(kotlinter)
             classpath(gradleVersionsPlugin)
+            classpath(kmpNativeCoroutines)
         }
     }
 }
