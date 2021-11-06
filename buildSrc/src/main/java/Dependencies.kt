@@ -43,6 +43,8 @@ object Versions {
     const val kermit = "0.1.9"
 
     const val gradleVersionsPlugin = "0.39.0"
+
+    const val kmpNativeCoroutines = "0.8.0"
 }
 
 object Deps {
@@ -53,6 +55,7 @@ object Deps {
         const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
         const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
+        const val kmpNativeCoroutines = "com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${Versions.kmpNativeCoroutines}"
     }
 
     object Kotlinx {
