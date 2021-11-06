@@ -135,3 +135,4 @@ gcloud app deploy backend/build/libs/backend-all.jar
 * [SQLDelight](https://github.com/cashapp/sqldelight)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [SwiftUI](https://developer.apple.com/documentation/swiftui)
+* [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
