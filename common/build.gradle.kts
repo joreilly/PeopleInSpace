@@ -64,6 +64,7 @@ kotlin {
         // Configure fields required by CocoaPods.
         summary = "PeopleInSpace"
         homepage = "https://github.com/joreilly/PeopleInSpace"
+        noPodspec()
     }
 
     js(IR) {

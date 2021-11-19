@@ -15,6 +15,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.koin.core.logger.Level
 import org.koin.dsl.module
 
 class PeopleInSpaceApplication : Application(), KoinComponent {
@@ -24,7 +25,8 @@ class PeopleInSpaceApplication : Application(), KoinComponent {
         super.onCreate()
 
         initKoin {
-            androidLogger()
+            // https://github.com/InsertKoinIO/koin/issues/1188
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@PeopleInSpaceApplication)
 
             modules(imageLoader(this@PeopleInSpaceApplication))
