@@ -3,12 +3,10 @@ object Versions {
     const val androidCompileSdk = 31
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlin = "1.5.31"
-
-    const val kotlinCoroutines = "1.5.2-native-mt"
+    const val kotlinCoroutines = "1.5.1-new-mm-dev2"
     const val koin = "3.1.2"
-    const val ktor = "1.6.4"
-    const val kotlinxSerialization = "1.2.2"
+    const val ktor = "1.6.2-native-mm-eap-196"
+    const val kotlinxSerialization = "1.3.0"
     const val kotlinxHtmlJs = "0.7.3"
 
     const val compose = "1.0.5"
@@ -43,19 +41,14 @@ object Versions {
     const val kermit = "0.1.9"
 
     const val gradleVersionsPlugin = "0.39.0"
-
-    const val kmpNativeCoroutines = "0.8.0"
 }
 
 object Deps {
     object Gradle {
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
         const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
         const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
         const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
-        const val kmpNativeCoroutines = "com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${Versions.kmpNativeCoroutines}"
     }
 
     object Kotlinx {
@@ -81,9 +74,6 @@ object Deps {
         const val mockito = "org.mockito:mockito-inline:${Versions.mockito}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
         const val testCore = "androidx.test:core:${Versions.testCore}"
-
-        const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
-        const val kotlinTestJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
 
         const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
         const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
@@ -124,10 +114,8 @@ object Deps {
         const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-        const val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
         const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
-        const val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
         const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
     }
 
