@@ -5,10 +5,10 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("com.android.library")
-    id("org.jetbrains.kotlin.native.cocoapods")
+    //id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    //id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 // CocoaPods requires the podspec to have a version.
@@ -30,38 +30,41 @@ android {
 }
 
 kotlin {
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
-        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
-        else -> ::iosX64
-    }
-    iosTarget("iOS") {}
-
-    val sdkName: String? = System.getenv("SDK_NAME")
-    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
-    if (isWatchOSDevice) {
-        watchosArm64("watch")
-    } else {
-        watchosX64("watch")
-    }
-
-    macosX64("macOS")
+//    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
+//        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+//        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
+//        else -> ::iosX64
+//    }
+//    iosTarget("iOS") {}
+//
+//    val sdkName: String? = System.getenv("SDK_NAME")
+//    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
+//    if (isWatchOSDevice) {
+//        watchosArm64("watch")
+//    } else {
+//        watchosX64("watch")
+//    }
+//
+//    macosX64("macOS")
     android()
     jvm()
 
-    cocoapods {
-        // Configure fields required by CocoaPods.
-        summary = "PeopleInSpace"
-        homepage = "https://github.com/joreilly/PeopleInSpace"
-    }
-
-    js(IR) {
-        useCommonJs()
-        browser()
-    }
+//    cocoapods {
+//        // Configure fields required by CocoaPods.
+//        summary = "PeopleInSpace"
+//        homepage = "https://github.com/joreilly/PeopleInSpace"
+//    }
+//
+//    js(IR) {
+//        useCommonJs()
+//        browser()
+//    }
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
+
+
+            api("aws.sdk.kotlin:dynamodb:0.16.0")
 
             with(Deps.Ktor) {
                 implementation(clientCore)
@@ -100,6 +103,7 @@ kotlin {
         sourceSets["androidMain"].dependencies {
             implementation(Deps.Ktor.clientAndroid)
             implementation(Deps.SqlDelight.androidDriver)
+            //implementation("aws.sdk.kotlin:dynamodb:0.9.4-beta")
         }
         sourceSets["androidTest"].dependencies {
             implementation(Deps.Test.junit)
@@ -111,26 +115,26 @@ kotlin {
             implementation(Deps.Log.slf4j)
         }
 
-        sourceSets["iOSMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
-            implementation(Deps.SqlDelight.nativeDriver)
-        }
-        sourceSets["iOSTest"].dependencies {
-        }
-
-        sourceSets["watchMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
-            implementation(Deps.SqlDelight.nativeDriver)
-        }
-
-        sourceSets["macOSMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
-            implementation(Deps.SqlDelight.nativeDriverMacos)
-        }
-
-        sourceSets["jsMain"].dependencies {
-            implementation(Deps.Ktor.clientJs)
-        }
+//        sourceSets["iOSMain"].dependencies {
+//            implementation(Deps.Ktor.clientIos)
+//            implementation(Deps.SqlDelight.nativeDriver)
+//        }
+//        sourceSets["iOSTest"].dependencies {
+//        }
+//
+//        sourceSets["watchMain"].dependencies {
+//            implementation(Deps.Ktor.clientIos)
+//            implementation(Deps.SqlDelight.nativeDriver)
+//        }
+//
+//        sourceSets["macOSMain"].dependencies {
+//            implementation(Deps.Ktor.clientIos)
+//            implementation(Deps.SqlDelight.nativeDriverMacos)
+//        }
+//
+//        sourceSets["jsMain"].dependencies {
+//            implementation(Deps.Ktor.clientJs)
+//        }
     }
 }
 
@@ -147,10 +151,10 @@ sqldelight {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("PeopleInSpace")
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        iOS { v("13") }
-    }
-}
+//multiplatformSwiftPackage {
+//    packageName("PeopleInSpace")
+//    swiftToolsVersion("5.3")
+//    targetPlatforms {
+//        iOS { v("13") }
+//    }
+//}

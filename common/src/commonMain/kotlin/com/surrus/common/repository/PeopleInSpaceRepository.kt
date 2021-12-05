@@ -1,5 +1,9 @@
 package com.surrus.common.repository
 
+import aws.sdk.kotlin.runtime.auth.credentials.StaticCredentialsProvider
+import aws.sdk.kotlin.services.dynamodb.DynamoDbClient
+import aws.sdk.kotlin.services.dynamodb.model.AttributeValue
+import aws.sdk.kotlin.services.dynamodb.model.ScanRequest
 import co.touchlab.kermit.Logger
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.squareup.sqldelight.runtime.coroutines.asFlow
@@ -72,7 +76,38 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     }
 
     // Used by web and apple clients atm
-    override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
+    //override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
+
+
+    val staticCredentials = StaticCredentialsProvider {
+        accessKeyId = ""
+        secretAccessKey = ""
+    }
+
+    val dynamoDbClient = DynamoDbClient{
+        region = "eu-west-1"
+        credentialsProvider = staticCredentials
+    }
+
+    val dynamocDbTable = "PeopleInSpace"
+
+    override suspend fun fetchPeople(): List<Assignment> {
+        val scanRequest = ScanRequest {
+            tableName = dynamocDbTable
+        }
+
+        val people = mutableListOf<Assignment>()
+        val result = dynamoDbClient.scan(scanRequest)
+        result.items?.forEach { item ->
+            val id = (item["id"] as AttributeValue.S).value
+            val craft = (item["craft"] as AttributeValue.S).value
+            val personImageUrl = (item["personImageUrl"] as AttributeValue.S).value
+            val person = Assignment(id, craft, personImageUrl)
+            people.add(person)
+        }
+
+        return people
+    }
 
     override fun pollISSPosition(): Flow<IssPosition> {
         return flow {
