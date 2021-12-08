@@ -33,6 +33,9 @@ val personImages = mapOf(
     "Tom Marshburn" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_TomMarshburn.jpg",
     "Kayla Barron" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_KaylaBarron.jpg",
     "Matthias Maurer" to "https://www.spacex.com/static/images/crew-3/portraits/SPACEX_Crew-3_MathiasMaurer.jpg",
+    "Alexander Misurkin" to "https://spaceflight101.com/iss/wp-content/uploads/sites/37/2017/08/36468940815_70ef48a8b6_o-768x1152.jpg",
+    "Yusaku Maezawa" to "https://pbs.twimg.com/media/FD599ihaUAAyjC7?format=jpg",
+    "Yozo Hirano" to "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1lYvHXPvl-eG3yX5MWAtvTaxkoiISJ5KXrg&usqp=CAU",
 )
 
 val personBios = mapOf(
@@ -70,4 +73,8 @@ val personBios = mapOf(
     "Tom Marshburn" to "Thomas Henry \"Tom\" Marshburn (born August 29, 1960) is an American physician and a NASA astronaut. He is a veteran of two spaceflights to the International Space Station.",
     "Kayla Barron" to "Kayla Jane Barron (born September 19, 1987; LCDR, USN) is an American submarine warfare officer, engineer and NASA astronaut.",
     "Matthias Maurer" to "Matthias Josef Maurer (born 18 March 1970 in St. Wendel, Saarland) is a German European Space Agency astronaut and materials scientist, who was selected in 2015 to take part in space training.",
+    "Alexander Misurkin" to "Alexander Alexanderovich Misurkin (Russian: Aлександр Aлександрович Мисуркин) (born September 23, 1977), a major in the Russian Air Force, is a Russian cosmonaut, selected in 2006. He flew aboard Soyuz TMA-08M on 28 March 2013 as his first space mission, and launched on Soyuz MS-06 as his second flight, in 2017. He was Commander of the International Space Station for Expedition 54.",
+    "Yusaku Maezawa" to "Yusaku Maezawa (前澤 友作, Maezawa Yūsaku, born 22 November 1975) is a Japanese billionaire entrepreneur and art collector. He founded Start Today in 1998 and launched the online fashion retail website Zozotown in 2004, now Japan's largest. Most recently, Maezawa introduced a custom-fit apparel brand ZOZO and at-home measurement system, the ZOZOSUIT, in 2018. As of July 2021, he is estimated by Forbes to have a net worth of $1.9 billion.",
+    "Yozo Hirano" to "Yozo Hirano (Japanese: 平野 陽三, 1985- ) born in Imabari, Ehime Prefecture, Japan, is a Japanese spaceflight participant. He is scheduled to fly on Soyuz MS-20.\n\n"
+            + "He is foreseen to fly with Yusaku Maezawa, who will pay for both seats; his function will be as production assistant of Maezawa and to document the flight."
 )
