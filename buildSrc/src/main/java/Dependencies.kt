@@ -38,7 +38,7 @@ object Versions {
 
     const val slf4j = "1.7.30"
     const val logback = "1.2.3"
-    const val kermit = "0.1.9"
+    const val kermit = "1.0.0"
 
     const val gradleVersionsPlugin = "0.39.0"
 }

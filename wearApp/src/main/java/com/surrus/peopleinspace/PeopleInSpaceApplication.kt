@@ -2,7 +2,7 @@ package com.surrus.peopleinspace
 
 import android.app.Application
 import android.util.Log
-import co.touchlab.kermit.Kermit
+import co.touchlab.kermit.Logger
 import coil.ImageLoader
 import coil.util.CoilUtils
 import coil.util.DebugLogger
@@ -19,7 +19,6 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 
 class PeopleInSpaceApplication : Application(), KoinComponent {
-    private val logger: Kermit by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -33,7 +32,7 @@ class PeopleInSpaceApplication : Application(), KoinComponent {
             modules(appModule)
         }
 
-        logger.d { "PeopleInSpaceApplication" }
+        Logger.d { "PeopleInSpaceApplication" }
     }
 }
 

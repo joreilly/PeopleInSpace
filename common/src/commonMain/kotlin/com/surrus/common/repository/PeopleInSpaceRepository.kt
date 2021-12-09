@@ -1,6 +1,6 @@
 package com.surrus.common.repository
 
-import co.touchlab.kermit.Kermit
+import co.touchlab.kermit.Logger
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
@@ -22,12 +22,13 @@ interface PeopleInSpaceRepositoryInterface {
 
 class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface {
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
-    private val logger: Kermit by inject()
 
     @NativeCoroutineScope
     private val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper by inject()
     private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
+
+    val logger = Logger.withTag("PeopleInSpaceRepository")
 
     init {
         coroutineScope.launch {
@@ -77,12 +78,11 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
         // The returned will be frozen in Kotlin Native. We can't freeze the Koin internals
         // so we'll use local variables to prevent the Koin internals from freezing.
         val api = peopleInSpaceApi
-        val logger = logger
         return flow {
             while (true) {
                 val position = api.fetchISSPosition().iss_position
                 emit(position)
-                logger.d("PeopleInSpaceRepository") { position.toString() }
+                logger.d { position.toString() }
                 delay(POLL_INTERVAL)
             }
         }
