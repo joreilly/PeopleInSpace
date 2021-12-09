@@ -1,6 +1,5 @@
 package com.surrus.common.di
 
-import co.touchlab.kermit.Kermit
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
@@ -35,7 +34,6 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
     single<PeopleInSpaceRepositoryInterface> { PeopleInSpaceRepository() }
 
     single { PeopleInSpaceApi(get()) }
-    single { Kermit(logger = get()) }
 }
 
 fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }

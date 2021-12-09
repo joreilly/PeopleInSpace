@@ -1,4 +1,3 @@
-import co.touchlab.kermit.Kermit
 import com.surrus.common.di.initKoin
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -10,12 +9,10 @@ import react.dom.render
 
 object AppDependencies : KoinComponent {
     val repository: PeopleInSpaceRepositoryInterface
-    val logger: Kermit
 
     init {
         initKoin()
         repository = get()
-        logger = get()
     }
 }
 

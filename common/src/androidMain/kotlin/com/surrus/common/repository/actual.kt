@@ -1,6 +1,5 @@
 package com.surrus.common.repository
 
-import co.touchlab.kermit.LogcatLogger
 import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
@@ -14,5 +13,4 @@ actual fun platformModule() = module {
 
         PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
     }
-    single<Logger> { LogcatLogger() }
 }

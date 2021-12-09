@@ -1,20 +1,16 @@
 package com.surrus.peopleinspace
 
 import android.app.Application
-import co.touchlab.kermit.Kermit
+import co.touchlab.kermit.Logger
 import com.surrus.common.di.initKoin
 import com.surrus.peopleinspace.di.appModule
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import org.koin.core.logger.Level
 import org.osmdroid.config.Configuration
 import java.io.File
 
 class PeopleInSpaceApplication : Application() {
-    private val logger: Kermit by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -32,6 +28,6 @@ class PeopleInSpaceApplication : Application() {
             modules(appModule)
         }
 
-        logger.d { "PeopleInSpaceApplication" }
+        Logger.d { "PeopleInSpaceApplication" }
     }
 }
