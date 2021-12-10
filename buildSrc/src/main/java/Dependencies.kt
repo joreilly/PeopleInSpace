@@ -3,9 +3,9 @@ object Versions {
     const val androidCompileSdk = 31
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlinCoroutines = "1.5.1-new-mm-dev2"
-    const val koin = "3.1.2"
-    const val ktor = "1.6.2-native-mm-eap-196"
+    const val kotlinCoroutines = "1.5.2-native-mt"
+    const val koin = "3.1.4"
+    const val ktor = "1.6.5"
     const val kotlinxSerialization = "1.3.0"
     const val kotlinxHtmlJs = "0.7.3"
 
@@ -20,7 +20,7 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.6.1"
 
-    const val sqlDelight = "1.5.2"
+    const val sqlDelight = "1.5.3"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
