@@ -1,6 +1,7 @@
 package com.surrus.common.remote
 
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
@@ -21,6 +22,6 @@ class PeopleInSpaceApi(
     private val client: HttpClient,
     var baseUrl: String = "https://people-in-space-proxy.ew.r.appspot.com",
 ) : KoinComponent {
-    suspend fun fetchPeople() = client.get<AstroResult>("$baseUrl/astros.json")
-    suspend fun fetchISSPosition() = client.get<IssResponse>("$baseUrl/iss-now.json")
+    suspend fun fetchPeople() = client.get("$baseUrl/astros.json").body<AstroResult>()
+    suspend fun fetchISSPosition() = client.get("$baseUrl/iss-now.json").body<IssResponse>()
 }

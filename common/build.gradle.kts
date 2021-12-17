@@ -82,7 +82,8 @@ kotlin {
                 implementation(clientCore)
                 implementation(clientJson)
                 implementation(clientLogging)
-                implementation(clientSerialization)
+                implementation(contentNegotiation)
+                implementation(json)
             }
 
             with(Deps.Kotlinx) {

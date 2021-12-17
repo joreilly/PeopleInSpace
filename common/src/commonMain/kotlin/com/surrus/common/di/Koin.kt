@@ -5,9 +5,10 @@ import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.common.repository.platformModule
 import io.ktor.client.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
+import io.ktor.client.engine.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -27,7 +28,7 @@ fun initKoin() = initKoin(enableNetworkLogs = false) {}
 
 fun commonModule(enableNetworkLogs: Boolean) = module {
     single { createJson() }
-    single { createHttpClient(get(), enableNetworkLogs = enableNetworkLogs) }
+    single { createHttpClient(get(), get(), enableNetworkLogs = enableNetworkLogs) }
 
     single { CoroutineScope(Dispatchers.Default + SupervisorJob() ) }
 
@@ -38,9 +39,10 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
 
 fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
 
-fun createHttpClient(json: Json, enableNetworkLogs: Boolean) = HttpClient {
-    install(JsonFeature) {
-        serializer = KotlinxSerializer(json)
+
+fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
+    install(ContentNegotiation) {
+        json()
     }
     if (enableNetworkLogs) {
         install(Logging) {

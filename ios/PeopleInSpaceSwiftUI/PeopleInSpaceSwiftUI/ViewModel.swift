@@ -1,41 +1,48 @@
 import Foundation
 import Combine
 import common
-import KMPNativeCoroutinesCombine
+import KMPNativeCoroutinesAsync
 
 
+@MainActor
 class PeopleInSpaceViewModel: ObservableObject {
     @Published var people = [Assignment]()
     @Published var issPosition = IssPosition(latitude: 0, longitude: 0)
     
-    private var positionCancellable: AnyCancellable?
-    private var peopleCancellable: AnyCancellable?
+    private var fetchPeopleTask: Task<(), Never>? = nil
+    private var pollISSPositionTask: Task<(), Never>? = nil
     
     private let repository: PeopleInSpaceRepository
     init(repository: PeopleInSpaceRepository) {
         self.repository = repository
         
-        positionCancellable = createPublisher(for: repository.pollISSPositionNative())
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                debugPrint(completion)
-            }, receiveValue: { [weak self] value in
-                self?.issPosition = value
-            })
+        pollISSPositionTask = Task {
+            do {
+                let stream = asyncStream(for: repository.pollISSPositionNative())
+                for try await data in stream {
+                    self.issPosition = data
+                }
+            } catch {
+                print("Failed with error: \(error)")
+            }
+        }
     }
     
     func startObservingPeopleUpdates() {
-        peopleCancellable = createPublisher(for: repository.fetchPeopleAsFlowNative())
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                debugPrint(completion)
-            }, receiveValue: { [weak self] value in
-                self?.people = value
-            })
+        fetchPeopleTask = Task {
+            do {
+                let stream = asyncStream(for: repository.fetchPeopleAsFlowNative())
+                for try await data in stream {
+                    self.people = data
+                }
+            } catch {
+                print("Failed with error: \(error)")
+            }
+        }
     }
     
     func stopObservingPeopleUpdates() {
-        peopleCancellable?.cancel()
+        fetchPeopleTask?.cancel()
     }
     
 }

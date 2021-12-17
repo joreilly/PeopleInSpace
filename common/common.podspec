@@ -1,11 +1,11 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'common'
     spec.version                  = '1.0'
-    spec.homepage                 = 'https://github.com/joreilly/PeopleInSpace'
+    spec.homepage                 = ''
     spec.source                   = { :git => "Not Published", :tag => "Cocoapods/#{spec.name}/#{spec.version}" }
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'PeopleInSpace'
+    spec.summary                  = ''
 
     spec.vendored_frameworks      = "build/cocoapods/framework/common.framework"
     spec.libraries                = "c++"
@@ -33,13 +33,9 @@ Pod::Spec.new do |spec|
                 set -ev
                 REPO_ROOT="$PODS_TARGET_SRCROOT"
                 "$REPO_ROOT/../gradlew" -p "$REPO_ROOT" $KOTLIN_PROJECT_PATH:syncFramework \
-                    -PkotlinVersion="1.6.0" \
                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME \
                     -Pkotlin.native.cocoapods.archs="$ARCHS" \
-                    -Pkotlin.native.cocoapods.configuration=$CONFIGURATION \
-                    -Pkotlin.native.cocoapods.cflags="$OTHER_CFLAGS" \
-                    -Pkotlin.native.cocoapods.paths.headers="$HEADER_SEARCH_PATHS" \
-                    -Pkotlin.native.cocoapods.paths.frameworks="$FRAMEWORK_SEARCH_PATHS"
+                    -Pkotlin.native.cocoapods.configuration=$CONFIGURATION
             SCRIPT
         }
     ]

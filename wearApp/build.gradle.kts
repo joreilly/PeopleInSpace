@@ -18,7 +18,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     kotlinOptions {
@@ -53,6 +53,7 @@ dependencies {
     }
 
     with(Deps.Compose) {
+        implementation(compiler)
         implementation(wearFoundation)
         implementation(wearMaterial)
         implementation(wearNavigation)
