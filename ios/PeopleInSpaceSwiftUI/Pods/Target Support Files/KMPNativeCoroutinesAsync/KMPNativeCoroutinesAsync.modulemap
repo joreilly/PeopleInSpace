@@ -1,0 +1,6 @@
+module KMPNativeCoroutinesAsync {
+  umbrella header "KMPNativeCoroutinesAsync-umbrella.h"
+
+  export *
+  module * { export * }
+}

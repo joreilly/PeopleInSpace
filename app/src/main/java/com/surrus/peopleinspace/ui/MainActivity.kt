@@ -99,7 +99,7 @@ fun MainLayout() {
             AnimatedNavHost(navController, startDestination = Screen.PersonList.title) {
                 composable(
                     route = Screen.PersonList.title,
-                    exitTransition = { _, _ ->
+                    exitTransition = { _, target ->
                         slideOutHorizontally() +
                         fadeOut(animationSpec = tween(1000))
                     },

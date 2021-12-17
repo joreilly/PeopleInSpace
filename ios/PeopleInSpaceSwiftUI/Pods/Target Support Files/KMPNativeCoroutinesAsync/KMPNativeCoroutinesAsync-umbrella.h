@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double KMPNativeCoroutinesCombineVersionNumber;
-FOUNDATION_EXPORT const unsigned char KMPNativeCoroutinesCombineVersionString[];
+FOUNDATION_EXPORT double KMPNativeCoroutinesAsyncVersionNumber;
+FOUNDATION_EXPORT const unsigned char KMPNativeCoroutinesAsyncVersionString[];
 

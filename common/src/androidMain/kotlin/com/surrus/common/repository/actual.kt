@@ -1,10 +1,12 @@
 package com.surrus.common.repository
 
-import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import io.ktor.client.engine.android.*
 import org.koin.dsl.module
+
+
 
 actual fun platformModule() = module {
     single {
@@ -13,4 +15,5 @@ actual fun platformModule() = module {
 
         PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
     }
+    single { Android.create() }
 }

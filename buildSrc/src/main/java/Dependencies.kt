@@ -3,15 +3,16 @@ object Versions {
     const val androidCompileSdk = 31
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlinCoroutines = "1.5.2-native-mt"
+    const val kotlinCoroutines = "1.6.0-RC3"
     const val koin = "3.1.4"
-    const val ktor = "1.6.5"
-    const val kotlinxSerialization = "1.3.0"
+    const val ktor = "2.0.0-eap-278"
+    const val kotlinxSerialization = "1.3.1"
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val compose = "1.0.5"
-    const val wearCompose = "1.0.0-alpha10"
-    const val navCompose = "2.4.0-beta02"
+    const val compose = "1.1.0-rc01"
+    const val composeCompiler = "1.1.0-rc02"
+    const val wearCompose = "1.0.0-alpha13"
+    const val navCompose = "2.4.0-rc01"
     const val accompanist = "0.21.0-beta"
 
     const val junit = "4.12"
@@ -81,6 +82,7 @@ object Deps {
     }
 
     object Compose {
+        const val compiler = "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
         const val ui = "androidx.compose.ui:ui:${Versions.compose}"
         const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
@@ -107,7 +109,10 @@ object Deps {
     object Ktor {
         const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
         const val serverNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
-        const val serialization = "io.ktor:ktor-serialization:${Versions.ktor}"
+        //const val serialization = "io.ktor:ktor-serialization:${Versions.ktor}"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+        const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+
         const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
         const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
