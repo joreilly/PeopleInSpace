@@ -2,7 +2,7 @@ import WidgetKit
 import SwiftUI
 import Combine
 import common
-import KMPNativeCoroutinesAsync
+import KMPNativeCoroutinesCombine
 
 final class Provider: TimelineProvider {
     
@@ -24,15 +24,15 @@ final class Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-//        timelineCancellable = createFuture(for: repository.fetchPeopleNative())
-//            .map { data in
-//                let entry = PeopleInSpaceListEntry(date: Date(), peopleList: data)
-//                return Timeline(entries: [entry], policy: .atEnd)
-//            }
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveCompletion: { completion in
-//                debugPrint(completion)
-//            }, receiveValue: completion)
+        timelineCancellable = createFuture(for: repository.fetchPeopleNative())
+            .map { data in
+                let entry = PeopleInSpaceListEntry(date: Date(), peopleList: data)
+                return Timeline(entries: [entry], policy: .atEnd)
+            }
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                debugPrint(completion)
+            }, receiveValue: completion)
     }
 }
 

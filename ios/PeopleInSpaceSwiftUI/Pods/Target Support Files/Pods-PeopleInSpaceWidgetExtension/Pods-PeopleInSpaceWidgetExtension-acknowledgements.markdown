@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## KMPNativeCoroutinesAsync
+## KMPNativeCoroutinesCore
 
 MIT License
 
@@ -26,7 +26,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## KMPNativeCoroutinesCore
+## KMPNativeCoroutinesCombine
 
 MIT License
 
