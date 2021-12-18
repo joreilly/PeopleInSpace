@@ -42,7 +42,7 @@ fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
 
 fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
     install(ContentNegotiation) {
-        json()
+        json(json)
     }
     if (enableNetworkLogs) {
         install(Logging) {
