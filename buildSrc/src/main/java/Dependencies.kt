@@ -109,7 +109,6 @@ object Deps {
     object Ktor {
         const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
         const val serverNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
-        //const val serialization = "io.ktor:ktor-serialization:${Versions.ktor}"
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
 

@@ -28,18 +28,6 @@ android {
     }
 }
 
-// Workaround for https://youtrack.jetbrains.com/issue/KT-43944
-android {
-    configurations {
-        create("androidTestApi")
-        create("androidTestDebugApi")
-        create("androidTestReleaseApi")
-        create("testApi")
-        create("testDebugApi")
-        create("testReleaseApi")
-    }
-}
-
 kotlin {
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
         System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
@@ -73,9 +61,6 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            implementation(Deps.Kotlinx.coroutinesCore) {
-                isForce = true
-            }
 
             with(Deps.Ktor) {
                 implementation(clientCore)
@@ -86,6 +71,7 @@ kotlin {
             }
 
             with(Deps.Kotlinx) {
+                implementation(Deps.Kotlinx.coroutinesCore)
                 implementation(serializationCore)
             }
 
@@ -111,10 +97,6 @@ kotlin {
             implementation(Deps.SqlDelight.androidDriver)
         }
         sourceSets["androidTest"].dependencies {
-            // having issue with following after update to Kotlin 1.5.21
-            // need to investigate further
-            //implementation(Deps.Test.kotlinTest)
-            //implementation(Deps.Test.kotlinTestJUnit)
             implementation(Deps.Test.junit)
         }
 
