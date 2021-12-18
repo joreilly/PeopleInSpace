@@ -2,14 +2,13 @@ import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.AstroResult
 import com.surrus.common.remote.PeopleInSpaceApi
-import io.ktor.application.*
-import io.ktor.features.*
-import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.serialization.*
+import io.ktor.server.application.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 
 fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin
@@ -20,20 +19,6 @@ fun main() {
     embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             json()
-        }
-
-        install(CORS) {
-            method(HttpMethod.Options)
-            method(HttpMethod.Put)
-            method(HttpMethod.Delete)
-            method(HttpMethod.Patch)
-            header(HttpHeaders.Authorization)
-            header(HttpHeaders.ContentType)
-            header(HttpHeaders.AccessControlAllowOrigin)
-            // header("any header") if you want to add any header
-            allowCredentials = true
-            allowNonSimpleContentTypes = true
-            anyHost()
         }
 
         routing {
