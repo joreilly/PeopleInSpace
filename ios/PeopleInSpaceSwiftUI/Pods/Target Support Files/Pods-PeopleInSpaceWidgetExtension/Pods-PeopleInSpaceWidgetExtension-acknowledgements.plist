@@ -39,7 +39,7 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>KMPNativeCoroutinesAsync</string>
+			<string>KMPNativeCoroutinesCore</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -70,7 +70,7 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>KMPNativeCoroutinesCore</string>
+			<string>KMPNativeCoroutinesCombine</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
