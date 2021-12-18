@@ -16,8 +16,9 @@ dependencies {
     with(Deps.Ktor) {
         implementation(serverCore)
         implementation(serverNetty)
-        //implementation(serialization)
         implementation(websockets)
+        implementation(serverContentNegotiation)
+        implementation(json)
     }
 
     with(Deps.Log) {

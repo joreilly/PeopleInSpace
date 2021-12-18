@@ -112,6 +112,8 @@ object Deps {
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
 
+        const val serverContentNegotiation = "io.ktor:ktor-server-content-negotiation:${Versions.ktor}"
+
         const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
         const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
