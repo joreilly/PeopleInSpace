@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -23,8 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -55,9 +56,7 @@ fun PersonListScreen(
     peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
 ) {
     val peopleState by peopleInSpaceViewModel.peopleInSpace.collectAsState()
-    val scrollState = rememberScalingLazyListState()
-    RotaryEventState(scrollState)
-    PersonListScreen(peopleState, personSelected, issMapClick, scrollState)
+    PersonListScreen(peopleState, personSelected, issMapClick)
 }
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -66,7 +65,6 @@ fun PersonListScreen(
     people: List<Assignment>?,
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    scrollState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
     MaterialTheme {
         AnimatedVisibility(
@@ -75,7 +73,7 @@ fun PersonListScreen(
         ) {
             if (people != null) {
                 if (people.isNotEmpty()) {
-                    PersonList(people, personSelected, issMapClick, scrollState)
+                    PersonList(people, personSelected, issMapClick)
                 } else {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Card(
@@ -98,15 +96,22 @@ fun PersonList(
     issMapClick: () -> Unit,
     scrollState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
+    // Activate scrolling
+    LocalView.current.requestFocus()
+
     ScalingLazyColumn(
+        modifier = Modifier
+            .testTag(PersonListTag)
+            .scrollHandler(scrollState),
         contentPadding = PaddingValues(8.dp),
-        modifier = Modifier.testTag(PersonListTag),
         state = scrollState,
     ) {
         item {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 Button(
-                    modifier = Modifier.size(ButtonDefaults.SmallButtonSize).wrapContentSize(),
+                    modifier = Modifier
+                        .size(ButtonDefaults.SmallButtonSize)
+                        .wrapContentSize(),
                     onClick = issMapClick
                 ) {
                     // https://www.svgrepo.com/svg/170716/international-space-station

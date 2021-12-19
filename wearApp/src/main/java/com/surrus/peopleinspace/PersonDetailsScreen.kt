@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,7 +51,6 @@ fun PersonDetailsScreen(personName: String) {
     }
 
     val scrollState = rememberScrollState()
-    RotaryEventState(scrollState)
     PersonDetailsScreen(person, scrollState)
 }
 
@@ -60,6 +60,9 @@ private fun PersonDetailsScreen(
     person: Assignment?,
     scrollState: ScrollState = rememberScrollState(),
 ) {
+    // Activate scrolling
+    LocalView.current.requestFocus()
+
     MaterialTheme {
         Scaffold(
             vignette = {
@@ -71,6 +74,7 @@ private fun PersonDetailsScreen(
         ) {
             Column(
                 modifier = Modifier
+                    .scrollHandler(scrollState)
                     .fillMaxSize()
                     .padding(horizontal = if (LocalConfiguration.current.isScreenRound) 18.dp else 8.dp)
                     .verticalScroll(scrollState),
