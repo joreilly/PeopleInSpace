@@ -3,12 +3,8 @@ package com.surrus.peopleinspace.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -99,11 +95,11 @@ fun MainLayout() {
             AnimatedNavHost(navController, startDestination = Screen.PersonList.title) {
                 composable(
                     route = Screen.PersonList.title,
-                    exitTransition = { _, target ->
+                    exitTransition = {
                         slideOutHorizontally() +
                         fadeOut(animationSpec = tween(1000))
                     },
-                    popEnterTransition = { _, _ ->
+                    popEnterTransition = { 
                         slideInHorizontally()
                     }
                 ) {
@@ -116,11 +112,11 @@ fun MainLayout() {
                 }
                 composable(
                     route = Screen.PersonDetails.title + "/{person}",
-                    enterTransition = { _, _ ->
+                    enterTransition = {
                         slideInHorizontally() +
                         fadeIn(animationSpec = tween(1000))
                     },
-                    popExitTransition = { _, _ ->
+                    popExitTransition = {
                         slideOutHorizontally()
                     }
                 ) { backStackEntry ->
