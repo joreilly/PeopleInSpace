@@ -20,8 +20,7 @@ buildscript {
             classpath(shadow)
             classpath(kotlinter)
             classpath(gradleVersionsPlugin)
-            val kmpNativeCoroutinesVersion = if (kotlinVersion == "1.6.10") "0.10.0-new-mm" else "0.8.0"
-            classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:$kmpNativeCoroutinesVersion")
+            classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${Versions.kmpNativeCoroutinesVersion}")
         }
     }
 }
