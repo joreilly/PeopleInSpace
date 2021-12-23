@@ -22,14 +22,22 @@ This library solves both of these limitations 😄.
 
 ## Compatibility
 
+> **NOTE:** at the moment the [new Kotlin Native memory model][new-mm] is still experimental.  
+> The regular versions of this library are therefore currently using the [`-native-mt`][native-mt] versions 
+> of the kotlinx.coroutines library.  
+> If you would like to try the new memory model, please use the `-new-mm` versions instead.
+
+[new-mm]: https://github.com/JetBrains/kotlin/blob/0b871d7534a9c8e90fb9ad61cd5345716448d08c/kotlin-native/NEW_MM.md
+[native-mt]: https://github.com/kotlin/kotlinx.coroutines/issues/462
+
 As of version `0.10.0` the library uses Kotlin version `1.6.10`.  
-Compatibility versions for older and early access Kotlin versions are also available:
+Compatibility versions for older Kotlin versions are also available:
 
 | Version      | Version suffix  |   Kotlin   |     Coroutines      |
 |--------------|-----------------|:----------:|:-------------------:|
-| _latest_     | -new-mm         |   1.6.10   |      1.6.0-RC3      |
-| **_latest_** | **_no suffix_** | **1.6.10** | **1.5.2-native-mt** |
-| _latest_     | -kotlin-1.6.0   |   1.6.0    |   1.5.2-native-mt   |
+| _latest_     | -new-mm         |   1.6.10   |        1.6.0        |
+| **_latest_** | **_no suffix_** | **1.6.10** | **1.6.0-native-mt** |
+| _latest_     | -kotlin-1.6.0   |   1.6.0    |   1.6.0-native-mt   |
 | 0.9.0        | -new-mm-3       |   1.6.0    |      1.6.0-RC2      |
 | 0.8.0        | _no suffix_     |   1.5.30   |   1.5.2-native-mt   |
 | 0.8.0        | -kotlin-1.5.20  |   1.5.20   |   1.5.0-native-mt   |
