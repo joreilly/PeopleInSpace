@@ -17,6 +17,8 @@ object Versions {
     const val navCompose = "2.4.0-rc01"
     const val accompanist = "0.22.0-rc"
 
+    const val composeDesktopWeb = "1.0.1"
+
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
     const val testCore = "1.3.0"
