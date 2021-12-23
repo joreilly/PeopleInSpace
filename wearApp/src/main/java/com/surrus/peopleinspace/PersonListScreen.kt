@@ -13,19 +13,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -36,9 +37,13 @@ import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Card
 import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.Vignette
+import androidx.wear.compose.material.VignettePosition
 import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
@@ -65,26 +70,46 @@ fun PersonListScreen(
     people: List<Assignment>?,
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
+    scrollState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
     MaterialTheme {
         AnimatedVisibility(
             visible = people != null,
             enter = slideInVertically()
         ) {
-            if (people != null) {
-                if (people.isNotEmpty()) {
-                    PersonList(people, personSelected, issMapClick)
-                } else {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Card(
-                            onClick = { },
-                            modifier = Modifier.testTag(NoPeopleTag)
-                        ) {
-                            Text("No people in space!")
-                        }
+            Scaffold(
+                vignette = {
+                    if (!people.isNullOrEmpty()) {
+                        Vignette(VignettePosition.Bottom)
+                    }
+                },
+                positionIndicator = {
+                    if (!people.isNullOrEmpty()) {
+                        PositionIndicator(scrollState)
                     }
                 }
+            ) {
+                if (people.isNullOrEmpty()) {
+                    EmptyPersonList()
+                } else {
+                    PersonList(people, personSelected, issMapClick, scrollState)
+                }
             }
+        }
+    }
+}
+
+@Composable
+fun EmptyPersonList() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Card(
+            onClick = {},
+            modifier = Modifier.testTag(NoPeopleTag)
+        ) {
+            Text("No people in space!")
         }
     }
 }
@@ -96,14 +121,18 @@ fun PersonList(
     issMapClick: () -> Unit,
     scrollState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
-    // Activate scrolling
-    LocalView.current.requestFocus()
+    val configuration = LocalConfiguration.current
+    // extra content padding to prevent bottom item from crop
+    val extraBottomPadding = remember {
+        if (configuration.isScreenRound) 40.dp else 0.dp
+    }
 
     ScalingLazyColumn(
         modifier = Modifier
             .testTag(PersonListTag)
-            .scrollHandler(scrollState),
-        contentPadding = PaddingValues(8.dp),
+            .rotaryEventHandler(scrollState)
+            .padding(horizontal = 4.dp),
+        contentPadding = PaddingValues(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 8.dp + extraBottomPadding),
         state = scrollState,
     ) {
         item {

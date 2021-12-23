@@ -60,9 +60,6 @@ private fun PersonDetailsScreen(
     person: Assignment?,
     scrollState: ScrollState = rememberScrollState(),
 ) {
-    // Activate scrolling
-    LocalView.current.requestFocus()
-
     MaterialTheme {
         Scaffold(
             vignette = {
@@ -70,11 +67,15 @@ private fun PersonDetailsScreen(
                     Vignette(vignettePosition = VignettePosition.Bottom)
                 }
             },
-            positionIndicator = { PositionIndicator(scrollState = scrollState) }
+            positionIndicator = {
+                if (person != null) {
+                    PositionIndicator(scrollState = scrollState)
+                }
+            }
         ) {
             Column(
                 modifier = Modifier
-                    .scrollHandler(scrollState)
+                    .rotaryEventHandler(scrollState)
                     .fillMaxSize()
                     .padding(horizontal = if (LocalConfiguration.current.isScreenRound) 18.dp else 8.dp)
                     .verticalScroll(scrollState),
