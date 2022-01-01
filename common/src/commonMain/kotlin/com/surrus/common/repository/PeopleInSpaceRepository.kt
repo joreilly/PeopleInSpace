@@ -75,12 +75,9 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
     override fun pollISSPosition(): Flow<IssPosition> {
-        // The returned will be frozen in Kotlin Native. We can't freeze the Koin internals
-        // so we'll use local variables to prevent the Koin internals from freezing.
-        val api = peopleInSpaceApi
         return flow {
             while (true) {
-                val position = api.fetchISSPosition().iss_position
+                val position = peopleInSpaceApi.fetchISSPosition().iss_position
                 emit(position)
                 logger.d { position.toString() }
                 delay(POLL_INTERVAL)

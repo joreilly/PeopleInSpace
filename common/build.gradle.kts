@@ -71,7 +71,7 @@ kotlin {
             }
 
             with(Deps.Kotlinx) {
-                implementation(Deps.Kotlinx.coroutinesCore)
+                implementation(coroutinesCore)
                 implementation(serializationCore)
             }
 
@@ -90,6 +90,10 @@ kotlin {
             }
         }
         sourceSets["commonTest"].dependencies {
+            implementation(Deps.Koin.test)
+            implementation(Deps.Kotlinx.coroutinesTest)
+            implementation(kotlin("test-common"))
+            implementation(kotlin("test-annotations-common"))
         }
 
         sourceSets["androidMain"].dependencies {
