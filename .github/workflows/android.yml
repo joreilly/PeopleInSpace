@@ -59,4 +59,4 @@ jobs:
         with:
           api-level: 29
           target: google_apis
-          script: ./gradlew app:connectedAndroidTest common:connectedAndroidTest
+          script: ./gradlew app:connectedAndroidTest
