@@ -67,7 +67,7 @@ invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 
 
-### Deploying backend code
+### Backend code
 
 Have tested this out in Google App Engine deployment.  Using shadowJar plugin to create an "uber" jar and then deploying it as shown below.  Should be possible to deploy this jar to other services as well.
 
@@ -75,6 +75,11 @@ Have tested this out in Google App Engine deployment.  Using shadowJar plugin to
 ./gradlew :backend:shadowJar
 gcloud app deploy backend/build/libs/backend-all.jar 
 ```
+
+### GraphQL backend
+
+There's a GraphQL module (`graphql-server`) which can be run locally using `./gradlew :graphql-server:bootRun` with "playground" then available at http://localhost:8080/playground
+
 
 
 ### Screenshots 
