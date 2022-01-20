@@ -1,6 +1,6 @@
 package components
 
-import com.surrus.common.remote.Assignment
+import com.surrus.common.model.Assignment
 import components.materialui.Avatar
 import components.materialui.ListItem
 import components.materialui.ListItemAvatar

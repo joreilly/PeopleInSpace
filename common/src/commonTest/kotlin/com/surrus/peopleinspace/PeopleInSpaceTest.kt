@@ -1,6 +1,6 @@
 package com.surrus.peopleinspace
 
-import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
+import com.apollographql.apollo3.ApolloClient
 import com.surrus.common.di.commonModule
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.common.repository.platformModule
@@ -28,7 +28,7 @@ class PeopleInSpaceTest: KoinTest {
                 commonModule(true),
                 platformModule(),
                 module {
-                    single { PeopleInSpaceDatabaseWrapper(null) }
+                    single { createMockApolloClient("https://peopleinspace-graphql-guhrsfr7ka-uc.a.run.app/graphql") }
                 }
             )
         }
@@ -39,5 +39,12 @@ class PeopleInSpaceTest: KoinTest {
         val result = repo.fetchPeople()
         println(result)
         assertTrue(result.isNotEmpty())
+    }
+
+    private fun createMockApolloClient(url: String): ApolloClient {
+        println("createMockApolloClient, ur = $url")
+        return ApolloClient.Builder()
+            .serverUrl(url)
+            .build()
     }
 }

@@ -13,7 +13,7 @@ import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import com.surrus.common.remote.Assignment
+import com.surrus.common.model.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.peopleinspace.tile.util.BaseGlanceTileService
 import kotlinx.coroutines.flow.first

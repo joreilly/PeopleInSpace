@@ -1,8 +1,7 @@
 import androidx.compose.runtime.*
 import com.surrus.common.di.initKoin
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.repository.PeopleInSpaceRepository
+import com.surrus.common.model.Assignment
+import com.surrus.common.model.IssPosition
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect

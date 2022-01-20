@@ -1,5 +1,5 @@
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.IssPosition
+import com.surrus.common.model.Assignment
+import com.surrus.common.model.IssPosition
 import components.*
 import components.materialui.AppBar
 import components.materialui.Card

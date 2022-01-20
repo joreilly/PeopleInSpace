@@ -19,8 +19,9 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.surrus.common.di.initKoin
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import com.surrus.common.model.IssPosition
+import com.surrus.common.model.Assignment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.skia.Image.Companion.makeFromEncoded
@@ -39,10 +40,10 @@ fun main() = application {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
     var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
 
-    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
+    val repository = koin.get<PeopleInSpaceRepositoryInterface>()
 
     LaunchedEffect(true) {
-        peopleState = peopleInSpaceApi.fetchPeople().people
+        peopleState = repository.fetchPeople()
         selectedPerson = peopleState.first()
     }
 

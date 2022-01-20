@@ -6,7 +6,7 @@ plugins {
     id("kotlinx-serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
-    id("com.squareup.sqldelight")
+    id("com.apollographql.apollo3")
     id("com.rickclephas.kmp.nativecoroutines")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
@@ -62,22 +62,14 @@ kotlin {
     sourceSets {
         sourceSets["commonMain"].dependencies {
 
-            with(Deps.Ktor) {
-                implementation(clientCore)
-                implementation(clientJson)
-                implementation(clientLogging)
-                implementation(contentNegotiation)
-                implementation(json)
-            }
-
             with(Deps.Kotlinx) {
                 implementation(coroutinesCore)
                 implementation(serializationCore)
             }
 
-            with(Deps.SqlDelight) {
-                implementation(runtime)
-                implementation(coroutineExtensions)
+            with(Deps.Apollo) {
+                implementation(apolloRuntime)
+                implementation(apolloNormalizedCacheInMemory)
             }
 
             with(Deps.Koin) {
@@ -97,38 +89,31 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
-            implementation(Deps.Ktor.clientAndroid)
-            implementation(Deps.SqlDelight.androidDriver)
+            implementation(Deps.Apollo.apolloNormalizedCacheSqlite)
         }
         sourceSets["androidTest"].dependencies {
             implementation(Deps.Test.junit)
         }
 
         sourceSets["jvmMain"].dependencies {
-            implementation(Deps.Ktor.clientJava)
-            implementation(Deps.SqlDelight.sqliteDriver)
             implementation(Deps.Log.slf4j)
+            implementation(Deps.Apollo.apolloNormalizedCacheSqlite)
         }
 
         sourceSets["iOSMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
-            implementation(Deps.SqlDelight.nativeDriver)
+            implementation(Deps.Apollo.apolloNormalizedCacheSqlite)
         }
         sourceSets["iOSTest"].dependencies {
         }
 
         sourceSets["watchMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
-            implementation(Deps.SqlDelight.nativeDriver)
         }
 
         sourceSets["macOSMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
-            implementation(Deps.SqlDelight.nativeDriverMacos)
+            implementation(Deps.Apollo.apolloNormalizedCacheSqlite)
         }
 
         sourceSets["jsMain"].dependencies {
-            implementation(Deps.Ktor.clientJs)
         }
     }
 }
@@ -139,12 +124,13 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-sqldelight {
-    database("PeopleInSpaceDatabase") {
-        packageName = "com.surrus.peopleinspace.db"
-        sourceFolders = listOf("sqldelight")
-    }
+apollo {
+    packageName.set("com.surrus.common")
+    codegenModels.set("operationBased")
+    generateSchema.set(true)
+    generateTestBuilders.set(true)
 }
+
 
 multiplatformSwiftPackage {
     packageName("PeopleInSpace")
@@ -153,3 +139,4 @@ multiplatformSwiftPackage {
         iOS { v("13") }
     }
 }
+

@@ -34,7 +34,7 @@ import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
-import com.surrus.common.remote.Assignment
+import com.surrus.common.model.Assignment
 import org.koin.androidx.compose.getViewModel
 
 @Composable

@@ -1,17 +1,15 @@
 package com.surrus.common.repository
 
-import co.touchlab.kermit.Logger
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
-import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.remote.PeopleInSpaceApi
-import kotlinx.coroutines.*
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.cache.normalized.watch
+import com.surrus.common.GetPeopleQuery
+import com.surrus.common.IssPositionSubscription
+import com.surrus.common.model.Assignment
+import com.surrus.common.model.IssPosition
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+
 
 interface PeopleInSpaceRepositoryInterface {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
@@ -20,72 +18,30 @@ interface PeopleInSpaceRepositoryInterface {
     suspend fun fetchAndStorePeople()
 }
 
+fun GetPeopleQuery.Person.mapToAssignment() = Assignment(craft, name, personImageUrl, personBio)
+
 class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface {
-    private val peopleInSpaceApi: PeopleInSpaceApi by inject()
+    private val apolloClient: ApolloClient by inject()
 
-    @NativeCoroutineScope
-    private val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper by inject()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
-
-    val logger = Logger.withTag("PeopleInSpaceRepository")
-
-    init {
-        coroutineScope.launch {
-            fetchAndStorePeople()
+    override fun fetchPeopleAsFlow() =
+        apolloClient.query(GetPeopleQuery()).watch().map {
+            it.dataAssertNoErrors.people.map { it.mapToAssignment() }
         }
-    }
 
-    override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
-        // the main reason we need to do this check is that sqldelight isn't currently
-        // setup for javascript client
-        return peopleInSpaceQueries?.selectAll(
-            mapper = { name, craft, personImageUrl, personBio ->
-                Assignment(name = name, craft = craft, personImageUrl = personImageUrl, personBio = personBio)
-            }
-        )?.asFlow()?.mapToList() ?: flowOf(emptyList())
+    override suspend fun fetchPeople(): List<Assignment> {
+        val response = apolloClient.query(GetPeopleQuery()).execute()
+        return response.dataAssertNoErrors.people.map {
+            it.mapToAssignment()
+        }
     }
 
     override suspend fun fetchAndStorePeople() {
-        logger.d { "fetchAndStorePeople" }
-        try {
-            val result = peopleInSpaceApi.fetchPeople()
+        fetchPeople()
+    }
 
-            // this is very basic implementation for now that removes all existing rows
-            // in db and then inserts results from api request
-            // using "transaction" accelerate the batch of queries, especially inserting
-            peopleInSpaceQueries?.transaction {
-                peopleInSpaceQueries.deleteAll()
-                result.people.forEach {
-                    peopleInSpaceQueries.insertItem(
-                        it.name,
-                        it.craft,
-                        it.personImageUrl,
-                        it.personBio
-                    )
-                }
-            }
-        } catch (e: Exception) {
-            // TODO report error up to UI
-            logger.w(e) { "Exception during fetchAndStorePeople: $e" }
+    override fun pollISSPosition() =
+        apolloClient.subscription(IssPositionSubscription()).toFlow().map {
+            val result = it.dataAssertNoErrors.issPosition
+            IssPosition(result.latitude, result.longitude)
         }
-    }
-
-    // Used by web and apple clients atm
-    override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
-
-    override fun pollISSPosition(): Flow<IssPosition> {
-        return flow {
-            while (true) {
-                val position = peopleInSpaceApi.fetchISSPosition().iss_position
-                emit(position)
-                logger.d { position.toString() }
-                delay(POLL_INTERVAL)
-            }
-        }
-    }
-
-    companion object {
-        private const val POLL_INTERVAL = 10000L
-    }
 }

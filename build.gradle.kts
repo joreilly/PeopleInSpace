@@ -11,16 +11,16 @@ buildscript {
 
     dependencies {
         // keeping this here to allow AS to automatically update
-        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath("com.android.tools.build:gradle:7.1.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
 
         with(Deps.Gradle) {
-            classpath(sqlDelight)
             classpath(shadow)
             classpath(kotlinter)
             classpath(gradleVersionsPlugin)
             classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${Versions.kmpNativeCoroutinesVersion}")
+            classpath("com.apollographql.apollo3:apollo-gradle-plugin:${Versions.apollo}")
         }
     }
 }
