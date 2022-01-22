@@ -210,12 +210,8 @@ fun rememberAstronautPainter(person: Assignment?) =
     }
 
 @Preview(
-    widthDp = 300,
-    heightDp = 80,
-    apiLevel = 26,
-    uiMode = Configuration.UI_MODE_TYPE_WATCH,
-    backgroundColor = 0x000000,
-    showBackground = true
+    device = "id:wearos_small_round",
+    showSystemUi = true
 )
 @Composable
 fun PersonViewPreview() {
@@ -229,12 +225,8 @@ fun PersonViewPreview() {
 }
 
 @Preview(
-    widthDp = 300,
-    heightDp = 300,
-    apiLevel = 26,
-    uiMode = Configuration.UI_MODE_TYPE_WATCH,
-    backgroundColor = 0x000000,
-    showBackground = true
+    device = "id:wearos_small_round",
+    showSystemUi = true
 )
 @Composable
 fun PersonListSquarePreview() {
@@ -253,12 +245,8 @@ fun PersonListSquarePreview() {
 }
 
 @Preview(
-    widthDp = 300,
-    heightDp = 300,
-    apiLevel = 26,
-    uiMode = Configuration.UI_MODE_TYPE_WATCH,
-    backgroundColor = 0x000000,
-    showBackground = true
+    device = "id:wearos_small_round",
+    showSystemUi = true
 )
 @Composable
 fun PersonListSquareEmptyPreview() {

@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
@@ -117,12 +118,8 @@ private fun PersonDetailsScreen(
 }
 
 @Preview(
-    widthDp = 300,
-    heightDp = 300,
-    apiLevel = 26,
-    uiMode = Configuration.UI_MODE_TYPE_WATCH,
-    backgroundColor = 0x000000,
-    showBackground = true
+    device = "id:wearos_small_round",
+    showSystemUi = true
 )
 @Composable
 fun PersonDetailsScreenPreview() {
@@ -140,12 +137,8 @@ fun PersonDetailsScreenPreview() {
 }
 
 @Preview(
-    widthDp = 300,
-    heightDp = 300,
-    apiLevel = 26,
-    uiMode = Configuration.UI_MODE_TYPE_WATCH,
-    backgroundColor = 0x000000,
-    showBackground = true
+    device = "id:wearos_small_round",
+    showSystemUi = true
 )
 @Composable
 fun PersonDetailsScreenNotFoundPreview() {
