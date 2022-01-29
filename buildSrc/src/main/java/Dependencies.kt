@@ -156,4 +156,9 @@ object Deps {
         const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
         const val kermit = "co.touchlab:kermit:${Versions.kermit}"
     }
+
+    object Glance {
+        const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha02"
+        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha02"
+    }
 }

@@ -7,13 +7,14 @@ import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.glance.GlanceModifier
-import androidx.glance.action.actionLaunchActivity
+import androidx.glance.Image
+import androidx.glance.ImageProvider
+import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.background
 import androidx.glance.layout.Box
-import androidx.glance.layout.ImageProvider
-import androidx.glance.layout.Text
 import androidx.glance.layout.fillMaxSize
+import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
@@ -81,12 +82,12 @@ class ISSMapWidget : BaseGlanceAppWidget<ISSMapWidget.Data>() {
     override fun Content(data: Data?) {
         Box(
             modifier = GlanceModifier.background(Color.DarkGray).fillMaxSize().clickable(
-                actionLaunchActivity<MainActivity>()
+                actionStartActivity<MainActivity>()
             )
         ) {
             val bitmap = data?.bitmap
             if (bitmap != null) {
-                androidx.glance.layout.Image(
+                Image(
                     modifier = GlanceModifier.fillMaxSize(),
                     provider = ImageProvider(bitmap),
                     contentDescription = "ISS Location"

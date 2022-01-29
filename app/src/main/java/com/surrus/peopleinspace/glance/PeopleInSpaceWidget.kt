@@ -7,13 +7,12 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceModifier
-import androidx.glance.appwidget.layout.LazyColumn
-import androidx.glance.appwidget.layout.items
+import androidx.glance.appwidget.lazy.LazyColumn
 import androidx.glance.background
 import androidx.glance.layout.Row
-import androidx.glance.layout.Text
 import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
+import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.surrus.common.remote.Assignment
@@ -49,10 +48,10 @@ class PeopleInSpaceWidget : BaseGlanceAppWidget<PeopleInSpaceWidget.Data>() {
                 )
             }
             if (data != null) {
-                items(data.people) {
+                items(data.people.size) {
                     Row {
                         Text(
-                            text = it.name,
+                            text = data.people[it].name,
                             style = TextStyle(
                                 color = ColorProvider(Color.White),
                                 fontSize = TextUnit(10f, TextUnitType.Sp)

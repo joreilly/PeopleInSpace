@@ -64,8 +64,9 @@ dependencies {
         implementation(activityCompose)
     }
 
-    implementation("androidx.glance:glance-appwidget:1.0.0-SNAPSHOT")
-
+    with(Deps.Glance) {
+        implementation(appwidget)
+    }
 
     with(Deps.Compose) {
         implementation(compiler)
@@ -78,8 +79,6 @@ dependencies {
         implementation(accompanistNavigationAnimation)
         implementation(uiTooling)
     }
-
-
 
     with(Deps.Koin) {
         implementation(core)
