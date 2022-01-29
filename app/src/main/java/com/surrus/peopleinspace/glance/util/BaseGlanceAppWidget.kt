@@ -7,10 +7,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.unit.DpSize
+import androidx.glance.GlanceId
+import androidx.glance.LocalGlanceId
 import androidx.glance.LocalSize
 import androidx.glance.appwidget.GlanceAppWidget
-import androidx.glance.appwidget.GlanceId
-import androidx.glance.appwidget.LocalGlanceId
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.firstOrNull
