@@ -5,9 +5,10 @@ object Versions {
 
     const val kotlinCoroutines = "1.6.0"
     const val koin = "3.1.4"
-    const val ktor = "2.0.0-beta-1"
     const val kotlinxSerialization = "1.3.2"
     const val kotlinxHtmlJs = "0.7.3"
+
+    const val apollo = "3.0.0"
 
     const val kmpNativeCoroutinesVersion = "0.11.1-new-mm"
 
@@ -25,7 +26,6 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.6.1"
 
-    const val sqlDelight = "1.5.3"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
@@ -52,7 +52,6 @@ object Deps {
     object Gradle {
         const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
         const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
-        const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
     }
 
@@ -72,6 +71,14 @@ object Deps {
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    }
+
+    object Apollo {
+        const val apolloRuntime = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo}"
+        const val apolloNormalizedCacheInMemory = "com.apollographql.apollo3:apollo-normalized-cache:${Versions.apollo}"
+        const val apolloNormalizedCacheSqlite = "com.apollographql.apollo3:apollo-normalized-cache-sqlite:${Versions.apollo}"
+        const val apolloMockServer = "com.apollographql.apollo3:apollo-mockserver:${Versions.apollo}"
+        const val apolloTestingSupport = "com.apollographql.apollo3:apollo-testing-support:${Versions.apollo}"
     }
 
     object Test {
@@ -109,34 +116,6 @@ object Deps {
         const val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koin}"
         const val android = "io.insert-koin:koin-android:${Versions.koin}"
         const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
-    }
-
-    object Ktor {
-        const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
-        const val serverNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
-        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
-        const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
-
-        const val serverContentNegotiation = "io.ktor:ktor-server-content-negotiation:${Versions.ktor}"
-
-        const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
-        const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
-        const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
-        const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
-        const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
-        const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-        const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
-        const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
-        const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
-    }
-
-    object SqlDelight {
-        const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-        const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
-        const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-        const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
-        const val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
-        const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
     }
 
     object React {

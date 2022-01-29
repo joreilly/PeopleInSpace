@@ -1,6 +1,6 @@
 package components
 
-import com.surrus.common.remote.Assignment
+import com.surrus.common.model.Assignment
 import kotlinx.css.Align
 import kotlinx.css.ObjectFit
 import kotlinx.css.alignSelf

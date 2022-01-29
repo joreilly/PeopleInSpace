@@ -1,18 +1,15 @@
 package com.surrus.common.di
 
-import com.surrus.common.remote.PeopleInSpaceApi
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.cache.normalized.api.MemoryCacheFactory
+import com.apollographql.apollo3.cache.normalized.api.NormalizedCacheFactory
+import com.apollographql.apollo3.cache.normalized.normalizedCache
 import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.common.repository.platformModule
-import io.ktor.client.*
-import io.ktor.client.engine.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
@@ -27,27 +24,23 @@ fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclarat
 fun initKoin() = initKoin(enableNetworkLogs = false) {}
 
 fun commonModule(enableNetworkLogs: Boolean) = module {
-    single { createJson() }
-    single { createHttpClient(get(), get(), enableNetworkLogs = enableNetworkLogs) }
-
     single { CoroutineScope(Dispatchers.Default + SupervisorJob() ) }
 
     single<PeopleInSpaceRepositoryInterface> { PeopleInSpaceRepository() }
 
-    single { PeopleInSpaceApi(get()) }
+
+    single { createApolloClient(get()) }
 }
 
-fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
 
 
-fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
-    install(ContentNegotiation) {
-        json(json)
-    }
-    if (enableNetworkLogs) {
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
-        }
-    }
+fun createApolloClient(sqlNormalizedCacheFactory: NormalizedCacheFactory): ApolloClient {
+    val memoryFirstThenSqlCacheFactory = MemoryCacheFactory(10 * 1024 * 1024)
+        .chain(sqlNormalizedCacheFactory)
+
+    return ApolloClient.Builder()
+        .serverUrl("https://peopleinspace-graphql-guhrsfr7ka-uc.a.run.app/graphql")
+        .webSocketServerUrl("wss://peopleinspace-graphql-guhrsfr7ka-uc.a.run.app/subscriptions")
+        .normalizedCache(memoryFirstThenSqlCacheFactory, writeToCacheAsynchronously = true)
+        .build()
 }

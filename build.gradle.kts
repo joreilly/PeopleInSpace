@@ -16,11 +16,11 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
 
         with(Deps.Gradle) {
-            classpath(sqlDelight)
             classpath(shadow)
             classpath(kotlinter)
             classpath(gradleVersionsPlugin)
             classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${Versions.kmpNativeCoroutinesVersion}")
+            classpath("com.apollographql.apollo3:apollo-gradle-plugin:${Versions.apollo}")
         }
     }
 }

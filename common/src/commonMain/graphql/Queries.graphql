@@ -1,0 +1,15 @@
+query GetPeople {
+  people {
+    name
+    craft
+    personBio
+    personImageUrl
+  }
+}
+
+subscription IssPosition {
+  issPosition {
+    latitude
+    longitude
+  }
+}

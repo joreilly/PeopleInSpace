@@ -47,7 +47,7 @@ import androidx.wear.compose.material.VignettePosition
 import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.surrus.common.remote.Assignment
+import com.surrus.common.model.Assignment
 import org.koin.androidx.compose.getViewModel
 
 const val PersonListTag = "PersonList"

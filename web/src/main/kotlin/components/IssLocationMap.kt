@@ -1,6 +1,6 @@
 package components
 
-import com.surrus.common.remote.IssPosition
+import com.surrus.common.model.IssPosition
 import components.pigeonmaps.Map
 import components.pigeonmaps.Marker
 import react.RBuilder
