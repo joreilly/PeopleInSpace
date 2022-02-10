@@ -11,11 +11,11 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.11.1-new-mm"
 
-    const val compose = "1.1.0-rc01"
+    const val compose = "1.1.0"
     const val composeCompiler = "1.1.0-rc02"
     const val wearCompose = "1.0.0-alpha13"
-    const val navCompose = "2.4.0-rc01"
-    const val accompanist = "0.22.0-rc"
+    const val navCompose = "2.4.1"
+    const val accompanist = "0.23.0"
 
     const val composeDesktopWeb = "1.0.1"
 
