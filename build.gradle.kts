@@ -11,9 +11,11 @@ buildscript {
 
     dependencies {
         // keeping this here to allow AS to automatically update
-        classpath("com.android.tools.build:gradle:7.1.0")
+        classpath("com.android.tools.build:gradle:7.1.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
+        classpath("nl.littlerobots.vcu:plugin:0.3.0")
 
         with(Deps.Gradle) {
             classpath(sqlDelight)
@@ -25,9 +27,10 @@ buildscript {
     }
 }
 
-allprojects {
-    apply(plugin = "org.jmailen.kotlinter")
+apply(plugin = "com.github.ben-manes.versions")
+apply(plugin = "nl.littlerobots.version-catalog-update")
 
+allprojects {
     repositories {
         google()
         mavenCentral()
@@ -35,6 +38,8 @@ allprojects {
         maven(url = "https://jitpack.io")
         maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
     }
+
+    apply(plugin = "org.jmailen.kotlinter")
 }
 
 
@@ -42,4 +47,11 @@ allprojects {
 // https://youtrack.jetbrains.com/issue/KT-49109
 rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin::class) {
     rootProject.the(org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension::class).nodeVersion = "16.0.0"
+}
+
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+    rejectVersionIf {
+        (candidate.version.contains("-alpha") && !(currentVersion.contains("-alpha"))) ||
+        (candidate.version.contains("-beta") && !(currentVersion.contains(".*-(beta|alpha).*/".toRegex())))
+    }
 }

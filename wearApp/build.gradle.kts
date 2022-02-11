@@ -43,51 +43,29 @@ android {
 }
 
 dependencies {
+    implementation(libs.org.osmdroid.osmdroid.android)
+    implementation(libs.androidx.activity.activity.compose)
+    implementation(libs.androidx.compose.compiler)
+    implementation(libs.androidx.wear.compose.compose.foundation)
+    implementation(libs.androidx.wear.compose.compose.material)
+    implementation(libs.androidx.wear.compose.compose.navigation)
+    implementation(libs.io.coil.kt.coil.compose)
+    implementation(libs.androidx.compose.ui.ui.tooling)
+    implementation(libs.io.insert.koin.koin.core)
+    implementation(libs.io.insert.koin.koin.android)
+    implementation(libs.io.insert.koin.koin.androidx.compose)
+    implementation(libs.com.squareup.okhttp3.okhttp)
+    implementation(libs.com.squareup.okhttp3.logging.interceptor)
+    implementation(libs.androidx.glance.glance.wear.tiles)
 
-    with(Deps.Android) {
-        implementation(osmdroidAndroid)
-    }
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.org.robolectric)
+    testImplementation(libs.org.mockito.mockito.inline)
+    androidTestImplementation(libs.androidx.compose.ui.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.ui.test.manifest)
 
-    with(Deps.AndroidX) {
-        implementation(activityCompose)
-    }
-
-    with(Deps.Compose) {
-        implementation(compiler)
-        implementation(wearFoundation)
-        implementation(wearMaterial)
-        implementation(wearNavigation)
-        implementation(coilCompose)
-        implementation(uiTooling)
-    }
-
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-        implementation(compose)
-    }
-
-    with (Deps.Ok) {
-        implementation(okhttp)
-        implementation(loggingInterceptor)
-    }
-
-    with(Deps.Test) {
-        testImplementation(junit)
-        androidTestImplementation(androidXTestJUnit)
-        testImplementation(testCore)
-        testImplementation(robolectric)
-        testImplementation(mockito)
-
-        // Compose testing dependencies
-        androidTestImplementation(composeUiTest)
-        androidTestImplementation(composeUiTestJUnit)
-        debugImplementation(composeUiTestManifest)
-    }
-
-    with(Deps.Glance) {
-        implementation(tiles)
-    }
-
-    implementation(project(":common"))
+    implementation(projects.common)
 }
