@@ -11,11 +11,11 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.11.1-new-mm"
 
-    const val compose = "1.1.0-rc01"
-    const val composeCompiler = "1.1.0-rc02"
-    const val wearCompose = "1.0.0-alpha14"
-    const val navCompose = "2.4.0-rc01"
-    const val accompanist = "0.22.0-rc"
+    const val compose = "1.1.0"
+    const val composeCompiler = "1.1.0"
+    const val wearCompose = "1.0.0-alpha16"
+    const val navCompose = "2.4.1"
+    const val accompanist = "0.23.0"
 
     const val composeDesktopWeb = "1.0.1"
 
@@ -155,5 +155,10 @@ object Deps {
         const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
         const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
         const val kermit = "co.touchlab:kermit:${Versions.kermit}"
+    }
+
+    object Glance {
+        const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha02"
+        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha02"
     }
 }

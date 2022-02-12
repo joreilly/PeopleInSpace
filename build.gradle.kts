@@ -11,7 +11,7 @@ buildscript {
 
     dependencies {
         // keeping this here to allow AS to automatically update
-        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath("com.android.tools.build:gradle:7.1.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
 
@@ -33,9 +33,7 @@ allprojects {
         mavenCentral()
         maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
         maven(url = "https://jitpack.io")
-        maven(url = "https://androidx.dev/snapshots/builds/7888785/artifacts/repository")
         maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/ktor/eap")
     }
 }
 

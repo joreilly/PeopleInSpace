@@ -85,7 +85,9 @@ dependencies {
         debugImplementation(composeUiTestManifest)
     }
 
-    implementation("androidx.glance:glance-wear:1.0.0-SNAPSHOT")
+    with(Deps.Glance) {
+        implementation(tiles)
+    }
 
     implementation(project(":common"))
 }
