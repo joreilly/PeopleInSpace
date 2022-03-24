@@ -6,7 +6,10 @@ object Versions {
     const val kotlinCoroutines = "1.6.0"
     const val koin = "3.1.4"
     const val ktor = "2.0.0-beta-1"
-    const val kotlinxSerialization = "1.3.2"
+    
+    // Note: v1.3.2 produces iOS achiving issues
+    const val kotlinxSerialization = "1.3.1"
+    
     const val kotlinxHtmlJs = "0.7.3"
 
     const val kmpNativeCoroutinesVersion = "0.11.1-new-mm"
