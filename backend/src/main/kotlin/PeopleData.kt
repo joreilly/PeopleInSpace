@@ -36,6 +36,9 @@ val personImages = mapOf(
     "Alexander Misurkin" to "https://spaceflight101.com/iss/wp-content/uploads/sites/37/2017/08/36468940815_70ef48a8b6_o-768x1152.jpg",
     "Yusaku Maezawa" to "https://pbs.twimg.com/media/FD599ihaUAAyjC7?format=jpg",
     "Yozo Hirano" to "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1lYvHXPvl-eG3yX5MWAtvTaxkoiISJ5KXrg&usqp=CAU",
+    "Oleg Artemyev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Oleg_Artemyev_in_2021.jpg/440px-Oleg_Artemyev_in_2021.jpg",
+    "Denis Matveev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Denis_Matveev_in_2021_%28b%29.jpg/440px-Denis_Matveev_in_2021_%28b%29.jpg",
+    "Sergey Korsakov" to "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Sergey_Korsakov_in_2021.jpg/440px-Sergey_Korsakov_in_2021.jpg",
 )
 
 val personBios = mapOf(
@@ -76,5 +79,9 @@ val personBios = mapOf(
     "Alexander Misurkin" to "Alexander Alexanderovich Misurkin (Russian: Aлександр Aлександрович Мисуркин) (born September 23, 1977), a major in the Russian Air Force, is a Russian cosmonaut, selected in 2006. He flew aboard Soyuz TMA-08M on 28 March 2013 as his first space mission, and launched on Soyuz MS-06 as his second flight, in 2017. He was Commander of the International Space Station for Expedition 54.",
     "Yusaku Maezawa" to "Yusaku Maezawa (前澤 友作, Maezawa Yūsaku, born 22 November 1975) is a Japanese billionaire entrepreneur and art collector. He founded Start Today in 1998 and launched the online fashion retail website Zozotown in 2004, now Japan's largest. Most recently, Maezawa introduced a custom-fit apparel brand ZOZO and at-home measurement system, the ZOZOSUIT, in 2018. As of July 2021, he is estimated by Forbes to have a net worth of $1.9 billion.",
     "Yozo Hirano" to "Yozo Hirano (Japanese: 平野 陽三, 1985- ) born in Imabari, Ehime Prefecture, Japan, is a Japanese spaceflight participant. He is scheduled to fly on Soyuz MS-20.\n\n"
-            + "He is foreseen to fly with Yusaku Maezawa, who will pay for both seats; his function will be as production assistant of Maezawa and to document the flight."
+            + "He is foreseen to fly with Yusaku Maezawa, who will pay for both seats; his function will be as production assistant of Maezawa and to document the flight.",
+    "Oleg Artemyev" to "Oleg Germanovich Artemyev (Russian: Олег Германович Артемьев; born December 28, 1970) is a Russian Cosmonaut for the Russian Federal Space Agency. He was selected as part of the RKKE-15 Cosmonaut group in 2003.He was a flight engineer of Expedition 39 and 40 to the International Space Station, and in 2018 he returned to space as the Commander of Soyuz MS-08. and in 2022 he returned to space as the Commander of Soyuz MS-21.",
+    "Denis Matveev" to "Denis Vladimirovich Matveev (Russian Cyrillic: Денис Владимирович Матвеев; born April 25, 1983 in Leningrad, RSFSR, now St. Petersburg, Russia) is a Russian cosmonaut.",
+    "Sergey Korsakov" to "Sergey Vladimirovich Korsakov (Russian Cyrillic: Сергей Владимирович Корсаков; born 1 September 1984 in Frunze, Kirghiz SSR) is a Russian cosmonaut selected by Roscosmos in 2012. He was scheduled to make his first flight into space in April 2021 as a flight engineer aboard Soyuz MS-18 ahead of a stay aboard the International Space Station; but was replaced on the crew by Mark Vande Hei in March of that year. Now he is assigned to Soyuz MS-21 which launched successfully March 18, 2022.",
+
 )
