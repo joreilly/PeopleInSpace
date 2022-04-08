@@ -39,6 +39,10 @@ val personImages = mapOf(
     "Oleg Artemyev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Oleg_Artemyev_in_2021.jpg/440px-Oleg_Artemyev_in_2021.jpg",
     "Denis Matveev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Denis_Matveev_in_2021_%28b%29.jpg/440px-Denis_Matveev_in_2021_%28b%29.jpg",
     "Sergey Korsakov" to "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Sergey_Korsakov_in_2021.jpg/440px-Sergey_Korsakov_in_2021.jpg",
+    "Michael Lopez-Alegria" to "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Michael_Lopez-Alegria.jpg/440px-Michael_Lopez-Alegria.jpg",
+    "Larry Connor" to "https://upload.wikimedia.org/wikipedia/en/e/ed/Larry_Connor_Portrait.png",
+    "Mark Pathy" to "https://www.spacelaunchschedule.com/wp-content/uploads/mark_pathy_image_20220327185208-240x300.png",
+    "Eytan Stibbe" to "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Eitan_Stiva.jpg/440px-Eitan_Stiva.jpg",
 )
 
 val personBios = mapOf(
@@ -83,5 +87,11 @@ val personBios = mapOf(
     "Oleg Artemyev" to "Oleg Germanovich Artemyev (Russian: Олег Германович Артемьев; born December 28, 1970) is a Russian Cosmonaut for the Russian Federal Space Agency. He was selected as part of the RKKE-15 Cosmonaut group in 2003.He was a flight engineer of Expedition 39 and 40 to the International Space Station, and in 2018 he returned to space as the Commander of Soyuz MS-08. and in 2022 he returned to space as the Commander of Soyuz MS-21.",
     "Denis Matveev" to "Denis Vladimirovich Matveev (Russian Cyrillic: Денис Владимирович Матвеев; born April 25, 1983 in Leningrad, RSFSR, now St. Petersburg, Russia) is a Russian cosmonaut.",
     "Sergey Korsakov" to "Sergey Vladimirovich Korsakov (Russian Cyrillic: Сергей Владимирович Корсаков; born 1 September 1984 in Frunze, Kirghiz SSR) is a Russian cosmonaut selected by Roscosmos in 2012. He was scheduled to make his first flight into space in April 2021 as a flight engineer aboard Soyuz MS-18 ahead of a stay aboard the International Space Station; but was replaced on the crew by Mark Vande Hei in March of that year. Now he is assigned to Soyuz MS-21 which launched successfully March 18, 2022.",
+    "Michael Lopez-Alegria" to "Michael López-Alegría (born Miguel Eladio López-Alegría on May 30, 1958) is a Spanish-American astronaut and test pilot; a veteran of three Space Shuttle missions and one International Space Station mission. He is known for having performed ten spacewalks so far in his career, presently holding the second longest all-time EVA duration record (first among NASA astronauts) and having the fifth-longest spaceflight of any American at the length of 215 days; this time was spent on board the ISS from September 18, 2006 to April 21, 2007. López-Alegría is currently commanding Axiom-1, the first ever private mission to the International Space Station, which launched on April 8, 2022.",
+    "Larry Connor" to "Larry Connor (born in 1950) is an American real estate and technology entrepreneur, and private astronaut. Connor is the head of the Connor Group, a real estate investment firm located in Dayton, Ohio.",
+    "Mark Pathy" to "Mark Pathy (born July 1969) is a Canadian businessman, philanthropist, and private astronaut. He is the CEO of Mavrik, a privately owned Canadian investment company. He is also the chairman of Stingray Group and the former co-CEO of Fednav, a private shipping company co-founded by his great-uncle, Ernest Pathy, who was an immigrant from Hungary.",
+    "Eytan Stibbe" to "Eytan Meir Stibbe is an Israeli former fighter pilot, fighter ace, businessman and private astronaut.\n" +
+            "\n" +
+            "As of November 2020, he has signed a contract with Axiom Space to fly a ten day mission to the International Space Station aboard a SpaceX Crew Dragon spacecraft on Axiom Mission 1, a private crewed orbital spaceflight.",
 
 )
