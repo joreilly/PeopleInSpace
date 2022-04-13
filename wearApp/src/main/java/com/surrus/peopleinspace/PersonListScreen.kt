@@ -1,6 +1,5 @@
 package com.surrus.peopleinspace
 
-import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideInVertically
@@ -26,7 +25,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -46,7 +44,6 @@ import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
 import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
 
@@ -173,12 +170,11 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = rememberAstronautPainter(person),
+            AstronautImage(
                 modifier = Modifier
                     .size(50.dp)
                     .clip(MaterialTheme.shapes.medium),
-                contentDescription = person.name
+                person = person
             )
 
             Spacer(modifier = Modifier.size(12.dp))
@@ -194,20 +190,6 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
         }
     }
 }
-
-@OptIn(ExperimentalCoilApi::class)
-@Composable
-fun rememberAstronautPainter(person: Assignment?) =
-    rememberImagePainter(person?.personImageUrl) {
-        // Use the generic astronaut SVG for missing or error (404?).
-        fallback(R.drawable.ic_american_astronaut)
-        error(R.drawable.ic_american_astronaut)
-
-        if (LocalInspectionMode.current) {
-            // Show error image instead of blank in @Preview
-            placeholder(R.drawable.ic_american_astronaut)
-        }
-    }
 
 @Preview(
     device = "id:wearos_small_round",

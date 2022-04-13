@@ -1,7 +1,5 @@
 package com.surrus.peopleinspace
 
-import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -23,9 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
@@ -35,6 +32,7 @@ import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
+import coil.compose.AsyncImage
 import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
 
@@ -84,12 +82,11 @@ private fun PersonDetailsScreen(
             ) {
                 Spacer(modifier = Modifier.size(if (LocalConfiguration.current.isScreenRound) 32.dp else 12.dp))
 
-                Image(
-                    painter = rememberAstronautPainter(person),
+                AstronautImage(
                     modifier = Modifier
                         .size(120.dp)
                         .clip(CutCornerShape(30.dp)),
-                    contentDescription = person?.name,
+                    person = person
                 )
 
                 Spacer(modifier = Modifier.size(12.dp))
@@ -115,6 +112,20 @@ private fun PersonDetailsScreen(
             }
         }
     }
+}
+
+@Composable
+fun AstronautImage(
+    modifier: Modifier,
+    person: Assignment?
+) {
+    AsyncImage(
+        modifier = modifier,
+        model = person?.personImageUrl,
+        contentDescription = person?.name,
+        fallback = painterResource(id = R.drawable.ic_american_astronaut),
+        error = painterResource(id = R.drawable.ic_american_astronaut)
+    )
 }
 
 @Preview(
