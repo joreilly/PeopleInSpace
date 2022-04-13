@@ -3,7 +3,7 @@ object Versions {
     const val androidCompileSdk = 31
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlinCoroutines = "1.6.0"
+    const val kotlinCoroutines = "1.6.1"
     const val koin = "3.1.4"
     const val ktor = "2.0.0-beta-1"
     
@@ -16,7 +16,7 @@ object Versions {
 
     const val compose = "1.1.0"
     const val composeCompiler = "1.1.0"
-    const val wearCompose = "1.0.0-alpha16"
+    const val wearCompose = "1.0.0-alpha20"
     const val navCompose = "2.4.1"
     const val accompanist = "0.23.0"
 
@@ -102,7 +102,7 @@ object Deps {
         const val wearMaterial = "androidx.wear.compose:compose-material:${Versions.wearCompose}"
         const val wearNavigation = "androidx.wear.compose:compose-navigation:${Versions.wearCompose}"
 
-        const val coilCompose = "io.coil-kt:coil-compose:1.3.1"
+        const val coilCompose = "io.coil-kt:coil-compose:2.0.0-rc03"
         const val accompanistNavigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
     }
 
@@ -161,7 +161,7 @@ object Deps {
     }
 
     object Glance {
-        const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha02"
-        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha02"
+        const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha03"
+        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha03"
     }
 }
