@@ -89,5 +89,9 @@ dependencies {
         implementation(tiles)
     }
 
+    with(Deps.Horologist) {
+        implementation(composeLayout)
+    }
+
     implementation(project(":common"))
 }

@@ -7,8 +7,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
 import com.surrus.common.remote.Assignment
-import com.surrus.peopleinspace.PersonListScreen
-import com.surrus.peopleinspace.PersonListTag
+import com.surrus.peopleinspace.list.PersonListScreen
+import com.surrus.peopleinspace.list.PersonListTag
 import org.junit.Rule
 import org.junit.Test
 
