@@ -2,6 +2,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     resolutionStrategy {
         eachPlugin {
@@ -15,6 +16,7 @@ pluginManagement {
 rootProject.name = "PeopleInSpace"
 
 include(":app", ":common", ":compose-desktop")
+include(":compose-ios")
 include(":wearApp")
 include(":web")
 include(":compose-web")

@@ -1,0 +1,16 @@
+
+CREATE TABLE People(
+name TEXT NOT NULL PRIMARY KEY,
+craft TEXT NOT NULL,
+personImageUrl TEXT,
+personBio TEXT
+);
+
+insertItem:
+INSERT OR REPLACE INTO People(name, craft, personImageUrl, personBio)VALUES(?,?,?,?);
+
+selectAll:
+SELECT * FROM People;
+
+deleteAll:
+DELETE FROM People;
