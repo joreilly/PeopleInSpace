@@ -19,7 +19,7 @@ plugins {
     id("kotlinx-serialization")
     id("com.squareup.sqldelight")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev662"
+    id("org.jetbrains.compose") version Versions.composeIos
 }
 
 version = "1.0-SNAPSHOT"
