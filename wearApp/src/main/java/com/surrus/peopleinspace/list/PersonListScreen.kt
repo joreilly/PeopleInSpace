@@ -1,30 +1,22 @@
-package com.surrus.peopleinspace
+package com.surrus.peopleinspace.list
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -35,80 +27,39 @@ import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Card
 import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.PositionIndicator
-import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.Vignette
-import androidx.wear.compose.material.VignettePosition
 import androidx.wear.compose.material.rememberScalingLazyListState
-import coil.annotation.ExperimentalCoilApi
+import com.google.android.horologist.compose.navscaffold.scrollableColumn
 import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.R
+import com.surrus.peopleinspace.person.AstronautImage
+import com.surrus.peopleinspace.util.rememberStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
 
 const val PersonListTag = "PersonList"
 const val PersonTag = "Person"
-const val NoPeopleTag = "NoPeople"
 
 @Composable
 fun PersonListScreen(
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
+    scrollState: ScalingLazyListState,
+    focusRequester: FocusRequester,
+    modifier: Modifier = Modifier,
 ) {
-    val peopleState by peopleInSpaceViewModel.peopleInSpace.collectAsState()
-    PersonListScreen(peopleState, personSelected, issMapClick)
-}
+    val viewModel = getViewModel<PersonListViewModel>()
+    val people by rememberStateWithLifecycle(viewModel.peopleInSpace)
 
-@OptIn(ExperimentalAnimationApi::class)
-@Composable
-fun PersonListScreen(
-    people: List<Assignment>?,
-    personSelected: (person: Assignment) -> Unit,
-    issMapClick: () -> Unit,
-    scrollState: ScalingLazyListState = rememberScalingLazyListState(),
-) {
-    MaterialTheme {
-        AnimatedVisibility(
-            visible = people != null,
-            enter = slideInVertically()
-        ) {
-            Scaffold(
-                vignette = {
-                    if (!people.isNullOrEmpty()) {
-                        Vignette(VignettePosition.Bottom)
-                    }
-                },
-                positionIndicator = {
-                    if (!people.isNullOrEmpty()) {
-                        PositionIndicator(scrollState)
-                    }
-                }
-            ) {
-                if (people.isNullOrEmpty()) {
-                    EmptyPersonList()
-                } else {
-                    PersonList(people, personSelected, issMapClick, scrollState)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun EmptyPersonList() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Card(
-            onClick = {},
-            modifier = Modifier.testTag(NoPeopleTag)
-        ) {
-            Text("No people in space!")
-        }
-    }
+    PersonList(
+        people = people,
+        personSelected = personSelected,
+        issMapClick = issMapClick,
+        scrollState = scrollState,
+        focusRequester = focusRequester,
+        modifier = modifier,
+    )
 }
 
 @Composable
@@ -116,20 +67,14 @@ fun PersonList(
     people: List<Assignment>,
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    scrollState: ScalingLazyListState = rememberScalingLazyListState(),
+    scrollState: ScalingLazyListState,
+    focusRequester: FocusRequester,
+    modifier: Modifier = Modifier,
 ) {
-    val configuration = LocalConfiguration.current
-    // extra content padding to prevent bottom item from crop
-    val extraBottomPadding = remember {
-        if (configuration.isScreenRound) 40.dp else 0.dp
-    }
-
     ScalingLazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .testTag(PersonListTag)
-            .rotaryEventHandler(scrollState)
-            .padding(horizontal = 4.dp),
-        contentPadding = PaddingValues(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 8.dp + extraBottomPadding),
+            .scrollableColumn(focusRequester, scrollState),
         state = scrollState,
     ) {
         item {
@@ -150,17 +95,23 @@ fun PersonList(
             }
         }
         items(people.size) { offset ->
-            PersonView(people[offset], personSelected)
+            PersonView(
+                person = people[offset],
+                personSelected = personSelected
+            )
         }
     }
 }
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
-fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
+fun PersonView(
+    modifier: Modifier = Modifier,
+    person: Assignment,
+    personSelected: (person: Assignment) -> Unit
+) {
     Card(
         onClick = { personSelected(person) },
-        modifier = Modifier
+        modifier = modifier
             .testTag(PersonTag)
             .semantics(mergeDescendants = true) {
                 contentDescription = person.name + " on " + person.craft
@@ -203,7 +154,8 @@ fun PersonViewPreview() {
             "Megan McArthur",
             personImageUrl = "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010823.jpg"
         ),
-        personSelected = {})
+        personSelected = {},
+    )
 }
 
 @Preview(
@@ -212,18 +164,24 @@ fun PersonViewPreview() {
 )
 @Composable
 fun PersonListSquarePreview() {
-    PersonListScreen(people = listOf(
-        Assignment(
-            "Apollo 11",
-            "Neil Armstrong",
-            "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk0MjgyMzk5MTE0MzYy/gettyimages-150832381.jpg"
+    PersonList(
+        people = listOf(
+            Assignment(
+                "Apollo 11",
+                "Neil Armstrong",
+                "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk0MjgyMzk5MTE0MzYy/gettyimages-150832381.jpg"
+            ),
+            Assignment(
+                "Apollo 11",
+                "Buzz Aldrin",
+                "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
+            )
         ),
-        Assignment(
-            "Apollo 11",
-            "Buzz Aldrin",
-            "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
-        )
-    ), personSelected = {}, issMapClick = {})
+        personSelected = {},
+        issMapClick = {},
+        focusRequester = remember { FocusRequester() },
+        scrollState = rememberScalingLazyListState()
+    )
 }
 
 @Preview(
@@ -232,5 +190,11 @@ fun PersonListSquarePreview() {
 )
 @Composable
 fun PersonListSquareEmptyPreview() {
-    PersonListScreen(people = listOf(), personSelected = {}, issMapClick = {})
+    PersonList(
+        people = listOf(),
+        personSelected = {},
+        issMapClick = {},
+        focusRequester = remember { FocusRequester() },
+        scrollState = rememberScalingLazyListState()
+    )
 }

@@ -165,4 +165,8 @@ object Deps {
         const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha03"
         const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha03"
     }
+
+    object Horologist {
+        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:0.0.17"
+    }
 }

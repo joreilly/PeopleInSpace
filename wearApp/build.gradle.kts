@@ -22,7 +22,8 @@ android {
     }
 
     kotlinOptions {
-        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-opt-in=com.google.android.horologist.compose.navscaffold.ExperimentalComposeLayoutApi"
     }
 
     buildTypes {
@@ -87,6 +88,10 @@ dependencies {
 
     with(Deps.Glance) {
         implementation(tiles)
+    }
+
+    with(Deps.Horologist) {
+        implementation(composeLayout)
     }
 
     implementation(project(":common"))
