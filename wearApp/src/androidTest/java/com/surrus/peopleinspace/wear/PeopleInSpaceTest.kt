@@ -44,8 +44,7 @@ class PeopleInSpaceTest {
             )
         }
 
-        composeTestRule.onNodeWithText("No people in space!")
-            .assertIsDisplayed()
+        composeTestRule.onNodeWithTag("Person").assertDoesNotExist()
     }
 
     @Test
