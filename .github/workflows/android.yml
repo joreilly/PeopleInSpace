@@ -52,7 +52,7 @@ jobs:
         with:
           api-level: 28
           target: android-wear
-          script: ./gradlew wear:connectedAndroidTest
+          script: ./gradlew wearApp:connectedAndroidTest
 
       - name: Android Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
