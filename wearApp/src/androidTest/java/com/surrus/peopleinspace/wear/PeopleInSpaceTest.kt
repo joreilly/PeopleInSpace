@@ -1,13 +1,15 @@
 package com.surrus.peopleinspace.wear
 
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
-import androidx.compose.ui.test.printToLog
+import androidx.wear.compose.material.rememberScalingLazyListState
 import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.list.PersonList
 import com.surrus.peopleinspace.list.PersonListScreen
 import com.surrus.peopleinspace.list.PersonListTag
 import org.junit.Rule
@@ -33,7 +35,13 @@ class PeopleInSpaceTest {
     @Test
     fun testPeopleListScreenEmpty() {
         composeTestRule.setContent {
-            PersonListScreen(personSelected = {}, issMapClick = {}, people = listOf())
+            PersonList(
+                people = listOf(),
+                personSelected = {},
+                issMapClick = {},
+                focusRequester = FocusRequester(),
+                scrollState = rememberScalingLazyListState(initialCenterItemIndex = 0)
+            )
         }
 
         composeTestRule.onNodeWithText("No people in space!")
@@ -43,10 +51,12 @@ class PeopleInSpaceTest {
     @Test
     fun testPeopleListScreen() {
         composeTestRule.setContent {
-            PersonListScreen(
+            PersonList(
+                people = peopleList,
                 personSelected = {},
                 issMapClick = {},
-                people = peopleList
+                focusRequester = FocusRequester(),
+                scrollState = rememberScalingLazyListState(initialCenterItemIndex = 0)
             )
         }
 

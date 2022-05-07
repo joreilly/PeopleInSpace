@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalComposeLayoutApi::class)
-
 package com.surrus.peopleinspace.person
 
 import androidx.compose.foundation.background
@@ -27,7 +25,6 @@ import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.compose.AsyncImage
-import com.google.android.horologist.compose.navscaffold.ExperimentalComposeLayoutApi
 import com.google.android.horologist.compose.navscaffold.scrollableColumn
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
