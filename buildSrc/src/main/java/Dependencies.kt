@@ -73,9 +73,15 @@ object Deps {
     }
 
     object AndroidX {
+        const val benchmarkMacroJunit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0-rc01"
+        const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.1.0-rc01"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+        const val metrics = "androidx.metrics:metrics-performance:1.0.0-alpha01"
+        const val testEspressoCore = "androidx.test.espresso:espresso-core:3.4.0"
+        const val testExtJunit = "androidx.test.ext:junit:1.1.3"
+        const val testUiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
     }
 
     object Test {

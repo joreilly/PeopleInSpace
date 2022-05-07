@@ -34,6 +34,15 @@ android {
             // temporary hack for local testing of release builds
             signingConfig = signingConfigs.getByName("debug")
         }
+        create("benchmark") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "benchmark-rules.pro")
+            // temporary hack for local testing of release builds
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks.addAll(listOf("release", "debug"))
+        }
     }
 
     packagingOptions {
@@ -51,6 +60,7 @@ dependencies {
 
     with(Deps.AndroidX) {
         implementation(activityCompose)
+        implementation(metrics)
     }
 
     with(Deps.Compose) {
