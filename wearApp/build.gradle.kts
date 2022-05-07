@@ -22,7 +22,8 @@ android {
     }
 
     kotlinOptions {
-        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-opt-in=com.google.android.horologist.compose.navscaffold.ExperimentalComposeLayoutApi"
     }
 
     buildTypes {

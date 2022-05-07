@@ -5,13 +5,11 @@ package com.surrus.peopleinspace.person
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
@@ -21,9 +19,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material.ExperimentalWearMaterialApi
+import androidx.wear.compose.material.AutoCenteringParams
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.ScalingLazyColumn
+import androidx.wear.compose.material.ScalingLazyListAnchorType
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
@@ -35,14 +34,18 @@ import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.list.PersonListTag
 import com.surrus.peopleinspace.util.rememberStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun PersonDetailsScreen(
+    personName: String,
     scrollState: ScalingLazyListState,
     focusRequester: FocusRequester,
     modifier: Modifier = Modifier,
 ) {
-    val peopleInSpaceViewModel = getViewModel<PersonDetailsViewModel>()
+    val peopleInSpaceViewModel = getViewModel<PersonDetailsViewModel>(
+        parameters = { parametersOf(personName) }
+    )
     val person by rememberStateWithLifecycle(peopleInSpaceViewModel.person)
 
     PersonDetails(
@@ -65,12 +68,16 @@ private fun PersonDetails(
             .testTag(PersonListTag)
             .scrollableColumn(focusRequester, scrollState),
         state = scrollState,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        anchorType = ScalingLazyListAnchorType.ItemCenter,
+        autoCentering = AutoCenteringParams(itemIndex = 0)
     ) {
         item {
             AstronautImage(
                 modifier = Modifier
                     .size(120.dp)
-                    .clip(CutCornerShape(30.dp)),
+                    .clip(CutCornerShape(30.dp))
+                ,
                 person = person
             )
         }

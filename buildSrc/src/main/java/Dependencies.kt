@@ -167,6 +167,6 @@ object Deps {
     }
 
     object Horologist {
-        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:0.0.13"
+        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:0.0.17"
     }
 }

@@ -12,10 +12,10 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val wearAppModule = module {
-    viewModel {
+    viewModel { (personName: String) ->
         PersonDetailsViewModel(
+            personName,
             peopleInSpaceRepository = get(),
-            savedStateHandle = get()
         )
     }
     viewModel { PersonListViewModel(peopleInSpaceRepository = get()) }

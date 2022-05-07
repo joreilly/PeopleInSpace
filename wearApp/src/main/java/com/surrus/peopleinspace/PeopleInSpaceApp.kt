@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalComposeLayoutApi::class, ExperimentalComposeLayoutApi::class)
-
 package com.surrus.peopleinspace
 
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +9,6 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import androidx.wear.compose.material.ScalingLazyListState
-import androidx.wear.compose.navigation.composable
-import com.google.android.horologist.compose.navscaffold.ExperimentalComposeLayoutApi
 import com.google.android.horologist.compose.navscaffold.NavScaffoldViewModel
 import com.google.android.horologist.compose.navscaffold.WearNavScaffold
 import com.google.android.horologist.compose.navscaffold.scalingLazyColumnComposable
@@ -55,10 +51,14 @@ fun PeopleInSpaceApp(navController: NavHostController) {
             deepLinks = listOf(navDeepLink {
                 uriPattern = DEEPLINK_URI + "personList/{${PERSON_NAME_NAV_ARGUMENT}}"
             }),
-            scrollStateBuilder = { ScalingLazyListState() }
+            scrollStateBuilder = { ScalingLazyListState(initialCenterItemIndex = 0) }
         ) {
+            val personName: String =
+                it.backStackEntry.arguments!!.getString(PERSON_NAME_NAV_ARGUMENT)!!
+
             PersonDetailsScreen(
                 modifier = Modifier.fillMaxSize(),
+                personName = personName,
                 scrollState = it.scrollableState,
                 focusRequester = it.viewModel.focusRequester
             )
