@@ -5,6 +5,7 @@ Minimal **Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose 
 * Android App Widget (Compose based Glance API - contributed by https://github.com/yschimke)
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
 * iOS (SwiftUI)
+* iOS (Compose for iOS - experimental support!)
 * iOS App Widget (SwiftUI)
 * watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
 * macOS (SwiftUI)
@@ -47,7 +48,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 
 
 ### Building
-You need to use Android Studio Arctic Fox (**note: Java 11 is now the minimum version required**). Requires XCode 13.2 or later (due to use of new Swift 5.5 concurrnecy APIs).
+You need to use at least Android Studio Arctic Fox (**note: Java 11 is now the minimum version required**). Requires XCode 13.2 or later (due to use of new Swift 5.5 concurrency APIs).
 
 When opening iOS/watchOS/macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one). 
 

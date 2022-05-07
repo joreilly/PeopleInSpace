@@ -2,11 +2,13 @@ import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.AstroResult
 import com.surrus.common.remote.PeopleInSpaceApi
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.server.plugins.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.plugins.cors.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
@@ -19,6 +21,20 @@ fun main() {
     embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             json()
+        }
+
+        install(CORS) {
+            allowMethod(HttpMethod.Options)
+            allowMethod(HttpMethod.Put)
+            allowMethod(HttpMethod.Delete)
+            allowMethod(HttpMethod.Patch)
+            allowHeader(HttpHeaders.Authorization)
+            allowHeader(HttpHeaders.ContentType)
+            allowHeader(HttpHeaders.AccessControlAllowOrigin)
+            // header("any header") if you want to add any header
+            allowCredentials = true
+            allowNonSimpleContentTypes = true
+            anyHost()
         }
 
         routing {

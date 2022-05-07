@@ -4,20 +4,24 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlinCoroutines = "1.6.1"
-    const val koin = "3.1.4"
-    const val ktor = "2.0.0-beta-1"
-    const val kotlinxSerialization = "1.3.2"
+    const val koin = "3.1.6"
+    const val ktor = "2.0.0"
+
+    // Note: v1.3.2 produces iOS achiving issues
+    const val kotlinxSerialization = "1.3.1"
+    
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val kmpNativeCoroutinesVersion = "0.11.1-new-mm"
+    const val kmpNativeCoroutinesVersion = "0.12.1-new-mm"
 
-    const val compose = "1.1.0"
-    const val composeCompiler = "1.1.0"
-    const val wearCompose = "1.0.0-alpha20"
-    const val navCompose = "2.4.1"
+    const val compose = "1.2.0-alpha08"
+    const val composeCompiler = "1.2.0-alpha08"
+    const val wearCompose = "1.0.0-alpha21"
+    const val navCompose = "2.4.2"
     const val accompanist = "0.23.0"
 
-    const val composeDesktopWeb = "1.0.1"
+    const val composeDesktopWeb = "0.0.0-master-dev673"
+    const val composeIos = "0.0.0-master-dev673"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
@@ -114,12 +118,12 @@ object Deps {
     object Ktor {
         const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
         const val serverNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
+        const val serverCors = "io.ktor:ktor-server-cors:${Versions.ktor}"
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
 
         const val serverContentNegotiation = "io.ktor:ktor-server-content-negotiation:${Versions.ktor}"
 
-        const val websockets = "io.ktor:ktor-websockets:${Versions.ktor}"
         const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
         const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"

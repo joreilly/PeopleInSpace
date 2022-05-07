@@ -1,0 +1,2 @@
+ALTER TABLE People ADD COLUMN personImageUrl TEXT;
+ALTER TABLE People ADD COLUMN personBio TEXT;

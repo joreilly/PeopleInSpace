@@ -6,6 +6,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
+import androidx.compose.ui.test.printToLog
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.list.PersonListScreen
 import com.surrus.peopleinspace.list.PersonListTag
@@ -42,17 +43,23 @@ class PeopleInSpaceTest {
     @Test
     fun testPeopleListScreen() {
         composeTestRule.setContent {
-            PersonListScreen(personSelected = {}, issMapClick = {}, people = peopleList)
+            PersonListScreen(
+                personSelected = {},
+                issMapClick = {},
+                people = peopleList
+            )
         }
 
         val personListNode = composeTestRule.onNodeWithTag(PersonListTag)
         personListNode.assertIsDisplayed()
 
-        val neilNode = composeTestRule.onNodeWithText("Neil Armstrong").onParent()
+        val neilNode =
+            composeTestRule.onNodeWithText("Neil Armstrong", useUnmergedTree = true).onParent()
         neilNode.assertIsDisplayed()
         neilNode.assertContentDescriptionEquals("Neil Armstrong on Apollo 11")
 
-        val buzzNode = composeTestRule.onNodeWithText("Buzz Aldrin").onParent()
+        val buzzNode =
+            composeTestRule.onNodeWithText("Buzz Aldrin", useUnmergedTree = true).onParent()
         buzzNode.assertIsDisplayed()
         buzzNode.assertContentDescriptionEquals("Buzz Aldrin on Apollo 11")
     }
