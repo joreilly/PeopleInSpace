@@ -2,6 +2,7 @@ package com.surrus.peopleinspace.person
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.runtime.Composable
@@ -96,6 +97,11 @@ private fun PersonDetails(
                     textAlign = TextAlign.Justify
                 )
             }
+        }
+
+        // Temp fix for https://issuetracker.google.com/issues/231701348
+        item {
+            Spacer(modifier = Modifier)
         }
     }
 }
