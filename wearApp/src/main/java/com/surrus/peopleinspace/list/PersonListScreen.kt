@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
@@ -21,6 +22,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
@@ -35,6 +37,7 @@ import com.google.android.horologist.compose.navscaffold.scrollableColumn
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.person.AstronautImage
+import com.surrus.peopleinspace.util.ReportFullyDrawn
 import com.surrus.peopleinspace.util.rememberStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
 
@@ -82,7 +85,8 @@ fun PersonList(
                 Button(
                     modifier = Modifier
                         .size(ButtonDefaults.SmallButtonSize)
-                        .wrapContentSize(),
+                        .wrapContentSize()
+                    ,
                     onClick = issMapClick
                 ) {
                     // https://www.svgrepo.com/svg/170716/international-space-station
@@ -99,10 +103,15 @@ fun PersonList(
                 person = people[offset],
                 personSelected = personSelected
             )
+
+            // When the column has triggered drawing real
+            // content - report fully drawn
+            ReportFullyDrawn()
         }
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PersonView(
     modifier: Modifier = Modifier,
@@ -115,6 +124,7 @@ fun PersonView(
             .testTag(PersonTag)
             .semantics(mergeDescendants = true) {
                 contentDescription = person.name + " on " + person.craft
+                testTagsAsResourceId = true
             },
     ) {
         Row(
