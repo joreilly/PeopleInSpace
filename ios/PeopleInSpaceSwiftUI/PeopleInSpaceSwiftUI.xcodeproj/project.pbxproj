@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1A2873952733F5C600D7C25E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */; };
-		1A287396273427B300D7C25E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA82EEC25052E1E00193051 /* ImageView.swift */; };
 		1A28791D2733F257008EC881 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A28791C2733F257008EC881 /* WidgetKit.framework */; };
 		1A28791F2733F257008EC881 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A28791E2733F257008EC881 /* SwiftUI.framework */; };
 		1A2879222733F257008EC881 /* PeopleInSpaceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2879212733F257008EC881 /* PeopleInSpaceWidget.swift */; };
 		1A2879242733F259008EC881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A2879232733F259008EC881 /* Assets.xcassets */; };
 		1A2879282733F259008EC881 /* PeopleInSpaceWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A28791B2733F257008EC881 /* PeopleInSpaceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1A40FE1923DB5C35008428A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */; };
-		1AA82EED25052E1E00193051 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA82EEC25052E1E00193051 /* ImageView.swift */; };
 		1ABD44FA23B00008008387E3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABD44F923B00008008387E3 /* ViewModel.swift */; };
 		1ABFB8BE23AFF5CC003D807E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFB8BD23AFF5CC003D807E /* AppDelegate.swift */; };
 		1ABFB8C023AFF5CC003D807E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFB8BF23AFF5CC003D807E /* SceneDelegate.swift */; };
@@ -62,7 +60,6 @@
 		1A2879232733F259008EC881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A2879252733F259008EC881 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A40FE1823DB5C35008428A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		1AA82EEC25052E1E00193051 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		1ABD44F923B00008008387E3 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1ABFB8BA23AFF5CC003D807E /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABFB8BD23AFF5CC003D807E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,7 +152,6 @@
 				1ABFB8CB23AFF5CE003D807E /* Info.plist */,
 				1ABFB8C523AFF5CE003D807E /* Preview Content */,
 				1ABD44F923B00008008387E3 /* ViewModel.swift */,
-				1AA82EEC25052E1E00193051 /* ImageView.swift */,
 				1AD2EC6925E9984900CCEE81 /* ISSMapView.swift */,
 			);
 			path = PeopleInSpaceSwiftUI;
@@ -332,7 +328,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A287396273427B300D7C25E /* ImageView.swift in Sources */,
 				1A2879222733F257008EC881 /* PeopleInSpaceWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AA82EED25052E1E00193051 /* ImageView.swift in Sources */,
 				1ABFB8BE23AFF5CC003D807E /* AppDelegate.swift in Sources */,
 				1ABFB8C023AFF5CC003D807E /* SceneDelegate.swift in Sources */,
 				1AD2EC6A25E9984900CCEE81 /* ISSMapView.swift in Sources */,
@@ -484,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -538,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -560,7 +554,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,7 +579,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

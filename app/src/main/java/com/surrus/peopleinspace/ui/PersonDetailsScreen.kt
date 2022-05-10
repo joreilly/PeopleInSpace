@@ -1,6 +1,6 @@
 package com.surrus.peopleinspace.ui
 
-import androidx.compose.foundation.Image
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,10 +10,12 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.AsyncImage
 import org.koin.androidx.compose.getViewModel
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
     val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
@@ -44,9 +46,11 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
 
                 val imageUrl = person.personImageUrl ?: ""
                 if (imageUrl.isNotEmpty()) {
-                    Image(
-                        painter = rememberImagePainter(imageUrl),
-                        modifier = Modifier.size(240.dp), contentDescription = person.name
+                    AsyncImage(
+                        model = person.personImageUrl,
+                        contentDescription = person.name,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.size(240.dp)
                     )
                 }
                 Spacer(modifier = Modifier.size(24.dp))

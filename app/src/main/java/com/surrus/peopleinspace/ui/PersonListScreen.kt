@@ -13,10 +13,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
 import org.koin.androidx.compose.getViewModel
@@ -34,7 +36,7 @@ fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
         topBar = {
             TopAppBar(title = { Text("People In Space") })
         }
-    ) {
+    ) { contentPadding ->
         LazyColumn(contentPadding = paddingValues, modifier = Modifier.testTag(PersonListTag)) {
             items(peopleState.value) { person ->
                 PersonView(person, personSelected)
@@ -55,9 +57,11 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
 
         val personImageUrl = person.personImageUrl ?: ""
         if (personImageUrl.isNotEmpty()) {
-            Image(
-                painter = rememberImagePainter(personImageUrl),
-                modifier = Modifier.size(60.dp), contentDescription = person.name
+            AsyncImage(
+                model = person.personImageUrl,
+                contentDescription = person.name,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.size(60.dp)
             )
         } else {
             Spacer(modifier = Modifier.size(60.dp))
