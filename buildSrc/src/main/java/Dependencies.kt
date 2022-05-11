@@ -4,7 +4,7 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlinCoroutines = "1.6.1"
-    const val koin = "3.1.6"
+    const val koin = "3.2.0"
     const val ktor = "2.0.0"
 
     // Note: v1.3.2 produces iOS achiving issues
