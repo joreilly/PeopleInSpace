@@ -49,10 +49,10 @@ struct PersonView: View {
             AsyncImage(url: URL(string: person.personImageUrl ?? "")) { image in
                  image.resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 64, height: 64)
             } placeholder: {
                 ProgressView()
             }
+            .frame(width: 64, height: 64)
 
             
             VStack(alignment: .leading) {
@@ -76,10 +76,10 @@ struct PersonDetailsView: View {
                 AsyncImage(url: URL(string: person.personImageUrl ?? "")) { image in
                      image.resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 240, height: 240)
                 } placeholder: {
                     ProgressView()
                 }
+                .frame(width: 240, height: 240)
 
                 Text(person.personBio ?? "").font(.body)
                 Spacer()
