@@ -19,6 +19,7 @@ object Versions {
     const val wearCompose = "1.0.0-beta01"
     const val navCompose = "2.4.2"
     const val accompanist = "0.23.0"
+    const val horologist = "0.0.19"
 
     const val composeDesktopWeb = "1.2.0-alpha01-dev683"
     const val composeIos = "1.2.0-alpha01-dev683"
