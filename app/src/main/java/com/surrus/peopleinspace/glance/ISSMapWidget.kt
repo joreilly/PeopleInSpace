@@ -18,9 +18,9 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import com.surrus.peopleinspace.MainActivity
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.glance.util.BaseGlanceAppWidget
-import com.surrus.peopleinspace.ui.MainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
