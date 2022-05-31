@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.ui
+package com.surrus.peopleinspace.persondetails
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -8,17 +8,25 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.surrus.peopleinspace.personlist.PersonListViewModel
+import com.surrus.peopleinspace.util.collectAsStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
-    val peopleInSpaceViewModel = getViewModel<PeopleInSpaceViewModel>()
+    val viewModel = getViewModel<PersonDetailsViewModel>(
+        parameters = { parametersOf(personName) }
+    )
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -39,8 +47,7 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val person = peopleInSpaceViewModel.getPerson(personName)
-            person?.let {
+            uiState.person?.let { person ->
                 Text(person.name, style = MaterialTheme.typography.h4)
                 Spacer(modifier = Modifier.size(12.dp))
 
@@ -61,3 +68,5 @@ fun PersonDetailsScreen(personName: String, popBack: () -> Unit) {
         }
     }
 }
+
+

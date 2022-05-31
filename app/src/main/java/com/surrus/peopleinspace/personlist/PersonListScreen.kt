@@ -1,45 +1,61 @@
-package com.surrus.peopleinspace.ui
+package com.surrus.peopleinspace.personlist
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.R
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.compose.rememberImagePainter
 import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.ui.PersonProvider
+import com.surrus.peopleinspace.util.LoadingContent
+import com.surrus.peopleinspace.util.collectAsStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
 
 const val PersonListTag = "PersonList"
 
 @Composable
-fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
-     personSelected: (person: Assignment) -> Unit,
-     peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()
+fun PersonListScreen(
+    paddingValues: PaddingValues = PaddingValues(),
+    personSelected: (person: Assignment) -> Unit,
+    viewModel: PersonListViewModel = getViewModel()
 ) {
-    val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("People In Space") })
         }
     ) { contentPadding ->
-        LazyColumn(contentPadding = paddingValues, modifier = Modifier.testTag(PersonListTag)) {
-            items(peopleState.value) { person ->
-                PersonView(person, personSelected)
+
+        LoadingContent(
+            loading = uiState.isLoading,
+            empty = uiState.items.isEmpty() && !uiState.isLoading,
+            emptyContent = {},
+            onRefresh = viewModel::refresh
+        ) {
+            LazyColumn(contentPadding = paddingValues, modifier = Modifier.testTag(PersonListTag).fillMaxSize()) {
+                items(uiState.items) { person ->
+                    PersonView(person, personSelected)
+                }
             }
         }
     }
@@ -48,10 +64,11 @@ fun PersonListScreen(paddingValues: PaddingValues = PaddingValues(),
 @Composable
 fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
 
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .clickable(onClick = { personSelected(person) })
-        .padding(16.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { personSelected(person) })
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -73,5 +90,13 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
             Text(text = person.name, style = TextStyle(fontSize = 20.sp))
             Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
         }
+    }
+}
+
+@Preview
+@Composable
+fun PersonViewPreview(@PreviewParameter(PersonProvider::class) person: Assignment) {
+    MaterialTheme {
+        PersonView(person, personSelected = {})
     }
 }

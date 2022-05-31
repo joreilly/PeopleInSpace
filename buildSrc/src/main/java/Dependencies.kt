@@ -111,7 +111,8 @@ object Deps {
         const val wearNavigation = "androidx.wear.compose:compose-navigation:${Versions.wearCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
-        const val accompanistNavigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
+        const val accompanistNavigationAnimation = "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
+        const val accompanistSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanist}"
     }
 
     object Koin {

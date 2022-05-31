@@ -1,8 +1,9 @@
-package com.surrus.peopleinspace.ui
+package com.surrus.peopleinspace.issposition
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -32,12 +33,11 @@ val IssPositionKey = SemanticsPropertyKey<IssPosition>("IssPosition")
 var SemanticsPropertyReceiver.observedIssPosition by IssPositionKey
 
 @Composable
-fun ISSPositionScreen(peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewModel()) {
+fun ISSPositionScreen(viewModel: ISSPositionViewModel = getViewModel()) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val issPosition by peopleInSpaceViewModel.issPosition
-        .collectAsStateWithLifecycle(lifecycleOwner, IssPosition(0.0, 0.0))
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val context = LocalContext.current
     val map = remember { MapView(context) }
@@ -46,20 +46,20 @@ fun ISSPositionScreen(peopleInSpaceViewModel: PeopleInSpaceViewModel = getViewMo
         topBar = {
             TopAppBar(title = { Text("ISS Position") })
         }
-    ) {
-        Column {
+    ) { paddingValues ->
+        Column(Modifier.padding(paddingValues)) {
 
             Box {
                 AndroidView({ map }, modifier = Modifier
                         .fillMaxHeight().testTag(ISSPositionMapTag)
-                        .semantics { observedIssPosition = issPosition }
+                        .semantics { observedIssPosition = uiState.position }
                 ){ map ->
                     map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
                     map.setMultiTouchControls(true)
 
                     val mapController = map.controller
                     mapController.setZoom(5.0)
-                    val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
+                    val issPositionPoint = GeoPoint(uiState.position.latitude, uiState.position.longitude)
                     mapController.setCenter(issPositionPoint)
 
                     map.overlays.clear()
