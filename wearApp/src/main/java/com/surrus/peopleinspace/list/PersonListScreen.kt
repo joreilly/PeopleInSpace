@@ -1,3 +1,7 @@
+@file:OptIn(ExperimentalHorologistComposeToolsApi::class,
+    ExperimentalHorologistComposeLayoutApi::class, ExperimentalComposeUiApi::class
+)
+
 package com.surrus.peopleinspace.list
 
 import androidx.compose.foundation.Image
@@ -23,7 +27,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
@@ -33,7 +36,10 @@ import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
+import com.google.android.horologist.compose.navscaffold.ExperimentalHorologistComposeLayoutApi
 import com.google.android.horologist.compose.navscaffold.scrollableColumn
+import com.google.android.horologist.compose.tools.ExperimentalHorologistComposeToolsApi
+import com.google.android.horologist.compose.tools.WearSmallRoundDevicePreview
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.person.AstronautImage
@@ -111,7 +117,6 @@ fun PersonList(
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PersonView(
     modifier: Modifier = Modifier,
@@ -152,10 +157,7 @@ fun PersonView(
     }
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearSmallRoundDevicePreview
 @Composable
 fun PersonViewPreview() {
     PersonView(
@@ -168,10 +170,7 @@ fun PersonViewPreview() {
     )
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearSmallRoundDevicePreview
 @Composable
 fun PersonListSquarePreview() {
     PersonList(
@@ -194,10 +193,7 @@ fun PersonListSquarePreview() {
     )
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearSmallRoundDevicePreview
 @Composable
 fun PersonListSquareEmptyPreview() {
     PersonList(

@@ -7,6 +7,7 @@ import com.surrus.peopleinspace.BuildConfig
 import com.surrus.peopleinspace.list.PersonListViewModel
 import com.surrus.peopleinspace.map.MapViewModel
 import com.surrus.peopleinspace.person.PersonDetailsViewModel
+import com.surrus.peopleinspace.tile.PeopleInSpaceTileRenderer
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -33,5 +34,9 @@ val wearImageLoader = module {
                 }
             }
             .build()
+    }
+
+    single {
+        PeopleInSpaceTileRenderer(androidContext())
     }
 }
