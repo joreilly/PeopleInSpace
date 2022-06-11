@@ -1,12 +1,14 @@
 package com.surrus.peopleinspace.tile
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.wear.tiles.ActionBuilders
 import androidx.wear.tiles.ActionBuilders.LaunchAction
+import androidx.wear.tiles.ColorBuilders
 import androidx.wear.tiles.DeviceParametersBuilders
 import androidx.wear.tiles.LayoutElementBuilders
 import androidx.wear.tiles.ModifiersBuilders.Clickable
@@ -14,13 +16,17 @@ import androidx.wear.tiles.ResourceBuilders
 import androidx.wear.tiles.ResourceBuilders.AndroidImageResourceByResId
 import androidx.wear.tiles.ResourceBuilders.ImageResource
 import androidx.wear.tiles.material.Button
+import androidx.wear.tiles.material.ButtonColors
+import androidx.wear.tiles.material.ChipColors
 import androidx.wear.tiles.material.CompactChip
 import androidx.wear.tiles.material.Text
+import androidx.wear.tiles.material.Typography.TYPOGRAPHY_CAPTION1
 import androidx.wear.tiles.material.layouts.MultiButtonLayout
 import androidx.wear.tiles.material.layouts.PrimaryLayout
 import com.google.android.horologist.compose.tools.LayoutPreview
 import com.google.android.horologist.compose.tools.TileLayoutPreview
 import com.google.android.horologist.tiles.SingleTileLayoutRenderer
+import com.google.android.horologist.tiles.toImageResource
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.MainActivity
 import com.surrus.peopleinspace.R
@@ -60,16 +66,20 @@ class PeopleInSpaceTileRenderer(context: Context) :
 
     private fun titleText(): LayoutElementBuilders.LayoutElement {
         return Text.Builder(context, "Recent Astronauts")
+            .setTypography(TYPOGRAPHY_CAPTION1)
+            .setColor(ColorBuilders.argb(theme.primary))
             .setMaxLines(1)
             .build()
     }
 
     fun mapChip(deviceParameters: DeviceParametersBuilders.DeviceParameters) =
         CompactChip.Builder(context, "ISS", action(MainActivity::class), deviceParameters)
+            .setChipColors(ChipColors.primaryChipColors(theme))
             .build()
 
     fun astronautButton(astronaut: Assignment): Button {
         return Button.Builder(context, action(MainActivity::class))
+            .setButtonColors(ButtonColors.secondaryButtonColors(theme))
             .setImageContent(astronaut.name)
             .build()
     }
@@ -170,7 +180,17 @@ fun AstronautButtonPreview() {
     val context = LocalContext.current
     val renderer = remember { PeopleInSpaceTileRenderer(context) }
 
+    val image = remember(context) {
+        ImageResource.Builder()
+            .setAndroidResourceByResId(AndroidImageResourceByResId.Builder()
+                .setResourceId(R.drawable.ic_american_astronaut)
+                .build())
+            .build()
+    }
+
     LayoutPreview(
         renderer.astronautButton(NeilArmstrong)
-    )
+    ) {
+        addIdToImageMapping(NeilArmstrong.name, image)
+    }
 }
