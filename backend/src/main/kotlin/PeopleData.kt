@@ -43,6 +43,13 @@ val personImages = mapOf(
     "Larry Connor" to "https://upload.wikimedia.org/wikipedia/en/e/ed/Larry_Connor_Portrait.png",
     "Mark Pathy" to "https://www.spacelaunchschedule.com/wp-content/uploads/mark_pathy_image_20220327185208-240x300.png",
     "Eytan Stibbe" to "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Eitan_Stiva.jpg/440px-Eitan_Stiva.jpg",
+    "Cai Xuzhe" to "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/%E8%88%AA%E5%A4%A9%E5%91%98%E8%94%A1%E6%97%AD%E5%93%B2_Cai_Xuzhe.jpg/440px-%E8%88%AA%E5%A4%A9%E5%91%98%E8%94%A1%E6%97%AD%E5%93%B2_Cai_Xuzhe.jpg",
+    "Chen Dong" to "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/%E8%88%AA%E5%A4%A9%E5%91%98%E9%99%88%E5%86%AC_Chen_Dong.jpg/440px-%E8%88%AA%E5%A4%A9%E5%91%98%E9%99%88%E5%86%AC_Chen_Dong.jpg",
+    "Liu Yang" to "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Liu_Yang_-_UNOOSA_50_Years_of_Women_in_Space_NHM_Vienna_2013_b.jpg/440px-Liu_Yang_-_UNOOSA_50_Years_of_Women_in_Space_NHM_Vienna_2013_b.jpg",
+    "Kjell Lindgren" to "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Kjell_Lindgren_in_EMU.jpg/440px-Kjell_Lindgren_in_EMU.jpg",
+    "Bob Hines" to "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Robert_Hines_Official_NASA_Portrait_in_2021_%28cropped%29.jpg/440px-Robert_Hines_Official_NASA_Portrait_in_2021_%28cropped%29.jpg",
+    "Samantha Cristoforetti" to "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg/440px-Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg",
+    "Jessica Watkins" to "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Jessica_Watkins_Official_NASA_Portrait_in_2021_%28cropped%29.jpg/440px-Jessica_Watkins_Official_NASA_Portrait_in_2021_%28cropped%29.jpg",
 )
 
 val personBios = mapOf(
@@ -93,5 +100,11 @@ val personBios = mapOf(
     "Eytan Stibbe" to "Eytan Meir Stibbe is an Israeli former fighter pilot, fighter ace, businessman and private astronaut.\n" +
             "\n" +
             "As of November 2020, he has signed a contract with Axiom Space to fly a ten day mission to the International Space Station aboard a SpaceX Crew Dragon spacecraft on Axiom Mission 1, a private crewed orbital spaceflight.",
-
+    "Cai Xuzhe" to "Cai Xuzhe (Chinese: 蔡旭哲; born May 1976[2]) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) taikonaut selected as part of the Shenzhou program.",
+    "Chen Dong" to "Chen Dong (simplified Chinese: 陈冬; traditional Chinese: 陳冬; pinyin: Chén Dōng; born 12 December 1978) is a Chinese fighter pilot and taikonaut selected as part of the Shenzhou program. A fighter pilot in the People's Liberation Army Air Force, he was selected to be a CNSA astronaut in 2010.",
+    "Liu Yang" to "Liu Yang (Chinese: 刘洋; pinyin: Liú Yáng; born 6 October 1978) is a Chinese military transport pilot and taikonaut who served as a crew member on the space mission Shenzhou 9. On 16 June 2012, Liu became the first Chinese woman in space.",
+    "Kjell Lindgren" to "Kjell Norwood Lindgren (born January 23, 1973) is an American astronaut who was selected in 2009. Lindgren was selected in June 2009 as a member of the NASA Astronaut Group 20. He launched to the International Space Station (ISS) as part of Expedition 44/45 on July 22, 2015.",
+    "Bob Hines" to "Robert Thomas Hines, Jr. (born January 11, 1975) is an American fighter pilot and NASA astronaut.",
+    "Samantha Cristoforetti" to "Samantha Cristoforetti, OMRI (Italian pronunciation: [saˈmanta kristofoˈretti]; born in Milan on 26 April 1977) is an Italian European Space Agency astronaut, former Italian Air Force pilot and engineer. She holds the record for the longest uninterrupted spaceflight by a European astronaut (199 days, 16 hours), and until June 2017 held the record for the longest single space flight by a woman until this was broken by Peggy Whitson and later by Christina Koch. She is also the first Italian woman in space. She is scheduled to take command of ISS Expedition 68 in 2022.",
+    "Jessica Watkins" to "Jessica Andrea Watkins (born May 14, 1988) is an American NASA astronaut, geologist, aquanaut and former international rugby player. Watkins was announced as the first Black woman who will complete an International Space Station long-term mission in April 2022.",
 )
