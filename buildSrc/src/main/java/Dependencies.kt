@@ -22,7 +22,7 @@ object Versions {
     const val horologist = "0.0.19"
 
     const val composeDesktopWeb = "1.2.0-alpha01-dev683"
-    const val composeIos = "1.2.0-alpha01-dev683"
+    const val composeIos = "1.2.0-alpha01-dev709"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"

@@ -125,9 +125,9 @@ compose.experimental {
         bundleIdPrefix = "dev.johnoreilly"
         projectName = "PeopleInSpace"
         deployConfigurations {
-            simulator("IPhone8") {
+            simulator("IPhone13Pro") {
                 //Usage: ./gradlew iosDeployIPhone8Debug
-                device = IOSDevices.IPHONE_8
+                device = IOSDevices.IPHONE_13_PRO
             }
             simulator("IPad") {
                 //Usage: ./gradlew iosDeployIPadDebug
