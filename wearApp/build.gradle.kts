@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.androidCompileSdk
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
@@ -23,7 +23,10 @@ android {
 
     kotlinOptions {
         freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
-        freeCompilerArgs += "-opt-in=com.google.android.horologist.compose.navscaffold.ExperimentalComposeLayoutApi"
+        freeCompilerArgs += "-opt-in=com.google.android.horologist.compose.navscaffold.ExperimentalHorologistComposeLayoutApi"
+        freeCompilerArgs += "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+        freeCompilerArgs += "-opt-in=com.google.android.horologist.tiles.ExperimentalHorologistTilesApi"
+        freeCompilerArgs += "-opt-in=com.google.android.horologist.compose.tools.ExperimentalHorologistComposeToolsApi"
     }
 
     buildTypes {
@@ -62,6 +65,8 @@ dependencies {
     with(Deps.AndroidX) {
         implementation(activityCompose)
         implementation(metrics)
+        implementation(wearTiles)
+        implementation(wearTilesMaterial)
     }
 
     with(Deps.Compose) {
@@ -97,12 +102,10 @@ dependencies {
         debugImplementation(composeUiTestManifest)
     }
 
-    with(Deps.Glance) {
-        implementation(tiles)
-    }
-
     with(Deps.Horologist) {
         implementation(composeLayout)
+        implementation(tiles)
+        implementation(composeTools)
     }
 
     implementation(project(":common"))

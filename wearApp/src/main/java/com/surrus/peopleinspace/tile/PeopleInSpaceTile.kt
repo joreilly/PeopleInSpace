@@ -1,57 +1,69 @@
 package com.surrus.peopleinspace.tile
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
-import androidx.compose.ui.unit.dp
-import androidx.glance.GlanceModifier
-import androidx.glance.layout.Column
-import androidx.glance.layout.padding
-import androidx.glance.text.FontWeight
-import androidx.glance.text.Text
-import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
+import androidx.wear.tiles.RequestBuilders
+import androidx.wear.tiles.ResourceBuilders
+import androidx.wear.tiles.ResourceBuilders.ImageResource
+import androidx.wear.tiles.TileBuilders.Tile
+import coil.ImageLoader
+import com.google.android.horologist.tiles.CoroutinesTileService
+import com.google.android.horologist.tiles.loadImageResource
 import com.surrus.common.remote.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.surrus.peopleinspace.tile.util.BaseGlanceTileService
+import com.surrus.peopleinspace.R
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
-import org.koin.core.component.inject
+import kotlinx.coroutines.withTimeoutOrNull
+import org.koin.android.ext.android.inject
+import kotlin.time.Duration.Companion.seconds
 
-class PeopleInSpaceTile : BaseGlanceTileService<PeopleInSpaceTile.Data>() {
+class PeopleInSpaceTile : CoroutinesTileService() {
     val repository: PeopleInSpaceRepositoryInterface by inject()
+    val renderer: PeopleInSpaceTileRenderer by inject()
+    val imageLoader: ImageLoader by inject()
 
-    data class Data(val people: List<Assignment>)
+    data class Astronauts(val people: List<Assignment>)
+    data class Images(val images: Map<String, ImageResource?>)
 
-    override suspend fun loadData(): Data {
-        return Data(repository.fetchPeopleAsFlow().first())
+    suspend fun loadData(): Astronauts {
+        val people = repository.fetchPeopleAsFlow().first()
+        return Astronauts(people)
     }
 
-    @OptIn(ExperimentalUnitApi::class)
-    @Composable
-    override fun Content(data: Data) {
-        Column(
-            modifier = GlanceModifier.padding(horizontal = 8.dp)
-        ) {
-            Text(
-                modifier = GlanceModifier.padding(bottom = 8.dp),
-                text = "People in Space",
-                style = TextStyle(
-                    color = ColorProvider(Color.White),
-                    fontSize = TextUnit(12f, TextUnitType.Sp),
-                    fontWeight = FontWeight.Bold
-                )
-            )
-            data.people.forEach {
-                Text(
-                    text = it.name,
-                    style = TextStyle(
-                        color = ColorProvider(Color.White),
-                        fontSize = TextUnit(10f, TextUnitType.Sp)
-                    )
-                )
+    override suspend fun resourcesRequest(
+        requestParams: RequestBuilders.ResourcesRequest
+    ): ResourceBuilders.Resources {
+        val people = repository.fetchPeopleAsFlow().first()
+        val resources = fetchImages(people)
+        return renderer.produceRequestedResources(resources, requestParams)
+    }
+
+    private suspend fun fetchImages(people: List<Assignment>): Images {
+        return coroutineScope {
+            Images(people.map {
+                async {
+                    it.name to imageResource(it)
+                }
+            }.awaitAll().toMap())
+        }
+    }
+
+    suspend fun imageResource(it: Assignment): ImageResource? =
+        withTimeoutOrNull(2.seconds) {
+            imageLoader.loadImageResource(
+                this@PeopleInSpaceTile,
+                it.personImageUrl
+            ) {
+                error(R.drawable.ic_american_astronaut)
+                size(64)
             }
         }
+
+    override suspend fun tileRequest(
+        requestParams: RequestBuilders.TileRequest
+    ): Tile {
+        val tileState = loadData()
+        return renderer.renderTimeline(tileState, requestParams)
     }
 }

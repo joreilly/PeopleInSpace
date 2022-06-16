@@ -1,3 +1,7 @@
+@file:OptIn(ExperimentalHorologistComposeToolsApi::class,
+    ExperimentalHorologistComposeLayoutApi::class
+)
+
 package com.surrus.peopleinspace.person
 
 import androidx.compose.foundation.background
@@ -16,7 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.AutoCenteringParams
 import androidx.wear.compose.material.MaterialTheme
@@ -26,7 +29,10 @@ import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.compose.AsyncImage
+import com.google.android.horologist.compose.navscaffold.ExperimentalHorologistComposeLayoutApi
 import com.google.android.horologist.compose.navscaffold.scrollableColumn
+import com.google.android.horologist.compose.tools.ExperimentalHorologistComposeToolsApi
+import com.google.android.horologist.compose.tools.WearSmallRoundDevicePreview
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.list.PersonListTag
@@ -74,8 +80,7 @@ private fun PersonDetails(
             AstronautImage(
                 modifier = Modifier
                     .size(120.dp)
-                    .clip(CutCornerShape(30.dp))
-                ,
+                    .clip(CutCornerShape(30.dp)),
                 person = person
             )
         }
@@ -120,10 +125,7 @@ fun AstronautImage(
     )
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearSmallRoundDevicePreview
 @Composable
 fun PersonDetailsScreenPreview() {
     val person = remember {
@@ -143,10 +145,7 @@ fun PersonDetailsScreenPreview() {
     }
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearSmallRoundDevicePreview
 @Composable
 fun PersonDetailsScreenNotFoundPreview() {
     Box(modifier = Modifier.background(Color.Black)) {

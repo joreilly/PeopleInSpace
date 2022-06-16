@@ -19,7 +19,8 @@ object Versions {
     const val wearCompose = "1.0.0-beta01"
     const val navCompose = "2.4.2"
     const val accompanist = "0.23.0"
-    const val horologist = "0.0.19"
+    const val horologist = "0.0.23"
+    const val androidxTiles = "1.1.0-alpha08"
 
     const val composeDesktopWeb = "1.2.0-alpha01-dev683"
     const val composeIos = "1.2.0-alpha01-dev709"
@@ -83,6 +84,8 @@ object Deps {
         const val testEspressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         const val testExtJunit = "androidx.test.ext:junit:1.1.3"
         const val testUiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
+        const val wearTiles = "androidx.wear.tiles:tiles:${Versions.androidxTiles}"
+        const val wearTilesMaterial = "androidx.wear.tiles:tiles-material:${Versions.androidxTiles}"
     }
 
     object Test {
@@ -170,11 +173,12 @@ object Deps {
     }
 
     object Glance {
-        const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha03"
         const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha03"
     }
 
     object Horologist {
-        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:0.0.17"
+        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:${Versions.horologist}"
+        const val composeTools = "com.google.android.horologist:horologist-compose-tools:${Versions.horologist}"
+        const val tiles = "com.google.android.horologist:horologist-tiles:${Versions.horologist}"
     }
 }
