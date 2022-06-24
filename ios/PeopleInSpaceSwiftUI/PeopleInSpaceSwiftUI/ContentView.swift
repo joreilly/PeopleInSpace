@@ -24,17 +24,18 @@ struct PeopleListView: View {
     @ObservedObject var viewModel: PeopleInSpaceViewModel
     
     var body: some View {
-        NavigationView {
-            List(viewModel.people, id: \.name) { person in
-                NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+        NavigationStack {
+            List(viewModel.people, id: \.self) { person in
+                NavigationLink(value: person) {
                     PersonView(viewModel: viewModel, person: person)
                 }
             }
+            .navigationDestination(for: Assignment.self) { person in
+                PersonDetailsView(viewModel: viewModel, person: person)
+            }
             .navigationBarTitle(Text("People In Space"))
-            .onAppear {
-                viewModel.startObservingPeopleUpdates()
-            }.onDisappear {
-                viewModel.stopObservingPeopleUpdates()
+            .task {
+                await viewModel.startObservingPeopleUpdates()
             }
         }
     }
