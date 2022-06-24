@@ -40,10 +40,11 @@ beyond this then I'd definitely recommend checking out [KaMPKit](https://github.
 I also have the following samples that demonstrate the use of a variety of Kotlin Multiplatform libraries (and also use Jetpack Compose and SwiftUI).
 
 * [BikeShare](https://github.com/joreilly/BikeShare)
-* [GalwayBus](https://github.com/joreilly/GalwayBus)
-* [MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
 * [FantasyPremierLeague](https://github.com/joreilly/FantasyPremierLeague)
+* [MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
 * [StarWars](https://github.com/joreilly/StarWars)
+* [Confetti](https://github.com/joreilly/Confetti)
+* [GalwayBus](https://github.com/joreilly/GalwayBus)
 * [Chip-8](https://github.com/joreilly/chip-8)
 
 
