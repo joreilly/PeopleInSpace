@@ -105,7 +105,7 @@ kotlin {
             dependsOn(nativeMain)
 
             dependencies {
-                implementation(Deps.Ktor.clientIos)
+                implementation(Deps.Ktor.clientDarwin)
                 implementation(Deps.SqlDelight.nativeDriver)
             }
         }

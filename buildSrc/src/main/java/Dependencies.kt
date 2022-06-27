@@ -138,7 +138,7 @@ object Deps {
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
         const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
-        const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
+        const val clientDarwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
         const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
     }
 
