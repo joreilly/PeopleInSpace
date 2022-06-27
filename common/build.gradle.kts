@@ -112,19 +112,19 @@ kotlin {
         }
 
         sourceSets["iOSMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
+            implementation(Deps.Ktor.clientDarwin)
             implementation(Deps.SqlDelight.nativeDriver)
         }
         sourceSets["iOSTest"].dependencies {
         }
 
         sourceSets["watchMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
+            implementation(Deps.Ktor.clientDarwin)
             implementation(Deps.SqlDelight.nativeDriver)
         }
 
         sourceSets["macOSMain"].dependencies {
-            implementation(Deps.Ktor.clientIos)
+            implementation(Deps.Ktor.clientDarwin)
             implementation(Deps.SqlDelight.nativeDriverMacos)
         }
 
