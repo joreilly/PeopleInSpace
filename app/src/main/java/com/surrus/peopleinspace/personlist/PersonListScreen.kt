@@ -23,15 +23,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.ui.PersonProvider
 import com.surrus.peopleinspace.util.LoadingContent
-import com.surrus.peopleinspace.util.collectAsStateWithLifecycle
 import org.koin.androidx.compose.getViewModel
 
 const val PersonListTag = "PersonList"
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun PersonListScreen(
     paddingValues: PaddingValues = PaddingValues(),

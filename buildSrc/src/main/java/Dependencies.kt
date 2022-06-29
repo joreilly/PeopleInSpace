@@ -3,26 +3,25 @@ object Versions {
     const val androidCompileSdk = 32
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlinCoroutines = "1.6.1"
+    const val kotlinCoroutines = "1.6.3"
     const val koin = "3.2.0"
-    const val ktor = "2.0.0"
+    const val ktor = "2.0.3"
 
-    // Note: v1.3.2 produces iOS achiving issues
-    const val kotlinxSerialization = "1.3.1"
+    const val kotlinxSerialization = "1.3.3"
     
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val kmpNativeCoroutinesVersion = "0.12.1-new-mm"
+    const val kmpNativeCoroutinesVersion = "0.12.5-new-mm"
 
-    const val compose = "1.2.0-rc01"
-    const val composeCompiler = "1.2.0-rc01"
-    const val wearCompose = "1.0.0-rc01"
+    const val compose = "1.2.0-rc03"
+    const val composeCompiler = "1.2.0"
+    const val wearCompose = "1.0.0-rc02"
     const val navCompose = "2.4.2"
-    const val accompanist = "0.24.11-rc"
+    const val accompanist = "0.24.13-rc"
     const val horologist = "0.0.21"
 
-    const val composeDesktopWeb = "1.2.0-alpha01-dev683"
-    const val composeIos = "1.2.0-alpha01-dev709"
+    const val composeDesktopWeb = "1.2.0-alpha01-dev741"
+    const val composeIos = "1.2.0-alpha01-dev741"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
@@ -34,9 +33,9 @@ object Versions {
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
-    const val material = "1.4.0"
-    const val activityCompose = "1.4.0-beta01"
-    const val lifecycleKtx = "2.4.0-rc01"
+    const val material = "1.6.1"
+    const val activityCompose = "1.5.0"
+    const val lifecycleKtx = "2.6.0-alpha01"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
     const val osmdroidAndroid = "6.1.10"
@@ -76,6 +75,7 @@ object Deps {
     object AndroidX {
         const val benchmarkMacroJunit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0-rc01"
         const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.1.0-rc01"
+        const val lifecycleRuntimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
