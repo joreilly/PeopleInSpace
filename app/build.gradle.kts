@@ -60,6 +60,7 @@ dependencies {
     }
 
     with(Deps.AndroidX) {
+        implementation(lifecycleRuntimeCompose)
         implementation(lifecycleRuntimeKtx)
         implementation(lifecycleViewmodelKtx)
         implementation(activityCompose)
