@@ -66,7 +66,8 @@ invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 
 ### Compose for Desktop client
 
-This client is available in `compose-desktop` module.  Note that you need to use appropriate version of JVM when running (works for example with Java 11)
+This client is available in `compose-desktop` module and can be run using `./gradlew :compose-desktop:run`.  Note that you 
+need to use appropriate version of JVM when running (works for example with Java 11)
 
 
 ### Backend code
