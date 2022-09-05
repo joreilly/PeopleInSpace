@@ -1,18 +1,25 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.surrus.peopleinspace.issposition
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
@@ -21,6 +28,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.surrus.common.remote.IssPosition
+import com.surrus.peopleinspace.R
+import com.surrus.peopleinspace.ui.PeopleInSpaceTopAppBar
 import org.koin.androidx.compose.getViewModel
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
@@ -33,29 +42,40 @@ const val ISSPositionMapTag = "ISSPositionMap"
 val IssPositionKey = SemanticsPropertyKey<IssPosition>("IssPosition")
 var SemanticsPropertyReceiver.observedIssPosition by IssPositionKey
 
+
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun ISSPositionScreen(viewModel: ISSPositionViewModel = getViewModel()) {
-
-    val lifecycleOwner = LocalLifecycleOwner.current
-
+fun ISSPositionRoute(viewModel: ISSPositionViewModel = getViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    ISSPositionScreen(uiState)
+}
 
+@Composable
+fun ISSPositionScreen(uiState: ISSPositionUiState) {
     val context = LocalContext.current
     val map = remember { MapView(context) }
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("ISS Position") })
-        }
-    ) { paddingValues ->
-        Column(Modifier.padding(paddingValues)) {
+            PeopleInSpaceTopAppBar(
+                titleRes = R.string.iss_position,
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color.Transparent
+                ),
+                modifier = Modifier.windowInsetsPadding(
+                    WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                )
+            )
+        },
+        containerColor = Color.Transparent
+    ) { padding ->
+        Column(Modifier.padding(padding)) {
 
             Box {
                 AndroidView({ map }, modifier = Modifier
                         .fillMaxHeight().testTag(ISSPositionMapTag)
                         .semantics { observedIssPosition = uiState.position }
-                ){ map ->
+                ) { map ->
                     map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
                     map.setMultiTouchControls(true)
 

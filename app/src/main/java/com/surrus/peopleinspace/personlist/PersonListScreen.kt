@@ -1,23 +1,23 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.surrus.peopleinspace.personlist
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.R
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -27,36 +27,62 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.ui.PeopleInSpaceTopAppBar
 import com.surrus.peopleinspace.ui.PersonProvider
 import com.surrus.peopleinspace.util.LoadingContent
 import org.koin.androidx.compose.getViewModel
+import com.surrus.peopleinspace.R
+import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 
 const val PersonListTag = "PersonList"
 
+
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun PersonListScreen(
-    paddingValues: PaddingValues = PaddingValues(),
-    personSelected: (person: Assignment) -> Unit,
+fun PersonListRoute(
+    navigateToPerson: (String) -> Unit,
     viewModel: PersonListViewModel = getViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text("People In Space") })
-        }
-    ) { contentPadding ->
+    PersonListScreen(uiState, navigateToPerson)
 
-        LoadingContent(
-            loading = uiState.isLoading,
-            empty = uiState.items.isEmpty() && !uiState.isLoading,
-            emptyContent = {},
-            onRefresh = viewModel::refresh
-        ) {
-            LazyColumn(contentPadding = paddingValues, modifier = Modifier.testTag(PersonListTag).fillMaxSize()) {
-                items(uiState.items) { person ->
-                    PersonView(person, personSelected)
+}
+
+@Composable
+fun PersonListScreen(
+    uiState: PersonListUiState,
+    navigateToPerson: (String) -> Unit
+) {
+    PeopleInSpaceGradientBackground {
+        Scaffold(
+            topBar = {
+                PeopleInSpaceTopAppBar(
+                    titleRes = R.string.people_in_space,
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        containerColor = Color.Transparent
+                    ),
+                    modifier = Modifier.windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                    )
+                )
+            },
+            containerColor = Color.Transparent
+        ) { padding ->
+
+            LoadingContent(
+                loading = uiState.isLoading,
+                empty = uiState.items.isEmpty() && !uiState.isLoading,
+                emptyContent = {},
+                onRefresh = {} //viewModel::refresh
+            ) {
+                LazyColumn(
+                    contentPadding = padding,
+                    modifier = Modifier.testTag(PersonListTag).fillMaxSize()
+                ) {
+                    items(uiState.items) { person ->
+                        PersonView(person, navigateToPerson)
+                    }
                 }
             }
         }
@@ -64,12 +90,12 @@ fun PersonListScreen(
 }
 
 @Composable
-fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
+fun PersonView(person: Assignment, personSelected: (person: String) -> Unit) {
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { personSelected(person) })
+            .clickable(onClick = { personSelected(person.name) })
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

@@ -4,10 +4,12 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.surrus.peopleinspace.issposition.ISSPositionMapTag
 import com.surrus.peopleinspace.issposition.ISSPositionScreen
+import com.surrus.peopleinspace.issposition.ISSPositionUiState
 import com.surrus.peopleinspace.issposition.ISSPositionViewModel
 import com.surrus.peopleinspace.issposition.IssPositionKey
 import com.surrus.peopleinspace.personlist.PersonListScreen
 import com.surrus.peopleinspace.personlist.PersonListTag
+import com.surrus.peopleinspace.personlist.PersonListUiState
 import com.surrus.peopleinspace.personlist.PersonListViewModel
 import org.junit.Rule
 import org.junit.Test
@@ -20,11 +22,8 @@ class PeopleInSpaceTest {
 
     @Test
     fun testPeopleListScreen() {
-        val viewModel = PersonListViewModel(peopleInSpaceRepository)
         composeTestRule.setContent {
-            PersonListScreen(personSelected = {},
-                viewModel = viewModel
-            )
+            PersonListScreen(uiState = PersonListUiState(peopleInSpaceRepository.peopleList), navigateToPerson = {})
         }
 
         val peopleList = peopleInSpaceRepository.peopleList
@@ -41,9 +40,8 @@ class PeopleInSpaceTest {
 
     @Test
     fun testISSPositionScreen() {
-        val viewModel = ISSPositionViewModel(peopleInSpaceRepository)
         composeTestRule.setContent {
-            ISSPositionScreen(viewModel = viewModel)
+            ISSPositionScreen(uiState = ISSPositionUiState(peopleInSpaceRepository.issPosition))
         }
 
         composeTestRule.onNodeWithTag(ISSPositionMapTag).assertIsDisplayed()
