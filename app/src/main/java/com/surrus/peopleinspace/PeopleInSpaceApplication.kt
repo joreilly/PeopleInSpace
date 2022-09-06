@@ -6,7 +6,6 @@ import com.surrus.common.di.initKoin
 import com.surrus.peopleinspace.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.logger.Level
 import org.osmdroid.config.Configuration
 import java.io.File
 
@@ -22,8 +21,7 @@ class PeopleInSpaceApplication : Application() {
         }
 
         initKoin {
-            // https://github.com/InsertKoinIO/koin/issues/1188
-            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
+            androidLogger()
             androidContext(this@PeopleInSpaceApplication)
             modules(appModule)
         }

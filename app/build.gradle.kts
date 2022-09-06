@@ -55,7 +55,6 @@ android {
 
 dependencies {
     with(Deps.Android) {
-        implementation(material)
         implementation(osmdroidAndroid)
     }
 
@@ -64,6 +63,9 @@ dependencies {
         implementation(lifecycleRuntimeKtx)
         implementation(lifecycleViewmodelKtx)
         implementation(activityCompose)
+        implementation(material3)
+        implementation(material3WindowSizeClass)
+        implementation(splashScreen)
     }
 
     with(Deps.Glance) {
@@ -78,7 +80,6 @@ dependencies {
         implementation(material)
         implementation(navigation)
         implementation(coilCompose)
-        implementation(accompanistNavigationAnimation)
         implementation(accompanistSwipeRefresh)
         implementation(uiTooling)
     }

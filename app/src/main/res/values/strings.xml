@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PeopleInSpace</string>
+    <string name="people_in_space">People In Space</string>
+
+    <string name="people">People</string>
+    <string name="iss_position">ISS Position</string>
 </resources>
