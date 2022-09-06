@@ -93,7 +93,8 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 
 **Android (Jetpack Compose)**
 <br/>
-<img width="555" alt="Screenshot 2021-03-07 at 17 03 46" src="https://user-images.githubusercontent.com/6302/110248059-2ab81c00-7f67-11eb-9b3a-2b04d1be43ef.png">
+
+<img width="1075" alt="Screenshot 2022-09-06 at 21 07 25" src="https://user-images.githubusercontent.com/6302/188728640-906a1f38-5274-456e-8a96-c444555f343c.png">
 
 
 **watchOS (SwiftUI)**
