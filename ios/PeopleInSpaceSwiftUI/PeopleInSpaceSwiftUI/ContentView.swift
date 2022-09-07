@@ -31,6 +31,7 @@ struct PeopleListView: View {
                 }
             }
             .navigationBarTitle(Text("People In Space"))
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.startObservingPeopleUpdates()
             }.onDisappear {

@@ -1,6 +1,6 @@
 object Versions {
     const val androidMinSdk = 21
-    const val androidCompileSdk = 32
+    const val androidCompileSdk = 33
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlinCoroutines = "1.6.4"
@@ -13,13 +13,13 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.12.6-new-mm"
 
-    const val compose = "1.2.0-rc03"
-    const val composeCompiler = "1.3.0"
-    const val wearCompose = "1.0.0"
-    const val navCompose = "2.5.1"
-    const val accompanist = "0.24.8-beta"
-    const val horologist = "0.1.0"
-    const val composeMaterial3 = "1.0.0-alpha13"
+    const val compose = "1.3.0-beta02"
+    const val composeCompiler = "1.3.1"
+    const val wearCompose = "1.0.2"
+    const val navCompose = "2.5.2"
+    const val accompanist = "0.26.2-beta"
+    const val horologist = "0.1.8"
+    const val composeMaterial3 = "1.0.0-beta02"
 
     const val composeDesktopWeb = "1.2.0-alpha01-dev755"
     const val composeIos = "1.2.0-alpha01-dev755"
@@ -34,9 +34,8 @@ object Versions {
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
-    //const val material = "1.6.1"
-    const val activityCompose = "1.5.1"
-    const val lifecycleKtx = "2.6.0-alpha01"
+    const val activityCompose = "1.6.0-rc02"
+    const val lifecycleKtx = "2.6.0-alpha02"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
     const val osmdroidAndroid = "6.1.10"
