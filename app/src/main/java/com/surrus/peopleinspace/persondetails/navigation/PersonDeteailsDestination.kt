@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.surrus.peopleinspace.navigation.PeopleInSpaceNavigationDestination
 import com.surrus.peopleinspace.persondetails.PersonDetailsRoute
 
@@ -26,12 +27,18 @@ object PersonDetailsDestination : PeopleInSpaceNavigationDestination {
     }
 }
 
+
+// can test using following (needs to be updated as astronauts change!)
+// adb shell am start -d "peopleinspace://person/Samantha%20Cristoforetti" -a android.intent.action.VIEW
 fun NavGraphBuilder.personDetailsGraph(onBackClick: () -> Unit) {
     composable(
         route = PersonDetailsDestination.route,
         arguments = listOf(
             navArgument(PersonDetailsDestination.personArg) { type = NavType.StringType }
         ),
+        deepLinks = listOf(navDeepLink {
+            uriPattern = "peopleinspace://person/{${PersonDetailsDestination.personArg}}"
+        })
     ) {
         val person = PersonDetailsDestination.fromNavArgs(it)
         PersonDetailsRoute(person, onBackClick)
