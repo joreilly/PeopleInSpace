@@ -78,7 +78,7 @@ fun PersonDetailsScreen(uiState: PersonDetailsUiState, popBack: () -> Unit) {
                 val imageUrl = person.personImageUrl ?: ""
                 if (imageUrl.isNotEmpty()) {
                     AsyncImage(
-                        model = person.personImageUrl,
+                        model = imageUrl,
                         contentDescription = person.name,
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.size(240.dp)
