@@ -13,8 +13,8 @@ import com.surrus.peopleinspace.personlist.navigation.personListGraph
 @Composable
 fun PeopleInSpaceNavHost(
     navController: NavHostController,
-    onNavigateToDestination: (PeopleInSpaceNavigationDestination, String) -> Unit,
-    onBackClick: () -> Unit,
+    onNavigateToDestination: (PeopleInSpaceNavigationDestination, String) -> Unit = { _, _ -> },
+    onBackClick: () -> Unit = {},
     modifier: Modifier = Modifier,
     startDestination: String = PersonListDestination.route
 ) {

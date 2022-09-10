@@ -6,6 +6,12 @@ import common
 struct ContentView: View {
     @StateObject var viewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
 
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+    }
+
+
     var body: some View {
         TabView {
             PeopleListView(viewModel: viewModel)
@@ -23,23 +29,39 @@ struct ContentView: View {
 struct PeopleListView: View {
     @ObservedObject var viewModel: PeopleInSpaceViewModel
     
+    let gradient = Gradient(colors: [Color(0xFFEBFB), Color(0xFFEDE6)])
+
+    
     var body: some View {
+
         NavigationView {
             List(viewModel.people, id: \.name) { person in
                 NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
                     PersonView(viewModel: viewModel, person: person)
                 }
+                .listRowBackground(Color.clear)
             }
-            .navigationBarTitle(Text("People In Space"))
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("PeopleInSpace").font(.largeTitle.bold())
+                }
+            }
             .onAppear {
                 viewModel.startObservingPeopleUpdates()
             }.onDisappear {
                 viewModel.stopObservingPeopleUpdates()
             }
+            .scrollContentBackground(.hidden)
+            .background {
+                LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.vertical)
+            }
+
         }
     }
 }
+
 
 struct PersonView: View {
     var viewModel: PeopleInSpaceViewModel
@@ -90,8 +112,25 @@ struct PersonDetailsView: View {
     }
 }
 
+
+
+extension Color {
+  init(_ hex: UInt, alpha: Double = 1) {
+    self.init(
+      .sRGB,
+      red: Double((hex >> 16) & 0xFF) / 255,
+      green: Double((hex >> 8) & 0xFF) / 255,
+      blue: Double(hex & 0xFF) / 255,
+      opacity: alpha
+    )
+  }
+}
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+

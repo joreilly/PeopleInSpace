@@ -381,7 +381,7 @@
 				INFOPLIST_FILE = PeopleInSpaceWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 John O'Reilly. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -412,7 +412,7 @@
 				INFOPLIST_FILE = PeopleInSpaceWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 John O'Reilly. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -478,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -532,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -554,7 +554,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,7 +579,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
