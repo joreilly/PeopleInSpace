@@ -102,7 +102,9 @@ dependencies {
         // Compose testing dependencies
         androidTestImplementation(composeUiTest)
         androidTestImplementation(composeUiTestJUnit)
+        androidTestImplementation(composeNavTesting)
         debugImplementation(composeUiTestManifest)
+
     }
 
     implementation(project(":common"))

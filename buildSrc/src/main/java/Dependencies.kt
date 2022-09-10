@@ -98,6 +98,7 @@ object Deps {
         const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
         const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
         const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
+        const val composeNavTesting = "androidx.navigation:navigation-testing:${Versions.navCompose}"
     }
 
     object Compose {
