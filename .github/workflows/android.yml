@@ -20,8 +20,6 @@ jobs:
       run: ./gradlew test
     - name: Build web app
       run: ./gradlew :web:assemble
-    - name: Build iOS shared code
-      run: ./gradlew :common:compileKotlinIOS
     - name: Build macOS shared code
       run: ./gradlew :common:compileKotlinMacOS
 
