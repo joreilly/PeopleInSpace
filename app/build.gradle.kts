@@ -37,8 +37,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
@@ -51,6 +51,18 @@ android {
         resources.excludes.add("META-INF/LGPL2.1")
     }
     namespace = "com.surrus.peopleinspace"
+
+    testOptions {
+        managedDevices {
+            devices {
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel3api32").apply {
+                    device = "Pixel 5"
+                    apiLevel = 32
+                    systemImageSource = "google"
+                }
+            }
+        }
+    }
 }
 
 dependencies {
