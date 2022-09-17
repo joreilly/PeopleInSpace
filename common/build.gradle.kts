@@ -8,6 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
     id("com.rickclephas.kmp.nativecoroutines")
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.0.5-arm64"
 }
 
 // CocoaPods requires the podspec to have a version.
@@ -29,12 +30,16 @@ android {
 }
 
 kotlin {
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
-        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
-        else -> ::iosX64
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "common"
+        }
     }
-    iosTarget("iOS") {}
+
 
     val sdkName: String? = System.getenv("SDK_NAME")
     val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
@@ -44,7 +49,8 @@ kotlin {
         watchosX64("watch")
     }
 
-    macosX64("macOS")
+    //macosX64("macOS")
+    macosArm64("macOS")
     android()
     jvm()
 
@@ -60,76 +66,107 @@ kotlin {
     }
 
     sourceSets {
-        sourceSets["commonMain"].dependencies {
+        val commonMain by getting {
+            dependencies {
+                with(Deps.Ktor) {
+                    implementation(clientCore)
+                    implementation(clientJson)
+                    implementation(clientLogging)
+                    implementation(contentNegotiation)
+                    implementation(json)
+                }
 
-            with(Deps.Ktor) {
-                implementation(clientCore)
-                implementation(clientJson)
-                implementation(clientLogging)
-                implementation(contentNegotiation)
-                implementation(json)
+                with(Deps.Kotlinx) {
+                    implementation(coroutinesCore)
+                    implementation(serializationCore)
+                }
+
+                with(Deps.SqlDelight) {
+                    implementation(runtime)
+                    implementation(coroutineExtensions)
+                }
+
+                with(Deps.Koin) {
+                    api(core)
+                    api(test)
+                }
+
+                with(Deps.Log) {
+                    api(kermit)
+                }
             }
-
-            with(Deps.Kotlinx) {
-                implementation(coroutinesCore)
-                implementation(serializationCore)
-            }
-
-            with(Deps.SqlDelight) {
-                implementation(runtime)
-                implementation(coroutineExtensions)
-            }
-
-            with(Deps.Koin) {
-                api(core)
-                api(test)
-            }
-
-            with(Deps.Log) {
-                api(kermit)
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(Deps.Koin.test)
+                implementation(Deps.Kotlinx.coroutinesTest)
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
             }
         }
-        sourceSets["commonTest"].dependencies {
-            implementation(Deps.Koin.test)
-            implementation(Deps.Kotlinx.coroutinesTest)
-            implementation(kotlin("test-common"))
-            implementation(kotlin("test-annotations-common"))
+
+        val androidMain by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientAndroid)
+                implementation(Deps.SqlDelight.androidDriver)
+            }
+        }
+        val androidTest by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientAndroid)
+                implementation(Deps.SqlDelight.androidDriver)
+            }
         }
 
-        sourceSets["androidMain"].dependencies {
-            implementation(Deps.Ktor.clientAndroid)
-            implementation(Deps.SqlDelight.androidDriver)
-        }
-        sourceSets["androidTest"].dependencies {
-            implementation(Deps.Test.junit)
-        }
-
-        sourceSets["jvmMain"].dependencies {
-            implementation(Deps.Ktor.clientJava)
-            implementation(Deps.SqlDelight.sqliteDriver)
-            implementation(Deps.Log.slf4j)
+        val jvmMain by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientJava)
+                implementation(Deps.SqlDelight.sqliteDriver)
+                implementation(Deps.Log.slf4j)
+            }
         }
 
-        sourceSets["iOSMain"].dependencies {
-            implementation(Deps.Ktor.clientDarwin)
-            implementation(Deps.SqlDelight.nativeDriver)
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(Deps.Ktor.clientDarwin)
+                implementation(Deps.SqlDelight.nativeDriver)
+            }
         }
-        sourceSets["iOSTest"].dependencies {
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            dependsOn(commonTest)
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
         }
 
-        sourceSets["watchMain"].dependencies {
-            implementation(Deps.Ktor.clientDarwin)
-            implementation(Deps.SqlDelight.nativeDriver)
+        val watchMain by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientDarwin)
+                implementation(Deps.SqlDelight.nativeDriver)
+            }
+        }
+        val macOSMain by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientDarwin)
+                implementation(Deps.SqlDelight.nativeDriverMacos)
+            }
+        }
+        val jsMain by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientJs)
+            }
         }
 
-        sourceSets["macOSMain"].dependencies {
-            implementation(Deps.Ktor.clientDarwin)
-            implementation(Deps.SqlDelight.nativeDriverMacos)
-        }
-
-        sourceSets["jsMain"].dependencies {
-            implementation(Deps.Ktor.clientJs)
-        }
     }
 }
 
@@ -143,5 +180,13 @@ sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
         sourceFolders = listOf("sqldelight")
+    }
+}
+
+multiplatformSwiftPackage {
+    packageName("PeopleInSpaceKit")
+    swiftToolsVersion("5.3")
+    targetPlatforms {
+        iOS { v("14") }
     }
 }
