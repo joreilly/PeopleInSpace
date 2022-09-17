@@ -5,10 +5,11 @@ import common
 
 
 struct ISSMapView: View {
-    @Binding var issPosition: IssPosition
+    @ObservedObject var viewModel: PeopleInSpaceViewModel
+    
     
     var body: some View {
-        let issCoordinatePosition = CLLocationCoordinate2D(latitude: issPosition.latitude, longitude: issPosition.longitude)
+        let issCoordinatePosition = CLLocationCoordinate2D(latitude: viewModel.issPosition.latitude, longitude: viewModel.issPosition.longitude)
         let regionBinding = Binding<MKCoordinateRegion>(
             get: {
                 MKCoordinateRegion(center: issCoordinatePosition, span: MKCoordinateSpan(latitudeDelta: 150, longitudeDelta: 150))
@@ -16,11 +17,14 @@ struct ISSMapView: View {
             set: { _ in }
         )
         VStack {
-            Text("\(issPosition.latitude), \(issPosition.longitude)")
+            Text("\(viewModel.issPosition.latitude), \(viewModel.issPosition.longitude)")
             Map(coordinateRegion: regionBinding, showsUserLocation: true,
                 annotationItems: [ Location(coordinate: issCoordinatePosition) ]) { (location) -> MapPin in
                 MapPin(coordinate: location.coordinate)
             }
+        }
+        .task {
+            await viewModel.startObservingISSPosition()
         }
     }
 }

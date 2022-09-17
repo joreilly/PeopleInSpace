@@ -12,7 +12,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("People", systemImage: "person")
                 }
-            ISSMapView(issPosition: $viewModel.issPosition)
+            ISSMapView(viewModel: viewModel)
                 .tabItem {
                     Label("Map", systemImage: "location")
                 }
@@ -32,10 +32,8 @@ struct PeopleListView: View {
             }
             .navigationBarTitle(Text("People In Space"))
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                viewModel.startObservingPeopleUpdates()
-            }.onDisappear {
-                viewModel.stopObservingPeopleUpdates()
+            .task {
+                await viewModel.startObservingPeopleUpdates()
             }
         }
     }
