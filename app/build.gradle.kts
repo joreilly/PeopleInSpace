@@ -55,7 +55,7 @@ android {
     testOptions {
         managedDevices {
             devices {
-                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel3api32").apply {
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel5api32").apply {
                     device = "Pixel 5"
                     apiLevel = 32
                     systemImageSource = "google"
