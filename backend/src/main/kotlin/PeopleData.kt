@@ -50,6 +50,9 @@ val personImages = mapOf(
     "Bob Hines" to "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Robert_Hines_Official_NASA_Portrait_in_2021_%28cropped%29.jpg/440px-Robert_Hines_Official_NASA_Portrait_in_2021_%28cropped%29.jpg",
     "Samantha Cristoforetti" to "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg/440px-Samantha_Cristoforetti_official_portrait_in_an_EMU_spacesuit.jpg",
     "Jessica Watkins" to "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Jessica_Watkins_Official_NASA_Portrait_in_2021_%28cropped%29.jpg/440px-Jessica_Watkins_Official_NASA_Portrait_in_2021_%28cropped%29.jpg",
+    "Sergey Prokopyev" to "https://upload.wikimedia.org/wikipedia/commons/c/c7/Sergey_Prokopyev_-_NASA_portrait.jpg",
+    "Dmitry Petelin" to "https://upload.wikimedia.org/wikipedia/commons/2/24/Dmitry_Petelin_%28cropped%29.jpg",
+    "Frank Rubio" to "https://upload.wikimedia.org/wikipedia/commons/3/36/Francisco_Rubio_portrait.jpg",
 )
 
 val personBios = mapOf(
@@ -107,4 +110,8 @@ val personBios = mapOf(
     "Bob Hines" to "Robert Thomas Hines, Jr. (born January 11, 1975) is an American fighter pilot and NASA astronaut.",
     "Samantha Cristoforetti" to "Samantha Cristoforetti, OMRI (Italian pronunciation: [saˈmanta kristofoˈretti]; born in Milan on 26 April 1977) is an Italian European Space Agency astronaut, former Italian Air Force pilot and engineer. She holds the record for the longest uninterrupted spaceflight by a European astronaut (199 days, 16 hours), and until June 2017 held the record for the longest single space flight by a woman until this was broken by Peggy Whitson and later by Christina Koch. She is also the first Italian woman in space. She is scheduled to take command of ISS Expedition 68 in 2022.",
     "Jessica Watkins" to "Jessica Andrea Watkins (born May 14, 1988) is an American NASA astronaut, geologist, aquanaut and former international rugby player. Watkins was announced as the first Black woman who will complete an International Space Station long-term mission in April 2022.",
+    "Sergey Prokopyev" to "Sergey Valerievich Prokopyev (Russian: Серге́й Вале́рьевич Проко́пьев; born 19 February 1975) is a Russian cosmonaut. On 6 June 2018 he launched on his first flight into space aboard Soyuz MS-09 and spent 197 days in space as a flight engineer on Expedition 56/57. He is currently in space, having launched in September 2022 aboard Soyuz MS-22.",
+    "Dmitry Petelin" to "Dmitriy Aleksandrovich Petelin (Russian Cyrillic: Дмитрий Александрович Петелин; born July 10, 1983, in Kustanai, Kazakh SSR, now Kazakhstan) is a Russian cosmonaut who was part of the 2012 selection group.",
+    "Frank Rubio" to "Francisco Carlos \"Frank\"[2] Rubio (born December 11, 1975) is a US Army major and helicopter pilot, flight surgeon, and NASA astronaut.",
+
 )
