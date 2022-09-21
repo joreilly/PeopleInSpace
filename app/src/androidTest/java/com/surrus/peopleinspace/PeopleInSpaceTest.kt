@@ -23,7 +23,7 @@ class PeopleInSpaceTest {
     @Test
     fun testPeopleListScreen() {
         composeTestRule.setContent {
-            PersonListScreen(uiState = PersonListUiState(peopleInSpaceRepository.peopleList), navigateToPerson = {})
+            PersonListScreen(uiState = PersonListUiState(peopleInSpaceRepository.peopleList), navigateToPerson = {}, onRefresh = {})
         }
 
         val peopleList = peopleInSpaceRepository.peopleList
