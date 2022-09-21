@@ -1,0 +1,7 @@
+module KMPNativeCoroutinesCore {
+  umbrella header "KMPNativeCoroutinesCore-iOS15.0-umbrella.h"
+  exclude header "KMPNativeCoroutinesCore-iOS14.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

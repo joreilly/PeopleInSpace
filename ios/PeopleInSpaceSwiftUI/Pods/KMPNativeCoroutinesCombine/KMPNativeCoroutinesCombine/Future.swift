@@ -33,11 +33,18 @@ internal struct NativeSuspendFuture<Result, Failure: Error, Unit>: Publisher {
 
 internal class NativeSuspendSubscription<Result, Failure, Unit, S: Subscriber>: Subscription where S.Input == Result, S.Failure == Failure {
     
+    private var nativeSuspend: NativeSuspend<Result, Failure, Unit>?
     private var nativeCancellable: NativeCancellable<Unit>? = nil
     private var subscriber: S?
     
-    init(nativeSuspend: NativeSuspend<Result, Failure, Unit>, subscriber: S) {
+    init(nativeSuspend: @escaping NativeSuspend<Result, Failure, Unit>, subscriber: S) {
+        self.nativeSuspend = nativeSuspend
         self.subscriber = subscriber
+    }
+    
+    func request(_ demand: Subscribers.Demand) {
+        guard let nativeSuspend = nativeSuspend, demand >= 1 else { return }
+        self.nativeSuspend = nil
         nativeCancellable = nativeSuspend({ output, unit in
             if let subscriber = self.subscriber {
                 _ = subscriber.receive(output)
@@ -50,10 +57,9 @@ internal class NativeSuspendSubscription<Result, Failure, Unit, S: Subscriber>: 
         })
     }
     
-    func request(_ demand: Subscribers.Demand) { }
-    
     func cancel() {
         subscriber = nil
+        nativeSuspend = nil
         _ = nativeCancellable?()
         nativeCancellable = nil
     }
