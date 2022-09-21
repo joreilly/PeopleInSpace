@@ -216,7 +216,7 @@ fun PeopleInSpaceTheme(
         LocalBackgroundTheme provides backgroundTheme
     ) {
         MaterialTheme(
-            colorScheme = LightDefaultColorScheme,
+            colorScheme = colorScheme,
             typography = PeopleInSpaceTypography,
             content = content
         )
