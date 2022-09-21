@@ -13,7 +13,7 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.13.0"
 
-    const val compose = "1.3.0-beta02"
+    const val compose = "1.3.0-beta03"
     const val composeCompiler = "1.3.1"
     const val wearCompose = "1.0.2"
     const val navCompose = "2.5.2"
@@ -115,7 +115,6 @@ object Deps {
         const val wearNavigation = "androidx.wear.compose:compose-navigation:${Versions.wearCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
-        const val accompanistSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanist}"
     }
 
     object Koin {

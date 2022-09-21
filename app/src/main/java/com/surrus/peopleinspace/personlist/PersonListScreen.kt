@@ -1,4 +1,6 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class,
+    ExperimentalMaterialApi::class
+)
 
 package com.surrus.peopleinspace.personlist
 
@@ -7,7 +9,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -16,6 +22,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,10 +44,11 @@ import coil.compose.AsyncImage
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.ui.PeopleInSpaceTopAppBar
 import com.surrus.peopleinspace.ui.PersonProvider
-import com.surrus.peopleinspace.util.LoadingContent
 import org.koin.androidx.compose.getViewModel
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 const val PersonListTag = "PersonList"
 
@@ -62,6 +73,18 @@ fun PersonListScreen(
     navigateToPerson: (String) -> Unit,
     onRefresh: () -> Unit
 ) {
+    val refreshScope = rememberCoroutineScope()
+    var refreshing by remember { mutableStateOf(false) }
+
+    fun refresh() = refreshScope.launch {
+        refreshing = true
+        delay(500)
+        onRefresh()
+        refreshing = false
+    }
+
+    val state = rememberPullRefreshState(refreshing, ::refresh)
+
     PeopleInSpaceGradientBackground {
         Scaffold(
             topBar = {
@@ -79,22 +102,21 @@ fun PersonListScreen(
             containerColor = Color.Transparent
         ) { innerPadding ->
 
-            LoadingContent(
-                loading = uiState.isLoading,
-                empty = uiState.items.isEmpty() && !uiState.isLoading,
-                emptyContent = {},
-                onRefresh = onRefresh
-            ) {
+            Box(Modifier.pullRefresh(state)) {
                 LazyColumn(
                     modifier = Modifier.testTag(PersonListTag)
                         .padding(innerPadding)
                         .consumedWindowInsets(innerPadding)
                         .fillMaxSize()
                 ) {
-                    items(uiState.items) { person ->
-                        PersonView(person, navigateToPerson)
+                    if (!refreshing) {
+                        items(uiState.items) { person ->
+                            PersonView(person, navigateToPerson)
+                        }
                     }
                 }
+
+                PullRefreshIndicator(refreshing, state, Modifier.align(Alignment.TopCenter))
             }
         }
     }
