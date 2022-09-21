@@ -1,14 +1,12 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 
 package com.surrus.peopleinspace.issposition
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
@@ -70,29 +68,24 @@ fun ISSPositionScreen(uiState: ISSPositionUiState) {
             )
         },
         containerColor = Color.Transparent
-    ) { padding ->
-        Column(Modifier.padding(padding)) {
+    ) { innerPadding ->
+            AndroidView({ map }, modifier = Modifier
+                    .fillMaxHeight().testTag(ISSPositionMapTag)
+                    .semantics { observedIssPosition = uiState.position }
+            ) { map ->
+                map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
+                map.setMultiTouchControls(true)
 
-            Box {
-                AndroidView({ map }, modifier = Modifier
-                        .fillMaxHeight().testTag(ISSPositionMapTag)
-                        .semantics { observedIssPosition = uiState.position }
-                ) { map ->
-                    map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
-                    map.setMultiTouchControls(true)
+                val mapController = map.controller
+                mapController.setZoom(5.0)
+                val issPositionPoint = GeoPoint(uiState.position.latitude, uiState.position.longitude)
+                mapController.setCenter(issPositionPoint)
 
-                    val mapController = map.controller
-                    mapController.setZoom(5.0)
-                    val issPositionPoint = GeoPoint(uiState.position.latitude, uiState.position.longitude)
-                    mapController.setCenter(issPositionPoint)
-
-                    map.overlays.clear()
-                    val stationMarker = Marker(map)
-                    stationMarker.position = issPositionPoint
-                    stationMarker.title = "ISS"
-                    map.overlays.add(stationMarker)
-                }
+                map.overlays.clear()
+                val stationMarker = Marker(map)
+                stationMarker.position = issPositionPoint
+                stationMarker.title = "ISS"
+                map.overlays.add(stationMarker)
             }
-        }
     }
 }

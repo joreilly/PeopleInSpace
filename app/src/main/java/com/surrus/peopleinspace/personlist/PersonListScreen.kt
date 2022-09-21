@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 
 package com.surrus.peopleinspace.personlist
 
@@ -47,14 +47,17 @@ fun PersonListRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    PersonListScreen(uiState, navigateToPerson)
+    PersonListScreen(uiState, navigateToPerson, onRefresh = {
+        viewModel.refresh()
+    })
 
 }
 
 @Composable
 fun PersonListScreen(
     uiState: PersonListUiState,
-    navigateToPerson: (String) -> Unit
+    navigateToPerson: (String) -> Unit,
+    onRefresh: () -> Unit
 ) {
     PeopleInSpaceGradientBackground {
         Scaffold(
@@ -71,17 +74,19 @@ fun PersonListScreen(
                 )
             },
             containerColor = Color.Transparent
-        ) { padding ->
+        ) { innerPadding ->
 
             LoadingContent(
                 loading = uiState.isLoading,
                 empty = uiState.items.isEmpty() && !uiState.isLoading,
                 emptyContent = {},
-                onRefresh = {} //viewModel::refresh
+                onRefresh = onRefresh
             ) {
                 LazyColumn(
-                    contentPadding = padding,
-                    modifier = Modifier.testTag(PersonListTag).fillMaxSize()
+                    modifier = Modifier.testTag(PersonListTag)
+                        .padding(innerPadding)
+                        .consumedWindowInsets(innerPadding)
+                        .fillMaxSize()
                 ) {
                     items(uiState.items) { person ->
                         PersonView(person, navigateToPerson)
