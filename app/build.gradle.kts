@@ -92,7 +92,6 @@ dependencies {
         implementation(material)
         implementation(navigation)
         implementation(coilCompose)
-        implementation(accompanistSwipeRefresh)
         implementation(uiTooling)
     }
 
