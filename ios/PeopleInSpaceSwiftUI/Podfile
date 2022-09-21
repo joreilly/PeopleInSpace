@@ -1,10 +1,10 @@
 
 target 'PeopleInSpaceSwiftUI' do
     pod 'common', :path => '../../common'
-    pod 'KMPNativeCoroutinesAsync', '0.11.1'
+    pod 'KMPNativeCoroutinesAsync', '0.13.0'
 end
 
 target 'PeopleInSpaceWidgetExtension' do
     pod 'common', :path => '../../common'
-    pod 'KMPNativeCoroutinesCombine', '0.11.1'
+    pod 'KMPNativeCoroutinesCombine', '0.13.0'
 end

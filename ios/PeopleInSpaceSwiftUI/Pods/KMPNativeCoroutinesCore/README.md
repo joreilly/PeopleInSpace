@@ -10,7 +10,7 @@ The most important limitation is cancellation support.
 Kotlin suspend functions are exposed to Swift as functions with a completion handler.  
 This allows you to easily use them from your Swift code, but it doesn't support cancellation.
 
-> While Swift 5.5 brings async functions to Swift, it doesn't solve this issue.  
+> **Note**: while Swift 5.5 brings async functions to Swift, it doesn't solve this issue.  
 > For interoperability with ObjC all functions with a completion handler can be called like an async function.  
 > This means starting with Swift 5.5 your Kotlin suspend functions will look like Swift async functions.  
 > But that's just syntactic sugar, so there's still no cancellation support.
@@ -22,25 +22,25 @@ This library solves both of these limitations 😄.
 
 ## Compatibility
 
-> **NOTE:** at the moment the [new Kotlin Native memory model][new-mm] is still experimental.  
-> The regular versions of this library are therefore currently using the [`-native-mt`][native-mt] versions 
-> of the kotlinx.coroutines library.  
-> If you would like to try the new memory model, please use the `-new-mm` versions instead.
+> **Note**: version `0.13` and above only support the [new Kotlin Native memory model][new-mm].  
+> Previous versions were using the [`-native-mt`][native-mt] versions of the kotlinx.coroutines library.  
+> To use the new memory model with older versions you should use the `-new-mm` variant.
 
 [new-mm]: https://github.com/JetBrains/kotlin/blob/0b871d7534a9c8e90fb9ad61cd5345716448d08c/kotlin-native/NEW_MM.md
 [native-mt]: https://github.com/kotlin/kotlinx.coroutines/issues/462
 
-As of version `0.10.0` the library uses Kotlin version `1.6.10`.  
+The latest version of the library uses Kotlin version `1.7.10`.  
 Compatibility versions for older Kotlin versions are also available:
 
-| Version      | Version suffix  |   Kotlin   |     Coroutines      |
-|--------------|-----------------|:----------:|:-------------------:|
-| _latest_     | -new-mm         |   1.6.10   |        1.6.0        |
-| **_latest_** | **_no suffix_** | **1.6.10** | **1.6.0-native-mt** |
-| _latest_     | -kotlin-1.6.0   |   1.6.0    |   1.6.0-native-mt   |
-| 0.9.0        | -new-mm-3       |   1.6.0    |      1.6.0-RC2      |
-| 0.8.0        | _no suffix_     |   1.5.30   |   1.5.2-native-mt   |
-| 0.8.0        | -kotlin-1.5.20  |   1.5.20   |   1.5.0-native-mt   |
+| Version      | Version suffix    |   Kotlin   |   Coroutines    |
+|--------------|-------------------|:----------:|:---------------:|
+| _latest_     | -kotlin-1.7.20-RC | 1.7.20-RC  |      1.6.4      |
+| **_latest_** | **_no suffix_**   | **1.7.10** |    **1.6.4**    |
+| 0.12.6       | -kotlin-1.7.20-RC | 1.7.20-RC  |      1.6.4      |
+| 0.12.6       | -new-mm           |   1.7.10   |      1.6.3      |
+| 0.12.6       | _no suffix_       |   1.7.10   | 1.6.3-native-mt |
+| 0.12.5       | -new-mm           |   1.7.0    |      1.6.3      |
+| 0.12.5       | _no suffix_       |   1.7.0    | 1.6.3-native-mt |
 
 You can choose from a couple of Swift implementations.  
 Depending on the implementation you can support as low as iOS 9, macOS 10.9, tvOS 9 and watchOS 3:
@@ -72,7 +72,7 @@ plugins {
 
 ### Swift (Swift Package Manager)
 
-All Swift implementations are also available via the Swift Package Manager.  
+The Swift implementations are available via the Swift Package Manager.  
 Just add it to your `Package.swift` file:
 ```swift
 dependencies: [
@@ -83,22 +83,38 @@ dependencies: [
 Or add it in Xcode by going to `File` > `Add Packages...` and providing the URL:
 `https://github.com/rickclephas/KMP-NativeCoroutines.git`.
 
+> **Note**: the version for the Swift package should not contain the Kotlin version suffix
+> (e.g. `-new-mm` or `-kotlin-1.6.0`).
+
+> **Note**: if you only need a single implementation you can also use the SPM specific versions with suffixes
+> `-spm-async`, `-spm-combine` and `-spm-rxswift`.
+
 ### Swift (CocoaPods)
 
-Now for Swift you can choose from a couple of implementations.  
-Add one or more of the following libraries to your `Podfile`:
+If you use CocoaPods add one or more of the following libraries to your `Podfile`:
 ```ruby
-pod 'KMPNativeCoroutinesAsync'    # Swift 5.5 Async/Await implementation
-pod 'KMPNativeCoroutinesCombine'  # Combine implementation
-pod 'KMPNativeCoroutinesRxSwift'  # RxSwift implementation
+pod 'KMPNativeCoroutinesAsync', '<version>'    # Swift 5.5 Async/Await implementation
+pod 'KMPNativeCoroutinesCombine', '<version>'  # Combine implementation
+pod 'KMPNativeCoroutinesRxSwift', '<version>'  # RxSwift implementation
 ```
+> **Note**: the version for CocoaPods should not contain the Kotlin version suffix (e.g. `-new-mm` or `-kotlin-1.6.0`).
 
 ## Usage
 
 Using your Kotlin Coroutines code from Swift is almost as easy as calling the Kotlin code.   
-Just use the wrapper functions in Swift to get Observables, Publishers, AsyncStreams or async functions.
+Just use the wrapper functions in Swift to get async functions, AsyncStreams, Publishers or Observables.
 
 ### Kotlin
+
+> **Warning**: the Kotlin part of this library consists of helper functions and a Kotlin compiler plugin.  
+> Using the plugin removes the boilerplate code from your project, however **Kotlin compiler plugins aren't stable**!
+> 
+> The plugin is known to cause recursion errors in some scenarios such as in [#4][GH-4] and [#23][GH-23].  
+> To prevent such recursion errors it's best to explicitly define the (return) types of public 
+> properties and functions.
+
+[GH-4]: https://github.com/rickclephas/KMP-NativeCoroutines/issues/4
+[GH-23]: https://github.com/rickclephas/KMP-NativeCoroutines/issues/23
 
 The plugin will automagically generate the necessary code for you! 🔮
 
@@ -166,7 +182,6 @@ class Clock {
 
 If you don't provide a `CoroutineScope` the default scope will be used which is defined as:
 ```kotlin
-@SharedImmutable
 internal val defaultCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 ```
 
@@ -266,8 +281,8 @@ You can also use the `createPublisher(for:)` function for suspend functions that
 let publisher = createPublisher(for: randomLettersGenerator.getRandomLettersFlowNative())
 ```
 
-**Note:** these functions create deferred `AnyPublisher`s.  
-Meaning every subscription will trigger the collection of the `Flow` or execution of the suspend function.
+> **Note**: these functions create deferred `AnyPublisher`s.  
+> Meaning every subscription will trigger the collection of the `Flow` or execution of the suspend function.
 
 ### RxSwift
 
@@ -316,5 +331,5 @@ You can also use the `createObservable(for:)` function for suspend functions tha
 let observable = createObservable(for: randomLettersGenerator.getRandomLettersFlowNative())
 ```
 
-**Note:** these functions create deferred `Observable`s and `Single`s.  
-Meaning every subscription will trigger the collection of the `Flow` or execution of the suspend function.
+> **Note**: these functions create deferred `Observable`s and `Single`s.  
+> Meaning every subscription will trigger the collection of the `Flow` or execution of the suspend function.

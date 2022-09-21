@@ -11,7 +11,7 @@ object Versions {
     
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val kmpNativeCoroutinesVersion = "0.12.6-new-mm"
+    const val kmpNativeCoroutinesVersion = "0.13.0"
 
     const val compose = "1.3.0-beta02"
     const val composeCompiler = "1.3.1"

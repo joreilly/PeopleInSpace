@@ -1,15 +1,15 @@
 PODS:
   - common (1.0)
-  - KMPNativeCoroutinesAsync (0.11.1):
-    - KMPNativeCoroutinesCore (= 0.11.1)
-  - KMPNativeCoroutinesCombine (0.11.1):
-    - KMPNativeCoroutinesCore (= 0.11.1)
-  - KMPNativeCoroutinesCore (0.11.1)
+  - KMPNativeCoroutinesAsync (0.13.0):
+    - KMPNativeCoroutinesCore (= 0.13.0)
+  - KMPNativeCoroutinesCombine (0.13.0):
+    - KMPNativeCoroutinesCore (= 0.13.0)
+  - KMPNativeCoroutinesCore (0.13.0)
 
 DEPENDENCIES:
   - common (from `../../common`)
-  - KMPNativeCoroutinesAsync (= 0.11.1)
-  - KMPNativeCoroutinesCombine (= 0.11.1)
+  - KMPNativeCoroutinesAsync (= 0.13.0)
+  - KMPNativeCoroutinesCombine (= 0.13.0)
 
 SPEC REPOS:
   trunk:
@@ -22,11 +22,11 @@ EXTERNAL SOURCES:
     :path: "../../common"
 
 SPEC CHECKSUMS:
-  common: 5def32d6e7131f79a49997cca9bbcc9cbd11e08a
-  KMPNativeCoroutinesAsync: 1e6e09efe1fb04a9412483680829dbd35b55ef18
-  KMPNativeCoroutinesCombine: 43a442a5e50ee8fcbb8633a361d12907fe933920
-  KMPNativeCoroutinesCore: ed98a12d8337f861088f6b79636ffb29ff9bb2ad
+  common: 426a416c51402272935427eb27fbde045038fad0
+  KMPNativeCoroutinesAsync: 88f10d799cd3a0b3575140ef7dd231adec2bdf6b
+  KMPNativeCoroutinesCombine: 9a7c3a704083f47ac53186a8fbac336c569596b2
+  KMPNativeCoroutinesCore: c8dc675c106e7a5e5387955bee6f94f7d72ea99f
 
-PODFILE CHECKSUM: d51c9a2ba0fb9109f719acf8878fb54882154ace
+PODFILE CHECKSUM: 8cea0dc266c7bfcfb2ae7467a2054fba4c78638a
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
