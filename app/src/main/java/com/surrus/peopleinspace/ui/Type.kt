@@ -6,11 +6,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-/**
- * Now in Android typography.
- *
- * TODO: Add custom font
- */
 internal val PeopleInSpaceTypography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.W400,

@@ -2,7 +2,6 @@
 
 package com.surrus.peopleinspace.persondetails
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -26,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -36,53 +36,56 @@ fun PersonDetailsRoute(onBackClick: () -> Unit, viewModel: PersonDetailsViewMode
 }
 
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun PersonDetailsScreen(uiState: PersonDetailsUiState, popBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text(uiState.person?.name ?: "") },
-                navigationIcon = {
-                    IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.Transparent
-                ),
-                modifier = Modifier.windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+    PeopleInSpaceGradientBackground {
+        Scaffold(
+            topBar = {
+                CenterAlignedTopAppBar(
+                    title = { Text(uiState.person?.name ?: "") },
+                    navigationIcon = {
+                        IconButton(onClick = { popBack() }) {
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                        }
+                    },
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        containerColor = Color.Transparent
+                    ),
+                    modifier = Modifier.windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                    )
                 )
-            )
-        },
-        containerColor = Color.Transparent
-    ) {
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(it)
-                //.consumedWindowInsets(it)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            uiState.person?.let { person ->
-                Spacer(modifier = Modifier.size(12.dp))
+            },
+            containerColor = Color.Transparent
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(innerPadding)
+                    //.consumedWindowInsets(it)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                uiState.person?.let { person ->
+                    Spacer(modifier = Modifier.size(12.dp))
 
-                val imageUrl = person.personImageUrl ?: ""
-                if (imageUrl.isNotEmpty()) {
-                    AsyncImage(
-                        model = imageUrl,
-                        contentDescription = person.name,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(240.dp)
+                    val imageUrl = person.personImageUrl ?: ""
+                    if (imageUrl.isNotEmpty()) {
+                        AsyncImage(
+                            model = imageUrl,
+                            contentDescription = person.name,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(240.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.size(24.dp))
+
+                    val bio = person.personBio ?: ""
+                    Text(
+                        bio, style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(16.dp)
                     )
                 }
-                Spacer(modifier = Modifier.size(24.dp))
-
-                val bio = person.personBio ?: ""
-                Text(bio, style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(16.dp))
             }
         }
     }

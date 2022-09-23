@@ -158,7 +158,7 @@ val LightAndroidBackgroundTheme = BackgroundTheme(color = DarkGreenGray95)
 val DarkAndroidBackgroundTheme = BackgroundTheme(color = Color.Black)
 
 /**
- * Now in Android theme.
+ * PeopleInSpace theme.
  *
  * The order of precedence for the color scheme is: Dynamic color > Android theme > Default theme.
  * Dark theme is independent as all the aforementioned color schemes have light and dark versions.
