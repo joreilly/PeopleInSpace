@@ -1,6 +1,7 @@
 package com.surrus.peopleinspace
 
 import android.content.Context
+import androidx.lifecycle.SavedStateHandle
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.surrus.common.di.initKoin
 import com.surrus.peopleinspace.di.appModule
@@ -27,6 +28,8 @@ class TestKoinGraph {
         initKoin {
             androidContext(context)
             modules(appModule)
-        }.checkModules()
+        }.checkModules() {
+            withInstance<SavedStateHandle>()
+        }
     }
 }
