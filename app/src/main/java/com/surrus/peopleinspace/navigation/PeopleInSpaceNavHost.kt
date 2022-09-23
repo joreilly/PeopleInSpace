@@ -1,10 +1,10 @@
-package com.surrus.peopleinspace.issposition.navigation
+package com.surrus.peopleinspace.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.surrus.peopleinspace.navigation.PeopleInSpaceNavigationDestination
+import com.surrus.peopleinspace.issposition.navigation.issPositionGraph
 import com.surrus.peopleinspace.persondetails.navigation.PersonDetailsDestination
 import com.surrus.peopleinspace.persondetails.navigation.personDetailsGraph
 import com.surrus.peopleinspace.personlist.navigation.PersonListDestination

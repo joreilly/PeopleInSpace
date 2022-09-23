@@ -1,7 +1,7 @@
 package com.surrus.peopleinspace.navigation
 
 /**
- * Interface for describing the Now in Android navigation destinations
+ * Interface for describing the PeopleInSpace navigation destinations
  */
 
 interface PeopleInSpaceNavigationDestination {

@@ -25,7 +25,7 @@ import com.surrus.peopleinspace.ui.PeopleInSpaceTheme
 import kotlin.math.tan
 
 /**
- * A class to model background color and tonal elevation values for Now in Android.
+ * A class to model background color and tonal elevation values for PeopleInSpace
  */
 @Immutable
 data class BackgroundTheme(

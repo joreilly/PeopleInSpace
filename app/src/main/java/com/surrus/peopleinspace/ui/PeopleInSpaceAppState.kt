@@ -1,6 +1,5 @@
 package com.surrus.peopleinspace.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Person
@@ -23,7 +22,6 @@ import com.surrus.peopleinspace.navigation.PeopleInSpaceNavigationDestination
 import com.surrus.peopleinspace.navigation.TopLevelDestination
 import com.surrus.peopleinspace.personlist.navigation.PersonListDestination
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun rememberPeopleInSpaceAppState(
     windowSizeClass: WindowSizeClass,

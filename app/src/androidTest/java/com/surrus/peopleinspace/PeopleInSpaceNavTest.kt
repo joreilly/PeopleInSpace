@@ -7,7 +7,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import com.surrus.peopleinspace.issposition.navigation.ISSPositionDestination
-import com.surrus.peopleinspace.issposition.navigation.PeopleInSpaceNavHost
+import com.surrus.peopleinspace.navigation.PeopleInSpaceNavHost
 import com.surrus.peopleinspace.personlist.navigation.PersonListDestination
 import junit.framework.Assert.assertEquals
 import org.junit.Rule
