@@ -27,17 +27,11 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import org.koin.androidx.compose.getViewModel
-import org.koin.core.parameter.parametersOf
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun PersonDetailsRoute(person: String, onBackClick: () -> Unit) {
-    // TODO use SavedStateHandle approach once following resolved https://github.com/InsertKoinIO/koin/issues/1350
-    val viewModel = getViewModel<PersonDetailsViewModel>(
-        parameters = { parametersOf(person) }
-    )
+fun PersonDetailsRoute(onBackClick: () -> Unit, viewModel: PersonDetailsViewModel = getViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
     PersonDetailsScreen(uiState, onBackClick)
 }
 

@@ -4,7 +4,7 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlinCoroutines = "1.6.4"
-    const val koin = "3.2.0"
+    const val koin = "3.2.1"
     const val ktor = "2.1.0"
 
     const val kotlinxSerialization = "1.3.3"

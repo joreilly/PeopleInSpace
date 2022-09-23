@@ -40,7 +40,6 @@ fun NavGraphBuilder.personDetailsGraph(onBackClick: () -> Unit) {
             uriPattern = "peopleinspace://person/{${PersonDetailsDestination.personArg}}"
         })
     ) {
-        val person = PersonDetailsDestination.fromNavArgs(it)
-        PersonDetailsRoute(person, onBackClick)
+        PersonDetailsRoute(onBackClick)
     }
 }

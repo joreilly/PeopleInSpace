@@ -8,11 +8,6 @@ import org.koin.dsl.module
 
 val appModule = module {
     viewModel { PersonListViewModel(peopleInSpaceRepository = get()) }
-    viewModel { (personName: String) ->
-        PersonDetailsViewModel(
-            personName,
-            peopleInSpaceRepository = get(),
-        )
-    }
+    viewModel { PersonDetailsViewModel(get(), get()) }
     viewModel { ISSPositionViewModel(peopleInSpaceRepository = get()) }
 }
