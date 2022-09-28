@@ -93,13 +93,11 @@ fun PersonListScreen(
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent
                     ),
-                    modifier = Modifier.windowInsetsPadding(
-                        WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
-                    )
-                    .semantics { contentDescription = "PeopleInSpace" }
+                    modifier = Modifier.semantics { contentDescription = "PeopleInSpace" }
                 )
             },
-            containerColor = Color.Transparent
+            containerColor = Color.Transparent,
+            contentWindowInsets = WindowInsets(0, 0, 0, 0)
         ) { innerPadding ->
 
             Box(Modifier.pullRefresh(state)) {
