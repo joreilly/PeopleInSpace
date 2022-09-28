@@ -61,13 +61,11 @@ fun ISSPositionScreen(uiState: ISSPositionUiState) {
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.Transparent
                 ),
-                modifier = Modifier.windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
-                )
-                .semantics { contentDescription = "ISSPosition" }
+                modifier = Modifier.semantics { contentDescription = "ISSPosition" }
             )
         },
-        containerColor = Color.Transparent
+        containerColor = Color.Transparent,
+        contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { innerPadding ->
             AndroidView({ map }, modifier = Modifier
                     .fillMaxHeight().testTag(ISSPositionMapTag)
