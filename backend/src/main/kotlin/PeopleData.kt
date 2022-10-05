@@ -53,10 +53,10 @@ val personImages = mapOf(
     "Sergey Prokopyev" to "https://upload.wikimedia.org/wikipedia/commons/c/c7/Sergey_Prokopyev_-_NASA_portrait.jpg",
     "Dmitry Petelin" to "https://upload.wikimedia.org/wikipedia/commons/2/24/Dmitry_Petelin_%28cropped%29.jpg",
     "Frank Rubio" to "https://upload.wikimedia.org/wikipedia/commons/3/36/Francisco_Rubio_portrait.jpg",
-    "Nicole Mann" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/nicole-mann.jpg",
-    "Josh Cassada" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/josh-cassada.jpg",
-    "Koichi Wakata" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/koichi-wakata.jpg",
-    "Anna Kikina" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/anna-kikina.jpg",
+    "Nicole Mann" to "https://www.nasa.gov/sites/default/files/thumbnails/image/nicole-mann2022.jpg",
+    "Josh Cassada" to "https://www.nasa.gov/sites/default/files/styles/side_image/public/thumbnails/image/12774511164_97ba5aaf9a_o.jpg?itok=9fAWNGMx",
+    "Koichi Wakata" to "http://www.nasa.gov/sites/default/files/jsc2013e090065_1.jpg",
+    "Anna Kikina" to "http://www.parabolicarc.com/wp-content/uploads/2022/08/Anna_Kikina_flight_suit.jpg",
 )
 
 val personBios = mapOf(
