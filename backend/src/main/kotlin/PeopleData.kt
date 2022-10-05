@@ -53,6 +53,10 @@ val personImages = mapOf(
     "Sergey Prokopyev" to "https://upload.wikimedia.org/wikipedia/commons/c/c7/Sergey_Prokopyev_-_NASA_portrait.jpg",
     "Dmitry Petelin" to "https://upload.wikimedia.org/wikipedia/commons/2/24/Dmitry_Petelin_%28cropped%29.jpg",
     "Frank Rubio" to "https://upload.wikimedia.org/wikipedia/commons/3/36/Francisco_Rubio_portrait.jpg",
+    "Nicole Mann" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/nicole-mann.jpg",
+    "Josh Cassada" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/josh-cassada.jpg",
+    "Koichi Wakata" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/koichi-wakata.jpg",
+    "Anna Kikina" to "https://www.spacex.com/static/images/backgrounds-2022/crew-5/portraits/anna-kikina.jpg",
 )
 
 val personBios = mapOf(
@@ -85,7 +89,7 @@ val personBios = mapOf(
     "Yulia Pereslid" to "Yulia Sergeevna Peresild (Russian: Ю́лия Серге́евна Переси́льд; born 5 September 1984) is a Russian stage and film actress. ",
     "Zhai Zhigang" to "Zhai Zhigang (born October 10, 1966) is a major general of the People's Liberation Army Strategic Support Force (PLASSF) in active service as a People's Liberation Army Astronaut Corps (PLAAC) taikonaut. During the Shenzhou 7 mission in 2008, he became the first Chinese citizen to carry out a spacewalk. He was a People's Liberation Army Air Force (PLAAF) fighter pilot.",
     "Wang Yaping" to "Colonel Wang Yaping (born 27 January 1980) is a Chinese military pilot and astronaut. Wang was the second female astronaut selected to the People's Liberation Army Astronaut Corps, and the second Chinese woman in space.",
-    "Ye Guangfu" to "Colonel Ye Guangfu (Chinese: 叶光富; born 1 September 1980[1]) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) astronaut selected as part of the Shenzhou program.",
+    "Ye Guangfu" to "Colonel Ye Guangfu (Chinese: 叶光富; born 1 September 1980) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) astronaut selected as part of the Shenzhou program.",
     "Raja Chari" to "Raja Jon Vurputoor \"Grinder\" Chari (born June 24, 1977; Colonel, United States Air Force) is an American test pilot and NASA astronaut. He is a graduate of the U.S. Air Force Academy, Massachusetts Institute of Technology, and U.S. Naval Test Pilot School, and has over 2,000 flying hours.",
     "Tom Marshburn" to "Thomas Henry \"Tom\" Marshburn (born August 29, 1960) is an American physician and a NASA astronaut. He is a veteran of two spaceflights to the International Space Station.",
     "Kayla Barron" to "Kayla Jane Barron (born September 19, 1987; LCDR, USN) is an American submarine warfare officer, engineer and NASA astronaut.",
@@ -112,6 +116,13 @@ val personBios = mapOf(
     "Jessica Watkins" to "Jessica Andrea Watkins (born May 14, 1988) is an American NASA astronaut, geologist, aquanaut and former international rugby player. Watkins was announced as the first Black woman who will complete an International Space Station long-term mission in April 2022.",
     "Sergey Prokopyev" to "Sergey Valerievich Prokopyev (Russian: Серге́й Вале́рьевич Проко́пьев; born 19 February 1975) is a Russian cosmonaut. On 6 June 2018 he launched on his first flight into space aboard Soyuz MS-09 and spent 197 days in space as a flight engineer on Expedition 56/57. He is currently in space, having launched in September 2022 aboard Soyuz MS-22.",
     "Dmitry Petelin" to "Dmitriy Aleksandrovich Petelin (Russian Cyrillic: Дмитрий Александрович Петелин; born July 10, 1983, in Kustanai, Kazakh SSR, now Kazakhstan) is a Russian cosmonaut who was part of the 2012 selection group.",
-    "Frank Rubio" to "Francisco Carlos \"Frank\"[2] Rubio (born December 11, 1975) is a US Army major and helicopter pilot, flight surgeon, and NASA astronaut.",
-
+    "Frank Rubio" to "Francisco Carlos \"Frank\" Rubio (born December 11, 1975) is a US Army major and helicopter pilot, flight surgeon, and NASA astronaut.",
+    "Nicole Mann" to "Nicole \"Duke\" Victoria Aunapu Mann (born June 27, 1977) is an American test pilot and NASA astronaut. She is an F/A-18 Hornet pilot, and a graduate of the US Naval Academy, Stanford University and the US Naval Test Pilot School. She has over 2,500 flight hours in 25 types of aircraft, 200 carrier landings, and has flown 47 combat missions in Iraq and Afghanistan. Mann completed astronaut training in 2015 and was assigned in August 2018 to Boe-CFT, the first crewed test flight of the Boeing CST-100 Starliner, but subsequently reassigned to the SpaceX Crew-5, becoming the first female commander of a NASA Commercial Crew Program launch.\n" +
+            "\n" +
+            "Her first spaceflight is scheduled for October 2022 and will make her the first Native American woman in space.",
+    "Josh Cassada" to "Josh Aaron Cassada (born July 18, 1973) is an American physicist, test pilot, and NASA astronaut. Prior to his selection to join NASA in 2013, Cassada served as a test pilot in the US Navy, and has over 3,500 hours in more than 40 aircraft, and 23 combat missions. In August 2018, Cassada was selected for CTS-1, the first operational mission of the Boeing CST-100 Starliner, but subsequently reassigned to SpaceX Crew-5.",
+    "Koichi Wakata" to "Koichi Wakata (若田 光一, Wakata Kōichi, born 1 August 1963) is a Japanese engineer and a JAXA astronaut. Wakata is a veteran of four NASA Space Shuttle missions, a Russian Soyuz mission, and a long-duration stay on the International Space Station. During a nearly two-decade career in spaceflight, he has logged more than eleven months in space. During Expedition 39, he became the first Japanese commander of the International Space Station. Wakata flew on the Soyuz TMA-11M/Expedition 38/Expedition 39 long duration spaceflight from 7 November 2013 to 13 May 2014. During this spaceflight he was accompanied by Kirobo, the first humanoid robot astronaut.",
+    "Anna Kikina" to "Anna Yuryevna Kikina (Russian: Анна Юрьевна Кикина, born 27 August 1984 in Novosibirsk) is a Russian engineer and test cosmonaut, selected in 2012. She is the only woman cosmonaut currently in active service at Roscosmos. In June 2020, fellow cosmonaut Oleg Kononenko said that Kikina is expected to fly on a fall 2022 mission to the International Space Station (ISS) and perform a spacewalk during the mission. In September 2021, RIA Novosti reported that Kikina had been assigned to the Soyuz MS-22 mission, set to launch on 21 September 2022, for a 188-day mission.\n" +
+            "\n" +
+            "In December 2021, Dmitry Rogozin announced she would fly on an \"American commercial spacecraft\" in September 2022, while a NASA astronaut would take her seat on Soyuz making her the first Russian cosmonaut to fly a Crew Dragon. In October 2022, the commercial flight will be the SpaceX Crew-5 Crew Dragon.",
 )
