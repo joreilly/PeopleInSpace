@@ -5,24 +5,24 @@ object Versions {
 
     const val kotlinCoroutines = "1.6.4"
     const val koin = "3.2.1"
-    const val ktor = "2.1.0"
+    const val ktor = "2.1.3"
 
     const val kotlinxSerialization = "1.3.3"
     
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val kmpNativeCoroutinesVersion = "0.13.0"
+    const val kmpNativeCoroutinesVersion = "0.13.1"
 
-    const val compose = "1.3.0-beta03"
-    const val composeCompiler = "1.3.1"
+    const val compose = "1.3.0"
+    const val composeCompiler = "1.3.2"
     const val wearCompose = "1.0.2"
     const val navCompose = "2.5.2"
-    const val accompanist = "0.26.2-beta"
+    const val accompanist = "0.27.0"
     const val horologist = "0.1.8"
-    const val composeMaterial3 = "1.0.0-beta03"
+    const val composeMaterial3 = "1.0.0"
 
-    const val composeDesktopWeb = "1.2.0"
-    const val composeIos = "1.2.0"
+    const val composeDesktopWeb = "1.2.1-rc03"
+    const val composeIos = "1.2.1-rc03"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
@@ -30,7 +30,7 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.6.1"
 
-    const val sqlDelight = "1.5.3"
+    const val sqlDelight = "1.5.4"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
