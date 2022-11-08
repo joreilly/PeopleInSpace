@@ -4,7 +4,9 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlinCoroutines = "1.6.4"
-    const val koin = "3.2.1"
+    const val koinCore = "3.2.2"
+    const val koinAndroid = "3.3.0"
+    const val koinAndroidCompose = "3.3.0"
     const val ktor = "2.1.3"
 
     const val kotlinxSerialization = "1.3.3"
@@ -118,11 +120,11 @@ object Deps {
     }
 
     object Koin {
-        const val core = "io.insert-koin:koin-core:${Versions.koin}"
-        const val test = "io.insert-koin:koin-test:${Versions.koin}"
-        const val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koin}"
-        const val android = "io.insert-koin:koin-android:${Versions.koin}"
-        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+        const val core = "io.insert-koin:koin-core:${Versions.koinCore}"
+        const val test = "io.insert-koin:koin-test:${Versions.koinCore}"
+        const val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koinCore}"
+        const val android = "io.insert-koin:koin-android:${Versions.koinAndroid}"
+        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koinAndroidCompose}"
     }
 
     object Ktor {
