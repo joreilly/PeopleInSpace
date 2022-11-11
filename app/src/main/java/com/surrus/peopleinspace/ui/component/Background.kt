@@ -147,7 +147,7 @@ fun BackgroundDefault() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
 @Composable
 fun BackgroundDynamic() {
-    PeopleInSpaceTheme(dynamicColor = true) {
+    PeopleInSpaceTheme(disableDynamicTheming = false) {
         PeopleInSpaceBackground(Modifier.size(100.dp), content = {})
     }
 }
@@ -174,7 +174,7 @@ fun GradientBackgroundDefault() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
 @Composable
 fun GradientBackgroundDynamic() {
-    PeopleInSpaceTheme(dynamicColor = true) {
+    PeopleInSpaceTheme(disableDynamicTheming = false) {
         PeopleInSpaceGradientBackground(Modifier.size(100.dp), content = {})
     }
 }
