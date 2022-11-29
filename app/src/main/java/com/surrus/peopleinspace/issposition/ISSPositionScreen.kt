@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
@@ -52,7 +53,11 @@ fun ISSPositionRoute(viewModel: ISSPositionViewModel = getViewModel()) {
 @Composable
 fun ISSPositionScreen(uiState: ISSPositionUiState) {
     val context = LocalContext.current
-    val map = remember { MapView(context) }
+    val map = remember {
+        MapView(context).apply {
+            clipToOutline = true
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -68,6 +73,7 @@ fun ISSPositionScreen(uiState: ISSPositionUiState) {
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { innerPadding ->
             AndroidView({ map }, modifier = Modifier
+                    .padding(innerPadding)
                     .fillMaxHeight().testTag(ISSPositionMapTag)
                     .semantics { observedIssPosition = uiState.position }
             ) { map ->
