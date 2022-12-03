@@ -57,6 +57,9 @@ val personImages = mapOf(
     "Josh Cassada" to "https://www.nasa.gov/sites/default/files/styles/side_image/public/thumbnails/image/12774511164_97ba5aaf9a_o.jpg?itok=9fAWNGMx",
     "Koichi Wakata" to "http://www.nasa.gov/sites/default/files/jsc2013e090065_1.jpg",
     "Anna Kikina" to "http://www.parabolicarc.com/wp-content/uploads/2022/08/Anna_Kikina_flight_suit.jpg",
+    "Fei Junlong" to "https://news.cgtn.com/news/2022-11-28/China-unveils-Shenzhou-15-crew-for-space-station-mission-1fjWkU0UKVW/img/c5501f54bd1440d994cbc1253cb67f78/c5501f54bd1440d994cbc1253cb67f78.jpeg",
+    "Deng Qingming" to "https://news.cgtn.com/news/2022-11-28/China-unveils-Shenzhou-15-crew-for-space-station-mission-1fjWkU0UKVW/img/96be120dc3264fdf81112f3b4c650a1b/96be120dc3264fdf81112f3b4c650a1b.jpeg",
+    "Zhang Lu" to "https://news.cgtn.com/news/2022-11-28/China-unveils-Shenzhou-15-crew-for-space-station-mission-1fjWkU0UKVW/img/cd831cd17c2f490fbc67b1fe85223733/cd831cd17c2f490fbc67b1fe85223733.jpeg",
 )
 
 val personBios = mapOf(
@@ -125,4 +128,7 @@ val personBios = mapOf(
     "Anna Kikina" to "Anna Yuryevna Kikina (Russian: Анна Юрьевна Кикина, born 27 August 1984 in Novosibirsk) is a Russian engineer and test cosmonaut, selected in 2012. She is the only woman cosmonaut currently in active service at Roscosmos. In June 2020, fellow cosmonaut Oleg Kononenko said that Kikina is expected to fly on a fall 2022 mission to the International Space Station (ISS) and perform a spacewalk during the mission. In September 2021, RIA Novosti reported that Kikina had been assigned to the Soyuz MS-22 mission, set to launch on 21 September 2022, for a 188-day mission.\n" +
             "\n" +
             "In December 2021, Dmitry Rogozin announced she would fly on an \"American commercial spacecraft\" in September 2022, while a NASA astronaut would take her seat on Soyuz making her the first Russian cosmonaut to fly a Crew Dragon. In October 2022, the commercial flight will be the SpaceX Crew-5 Crew Dragon.",
+    "Fei Junlong" to "Major general Fei Junlong (simplified Chinese: 费俊龙; traditional Chinese: 費俊龍; pinyin: Fèi Jùnlóng; born 5 May 1965) is a Chinese military pilot and an taikonaut. He was the commander of Shenzhou 6, the second crewed spaceflight of China's space program, and was selected as commander for the Shenzhou 15 mission to the Tiangong space station.",
+    "Deng Qingming" to "Deng Qingming (simplified Chinese: 邓清明; traditional Chinese: 鄧清明; pinyin: Dèng Qīngmíng; born 16 March 1966) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) taikonaut selected as part of the Shenzhou program.",
+    "Zhang Lu" to "Zhang Lu (Chinese: 张陆; born November 1976) is a Chinese pilot selected as part of the Shenzhou program. He enlisted in the People's Liberation Army (PLA) in August 1999, and joined the Chinese Communist Party (CCP) in April 1999.",
 )
