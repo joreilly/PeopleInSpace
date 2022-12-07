@@ -17,7 +17,7 @@ object Versions {
 
     const val compose = "1.3.0"
     const val composeCompiler = "1.3.2"
-    const val wearCompose = "1.0.2"
+    const val wearCompose = "1.1.0"
     const val navCompose = "2.5.2"
     const val accompanist = "0.27.0"
     const val horologist = "0.1.8"
