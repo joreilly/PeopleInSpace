@@ -20,7 +20,7 @@ object Versions {
     const val wearCompose = "1.1.0"
     const val navCompose = "2.5.2"
     const val accompanist = "0.27.0"
-    const val horologist = "0.1.8"
+    const val horologist = "0.2.5"
     const val composeMaterial3 = "1.0.0"
 
     const val composeDesktopWeb = "1.2.1-rc03"
