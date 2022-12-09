@@ -8,25 +8,20 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material.AutoCenteringParams
 import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.ScalingLazyColumn
-import androidx.wear.compose.material.ScalingLazyListAnchorType
-import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.rememberScalingLazyListState
 import coil.compose.AsyncImage
-import com.google.android.horologist.compose.navscaffold.scrollableColumn
+import com.google.android.horologist.compose.layout.ScalingLazyColumnState
+import com.google.android.horologist.compose.layout.ScalingLazyColumn
+import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.list.PersonListTag
@@ -37,8 +32,7 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun PersonDetailsScreen(
     personName: String,
-    scrollState: ScalingLazyListState,
-    focusRequester: FocusRequester,
+    columnState: ScalingLazyColumnState,
     modifier: Modifier = Modifier,
 ) {
     val peopleInSpaceViewModel = getViewModel<PersonDetailsViewModel>(
@@ -49,26 +43,20 @@ fun PersonDetailsScreen(
     PersonDetails(
         modifier = modifier,
         person = person,
-        scrollState = scrollState,
-        focusRequester = focusRequester
+        columnState = columnState
     )
 }
 
 @Composable
 private fun PersonDetails(
     person: Assignment?,
-    scrollState: ScalingLazyListState,
-    focusRequester: FocusRequester,
+    columnState: ScalingLazyColumnState,
     modifier: Modifier = Modifier,
 ) {
     ScalingLazyColumn(
         modifier = modifier
-            .testTag(PersonListTag)
-            .scrollableColumn(focusRequester, scrollState),
-        state = scrollState,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        anchorType = ScalingLazyListAnchorType.ItemCenter,
-        autoCentering = AutoCenteringParams(itemIndex = 0)
+            .testTag(PersonListTag),
+        columnState = columnState
     ) {
         item {
             AstronautImage(
@@ -137,8 +125,7 @@ fun PersonDetailsScreenPreview() {
     Box(modifier = Modifier.background(Color.Black)) {
         PersonDetails(
             person = person,
-            scrollState = rememberScalingLazyListState(),
-            focusRequester = remember { FocusRequester() }
+            columnState = ScalingLazyColumnDefaults.belowTimeText().create(),
         )
     }
 }
@@ -152,8 +139,7 @@ fun PersonDetailsScreenNotFoundPreview() {
     Box(modifier = Modifier.background(Color.Black)) {
         PersonDetails(
             person = null,
-            scrollState = rememberScalingLazyListState(),
-            focusRequester = remember { FocusRequester() }
+            columnState = ScalingLazyColumnDefaults.belowTimeText().create(),
         )
     }
 }

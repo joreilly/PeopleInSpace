@@ -1,16 +1,14 @@
 package com.surrus.peopleinspace.wear
 
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
-import androidx.wear.compose.material.rememberScalingLazyListState
+import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.list.PersonList
-import com.surrus.peopleinspace.list.PersonListScreen
 import com.surrus.peopleinspace.list.PersonListTag
 import org.junit.Rule
 import org.junit.Test
@@ -39,8 +37,7 @@ class PeopleInSpaceTest {
                 people = listOf(),
                 personSelected = {},
                 issMapClick = {},
-                focusRequester = FocusRequester(),
-                scrollState = rememberScalingLazyListState(initialCenterItemIndex = 0)
+                columnState = ScalingLazyColumnDefaults.belowTimeText().create()
             )
         }
 
@@ -54,8 +51,7 @@ class PeopleInSpaceTest {
                 people = peopleList,
                 personSelected = {},
                 issMapClick = {},
-                focusRequester = FocusRequester(),
-                scrollState = rememberScalingLazyListState(initialCenterItemIndex = 0)
+                columnState = ScalingLazyColumnDefaults.belowTimeText().create()
             )
         }
 
