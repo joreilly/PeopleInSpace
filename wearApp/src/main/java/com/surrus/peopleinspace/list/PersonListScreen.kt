@@ -10,13 +10,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -29,11 +27,10 @@ import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Card
 import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.ScalingLazyColumn
-import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.rememberScalingLazyListState
-import com.google.android.horologist.compose.navscaffold.scrollableColumn
+import com.google.android.horologist.compose.layout.ScalingLazyColumn
+import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
+import com.google.android.horologist.compose.layout.ScalingLazyColumnState
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.person.AstronautImage
@@ -48,8 +45,7 @@ const val PersonTag = "Person"
 fun PersonListScreen(
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    scrollState: ScalingLazyListState,
-    focusRequester: FocusRequester,
+    columnState: ScalingLazyColumnState,
     modifier: Modifier = Modifier,
 ) {
     val viewModel = getViewModel<PersonListViewModel>()
@@ -59,8 +55,7 @@ fun PersonListScreen(
         people = people,
         personSelected = personSelected,
         issMapClick = issMapClick,
-        scrollState = scrollState,
-        focusRequester = focusRequester,
+        columnState = columnState,
         modifier = modifier,
     )
 }
@@ -70,15 +65,13 @@ fun PersonList(
     people: List<Assignment>,
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    scrollState: ScalingLazyListState,
-    focusRequester: FocusRequester,
+    columnState: ScalingLazyColumnState,
     modifier: Modifier = Modifier,
 ) {
     ScalingLazyColumn(
         modifier = modifier
-            .testTag(PersonListTag)
-            .scrollableColumn(focusRequester, scrollState),
-        state = scrollState,
+            .testTag(PersonListTag),
+        columnState = columnState,
     ) {
         item {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -189,8 +182,7 @@ fun PersonListSquarePreview() {
         ),
         personSelected = {},
         issMapClick = {},
-        focusRequester = remember { FocusRequester() },
-        scrollState = rememberScalingLazyListState()
+        columnState = ScalingLazyColumnDefaults.belowTimeText().create()
     )
 }
 
@@ -204,7 +196,6 @@ fun PersonListSquareEmptyPreview() {
         people = listOf(),
         personSelected = {},
         issMapClick = {},
-        focusRequester = remember { FocusRequester() },
-        scrollState = rememberScalingLazyListState()
+        columnState = ScalingLazyColumnDefaults.belowTimeText().create()
     )
 }

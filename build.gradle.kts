@@ -7,14 +7,17 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
         maven(uri("https://plugins.gradle.org/m2/")) // For kotlinter-gradle
+        maven("https://androidx.dev/storage/compose-compiler/repository")
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
     }
 
     dependencies {
         // keeping this here to allow AS to automatically update
-        classpath("com.android.tools.build:gradle:7.3.1")
+        classpath("com.android.tools.build:gradle:8.0.0-alpha09")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
 
+        classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.8.0-RC-1.0.8")
         with(Deps.Gradle) {
             classpath(sqlDelight)
             classpath(shadow)
@@ -34,6 +37,8 @@ allprojects {
         maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
         maven(url = "https://jitpack.io")
         maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
+        maven("https://androidx.dev/storage/compose-compiler/repository")
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
     }
 }
 

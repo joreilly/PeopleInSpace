@@ -34,7 +34,7 @@ android {
 
     targetProjectPath = ":wearApp"
     namespace = "com.surrus.peopleinspace.benchmark"
-    experimentalProperties["android.experimental.self-instrumenting"] = true
+    //experimentalProperties["android.experimental.self-instrumenting"] = true
 
     variantFilter {
         if (buildType.name.contains("release") || buildType.name.contains("debug")) {

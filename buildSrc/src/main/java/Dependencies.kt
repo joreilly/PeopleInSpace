@@ -13,10 +13,10 @@ object Versions {
     
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val kmpNativeCoroutinesVersion = "0.13.1"
+    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-2"
 
     const val compose = "1.3.0"
-    const val composeCompiler = "1.3.2"
+    const val composeCompiler = "1.4.0-dev-k1.8.0-RC-4c1865595ed"
     const val wearCompose = "1.1.0"
     const val navCompose = "2.5.2"
     const val accompanist = "0.27.0"
@@ -32,7 +32,7 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.6.1"
 
-    const val sqlDelight = "1.5.4"
+    const val sqlDelight = "1.6.0-SNAPSHOT"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
@@ -180,6 +180,6 @@ object Deps {
     }
 
     object Horologist {
-        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:0.0.17"
+        const val composeLayout = "com.google.android.horologist:horologist-compose-layout:${Versions.horologist}"
     }
 }
