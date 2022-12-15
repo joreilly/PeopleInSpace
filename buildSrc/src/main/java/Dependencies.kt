@@ -4,9 +4,9 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val kotlinCoroutines = "1.6.4"
-    const val koinCore = "3.2.2"
-    const val koinAndroid = "3.3.0"
-    const val koinAndroidCompose = "3.3.0"
+    const val koinCore = "3.3.0"
+    const val koinAndroid = "3.3.1"
+    const val koinAndroidCompose = "3.4.0"
     const val ktor = "2.1.3"
 
     const val kotlinxSerialization = "1.3.3"
@@ -15,7 +15,7 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.13.1"
 
-    const val compose = "1.3.0"
+    const val compose = "1.4.0-alpha03"
     const val composeCompiler = "1.3.2"
     const val wearCompose = "1.1.0"
     const val navCompose = "2.5.2"
