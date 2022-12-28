@@ -45,15 +45,18 @@ internal class NativeFlowSubscription<Output, Failure, Unit, S: Subscriber>: Sub
     func request(_ demand: Subscribers.Demand) {
         guard let nativeFlow = nativeFlow, demand >= 1 else { return }
         self.nativeFlow = nil
-        nativeCancellable = nativeFlow({ item, unit in
-            _ = self.subscriber?.receive(item)
-            return unit
+        nativeCancellable = nativeFlow({ item, next, _ in
+            _ = self.subscriber?.receive(item) // TODO: Correctly handle demands
+            return next()
         }, { error, unit in
             if let error = error {
                 self.subscriber?.receive(completion: .failure(error))
             } else {
                 self.subscriber?.receive(completion: .finished)
             }
+            return unit
+        }, { cancellationError, unit in
+            self.subscriber?.receive(completion: .failure(cancellationError))
             return unit
         })
     }

@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.androidCompileSdk
+    compileSdk = AndroidSdk.compile
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
         minSdk = 26
-        targetSdk = Versions.androidTargetSdk
+        targetSdk = AndroidSdk.target
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

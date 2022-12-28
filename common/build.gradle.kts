@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
+    id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
     id("io.github.luca992.multiplatform-swiftpackage") version "2.0.5-arm64"
 }
@@ -14,11 +15,11 @@ plugins {
 version = "1.0"
 
 android {
-    compileSdk = Versions.androidCompileSdk
+    compileSdk = AndroidSdk.compile
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = Versions.androidMinSdk
-        targetSdk = Versions.androidTargetSdk
+        minSdk = AndroidSdk.min
+        targetSdk = AndroidSdk.target
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -110,12 +111,6 @@ kotlin {
                 implementation(Deps.SqlDelight.androidDriver)
             }
         }
-        val androidTest by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientAndroid)
-                implementation(Deps.SqlDelight.androidDriver)
-            }
-        }
 
         val jvmMain by getting {
             dependencies {
@@ -188,4 +183,8 @@ multiplatformSwiftPackage {
     targetPlatforms {
         iOS { v("14") }
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }

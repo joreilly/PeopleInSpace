@@ -3,15 +3,13 @@
   "version": "1.0",
   "homepage": "https://github.com/joreilly/PeopleInSpace",
   "source": {
-    "git": "Not Published",
-    "tag": "Cocoapods/common/1.0"
+    "http": ""
   },
   "authors": "",
   "license": "",
   "summary": "PeopleInSpace",
   "vendored_frameworks": "build/cocoapods/framework/common.framework",
   "libraries": "c++",
-  "module_name": "common_umbrella",
   "pod_target_xcconfig": {
     "KOTLIN_PROJECT_PATH": ":common",
     "PRODUCT_MODULE_NAME": "common"
@@ -21,7 +19,7 @@
       "name": "Build common",
       "execution_position": "before_compile",
       "shell_path": "/bin/sh",
-      "script": "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -PkotlinVersion=\"1.6.0\"                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n"
+      "script": "                if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n                  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n"
     }
   ],
   "platforms": {

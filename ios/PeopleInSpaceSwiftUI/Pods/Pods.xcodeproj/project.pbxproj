@@ -9,9 +9,10 @@
 /* Begin PBXAggregateTarget section */
 		3E0F52FEF92F0DBF6C5C62B21A5FF62D /* common-iOS15.0 */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = C034E5CDA202F1D4BA4459D6F7B29AE1 /* Build configuration list for PBXAggregateTarget "common-iOS15.0" */;
+			buildConfigurationList = 6C284195E331081A6A54941D6B2B8CEC /* Build configuration list for PBXAggregateTarget "common-iOS15.0" */;
 			buildPhases = (
-				90F9645A9C6CB22957EAC877BD064235 /* [CP-User] Build common */,
+				70B4710B3637322C382EED554B5D3E7B /* [CP-User] Build common */,
+				5A305C6A10E759CEF7F7BB6D416000B7 /* [CP] Copy dSYMs */,
 			);
 			dependencies = (
 			);
@@ -19,9 +20,10 @@
 		};
 		C19E6A7BEAAA498CB1C7E8790D63AA03 /* common-iOS14.0 */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 4163726D616C3ADD3C6C8A227A1CBA99 /* Build configuration list for PBXAggregateTarget "common-iOS14.0" */;
+			buildConfigurationList = D38BEE7C7F22F9805DA398706C6B31CE /* Build configuration list for PBXAggregateTarget "common-iOS14.0" */;
 			buildPhases = (
-				0798D8688759D253C2277A9E990AEE7F /* [CP-User] Build common */,
+				1D6015D5B41D422DC01D16EA174A42A4 /* [CP-User] Build common */,
+				0E8F5BD9E8DEF21E6D2F6C3F8F5674E3 /* [CP] Copy dSYMs */,
 			);
 			dependencies = (
 			);
@@ -33,23 +35,23 @@
 		024D3B5CB29B8C8829FE5E95F49482B2 /* KMPNativeCoroutinesCore-iOS14.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E54884B34A41C3F78866F5C04901D1F9 /* KMPNativeCoroutinesCore-iOS14.0-dummy.m */; };
 		0B9609B39C06B39CD59D09CBDDDBC4D7 /* NativeCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE36134C51AAFEBD5D09E07A378607 /* NativeCancellable.swift */; };
 		155FCCA3E96FA7518B7C44D6D6AB330D /* KMPNativeCoroutinesCore-iOS14.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BCE71A0381F659E9D5119A23C2AB5E /* KMPNativeCoroutinesCore-iOS14.0-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		28DEEE907EF93C41C610D6BF066D829F /* KMPNativeCoroutinesAsync-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A76CD85D5B51340BFA69F13E02543B /* KMPNativeCoroutinesAsync-dummy.m */; };
+		180686DDC3949CC22CF5A25410ED45B3 /* AsyncFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DD6A1DF15197B41F8D21ADF56B3CE /* AsyncFunction.swift */; };
 		3ACA98BDB9393CB858F2BD3AD2298CE6 /* KMPNativeCoroutinesCore-iOS15.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 640E00BA26387892EDAC1466346DF3A9 /* KMPNativeCoroutinesCore-iOS15.0-dummy.m */; };
 		3EF460B74CAFBA8E866EE91D879F15B7 /* FuturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646252C265E3FDF4AB6158A4B9B45CC9 /* FuturePublisher.swift */; };
-		3F618555C926E2F55B5D491AE8C34956 /* AsyncStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEFC906DA84BF56FE6D71DF9EF3E088 /* AsyncStream.swift */; };
+		3F2B25E390BB35BE14B19BC8378316AB /* KMPNativeCoroutinesAsync-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C826EAC8CD2C0D0B7F4ADDE35E9B4A1 /* KMPNativeCoroutinesAsync-dummy.m */; };
 		4E0D8717C3C25D7BDD9C5DC92DDED6E2 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6C8F6F44A5943C9E2F79A480D9FC30 /* Future.swift */; };
-		525893B47CEECC630799765AEDA5A33B /* Pods-PeopleInSpaceWidgetExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DABD1E2880CD4D5444351F9C673AA9B /* Pods-PeopleInSpaceWidgetExtension-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		525893B47CEECC630799765AEDA5A33B /* Pods-PeopleInSpaceWidgetExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB50C57463F0F61DF5E8238047B87D22 /* Pods-PeopleInSpaceWidgetExtension-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		531A1AD9621B6F78419AF72A6630A108 /* AsyncSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052EF7F50E54169E2E20C21DDF9539E /* AsyncSequence.swift */; };
 		6F1DB793291265F57F20B109C55DE813 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F8A27FA8D0CE8925C21DB017FA95B /* Publisher.swift */; };
 		70198D1F580B4D575B29177B23055B29 /* NativeCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFB66D505277F8AA4B26ED906029D1 /* NativeCallback.swift */; };
-		771D19F962ACF3A53332515840AE0B8E /* Pods-PeopleInSpaceSwiftUI-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F22D1097D8C3921FDA902C0CAA4D044A /* Pods-PeopleInSpaceSwiftUI-dummy.m */; };
-		802F8F90E45BF08F27172C7DBB14555A /* Pods-PeopleInSpaceWidgetExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A46FAB5AFEB9988DA6D51626B47D04 /* Pods-PeopleInSpaceWidgetExtension-dummy.m */; };
+		771D19F962ACF3A53332515840AE0B8E /* Pods-PeopleInSpaceSwiftUI-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D4C44E35F0A5EAE10EABDEE78C481E /* Pods-PeopleInSpaceSwiftUI-dummy.m */; };
+		802F8F90E45BF08F27172C7DBB14555A /* Pods-PeopleInSpaceWidgetExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A66E4C363D57F29AEFFDDA565DAB52 /* Pods-PeopleInSpaceWidgetExtension-dummy.m */; };
+		888375CE2A6EDA86BCBBC4E58AEDC35E /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BF1DF4E576A7A1C2EC5A988C9A99F /* AsyncResult.swift */; };
 		9111018FAF9986C18776245DF308AA06 /* NativeCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE36134C51AAFEBD5D09E07A378607 /* NativeCancellable.swift */; };
-		92B79364826AD133BFE47BC809E220A7 /* AsyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639578027EC483BBCBD76B7BD3ABC7B3 /* AsyncResult.swift */; };
 		A2727EDFB41F7C23FAA0FB8A7C6DEC45 /* NativeSuspend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378B508C12F74E819FF0428AFD7F011C /* NativeSuspend.swift */; };
-		A756B8379610A3FCCC2B137E7DE8FF3E /* AsyncFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092F59E2A9AA080F98993FD632F0E5A6 /* AsyncFunction.swift */; };
-		B2F9EE213EF77C7BA491F5B2CCF4B0EB /* KMPNativeCoroutinesAsync-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CE2C90C8906454B3F326A727091ED8E2 /* KMPNativeCoroutinesAsync-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B2F9EE213EF77C7BA491F5B2CCF4B0EB /* KMPNativeCoroutinesAsync-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AAD79F89E8D6A6A2388502375A37EB52 /* KMPNativeCoroutinesAsync-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B30D933C6835D8AAB7D678877DA3E3E7 /* NativeCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFB66D505277F8AA4B26ED906029D1 /* NativeCallback.swift */; };
-		BC93D93D58AB8C7D45E5D69EEF57E3FF /* Pods-PeopleInSpaceSwiftUI-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FE2117618A8AE7D9B16AF6C7501ED9CA /* Pods-PeopleInSpaceSwiftUI-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BC93D93D58AB8C7D45E5D69EEF57E3FF /* Pods-PeopleInSpaceSwiftUI-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E509B76E0437D6286E017E5EE3BB479A /* Pods-PeopleInSpaceSwiftUI-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C85FBA5E128E43BCF619F38F980A8B72 /* NativeFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254FFA455B30FAEEF09DDEC00A9B05E1 /* NativeFlow.swift */; };
 		D20C55B778EA02C4B17D6DA32C64730C /* NativeSuspend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378B508C12F74E819FF0428AFD7F011C /* NativeSuspend.swift */; };
 		D430E6A985A66336B78ED1656A8BFDFE /* KMPNativeCoroutinesCombine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A08147C2BE8BD96012D2C9353284555F /* KMPNativeCoroutinesCombine-dummy.m */; };
@@ -72,13 +74,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3F9FD9D97D14F53EE028871E5A26555A;
 			remoteInfo = KMPNativeCoroutinesCombine;
-		};
-		5B894313422EAAB300F547E8D5E29565 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E0F52FEF92F0DBF6C5C62B21A5FF62D;
-			remoteInfo = "common-iOS15.0";
 		};
 		654B76512FB4222D7B1ACCA0D67EB763 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -108,6 +103,13 @@
 			remoteGlobalIDString = 7E2E2E1790DDF0B871874866D7FE800E;
 			remoteInfo = "KMPNativeCoroutinesCore-iOS15.0";
 		};
+		F41D7207228228F6A1744E76B175AB28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E0F52FEF92F0DBF6C5C62B21A5FF62D;
+			remoteInfo = "common-iOS15.0";
+		};
 		FF943C8E9F3F05DDC8BBC2B04F7A47ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -118,66 +120,69 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03ABD80B4570B33C416BB075A826012E /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		017FE3B2FAD38F65638A2F93E4E65E11 /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		06AFB66D505277F8AA4B26ED906029D1 /* NativeCallback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeCallback.swift; path = KMPNativeCoroutinesCore/NativeCallback.swift; sourceTree = "<group>"; };
-		092F59E2A9AA080F98993FD632F0E5A6 /* AsyncFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncFunction.swift; path = KMPNativeCoroutinesAsync/AsyncFunction.swift; sourceTree = "<group>"; };
 		119081733E6F0C5AB5EC771BCDF240B3 /* KMPNativeCoroutinesCore-iOS15.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "KMPNativeCoroutinesCore-iOS15.0.modulemap"; path = "../KMPNativeCoroutinesCore-iOS15.0/KMPNativeCoroutinesCore-iOS15.0.modulemap"; sourceTree = "<group>"; };
 		15BCE71A0381F659E9D5119A23C2AB5E /* KMPNativeCoroutinesCore-iOS14.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCore-iOS14.0-umbrella.h"; sourceTree = "<group>"; };
-		1901A534874B960C2794192A19358717 /* KMPNativeCoroutinesAsync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesAsync.release.xcconfig; sourceTree = "<group>"; };
-		19A46FAB5AFEB9988DA6D51626B47D04 /* Pods-PeopleInSpaceWidgetExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeopleInSpaceWidgetExtension-dummy.m"; sourceTree = "<group>"; };
+		17A66E4C363D57F29AEFFDDA565DAB52 /* Pods-PeopleInSpaceWidgetExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeopleInSpaceWidgetExtension-dummy.m"; sourceTree = "<group>"; };
+		1821F9FF0E1D3E94D66D4B8A2ADC119F /* Pods-PeopleInSpaceSwiftUI-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PeopleInSpaceSwiftUI-frameworks.sh"; sourceTree = "<group>"; };
 		1BC4A026DBC6C2982B828355463B2569 /* KMPNativeCoroutinesCombine */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = KMPNativeCoroutinesCombine; path = libKMPNativeCoroutinesCombine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE1314C35D201A992119A341470A7CB /* KMPNativeCoroutinesCore-iOS15.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "KMPNativeCoroutinesCore-iOS15.0"; path = "libKMPNativeCoroutinesCore-iOS15.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		254FFA455B30FAEEF09DDEC00A9B05E1 /* NativeFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeFlow.swift; path = KMPNativeCoroutinesCore/NativeFlow.swift; sourceTree = "<group>"; };
 		2911332CFA5021B9DEB1AE8196662B75 /* KMPNativeCoroutinesCombine-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCombine-prefix.pch"; sourceTree = "<group>"; };
-		2AEFC906DA84BF56FE6D71DF9EF3E088 /* AsyncStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncStream.swift; path = KMPNativeCoroutinesAsync/AsyncStream.swift; sourceTree = "<group>"; };
 		2B940B2A2384E57CF6A18216D9EA6D05 /* KMPNativeCoroutinesCore-iOS14.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCore-iOS14.0-prefix.pch"; sourceTree = "<group>"; };
 		2E21D71E7E19004799571C3CE294028F /* KMPNativeCoroutinesCombine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesCombine.release.xcconfig; sourceTree = "<group>"; };
 		378B508C12F74E819FF0428AFD7F011C /* NativeSuspend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeSuspend.swift; path = KMPNativeCoroutinesCore/NativeSuspend.swift; sourceTree = "<group>"; };
+		3816D3655CC8E3A473E0F9DA39650B17 /* Pods-PeopleInSpaceSwiftUI.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PeopleInSpaceSwiftUI.modulemap"; sourceTree = "<group>"; };
+		3C826EAC8CD2C0D0B7F4ADDE35E9B4A1 /* KMPNativeCoroutinesAsync-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KMPNativeCoroutinesAsync-dummy.m"; sourceTree = "<group>"; };
+		3E33650FF58E5DF3BFAF63325657FD27 /* common-iOS15.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "common-iOS15.0.release.xcconfig"; path = "../common-iOS15.0/common-iOS15.0.release.xcconfig"; sourceTree = "<group>"; };
+		3E8486EDBE14C9B5DA9FC281FF3D69DA /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		415E3B419C1DC56FBF7320DE4450EB88 /* KMPNativeCoroutinesCore-iOS15.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "KMPNativeCoroutinesCore-iOS15.0.release.xcconfig"; path = "../KMPNativeCoroutinesCore-iOS15.0/KMPNativeCoroutinesCore-iOS15.0.release.xcconfig"; sourceTree = "<group>"; };
 		45FE36134C51AAFEBD5D09E07A378607 /* NativeCancellable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeCancellable.swift; path = KMPNativeCoroutinesCore/NativeCancellable.swift; sourceTree = "<group>"; };
-		48F9E62DA7AB879914B14FC0AC1F7B50 /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		47633A5A9944451F375F4916CC747C9A /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		49B8A6DDA6C036D15690EC0AD28032B8 /* KMPNativeCoroutinesCore-iOS15.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "KMPNativeCoroutinesCore-iOS15.0-umbrella.h"; path = "../KMPNativeCoroutinesCore-iOS15.0/KMPNativeCoroutinesCore-iOS15.0-umbrella.h"; sourceTree = "<group>"; };
-		4DABD1E2880CD4D5444351F9C673AA9B /* Pods-PeopleInSpaceWidgetExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PeopleInSpaceWidgetExtension-umbrella.h"; sourceTree = "<group>"; };
+		4F0DD6A1DF15197B41F8D21ADF56B3CE /* AsyncFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncFunction.swift; path = KMPNativeCoroutinesAsync/AsyncFunction.swift; sourceTree = "<group>"; };
+		5052EF7F50E54169E2E20C21DDF9539E /* AsyncSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncSequence.swift; path = KMPNativeCoroutinesAsync/AsyncSequence.swift; sourceTree = "<group>"; };
+		532CB91F452A9412ABDF6D73983F1D9D /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
 		5529A28C108380FDB23ADC746931B8EB /* KMPNativeCoroutinesCore-iOS14.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "KMPNativeCoroutinesCore-iOS14.0.modulemap"; sourceTree = "<group>"; };
-		61FC1A49F276947EAF2098EC96E9D25F /* KMPNativeCoroutinesAsync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesAsync.debug.xcconfig; sourceTree = "<group>"; };
-		6366EEF7B73B3B08E62FFACA38F98F6E /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
-		639578027EC483BBCBD76B7BD3ABC7B3 /* AsyncResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncResult.swift; path = KMPNativeCoroutinesAsync/AsyncResult.swift; sourceTree = "<group>"; };
+		60DEE417DA7C8283682BC0D68BE78D6C /* Pods-PeopleInSpaceWidgetExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PeopleInSpaceWidgetExtension.modulemap"; sourceTree = "<group>"; };
 		640E00BA26387892EDAC1466346DF3A9 /* KMPNativeCoroutinesCore-iOS15.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "KMPNativeCoroutinesCore-iOS15.0-dummy.m"; path = "../KMPNativeCoroutinesCore-iOS15.0/KMPNativeCoroutinesCore-iOS15.0-dummy.m"; sourceTree = "<group>"; };
 		646252C265E3FDF4AB6158A4B9B45CC9 /* FuturePublisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FuturePublisher.swift; path = KMPNativeCoroutinesCombine/FuturePublisher.swift; sourceTree = "<group>"; };
 		669ED591377F213AFDF10AD71F02F200 /* KMPNativeCoroutinesCombine.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KMPNativeCoroutinesCombine.modulemap; sourceTree = "<group>"; };
-		66A76CD85D5B51340BFA69F13E02543B /* KMPNativeCoroutinesAsync-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KMPNativeCoroutinesAsync-dummy.m"; sourceTree = "<group>"; };
-		73B9017727FED396FC43C6E02E60AB36 /* Pods-PeopleInSpaceWidgetExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PeopleInSpaceWidgetExtension.modulemap"; sourceTree = "<group>"; };
+		756E9123F53B25536D6C146BAFB00099 /* common-iOS15.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "common-iOS15.0.debug.xcconfig"; path = "../common-iOS15.0/common-iOS15.0.debug.xcconfig"; sourceTree = "<group>"; };
 		790045D56FE561653A5D91BA767FC4D9 /* Pods-PeopleInSpaceWidgetExtension */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-PeopleInSpaceWidgetExtension"; path = "libPods-PeopleInSpaceWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9CFA7A2362130D85BE6E7107285AE3 /* KMPNativeCoroutinesCombine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesCombine.debug.xcconfig; sourceTree = "<group>"; };
-		84E38C06B7E70548314BD3307AC8B54F /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		855BD26843CA0F3761D8D4C02C967F16 /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		80095A438DA2B1722DB750EABD408AFF /* common-iOS15.0-copy-dsyms.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = "common-iOS15.0-copy-dsyms.sh"; path = "../common-iOS15.0/common-iOS15.0-copy-dsyms.sh"; sourceTree = "<group>"; };
+		8BB33E6B4E512A1BA2445D28309094A2 /* KMPNativeCoroutinesAsync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesAsync.debug.xcconfig; sourceTree = "<group>"; };
 		8D634CE839CA3AEAE96C88A75AD0CBEB /* Pods-PeopleInSpaceSwiftUI */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-PeopleInSpaceSwiftUI"; path = "libPods-PeopleInSpaceSwiftUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D8B40BE951E682434106871ACEC2917 /* common-iOS14.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "common-iOS14.0.release.xcconfig"; sourceTree = "<group>"; };
-		95E5FD3EF1B071AF0087C55D0F82E198 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
-		96B5316872A4F6EAEE1542AB0900729E /* common-iOS15.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "common-iOS15.0.debug.xcconfig"; path = "../common-iOS15.0/common-iOS15.0.debug.xcconfig"; sourceTree = "<group>"; };
-		98B2BE4391C5DDDD74A06D67ABE27B30 /* Pods-PeopleInSpaceSwiftUI.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PeopleInSpaceSwiftUI.modulemap"; sourceTree = "<group>"; };
-		997FEE4D90DAE96750DEED64DA1BEE89 /* KMPNativeCoroutinesAsync-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesAsync-prefix.pch"; sourceTree = "<group>"; };
+		906672E83ABA88C5F37A5A9ADBECC321 /* KMPNativeCoroutinesAsync.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesAsync.release.xcconfig; sourceTree = "<group>"; };
+		92A69E05B41E2D48C10DF2E0149F3122 /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeopleInSpaceWidgetExtension-acknowledgements.plist"; sourceTree = "<group>"; };
+		93D4C44E35F0A5EAE10EABDEE78C481E /* Pods-PeopleInSpaceSwiftUI-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeopleInSpaceSwiftUI-dummy.m"; sourceTree = "<group>"; };
+		958BF1DF4E576A7A1C2EC5A988C9A99F /* AsyncResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncResult.swift; path = KMPNativeCoroutinesAsync/AsyncResult.swift; sourceTree = "<group>"; };
+		9C4DC55BDE088B3A5F9B685C2F4140B2 /* Pods-PeopleInSpaceSwiftUI-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeopleInSpaceSwiftUI-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A08147C2BE8BD96012D2C9353284555F /* KMPNativeCoroutinesCombine-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KMPNativeCoroutinesCombine-dummy.m"; sourceTree = "<group>"; };
-		A819694755B2A711C5AA4CBE9A112FF9 /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeopleInSpaceWidgetExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A92E5A1FD20BD37D72BB1322D561A696 /* KMPNativeCoroutinesAsync.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KMPNativeCoroutinesAsync.modulemap; sourceTree = "<group>"; };
+		A08CF46FB58EA81DB69266372B9D6C77 /* common-iOS14.0-copy-dsyms.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "common-iOS14.0-copy-dsyms.sh"; sourceTree = "<group>"; };
+		AAD79F89E8D6A6A2388502375A37EB52 /* KMPNativeCoroutinesAsync-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesAsync-umbrella.h"; sourceTree = "<group>"; };
+		B23676DA0E828F42D9CEF18686D15134 /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		B3A14CAE272F16B9C30FAEED27C51888 /* KMPNativeCoroutinesCore-iOS15.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "KMPNativeCoroutinesCore-iOS15.0.debug.xcconfig"; path = "../KMPNativeCoroutinesCore-iOS15.0/KMPNativeCoroutinesCore-iOS15.0.debug.xcconfig"; sourceTree = "<group>"; };
-		B563FBFDB1660DCBB12A7B2ED3B71E6A /* common-iOS14.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "common-iOS14.0.debug.xcconfig"; sourceTree = "<group>"; };
 		B6457EA9F1280C1648E87CD92A9C6DB0 /* KMPNativeCoroutinesCore-iOS14.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "KMPNativeCoroutinesCore-iOS14.0.release.xcconfig"; sourceTree = "<group>"; };
-		B9D11E83408F5B88CAB55DB7140090FB /* Pods-PeopleInSpaceSwiftUI-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeopleInSpaceSwiftUI-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BB5B4ED2E7A73841BBCB71C89D44C924 /* KMPNativeCoroutinesCore-iOS14.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "KMPNativeCoroutinesCore-iOS14.0.debug.xcconfig"; sourceTree = "<group>"; };
+		BEAA621DCFCDC1CADB9E32D435EFE4AA /* common-iOS14.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "common-iOS14.0.debug.xcconfig"; sourceTree = "<group>"; };
 		C38F8A27FA8D0CE8925C21DB017FA95B /* Publisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Publisher.swift; path = KMPNativeCoroutinesCombine/Publisher.swift; sourceTree = "<group>"; };
 		C60A48B6F577CE81226009119C70B873 /* KMPNativeCoroutinesCombine-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCombine-umbrella.h"; sourceTree = "<group>"; };
 		CA6C8F6F44A5943C9E2F79A480D9FC30 /* Future.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Future.swift; path = KMPNativeCoroutinesCombine/Future.swift; sourceTree = "<group>"; };
 		CBB360F2822905300C310CBA06D6A093 /* KMPNativeCoroutinesAsync */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = KMPNativeCoroutinesAsync; path = libKMPNativeCoroutinesAsync.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE2C90C8906454B3F326A727091ED8E2 /* KMPNativeCoroutinesAsync-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesAsync-umbrella.h"; sourceTree = "<group>"; };
-		DADABFB29EBD859E02598CD496B670A9 /* common-iOS15.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "common-iOS15.0.release.xcconfig"; path = "../common-iOS15.0/common-iOS15.0.release.xcconfig"; sourceTree = "<group>"; };
+		D221755AB7CEDCDEB1CE0316042859FB /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D32595EFFBC1FA1F7C2B057DDDFAA30A /* common-iOS14.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "common-iOS14.0.release.xcconfig"; sourceTree = "<group>"; };
+		D9CC052699C4244F6AE1DA6620DEB81F /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeopleInSpaceWidgetExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E509B76E0437D6286E017E5EE3BB479A /* Pods-PeopleInSpaceSwiftUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PeopleInSpaceSwiftUI-umbrella.h"; sourceTree = "<group>"; };
 		E54884B34A41C3F78866F5C04901D1F9 /* KMPNativeCoroutinesCore-iOS14.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KMPNativeCoroutinesCore-iOS14.0-dummy.m"; sourceTree = "<group>"; };
 		EFF5FE8BEA99D1D1B944395CC093079A /* KMPNativeCoroutinesCore-iOS14.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "KMPNativeCoroutinesCore-iOS14.0"; path = "libKMPNativeCoroutinesCore-iOS14.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F22D1097D8C3921FDA902C0CAA4D044A /* Pods-PeopleInSpaceSwiftUI-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeopleInSpaceSwiftUI-dummy.m"; sourceTree = "<group>"; };
-		F3C4D3BD1E1A7C9F52CE1A95733780CC /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeopleInSpaceWidgetExtension-acknowledgements.plist"; sourceTree = "<group>"; };
-		FE2117618A8AE7D9B16AF6C7501ED9CA /* Pods-PeopleInSpaceSwiftUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PeopleInSpaceSwiftUI-umbrella.h"; sourceTree = "<group>"; };
-		FF7F8C9B63578F122070B252E557A173 /* Pods-PeopleInSpaceSwiftUI-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeopleInSpaceSwiftUI-acknowledgements.plist"; sourceTree = "<group>"; };
+		F2DA13698DB24A76967AB6AFA10F5558 /* KMPNativeCoroutinesAsync-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesAsync-prefix.pch"; sourceTree = "<group>"; };
+		F714AF7229D004C92474AFD70B2F540E /* KMPNativeCoroutinesAsync.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KMPNativeCoroutinesAsync.modulemap; sourceTree = "<group>"; };
+		FA72F574544B4B0FE15F3207D08343B3 /* Pods-PeopleInSpaceSwiftUI-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeopleInSpaceSwiftUI-acknowledgements.plist"; sourceTree = "<group>"; };
+		FB50C57463F0F61DF5E8238047B87D22 /* Pods-PeopleInSpaceWidgetExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PeopleInSpaceWidgetExtension-umbrella.h"; sourceTree = "<group>"; };
 		FFD3CD827AE23B168FB127EC219A95C9 /* KMPNativeCoroutinesCore-iOS15.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "KMPNativeCoroutinesCore-iOS15.0-prefix.pch"; path = "../KMPNativeCoroutinesCore-iOS15.0/KMPNativeCoroutinesCore-iOS15.0-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,6 +245,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		130CC5B92B0B72984E995B7C8C80A54A /* Pods-PeopleInSpaceSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				3816D3655CC8E3A473E0F9DA39650B17 /* Pods-PeopleInSpaceSwiftUI.modulemap */,
+				9C4DC55BDE088B3A5F9B685C2F4140B2 /* Pods-PeopleInSpaceSwiftUI-acknowledgements.markdown */,
+				FA72F574544B4B0FE15F3207D08343B3 /* Pods-PeopleInSpaceSwiftUI-acknowledgements.plist */,
+				93D4C44E35F0A5EAE10EABDEE78C481E /* Pods-PeopleInSpaceSwiftUI-dummy.m */,
+				1821F9FF0E1D3E94D66D4B8A2ADC119F /* Pods-PeopleInSpaceSwiftUI-frameworks.sh */,
+				E509B76E0437D6286E017E5EE3BB479A /* Pods-PeopleInSpaceSwiftUI-umbrella.h */,
+				3E8486EDBE14C9B5DA9FC281FF3D69DA /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */,
+				47633A5A9944451F375F4916CC747C9A /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */,
+			);
+			name = "Pods-PeopleInSpaceSwiftUI";
+			path = "Target Support Files/Pods-PeopleInSpaceSwiftUI";
+			sourceTree = "<group>";
+		};
 		14BFCEE12D9930155D45071A306CC679 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,12 +281,16 @@
 			path = "../Target Support Files/KMPNativeCoroutinesCore-iOS14.0";
 			sourceTree = "<group>";
 		};
-		2031647FE331F9BAC5602FBBFBA136A6 /* Pod */ = {
+		387BC1151C95DB45BB051EA61C750049 /* KMPNativeCoroutinesAsync */ = {
 			isa = PBXGroup;
 			children = (
-				48F9E62DA7AB879914B14FC0AC1F7B50 /* common.podspec */,
+				4F0DD6A1DF15197B41F8D21ADF56B3CE /* AsyncFunction.swift */,
+				958BF1DF4E576A7A1C2EC5A988C9A99F /* AsyncResult.swift */,
+				5052EF7F50E54169E2E20C21DDF9539E /* AsyncSequence.swift */,
+				C3D8A656096A51176724B53F9C821488 /* Support Files */,
 			);
-			name = Pod;
+			name = KMPNativeCoroutinesAsync;
+			path = KMPNativeCoroutinesAsync;
 			sourceTree = "<group>";
 		};
 		3AF147C9DD9866B774DA104AB7BF9928 /* Support Files */ = {
@@ -285,11 +310,30 @@
 		3E3D2561DF87FDE6E3B62198DF61274D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B11226CA260A2DB2F7C5221C1B728124 /* KMPNativeCoroutinesAsync */,
+				387BC1151C95DB45BB051EA61C750049 /* KMPNativeCoroutinesAsync */,
 				5B510ACFD8FD2BDEDD3486245B0B4478 /* KMPNativeCoroutinesCombine */,
 				560290CB46432D6895275C974FAAE4AC /* KMPNativeCoroutinesCore */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5482F50CC67FD51179629A647FDC9596 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				5527EEFD9898E8D1E1B1DEDCE3749321 /* Frameworks */,
+				7F502B5D003878653E176578DFFD0370 /* Pod */,
+				5F6580B2D6BEDBD3117CAF35CB63103D /* Support Files */,
+			);
+			name = common;
+			path = ../../../common;
+			sourceTree = "<group>";
+		};
+		5527EEFD9898E8D1E1B1DEDCE3749321 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				532CB91F452A9412ABDF6D73983F1D9D /* common.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		560290CB46432D6895275C974FAAE4AC /* KMPNativeCoroutinesCore */ = {
@@ -317,88 +361,64 @@
 			path = KMPNativeCoroutinesCombine;
 			sourceTree = "<group>";
 		};
-		6AE2A84CB3C3B01012CF33AF21992012 /* Pods-PeopleInSpaceSwiftUI */ = {
+		5F6580B2D6BEDBD3117CAF35CB63103D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				98B2BE4391C5DDDD74A06D67ABE27B30 /* Pods-PeopleInSpaceSwiftUI.modulemap */,
-				B9D11E83408F5B88CAB55DB7140090FB /* Pods-PeopleInSpaceSwiftUI-acknowledgements.markdown */,
-				FF7F8C9B63578F122070B252E557A173 /* Pods-PeopleInSpaceSwiftUI-acknowledgements.plist */,
-				F22D1097D8C3921FDA902C0CAA4D044A /* Pods-PeopleInSpaceSwiftUI-dummy.m */,
-				FE2117618A8AE7D9B16AF6C7501ED9CA /* Pods-PeopleInSpaceSwiftUI-umbrella.h */,
-				855BD26843CA0F3761D8D4C02C967F16 /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */,
-				95E5FD3EF1B071AF0087C55D0F82E198 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */,
+				A08CF46FB58EA81DB69266372B9D6C77 /* common-iOS14.0-copy-dsyms.sh */,
+				BEAA621DCFCDC1CADB9E32D435EFE4AA /* common-iOS14.0.debug.xcconfig */,
+				D32595EFFBC1FA1F7C2B057DDDFAA30A /* common-iOS14.0.release.xcconfig */,
+				80095A438DA2B1722DB750EABD408AFF /* common-iOS15.0-copy-dsyms.sh */,
+				756E9123F53B25536D6C146BAFB00099 /* common-iOS15.0.debug.xcconfig */,
+				3E33650FF58E5DF3BFAF63325657FD27 /* common-iOS15.0.release.xcconfig */,
 			);
-			name = "Pods-PeopleInSpaceSwiftUI";
-			path = "Target Support Files/Pods-PeopleInSpaceSwiftUI";
+			name = "Support Files";
+			path = "../ios/PeopleInSpaceSwiftUI/Pods/Target Support Files/common-iOS14.0";
 			sourceTree = "<group>";
 		};
-		9BEE75D38464A0E1C153312FB70F96E9 /* Pods-PeopleInSpaceWidgetExtension */ = {
+		7F502B5D003878653E176578DFFD0370 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				73B9017727FED396FC43C6E02E60AB36 /* Pods-PeopleInSpaceWidgetExtension.modulemap */,
-				A819694755B2A711C5AA4CBE9A112FF9 /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.markdown */,
-				F3C4D3BD1E1A7C9F52CE1A95733780CC /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.plist */,
-				19A46FAB5AFEB9988DA6D51626B47D04 /* Pods-PeopleInSpaceWidgetExtension-dummy.m */,
-				4DABD1E2880CD4D5444351F9C673AA9B /* Pods-PeopleInSpaceWidgetExtension-umbrella.h */,
-				84E38C06B7E70548314BD3307AC8B54F /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */,
-				03ABD80B4570B33C416BB075A826012E /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */,
+				D221755AB7CEDCDEB1CE0316042859FB /* common.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		8739B93D9C995F7FF2923AC3C9559F9F /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				130CC5B92B0B72984E995B7C8C80A54A /* Pods-PeopleInSpaceSwiftUI */,
+				A7E1701377182A0E22B90E48B3DDE862 /* Pods-PeopleInSpaceWidgetExtension */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A7E1701377182A0E22B90E48B3DDE862 /* Pods-PeopleInSpaceWidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				60DEE417DA7C8283682BC0D68BE78D6C /* Pods-PeopleInSpaceWidgetExtension.modulemap */,
+				D9CC052699C4244F6AE1DA6620DEB81F /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.markdown */,
+				92A69E05B41E2D48C10DF2E0149F3122 /* Pods-PeopleInSpaceWidgetExtension-acknowledgements.plist */,
+				17A66E4C363D57F29AEFFDDA565DAB52 /* Pods-PeopleInSpaceWidgetExtension-dummy.m */,
+				FB50C57463F0F61DF5E8238047B87D22 /* Pods-PeopleInSpaceWidgetExtension-umbrella.h */,
+				B23676DA0E828F42D9CEF18686D15134 /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */,
+				017FE3B2FAD38F65638A2F93E4E65E11 /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */,
 			);
 			name = "Pods-PeopleInSpaceWidgetExtension";
 			path = "Target Support Files/Pods-PeopleInSpaceWidgetExtension";
 			sourceTree = "<group>";
 		};
-		A8340182D1A57ACB70DE316DA4527715 /* common */ = {
+		C3D8A656096A51176724B53F9C821488 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BB17C564EDF92A08704E6A77A2B26287 /* Frameworks */,
-				2031647FE331F9BAC5602FBBFBA136A6 /* Pod */,
-				E1C987726E79212C514D7D913FA4FA6C /* Support Files */,
-			);
-			name = common;
-			path = ../../../common;
-			sourceTree = "<group>";
-		};
-		B11226CA260A2DB2F7C5221C1B728124 /* KMPNativeCoroutinesAsync */ = {
-			isa = PBXGroup;
-			children = (
-				092F59E2A9AA080F98993FD632F0E5A6 /* AsyncFunction.swift */,
-				639578027EC483BBCBD76B7BD3ABC7B3 /* AsyncResult.swift */,
-				2AEFC906DA84BF56FE6D71DF9EF3E088 /* AsyncStream.swift */,
-				B2F4C8A840E199290CFBA6ABE2DB01C1 /* Support Files */,
-			);
-			name = KMPNativeCoroutinesAsync;
-			path = KMPNativeCoroutinesAsync;
-			sourceTree = "<group>";
-		};
-		B2F4C8A840E199290CFBA6ABE2DB01C1 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A92E5A1FD20BD37D72BB1322D561A696 /* KMPNativeCoroutinesAsync.modulemap */,
-				66A76CD85D5B51340BFA69F13E02543B /* KMPNativeCoroutinesAsync-dummy.m */,
-				997FEE4D90DAE96750DEED64DA1BEE89 /* KMPNativeCoroutinesAsync-prefix.pch */,
-				CE2C90C8906454B3F326A727091ED8E2 /* KMPNativeCoroutinesAsync-umbrella.h */,
-				61FC1A49F276947EAF2098EC96E9D25F /* KMPNativeCoroutinesAsync.debug.xcconfig */,
-				1901A534874B960C2794192A19358717 /* KMPNativeCoroutinesAsync.release.xcconfig */,
+				F714AF7229D004C92474AFD70B2F540E /* KMPNativeCoroutinesAsync.modulemap */,
+				3C826EAC8CD2C0D0B7F4ADDE35E9B4A1 /* KMPNativeCoroutinesAsync-dummy.m */,
+				F2DA13698DB24A76967AB6AFA10F5558 /* KMPNativeCoroutinesAsync-prefix.pch */,
+				AAD79F89E8D6A6A2388502375A37EB52 /* KMPNativeCoroutinesAsync-umbrella.h */,
+				8BB33E6B4E512A1BA2445D28309094A2 /* KMPNativeCoroutinesAsync.debug.xcconfig */,
+				906672E83ABA88C5F37A5A9ADBECC321 /* KMPNativeCoroutinesAsync.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/KMPNativeCoroutinesAsync";
-			sourceTree = "<group>";
-		};
-		BB17C564EDF92A08704E6A77A2B26287 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6366EEF7B73B3B08E62FFACA38F98F6E /* common.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C6ED6D7C2FAFFD95603CF686FCBA9DEA /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6AE2A84CB3C3B01012CF33AF21992012 /* Pods-PeopleInSpaceSwiftUI */,
-				9BEE75D38464A0E1C153312FB70F96E9 /* Pods-PeopleInSpaceWidgetExtension */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -409,7 +429,7 @@
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				3E3D2561DF87FDE6E3B62198DF61274D /* Pods */,
 				04470FA1D1D5F9E51E12C17B2DFF3B56 /* Products */,
-				C6ED6D7C2FAFFD95603CF686FCBA9DEA /* Targets Support Files */,
+				8739B93D9C995F7FF2923AC3C9559F9F /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -420,22 +440,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E1C987726E79212C514D7D913FA4FA6C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B563FBFDB1660DCBB12A7B2ED3B71E6A /* common-iOS14.0.debug.xcconfig */,
-				8D8B40BE951E682434106871ACEC2917 /* common-iOS14.0.release.xcconfig */,
-				96B5316872A4F6EAEE1542AB0900729E /* common-iOS15.0.debug.xcconfig */,
-				DADABFB29EBD859E02598CD496B670A9 /* common-iOS15.0.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../ios/PeopleInSpaceSwiftUI/Pods/Target Support Files/common-iOS14.0";
-			sourceTree = "<group>";
-		};
 		E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A8340182D1A57ACB70DE316DA4527715 /* common */,
+				5482F50CC67FD51179629A647FDC9596 /* common */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -526,7 +534,7 @@
 			dependencies = (
 				5DB2DB3135F30DF4D81F111B73367254 /* PBXTargetDependency */,
 				FA80150E45170770BF2D72A685E4D1E6 /* PBXTargetDependency */,
-				0F03ACE393BF9EFB7A6405388BC88B62 /* PBXTargetDependency */,
+				2F95876DECC200B0AC92F2CF89CBE926 /* PBXTargetDependency */,
 			);
 			name = "Pods-PeopleInSpaceSwiftUI";
 			productName = "Pods-PeopleInSpaceSwiftUI";
@@ -576,7 +584,7 @@
 			buildConfigurationList = 151294E42D0677C2B21DA166AEDB0C90 /* Build configuration list for PBXNativeTarget "KMPNativeCoroutinesAsync" */;
 			buildPhases = (
 				FD73F0763A7AB5E80C48E45661252022 /* Headers */,
-				5146C56B837ED409B47149853B96B0F2 /* Sources */,
+				9C29ED1B6C256ECEDB290F67DCEDAE01 /* Sources */,
 				736E02EB280C8751799718C20477248B /* Frameworks */,
 				0126883A9008154E666E172B9FE9C816 /* Copy generated compatibility header */,
 			);
@@ -691,15 +699,22 @@
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
 		};
-		0798D8688759D253C2277A9E990AEE7F /* [CP-User] Build common */ = {
+		0E8F5BD9E8DEF21E6D2F6C3F8F5674E3 /* [CP] Copy dSYMs */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			name = "[CP-User] Build common";
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/common-iOS14.0/common-iOS14.0-copy-dsyms-input-files.xcfilelist",
+			);
+			name = "[CP] Copy dSYMs";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/common-iOS14.0/common-iOS14.0-copy-dsyms-output-files.xcfilelist",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/common-iOS14.0/common-iOS14.0-copy-dsyms.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		1B6923457250A35EDA6D4A11314CE0D3 /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -725,6 +740,43 @@
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-iOS14.0.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-iOS14.0-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
 		};
+		1D6015D5B41D422DC01D16EA174A42A4 /* [CP-User] Build common */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Build common";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "                if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n                  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
+		};
+		5A305C6A10E759CEF7F7BB6D416000B7 /* [CP] Copy dSYMs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/common-iOS15.0/common-iOS15.0-copy-dsyms-input-files.xcfilelist",
+			);
+			name = "[CP] Copy dSYMs";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/common-iOS15.0/common-iOS15.0-copy-dsyms-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/common-iOS15.0/common-iOS15.0-copy-dsyms.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70B4710B3637322C382EED554B5D3E7B /* [CP-User] Build common */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Build common";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "                if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n                  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
+		};
 		81CD36E8E5288E9275AF20858C97871C /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -749,30 +801,9 @@
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-iOS15.0.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-iOS15.0-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
 		};
-		90F9645A9C6CB22957EAC877BD064235 /* [CP-User] Build common */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "[CP-User] Build common";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5146C56B837ED409B47149853B96B0F2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A756B8379610A3FCCC2B137E7DE8FF3E /* AsyncFunction.swift in Sources */,
-				92B79364826AD133BFE47BC809E220A7 /* AsyncResult.swift in Sources */,
-				3F618555C926E2F55B5D491AE8C34956 /* AsyncStream.swift in Sources */,
-				28DEEE907EF93C41C610D6BF066D829F /* KMPNativeCoroutinesAsync-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5C264C513E30131CFDF5138D76CFA8DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -798,6 +829,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				771D19F962ACF3A53332515840AE0B8E /* Pods-PeopleInSpaceSwiftUI-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C29ED1B6C256ECEDB290F67DCEDAE01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				180686DDC3949CC22CF5A25410ED45B3 /* AsyncFunction.swift in Sources */,
+				888375CE2A6EDA86BCBBC4E58AEDC35E /* AsyncResult.swift in Sources */,
+				531A1AD9621B6F78419AF72A6630A108 /* AsyncSequence.swift in Sources */,
+				3F2B25E390BB35BE14B19BC8378316AB /* KMPNativeCoroutinesAsync-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,12 +875,6 @@
 			target = 3F9FD9D97D14F53EE028871E5A26555A /* KMPNativeCoroutinesCombine */;
 			targetProxy = 4FB3A8521EDF3A92CA0E998FDD0E18C9 /* PBXContainerItemProxy */;
 		};
-		0F03ACE393BF9EFB7A6405388BC88B62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "common-iOS15.0";
-			target = 3E0F52FEF92F0DBF6C5C62B21A5FF62D /* common-iOS15.0 */;
-			targetProxy = 5B894313422EAAB300F547E8D5E29565 /* PBXContainerItemProxy */;
-		};
 		1B8C7515B8EC073A8CC833FEBE7412E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "KMPNativeCoroutinesCore-iOS15.0";
@@ -850,6 +886,12 @@
 			name = "KMPNativeCoroutinesCore-iOS14.0";
 			target = FADEECE96121259FB35315822DCC8A27 /* KMPNativeCoroutinesCore-iOS14.0 */;
 			targetProxy = 8F50534D7E880938792BC539D4543E53 /* PBXContainerItemProxy */;
+		};
+		2F95876DECC200B0AC92F2CF89CBE926 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "common-iOS15.0";
+			target = 3E0F52FEF92F0DBF6C5C62B21A5FF62D /* common-iOS15.0 */;
+			targetProxy = F41D7207228228F6A1744E76B175AB28 /* PBXContainerItemProxy */;
 		};
 		5DB2DB3135F30DF4D81F111B73367254 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -880,7 +922,7 @@
 /* Begin XCBuildConfiguration section */
 		094FC2C7C1FA892F7AA071A4459FBAFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84E38C06B7E70548314BD3307AC8B54F /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */;
+			baseConfigurationReference = B23676DA0E828F42D9CEF18686D15134 /* Pods-PeopleInSpaceWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -900,9 +942,44 @@
 			};
 			name = Debug;
 		};
+		0A7D506C97C48E0B479EEE926DC74079 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E33650FF58E5DF3BFAF63325657FD27 /* common-iOS15.0.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0CF7AD29A4BDB373044EDDF08BC6A94F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEAA621DCFCDC1CADB9E32D435EFE4AA /* common-iOS14.0.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		1088D0384AA4E151F7A7BC8EA3651792 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03ABD80B4570B33C416BB075A826012E /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */;
+			baseConfigurationReference = 017FE3B2FAD38F65638A2F93E4E65E11 /* Pods-PeopleInSpaceWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -947,6 +1024,23 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		22143F0C8BF003CFA8F69C3F56136FDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 756E9123F53B25536D6C146BAFB00099 /* common-iOS15.0.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 		273CB08AEB8BEBA0C9A5DBAA876F177B /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1001,7 +1095,7 @@
 		};
 		2D86AC41F8249F49205CFAC3D0E1D105 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95E5FD3EF1B071AF0087C55D0F82E198 /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */;
+			baseConfigurationReference = 47633A5A9944451F375F4916CC747C9A /* Pods-PeopleInSpaceSwiftUI.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1021,23 +1115,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		3F2654EDC78F113C5E168C1E92D02007 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B563FBFDB1660DCBB12A7B2ED3B71E6A /* common-iOS14.0.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
 		};
 		4BC7450F9457737EE3E637BA155B56F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1105,24 +1182,6 @@
 			};
 			name = Debug;
 		};
-		4F8160961F68717C34305BBFE35554B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D8B40BE951E682434106871ACEC2917 /* common-iOS14.0.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		5DD4AF9B7D427AF96365A0E9E3306F2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B9CFA7A2362130D85BE6E7107285AE3 /* KMPNativeCoroutinesCombine.debug.xcconfig */;
@@ -1150,7 +1209,7 @@
 		};
 		6C6C23A85158A54080F8957659ACC3B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 855BD26843CA0F3761D8D4C02C967F16 /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */;
+			baseConfigurationReference = 3E8486EDBE14C9B5DA9FC281FF3D69DA /* Pods-PeopleInSpaceSwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1172,7 +1231,7 @@
 		};
 		7518D0EF3703F6EAFC9A89FA973967A5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1901A534874B960C2794192A19358717 /* KMPNativeCoroutinesAsync.release.xcconfig */;
+			baseConfigurationReference = 906672E83ABA88C5F37A5A9ADBECC321 /* KMPNativeCoroutinesAsync.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1196,9 +1255,9 @@
 			};
 			name = Release;
 		};
-		876549D9305987A76DA00A4FB5406652 /* Release */ = {
+		812DD3469BC2D67D2CE084FDFD30C90C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DADABFB29EBD859E02598CD496B670A9 /* common-iOS15.0.release.xcconfig */;
+			baseConfigurationReference = D32595EFFBC1FA1F7C2B057DDDFAA30A /* common-iOS14.0.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1276,23 +1335,6 @@
 			};
 			name = Release;
 		};
-		9AB6AAD2BFFA10F67F02A21AE3739BB9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96B5316872A4F6EAEE1542AB0900729E /* common-iOS15.0.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		A41E2C6ACBE5801520D2D69FA24D512C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3A14CAE272F16B9C30FAEED27C51888 /* KMPNativeCoroutinesCore-iOS15.0.debug.xcconfig */;
@@ -1319,7 +1361,7 @@
 		};
 		EC8DBF9BC061387991FA5D4561268EB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61FC1A49F276947EAF2098EC96E9D25F /* KMPNativeCoroutinesAsync.debug.xcconfig */;
+			baseConfigurationReference = 8BB33E6B4E512A1BA2445D28309094A2 /* KMPNativeCoroutinesAsync.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1405,20 +1447,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4163726D616C3ADD3C6C8A227A1CBA99 /* Build configuration list for PBXAggregateTarget "common-iOS14.0" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F2654EDC78F113C5E168C1E92D02007 /* Debug */,
-				4F8160961F68717C34305BBFE35554B9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BC7450F9457737EE3E637BA155B56F7 /* Debug */,
 				8B5A46FF8D3C1289CDEE3BAFACABCD2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C284195E331081A6A54941D6B2B8CEC /* Build configuration list for PBXAggregateTarget "common-iOS15.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22143F0C8BF003CFA8F69C3F56136FDE /* Debug */,
+				0A7D506C97C48E0B479EEE926DC74079 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1432,20 +1474,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C034E5CDA202F1D4BA4459D6F7B29AE1 /* Build configuration list for PBXAggregateTarget "common-iOS15.0" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9AB6AAD2BFFA10F67F02A21AE3739BB9 /* Debug */,
-				876549D9305987A76DA00A4FB5406652 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C8A79275F487870D7FF67E0BF9E16924 /* Build configuration list for PBXNativeTarget "KMPNativeCoroutinesCore-iOS15.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A41E2C6ACBE5801520D2D69FA24D512C /* Debug */,
 				1BA6226657283F25152F34B95060CD5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D38BEE7C7F22F9805DA398706C6B31CE /* Build configuration list for PBXAggregateTarget "common-iOS14.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CF7AD29A4BDB373044EDDF08BC6A94F /* Debug */,
+				812DD3469BC2D67D2CE084FDFD30C90C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
