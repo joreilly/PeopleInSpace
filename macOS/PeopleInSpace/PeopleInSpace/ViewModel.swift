@@ -15,7 +15,7 @@ class PeopleInSpaceViewModel: ObservableObject {
     init(repository: PeopleInSpaceRepository) {
         self.repository = repository
         
-        positionCancellable = createPublisher(for: repository.pollISSPositionNative())
+        positionCancellable = createPublisher(for: repository.pollISSPosition())
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 debugPrint(completion)
@@ -25,7 +25,7 @@ class PeopleInSpaceViewModel: ObservableObject {
     }
     
     func startObservingPeopleUpdates() {
-        peopleCancellable = createPublisher(for: repository.fetchPeopleAsFlowNative())
+        peopleCancellable = createPublisher(for: repository.fetchPeopleAsFlow())
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 debugPrint(completion)

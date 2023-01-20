@@ -33,14 +33,21 @@ internal struct NativeFlowPublisher<Output, Failure: Error, Unit>: Publisher {
 
 internal class NativeFlowSubscription<Output, Failure, Unit, S: Subscriber>: Subscription where S.Input == Output, S.Failure == Failure {
     
+    private var nativeFlow: NativeFlow<Output, Failure, Unit>?
     private var nativeCancellable: NativeCancellable<Unit>? = nil
     private var subscriber: S?
     
-    init(nativeFlow: NativeFlow<Output, Failure, Unit>, subscriber: S) {
+    init(nativeFlow: @escaping NativeFlow<Output, Failure, Unit>, subscriber: S) {
+        self.nativeFlow = nativeFlow
         self.subscriber = subscriber
-        nativeCancellable = nativeFlow({ item, unit in
-            _ = self.subscriber?.receive(item)
-            return unit
+    }
+    
+    func request(_ demand: Subscribers.Demand) {
+        guard let nativeFlow = nativeFlow, demand >= 1 else { return }
+        self.nativeFlow = nil
+        nativeCancellable = nativeFlow({ item, next, _ in
+            _ = self.subscriber?.receive(item) // TODO: Correctly handle demands
+            return next()
         }, { error, unit in
             if let error = error {
                 self.subscriber?.receive(completion: .failure(error))
@@ -48,13 +55,15 @@ internal class NativeFlowSubscription<Output, Failure, Unit, S: Subscriber>: Sub
                 self.subscriber?.receive(completion: .finished)
             }
             return unit
+        }, { cancellationError, unit in
+            self.subscriber?.receive(completion: .failure(cancellationError))
+            return unit
         })
     }
     
-    func request(_ demand: Subscribers.Demand) { }
-    
     func cancel() {
         subscriber = nil
+        nativeFlow = nil
         _ = nativeCancellable?()
         nativeCancellable = nil
     }

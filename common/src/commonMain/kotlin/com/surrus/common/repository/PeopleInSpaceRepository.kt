@@ -2,6 +2,7 @@ package com.surrus.common.repository
 
 import co.touchlab.kermit.Logger
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
@@ -14,8 +15,11 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 interface PeopleInSpaceRepositoryInterface {
+    @NativeCoroutines
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
+    @NativeCoroutines
     fun pollISSPosition(): Flow<IssPosition>
+    @NativeCoroutines
     suspend fun fetchPeople(): List<Assignment>
     suspend fun fetchAndStorePeople()
 }
@@ -24,7 +28,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     private val peopleInSpaceApi: PeopleInSpaceApi by inject()
 
     @NativeCoroutineScope
-    private val coroutineScope: CoroutineScope = MainScope()
+    val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper by inject()
     private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
 
@@ -36,6 +40,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
         }
     }
 
+    @NativeCoroutines
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
@@ -72,8 +77,10 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     }
 
     // Used by web and apple clients atm
+    @NativeCoroutines
     override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
+    @NativeCoroutines
     override fun pollISSPosition(): Flow<IssPosition> {
         return flow {
             while (true) {

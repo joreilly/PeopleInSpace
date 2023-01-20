@@ -16,7 +16,7 @@ class PeopleInSpaceViewModel: ObservableObject {
     
     func startObservingPeopleUpdates() async {
         do {
-            let stream = asyncStream(for: repository.fetchPeopleAsFlowNative())
+            let stream = asyncSequence(for: repository.fetchPeopleAsFlow())
             for try await data in stream {
                 self.people = data
             }
@@ -27,7 +27,7 @@ class PeopleInSpaceViewModel: ObservableObject {
     
     func startObservingISSPosition() async {
         do {
-            let stream = asyncStream(for: repository.pollISSPositionNative())
+            let stream = asyncSequence(for: repository.pollISSPosition())
             for try await data in stream {
                 self.issPosition = data
             }

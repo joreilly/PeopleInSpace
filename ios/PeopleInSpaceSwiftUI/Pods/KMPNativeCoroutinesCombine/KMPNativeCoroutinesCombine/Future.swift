@@ -54,6 +54,9 @@ internal class NativeSuspendSubscription<Result, Failure, Unit, S: Subscriber>: 
         }, { error, unit in
             self.subscriber?.receive(completion: .failure(error))
             return unit
+        }, { cancellationError, unit in
+            self.subscriber?.receive(completion: .failure(cancellationError))
+            return unit
         })
     }
     
