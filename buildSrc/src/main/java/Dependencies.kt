@@ -19,8 +19,8 @@ object Versions {
     const val horologist = "0.2.5"
     const val composeMaterial3 = "1.0.0"
 
-    const val composeDesktopWeb = "1.3.0-rc05"
-    const val composeIos = "1.3.0-rc05"
+    const val composeDesktopWeb = "1.3.0"
+    const val composeIos = "1.3.0"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
