@@ -120,6 +120,8 @@ object Deps {
         const val wearNavigation = "androidx.wear.compose:compose-navigation:${Versions.wearCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
+
+        const val composeImageLoader = "io.github.qdsfdhvh:image-loader:1.2.9"
     }
 
     object Koin {

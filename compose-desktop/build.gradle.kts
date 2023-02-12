@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
+    implementation(Deps.Compose.composeImageLoader)
     implementation(project(":common"))
 }
 
