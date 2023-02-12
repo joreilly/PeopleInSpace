@@ -104,7 +104,7 @@ fun PersonListScreen(
                 LazyColumn(
                     modifier = Modifier.testTag(PersonListTag)
                         .padding(innerPadding)
-                        .consumedWindowInsets(innerPadding)
+                        .consumeWindowInsets(innerPadding)
                         .fillMaxSize()
                 ) {
                     if (!refreshing) {

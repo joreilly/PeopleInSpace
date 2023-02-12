@@ -10,26 +10,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.seiko.imageloader.rememberAsyncImagePainter
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import org.jetbrains.skia.Image.Companion.makeFromEncoded
-import java.awt.image.BufferedImage
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
-import javax.imageio.ImageIO
 
 private val koin = initKoin(enableNetworkLogs = true).koin
 
@@ -124,16 +114,12 @@ fun PersonDetailsView(person: Assignment) {
             Text(person.name, style = MaterialTheme.typography.h4)
             Spacer(modifier = Modifier.size(12.dp))
 
-            val imageUrl = person.personImageUrl
-            imageUrl?.let {
-                val imageAsset = fetchImage(it)
-                imageAsset?.let {
-                    Image(
-                        it,
-                        contentDescription = "personName",
-                        modifier = Modifier.size(240.dp)
-                    )
-                }
+            val personImageUrl = person.personImageUrl
+            personImageUrl?.let {
+                Image(
+                    painter = rememberAsyncImagePainter(personImageUrl),
+                    modifier = Modifier.size(240.dp), contentDescription = person.name
+                )
             }
             Spacer(modifier = Modifier.size(24.dp))
 
@@ -141,36 +127,4 @@ fun PersonDetailsView(person: Assignment) {
             Text(bio, style = MaterialTheme.typography.body1)
         }
     }
-}
-
-@Composable
-fun fetchImage(url: String): ImageBitmap? {
-    var image by remember(url) { mutableStateOf<ImageBitmap?>(null) }
-
-    LaunchedEffect(url) {
-        loadFullImage(url)?.let {
-            image =  makeFromEncoded(toByteArray(it)).asImageBitmap()
-        }
-    }
-
-    return image
-}
-
-fun toByteArray(bitmap: BufferedImage): ByteArray {
-    val baos = ByteArrayOutputStream()
-    ImageIO.write(bitmap, "png", baos)
-    return baos.toByteArray()
-}
-
-suspend fun loadFullImage(source: String): BufferedImage? = withContext(Dispatchers.IO) {
-    runCatching {
-        val url = URL(source)
-        val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-        connection.connectTimeout = 5000
-        connection.connect()
-
-        val input: InputStream = connection.inputStream
-        val bitmap: BufferedImage? = ImageIO.read(input)
-        bitmap
-    }.getOrNull()
 }
