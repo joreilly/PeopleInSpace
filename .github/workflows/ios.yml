@@ -17,6 +17,6 @@ jobs:
         with:
           java-version: 11
       - name: Build iOS app
-        run: xcodebuild -workspace ios/PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphoneos -destination name='iPhone 8' build
+        run: xcodebuild -workspace ios/PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphoneos -destination name='iPhone 14' build
 
 
