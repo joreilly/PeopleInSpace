@@ -60,6 +60,10 @@ val personImages = mapOf(
     "Fei Junlong" to "https://news.cgtn.com/news/2022-11-28/China-unveils-Shenzhou-15-crew-for-space-station-mission-1fjWkU0UKVW/img/c5501f54bd1440d994cbc1253cb67f78/c5501f54bd1440d994cbc1253cb67f78.jpeg",
     "Deng Qingming" to "https://news.cgtn.com/news/2022-11-28/China-unveils-Shenzhou-15-crew-for-space-station-mission-1fjWkU0UKVW/img/96be120dc3264fdf81112f3b4c650a1b/96be120dc3264fdf81112f3b4c650a1b.jpeg",
     "Zhang Lu" to "https://news.cgtn.com/news/2022-11-28/China-unveils-Shenzhou-15-crew-for-space-station-mission-1fjWkU0UKVW/img/cd831cd17c2f490fbc67b1fe85223733/cd831cd17c2f490fbc67b1fe85223733.jpeg",
+    "Stephen Bowen" to "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Stephenbowenv2.jpg/440px-Stephenbowenv2.jpg",
+    "Warren Hoburg" to "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Warren_Hoburg_portrait.jpg/440px-Warren_Hoburg_portrait.jpg",
+    "Sultan Alneyadi" to "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/SpaceX-Crew-6_Sultan-Alneyadi-MBRSC-scaled.jpg/440px-SpaceX-Crew-6_Sultan-Alneyadi-MBRSC-scaled.jpg",
+    "Andrey Fedyaev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Andrey_Fedyaev.jpg/440px-Andrey_Fedyaev.jpg",
 )
 
 val personBios = mapOf(
@@ -131,4 +135,8 @@ val personBios = mapOf(
     "Fei Junlong" to "Major general Fei Junlong (simplified Chinese: 费俊龙; traditional Chinese: 費俊龍; pinyin: Fèi Jùnlóng; born 5 May 1965) is a Chinese military pilot and an taikonaut. He was the commander of Shenzhou 6, the second crewed spaceflight of China's space program, and was selected as commander for the Shenzhou 15 mission to the Tiangong space station.",
     "Deng Qingming" to "Deng Qingming (simplified Chinese: 邓清明; traditional Chinese: 鄧清明; pinyin: Dèng Qīngmíng; born 16 March 1966) is a Chinese People's Liberation Army Astronaut Corps (PLAAC) taikonaut selected as part of the Shenzhou program.",
     "Zhang Lu" to "Zhang Lu (Chinese: 张陆; born November 1976) is a Chinese pilot selected as part of the Shenzhou program. He enlisted in the People's Liberation Army (PLA) in August 1999, and joined the Chinese Communist Party (CCP) in April 1999.",
+    "Stephen Bowen" to "Stephen Gerard \"Steve\" Bowen (born February 13, 1964) is a United States Navy submariner and a NASA astronaut; he was the second submariner to travel into space. Bowen has been on three spaceflights, all of which were Space Shuttle missions to the International Space Station. His first mission, STS-126, took place in November 2008, and his second was STS-132 in May 2010.",
+    "Warren Hoburg" to "Warren Woodrow \"Woody\" Hoburg (born September 16, 1985) is an American engineer and NASA astronaut.",
+    "Sultan Alneyadi" to "Sultan Al Neyadi (Arabic: سلطان النيادي) is one of the first two astronauts from the United Arab Emirates, along with Hazza Al Mansouri.",
+    "Andrey Fedyaev" to "Andrey Valerievich Fediaev (Russian Cyrillic: Андрей Валерьевич Федяев; born February 26, 1981) is a Russian cosmonaut.",
 )
