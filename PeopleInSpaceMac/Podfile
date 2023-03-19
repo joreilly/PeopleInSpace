@@ -1,0 +1,6 @@
+
+target 'PeopleInSpaceMac' do
+    pod 'common', :path => '../common'
+    pod 'KMPNativeCoroutinesCombine', '1.0.0-ALPHA-4'
+end
+

@@ -1,0 +1,6 @@
+framework module common {
+    umbrella header "common.h"
+
+    export *
+    module * { export * }
+}
