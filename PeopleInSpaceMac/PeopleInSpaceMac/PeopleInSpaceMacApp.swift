@@ -11,6 +11,8 @@ struct PeopleInSpaceMacApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+        }.commands {
+            SidebarCommands() 
         }
     }
 }
