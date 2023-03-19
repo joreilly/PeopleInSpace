@@ -1,0 +1,893 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		8217FBB9D1218C346C0781D0B8F2BBE8 /* common */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1D5F1C893FEB1534A938215715B55EDF /* Build configuration list for PBXAggregateTarget "common" */;
+			buildPhases = (
+				7117138631DE463A2F0FAF7227B3ADA6 /* [CP-User] Build common */,
+			);
+			dependencies = (
+			);
+			name = common;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		24090A3B63FC6DE5BE5B80870A7FAF9E /* Pods-PeopleInSpaceMac-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BCE7739B1D3D35D40CE8FB845A40321 /* Pods-PeopleInSpaceMac-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2F3611A9FE7D19F1E01E20632E63265B /* KMPNativeCoroutinesCore-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B276657920D376EF3A9EBCE35D0D8F1E /* KMPNativeCoroutinesCore-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		31C61762CD6A149D6A7D392FB8549B32 /* NativeCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75183D40F3E75DC5F1D0B0B070D5B04F /* NativeCancellable.swift */; };
+		3EB8B5CB20EF39D27B5F7BD36A0D3F4F /* NativeFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05ED93C5134B9D56393B182882436A /* NativeFlow.swift */; };
+		5DC519C7EC9C5D77DA5339D9E8B664D0 /* KMPNativeCoroutinesCombine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CC12E1AB4CF26105A57551B45F158C /* KMPNativeCoroutinesCombine-dummy.m */; };
+		760C00B8643AFC9FBA763D26F9EBA680 /* FuturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860A0723C9C947E65E02533615A6529 /* FuturePublisher.swift */; };
+		9727B6F885C60DEB61B5AD72275553C3 /* KMPNativeCoroutinesCombine-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56730A2BB8C6B21DC3C1DE2D1D464E68 /* KMPNativeCoroutinesCombine-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9735CEC9C50DD04811EF60CB02ED5B08 /* NativeSuspend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611593A13CAA4F1FA1570FF3916625D0 /* NativeSuspend.swift */; };
+		C104E5523AC6971AF84FF46532E36212 /* NativeCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44756A68E369D299A81D14A655157263 /* NativeCallback.swift */; };
+		CE43132F8A71407AD9614729D61EC1C0 /* Pods-PeopleInSpaceMac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0247F9D7D19484147CB43C2673D7149F /* Pods-PeopleInSpaceMac-dummy.m */; };
+		CF574FB22C8907073E1FBE130E383D8F /* KMPNativeCoroutinesCore-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C62779E9F25B9D466FEC7CC23B1D67 /* KMPNativeCoroutinesCore-dummy.m */; };
+		DC886B498637E52279975519D3C13959 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73149DE97EFF466A1568E5444D7CD0D8 /* Publisher.swift */; };
+		FB7FDAD0631D3A056FE8328B404F6CB0 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A0AEEA49523A259A9D243C3EF5 /* Future.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1593347351D841D462BE806D23A9A43D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8217FBB9D1218C346C0781D0B8F2BBE8;
+			remoteInfo = common;
+		};
+		25878615D2988B8C87441DE604699479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFFB6783B79B68DA14E36A00A348B0B3;
+			remoteInfo = KMPNativeCoroutinesCore;
+		};
+		6572BB82C14527A1551D2D68F186F7AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F9FD9D97D14F53EE028871E5A26555A;
+			remoteInfo = KMPNativeCoroutinesCombine;
+		};
+		961F6B675B79ECC0852B8C73DD96BE37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFFB6783B79B68DA14E36A00A348B0B3;
+			remoteInfo = KMPNativeCoroutinesCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00E9CDC40C89F2C4236A1FCF1C2C333D /* KMPNativeCoroutinesCombine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesCombine.debug.xcconfig; sourceTree = "<group>"; };
+		0247F9D7D19484147CB43C2673D7149F /* Pods-PeopleInSpaceMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PeopleInSpaceMac-dummy.m"; sourceTree = "<group>"; };
+		1BC4A026DBC6C2982B828355463B2569 /* KMPNativeCoroutinesCombine */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = KMPNativeCoroutinesCombine; path = libKMPNativeCoroutinesCombine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2188E0EAE5855B77AEDA41358E3567A9 /* Pods-PeopleInSpaceMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceMac.release.xcconfig"; sourceTree = "<group>"; };
+		23785D2EF87CC7217936C2A2C05400F6 /* KMPNativeCoroutinesCombine.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KMPNativeCoroutinesCombine.modulemap; sourceTree = "<group>"; };
+		29BF552EAFD448403D2C004762083C2A /* Pods-PeopleInSpaceMac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PeopleInSpaceMac-acknowledgements.plist"; sourceTree = "<group>"; };
+		2ACDC0A0AEEA49523A259A9D243C3EF5 /* Future.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Future.swift; path = KMPNativeCoroutinesCombine/Future.swift; sourceTree = "<group>"; };
+		2CB824F75C95F744CD060A677ADEF508 /* KMPNativeCoroutinesCombine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesCombine.release.xcconfig; sourceTree = "<group>"; };
+		3342A08615467EE68F026E4687EE1E0E /* Pods-PeopleInSpaceMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PeopleInSpaceMac.debug.xcconfig"; sourceTree = "<group>"; };
+		36CC12E1AB4CF26105A57551B45F158C /* KMPNativeCoroutinesCombine-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KMPNativeCoroutinesCombine-dummy.m"; sourceTree = "<group>"; };
+		441594932398928E8B523A7C8A149DDE /* KMPNativeCoroutinesCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesCore.debug.xcconfig; sourceTree = "<group>"; };
+		44756A68E369D299A81D14A655157263 /* NativeCallback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeCallback.swift; path = KMPNativeCoroutinesCore/NativeCallback.swift; sourceTree = "<group>"; };
+		465BB8103CF82984578D47722E3B8F47 /* Pods-PeopleInSpaceMac */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-PeopleInSpaceMac"; path = "libPods-PeopleInSpaceMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56081C4E77068795768A5CF0E879AE38 /* KMPNativeCoroutinesCombine-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCombine-prefix.pch"; sourceTree = "<group>"; };
+		56730A2BB8C6B21DC3C1DE2D1D464E68 /* KMPNativeCoroutinesCombine-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCombine-umbrella.h"; sourceTree = "<group>"; };
+		611593A13CAA4F1FA1570FF3916625D0 /* NativeSuspend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeSuspend.swift; path = KMPNativeCoroutinesCore/NativeSuspend.swift; sourceTree = "<group>"; };
+		620A19B975EE63723D3598F0C13FE32D /* Pods-PeopleInSpaceMac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PeopleInSpaceMac-acknowledgements.markdown"; sourceTree = "<group>"; };
+		702E8C690C894B05B2B335B3222E38BE /* KMPNativeCoroutinesCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KMPNativeCoroutinesCore.release.xcconfig; sourceTree = "<group>"; };
+		73149DE97EFF466A1568E5444D7CD0D8 /* Publisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Publisher.swift; path = KMPNativeCoroutinesCombine/Publisher.swift; sourceTree = "<group>"; };
+		75183D40F3E75DC5F1D0B0B070D5B04F /* NativeCancellable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeCancellable.swift; path = KMPNativeCoroutinesCore/NativeCancellable.swift; sourceTree = "<group>"; };
+		79D1F31F6A5BD2A31CB02C1687894787 /* Pods-PeopleInSpaceMac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PeopleInSpaceMac.modulemap"; sourceTree = "<group>"; };
+		7BCE7739B1D3D35D40CE8FB845A40321 /* Pods-PeopleInSpaceMac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PeopleInSpaceMac-umbrella.h"; sourceTree = "<group>"; };
+		8467F04D2D129DA89380F1ED04CEF090 /* KMPNativeCoroutinesCore-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCore-prefix.pch"; sourceTree = "<group>"; };
+		935FFB47BC518C20191CB08A3C39EBD9 /* KMPNativeCoroutinesCore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KMPNativeCoroutinesCore.modulemap; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0C62779E9F25B9D466FEC7CC23B1D67 /* KMPNativeCoroutinesCore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KMPNativeCoroutinesCore-dummy.m"; sourceTree = "<group>"; };
+		A7B39E1BD4F909366ED06694BA60C2F1 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
+		B276657920D376EF3A9EBCE35D0D8F1E /* KMPNativeCoroutinesCore-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KMPNativeCoroutinesCore-umbrella.h"; sourceTree = "<group>"; };
+		BE05ED93C5134B9D56393B182882436A /* NativeFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeFlow.swift; path = KMPNativeCoroutinesCore/NativeFlow.swift; sourceTree = "<group>"; };
+		BE0998835A222459A343193495D5DA2A /* Pods-PeopleInSpaceMac-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PeopleInSpaceMac-frameworks.sh"; sourceTree = "<group>"; };
+		E32954243B605448566BC0C0B0BCF70D /* KMPNativeCoroutinesCore */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = KMPNativeCoroutinesCore; path = libKMPNativeCoroutinesCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAEE47C675452F196318B2E290432A78 /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F70632288FFD2EB210D4AD7300689C19 /* common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.debug.xcconfig; sourceTree = "<group>"; };
+		F860A0723C9C947E65E02533615A6529 /* FuturePublisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FuturePublisher.swift; path = KMPNativeCoroutinesCombine/FuturePublisher.swift; sourceTree = "<group>"; };
+		F9D9BCC4949F7D872C555D59630A4C88 /* common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.release.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17112C19F40C73306D09241EAF91ABA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C616BFFCCF1B79B9717253F9A30E3F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFBF13351ADC899C74A82290DBFB2553 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07021CFB5A99DA6464D80D2A2872EB03 /* Pods-PeopleInSpaceMac */ = {
+			isa = PBXGroup;
+			children = (
+				79D1F31F6A5BD2A31CB02C1687894787 /* Pods-PeopleInSpaceMac.modulemap */,
+				620A19B975EE63723D3598F0C13FE32D /* Pods-PeopleInSpaceMac-acknowledgements.markdown */,
+				29BF552EAFD448403D2C004762083C2A /* Pods-PeopleInSpaceMac-acknowledgements.plist */,
+				0247F9D7D19484147CB43C2673D7149F /* Pods-PeopleInSpaceMac-dummy.m */,
+				BE0998835A222459A343193495D5DA2A /* Pods-PeopleInSpaceMac-frameworks.sh */,
+				7BCE7739B1D3D35D40CE8FB845A40321 /* Pods-PeopleInSpaceMac-umbrella.h */,
+				3342A08615467EE68F026E4687EE1E0E /* Pods-PeopleInSpaceMac.debug.xcconfig */,
+				2188E0EAE5855B77AEDA41358E3567A9 /* Pods-PeopleInSpaceMac.release.xcconfig */,
+			);
+			name = "Pods-PeopleInSpaceMac";
+			path = "Target Support Files/Pods-PeopleInSpaceMac";
+			sourceTree = "<group>";
+		};
+		0E3A94CA8EEA8BAAF8ACECE41B1D0F48 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				EAEE47C675452F196318B2E290432A78 /* common.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		3771862DC0EABC5A0E74A521F0266C03 /* KMPNativeCoroutinesCombine */ = {
+			isa = PBXGroup;
+			children = (
+				2ACDC0A0AEEA49523A259A9D243C3EF5 /* Future.swift */,
+				F860A0723C9C947E65E02533615A6529 /* FuturePublisher.swift */,
+				73149DE97EFF466A1568E5444D7CD0D8 /* Publisher.swift */,
+				5FDACE6DF4ACC2F870346DC9CCB58B8A /* Support Files */,
+			);
+			name = KMPNativeCoroutinesCombine;
+			path = KMPNativeCoroutinesCombine;
+			sourceTree = "<group>";
+		};
+		42C631582119F1E69C50DA48CD0F397F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3771862DC0EABC5A0E74A521F0266C03 /* KMPNativeCoroutinesCombine */,
+				79C13BC4ACA87457CAE6DDBD85FA1B5D /* KMPNativeCoroutinesCore */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		553EE55CD4D47603D0E7ABF3134ACAE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1BC4A026DBC6C2982B828355463B2569 /* KMPNativeCoroutinesCombine */,
+				E32954243B605448566BC0C0B0BCF70D /* KMPNativeCoroutinesCore */,
+				465BB8103CF82984578D47722E3B8F47 /* Pods-PeopleInSpaceMac */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5FDACE6DF4ACC2F870346DC9CCB58B8A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				23785D2EF87CC7217936C2A2C05400F6 /* KMPNativeCoroutinesCombine.modulemap */,
+				36CC12E1AB4CF26105A57551B45F158C /* KMPNativeCoroutinesCombine-dummy.m */,
+				56081C4E77068795768A5CF0E879AE38 /* KMPNativeCoroutinesCombine-prefix.pch */,
+				56730A2BB8C6B21DC3C1DE2D1D464E68 /* KMPNativeCoroutinesCombine-umbrella.h */,
+				00E9CDC40C89F2C4236A1FCF1C2C333D /* KMPNativeCoroutinesCombine.debug.xcconfig */,
+				2CB824F75C95F744CD060A677ADEF508 /* KMPNativeCoroutinesCombine.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/KMPNativeCoroutinesCombine";
+			sourceTree = "<group>";
+		};
+		79C13BC4ACA87457CAE6DDBD85FA1B5D /* KMPNativeCoroutinesCore */ = {
+			isa = PBXGroup;
+			children = (
+				44756A68E369D299A81D14A655157263 /* NativeCallback.swift */,
+				75183D40F3E75DC5F1D0B0B070D5B04F /* NativeCancellable.swift */,
+				BE05ED93C5134B9D56393B182882436A /* NativeFlow.swift */,
+				611593A13CAA4F1FA1570FF3916625D0 /* NativeSuspend.swift */,
+				CC43999398E46B9480F21D63C0373047 /* Support Files */,
+			);
+			name = KMPNativeCoroutinesCore;
+			path = KMPNativeCoroutinesCore;
+			sourceTree = "<group>";
+		};
+		85A46E66A7FA3A557E5396C25E2D7861 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				893AC1EC403F469ED18181D7E434B22C /* Frameworks */,
+				0E3A94CA8EEA8BAAF8ACECE41B1D0F48 /* Pod */,
+				FDD0632EEFAACAE629BC0CEDE90CD6EB /* Support Files */,
+			);
+			name = common;
+			path = ../../common;
+			sourceTree = "<group>";
+		};
+		893AC1EC403F469ED18181D7E434B22C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7B39E1BD4F909366ED06694BA60C2F1 /* common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A534ECAEA5F0A03EFFABCF1B79475E00 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				85A46E66A7FA3A557E5396C25E2D7861 /* common */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		B29E93CD87B0BAEFCF23E0E4B5DAD89C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				07021CFB5A99DA6464D80D2A2872EB03 /* Pods-PeopleInSpaceMac */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CC43999398E46B9480F21D63C0373047 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				935FFB47BC518C20191CB08A3C39EBD9 /* KMPNativeCoroutinesCore.modulemap */,
+				A0C62779E9F25B9D466FEC7CC23B1D67 /* KMPNativeCoroutinesCore-dummy.m */,
+				8467F04D2D129DA89380F1ED04CEF090 /* KMPNativeCoroutinesCore-prefix.pch */,
+				B276657920D376EF3A9EBCE35D0D8F1E /* KMPNativeCoroutinesCore-umbrella.h */,
+				441594932398928E8B523A7C8A149DDE /* KMPNativeCoroutinesCore.debug.xcconfig */,
+				702E8C690C894B05B2B335B3222E38BE /* KMPNativeCoroutinesCore.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/KMPNativeCoroutinesCore";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				A534ECAEA5F0A03EFFABCF1B79475E00 /* Development Pods */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				42C631582119F1E69C50DA48CD0F397F /* Pods */,
+				553EE55CD4D47603D0E7ABF3134ACAE4 /* Products */,
+				B29E93CD87B0BAEFCF23E0E4B5DAD89C /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDD0632EEFAACAE629BC0CEDE90CD6EB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F70632288FFD2EB210D4AD7300689C19 /* common.debug.xcconfig */,
+				F9D9BCC4949F7D872C555D59630A4C88 /* common.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../PeopleInSpaceMac/Pods/Target Support Files/common";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		00F63330F596CBBFE9AE3289340389ED /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24090A3B63FC6DE5BE5B80870A7FAF9E /* Pods-PeopleInSpaceMac-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F86FEE765E8BD149F249385DEE6CF96 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F3611A9FE7D19F1E01E20632E63265B /* KMPNativeCoroutinesCore-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		864E2D30C92BA75A987A06B8E93B11AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9727B6F885C60DEB61B5AD72275553C3 /* KMPNativeCoroutinesCombine-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		27606EF196AA21C57FD5AC69E5D6DAC6 /* Pods-PeopleInSpaceMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A895A5DEBF4D2B4039417611877BF07 /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceMac" */;
+			buildPhases = (
+				00F63330F596CBBFE9AE3289340389ED /* Headers */,
+				CBED1D255D14EDF1B6D6065DAB9C26E5 /* Sources */,
+				4C616BFFCCF1B79B9717253F9A30E3F3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B224376C3723909E73FA41744057C09 /* PBXTargetDependency */,
+				FB102FC0EE70ED8EEFA8845D7EEB570D /* PBXTargetDependency */,
+				5B7FE6BE9945D641BE6CA6825A2931E5 /* PBXTargetDependency */,
+			);
+			name = "Pods-PeopleInSpaceMac";
+			productName = "Pods-PeopleInSpaceMac";
+			productReference = 465BB8103CF82984578D47722E3B8F47 /* Pods-PeopleInSpaceMac */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3F9FD9D97D14F53EE028871E5A26555A /* KMPNativeCoroutinesCombine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB1881A8AC0EB2E23F23691447EE3C5D /* Build configuration list for PBXNativeTarget "KMPNativeCoroutinesCombine" */;
+			buildPhases = (
+				864E2D30C92BA75A987A06B8E93B11AF /* Headers */,
+				46B589C7D18100431AA20FB102FE7277 /* Sources */,
+				BFBF13351ADC899C74A82290DBFB2553 /* Frameworks */,
+				FF00307269DE47C0634190652F572B82 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C258DD94AA703C5F4C54C19CB3051DA /* PBXTargetDependency */,
+			);
+			name = KMPNativeCoroutinesCombine;
+			productName = KMPNativeCoroutinesCombine;
+			productReference = 1BC4A026DBC6C2982B828355463B2569 /* KMPNativeCoroutinesCombine */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FFFB6783B79B68DA14E36A00A348B0B3 /* KMPNativeCoroutinesCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 404268539D7B13A79D47D5AEF8751670 /* Build configuration list for PBXNativeTarget "KMPNativeCoroutinesCore" */;
+			buildPhases = (
+				4F86FEE765E8BD149F249385DEE6CF96 /* Headers */,
+				38622A088CF293EE731BDF16AFA71C93 /* Sources */,
+				17112C19F40C73306D09241EAF91ABA9 /* Frameworks */,
+				6A0A3DAB318FCF5962F98E444AD6F037 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KMPNativeCoroutinesCore;
+			productName = KMPNativeCoroutinesCore;
+			productReference = E32954243B605448566BC0C0B0BCF70D /* KMPNativeCoroutinesCore */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 553EE55CD4D47603D0E7ABF3134ACAE4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8217FBB9D1218C346C0781D0B8F2BBE8 /* common */,
+				3F9FD9D97D14F53EE028871E5A26555A /* KMPNativeCoroutinesCombine */,
+				FFFB6783B79B68DA14E36A00A348B0B3 /* KMPNativeCoroutinesCore */,
+				27606EF196AA21C57FD5AC69E5D6DAC6 /* Pods-PeopleInSpaceMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A0A3DAB318FCF5962F98E444AD6F037 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore.modulemap",
+				"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/KMPNativeCoroutinesCore-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+		7117138631DE463A2F0FAF7227B3ADA6 /* [CP-User] Build common */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Build common";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "                if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n                  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n";
+		};
+		FF00307269DE47C0634190652F572B82 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine.modulemap",
+				"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/KMPNativeCoroutinesCombine-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38622A088CF293EE731BDF16AFA71C93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF574FB22C8907073E1FBE130E383D8F /* KMPNativeCoroutinesCore-dummy.m in Sources */,
+				C104E5523AC6971AF84FF46532E36212 /* NativeCallback.swift in Sources */,
+				31C61762CD6A149D6A7D392FB8549B32 /* NativeCancellable.swift in Sources */,
+				3EB8B5CB20EF39D27B5F7BD36A0D3F4F /* NativeFlow.swift in Sources */,
+				9735CEC9C50DD04811EF60CB02ED5B08 /* NativeSuspend.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46B589C7D18100431AA20FB102FE7277 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB7FDAD0631D3A056FE8328B404F6CB0 /* Future.swift in Sources */,
+				760C00B8643AFC9FBA763D26F9EBA680 /* FuturePublisher.swift in Sources */,
+				5DC519C7EC9C5D77DA5339D9E8B664D0 /* KMPNativeCoroutinesCombine-dummy.m in Sources */,
+				DC886B498637E52279975519D3C13959 /* Publisher.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBED1D255D14EDF1B6D6065DAB9C26E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43132F8A71407AD9614729D61EC1C0 /* Pods-PeopleInSpaceMac-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B224376C3723909E73FA41744057C09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KMPNativeCoroutinesCombine;
+			target = 3F9FD9D97D14F53EE028871E5A26555A /* KMPNativeCoroutinesCombine */;
+			targetProxy = 6572BB82C14527A1551D2D68F186F7AB /* PBXContainerItemProxy */;
+		};
+		5B7FE6BE9945D641BE6CA6825A2931E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = common;
+			target = 8217FBB9D1218C346C0781D0B8F2BBE8 /* common */;
+			targetProxy = 1593347351D841D462BE806D23A9A43D /* PBXContainerItemProxy */;
+		};
+		7C258DD94AA703C5F4C54C19CB3051DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KMPNativeCoroutinesCore;
+			target = FFFB6783B79B68DA14E36A00A348B0B3 /* KMPNativeCoroutinesCore */;
+			targetProxy = 961F6B675B79ECC0852B8C73DD96BE37 /* PBXContainerItemProxy */;
+		};
+		FB102FC0EE70ED8EEFA8845D7EEB570D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KMPNativeCoroutinesCore;
+			target = FFFB6783B79B68DA14E36A00A348B0B3 /* KMPNativeCoroutinesCore */;
+			targetProxy = 25878615D2988B8C87441DE604699479 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1C6054B52DF99B4D2A3FE2F193686FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00E9CDC40C89F2C4236A1FCF1C2C333D /* KMPNativeCoroutinesCombine.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MODULEMAP_FILE = Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KMPNativeCoroutinesCombine;
+				PRODUCT_NAME = KMPNativeCoroutinesCombine;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		47642B3562A5CBAACAA3372E9BB5513C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CB824F75C95F744CD060A677ADEF508 /* KMPNativeCoroutinesCombine.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MODULEMAP_FILE = Headers/Public/KMPNativeCoroutinesCombine/KMPNativeCoroutinesCombine.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KMPNativeCoroutinesCombine;
+				PRODUCT_NAME = KMPNativeCoroutinesCombine;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		491D26AA4EB17E4C78881A0D773ABF15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		672EF3701C7E0C1A2E940AFF6A188411 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8F2EF076C2837C54EBDC5EB6CBC0D896 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2188E0EAE5855B77AEDA41358E3567A9 /* Pods-PeopleInSpaceMac.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MODULEMAP_FILE = "Target Support Files/Pods-PeopleInSpaceMac/Pods-PeopleInSpaceMac.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		90784E08280D46B04801A5A857373729 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F70632288FFD2EB210D4AD7300689C19 /* common.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		912B9A69CA80E8936E13BC20420BBD0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3342A08615467EE68F026E4687EE1E0E /* Pods-PeopleInSpaceMac.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MODULEMAP_FILE = "Target Support Files/Pods-PeopleInSpaceMac/Pods-PeopleInSpaceMac.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A46CA84BA44DA6C21D665EF77B71162A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9D9BCC4949F7D872C555D59630A4C88 /* common.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A93D21017C2753BC291F2A3C92F392E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 441594932398928E8B523A7C8A149DDE /* KMPNativeCoroutinesCore.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KMPNativeCoroutinesCore;
+				PRODUCT_NAME = KMPNativeCoroutinesCore;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FA10DBAF02E7A6224B585DD56EC97EF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 702E8C690C894B05B2B335B3222E38BE /* KMPNativeCoroutinesCore.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = Headers/Public/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KMPNativeCoroutinesCore;
+				PRODUCT_NAME = KMPNativeCoroutinesCore;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A895A5DEBF4D2B4039417611877BF07 /* Build configuration list for PBXNativeTarget "Pods-PeopleInSpaceMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				912B9A69CA80E8936E13BC20420BBD0D /* Debug */,
+				8F2EF076C2837C54EBDC5EB6CBC0D896 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D5F1C893FEB1534A938215715B55EDF /* Build configuration list for PBXAggregateTarget "common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90784E08280D46B04801A5A857373729 /* Debug */,
+				A46CA84BA44DA6C21D665EF77B71162A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		404268539D7B13A79D47D5AEF8751670 /* Build configuration list for PBXNativeTarget "KMPNativeCoroutinesCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A93D21017C2753BC291F2A3C92F392E0 /* Debug */,
+				FA10DBAF02E7A6224B585DD56EC97EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				672EF3701C7E0C1A2E940AFF6A188411 /* Debug */,
+				491D26AA4EB17E4C78881A0D773ABF15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB1881A8AC0EB2E23F23691447EE3C5D /* Build configuration list for PBXNativeTarget "KMPNativeCoroutinesCombine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C6054B52DF99B4D2A3FE2F193686FDF /* Debug */,
+				47642B3562A5CBAACAA3372E9BB5513C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

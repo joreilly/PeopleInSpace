@@ -1,0 +1,6 @@
+module Pods_PeopleInSpaceMac {
+  umbrella header "Pods-PeopleInSpaceMac-umbrella.h"
+
+  export *
+  module * { export * }
+}
