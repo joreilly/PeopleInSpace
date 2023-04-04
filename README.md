@@ -132,7 +132,7 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 
 **Compose for Web**
 <br/>
-<img width="564" alt="Screenshot 2021-05-31 at 21 29 53" src="https://user-images.githubusercontent.com/6302/120240074-9dc7ea80-c257-11eb-9884-5870a3f4ef95.png">
+<img width="612" alt="Compose for Web Screenshot" src="https://user-images.githubusercontent.com/22000682/229832465-48a12a45-1885-49dc-9f84-026d215f71c8.png">
 
 **Web App (Kotlin/JS + React)**
 <br/>
