@@ -8,6 +8,7 @@ version = "1.0"
 repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    maven("https://jitpack.io")
 }
 
 kotlin {
@@ -21,6 +22,8 @@ kotlin {
             dependencies {
                 implementation(compose.web.core)
                 implementation(compose.runtime)
+
+                implementation("com.github.chihsuanwu:google-maps-compose-web:0.3.0-alpha")
 
                 implementation(project(":common"))
             }
