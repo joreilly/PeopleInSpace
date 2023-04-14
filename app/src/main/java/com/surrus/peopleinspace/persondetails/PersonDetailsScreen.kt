@@ -22,13 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 import org.koin.androidx.compose.getViewModel
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun PersonDetailsRoute(onBackClick: () -> Unit, viewModel: PersonDetailsViewModel = getViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
