@@ -20,10 +20,10 @@ kotlin {
     sourceSets {
         val jsMain by getting {
             dependencies {
-                implementation(compose.web.core)
+                implementation(compose.html.core)
                 implementation(compose.runtime)
 
-                implementation("com.github.chihsuanwu:google-maps-compose-web:0.3.0-alpha")
+                implementation("com.github.chihsuanwu:google-maps-compose-web:0.3.1-alpha")
 
                 implementation(project(":common"))
             }

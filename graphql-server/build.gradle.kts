@@ -10,8 +10,8 @@ plugins {
 
 dependencies {
   implementation("com.expediagroup:graphql-kotlin-spring-server:5.3.0")
-  implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
-  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+  implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
   testImplementation("com.squareup.okhttp3:okhttp:4.9.3")
 
