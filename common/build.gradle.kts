@@ -8,7 +8,7 @@ plugins {
     id("com.squareup.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.0.5-arm64"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
 }
 
 // CocoaPods requires the podspec to have a version.
