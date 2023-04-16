@@ -26,7 +26,7 @@ jobs:
     # If main branch update, deploy to gh-pages
     - name: Deploy
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-      uses: JamesIves/github-pages-deploy-action@3.7.1
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
