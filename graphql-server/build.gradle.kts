@@ -2,7 +2,7 @@ plugins {
   id("kotlin-platform-jvm")
   id("org.jetbrains.kotlin.plugin.spring") version("1.6.10")
   id("org.jetbrains.kotlin.plugin.serialization")
-  id("org.springframework.boot") version("2.5.6")
+  id("org.springframework.boot") version("2.7.10")
   id("com.google.cloud.tools.appengine") version("2.4.2")
   id("com.github.johnrengelman.shadow")
 }
