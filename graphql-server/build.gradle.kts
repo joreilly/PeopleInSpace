@@ -13,7 +13,7 @@ dependencies {
   implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
-  testImplementation("com.squareup.okhttp3:okhttp:4.9.3")
+  testImplementation("com.squareup.okhttp3:okhttp:4.11.0")
 
   with(Deps.Log) {
     implementation(logback)
