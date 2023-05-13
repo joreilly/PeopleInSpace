@@ -1,5 +1,5 @@
 target 'PeopleInSpaceWatch WatchKit Extension' do
     pod 'common', :path => '../../common'
-    pod 'KMPNativeCoroutinesCombine', '0.13.0'
+    pod 'KMPNativeCoroutinesCombine', '0.13.3'
 end
 

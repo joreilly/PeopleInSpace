@@ -6,5 +6,5 @@ end
 
 target 'PeopleInSpaceWidgetExtension' do
     pod 'common', :path => '../../common'
-    pod 'KMPNativeCoroutinesCombine', '1.0.0-ALPHA-4'
+    pod 'KMPNativeCoroutinesCombine', '1.0.0-ALPHA-10'
 end
