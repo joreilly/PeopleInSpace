@@ -20,13 +20,12 @@ dependencies {
     implementation(project(":common"))
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 application {
     mainClass.set("MainKt")
 }
 
+
+compose {
+    kotlinCompilerPlugin.set(Versions.composeCompiler)
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.8.21")
+}

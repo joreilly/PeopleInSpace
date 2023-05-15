@@ -15,15 +15,11 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
-    }
-
-    kotlinOptions {
-        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
-        freeCompilerArgs += "-opt-in=com.google.android.horologist.compose.navscaffold.ExperimentalHorologistComposeLayoutApi"
     }
 
     buildTypes {
@@ -45,7 +41,12 @@ android {
         }
     }
 
-    packagingOptions {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    packaging {
         resources.excludes.add("META-INF/licenses/**")
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/LGPL2.1")
@@ -95,6 +96,7 @@ dependencies {
         androidTestImplementation(composeUiTest)
         androidTestImplementation(composeUiTestJUnit)
         debugImplementation(composeUiTestManifest)
+        debugImplementation("androidx.tracing:tracing:1.1.0")
     }
 
     with(Deps.Glance) {
