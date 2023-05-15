@@ -38,3 +38,8 @@ afterEvaluate {
         versions.webpackCli.version = "4.10.0"
     }
 }
+
+compose {
+    kotlinCompilerPlugin.set(Versions.composeCompiler)
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.8.21")
+}

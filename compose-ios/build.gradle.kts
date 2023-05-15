@@ -141,22 +141,27 @@ compose.experimental {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
+//tasks.withType<KotlinCompile> {
+//    kotlinOptions.jvmTarget = "11"
+//}
 
-kotlin {
-    targets.withType<KotlinNativeTarget> {
-        binaries.all {
-            // TODO: the current compose binary surprises LLVM, so disable checks for now.
-            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
-        }
-    }
-}
+//kotlin {
+//    targets.withType<KotlinNativeTarget> {
+//        binaries.all {
+//            // TODO: the current compose binary surprises LLVM, so disable checks for now.
+//            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
+//        }
+//    }
+//}
 
 sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
         sourceFolders = listOf("sqldelight")
     }
+}
+
+compose {
+    kotlinCompilerPlugin.set(Versions.composeCompiler)
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.8.21")
 }
