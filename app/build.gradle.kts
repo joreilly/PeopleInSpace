@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("com.github.ben-manes.versions")
+    //id("com.github.ben-manes.versions")
 }
 
 android {
@@ -24,6 +24,13 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
+    }
+
+    kotlinOptions {
+        freeCompilerArgs += listOf(
+            "-P",
+            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=1.9.0-dev-6976"
+        )
     }
 
     buildTypes {
@@ -49,17 +56,17 @@ android {
     }
     namespace = "com.surrus.peopleinspace"
 
-    testOptions {
-        managedDevices {
-            devices {
-                create<com.android.build.api.dsl.ManagedVirtualDevice>("pixel5api32") {
-                    device = "Pixel 5"
-                    apiLevel = 32
-                    systemImageSource = "google"
-                }
-            }
-        }
-    }
+//    testOptions {
+//        managedDevices {
+//            devices {
+//                create<com.android.build.api.dsl.ManagedVirtualDevice>("pixel5api32") {
+//                    device = "Pixel 5"
+//                    apiLevel = 32
+//                    systemImageSource = "google"
+//                }
+//            }
+//        }
+//    }
 }
 
 dependencies {

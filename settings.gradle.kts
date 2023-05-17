@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
     }
     resolutionStrategy {
         eachPlugin {
@@ -15,11 +16,13 @@ pluginManagement {
 
 rootProject.name = "PeopleInSpace"
 
-include(":app", ":common", ":compose-desktop")
-include(":compose-web")
-include(":compose-ios")
-include(":wearApp")
-include(":wearApp-benchmark")
-include(":web")
-include(":backend")
-include(":graphql-server")
+//include(":app", ":common")
+include(":compose-web-wasm")
+//include(":compose-desktop")
+//include(":compose-web")
+//include(":compose-ios")
+//include(":wearApp")
+//include(":wearApp-benchmark")
+//include(":web")
+//include(":backend")
+//include(":graphql-server")

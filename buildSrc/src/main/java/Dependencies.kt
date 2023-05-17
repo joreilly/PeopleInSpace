@@ -1,8 +1,8 @@
 object Versions {
 
-    const val kotlinCoroutines = "1.7.1"
-    const val kotlinxSerialization = "1.5.1"
-    const val ktor = "2.3.0"
+    const val kotlinCoroutines = "1.7.0-RC-wasm0"
+    const val kotlinxSerialization = "1.5.1-wasm0"
+    const val ktor = "2.3.1-wasm0"
     const val koinCore = "3.4.0"
     const val koinAndroid = "3.4.0"
     const val koinAndroidCompose = "3.4.4"
@@ -19,7 +19,7 @@ object Versions {
     const val horologist = "0.4.6"
     const val composeMaterial3 = "1.1.0"
 
-    const val composeDesktopWeb = "1.4.0"
+    const val composeDesktopWeb = "1.4.0-dev-wasm06"
     const val composeIos = "1.4.0"
 
     const val junit = "4.12"

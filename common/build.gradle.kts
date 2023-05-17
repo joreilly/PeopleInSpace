@@ -4,7 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("com.android.library")
-    id("org.jetbrains.kotlin.native.cocoapods")
+    //id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
@@ -23,8 +23,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     namespace = "com.surrus.common"
 }
@@ -41,29 +41,29 @@ kotlin {
     }
 
 
-    val sdkName: String? = System.getenv("SDK_NAME")
-    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
-    if (isWatchOSDevice) {
-        watchosArm64("watch")
-    } else {
-        watchosX64("watch")
-    }
+//    val sdkName: String? = System.getenv("SDK_NAME")
+//    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
+//    if (isWatchOSDevice) {
+//        watchosArm64("watch")
+//    } else {
+//        watchosX64("watch")
+//    }
 
     //macosX64("macOS")
-    macosArm64("macOS")
-    android()
+    //macosArm64("macOS")
+    //androidTarget()
     jvm()
 
-    cocoapods {
-        // Configure fields required by CocoaPods.
-        summary = "PeopleInSpace"
-        homepage = "https://github.com/joreilly/PeopleInSpace"
-    }
+//    cocoapods {
+//        // Configure fields required by CocoaPods.
+//        summary = "PeopleInSpace"
+//        homepage = "https://github.com/joreilly/PeopleInSpace"
+//    }
 
-    js(IR) {
-        useCommonJs()
-        browser()
-    }
+//    js(IR) {
+//        useCommonJs()
+//        browser()
+//    }
 
     sourceSets {
         val commonMain by getting {
@@ -105,12 +105,12 @@ kotlin {
             }
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientAndroid)
-                implementation(Deps.SqlDelight.androidDriver)
-            }
-        }
+//        val androidMain by getting {
+//            dependencies {
+//                implementation(Deps.Ktor.clientAndroid)
+//                implementation(Deps.SqlDelight.androidDriver)
+//            }
+//        }
 
         val jvmMain by getting {
             dependencies {
@@ -142,31 +142,30 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+//
+//        val watchMain by getting {
+//            dependencies {
+//                implementation(Deps.Ktor.clientDarwin)
+//                implementation(Deps.SqlDelight.nativeDriver)
+//            }
+//        }
+//        val macOSMain by getting {
+//            dependencies {
+//                implementation(Deps.Ktor.clientDarwin)
+//                implementation(Deps.SqlDelight.nativeDriverMacos)
+//            }
+//        }
+//        val jsMain by getting {
+//            dependencies {
+//                implementation(Deps.Ktor.clientJs)
+//            }
+//        }
 
-        val watchMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriver)
-            }
-        }
-        val macOSMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriverMacos)
-            }
-        }
-        val jsMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientJs)
-            }
-        }
+//        wasm {
+//            browser()
+//        }
 
-    }
-}
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 }
 
@@ -189,157 +188,3 @@ kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
 
-
-// workaround for https://youtrack.jetbrains.com/issue/KT-55751 - should be fixed in Kotlin 1.9
-val myAttribute = Attribute.of("myOwnAttribute", String::class.java)
-
-if (configurations.findByName("podDebugFrameworkIosArm64") != null) {
-    configurations.named("podDebugFrameworkIosArm64").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosArm64")
-        }
-
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkIosArm64") != null) {
-    configurations.named("podDebugFrameworkIosArm64").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkIosArm64")
-        }
-    }
-}
-
-
-
-
-if (configurations.findByName("podDebugFrameworkIosSimulatorArm64") != null) {
-    configurations.named("podDebugFrameworkIosSimulatorArm64").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosSimulatorArm64")
-        }
-
-    }
-}
-
-if (configurations.findByName("debugFrameworkIosSimulatorArm64") != null) {
-    configurations.named("debugFrameworkIosSimulatorArm64").configure {
-        attributes {
-            attribute(myAttribute, "debugFrameworkIosSimulatorArm64")
-        }
-    }
-}
-
-
-if (configurations.findByName("podDebugFrameworkIosX64") != null) {
-    configurations.named("podDebugFrameworkIosX64").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosX64")
-        }
-
-    }
-}
-
-if (configurations.findByName("debugFrameworkIosX64") != null) {
-    configurations.named("debugFrameworkIosX64").configure {
-        attributes {
-            attribute(myAttribute, "debugFrameworkIosX64")
-        }
-    }
-}
-
-
-
-if (configurations.findByName("podDebugFrameworkIosFat") != null) {
-    configurations.named("podDebugFrameworkIosFat").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosFat")
-        }
-
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosFat") != null) {
-    configurations.named("podReleaseFrameworkIosFat").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosFat")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkMacOS") != null) {
-    configurations.named("podReleaseFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkMacOS") != null) {
-    configurations.named("podReleaseFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkMacOS") != null) {
-    configurations.named("podDebugFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkWatch") != null) {
-    configurations.named("podReleaseFrameworkWatch").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkWatch")
-        }
-    }
-}
-
-
-if (configurations.findByName("podDebugFrameworkWatchosFat") != null) {
-    configurations.named("podDebugFrameworkWatchosFat").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkWatchosFat")
-        }
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkWatch") != null) {
-    configurations.named("podDebugFrameworkWatch").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkWatch")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosArm64") != null) {
-    configurations.named("podReleaseFrameworkIosArm64").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosArm64")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosSimulatorArm64") != null) {
-    configurations.named("podReleaseFrameworkIosSimulatorArm64").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosSimulatorArm64")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosX64") != null) {
-    configurations.named("podReleaseFrameworkIosX64").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosX64")
-        }
-    }
-}
