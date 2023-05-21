@@ -1,7 +1,8 @@
 package com.surrus.peopleinspace.glance
 
-import com.surrus.peopleinspace.glance.util.BaseGlanceAppWidgetReceiver
+import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.GlanceAppWidgetReceiver
 
-class ISSMapWidgetReceiver : BaseGlanceAppWidgetReceiver<ISSMapWidget>() {
-    override fun createWidget(): ISSMapWidget = ISSMapWidget()
+class ISSMapWidgetReceiver: GlanceAppWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = ISSMapWidget()
 }

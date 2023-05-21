@@ -3,4 +3,5 @@
     android:minHeight="80dp"
     android:targetCellWidth="4"
     android:targetCellHeight="2"
+    android:updatePeriodMillis="10000"
     android:resizeMode="none" />

@@ -1,7 +1,8 @@
 package com.surrus.peopleinspace.glance
 
-import com.surrus.peopleinspace.glance.util.BaseGlanceAppWidgetReceiver
+import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.GlanceAppWidgetReceiver
 
-class PeopleInSpaceWidgetReceiver : BaseGlanceAppWidgetReceiver<PeopleInSpaceWidget>() {
-    override fun createWidget(): PeopleInSpaceWidget = PeopleInSpaceWidget()
+class PeopleInSpaceWidgetReceiver: GlanceAppWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = PeopleInSpaceWidget()
 }

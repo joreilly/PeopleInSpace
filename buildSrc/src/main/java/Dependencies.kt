@@ -181,7 +181,7 @@ object Deps {
 
     object Glance {
         const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha03"
-        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-alpha03"
+        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-beta01"
     }
 
     object Horologist {

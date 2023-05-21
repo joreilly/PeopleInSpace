@@ -18,37 +18,37 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-abstract class BaseGlanceAppWidget<T>(initialData: T? = null) : GlanceAppWidget(), KoinComponent {
-    val context: Context by inject()
-
-    var glanceId by mutableStateOf<GlanceId?>(null)
-    var size by mutableStateOf<DpSize?>(null)
-    var data by mutableStateOf<T?>(initialData)
-
-    private val coroutineScope = MainScope()
-
-    abstract suspend fun loadData(): T
-
-    fun initiateLoad() {
-        coroutineScope.launch {
-            data = loadData()
-
-            val currentGlanceId = snapshotFlow { glanceId }.filterNotNull().firstOrNull()
-
-            if (currentGlanceId != null) {
-                update(context, currentGlanceId)
-            }
-        }
-    }
-
-    @Composable
-    override fun Content() {
-        glanceId = LocalGlanceId.current
-        size = LocalSize.current
-
-        Content(data)
-    }
-
-    @Composable
-    abstract fun Content(data: T?)
-}
+//abstract class BaseGlanceAppWidget<T>(initialData: T? = null) : GlanceAppWidget(), KoinComponent {
+//    val context: Context by inject()
+//
+//    var glanceId by mutableStateOf<GlanceId?>(null)
+//    var size by mutableStateOf<DpSize?>(null)
+//    var data by mutableStateOf<T?>(initialData)
+//
+//    private val coroutineScope = MainScope()
+//
+//    abstract suspend fun loadData(): T
+//
+//    fun initiateLoad() {
+//        coroutineScope.launch {
+//            data = loadData()
+//
+//            val currentGlanceId = snapshotFlow { glanceId }.filterNotNull().firstOrNull()
+//
+//            if (currentGlanceId != null) {
+//                update(context, currentGlanceId)
+//            }
+//        }
+//    }
+//
+//    @Composable
+//    override fun Content() {
+//        glanceId = LocalGlanceId.current
+//        size = LocalSize.current
+//
+//        Content(data)
+//    }
+//
+//    @Composable
+//    abstract fun Content(data: T?)
+//}
