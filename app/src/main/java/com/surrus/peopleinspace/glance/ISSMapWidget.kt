@@ -1,30 +1,28 @@
 package com.surrus.peopleinspace.glance
 
+import android.content.Context
 import android.graphics.Bitmap
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
+import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.Image
 import androidx.glance.ImageProvider
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
+import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import androidx.glance.layout.Box
 import androidx.glance.layout.fillMaxSize
-import androidx.glance.text.Text
-import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
+import com.surrus.common.remote.IssPosition
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.peopleinspace.MainActivity
 import com.surrus.peopleinspace.R
-import com.surrus.peopleinspace.glance.util.BaseGlanceAppWidget
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.osmdroid.tileprovider.MapTileProviderBasic
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -35,13 +33,13 @@ import org.osmdroid.views.overlay.IconOverlay
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class ISSMapWidget : BaseGlanceAppWidget<ISSMapWidget.Data>() {
-    val repository: PeopleInSpaceRepositoryInterface by inject()
+class ISSMapWidget: GlanceAppWidget(), KoinComponent {
+    private val repository: PeopleInSpaceRepositoryInterface by inject()
 
-    data class Data(val bitmap: Bitmap?)
-
-    override suspend fun loadData(): Data {
-        val issPosition = repository.pollISSPosition().first()
+    override suspend fun provideGlance(context: Context, id: GlanceId) {
+        val issPosition: IssPosition = withContext(Dispatchers.Main) {
+            repository.pollISSPosition().first()
+        }
 
         val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
 
@@ -74,31 +72,16 @@ class ISSMapWidget : BaseGlanceAppWidget<ISSMapWidget.Data>() {
             }
         }
 
-        return Data(bitmap)
-    }
-
-    @OptIn(ExperimentalUnitApi::class)
-    @Composable
-    override fun Content(data: Data?) {
-        Box(
-            modifier = GlanceModifier.background(Color.DarkGray).fillMaxSize().clickable(
-                actionStartActivity<MainActivity>()
-            )
-        ) {
-            val bitmap = data?.bitmap
-            if (bitmap != null) {
+        provideContent {
+            Box(
+                modifier = GlanceModifier.background(Color.DarkGray).fillMaxSize().clickable(
+                    actionStartActivity<MainActivity>()
+                )
+            ) {
                 Image(
                     modifier = GlanceModifier.fillMaxSize(),
                     provider = ImageProvider(bitmap),
                     contentDescription = "ISS Location"
-                )
-            } else {
-                Text(
-                    "Loading ISS Map...",
-                    style = TextStyle(
-                        color = ColorProvider(Color.White),
-                        fontSize = TextUnit(20f, TextUnitType.Sp)
-                    )
                 )
             }
         }
