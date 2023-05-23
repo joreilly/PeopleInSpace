@@ -66,6 +66,9 @@ To run backend you can either run `./gradlew :backend:run` or run `Server.kt` di
 The Compose for Web client resides in the `compose-web` module and can be run by
 invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
 
+For Kotlin/Wasm based version
+`./gradlew :compose-web-wasm:wasmBrowserDevelopmentRun`
+
 ### Compose for Desktop client
 
 This client is available in `compose-desktop` module and can be run using `./gradlew :compose-desktop:run`.  Note that you 

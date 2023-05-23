@@ -1,9 +1,3 @@
-/*
- * Copyright 2020-2022 JetBrains s.r.o. and respective authors and developers.
- * Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE.txt file.
- */
-
-// Use `xcodegen` first, then `open ./ComposeMinesweeper.xcodeproj` and then Run button in XCode.
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -23,6 +17,7 @@ import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 
 private val koin = initKoin(enableNetworkLogs = true).koin
 
+@OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
 fun main() {
     val args = emptyArray<String>()
     memScoped {
@@ -46,6 +41,7 @@ class SkikoAppDelegate : UIResponder, UIApplicationDelegateProtocol {
         _window = window
     }
 
+    @OptIn(ExperimentalForeignApi::class)
     override fun application(application: UIApplication, didFinishLaunchingWithOptions: Map<Any?, *>?): Boolean {
         val repo = koin.get<PeopleInSpaceRepositoryInterface>()
 

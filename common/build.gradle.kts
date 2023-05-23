@@ -22,8 +22,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     namespace = "com.surrus.common"
 }
@@ -51,13 +51,18 @@ kotlin {
             baseName = "common"
         }
     }
-    android()
+    androidTarget()
     jvm()
 
     js(IR) {
         useCommonJs()
         browser()
     }
+
+//    wasm {
+//        browser()
+//    }
+
 
     sourceSets {
         val commonMain by getting {
@@ -166,12 +171,6 @@ kotlin {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 sqldelight {
     database("PeopleInSpaceDatabase") {
         packageName = "com.surrus.peopleinspace.db"
@@ -189,225 +188,5 @@ multiplatformSwiftPackage {
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
-}
-
-
-// workaround for https://youtrack.jetbrains.com/issue/KT-55751 - should be fixed in Kotlin 1.9
-val myAttribute = Attribute.of("myOwnAttribute", String::class.java)
-
-if (configurations.findByName("podDebugFrameworkIosArm64") != null) {
-    configurations.named("podDebugFrameworkIosArm64").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosArm64")
-        }
-
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkIosArm64") != null) {
-    configurations.named("podDebugFrameworkIosArm64").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkIosArm64")
-        }
-    }
-}
-
-
-
-
-if (configurations.findByName("podDebugFrameworkIosSimulatorArm64") != null) {
-    configurations.named("podDebugFrameworkIosSimulatorArm64").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosSimulatorArm64")
-        }
-
-    }
-}
-
-if (configurations.findByName("debugFrameworkIosSimulatorArm64") != null) {
-    configurations.named("debugFrameworkIosSimulatorArm64").configure {
-        attributes {
-            attribute(myAttribute, "debugFrameworkIosSimulatorArm64")
-        }
-    }
-}
-
-
-if (configurations.findByName("podDebugFrameworkIosX64") != null) {
-    configurations.named("podDebugFrameworkIosX64").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosX64")
-        }
-
-    }
-}
-
-if (configurations.findByName("debugFrameworkIosX64") != null) {
-    configurations.named("debugFrameworkIosX64").configure {
-        attributes {
-            attribute(myAttribute, "debugFrameworkIosX64")
-        }
-    }
-}
-
-
-
-if (configurations.findByName("podDebugFrameworkIosFat") != null) {
-    configurations.named("podDebugFrameworkIosFat").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosFat")
-        }
-
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosFat") != null) {
-    configurations.named("podReleaseFrameworkIosFat").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosFat")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkMacOS") != null) {
-    configurations.named("podReleaseFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkMacOS") != null) {
-    configurations.named("podReleaseFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkMacOS") != null) {
-    configurations.named("podDebugFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkWatch") != null) {
-    configurations.named("podReleaseFrameworkWatch").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkWatch")
-        }
-    }
-}
-
-
-if (configurations.findByName("podDebugFrameworkWatchosFat") != null) {
-    configurations.named("podDebugFrameworkWatchosFat").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkWatchosFat")
-        }
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkWatch") != null) {
-    configurations.named("podDebugFrameworkWatch").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkWatch")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosArm64") != null) {
-    configurations.named("podReleaseFrameworkIosArm64").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosArm64")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosSimulatorArm64") != null) {
-    configurations.named("podReleaseFrameworkIosSimulatorArm64").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosSimulatorArm64")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosX64") != null) {
-    configurations.named("podReleaseFrameworkIosX64").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosX64")
-        }
-    }
-}
-
-
-if (configurations.findByName("debugFrameworkMacOS") != null) {
-    configurations.named("debugFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "debugFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("releaseFrameworkMacOS") != null) {
-    configurations.named("releaseFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "releaseFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("watchosX64ApiElements") != null) {
-    configurations.named("watchosX64ApiElements").configure {
-        attributes {
-            attribute(myAttribute, "watchosX64ApiElements")
-        }
-    }
-}
-
-if (configurations.findByName("watchosX64CInteropApiElements") != null) {
-    configurations.named("watchosX64CInteropApiElements").configure {
-        attributes {
-            attribute(myAttribute, "watchosX64CInteropApiElements")
-        }
-    }
-}
-
-if (configurations.findByName("watchosX64MetadataElements") != null) {
-    configurations.named("watchosX64MetadataElements").configure {
-        attributes {
-            attribute(myAttribute, "watchosX64MetadataElements")
-        }
-    }
-}
-
-if (configurations.findByName("watchosX64SourcesElements") != null) {
-    configurations.named("watchosX64SourcesElements").configure {
-        attributes {
-            attribute(myAttribute, "watchosX64SourcesElements")
-        }
-    }
-}
-
-if (configurations.findByName("debugFrameworkWatchosFat") != null) {
-    configurations.named("debugFrameworkWatchosFat").configure {
-        attributes {
-            attribute(myAttribute, "debugFrameworkWatchosFat")
-        }
-    }
-}
-
-if (configurations.findByName("releaseFrameworkWatchosFat") != null) {
-    configurations.named("releaseFrameworkWatchosFat").configure {
-        attributes {
-            attribute(myAttribute, "releaseFrameworkWatchosFat")
-        }
-    }
 }
 
