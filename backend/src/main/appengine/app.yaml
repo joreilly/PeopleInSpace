@@ -1,2 +1,2 @@
-runtime: java11
+runtime: java17
 entrypoint: java -Xmx64m -jar server.jar

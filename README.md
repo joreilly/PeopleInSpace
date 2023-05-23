@@ -12,7 +12,8 @@
 * watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
 * macOS (SwiftUI)
 * Desktop (Compose for Desktop)
-* Web (Compose for Web)
+* Web (Compose for Web - JS based)
+* Web (Compose for Web - Wasm based)
 * Web (Kotlin/JS + React Wrapper) (contributed by https://github.com/PatilShreyas)
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
 
@@ -61,10 +62,16 @@ To run backend you can either run `./gradlew :backend:run` or run `Server.kt` di
 
 
 
-### Compose for Web client
+### Compose for Web client (JS)
 
 The Compose for Web client resides in the `compose-web` module and can be run by
 invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
+
+### Compose for Web client (Wasm)
+
+Similarly for Kotlin/Wasm based version
+`./gradlew :compose-web-wasm:wasmBrowserDevelopmentRun
+`
 
 ### Compose for Desktop client
 
