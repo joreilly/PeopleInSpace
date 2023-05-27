@@ -4,7 +4,6 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("com.android.library")
-    id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
@@ -33,7 +32,12 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
+
+        watchosArm32(),
+        watchosArm64(),
+        watchosSimulatorArm64()
+
     ).forEach {
         it.binaries.framework {
             baseName = "common"
@@ -41,24 +45,14 @@ kotlin {
     }
 
 
-    val sdkName: String? = System.getenv("SDK_NAME")
-    val isWatchOSDevice = sdkName.orEmpty().startsWith("watchos")
-    if (isWatchOSDevice) {
-        watchosArm64("watch")
-    } else {
-        watchosX64("watch")
-    }
-
     //macosX64("macOS")
-    macosArm64("macOS")
+    macosArm64("macOS") {
+        binaries.framework {
+            baseName = "common"
+        }
+    }
     android()
     jvm()
-
-    cocoapods {
-        // Configure fields required by CocoaPods.
-        summary = "PeopleInSpace"
-        homepage = "https://github.com/joreilly/PeopleInSpace"
-    }
 
     js(IR) {
         useCommonJs()
@@ -143,12 +137,20 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
 
-        val watchMain by getting {
+
+        val watchosArm32Main by getting
+        val watchosArm64Main by getting
+        val watchosSimulatorArm64Main by getting
+        val watchMain by creating {
+            watchosArm32Main.dependsOn(this)
+            watchosArm64Main.dependsOn(this)
+            watchosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(Deps.Ktor.clientDarwin)
                 implementation(Deps.SqlDelight.nativeDriver)
             }
         }
+
         val macOSMain by getting {
             dependencies {
                 implementation(Deps.Ktor.clientDarwin)
@@ -343,3 +345,69 @@ if (configurations.findByName("podReleaseFrameworkIosX64") != null) {
         }
     }
 }
+
+
+if (configurations.findByName("debugFrameworkMacOS") != null) {
+    configurations.named("debugFrameworkMacOS").configure {
+        attributes {
+            attribute(myAttribute, "debugFrameworkMacOS")
+        }
+    }
+}
+
+if (configurations.findByName("releaseFrameworkMacOS") != null) {
+    configurations.named("releaseFrameworkMacOS").configure {
+        attributes {
+            attribute(myAttribute, "releaseFrameworkMacOS")
+        }
+    }
+}
+
+if (configurations.findByName("watchosX64ApiElements") != null) {
+    configurations.named("watchosX64ApiElements").configure {
+        attributes {
+            attribute(myAttribute, "watchosX64ApiElements")
+        }
+    }
+}
+
+if (configurations.findByName("watchosX64CInteropApiElements") != null) {
+    configurations.named("watchosX64CInteropApiElements").configure {
+        attributes {
+            attribute(myAttribute, "watchosX64CInteropApiElements")
+        }
+    }
+}
+
+if (configurations.findByName("watchosX64MetadataElements") != null) {
+    configurations.named("watchosX64MetadataElements").configure {
+        attributes {
+            attribute(myAttribute, "watchosX64MetadataElements")
+        }
+    }
+}
+
+if (configurations.findByName("watchosX64SourcesElements") != null) {
+    configurations.named("watchosX64SourcesElements").configure {
+        attributes {
+            attribute(myAttribute, "watchosX64SourcesElements")
+        }
+    }
+}
+
+if (configurations.findByName("debugFrameworkWatchosFat") != null) {
+    configurations.named("debugFrameworkWatchosFat").configure {
+        attributes {
+            attribute(myAttribute, "debugFrameworkWatchosFat")
+        }
+    }
+}
+
+if (configurations.findByName("releaseFrameworkWatchosFat") != null) {
+    configurations.named("releaseFrameworkWatchosFat").configure {
+        attributes {
+            attribute(myAttribute, "releaseFrameworkWatchosFat")
+        }
+    }
+}
+
