@@ -63,7 +63,10 @@ val personImages = mapOf(
     "Stephen Bowen" to "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Stephenbowenv2.jpg/440px-Stephenbowenv2.jpg",
     "Warren Hoburg" to "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Warren_Hoburg_portrait.jpg/440px-Warren_Hoburg_portrait.jpg",
     "Sultan Alneyadi" to "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/SpaceX-Crew-6_Sultan-Alneyadi-MBRSC-scaled.jpg/440px-SpaceX-Crew-6_Sultan-Alneyadi-MBRSC-scaled.jpg",
-    "Andrey Fedyaev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Andrey_Fedyaev.jpg/440px-Andrey_Fedyaev.jpg",
+    "Andrey Fedyaev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/SpaceX_crew_6_image_5.png/440px-SpaceX_crew_6_image_5.png",
+    "Jing Haiping" to "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Jing_Haipeng.JPG/440px-Jing_Haipeng.JPG",
+    "Gui Haichow" to "",
+    "Zhu Yangzhu" to "https://upload.wikimedia.org/wikipedia/commons/6/68/Zhu_Yangzhu_Shenzhou_16_%E6%9C%B1%E6%9D%A8%E6%9F%B1_20230530_01.jpg",
 )
 
 val personBios = mapOf(
@@ -139,4 +142,7 @@ val personBios = mapOf(
     "Warren Hoburg" to "Warren Woodrow \"Woody\" Hoburg (born September 16, 1985) is an American engineer and NASA astronaut.",
     "Sultan Alneyadi" to "Sultan Al Neyadi (Arabic: سلطان النيادي) is one of the first two astronauts from the United Arab Emirates, along with Hazza Al Mansouri.",
     "Andrey Fedyaev" to "Andrey Valerievich Fediaev (Russian Cyrillic: Андрей Валерьевич Федяев; born February 26, 1981) is a Russian cosmonaut.",
+    "Jing Haiping" to "Jing Haipeng (simplified Chinese: 景海鹏; traditional Chinese: 景海鵬; pinyin: Jǐng Hǎipéng; born 24 October 1966) is a major general of the People's Liberation Army Ground Force (PLAGF) in active service as a vice-commander of the 82nd Group Army. A fighter pilot in the PLA Air Force (PLAAF), he was selected to be a PLA Astronaut Corps (PLAAC) astronaut in 1998. He was the first Chinese astronaut to have flown on three missions and remains the only one to have flown on four (Shenzhou 7, Shenzhou 9, Shenzhou 11, Shenzhou 16).",
+    "Gui Haichow" to "Gui Haichao, a professor and doctoral supervisor at Beihang University, will join the Shenzhou-16 crew as China's first payload specialist to carry out scientific experiments on China's Tiangong space station.",
+    "Zhu Yangzhu" to "Zhu Yangzhu (Chinese: 朱杨柱; born September 1986) is a Chinese engineer and astronaut selected as part of the Shenzhou program. He enlisted in the People's Liberation Army (PLA) in September 2005, and joined the Chinese Communist Party (CCP) in December 2006.",
 )

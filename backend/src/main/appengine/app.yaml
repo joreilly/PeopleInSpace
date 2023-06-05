@@ -1,2 +1,4 @@
-runtime: java11
-entrypoint: java -Xmx64m -jar server.jar
+service: default
+runtime: java17
+
+entrypoint: java -Xmx64m -jar backend-all.jar
