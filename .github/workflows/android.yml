@@ -13,6 +13,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 17
+
+    - name: kotlinUpgradeYarnLock
+      run: ./gradlew kotlinUpgradeYarnLock
+
+
     - name: Build android app
       run: ./gradlew assembleDebug
 

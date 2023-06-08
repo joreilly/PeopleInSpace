@@ -1,5 +1,6 @@
 object Versions {
-
+    const val kotlin = "1.9.0-Beta"
+    const val kspPlugin = "1.9.0-Beta-1.0.11"
     const val kotlinCoroutines = "1.7.1"
     const val kotlinxSerialization = "1.5.1"
     const val ktor = "2.3.0"
@@ -9,18 +10,19 @@ object Versions {
 
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-10"
+    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-10-kotlin-1.9.0-Beta"
 
     const val compose = "1.4.3"
-    const val composeCompiler = "1.4.7"
-    const val wearCompose = "1.1.2"
+    const val composeCompiler = "1.4.7-dev-k1.9.0-Beta-bb7dc8b44eb"
+    const val jbComposeCompiler = "1.4.7.1-beta"
+    const val wearCompose = "1.2.0-beta01"
     const val navCompose = "2.5.3"
     const val accompanist = "0.30.1"
-    const val horologist = "0.4.6"
+    const val horologist = "0.4.8"
     const val composeMaterial3 = "1.1.0"
 
-    const val composeDesktopWeb = "1.4.0"
-    const val composeIos = "1.4.0"
+    const val composeDesktopWeb = "1.5.0-dev1063"
+    const val composeIos = "1.5.0-dev1063"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
