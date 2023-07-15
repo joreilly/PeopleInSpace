@@ -1,6 +1,6 @@
 # PeopleInSpace
 
-![kotlin-version1](https://img.shields.io/badge/kotlin-1.9.0--RC-blue)
+![kotlin-version](https://img.shields.io/badge/kotlin-1.9.0-blue)
 
 **Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose for Wear OS, Compose for Desktop, Compose for Web, and Kotlin/JS + React clients along with Ktor backend. Currently running on
 * Android (Jetpack Compose)
