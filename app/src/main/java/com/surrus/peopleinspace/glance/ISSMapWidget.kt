@@ -42,6 +42,7 @@ class ISSMapWidget: GlanceAppWidget(), KoinComponent {
         }
 
         val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
+        println("ISS Position: $issPositionPoint")
 
         val stationMarker = IconOverlay(
             issPositionPoint,
@@ -49,7 +50,7 @@ class ISSMapWidget: GlanceAppWidget(), KoinComponent {
         )
 
         val source = TileSourceFactory.DEFAULT_TILE_SOURCE
-        val projection = Projection(5.0, 480, 240, issPositionPoint, 0f, true, false, 0, 0)
+        val projection = Projection(1.0, 480, 240, issPositionPoint, 0f, true, false, 0, 0)
 
         val bitmap = withContext(Dispatchers.Main) {
             suspendCoroutine<Bitmap> { cont ->

@@ -20,6 +20,8 @@ object Versions {
     const val accompanist = "0.30.1"
     const val horologist = "0.4.8"
     const val composeMaterial3 = "1.1.0"
+    const val glance = "1.0.0-rc01"
+    const val glanceWearTiles = "1.0.0-alpha05"
 
     const val composeDesktopWeb = "1.5.0-dev1074"
     const val composeIos = "1.5.0-dev1074"
@@ -54,7 +56,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 33
+    const val compile = 34
     const val target = compile
 }
 
@@ -182,8 +184,8 @@ object Deps {
     }
 
     object Glance {
-        const val tiles = "androidx.glance:glance-wear-tiles:1.0.0-alpha03"
-        const val appwidget = "androidx.glance:glance-appwidget:1.0.0-beta01"
+        const val tiles = "androidx.glance:glance-wear-tiles:${Versions.glanceWearTiles}"
+        const val appwidget = "androidx.glance:glance-appwidget:${Versions.glance}"
     }
 
     object Horologist {
