@@ -1,25 +1,25 @@
 object Versions {
     const val kotlin = "1.9.0"
     const val kspPlugin = "1.9.0-1.0.11"
-    const val kotlinCoroutines = "1.7.1"
+    const val kotlinCoroutines = "1.7.3"
     const val kotlinxSerialization = "1.5.1"
-    const val ktor = "2.3.0"
-    const val koinCore = "3.4.0"
-    const val koinAndroid = "3.4.0"
-    const val koinAndroidCompose = "3.4.4"
+    const val ktor = "2.3.2"
+    const val koinCore = "3.4.3"
+    const val koinAndroid = "3.4.3"
+    const val koinAndroidCompose = "3.4.6"
 
     const val kotlinxHtmlJs = "0.7.3"
 
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-13"
 
     const val compose = "1.4.3"
-    const val composeCompiler = "1.5.0-dev-k1.9.0-6a60475e07f"
-    const val jbComposeCompiler = "1.4.8-beta"
+    const val composeCompiler = "1.5.1"
+    const val jbComposeCompiler = "1.5.0"
     const val wearCompose = "1.2.0-beta01"
     const val navCompose = "2.5.3"
     const val accompanist = "0.30.1"
     const val horologist = "0.4.8"
-    const val composeMaterial3 = "1.1.0"
+    const val composeMaterial3 = "1.1.1"
     const val glance = "1.0.0-rc01"
     const val glanceWearTiles = "1.0.0-alpha05"
 
