@@ -1,6 +1,6 @@
 package com.surrus.common.repository
 
-import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.engine.darwin.*

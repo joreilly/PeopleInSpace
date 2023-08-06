@@ -32,7 +32,7 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.10"
 
-    const val sqlDelight = "1.5.5"
+    const val sqlDelight = "2.0.0"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
@@ -65,7 +65,7 @@ object Deps {
     object Gradle {
         const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
         const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
-        const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
+        const val sqlDelight = "app.cash.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
     }
 
@@ -156,13 +156,13 @@ object Deps {
     }
 
     object SqlDelight {
-        const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-        const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
-        const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-        const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
-        //const val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
-        const val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosarm64:${Versions.sqlDelight}"
-        const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
+        const val runtime = "app.cash.sqldelight:runtime:${Versions.sqlDelight}"
+        const val coroutineExtensions = "app.cash.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+        const val androidDriver = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
+        const val nativeDriver = "app.cash.sqldelight:native-driver:${Versions.sqlDelight}"
+        //const val nativeDriverMacos = "app.cash.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
+        const val nativeDriverMacos = "app.cash.sqldelight:native-driver-macosarm64:${Versions.sqlDelight}"
+        const val sqliteDriver = "app.cash.sqldelight:sqlite-driver:${Versions.sqlDelight}"
     }
 
     object React {

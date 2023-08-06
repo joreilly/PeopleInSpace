@@ -1,6 +1,6 @@
 package com.surrus.common.repository
 
-import com.squareup.sqldelight.android.AndroidSqliteDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.engine.android.*

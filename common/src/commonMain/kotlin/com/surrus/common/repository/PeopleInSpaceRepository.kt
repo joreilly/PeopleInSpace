@@ -1,10 +1,10 @@
 package com.surrus.common.repository
 
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToList
 import co.touchlab.kermit.Logger
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
@@ -48,7 +48,7 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
             mapper = { name, craft, personImageUrl, personBio ->
                 Assignment(name = name, craft = craft, personImageUrl = personImageUrl, personBio = personBio)
             }
-        )?.asFlow()?.mapToList() ?: flowOf(emptyList())
+        )?.asFlow()?.mapToList(Dispatchers.Default) ?: flowOf(emptyList())
     }
 
     override suspend fun fetchAndStorePeople() {
