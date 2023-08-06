@@ -14,7 +14,7 @@ buildscript {
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
     id("org.jetbrains.compose") version Versions.composeIos
@@ -155,9 +155,11 @@ compose.experimental {
 //}
 
 sqldelight {
-    database("PeopleInSpaceDatabase") {
-        packageName = "com.surrus.peopleinspace.db"
-        sourceFolders = listOf("sqldelight")
+    databases {
+        create("PeopleInSpaceDatabase") {
+            packageName.set("com.surrus.peopleinspace.db")
+            //sourceFolders = listOf("sqldelight")
+        }
     }
 }
 

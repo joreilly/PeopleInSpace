@@ -4,7 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
     id("com.android.library")
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
     id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
@@ -184,10 +184,17 @@ kotlin {
 }
 
 sqldelight {
-    database("PeopleInSpaceDatabase") {
-        packageName = "com.surrus.peopleinspace.db"
-        sourceFolders = listOf("sqldelight")
+    databases {
+        create("PeopleInSpaceDatabase") {
+            packageName.set("com.surrus.peopleinspace.db")
+
+            //sourceFolders = listOf("sqldelight")
+        }
     }
+//    database("PeopleInSpaceDatabase") {
+//        packageName = "com.surrus.peopleinspace.db"
+//        sourceFolders = listOf("sqldelight")
+//    }
 }
 
 multiplatformSwiftPackage {
