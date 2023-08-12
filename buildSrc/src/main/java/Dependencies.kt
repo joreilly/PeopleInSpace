@@ -23,7 +23,7 @@ object Versions {
     const val glance = "1.0.0-rc01"
     const val glanceWearTiles = "1.0.0-alpha05"
 
-    const val composeDesktopWeb = "1.5.0-dev1074"
+    const val composeDesktopWeb = "1.5.0-beta02"
     const val composeIos = "1.5.0-dev1074"
 
     const val junit = "4.12"
