@@ -79,28 +79,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                with(Deps.Ktor) {
-                    implementation(clientCore)
-                    implementation(clientJson)
-                    implementation(clientLogging)
-                    implementation(contentNegotiation)
-                    implementation(json)
-                }
-
-                with(Deps.Kotlinx) {
-                    implementation(coroutinesCore)
-                    implementation(serializationCore)
-                }
+                implementation(libs.bundles.ktor.common)
+                implementation(libs.kotlinx.coroutines)
+                implementation(libs.kotlinx.serialization)
 
                 with(Deps.SqlDelight) {
                     implementation(runtime)
                     implementation(coroutineExtensions)
                 }
 
-                with(Deps.Koin) {
-                    api(core)
-                    api(test)
-                }
+                api(libs.koin.core)
+                implementation(libs.koin.test)
 
                 with(Deps.Log) {
                     api(kermit)
@@ -109,7 +98,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(Deps.Koin.test)
+                implementation(libs.koin.test)
                 implementation(Deps.Kotlinx.coroutinesTest)
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
@@ -187,14 +176,8 @@ sqldelight {
     databases {
         create("PeopleInSpaceDatabase") {
             packageName.set("com.surrus.peopleinspace.db")
-
-            //sourceFolders = listOf("sqldelight")
         }
     }
-//    database("PeopleInSpaceDatabase") {
-//        packageName = "com.surrus.peopleinspace.db"
-//        sourceFolders = listOf("sqldelight")
-//    }
 }
 
 multiplatformSwiftPackage {
