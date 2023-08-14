@@ -2,27 +2,23 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version Versions.composeDesktopWeb
+    id("org.jetbrains.compose") version libs.versions.composeMultiplatform
     application
 }
 
 group = "me.joreilly"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-    maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
-}
-
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation(Deps.Compose.composeImageLoader)
+    implementation(libs.imageLoader)
     implementation(project(":common"))
 }
 
 application {
     mainClass.set("MainKt")
 }
+
 
 
 compose {
