@@ -22,12 +22,17 @@ struct ContentView: View {
 struct PeopleListView: View {
     @ObservedObject var viewModel: PeopleInSpaceViewModel
     
+    @State private var path: [Assignment] = []
+    
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             List(viewModel.people, id: \.name) { person in
-                NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+                NavigationLink(value: person) {
                     PersonView(viewModel: viewModel, person: person)
                 }
+            }
+            .navigationDestination(for: Assignment.self) { person in
+                PersonDetailsView(viewModel: viewModel, person: person)
             }
             .navigationBarTitle(Text("People In Space"))
             .navigationBarTitleDisplayMode(.inline)

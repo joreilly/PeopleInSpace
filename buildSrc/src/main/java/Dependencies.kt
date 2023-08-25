@@ -1,6 +1,4 @@
 object Versions {
-    const val kotlin = "1.9.0"
-    const val kspPlugin = "1.9.0-1.0.11"
     const val kotlinCoroutines = "1.7.3"
     const val kotlinxSerialization = "1.5.1"
     const val ktor = "2.3.2"
@@ -13,8 +11,6 @@ object Versions {
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-13"
 
     const val compose = "1.4.3"
-    const val composeCompiler = "1.5.1"
-    const val jbComposeCompiler = "1.5.0"
     const val wearCompose = "1.2.0-beta01"
     const val navCompose = "2.5.3"
     const val accompanist = "0.30.1"
@@ -111,7 +107,6 @@ object Deps {
     }
 
     object Compose {
-        const val compiler = "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
         const val ui = "androidx.compose.ui:ui:${Versions.compose}"
         const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"

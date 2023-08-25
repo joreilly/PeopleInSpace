@@ -23,7 +23,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
 
     buildTypes {
@@ -82,7 +82,6 @@ dependencies {
     }
 
     with(Deps.Compose) {
-        implementation(compiler)
         implementation(ui)
         implementation(uiGraphics)
         implementation(foundationLayout)
