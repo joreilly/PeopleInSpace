@@ -40,6 +40,6 @@ afterEvaluate {
 }
 
 compose {
-    kotlinCompilerPlugin.set(Versions.jbComposeCompiler)
+    kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
     kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.0")
 }
