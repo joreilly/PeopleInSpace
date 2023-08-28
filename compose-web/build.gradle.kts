@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("org.jetbrains.compose") version Versions.composeDesktopWeb
+    id("org.jetbrains.compose") version libs.versions.composeMultiplatform
 }
 
 version = "1.0"
