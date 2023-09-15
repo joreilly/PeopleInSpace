@@ -10,10 +10,8 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-13"
 
-    const val compose = "1.4.3"
     const val wearCompose = "1.2.0-beta01"
     const val navCompose = "2.5.3"
-    const val accompanist = "0.30.1"
     const val horologist = "0.4.8"
     const val composeMaterial3 = "1.1.1"
     const val glance = "1.0.0-rc01"
@@ -99,18 +97,13 @@ object Deps {
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
         const val testCore = "androidx.test:core:${Versions.testCore}"
 
-        const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
-        const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
-        const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
+//        const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
+//        const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+//        const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
         const val composeNavTesting = "androidx.navigation:navigation-testing:${Versions.navCompose}"
     }
 
     object Compose {
-        const val ui = "androidx.compose.ui:ui:${Versions.compose}"
-        const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
-        const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-        const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
-        const val material = "androidx.compose.material:material:${Versions.compose}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
 
         const val wearFoundation = "androidx.wear.compose:compose-foundation:${Versions.wearCompose}"

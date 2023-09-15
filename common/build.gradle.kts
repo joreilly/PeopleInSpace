@@ -7,11 +7,8 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
+    //id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
 }
-
-// CocoaPods requires the podspec to have a version.
-version = "1.0"
 
 android {
     compileSdk = AndroidSdk.compile
@@ -29,6 +26,7 @@ android {
 }
 
 kotlin {
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -45,14 +43,15 @@ kotlin {
     }
 
 
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
+    //targetHierarchy.default()
 
     //macosX64("macOS")
-    macosArm64("macOS") {
-        binaries.framework {
-            baseName = "common"
-        }
-    }
+//    macosArm64("macOS") {
+//        binaries.framework {
+//            baseName = "common"
+//        }
+//    }
     androidTarget()
     jvm()
 
@@ -61,7 +60,7 @@ kotlin {
         browser()
     }
 
-//    wasm {
+//    wasmJs {
 //        browser()
 //    }
 
@@ -96,20 +95,21 @@ kotlin {
             }
         }
 
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation(Deps.Ktor.clientAndroid)
                 implementation(Deps.SqlDelight.androidDriver)
             }
         }
 
-        val jvmMain by getting {
+        jvmMain {
             dependencies {
                 implementation(Deps.Ktor.clientJava)
                 implementation(Deps.SqlDelight.sqliteDriver)
                 implementation(Deps.Log.slf4j)
             }
         }
+
 
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -147,13 +147,14 @@ kotlin {
             }
         }
 
-        val macOSMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriverMacos)
-            }
-        }
-        val jsMain by getting {
+//        macosMain {
+//            dependencies {
+//                implementation(Deps.Ktor.clientDarwin)
+//                implementation(Deps.SqlDelight.nativeDriverMacos)
+//            }
+//        }
+
+        jsMain {
             dependencies {
                 implementation(Deps.Ktor.clientJs)
             }
@@ -170,13 +171,13 @@ sqldelight {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("PeopleInSpaceKit")
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        iOS { v("14") }
-    }
-}
+//multiplatformSwiftPackage {
+//    packageName("PeopleInSpaceKit")
+//    swiftToolsVersion("5.3")
+//    targetPlatforms {
+//        iOS { v("14") }
+//    }
+//}
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
