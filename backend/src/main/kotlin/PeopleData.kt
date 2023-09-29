@@ -65,13 +65,15 @@ val personImages = mapOf(
     "Sultan Alneyadi" to "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/SpaceX-Crew-6_Sultan-Alneyadi-MBRSC-scaled.jpg/440px-SpaceX-Crew-6_Sultan-Alneyadi-MBRSC-scaled.jpg",
     "Andrey Fedyaev" to "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/SpaceX_crew_6_image_5.png/440px-SpaceX_crew_6_image_5.png",
     "Jing Haiping" to "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Jing_Haipeng.JPG/440px-Jing_Haipeng.JPG",
-    "Gui Haichow" to "",
+    "Gui Haichow" to "https://img2.chinadaily.com.cn/images/202305/29/6473fe89a310b60580cddfac.jpeg",
     "Zhu Yangzhu" to "https://upload.wikimedia.org/wikipedia/commons/6/68/Zhu_Yangzhu_Shenzhou_16_%E6%9C%B1%E6%9D%A8%E6%9F%B1_20230530_01.jpg",
-
     "Jasmin Moghbeli" to "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Jasmin_Moghbeli_official_portrait.jpg/440px-Jasmin_Moghbeli_official_portrait.jpg",
     "Andreas Mogensen" to "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Andreas_Mogensen_official_portrait.jpg/400px-Andreas_Mogensen_official_portrait.jpg",
     "Satoshi Furukawa" to "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Satoshi_Furukawa_%28cropped%29.jpg/440px-Satoshi_Furukawa_%28cropped%29.jpg",
-    "Konstantin Borisov" to "https://upload.wikimedia.org/wikipedia/commons/2/25/Konstantin_Borisov.jpg",
+    "Konstantin Borisov" to "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2023/06/this_is_konstantin_borisov/24930040-1-eng-GB/This_is_Konstantin_Borisov_pillars.jpg",
+    "Oleg Kononenko" to "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2011/09/russian_cosmonaut_oleg_kononenko/9913740-2-eng-GB/Russian_cosmonaut_Oleg_Kononenko_pillars.jpg",
+    "Nikolai Chub" to "https://blogs.esa.int/caves/files/2019/09/Chub-official-portrait_GCTC.jpg",
+    "Loral O'Hara" to "https://upload.wikimedia.org/wikipedia/commons/7/7f/Loral_O%27Hara_portrait_%28cropped%29.jpg",
 )
 
 val personBios = mapOf(
@@ -150,9 +152,11 @@ val personBios = mapOf(
     "Jing Haiping" to "Jing Haipeng (simplified Chinese: 景海鹏; traditional Chinese: 景海鵬; pinyin: Jǐng Hǎipéng; born 24 October 1966) is a major general of the People's Liberation Army Ground Force (PLAGF) in active service as a vice-commander of the 82nd Group Army. A fighter pilot in the PLA Air Force (PLAAF), he was selected to be a PLA Astronaut Corps (PLAAC) astronaut in 1998. He was the first Chinese astronaut to have flown on three missions and remains the only one to have flown on four (Shenzhou 7, Shenzhou 9, Shenzhou 11, Shenzhou 16).",
     "Gui Haichow" to "Gui Haichao, a professor and doctoral supervisor at Beihang University, will join the Shenzhou-16 crew as China's first payload specialist to carry out scientific experiments on China's Tiangong space station.",
     "Zhu Yangzhu" to "Zhu Yangzhu (Chinese: 朱杨柱; born September 1986) is a Chinese engineer and astronaut selected as part of the Shenzhou program. He enlisted in the People's Liberation Army (PLA) in September 2005, and joined the Chinese Communist Party (CCP) in December 2006.",
-
     "Jasmin Moghbeli" to "Jasmin Moghbeli (Persian: یاسمین مقبلی;[citation needed] born June 24, 1983) is an American U.S. Marine Corps test pilot and NASA astronaut. She is a graduate of the Massachusetts Institute of Technology, Naval Postgraduate School and Naval Test Pilot School.",
     "Andreas Mogensen" to "Andreas Enevold Mogensen (born 2 November 1976) is a Danish engineer and ESA astronaut who is best known for being the first Dane to fly in space as part of the European Space Agency's iriss program. Mogensen has also been involved in a number of other space-related projects throughout his career, including working as a test engineer for ESTEC and as a member of the European Astronaut Corps. In addition to his work with the ESA, he has also worked with NASA and other international space agencies. Mogensen returned to space in August 2023 for his second spaceflight to the ISS onboard SpaceX Crew Dragon as the first non-American to serve as a pilot.",
     "Satoshi Furukawa" to "Satoshi Furukawa (古川 聡, Furukawa Satoshi, born April 4, 1964) is a Japanese surgeon and JAXA astronaut. Furukawa was assigned to the International Space Station as a flight engineer on long-duration missions Expedition 28/29, lifting off 7 June 2011 and returning 22 November 2011.",
     "Konstantin Borisov" to "Konstantin Sergeyevich Borisov (Russian: Константин Сергеевич Борисов; born 14 August 1984 in Smolensk) is a Russian cosmonaut who is currently flying on the SpaceX Crew-7 mission that launched on August 26, 2023.",
+    "Oleg Kononenko" to "Oleg Dmitriyevich Kononenko (Russian: Олег Дмитриевич Кононенко; Turkmen: Oleg Dmitriýewiç Kononenko; born 21 June 1964) is a Russian cosmonaut. He has flown to the International Space Station five times, as a flight engineer for Expedition 17 aboard Soyuz TMA-12, as a flight engineer on Expedition 30 and commander of Expedition 31 aboard Soyuz TMA-03M, as a flight engineer on Expedition 44 and Expedition 45 aboard Soyuz TMA-17M, and as commander of Expedition 58 and Expedition 59 aboard Soyuz MS-11 and Expedition 70 and Expedition 71 aboard Soyuz MS-24/MS-25.",
+    "Nikolai Chub" to "Nikolay Aleksandrovich Chub (Russian: Николай Александрович Чуб; born 10 June 1984 in Novocherkassk, RSFSR, USSR, now Russia) is a cosmonaut selected by the Roscosmos space agency in 2012.",
+    "Loral O'Hara" to "Loral Ashley O'Hara was born on May 3, 1983, in Houston, Texas, to Cindy and Steve O'Hara. She grew up in Sugar Land, Texas, where she attended Clements High School. She earned a Bachelor of Science degree in aerospace engineering from the University of Kansas in 2005, and a Master of Science in aeronautics and astronautics from Purdue University in 2009. While she was a student, O'Hara participated in thee KC-135 Reduced Gravity Student Flight Opportunities Program.",
 )
