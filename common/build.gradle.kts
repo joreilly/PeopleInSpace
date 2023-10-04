@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+@file:Suppress("OPT_IN_USAGE")
 
 plugins {
     kotlin("multiplatform")
@@ -45,6 +45,8 @@ kotlin {
     }
 
 
+    targetHierarchy.default()
+
     //macosX64("macOS")
     macosArm64("macOS") {
         binaries.framework {
@@ -65,7 +67,7 @@ kotlin {
 
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.bundles.ktor.common)
                 implementation(libs.kotlinx.coroutines)
@@ -84,7 +86,8 @@ kotlin {
                 }
             }
         }
-        val commonTest by getting {
+
+        commonTest {
             dependencies {
                 implementation(libs.koin.test)
                 implementation(Deps.Kotlinx.coroutinesTest)
@@ -111,8 +114,8 @@ kotlin {
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
+        val iosMain by getting {
+            dependsOn(commonMain.get())
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
@@ -124,18 +127,17 @@ kotlin {
         val iosX64Test by getting
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
+        val iosTest by getting {
+            dependsOn(commonTest.get())
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
 
-
         val watchosArm32Main by getting
         val watchosArm64Main by getting
         val watchosSimulatorArm64Main by getting
-        val watchMain by creating {
+        val watchosMain by getting {
             watchosArm32Main.dependsOn(this)
             watchosArm64Main.dependsOn(this)
             watchosSimulatorArm64Main.dependsOn(this)

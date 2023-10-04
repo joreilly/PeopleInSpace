@@ -35,6 +35,8 @@ kotlin {
         //applyBinaryen()
     }
     sourceSets {
+        targetHierarchy.default()
+
         val wasmMain by getting {
             dependencies {
                 implementation(compose.runtime)
