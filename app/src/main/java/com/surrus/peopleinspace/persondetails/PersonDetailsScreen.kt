@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.surrus.peopleinspace.persondetails
 
