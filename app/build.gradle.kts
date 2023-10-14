@@ -81,15 +81,16 @@ dependencies {
         implementation(appwidget)
     }
 
-    with(Deps.Compose) {
-        implementation(ui)
-        implementation(uiGraphics)
-        implementation(foundationLayout)
-        implementation(material)
-        implementation(navigation)
-        implementation(coilCompose)
-        implementation(uiTooling)
-    }
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(Deps.Compose.coilCompose)
 
     with(Deps.Koin) {
         implementation(core)
@@ -106,13 +107,15 @@ dependencies {
         testImplementation(robolectric)
         testImplementation(mockito)
 
-        // Compose testing dependencies
-        androidTestImplementation(composeUiTest)
-        androidTestImplementation(composeUiTestJUnit)
         androidTestImplementation(composeNavTesting)
-        debugImplementation(composeUiTestManifest)
-
     }
+
+    // Compose testing dependencies
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
 
     implementation(project(":common"))
 }

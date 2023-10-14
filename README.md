@@ -88,7 +88,7 @@ Have tested this out in Google App Engine deployment.  Using shadowJar plugin to
 
 ```
 ./gradlew :backend:shadowJar
-gcloud app deploy backend/build/libs/backend-all.jar cloud app deploy backend/build/libs/backend-all.jar --appyaml=backend/src/main/appengine/app.yaml
+gcloud app deploy backend/build/libs/backend-all.jar --appyaml=backend/src/jvmMain/appengine/app.yaml
 ```
 
 ### GraphQL backend

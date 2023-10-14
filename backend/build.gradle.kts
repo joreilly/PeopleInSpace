@@ -1,31 +1,40 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id("kotlin-platform-jvm")
+    kotlin("multiplatform")
     application
     kotlin("plugin.serialization")
     id("com.github.johnrengelman.shadow")
 }
 
-dependencies {
-    with(Deps.Kotlinx) {
-        implementation(serializationCore) // JVM dependency
-        implementation(coroutinesCore)
+
+kotlin {
+    jvm() {
+        withJava()
     }
 
-    with(Deps.Ktor) {
-        implementation(serverCore)
-        implementation(serverNetty)
-        implementation(serverCors)
-        implementation(serverContentNegotiation)
-        implementation(json)
-    }
+    sourceSets {
+        val jvmMain by getting {
+            dependencies {
+                with(Deps.Kotlinx) {
+                    implementation(serializationCore) // JVM dependency
+                    implementation(coroutinesCore)
+                }
 
-    with(Deps.Log) {
-        implementation(logback)
-    }
+                with(Deps.Ktor) {
+                    implementation(serverCore)
+                    implementation(serverNetty)
+                    implementation(serverCors)
+                    implementation(serverContentNegotiation)
+                    implementation(json)
+                }
 
-    implementation(project(":common"))
+                with(Deps.Log) {
+                    implementation(logback)
+                }
+
+                implementation(project(":common"))
+            }
+        }
+    }
 }
 
 application {

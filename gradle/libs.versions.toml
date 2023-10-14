@@ -1,27 +1,27 @@
 [versions]
-kotlin = "1.9.10"
-ksp = "1.9.10-1.0.13"
+kotlin = "1.9.20-RC"
+ksp = "1.9.20-RC-1.0.13"
 coroutines = "1.7.3"
-kotlinxSerialization = "1.5.1"
-kotlinxDateTime = "0.4.0"
+kotlinxSerialization = "1.6.0"
+kotlinxDateTime = "0.4.1"
 androidGradlePlugin = "8.1.0"
 koin = "3.4.3"
 koinCompose = "3.4.6"
 ktor = "2.3.3"
-slf4j = "2.0.7"
+slf4j = "2.0.9"
 sqlDelight = "2.0.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-13"
+kmpNativeCoroutines = "1.0.0-ALPHA-18"
 
 androidxActivity = "1.7.2"
-androidxComposeCompiler = "1.5.3-dev-k1.9.10-593b4c95fce"
-jbComposeCompiler = "1.5.2-beta01"
-androidxComposeBom = "2023.08.00"
-androidxNavigationCompose = "2.7.1"
-androidxLifecycle = "2.6.1"
-imageLoader = "1.6.4"
+androidxComposeCompiler = "1.5.4-dev-k1.9.20-RC-1edce5fd625"
+jbComposeCompiler = "1.5.2.1-Beta"
+androidxComposeBom = "2023.09.01"
+androidxNavigationCompose = "2.7.3"
+androidxLifecycle = "2.6.2"
+imageLoader = "1.6.7"
 
-composeMultiplatform = "1.5.0"
-accompanist = "0.30.1"
+composeMultiplatform = "1.5.1"
+accompanist = "0.32.0"
 coilCompose = "2.4.0"
 junit = "4.13.2"
 
@@ -60,7 +60,6 @@ androidx-compose-material3 =  { group = "androidx.compose.material3", name = "ma
 androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.material3", name="material3-window-size-class" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 
 coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
-    id("org.jetbrains.compose") version "1.4.0-dev-wasm08"
+    id("org.jetbrains.compose") version "1.5.1-dev-wasm01"
 }
 
 group = "com.example"
@@ -35,32 +35,32 @@ kotlin {
         //applyBinaryen()
     }
     sourceSets {
-        targetHierarchy.default()
+        //targetHierarchy.default()
 
-        val wasmMain by getting {
+        commonMain {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(compose.components.resources)
 
-                implementation("io.ktor:ktor-client-core:2.3.1-wasm0")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.1-wasm0")
-                implementation("io.ktor:ktor-client-content-negotiation:2.3.1-wasm0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC-wasm0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.0-RC-wasm0")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1-wasm0")
-
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2-wasm1")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.0-wasm0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0-wasm0")
+                implementation("io.ktor:ktor-client-core:3.0.0-wasm0")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0-wasm0")
+                implementation("io.ktor:ktor-client-content-negotiation:3.0.0-wasm0")
             }
         }
     }
 }
+
 
 compose.experimental {
     web.application {}
 }
 
 compose {
-    kotlinCompilerPlugin.set("1.4.0-dev-wasm08")
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.10")
+    kotlinCompilerPlugin.set("1.5.2.1-Beta")
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20-RC")
 }

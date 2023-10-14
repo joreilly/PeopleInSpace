@@ -70,8 +70,9 @@ dependencies {
         implementation(wearMaterial)
         implementation(wearNavigation)
         implementation(coilCompose)
-        implementation(uiTooling)
+        //implementation(uiTooling)
     }
+    implementation(libs.androidx.compose.ui.tooling)
 
     with(Deps.Koin) {
         implementation(core)
@@ -91,12 +92,14 @@ dependencies {
         testImplementation(robolectric)
         testImplementation(mockito)
 
-        // Compose testing dependencies
-        androidTestImplementation(composeUiTest)
-        androidTestImplementation(composeUiTestJUnit)
-        debugImplementation(composeUiTestManifest)
-        debugImplementation("androidx.tracing:tracing:1.1.0")
     }
+
+    // Compose testing dependencies
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation("androidx.tracing:tracing:1.1.0")
 
     with(Deps.Glance) {
         implementation(tiles)

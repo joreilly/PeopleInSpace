@@ -28,7 +28,7 @@ internal suspend fun loadImage(url: String): ArrayBuffer {
             }
             null
         }
-        req.send(null)
+        req.send("")
     }
 }
 
