@@ -7,7 +7,7 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    //id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
 }
 
 android {
@@ -44,7 +44,6 @@ kotlin {
 
 
     applyDefaultHierarchyTemplate()
-    //targetHierarchy.default()
 
     //macosX64("macOS")
 //    macosArm64("macOS") {
@@ -111,48 +110,26 @@ kotlin {
         }
 
 
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by getting {
-            dependsOn(commonMain.get())
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-            dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriver)
-            }
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by getting {
-            dependsOn(commonTest.get())
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-        }
-
-        val watchosArm32Main by getting
-        val watchosArm64Main by getting
-        val watchosSimulatorArm64Main by getting
-        val watchosMain by getting {
-            watchosArm32Main.dependsOn(this)
-            watchosArm64Main.dependsOn(this)
-            watchosSimulatorArm64Main.dependsOn(this)
+        iosMain {
             dependencies {
                 implementation(Deps.Ktor.clientDarwin)
                 implementation(Deps.SqlDelight.nativeDriver)
             }
         }
 
-//        macosMain {
-//            dependencies {
-//                implementation(Deps.Ktor.clientDarwin)
-//                implementation(Deps.SqlDelight.nativeDriverMacos)
-//            }
-//        }
+        watchosMain {
+            dependencies {
+                implementation(Deps.Ktor.clientDarwin)
+                implementation(Deps.SqlDelight.nativeDriver)
+            }
+        }
+
+        macosMain{
+            dependencies {
+                implementation(Deps.Ktor.clientDarwin)
+                implementation(Deps.SqlDelight.nativeDriverMacos)
+            }
+        }
 
         jsMain {
             dependencies {
@@ -171,13 +148,13 @@ sqldelight {
     }
 }
 
-//multiplatformSwiftPackage {
-//    packageName("PeopleInSpaceKit")
-//    swiftToolsVersion("5.3")
-//    targetPlatforms {
-//        iOS { v("14") }
-//    }
-//}
+multiplatformSwiftPackage {
+    packageName("PeopleInSpaceKit")
+    swiftToolsVersion("5.3")
+    targetPlatforms {
+        iOS { v("14") }
+    }
+}
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
