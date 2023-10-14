@@ -1,3 +1,5 @@
+// Gradually migrating this to version catalogs
+
 object Versions {
     const val kotlinCoroutines = "1.7.3"
     const val kotlinxSerialization = "1.5.1"
@@ -7,8 +9,6 @@ object Versions {
     const val koinAndroidCompose = "3.4.6"
 
     const val kotlinxHtmlJs = "0.7.3"
-
-    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-13"
 
     const val wearCompose = "1.2.0-beta01"
     const val navCompose = "2.5.3"
@@ -29,7 +29,7 @@ object Versions {
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
-    const val activityCompose = "1.7.1"
+    const val activityCompose = "1.8.0"
     const val lifecycleKtx = "2.6.1"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
@@ -74,8 +74,8 @@ object Deps {
     }
 
     object AndroidX {
-        const val benchmarkMacroJunit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.0-rc01"
-        const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.1.0-rc01"
+        const val benchmarkMacroJunit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.1"
+        const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.1.1"
         const val lifecycleRuntimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
@@ -97,9 +97,6 @@ object Deps {
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
         const val testCore = "androidx.test:core:${Versions.testCore}"
 
-//        const val composeUiTest = "androidx.compose.ui:ui-test:${Versions.compose}"
-//        const val composeUiTestJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
-//        const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
         const val composeNavTesting = "androidx.navigation:navigation-testing:${Versions.navCompose}"
     }
 
