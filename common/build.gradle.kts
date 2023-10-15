@@ -31,11 +31,9 @@ kotlin {
         iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
-
         watchosArm32(),
         watchosArm64(),
         watchosSimulatorArm64()
-
     ).forEach {
         it.binaries.framework {
             baseName = "common"
@@ -46,11 +44,11 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     //macosX64("macOS")
-//    macosArm64("macOS") {
-//        binaries.framework {
-//            baseName = "common"
-//        }
-//    }
+    macosArm64() {
+        binaries.framework {
+            baseName = "common"
+        }
+    }
     androidTarget()
     jvm()
 
@@ -58,11 +56,6 @@ kotlin {
         useCommonJs()
         browser()
     }
-
-//    wasmJs {
-//        browser()
-//    }
-
 
     sourceSets {
         commonMain {
@@ -108,7 +101,6 @@ kotlin {
                 implementation(Deps.Log.slf4j)
             }
         }
-
 
         iosMain {
             dependencies {

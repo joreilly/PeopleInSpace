@@ -18,6 +18,9 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
+      - name: Build macOS shared code
+        run: ./gradlew :common:compileKotlinMacOSArm64
+
       - name: Build iOS app
         run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator
 

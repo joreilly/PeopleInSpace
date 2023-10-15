@@ -5,7 +5,7 @@ on: pull_request
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
@@ -26,8 +26,6 @@ jobs:
       run: ./gradlew test
     - name: Build web app
       run: ./gradlew :web:assemble
-    - name: Build macOS shared code
-      run: ./gradlew :common:compileKotlinMacOS
 
     # If main branch update, deploy to gh-pages
     - name: Deploy
