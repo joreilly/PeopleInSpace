@@ -3,6 +3,10 @@ plugins {
     id("kotlin-android")
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 android {
     compileSdk = AndroidSdk.compile
 
@@ -41,16 +45,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    packaging {
-        resources.excludes.add("META-INF/licenses/**")
-        resources.excludes.add("META-INF/AL2.0")
-        resources.excludes.add("META-INF/LGPL2.1")
-    }
     namespace = "com.surrus.peopleinspace"
 }
 
@@ -70,7 +64,6 @@ dependencies {
         implementation(wearMaterial)
         implementation(wearNavigation)
         implementation(coilCompose)
-        //implementation(uiTooling)
     }
     implementation(libs.androidx.compose.ui.tooling)
 
