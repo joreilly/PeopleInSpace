@@ -14,7 +14,7 @@ kmpNativeCoroutines = "1.0.0-ALPHA-18"
 
 androidxActivity = "1.8.0"
 androidxComposeCompiler = "1.5.4-dev-k1.9.20-RC-1edce5fd625"
-jbComposeCompiler = "1.5.2.1-Beta"
+jbComposeCompiler = "1.5.2.1-rc01"
 androidxComposeBom = "2023.10.00"
 androidxNavigationCompose = "2.7.4"
 androidxLifecycle = "2.6.2"

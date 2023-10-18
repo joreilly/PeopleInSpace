@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
-    id("org.jetbrains.compose") version "1.5.1-dev-wasm01"
+    id("org.jetbrains.compose") version "1.5.10-dev-wasm01"
 }
 
 group = "com.example"
@@ -11,7 +11,7 @@ version = "1.0-SNAPSHOT"
 
 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 kotlin {
-    wasm {
+    wasmJs {
         moduleName = "PeopleInSpace"
         browser {
             commonWebpackConfig {
@@ -61,6 +61,6 @@ compose.experimental {
 }
 
 compose {
-    kotlinCompilerPlugin.set("1.5.2.1-Beta")
+    kotlinCompilerPlugin.set("1.5.2.1-rc01")
     kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20-RC")
 }
