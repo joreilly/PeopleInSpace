@@ -7,7 +7,7 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.1.1"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.0"
 }
 
 android {
@@ -138,9 +138,10 @@ sqldelight {
 
 multiplatformSwiftPackage {
     packageName("PeopleInSpaceKit")
-    swiftToolsVersion("5.3")
+    swiftToolsVersion("5.9")
     targetPlatforms {
         iOS { v("14") }
+        macOS { v("12")}
     }
 }
 
