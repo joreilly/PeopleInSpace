@@ -73,21 +73,13 @@ kotlin {
                     implementation(serializationCore)
                 }
 
-                with(Deps.SqlDelight) {
-                    implementation(runtime)
-                    implementation(coroutineExtensions)
-                }
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutines.extensions)
 
-                with(Deps.Koin) {
-                    api(core)
-                    api(test)
-                }
+                api(libs.koin.core)
+                implementation(libs.koin.test)
 
-                with(Deps.Log) {
-                    api(kermit)
-                }
-
-
+                implementation(libs.kermit)
 
                 implementation(compose.ui)
                 implementation(compose.foundation)
@@ -105,8 +97,8 @@ kotlin {
             dependsOn(nativeMain)
 
             dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriver)
+                implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native.driver)
             }
         }
         val uikitX64Main by getting {

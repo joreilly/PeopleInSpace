@@ -67,11 +67,9 @@ dependencies {
     }
     implementation(libs.androidx.compose.ui.tooling)
 
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-        implementation(compose)
-    }
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     with (Deps.Ok) {
         implementation(okhttp)

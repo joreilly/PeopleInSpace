@@ -25,7 +25,6 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.10"
 
-    const val sqlDelight = "2.0.0"
     const val shadow = "7.0.0"
     const val kotlinterGradle = "3.4.5"
 
@@ -40,9 +39,8 @@ object Versions {
     const val kotlinReactRouterDom = "5.1.2-pre.110-kotlin-1.4.0"
     const val kotlinStyled = "5.2.1-pre.146-kotlin-1.4.30"
 
-    const val slf4j = "1.7.30"
+    //const val slf4j = "1.7.30"
     const val logback = "1.2.3"
-    const val kermit = "2.0.0-RC4"
 
     const val gradleVersionsPlugin = "0.39.0"
 }
@@ -58,14 +56,14 @@ object Deps {
     object Gradle {
         const val kotlinter = "org.jmailen.gradle:kotlinter-gradle:${Versions.kotlinterGradle}"
         const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
-        const val sqlDelight = "app.cash.sqldelight:gradle-plugin:${Versions.sqlDelight}"
+        //const val sqlDelight = "app.cash.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
     }
 
     object Kotlinx {
         const val serializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
-        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
+        //const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
         const val htmlJs = "org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtmlJs}"
     }
 
@@ -112,13 +110,13 @@ object Deps {
         const val composeImageLoader = "io.github.qdsfdhvh:image-loader:1.2.9"
     }
 
-    object Koin {
-        const val core = "io.insert-koin:koin-core:${Versions.koinCore}"
-        const val test = "io.insert-koin:koin-test:${Versions.koinCore}"
-        const val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koinCore}"
-        const val android = "io.insert-koin:koin-android:${Versions.koinAndroid}"
-        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koinAndroidCompose}"
-    }
+//    object Koin {
+//        const val core = "io.insert-koin:koin-core:${Versions.koinCore}"
+//        const val test = "io.insert-koin:koin-test:${Versions.koinCore}"
+//        const val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koinCore}"
+//        const val android = "io.insert-koin:koin-android:${Versions.koinAndroid}"
+//        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koinAndroidCompose}"
+//    }
 
     object Ktor {
         const val serverCore = "io.ktor:ktor-server-core:${Versions.ktor}"
@@ -132,21 +130,11 @@ object Deps {
         const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
         const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
-        const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
-        const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-        const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
-        const val clientDarwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
-        const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
-    }
-
-    object SqlDelight {
-        const val runtime = "app.cash.sqldelight:runtime:${Versions.sqlDelight}"
-        const val coroutineExtensions = "app.cash.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
-        const val androidDriver = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
-        const val nativeDriver = "app.cash.sqldelight:native-driver:${Versions.sqlDelight}"
-        //const val nativeDriverMacos = "app.cash.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
-        const val nativeDriverMacos = "app.cash.sqldelight:native-driver-macosarm64:${Versions.sqlDelight}"
-        const val sqliteDriver = "app.cash.sqldelight:sqlite-driver:${Versions.sqlDelight}"
+//        const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+//        const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+//        const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
+//        const val clientDarwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
+//        const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
     }
 
     object React {
@@ -162,9 +150,8 @@ object Deps {
     }
 
     object Log {
-        const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
+        //const val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
         const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
-        const val kermit = "co.touchlab:kermit:${Versions.kermit}"
     }
 
     object Glance {
