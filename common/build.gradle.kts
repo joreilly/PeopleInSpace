@@ -36,7 +36,6 @@ kotlin {
         }
     }
 
-
     applyDefaultHierarchyTemplate()
 
     //macosX64("macOS")
@@ -60,24 +59,20 @@ kotlin {
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.kotlinx.serialization)
 
-                with(Deps.SqlDelight) {
-                    implementation(runtime)
-                    implementation(coroutineExtensions)
-                }
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutines.extensions)
 
                 api(libs.koin.core)
                 implementation(libs.koin.test)
 
-                with(Deps.Log) {
-                    api(kermit)
-                }
+                api(libs.kermit)
             }
         }
 
         commonTest {
             dependencies {
                 implementation(libs.koin.test)
-                implementation(Deps.Kotlinx.coroutinesTest)
+                implementation(libs.kotlinx.coroutines.test)
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
@@ -85,43 +80,43 @@ kotlin {
 
         androidMain {
             dependencies {
-                implementation(Deps.Ktor.clientAndroid)
-                implementation(Deps.SqlDelight.androidDriver)
+                implementation(libs.ktor.client.android)
+                implementation(libs.sqldelight.android.driver)
             }
         }
 
         jvmMain {
             dependencies {
-                implementation(Deps.Ktor.clientJava)
-                implementation(Deps.SqlDelight.sqliteDriver)
-                implementation(Deps.Log.slf4j)
+                implementation(libs.ktor.client.java)
+                implementation(libs.sqldelight.sqlite.driver)
+                implementation(libs.slf4j)
             }
         }
 
         iosMain {
             dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriver)
+                implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native.driver)
             }
         }
 
         watchosMain {
             dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriver)
+                implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native.driver)
             }
         }
 
         macosMain{
             dependencies {
-                implementation(Deps.Ktor.clientDarwin)
-                implementation(Deps.SqlDelight.nativeDriverMacos)
+                implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native.driver.macos)
             }
         }
 
         jsMain {
             dependencies {
-                implementation(Deps.Ktor.clientJs)
+                implementation(libs.ktor.client.js)
             }
         }
 

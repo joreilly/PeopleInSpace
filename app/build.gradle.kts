@@ -86,13 +86,11 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(Deps.Compose.coilCompose)
 
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-        implementation(compose)
-        testImplementation(test)
-        testImplementation(testJUnit4)
-    }
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.test)
+    implementation(libs.koin.test.junit4)
 
     with(Deps.Test) {
         testImplementation(junit)
