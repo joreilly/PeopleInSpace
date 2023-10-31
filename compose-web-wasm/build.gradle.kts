@@ -61,6 +61,6 @@ compose.experimental {
 }
 
 compose {
-    kotlinCompilerPlugin.set("1.5.2.1-rc01")
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20-RC")
+    kotlinCompilerPlugin.set("1.5.3")
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
 }
