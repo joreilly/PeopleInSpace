@@ -143,5 +143,5 @@ sqldelight {
 
 compose {
     kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.10")
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
 }
