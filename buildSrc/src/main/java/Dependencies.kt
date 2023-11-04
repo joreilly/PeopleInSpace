@@ -20,7 +20,7 @@ object Versions {
     const val composeIos = "1.5.0-dev1074"
 
     const val junit = "4.12"
-    const val androidXTestJUnit = "1.1.3"
+    const val androidXTestJUnit = "1.1.5"
     const val testCore = "1.3.0"
     const val mockito = "3.11.2"
     const val robolectric = "4.10"
