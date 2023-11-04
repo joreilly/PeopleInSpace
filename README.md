@@ -53,7 +53,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 
 
 ### Building
-You need to use at least Android Studio Flamingo (**note: Java 17 is now the minimum version required**). Requires XCode 13.2 or later (due to use of new Swift 5.5 concurrency APIs).
+You need to use at least Android Studio Flamingo (**note: Java 17 is now the minimum version required**). Requires Xcode 13.2 or later (due to use of new Swift 5.5 concurrency APIs).
 
 Open `PeopleInSpaceSwiftUI' for  iOS/watchOS/macOS projects.  
 
