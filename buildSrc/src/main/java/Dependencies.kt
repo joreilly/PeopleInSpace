@@ -10,7 +10,7 @@ object Versions {
 
     const val kotlinxHtmlJs = "0.7.3"
 
-    const val wearCompose = "1.2.0-beta01"
+    const val wearCompose = "1.2.1"
     const val navCompose = "2.5.3"
     const val horologist = "0.4.8"
     const val composeMaterial3 = "1.1.1"
