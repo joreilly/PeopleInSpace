@@ -14,7 +14,7 @@ object Versions {
     const val navCompose = "2.5.3"
     const val horologist = "0.4.8"
     const val composeMaterial3 = "1.1.2"
-    const val glance = "1.0.0-rc01"
+    const val glance = "1.0.0"
     const val glanceWearTiles = "1.0.0-alpha05"
 
     const val composeIos = "1.5.0-dev1074"
