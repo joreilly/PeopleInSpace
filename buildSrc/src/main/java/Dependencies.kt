@@ -32,7 +32,7 @@ object Versions {
     const val lifecycleKtx = "2.6.1"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
-    const val osmdroidAndroid = "6.1.10"
+    const val osmdroidAndroid = "6.1.17"
 
     const val kotlinReact = "17.0.1-pre.146-kotlin-1.4.30"
     const val kotlinReactDom = "17.0.1-pre.146-kotlin-1.4.30"
