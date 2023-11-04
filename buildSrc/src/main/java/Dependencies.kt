@@ -34,7 +34,7 @@ object Versions {
     const val lifecycleViewmodelKtx = lifecycleKtx
     const val osmdroidAndroid = "6.1.10"
 
-    const val kotlinReact = "17.0.1-pre.146-kotlin-1.4.30"
+    const val kotlinReact = "17.0.2-pre.156-kotlin-1.5.0"
     const val kotlinReactDom = "17.0.1-pre.146-kotlin-1.4.30"
     const val kotlinReactRouterDom = "5.1.2-pre.110-kotlin-1.4.0"
     const val kotlinStyled = "5.2.1-pre.146-kotlin-1.4.30"
