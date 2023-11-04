@@ -73,7 +73,7 @@ object Deps {
 
     object AndroidX {
         const val benchmarkMacroJunit4 = "androidx.benchmark:benchmark-macro-junit4:1.1.1"
-        const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.1.1"
+        const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.2.0"
         const val lifecycleRuntimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
