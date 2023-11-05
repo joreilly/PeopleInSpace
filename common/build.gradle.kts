@@ -29,21 +29,14 @@ kotlin {
         iosSimulatorArm64(),
         watchosArm32(),
         watchosArm64(),
-        watchosSimulatorArm64()
+        watchosSimulatorArm64(),
+        macosArm64()
     ).forEach {
         it.binaries.framework {
             baseName = "common"
         }
     }
 
-    applyDefaultHierarchyTemplate()
-
-    //macosX64("macOS")
-    macosArm64() {
-        binaries.framework {
-            baseName = "common"
-        }
-    }
     androidTarget()
     jvm()
 
@@ -53,73 +46,46 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(libs.bundles.ktor.common)
-                implementation(libs.kotlinx.coroutines)
-                implementation(libs.kotlinx.serialization)
+        commonMain.dependencies {
+            implementation(libs.bundles.ktor.common)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.serialization)
 
-                implementation(libs.sqldelight.runtime)
-                implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines.extensions)
 
-                api(libs.koin.core)
-                implementation(libs.koin.test)
+            api(libs.koin.core)
+            implementation(libs.koin.test)
 
-                api(libs.kermit)
-            }
+            api(libs.kermit)
         }
 
-        commonTest {
-            dependencies {
-                implementation(libs.koin.test)
-                implementation(libs.kotlinx.coroutines.test)
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
+        commonTest.dependencies {
+            implementation(libs.koin.test)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(kotlin("test-common"))
+            implementation(kotlin("test-annotations-common"))
         }
 
-        androidMain {
-            dependencies {
-                implementation(libs.ktor.client.android)
-                implementation(libs.sqldelight.android.driver)
-            }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+            implementation(libs.sqldelight.android.driver)
         }
 
-        jvmMain {
-            dependencies {
-                implementation(libs.ktor.client.java)
-                implementation(libs.sqldelight.sqlite.driver)
-                implementation(libs.slf4j)
-            }
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.java)
+            implementation(libs.sqldelight.sqlite.driver)
+            implementation(libs.slf4j)
         }
 
-        iosMain {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-                implementation(libs.sqldelight.native.driver)
-            }
+        appleMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native.driver)
         }
 
-        watchosMain {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-                implementation(libs.sqldelight.native.driver)
-            }
+        jsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
-
-        macosMain{
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-                implementation(libs.sqldelight.native.driver.macos)
-            }
-        }
-
-        jsMain {
-            dependencies {
-                implementation(libs.ktor.client.js)
-            }
-        }
-
     }
 }
 
