@@ -17,7 +17,7 @@ object Versions {
     const val glance = "1.0.0"
     const val glanceWearTiles = "1.0.0-alpha05"
 
-    const val composeIos = "1.5.0-dev1074"
+    const val composeIos = "1.5.10"
 
     const val junit = "4.12"
     const val androidXTestJUnit = "1.1.3"
