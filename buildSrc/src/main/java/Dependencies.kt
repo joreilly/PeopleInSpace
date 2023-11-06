@@ -78,7 +78,7 @@ object Deps {
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
         const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
-        const val metrics = "androidx.metrics:metrics-performance:1.0.0-alpha01"
+        const val metrics = "androidx.metrics:metrics-performance:1.0.0-alpha04"
         const val testEspressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         const val testExtJunit = "androidx.test.ext:junit:1.1.5"
         const val testUiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
