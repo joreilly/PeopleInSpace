@@ -11,6 +11,7 @@
 * iOS App Widget (SwiftUI)
 * watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
 * macOS (SwiftUI)
+* Swift Executable Package
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - JS based)
 * Web (Compose for Web - Wasm based)
