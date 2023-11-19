@@ -8,12 +8,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.*
 import com.surrus.common.remote.Assignment
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.seiko.imageloader.rememberAsyncImagePainter
+import com.seiko.imageloader.rememberImagePainter
 
 
 @Composable
@@ -54,7 +53,7 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
         val personImageUrl = person.personImageUrl ?: ""
         if (personImageUrl.isNotEmpty()) {
             Image(
-                painter = rememberAsyncImagePainter(personImageUrl),
+                painter = rememberImagePainter(personImageUrl),
                 modifier = Modifier.size(60.dp), contentDescription = person.name
             )
         } else {

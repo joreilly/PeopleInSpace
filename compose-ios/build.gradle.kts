@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.compose.experimental.dsl.IOSDevices
 
 buildscript {
@@ -17,7 +15,7 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("org.jetbrains.compose") version Versions.composeIos
+    id("org.jetbrains.compose") version "1.5.0-dev1074"
 }
 
 version = "1.0-SNAPSHOT"
@@ -58,44 +56,28 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                with(Deps.Ktor) {
-                    implementation(clientCore)
-                    implementation(clientJson)
-                    implementation(clientLogging)
-                    implementation(contentNegotiation)
-                    implementation(json)
-                }
+        commonMain.dependencies {
+            implementation(libs.bundles.ktor.common)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.serialization)
 
-                with(Deps.Kotlinx) {
-                    implementation(coroutinesCore)
-                    implementation(serializationCore)
-                }
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines.extensions)
 
-                implementation(libs.sqldelight.runtime)
-                implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.koin.core)
+            implementation(libs.koin.test)
 
-                api(libs.koin.core)
-                implementation(libs.koin.test)
+            implementation(libs.kermit)
 
-                implementation(libs.kermit)
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.runtime)
 
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                implementation(compose.runtime)
-
-                implementation(Deps.Compose.composeImageLoader)
-            }
+            implementation(libs.imageLoader)
         }
 
-        val nativeMain by creating {
-            dependsOn(commonMain)
-        }
         val uikitMain by creating {
-            dependsOn(nativeMain)
-
             dependencies {
                 implementation(libs.ktor.client.darwin)
                 implementation(libs.sqldelight.native.driver)

@@ -17,12 +17,16 @@ androidxComposeCompiler = "1.5.4-dev-k1.9.20-50f08dfa4b4"
 jbComposeCompiler = "1.5.3"
 androidxComposeBom = "2023.10.01"
 androidxNavigationCompose = "2.7.5"
+wearCompose = "1.2.1"
 androidxLifecycle = "2.6.2"
-imageLoader = "1.6.8"
+imageLoader = "1.7.1"
 
 composeMultiplatform = "1.5.10-dev-wasm02"
 accompanist = "0.32.0"
 coilCompose = "2.5.0"
+horologist = "0.5.10"
+glanceWearTiles = "1.0.0-alpha05"
+glanceAppWidget = "1.0.0"
 junit = "4.13.2"
 
 multiplatformSettings = "1.1.0"
@@ -62,16 +66,26 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 
+wear-compose-founndation = { module = "androidx.wear.compose:compose-foundation", version.ref = "wearCompose" }
+wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "wearCompose" }
+wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearCompose" }
+
+
 coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 accompanist-swiperefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref = "accompanist" }
 accompanist-placeholder = { group = "com.google.accompanist", name = "accompanist-placeholder-material3", version.ref = "accompanist" }
+horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
+
+glance-tiles = { module = "androidx.glance:glance-wear-tiles", version.ref = "glanceWearTiles" }
+glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glanceAppWidget" }
+
+androidx-navigation-compose-testing = { module = "androidx.navigation:navigation-testing", version.ref = "androidxNavigationCompose" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
-
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }

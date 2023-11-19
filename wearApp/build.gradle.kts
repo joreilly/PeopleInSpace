@@ -59,13 +59,14 @@ dependencies {
         implementation(metrics)
     }
 
-    with(Deps.Compose) {
-        implementation(wearFoundation)
-        implementation(wearMaterial)
-        implementation(wearNavigation)
-        implementation(coilCompose)
-    }
+    implementation(libs.wear.compose.founndation)
+    implementation(libs.wear.compose.material)
+    implementation(libs.wear.compose.navigation)
+
     implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.horologist.compose.layout)
+    implementation(libs.glance.tiles)
+    implementation(libs.coilCompose)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -77,13 +78,12 @@ dependencies {
     }
 
     with(Deps.Test) {
-        testImplementation(junit)
         androidTestImplementation(androidXTestJUnit)
         testImplementation(testCore)
         testImplementation(robolectric)
         testImplementation(mockito)
-
     }
+    implementation(libs.junit)
 
     // Compose testing dependencies
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -91,14 +91,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation("androidx.tracing:tracing:1.1.0")
-
-    with(Deps.Glance) {
-        implementation(tiles)
-    }
-
-    with(Deps.Horologist) {
-        implementation(composeLayout)
-    }
 
     implementation(project(":common"))
 }
