@@ -12,7 +12,7 @@ slf4j = "2.0.9"
 sqlDelight = "2.0.0"
 kmpNativeCoroutines = "1.0.0-ALPHA-19"
 
-androidxActivity = "1.8.0"
+androidxActivity = "1.8.1"
 androidxComposeCompiler = "1.5.4-dev-k1.9.20-50f08dfa4b4"
 jbComposeCompiler = "1.5.3"
 androidxComposeBom = "2023.10.01"
@@ -20,6 +20,7 @@ androidxNavigationCompose = "2.7.5"
 wearCompose = "1.2.1"
 androidxLifecycle = "2.6.2"
 imageLoader = "1.7.1"
+osmdroidAndroid = "6.1.17"
 
 composeMultiplatform = "1.5.10-dev-wasm02"
 accompanist = "0.32.0"
@@ -28,6 +29,7 @@ horologist = "0.5.10"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
 junit = "4.13.2"
+robolectric = "4.11.1"
 
 multiplatformSettings = "1.1.0"
 kermit = "2.0.2"
@@ -64,7 +66,11 @@ androidx-compose-material3 =  { group = "androidx.compose.material3", name = "ma
 androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.material3", name="material3-window-size-class" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+splash-screen = "androidx.core:core-splashscreen:1.0.1"
+metrics = "androidx.metrics:metrics-performance:1.0.0-alpha02"
+
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
+osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
 
 wear-compose-founndation = { module = "androidx.wear.compose:compose-foundation", version.ref = "wearCompose" }
 wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "wearCompose" }
@@ -97,6 +103,10 @@ ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.r
 ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
 ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor" }
 
+okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.9.2" }
+loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version = "4.9.2" }
+
+
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
 
@@ -111,7 +121,11 @@ sqldelight-sqlite-driver = { module = "app.cash.sqldelight:sqlite-driver", versi
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+
+
 junit = { module = "junit:junit", version.ref = "junit" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+tracing = "androidx.tracing:tracing:1.1.0"
 
 [bundles]
 multiplatformSettings = ["multiplatform-settings", "multiplatform-settings-coroutines"]

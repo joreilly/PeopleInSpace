@@ -49,15 +49,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.osmdroidAndroid)
 
-    with(Deps.Android) {
-        implementation(osmdroidAndroid)
-    }
-
-    with(Deps.AndroidX) {
-        implementation(activityCompose)
-        implementation(metrics)
-    }
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.metrics)
 
     implementation(libs.wear.compose.founndation)
     implementation(libs.wear.compose.material)
@@ -72,18 +67,16 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
-    with (Deps.Ok) {
-        implementation(okhttp)
-        implementation(loggingInterceptor)
-    }
+    implementation(libs.okhttp)
+    implementation(libs.loggingInterceptor)
 
     with(Deps.Test) {
         androidTestImplementation(androidXTestJUnit)
         testImplementation(testCore)
-        testImplementation(robolectric)
         testImplementation(mockito)
     }
-    implementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.junit)
 
     // Compose testing dependencies
     androidTestImplementation(platform(libs.androidx.compose.bom))

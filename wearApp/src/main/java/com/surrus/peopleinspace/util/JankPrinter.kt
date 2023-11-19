@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
  * Simple Jank log printer.
  */
 class JankPrinter {
-    private var stateHolder: PerformanceMetricsState.MetricsStateHolder? = null
+    private var stateHolder: PerformanceMetricsState.Holder? = null
     private lateinit var jankStats: JankStats
     private var nonJank = 0
 

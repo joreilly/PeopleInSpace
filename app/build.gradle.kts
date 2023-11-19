@@ -57,17 +57,16 @@ android {
 }
 
 dependencies {
-    with(Deps.Android) {
-        implementation(osmdroidAndroid)
-    }
+    implementation(libs.osmdroidAndroid)
 
     with(Deps.AndroidX) {
         implementation(lifecycleRuntimeCompose)
         implementation(lifecycleRuntimeKtx)
         implementation(lifecycleViewmodelKtx)
-        implementation(activityCompose)
-        implementation(splashScreen)
     }
+
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.splash.screen)
 
 
     implementation(platform(libs.androidx.compose.bom))
@@ -93,10 +92,10 @@ dependencies {
     with(Deps.Test) {
         androidTestImplementation(androidXTestJUnit)
         testImplementation(testCore)
-        testImplementation(robolectric)
         testImplementation(mockito)
     }
 
+    testImplementation(libs.robolectric)
     testImplementation(libs.junit)
 
     // Compose testing dependencies

@@ -12,25 +12,19 @@ kotlin {
     }
 
     sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.coroutines)
-                implementation(libs.kotlinx.serialization)
+        jvmMain.dependencies {
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.serialization)
 
-                with(Deps.Ktor) {
-                    implementation(serverCore)
-                    implementation(serverNetty)
-                    implementation(serverCors)
-                    implementation(serverContentNegotiation)
-                    implementation(json)
-                }
+            implementation("io.ktor:ktor-server-core:2.3.5")
+            implementation("io.ktor:ktor-server-netty:2.3.5")
+            implementation("io.ktor:ktor-server-cors:2.3.5")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
+            implementation("io.ktor:ktor-server-content-negotiation:2.3.5")
 
-                with(Deps.Log) {
-                    implementation(logback)
-                }
+            implementation("ch.qos.logback:logback-classic:1.2.3")
 
-                implementation(project(":common"))
-            }
+            implementation(project(":common"))
         }
     }
 }
