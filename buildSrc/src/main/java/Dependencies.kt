@@ -56,7 +56,7 @@ object Deps {
         const val testExtJunit = "androidx.test.ext:junit:1.1.5"
         const val testUiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
 
-        const val splashScreen = "androidx.core:core-splashscreen:1.0.0"
+        const val splashScreen = "androidx.core:core-splashscreen:1.0.1"
     }
 
     object Test {
