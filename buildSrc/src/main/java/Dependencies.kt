@@ -6,7 +6,7 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.10"
 
-    const val lifecycleKtx = "2.6.1"
+    const val lifecycleKtx = "2.6.2"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
 
