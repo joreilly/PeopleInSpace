@@ -14,10 +14,8 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
-                with(Deps.Kotlinx) {
-                    implementation(serializationCore) // JVM dependency
-                    implementation(coroutinesCore)
-                }
+                implementation(libs.kotlinx.coroutines)
+                implementation(libs.kotlinx.serialization)
 
                 with(Deps.Ktor) {
                     implementation(serverCore)

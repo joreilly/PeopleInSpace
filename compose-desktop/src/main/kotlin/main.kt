@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import com.seiko.imageloader.rememberAsyncImagePainter
+import com.seiko.imageloader.rememberImagePainter
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.PeopleInSpaceApi
@@ -117,7 +117,7 @@ fun PersonDetailsView(person: Assignment) {
             val personImageUrl = person.personImageUrl
             personImageUrl?.let {
                 Image(
-                    painter = rememberAsyncImagePainter(personImageUrl),
+                    painter = rememberImagePainter(personImageUrl),
                     modifier = Modifier.size(240.dp), contentDescription = person.name
                 )
             }

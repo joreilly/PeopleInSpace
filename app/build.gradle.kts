@@ -66,14 +66,9 @@ dependencies {
         implementation(lifecycleRuntimeKtx)
         implementation(lifecycleViewmodelKtx)
         implementation(activityCompose)
-        implementation(material3)
-        implementation(material3WindowSizeClass)
         implementation(splashScreen)
     }
 
-    with(Deps.Glance) {
-        implementation(appwidget)
-    }
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.foundation)
@@ -84,7 +79,10 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.material3)
-    implementation(Deps.Compose.coilCompose)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+
+    implementation(libs.coilCompose)
+    implementation(libs.glance.appwidget)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -93,19 +91,19 @@ dependencies {
     implementation(libs.koin.test.junit4)
 
     with(Deps.Test) {
-        testImplementation(junit)
         androidTestImplementation(androidXTestJUnit)
         testImplementation(testCore)
         testImplementation(robolectric)
         testImplementation(mockito)
-
-        androidTestImplementation(composeNavTesting)
     }
+
+    testImplementation(libs.junit)
 
     // Compose testing dependencies
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
+    androidTestImplementation(libs.androidx.navigation.compose.testing)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 
