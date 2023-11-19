@@ -1,7 +1,7 @@
 // Gradually migrating this to version catalogs
 
 object Versions {
-    const val ktor = "2.3.5"
+    const val ktor = "2.3.6"
 
     const val kotlinxHtmlJs = "0.7.3"
 
