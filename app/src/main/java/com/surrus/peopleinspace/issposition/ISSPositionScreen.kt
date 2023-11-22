@@ -1,30 +1,20 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.surrus.peopleinspace.issposition
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.semantics.SemanticsPropertyKey
-import androidx.compose.ui.semantics.SemanticsPropertyReceiver
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.*
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.surrus.common.remote.IssPosition
 import com.surrus.peopleinspace.R
-import com.surrus.peopleinspace.ui.PeopleInSpaceTopAppBar
+import com.surrus.peopleinspace.ui.component.PeopleInSpaceTopAppBar
 import org.koin.androidx.compose.getViewModel
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
