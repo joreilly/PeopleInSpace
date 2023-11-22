@@ -1,11 +1,9 @@
-import androidx.compose.ui.Modifier
-import androidx.compose.runtime.*
 import androidx.compose.foundation.Image
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
-import org.jetbrains.skia.Bitmap
-import androidx.compose.ui.layout.ContentScale
-import kotlinx.coroutines.*
+import androidx.compose.ui.layout.ContentScale.Companion.Crop
 
 val imagesCache = mutableMapOf<String, ImageBitmap>()
 
@@ -13,24 +11,24 @@ val imagesCache = mutableMapOf<String, ImageBitmap>()
 fun WebAsyncImage(
     imageUrl: String,
     contentDescription: String?,
-    modifier: Modifier
+    modifier: Modifier,
 ) {
-
     var bitmap: ImageBitmap? by remember { mutableStateOf(null) }
-
-    if (bitmap != null) {
-        Image(bitmap!!, contentDescription = contentDescription, modifier = modifier, contentScale = ContentScale.Crop)
+    bitmap?.let { b ->
+        Image(
+            bitmap = b,
+            contentDescription = contentDescription,
+            modifier = modifier,
+            contentScale = Crop,
+        )
     }
 
     LaunchedEffect(imageUrl) {
-        if (imagesCache.contains(imageUrl)) {
-            bitmap = imagesCache[imageUrl]!!
-        } else {
+        bitmap = imagesCache.getOrPut(imageUrl) {
             val arrayBuffer = loadImage(imageUrl)
             val skiaImg = org.jetbrains.skia.Image.makeFromEncoded(arrayBuffer.toByteArray())
             // Bitmap.makeFromImage(skiaImg)
-            imagesCache[imageUrl] = skiaImg.toComposeImageBitmap()
-            bitmap = imagesCache[imageUrl]
+            skiaImg.toComposeImageBitmap()
         }
     }
 }
