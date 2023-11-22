@@ -1,6 +1,5 @@
 package com.surrus.peopleinspace.issposition.navigation
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.surrus.peopleinspace.issposition.ISSPositionRoute
