@@ -1,4 +1,4 @@
-import { instantiate } from './PeopleInSpace.uninstantiated.mjs';
+import { instantiate } from './peopleinspace.uninstantiated.mjs';
 
 await wasmSetup;
 
