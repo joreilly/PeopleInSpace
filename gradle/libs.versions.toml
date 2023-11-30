@@ -2,7 +2,7 @@
 kotlin = "1.9.20"
 ksp = "1.9.20-1.0.13"
 coroutines = "1.7.3"
-kotlinxSerialization = "1.6.1"
+kotlinxSerialization = "1.6.2"
 kotlinxDateTime = "0.4.1"
 androidGradlePlugin = "8.1.4"
 koin = "3.5.0"
@@ -10,10 +10,10 @@ koinCompose = "3.5.0"
 ktor = "2.3.6"
 slf4j = "2.0.9"
 sqlDelight = "2.0.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-19"
+kmpNativeCoroutines = "1.0.0-ALPHA-21"
 
 androidxActivity = "1.8.1"
-androidxComposeCompiler = "1.5.4-dev-k1.9.20-50f08dfa4b4"
+androidxComposeCompiler = "1.5.5"
 jbComposeCompiler = "1.5.3"
 androidxComposeBom = "2023.10.01"
 androidxNavigationCompose = "2.7.5"
@@ -66,6 +66,9 @@ androidx-compose-material3 =  { group = "androidx.compose.material3", name = "ma
 androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.material3", name="material3-window-size-class" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
 metrics = "androidx.metrics:metrics-performance:1.0.0-alpha02"
 
