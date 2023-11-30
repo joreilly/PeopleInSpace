@@ -6,9 +6,9 @@ object Versions {
     const val mockito = "3.11.2"
     const val robolectric = "4.10"
 
-    const val lifecycleKtx = "2.6.1"
-    const val lifecycleRuntimeKtx = lifecycleKtx
-    const val lifecycleViewmodelKtx = lifecycleKtx
+//    const val lifecycleKtx = "2.6.1"
+//    const val lifecycleRuntimeKtx = lifecycleKtx
+//    const val lifecycleViewmodelKtx = lifecycleKtx
 
     const val gradleVersionsPlugin = "0.39.0"
 }
@@ -23,9 +23,6 @@ object Deps {
     object AndroidX {
         const val benchmarkMacroJunit4 = "androidx.benchmark:benchmark-macro-junit4:1.2.0"
         const val benchmarkJunit4 = "androidx.benchmark:benchmark-junit4:1.2.0"
-        const val lifecycleRuntimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycleRuntimeKtx}"
-        const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
-        const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
         const val testEspressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         const val testExtJunit = "androidx.test.ext:junit:1.1.5"
         const val testUiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"

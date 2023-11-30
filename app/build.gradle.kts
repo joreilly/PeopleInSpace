@@ -59,15 +59,12 @@ android {
 dependencies {
     implementation(libs.osmdroidAndroid)
 
-    with(Deps.AndroidX) {
-        implementation(lifecycleRuntimeCompose)
-        implementation(lifecycleRuntimeKtx)
-        implementation(lifecycleViewmodelKtx)
-    }
+    implementation(libs.androidx.lifecycle.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.splash.screen)
-
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.foundation)
