@@ -10,7 +10,7 @@ koinCompose = "3.5.0"
 ktor = "2.3.6"
 slf4j = "2.0.9"
 sqlDelight = "2.0.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-21"
+kmpNativeCoroutines = "1.0.0-ALPHA-22"
 
 androidxActivity = "1.8.1"
 androidxComposeCompiler = "1.5.5"
