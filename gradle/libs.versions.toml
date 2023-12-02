@@ -128,7 +128,7 @@ kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
-tracing = "androidx.tracing:tracing:1.1.0"
+tracing = "androidx.tracing:tracing:1.2.0"
 
 [bundles]
 multiplatformSettings = ["multiplatform-settings", "multiplatform-settings-coroutines"]

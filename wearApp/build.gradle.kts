@@ -83,7 +83,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    debugImplementation("androidx.tracing:tracing:1.1.0")
+    debugImplementation("androidx.tracing:tracing:1.2.0")
 
     implementation(project(":common"))
 }
