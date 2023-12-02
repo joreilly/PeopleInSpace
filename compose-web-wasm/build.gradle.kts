@@ -60,6 +60,6 @@ compose.experimental {
 }
 
 compose {
-    kotlinCompilerPlugin.set("1.5.3")
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
+    kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=${libs.versions.kotlin}")
 }
