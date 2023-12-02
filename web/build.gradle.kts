@@ -8,7 +8,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-html-js:0.7.3")
 
     implementation("org.jetbrains:kotlin-react:17.0.1-pre.146-kotlin-1.4.30")
-    implementation("org.jetbrains:kotlin-react-dom:17.0.1-pre.146-kotlin-1.4.30")
+    implementation("org.jetbrains:kotlin-react-dom:17.0.2-pre.156-kotlin-1.5.0")
     implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.110-kotlin-1.4.0")
     implementation("org.jetbrains:kotlin-styled:5.2.1-pre.146-kotlin-1.4.30")
 
