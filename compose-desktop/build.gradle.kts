@@ -19,3 +19,7 @@ application {
     mainClass.set("MainKt")
 }
 
+compose {
+    kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=${libs.versions.kotlin}")
+}
