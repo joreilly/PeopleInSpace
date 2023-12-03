@@ -38,7 +38,7 @@ mockito = "3.11.2"
 multiplatformSettings = "1.1.1"
 kermit = "2.0.2"
 
-gradleVersionsPlugin = "0.39.0"
+gradleVersionsPlugin = "0.50.0"
 shadowPlugin = "7.0.0"
 kotlinterGradle = "3.4.5"
 
