@@ -7,7 +7,7 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.0"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.1"
 }
 
 android {
