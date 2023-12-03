@@ -10,7 +10,7 @@ koinCompose = "3.5.0"
 ktor = "2.3.6"
 slf4j = "2.0.9"
 sqlDelight = "2.0.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-21"
+kmpNativeCoroutines = "1.0.0-ALPHA-22"
 
 androidxActivity = "1.8.1"
 androidxComposeCompiler = "1.5.5-dev-k1.9.21-163bb051fe5"
@@ -28,8 +28,12 @@ coilCompose = "2.5.0"
 horologist = "0.5.10"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
+
 junit = "4.13.2"
+androidxTestJUnit = "1.1.5"
 robolectric = "4.11.1"
+androidxTestCore = "1.5.0"
+mockito = "3.11.2"
 
 multiplatformSettings = "1.1.1"
 kermit = "2.0.2"
@@ -39,6 +43,7 @@ shadowPlugin = "7.0.0"
 kotlinterGradle = "3.4.5"
 
 minSdk = "24"
+minWearSdk = "26"
 targetSdk = "34"
 compileSdk = "34"
 
@@ -57,9 +62,6 @@ androidx-compose-material = { group = "androidx.compose.material", name = "mater
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test" }
-androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-material3 =  { group = "androidx.compose.material3", name = "material3" }
@@ -68,6 +70,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+androidx-tracing = "androidx.tracing:tracing:1.2.0"
 
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
 metrics = "androidx.metrics:metrics-performance:1.0.0-alpha02"
@@ -78,7 +81,6 @@ osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osm
 wear-compose-founndation = { module = "androidx.wear.compose:compose-foundation", version.ref = "wearCompose" }
 wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "wearCompose" }
 wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearCompose" }
-
 
 coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 accompanist-swiperefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref = "accompanist" }
@@ -109,10 +111,8 @@ ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "kt
 okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.9.2" }
 loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version = "4.9.2" }
 
-
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
-
 
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
@@ -128,7 +128,13 @@ kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
-tracing = "androidx.tracing:tracing:1.1.0"
+mockito = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
+androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestJUnit" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTestCore" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test" }
+androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+
 
 [bundles]
 multiplatformSettings = ["multiplatform-settings", "multiplatform-settings-coroutines"]

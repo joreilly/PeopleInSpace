@@ -44,13 +44,12 @@ android {
 }
 
 dependencies {
-    with(Deps.AndroidX) {
-        implementation(benchmarkMacroJunit4)
-        implementation(benchmarkJunit4)
-        implementation(testExtJunit)
-        implementation(testEspressoCore)
-        implementation(testUiautomator)
-    }
+
+    implementation("androidx.benchmark:benchmark-macro-junit4:1.2.2")
+    implementation("androidx.benchmark:benchmark-junit4:1.2.2")
+    implementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.test.ext:junit:1.1.5")
+    implementation("androidx.test.uiautomator:uiautomator:2.2.0")
 }
 
 androidComponents {

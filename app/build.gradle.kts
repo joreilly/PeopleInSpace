@@ -9,12 +9,12 @@ kotlin {
 }
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         versionCode = 1
         versionName = "1.0"
@@ -83,15 +83,12 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.test)
-    implementation(libs.koin.test.junit4)
 
-    with(Deps.Test) {
-        androidTestImplementation(androidXTestJUnit)
-        testImplementation(testCore)
-        testImplementation(mockito)
-    }
-
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
+    testImplementation(libs.androidx.test.junit)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.mockito)
     testImplementation(libs.robolectric)
     testImplementation(libs.junit)
 
