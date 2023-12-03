@@ -8,12 +8,12 @@ kotlin {
 }
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
-        minSdk = 26
-        targetSdk = AndroidSdk.target
+        minSdk = libs.versions.minWearSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -70,11 +70,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.loggingInterceptor)
 
-    with(Deps.Test) {
-        androidTestImplementation(androidXTestJUnit)
-        testImplementation(testCore)
-        testImplementation(mockito)
-    }
     testImplementation(libs.robolectric)
     testImplementation(libs.junit)
 
@@ -83,7 +78,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    debugImplementation("androidx.tracing:tracing:1.1.0")
+    debugImplementation(libs.androidx.tracing)
 
     implementation(project(":common"))
 }

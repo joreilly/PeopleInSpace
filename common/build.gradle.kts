@@ -11,10 +11,10 @@ plugins {
 }
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = AndroidSdk.min
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     namespace = "com.surrus.common"
