@@ -21,7 +21,7 @@ kotlin {
         implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
-        implementation("ch.qos.logback:logback-classic:1.2.3")
+        implementation("ch.qos.logback:logback-classic:1.4.14")
 
         implementation(project(":common"))
       }
