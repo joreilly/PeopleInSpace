@@ -12,8 +12,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ProvideTextStyle
-import androidx.compose.material.Text
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
@@ -24,21 +24,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
-//import com.seiko.imageloader.rememberAsyncImagePainter
-//import dev.johnoreilly.common.remote.Station
-//import dev.johnoreilly.common.remote.freeBikes
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+
 
 @Composable
 fun PeopleInSpaceScreen() {
@@ -102,7 +97,7 @@ fun PersonView(
         Column {
             Text(
                 person.name,
-                style = if (person.name == selectedPerson?.name) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                style = if (person.name == selectedPerson?.name) MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge
             )
 
             Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
@@ -119,7 +114,7 @@ fun PersonDetailsView(person: Assignment) {
 
         item(person) {
 
-            Text(person.name, style = MaterialTheme.typography.h4)
+            Text(person.name, style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.size(12.dp))
 
             val personImageUrl = person.personImageUrl
@@ -130,7 +125,7 @@ fun PersonDetailsView(person: Assignment) {
             Spacer(modifier = Modifier.size(24.dp))
 
             val bio = person.personBio ?: ""
-            Text(bio, style = MaterialTheme.typography.body1)
+            Text(bio, style = MaterialTheme.typography.bodyLarge)
         }
     }
 }
