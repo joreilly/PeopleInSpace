@@ -16,20 +16,6 @@ kotlin {
         browser {
             commonWebpackConfig {
                 outputFileName = "peopleinspace.js"
-                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).copy(
-//                    open = mapOf(
-//                        "app" to mapOf(
-//                            "name" to "google chrome canary",
-//                            "arguments" to listOf("--js-flags=--experimental-wasm-gc ")
-//                        )
-//                    ),
-                    static = (devServer?.static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
-                        add(project.rootDir.path)
-                        add(project.rootDir.path + "/common/")
-                        add(project.rootDir.path + "/compose-web-wasm/")
-                    },
-                    )
             }
         }
         binaries.executable()
@@ -57,9 +43,4 @@ kotlin {
 
 compose.experimental {
     web.application {}
-}
-
-compose {
-    kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=${libs.versions.kotlin}")
 }
