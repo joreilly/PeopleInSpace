@@ -22,7 +22,7 @@ androidxLifecycle = "2.6.2"
 imageLoader = "1.7.1"
 osmdroidAndroid = "6.1.17"
 
-composeMultiplatform = "1.5.10-dev-wasm02"
+composeMultiplatform = "1.6.0-alpha01"
 accompanist = "0.32.0"
 coilCompose = "2.5.0"
 horologist = "0.5.10"
