@@ -32,7 +32,7 @@ class PeopleInSpaceTest {
             .onChildren().assertCountEquals(peopleList.size)
 
         peopleList.forEachIndexed { index, person ->
-            val rowNode = personListNode.onChildAt(index).onChild()
+            val rowNode = personListNode.onChildAt(index)
             rowNode.assertTextContains(person.name)
             rowNode.assertTextContains(person.craft)
         }
