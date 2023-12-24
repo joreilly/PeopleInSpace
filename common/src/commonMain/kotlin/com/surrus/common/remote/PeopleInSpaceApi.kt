@@ -18,10 +18,9 @@ data class IssPosition(val latitude: Double, val longitude: Double)
 @Serializable
 data class IssResponse(val message: String, val iss_position: IssPosition, val timestamp: Long)
 
-class PeopleInSpaceApi(
-    private val client: HttpClient,
-    var baseUrl: String = "https://people-in-space-proxy.ew.r.appspot.com",
-) : KoinComponent {
+class PeopleInSpaceApi(private val client: HttpClient) : KoinComponent {
+    var baseUrl = "https://people-in-space-proxy.ew.r.appspot.com"
+
     suspend fun fetchPeople() = client.get("$baseUrl/astros.json").body<AstroResult>()
     suspend fun fetchISSPosition() = client.get("$baseUrl/iss-now.json").body<IssResponse>()
 }
