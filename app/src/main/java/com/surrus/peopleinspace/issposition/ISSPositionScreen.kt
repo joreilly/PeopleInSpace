@@ -65,7 +65,7 @@ fun ISSPositionScreen(uiState: ISSPositionUiState) {
                 map.setMultiTouchControls(true)
 
                 val mapController = map.controller
-                mapController.setZoom(5.0)
+                mapController.setZoom(4.0)
                 val issPositionPoint = GeoPoint(uiState.position.latitude, uiState.position.longitude)
                 mapController.setCenter(issPositionPoint)
 
