@@ -20,7 +20,7 @@ androidxNavigationCompose = "2.7.6"
 wearCompose = "1.2.1"
 androidxLifecycle = "2.6.2"
 imageLoader = "1.7.1"
-osmdroidAndroid = "6.1.17"
+osmdroidAndroid = "6.1.18"
 
 composeMultiplatform = "1.6.0-alpha01"
 accompanist = "0.32.0"
