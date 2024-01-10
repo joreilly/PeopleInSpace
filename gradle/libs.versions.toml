@@ -73,7 +73,7 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-tracing = "androidx.tracing:tracing:1.2.0"
 
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
-metrics = "androidx.metrics:metrics-performance:1.0.0-alpha02"
+metrics = "androidx.metrics:metrics-performance:1.0.0-beta01"
 
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
