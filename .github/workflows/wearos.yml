@@ -1,0 +1,25 @@
+name: Wear OS CI
+
+on: pull_request
+
+jobs:
+
+  wearOSTest:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Wear Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 28
+          target: android-wear
+          script: ./gradlew wearApp:connectedAndroidTest
+
