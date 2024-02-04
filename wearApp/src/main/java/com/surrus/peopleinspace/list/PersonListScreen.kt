@@ -2,6 +2,7 @@
 
 package com.surrus.peopleinspace.list
 
+import androidx.activity.compose.ReportDrawn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,23 +24,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Card
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.ScalingLazyColumn
 import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.google.android.horologist.compose.layout.ScalingLazyColumnState
+import com.google.android.horologist.compose.layout.ScreenScaffold
+import com.google.android.horologist.compose.layout.rememberColumnState
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.person.AstronautImage
-import com.surrus.peopleinspace.util.ReportFullyDrawn
-import com.surrus.peopleinspace.util.rememberStateWithLifecycle
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 const val PersonListTag = "PersonList"
 const val PersonTag = "Person"
@@ -48,11 +50,11 @@ const val PersonTag = "Person"
 fun PersonListScreen(
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    columnState: ScalingLazyColumnState,
     modifier: Modifier = Modifier,
+    columnState: ScalingLazyColumnState = rememberColumnState(),
 ) {
-    val viewModel = getViewModel<PersonListViewModel>()
-    val people by rememberStateWithLifecycle(viewModel.peopleInSpace)
+    val viewModel = koinViewModel<PersonListViewModel>()
+    val people by viewModel.peopleInSpace.collectAsStateWithLifecycle()
 
     PersonList(
         people = people,
@@ -68,41 +70,42 @@ fun PersonList(
     people: List<Assignment>,
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
-    columnState: ScalingLazyColumnState,
     modifier: Modifier = Modifier,
+    columnState: ScalingLazyColumnState = rememberColumnState(),
 ) {
-    ScalingLazyColumn(
-        modifier = modifier
-            .testTag(PersonListTag),
-        columnState = columnState,
-    ) {
-        item {
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                Button(
-                    modifier = Modifier
-                        .size(ButtonDefaults.SmallButtonSize)
-                        .wrapContentSize()
-                    ,
-                    onClick = issMapClick
-                ) {
-                    // https://www.svgrepo.com/svg/170716/international-space-station
-                    Image(
-                        modifier = Modifier.scale(0.5f),
-                        painter = painterResource(id = R.drawable.ic_iss),
-                        contentDescription = "ISS Map"
-                    )
+    ScreenScaffold(scrollState = columnState) {
+        ScalingLazyColumn(
+            modifier = modifier
+                .testTag(PersonListTag),
+            columnState = columnState,
+        ) {
+            item {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                    Button(
+                        modifier = Modifier
+                            .size(ButtonDefaults.SmallButtonSize)
+                            .wrapContentSize(),
+                        onClick = issMapClick
+                    ) {
+                        // https://www.svgrepo.com/svg/170716/international-space-station
+                        Image(
+                            modifier = Modifier.scale(0.5f),
+                            painter = painterResource(id = R.drawable.ic_iss),
+                            contentDescription = "ISS Map"
+                        )
+                    }
                 }
             }
-        }
-        items(people.size) { offset ->
-            PersonView(
-                person = people[offset],
-                personSelected = personSelected
-            )
+            items(people.size) { offset ->
+                PersonView(
+                    person = people[offset],
+                    personSelected = personSelected
+                )
 
-            // When the column has triggered drawing real
-            // content - report fully drawn
-            ReportFullyDrawn()
+                // When the column has triggered drawing real
+                // content - report fully drawn
+                ReportDrawn()
+            }
         }
     }
 }
@@ -148,10 +151,7 @@ fun PersonView(
     }
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearPreviewDevices
 @Composable
 fun PersonViewPreview() {
     PersonView(
@@ -164,10 +164,7 @@ fun PersonViewPreview() {
     )
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearPreviewDevices
 @Composable
 fun PersonListSquarePreview() {
     PersonList(
@@ -189,16 +186,12 @@ fun PersonListSquarePreview() {
     )
 }
 
-@Preview(
-    device = "id:wearos_small_round",
-    showSystemUi = true
-)
+@WearPreviewDevices
 @Composable
 fun PersonListSquareEmptyPreview() {
     PersonList(
         people = listOf(),
         personSelected = {},
         issMapClick = {},
-        columnState = ScalingLazyColumnDefaults.belowTimeText().create()
     )
 }

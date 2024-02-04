@@ -12,10 +12,11 @@ import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.surrus.common.remote.IssPosition
 import com.surrus.peopleinspace.BuildConfig
-import com.surrus.peopleinspace.util.rememberStateWithLifecycle
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -33,10 +34,12 @@ var SemanticsPropertyReceiver.observedIssPosition by IssPositionKey
 fun IssMapScreen(
     modifier: Modifier = Modifier,
 ) {
-    val peopleInSpaceViewModel = getViewModel<MapViewModel>()
-    val issPosition by rememberStateWithLifecycle(peopleInSpaceViewModel.issPosition)
+    val peopleInSpaceViewModel = koinViewModel<MapViewModel>()
+    val issPosition by peopleInSpaceViewModel.issPosition.collectAsStateWithLifecycle()
 
-    IssMap(modifier, issPosition)
+    ScreenScaffold(timeText = {}) {
+        IssMap(modifier, issPosition)
+    }
 }
 
 @SuppressLint("ClickableViewAccessibility")
