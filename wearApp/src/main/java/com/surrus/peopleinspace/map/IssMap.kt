@@ -1,24 +1,34 @@
 package com.surrus.peopleinspace.map
 
-import androidx.compose.foundation.layout.fillMaxSize
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.ContextCompat
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.SemanticsPropertyKey
+import androidx.compose.ui.semantics.SemanticsPropertyReceiver
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.surrus.common.remote.IssPosition
-import com.surrus.peopleinspace.R
-import com.utsman.osmandcompose.MapProperties
-import com.utsman.osmandcompose.Marker
-import com.utsman.osmandcompose.OpenStreetMap
-import com.utsman.osmandcompose.ZoomButtonVisibility
-import com.utsman.osmandcompose.rememberCameraState
-import com.utsman.osmandcompose.rememberMarkerState
+import com.surrus.peopleinspace.BuildConfig
 import org.koin.androidx.compose.koinViewModel
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.CustomZoomButtonsController
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
+import java.io.File
+
+const val ISSPositionMapTag = "ISSPositionMap"
+
+val IssPositionKey = SemanticsPropertyKey<IssPosition>("IssPosition")
+var SemanticsPropertyReceiver.observedIssPosition by IssPositionKey
 
 @Composable
 fun IssMapScreen(
@@ -27,9 +37,12 @@ fun IssMapScreen(
     val peopleInSpaceViewModel = koinViewModel<MapViewModel>()
     val issPosition by peopleInSpaceViewModel.issPosition.collectAsStateWithLifecycle()
 
-    IssMap(modifier, issPosition = issPosition ?: IssPosition(0.0, 0.0))
+    ScreenScaffold(timeText = {}) {
+        IssMap(modifier, issPosition)
+    }
 }
 
+@SuppressLint("ClickableViewAccessibility")
 @Composable
 private fun IssMap(
     modifier: Modifier,
@@ -37,43 +50,45 @@ private fun IssMap(
 ) {
     val context = LocalContext.current
 
-    val geoPointState by remember {
-        derivedStateOf {
+    Configuration.getInstance().userAgentValue = BuildConfig.APPLICATION_ID
+    Configuration.getInstance().tileFileSystemCacheMaxBytes = 50L * 1024 * 1024
+    Configuration.getInstance().osmdroidTileCache =
+        File(context.cacheDir, "osmdroid").also { it.mkdir() }
+
+    val mapView = remember { MapView(context) }
+
+    AndroidView(
+        factory = {
+            mapView.apply {
+                setTileSource(TileSourceFactory.MAPNIK);
+                zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
+                setMultiTouchControls(false)
+                controller.setZoom(3.0)
+                isClickable = false
+                isFocusable = false
+                setOnTouchListener { _, _ -> true }
+            }
+        },
+        modifier = modifier
+            .fillMaxHeight()
+            .testTag(ISSPositionMapTag)
+            .semantics {
+                if (issPosition != null) {
+                    observedIssPosition = issPosition
+                }
+            },
+        update = { map ->
+            map.overlays.clear()
+
             if (issPosition != null) {
-                GeoPoint(issPosition.latitude, issPosition.longitude)
-            } else {
-                GeoPoint(0.0, 0.0)
+                val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
+                map.controller.setCenter(issPositionPoint)
+
+                val stationMarker = Marker(map)
+                stationMarker.position = issPositionPoint
+                stationMarker.title = "ISS"
+                map.overlays.add(stationMarker)
             }
         }
-    }
-
-    val cameraState = rememberCameraState {
-        geoPoint = geoPointState
-        zoom = 2.0
-    }
-
-    val issMarkerState =
-        rememberMarkerState(
-            geoPoint = geoPointState,
-            rotation = 90f,
-        )
-
-    val issIcon = remember {
-        ContextCompat.getDrawable(context, R.drawable.ic_iss)
-    }
-
-    OpenStreetMap(
-        modifier = modifier.fillMaxSize(),
-        cameraState = cameraState,
-        properties = MapProperties(
-            isMultiTouchControls = false,
-            isAnimating = true,
-            isFlingEnable = false,
-            zoomButtonVisibility = ZoomButtonVisibility.SHOW_AND_FADEOUT
-        )
-    ) {
-        if (issPosition != null) {
-            Marker(state = issMarkerState, icon = issIcon, title = "ISS")
-        }
-    }
+    )
 }
