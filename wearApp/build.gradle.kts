@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.surrus.peopleinspace"
         minSdk = libs.versions.minWearSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        targetSdk = libs.versions.targetWearSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -50,6 +50,7 @@ android {
 
 dependencies {
     implementation(libs.osmdroidAndroid)
+    implementation(libs.osm.android.compose)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.metrics)
@@ -66,6 +67,12 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+
+    implementation(libs.splash.screen)
+
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.wear.ui.tooling)
+    debugImplementation(libs.androidx.ui.tooling.preview)
 
     implementation(libs.okhttp)
     implementation(libs.loggingInterceptor)

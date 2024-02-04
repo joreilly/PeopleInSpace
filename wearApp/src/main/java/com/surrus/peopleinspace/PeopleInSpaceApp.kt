@@ -10,67 +10,64 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
+import androidx.wear.compose.navigation.SwipeDismissableNavHost
+import androidx.wear.compose.navigation.composable
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.navscaffold.NavScaffoldViewModel
-import com.google.android.horologist.compose.navscaffold.WearNavScaffold
-import com.google.android.horologist.compose.navscaffold.scrollable
-import com.google.android.horologist.compose.navscaffold.composable
+import com.google.android.horologist.compose.layout.AppScaffold
 import com.surrus.peopleinspace.list.PersonListScreen
 import com.surrus.peopleinspace.map.IssMapScreen
 import com.surrus.peopleinspace.person.PersonDetailsScreen
 
 @Composable
 fun PeopleInSpaceApp(navController: NavHostController) {
-    WearNavScaffold(
-        navController = navController,
-        startDestination = Screen.PersonList.route
-    ) {
-        scrollable(
-            route = Screen.PersonList.route,
-            deepLinks = listOf(NavDeepLink(DEEPLINK_URI + "personList")),
+    AppScaffold {
+        SwipeDismissableNavHost(
+            navController = navController,
+            startDestination = Screen.PersonList.route
         ) {
-            PersonListScreen(
-                modifier = Modifier.fillMaxSize(),
-                personSelected = {
-                    navController.navigate(Screen.PersonDetails.route + "/${it.name}")
-                },
-                issMapClick = {
-                    navController.navigate(Screen.IssMap.route)
-                },
-                columnState = it.columnState,
-            )
-        }
+            composable(
+                route = Screen.PersonList.route,
+                deepLinks = listOf(navDeepLink { this.uriPattern = "${DEEPLINK_URI}personList" }),
+            ) {
+                PersonListScreen(
+                    modifier = Modifier.fillMaxSize(),
+                    personSelected = {
+                        navController.navigate(Screen.PersonDetails.route + "/${it.name}")
+                    },
+                    issMapClick = {
+                        navController.navigate(Screen.IssMap.route)
+                    },
+                )
+            }
 
-        scrollable(
-            route = Screen.PersonDetails.route + "/{$PERSON_NAME_NAV_ARGUMENT}",
-            arguments = listOf(
-                navArgument(PERSON_NAME_NAV_ARGUMENT, builder = {
-                    type = NavType.StringType
-                })
-            ),
-            deepLinks = listOf(navDeepLink {
-                uriPattern = DEEPLINK_URI + "personList/{${PERSON_NAME_NAV_ARGUMENT}}"
-            }),
-        ) {
-            val personName: String =
-                it.backStackEntry.arguments!!.getString(PERSON_NAME_NAV_ARGUMENT)!!
+            composable(
+                route = Screen.PersonDetails.route + "/{$PERSON_NAME_NAV_ARGUMENT}",
+                arguments = listOf(
+                    navArgument(PERSON_NAME_NAV_ARGUMENT, builder = {
+                        type = NavType.StringType
+                    })
+                ),
+                deepLinks = listOf(navDeepLink {
+                    uriPattern = DEEPLINK_URI + "personList/{${PERSON_NAME_NAV_ARGUMENT}}"
+                }),
+            ) {
+                val personName: String =
+                    it.arguments!!.getString(PERSON_NAME_NAV_ARGUMENT)!!
 
-            PersonDetailsScreen(
-                modifier = Modifier.fillMaxSize(),
-                personName = personName,
-                columnState = it.columnState,
-            )
-        }
+                PersonDetailsScreen(
+                    modifier = Modifier.fillMaxSize(),
+                    personName = personName,
+                )
+            }
 
-        composable(
-            route = Screen.IssMap.route,
-            deepLinks = listOf(NavDeepLink(DEEPLINK_URI + "issMap"))
-        ) {
-            it.timeTextMode = NavScaffoldViewModel.TimeTextMode.Off
-
-            IssMapScreen(
-                modifier = Modifier.fillMaxSize(),
-            )
+            composable(
+                route = Screen.IssMap.route,
+                deepLinks = listOf(navDeepLink { uriPattern = "${DEEPLINK_URI}issMap" })
+            ) {
+                IssMapScreen(
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
         }
     }
 }
