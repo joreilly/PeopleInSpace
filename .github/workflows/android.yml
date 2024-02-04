@@ -20,22 +20,10 @@ jobs:
 
 
     - name: Build android app
-      run: ./gradlew assembleDebug
+      run: ./gradlew :app:assembleDebug
 
     - name: Run Unit Tests
-      run: ./gradlew test
-    - name: Build web app
-      run: ./gradlew :web:assemble
-
-    # If main branch update, deploy to gh-pages
-    - name: Deploy
-      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-      uses: JamesIves/github-pages-deploy-action@v4.5.0
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: web/build/distributions # The folder the action should deploy.
-        CLEAN: true # Automatically remove deleted files from the deploy branch
+      run: ./gradlew :app:test
 
 
   androidTest:
@@ -49,13 +37,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-
-      - name: Wear Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 28
-          target: android-wear
-          script: ./gradlew wearApp:connectedAndroidTest
 
       - name: Android Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2

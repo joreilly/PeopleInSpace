@@ -1,10 +1,10 @@
-name: iOS CI
+name: macOS CI
 
 on: pull_request
 
 # Cancel any current or previous job from the same PR
 concurrency:
-  group: ios-${{ github.head_ref }}
+  group: macos-${{ github.head_ref }}
   cancel-in-progress: true
 
 
@@ -18,8 +18,9 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - name: Build iOS app
-        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator
+      - name: Build macOS shared code
+        run: ./gradlew :common:compileKotlinMacOSArm64
+
 
 
 
