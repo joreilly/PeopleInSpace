@@ -2,7 +2,7 @@
 composeUiTooling = "1.3.0"
 kotlin = "1.9.21"
 ksp = "1.9.21-1.0.16"
-coroutines = "1.8.0-RC"
+coroutines = "1.8.0"
 kotlinxSerialization = "1.6.2"
 kotlinxDateTime = "0.5.0"
 androidGradlePlugin = "8.2.0"
