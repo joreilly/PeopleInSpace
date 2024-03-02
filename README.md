@@ -131,6 +131,12 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 <img width="912" alt="Screenshot 2021-10-01 at 16 45 06" src="https://user-images.githubusercontent.com/6302/135652185-4ce9d8e3-f06e-4e9d-9930-3e900267f8bd.png">
 
 
+**Compose for Web (Wasm based)**
+<br/>
+<img width="1156" alt="Screenshot 2024-03-02 at 21 03 23" src="https://github.com/joreilly/PeopleInSpace/assets/6302/8e4bfb36-e417-4db8-824b-563953e0d9ac">
+
+
+
 
 
 ### Languages, libraries and tools used
