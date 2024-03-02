@@ -1,45 +1,49 @@
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
 plugins {
     kotlin("multiplatform")
+    id("kotlinx-serialization")
     id("org.jetbrains.compose") version libs.versions.composeMultiplatform
 }
 
-version = "1.0"
+group = "com.example"
+version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    maven("https://jitpack.io")
-}
-
+@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 kotlin {
-    js(IR) {
-        browser()
+    wasmJs {
+        moduleName = "peopleinspace"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "peopleinspace.js"
+            }
+        }
         binaries.executable()
+        //applyBinaryen()
     }
-
     sourceSets {
-        val jsMain by getting {
+        commonMain {
             dependencies {
-                implementation(compose.html.core)
                 implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
 
-                implementation("com.github.chihsuanwu:google-maps-compose-web:0.3.1-alpha")
+                implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha05")
+                implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha05")
 
-                implementation(project(":common"))
+                implementation(libs.kotlinx.coroutines)
+                implementation(libs.kotlinx.serialization)
+
+                implementation("io.ktor:ktor-client-core:3.0.0-wasm1")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0-wasm1")
+                implementation("io.ktor:ktor-client-content-negotiation:3.0.0-wasm1")
             }
         }
     }
 }
 
-// workaround for https://youtrack.jetbrains.com/issue/KT-48273
-afterEvaluate {
-    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-        versions.webpackDevServer.version = "4.0.0"
-        versions.webpackCli.version = "4.10.0"
-    }
-}
 
-compose {
-    kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=${libs.versions.kotlin}")
+compose.experimental {
+    web.application {}
 }

@@ -1,34 +1,34 @@
 [versions]
 composeUiTooling = "1.3.0"
-kotlin = "1.9.21"
-ksp = "1.9.21-1.0.16"
-coroutines = "1.8.0-RC"
-kotlinxSerialization = "1.6.2"
+kotlin = "1.9.22"
+ksp = "1.9.22-1.0.17"
+coroutines = "1.8.0"
+kotlinxSerialization = "1.6.3"
 kotlinxDateTime = "0.5.0"
-androidGradlePlugin = "8.2.0"
+androidGradlePlugin = "8.2.2"
 koin = "3.5.3"
 koinCompose = "3.5.3"
-ktor = "2.3.7"
+ktor = "2.3.8"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.9"
 sqlDelight = "2.0.1"
 kmpNativeCoroutines = "1.0.0-ALPHA-23"
 
 androidxActivity = "1.8.2"
-androidxComposeCompiler = "1.5.5-dev-k1.9.21-163bb051fe5"
+androidxComposeCompiler = "1.5.8"
 jbComposeCompiler = "1.5.4"
-androidxComposeBom = "2024.01.00"
-androidxNavigationCompose = "2.7.6"
-uiToolingPreview = "1.6.0"
+androidxComposeBom = "2024.02.01"
+androidxNavigationCompose = "2.7.7"
+uiToolingPreview = "1.6.2"
 wearCompose = "1.3.0"
 androidxLifecycle = "2.7.0"
-imageLoader = "1.7.1"
+imageLoader = "1.7.6"
 osmdroidAndroid = "6.1.18"
 
-composeMultiplatform = "1.6.0-alpha01"
+composeMultiplatform = "1.6.0"
 accompanist = "0.32.0"
-coilCompose = "2.5.0"
-horologist = "0.5.20"
+coilCompose = "2.6.0"
+horologist = "0.6.3"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
 okhttp = "5.0.0-alpha.12"
@@ -51,6 +51,15 @@ minWearSdk = "26"
 targetSdk = "34"
 targetWearSdk = "33"
 compileSdk = "34"
+kotlinVersion = "1.9.22"
+coreKtx = "1.12.0"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.11.0"
+constraintlayout = "2.1.4"
+lifecycleLivedataKtx = "2.7.0"
+navigationFragmentKtx = "2.7.7"
+navigationUiKtx = "2.7.7"
 
 
 [libraries]
@@ -144,6 +153,15 @@ androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTes
 androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test" }
 androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 
 
 [bundles]
@@ -162,3 +180,4 @@ gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "g
 shadowPlugin = { id = "com.github.johnrengelman.shadow", version.ref = "shadowPlugin" }
 kotlinterGradle = { id = "org.jmailen.gradle:kotlinter-gradle", version.ref = "kotlinterGradle" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }

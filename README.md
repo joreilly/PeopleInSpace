@@ -14,9 +14,7 @@
 * macOS (SwiftUI)
 * Swift Executable Package
 * Desktop (Compose for Desktop)
-* Web (Compose for Web - JS based)
 * Web (Compose for Web - Wasm based)
-* Web (Kotlin/JS + React Wrapper) (contributed by https://github.com/PatilShreyas)
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
 
 It makes use of [Open Notify PeopleInSpace API](http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
@@ -65,15 +63,10 @@ To run backend you can either run `./gradlew :backend:run` or run `Server.kt` di
 
 
 
-### Compose for Web client (JS)
-
-The Compose for Web client resides in the `compose-web` module and can be run by
-invoking `./gradlew :compose-web:jsBrowserDevelopmentRun`
-
 ### Compose for Web client (Wasm)
 
 Similarly for Kotlin/Wasm based version
-`./gradlew :compose-web-wasm:wasmBrowserDevelopmentRun
+`./gradlew :compose-web:wasmBrowserDevelopmentRun
 `
 
 ### Compose for Desktop client
@@ -133,20 +126,10 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 
 
 
-
-
 **Compose for Desktop**
 <br/>
 <img width="912" alt="Screenshot 2021-10-01 at 16 45 06" src="https://user-images.githubusercontent.com/6302/135652185-4ce9d8e3-f06e-4e9d-9930-3e900267f8bd.png">
 
-
-**Compose for Web**
-<br/>
-<img width="612" alt="Compose for Web Screenshot" src="https://user-images.githubusercontent.com/22000682/229832465-48a12a45-1885-49dc-9f84-026d215f71c8.png">
-
-**Web App (Kotlin/JS + React)**
-<br/>
-<img width="612" alt="Screenshot 2021-06-06 at 23 50 00" src="https://user-images.githubusercontent.com/19620536/120935764-eda82500-c721-11eb-9042-f15ade7473f7.png">
 
 
 
