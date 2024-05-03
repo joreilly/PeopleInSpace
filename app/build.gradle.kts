@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlinx-serialization")
     id("com.github.ben-manes.versions")
 }
 
