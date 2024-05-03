@@ -4,32 +4,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.surrus.peopleinspace.issposition.navigation.issPositionGraph
-import com.surrus.peopleinspace.persondetails.navigation.PersonDetailsDestination
-import com.surrus.peopleinspace.persondetails.navigation.personDetailsGraph
-import com.surrus.peopleinspace.personlist.navigation.PersonListDestination
-import com.surrus.peopleinspace.personlist.navigation.personListGraph
+import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.issposition.ISSPositionRoute
+import com.surrus.peopleinspace.persondetails.PersonDetailsScreen
+import com.surrus.peopleinspace.personlist.PersonListRoute
+import kotlinx.serialization.Serializable
+
+
+@Serializable
+object PersonList
+
+@Serializable
+object IssPosition
+
 
 @Composable
 fun PeopleInSpaceNavHost(
     navController: NavHostController,
-    onNavigateToDestination: (PeopleInSpaceNavigationDestination, String) -> Unit = { _, _ -> },
     onBackClick: () -> Unit = {},
-    modifier: Modifier = Modifier,
-    startDestination: String = PersonListDestination.route
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = PersonList,
         modifier = modifier,
     ) {
-        personListGraph(navigateToPerson = {
-            onNavigateToDestination(
-                PersonDetailsDestination,
-                PersonDetailsDestination.createNavigationRoute(it)
-            )
-        })
-        personDetailsGraph(onBackClick = onBackClick)
-        issPositionGraph()
+        composable<PersonList> {
+            PersonListRoute { person ->
+                navController.navigate(person)
+            }
+        }
+        composable<Assignment> { backStackEntry ->
+            val person: Assignment = backStackEntry.toRoute()
+            PersonDetailsScreen(person, onBackClick)
+        }
+        composable<IssPosition> {
+            ISSPositionRoute()
+        }
     }
 }

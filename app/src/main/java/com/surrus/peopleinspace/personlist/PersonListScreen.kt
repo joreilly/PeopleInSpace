@@ -48,15 +48,15 @@ import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 import com.surrus.peopleinspace.ui.component.PeopleInSpaceTopAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 const val PersonListTag = "PersonList"
 
 
 @Composable
 fun PersonListRoute(
-    navigateToPerson: (String) -> Unit,
-    viewModel: PersonListViewModel = getViewModel()
-) {
+navigateToPerson: (Assignment) -> Unit, ) {
+    val viewModel: PersonListViewModel = koinViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     PersonListScreen(uiState, navigateToPerson, onRefresh = {
@@ -68,7 +68,7 @@ fun PersonListRoute(
 @Composable
 fun PersonListScreen(
     uiState: PersonListUiState,
-    navigateToPerson: (String) -> Unit,
+    navigateToPerson: (Assignment) -> Unit,
     onRefresh: () -> Unit
 ) {
     val refreshScope = rememberCoroutineScope()
@@ -100,7 +100,8 @@ fun PersonListScreen(
 
             Box(Modifier.pullRefresh(state)) {
                 LazyColumn(
-                    modifier = Modifier.testTag(PersonListTag)
+                    modifier = Modifier
+                        .testTag(PersonListTag)
                         .padding(innerPadding)
                         .consumeWindowInsets(innerPadding)
                         .fillMaxSize()
@@ -119,12 +120,12 @@ fun PersonListScreen(
 }
 
 @Composable
-fun PersonView(person: Assignment, personSelected: (person: String) -> Unit) {
+fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { personSelected(person.name) })
+            .clickable(onClick = { personSelected(person) })
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

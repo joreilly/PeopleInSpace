@@ -48,7 +48,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.bundles.ktor.common)
             implementation(libs.kotlinx.coroutines)
-            implementation(libs.kotlinx.serialization)
+            api(libs.kotlinx.serialization)
 
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines.extensions)

@@ -32,7 +32,7 @@ struct PeopleListView: View {
                 }
             }
             .navigationDestination(for: Assignment.self) { person in
-                PersonDetailsView(viewModel: viewModel, person: person)
+                PersonDetailsScreen(person: person)
             }
             .navigationBarTitle(Text("People In Space"))
             .navigationBarTitleDisplayMode(.inline)
@@ -44,7 +44,6 @@ struct PeopleListView: View {
 }
 
 struct PersonView: View {
-    var viewModel: PeopleInSpaceViewModel
     var person: Assignment
     
     var body: some View {
@@ -67,7 +66,7 @@ struct PersonView: View {
 }
 
 
-struct PersonDetailsView: View {
+struct PersonDetailsScreen: View {
     var viewModel: PeopleInSpaceViewModel
     var person: Assignment
     
