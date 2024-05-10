@@ -28,7 +28,7 @@ struct PeopleListView: View {
         NavigationStack(path: $path) {
             List(viewModel.people, id: \.name) { person in
                 NavigationLink(value: person) {
-                    PersonView(viewModel: viewModel, person: person)
+                    PersonView(person: person)
                 }
             }
             .navigationDestination(for: Assignment.self) { person in
@@ -44,8 +44,8 @@ struct PeopleListView: View {
 }
 
 struct PersonView: View {
-    var person: Assignment
-    
+    let person: Assignment
+
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: person.personImageUrl ?? "")) { image in
@@ -67,9 +67,8 @@ struct PersonView: View {
 
 
 struct PersonDetailsScreen: View {
-    var viewModel: PeopleInSpaceViewModel
-    var person: Assignment
-    
+    let person: Assignment
+
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 32) {
