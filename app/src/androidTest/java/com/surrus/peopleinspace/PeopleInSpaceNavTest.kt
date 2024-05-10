@@ -6,9 +6,9 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
-import com.surrus.peopleinspace.issposition.navigation.ISSPositionDestination
+import com.surrus.peopleinspace.navigation.IssPosition
 import com.surrus.peopleinspace.navigation.PeopleInSpaceNavHost
-import com.surrus.peopleinspace.personlist.navigation.PersonListDestination
+import com.surrus.peopleinspace.navigation.PersonList
 import junit.framework.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -30,7 +30,7 @@ class NavigationTest {
         }
 
         val route = navController.currentBackStackEntry?.destination?.route
-        assertEquals(route, PersonListDestination.route)
+        assertEquals(route, PersonList::class.qualifiedName)
 
         composeTestRule
             .onNodeWithContentDescription("PeopleInSpace")
@@ -45,11 +45,11 @@ class NavigationTest {
             navController.navigatorProvider.addNavigator(ComposeNavigator())
             PeopleInSpaceNavHost(navController = navController)
 
-            navController.navigate(ISSPositionDestination.route)
+            navController.navigate(IssPosition)
         }
 
         val route = navController.currentBackStackEntry?.destination?.route
-        assertEquals(route, ISSPositionDestination.route)
+        assertEquals(route, IssPosition::class.qualifiedName)
 
         composeTestRule
             .onNodeWithContentDescription("ISSPosition")

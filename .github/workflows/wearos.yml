@@ -5,7 +5,7 @@ on: pull_request
 jobs:
 
   wearOSTest:
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,7 +19,7 @@ jobs:
       - name: Wear Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 28
+          api-level: 26
           target: android-wear
           script: ./gradlew wearApp:connectedAndroidTest
 
