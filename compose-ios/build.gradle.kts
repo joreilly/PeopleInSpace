@@ -15,7 +15,7 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("org.jetbrains.compose") version "1.5.0-dev1074"
+    id("org.jetbrains.compose") version "1.6.10"
 }
 
 version = "1.0-SNAPSHOT"
