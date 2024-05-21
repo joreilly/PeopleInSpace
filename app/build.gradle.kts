@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     id("kotlinx-serialization")
     id("com.github.ben-manes.versions")
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -25,10 +26,6 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
 
     buildTypes {

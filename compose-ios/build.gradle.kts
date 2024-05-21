@@ -1,5 +1,3 @@
-import org.jetbrains.compose.experimental.dsl.IOSDevices
-
 buildscript {
     repositories {
         mavenLocal()
@@ -15,7 +13,8 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("org.jetbrains.compose") version "1.5.0-dev1074"
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 version = "1.0-SNAPSHOT"
@@ -93,27 +92,6 @@ kotlin {
 }
 
 
-compose.experimental {
-    web.application {}
-    uikit.application {
-        bundleIdPrefix = "dev.johnoreilly"
-        projectName = "PeopleInSpace"
-        deployConfigurations {
-            simulator("IPhone13Pro") {
-                //Usage: ./gradlew iosDeployIPhone8Debug
-                device = IOSDevices.IPHONE_13_PRO
-            }
-            simulator("IPad") {
-                //Usage: ./gradlew iosDeployIPadDebug
-                device = IOSDevices.IPAD_MINI_6th_Gen
-            }
-            connectedDevice("Device") {
-                //Usage: ./gradlew iosDeployDeviceRelease
-                this.teamId="***"
-            }
-        }
-    }
-}
 
 sqldelight {
     databases {
@@ -121,9 +99,4 @@ sqldelight {
             packageName.set("com.surrus.peopleinspace.db")
         }
     }
-}
-
-compose {
-    kotlinCompilerPlugin.set(libs.versions.jbComposeCompiler)
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
 }
