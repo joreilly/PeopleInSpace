@@ -12,7 +12,7 @@ ktor = "2.3.9"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.12"
 sqlDelight = "2.0.2"
-kmpNativeCoroutines = "1.0.0-ALPHA-25"
+kmpNativeCoroutines = "1.0.0-ALPHA-31"
 
 androidxActivity = "1.9.0"
 androidxComposeCompiler = "1.5.13"
