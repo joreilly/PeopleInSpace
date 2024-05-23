@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.sqlDelight) apply false
     alias(libs.plugins.gradleVersionsPlugin) apply false
     alias(libs.plugins.shadowPlugin) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.jetbrainsCompose) apply false
 }
 
 allprojects {

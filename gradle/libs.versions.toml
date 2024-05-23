@@ -1,41 +1,41 @@
 [versions]
+kotlin = "2.0.0"
+ksp = "2.0.0-1.0.21"
+
+compose-multiplatform = "1.6.10"
 composeUiTooling = "1.3.1"
-kotlin = "1.9.23"
-ksp = "1.9.23-1.0.20"
-coroutines = "1.8.0"
+coroutines = "1.8.1"
 kotlinxSerialization = "1.6.3"
-kotlinxDateTime = "0.5.0"
+kotlinxDateTime = "0.6.0"
 androidGradlePlugin = "8.2.2"
-koin = "3.5.6"
-koinCompose = "3.5.6"
-ktor = "2.3.9"
+koin = "3.6.0-Beta4"
+koinCompose = "3.6.0-Beta4"
+koinComposeMultiplatform = "1.2.0-Beta4"
+ktor = "2.3.11"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.12"
 sqlDelight = "2.0.2"
-kmpNativeCoroutines = "1.0.0-ALPHA-25"
+kmp-nativecoroutines = "1.0.0-ALPHA-31"
 
 androidxActivity = "1.9.0"
-androidxComposeCompiler = "1.5.13"
-jbComposeCompiler = "1.5.4"
 androidxComposeBom = "2024.05.00"
-androidxNavigationCompose = "2.8.0-alpha08"
+androidxNavigationCompose = "2.8.0-beta01"
 uiToolingPreview = "1.6.7"
 wearCompose = "1.3.1"
-androidxLifecycle = "2.7.0"
+androidxLifecycle = "2.8.0"
 imageLoader = "1.7.8"
 osmdroidAndroid = "6.1.18"
 
-composeMultiplatform = "1.6.2"
 accompanist = "0.32.0"
 coilCompose = "2.6.0"
-horologist = "0.6.10"
+horologist = "0.6.12"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
 okhttp = "5.0.0-alpha.14"
 
 junit = "4.13.2"
 androidxTestJUnit = "1.1.5"
-robolectric = "4.12.1"
+robolectric = "4.12.2"
 androidxTestCore = "1.5.0"
 mockito = "3.11.2"
 
@@ -56,7 +56,7 @@ espressoCore = "3.5.1"
 appcompat = "1.6.1"
 material = "1.12.0"
 constraintlayout = "2.1.4"
-lifecycleLivedataKtx = "2.7.0"
+lifecycleLivedataKtx = "2.8.0"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 
@@ -174,9 +174,11 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
+kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmp-nativecoroutines" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "gradleVersionsPlugin" }
 shadowPlugin = { id = "com.github.johnrengelman.shadow", version.ref = "shadowPlugin" }
 kotlinterGradle = { id = "org.jmailen.gradle:kotlinter-gradle", version.ref = "kotlinterGradle" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

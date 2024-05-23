@@ -24,7 +24,7 @@ final class Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        timelineCancellable = createFuture(for: repository.fetchPeople())
+        timelineCancellable = createFuture(for: PeopleInSpaceRepositoryNativeKt.fetchPeople(repository))
             .map { data in
                 let entry = PeopleInSpaceListEntry(date: Date(), peopleList: data)
                 return Timeline(entries: [entry], policy: .atEnd)
