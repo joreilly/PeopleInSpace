@@ -1,6 +1,6 @@
 # PeopleInSpace
 
-![kotlin-version](https://img.shields.io/badge/kotlin-1.9.20-blue)
+![kotlin-version](https://img.shields.io/badge/kotlin-2.0.0-blue?logo=kotlin)
 
 
 **Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose for Wear OS, Compose for Desktop, Compose for Web, and Kotlin/JS + React clients along with Ktor backend. Currently running on
@@ -43,13 +43,16 @@ primarily focused on use of Jetpack Compose and SwiftUI).  If you're at the stag
 beyond this then I'd definitely recommend checking out [KaMPKit](https://github.com/touchlab/KaMPKit) from Touchlab.
 I also have the following samples that demonstrate the use of a variety of Kotlin Multiplatform libraries (and also use Jetpack Compose and SwiftUI).
 
-* [BikeShare](https://github.com/joreilly/BikeShare)
-* [FantasyPremierLeague](https://github.com/joreilly/FantasyPremierLeague)
-* [MortyComposeKMM](https://github.com/joreilly/MortyComposeKMM)
-* [StarWars](https://github.com/joreilly/StarWars)
-* [Confetti](https://github.com/joreilly/Confetti)
-* [GalwayBus](https://github.com/joreilly/GalwayBus)
-* [Chip-8](https://github.com/joreilly/chip-8)
+*  GalwayBus (https://github.com/joreilly/GalwayBus)
+*  Confetti (https://github.com/joreilly/Confetti)
+*  BikeShare (https://github.com/joreilly/BikeShare)
+*  FantasyPremierLeague (https://github.com/joreilly/FantasyPremierLeague)
+*  ClimateTrace (https://github.com/joreilly/ClimateTraceKMP)
+*  GeminiKMP (https://github.com/joreilly/GeminiKMP)
+*  MortyComposeKMM (https://github.com/joreilly/MortyComposeKMM)
+*  StarWars (https://github.com/joreilly/StarWars)
+*  WordMasterKMP (https://github.com/joreilly/WordMasterKMP)
+*  Chip-8 (https://github.com/joreilly/chip-8)
 
 
 ### Building
