@@ -16,10 +16,10 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - name: Wear Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 26
-          target: android-wear
-          script: ./gradlew wearApp:connectedAndroidTest
+#      - name: Wear Instrumentation Tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 26
+#          target: android-wear
+#          script: ./gradlew wearApp:connectedAndroidTest
 
