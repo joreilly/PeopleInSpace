@@ -8,7 +8,6 @@
 * Android App Widget (Compose based Glance API - contributed by https://github.com/yschimke)
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
 * iOS (SwiftUI)
-* iOS (Compose for iOS - experimental support!)
 * iOS App Widget (SwiftUI)
 * watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
 * macOS (SwiftUI)

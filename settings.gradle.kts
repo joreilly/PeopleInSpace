@@ -4,9 +4,7 @@ pluginManagement {
             google()
             mavenCentral()
             gradlePluginPortal()
-            maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
             maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
-            maven("https://androidx.dev/storage/compose-compiler/repository")
         }
     }
 
@@ -25,7 +23,6 @@ include(":app")
 include(":wearApp")
 include(":compose-desktop")
 include(":compose-web")
-include(":compose-ios")
 include(":common")
 include(":backend")
 include(":graphql-server")
