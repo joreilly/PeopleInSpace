@@ -60,8 +60,7 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.koin.test)
             implementation(libs.kotlinx.coroutines.test)
-            implementation(kotlin("test-common"))
-            implementation(kotlin("test-annotations-common"))
+            implementation(kotlin("test"))
         }
 
         androidMain.dependencies {
