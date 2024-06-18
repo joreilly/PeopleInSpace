@@ -42,7 +42,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.ui.PersonProvider
-import org.koin.androidx.compose.getViewModel
 import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 import com.surrus.peopleinspace.ui.component.PeopleInSpaceTopAppBar

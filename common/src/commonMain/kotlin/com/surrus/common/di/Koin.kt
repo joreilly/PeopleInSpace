@@ -4,6 +4,7 @@ import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.common.repository.platformModule
+import com.surrus.common.viewmodel.ISSPositionViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.contentnegotiation.*

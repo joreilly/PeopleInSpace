@@ -7,19 +7,19 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            PeopleListView(viewModel: viewModel)
+            PeopleListScreen(viewModel: viewModel)
                 .tabItem {
                     Label("People", systemImage: "person")
                 }
-            ISSMapView(viewModel: viewModel)
+            ISSPositionScreen()
                 .tabItem {
-                    Label("Map", systemImage: "location")
+                    Label("ISS Position", systemImage: "location")
                 }
         }
     }
 }
 
-struct PeopleListView: View {
+struct PeopleListScreen: View {
     @ObservedObject var viewModel: PeopleInSpaceViewModel
     
     @State private var path: [Assignment] = []

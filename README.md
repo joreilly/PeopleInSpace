@@ -9,8 +9,6 @@
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
 * iOS (SwiftUI)
 * iOS App Widget (SwiftUI)
-* watchOS (SwiftUI) (contributed by https://github.com/nealsanche)
-* macOS (SwiftUI)
 * Swift Executable Package
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - Wasm based)
@@ -57,7 +55,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 ### Building
 You need to use at least Android Studio Flamingo (**note: Java 17 is now the minimum version required**). Requires Xcode 13.2 or later (due to use of new Swift 5.5 concurrency APIs).
 
-Open `PeopleInSpaceSwiftUI' for  iOS/watchOS/macOS projects.  
+Open `PeopleInSpaceSwiftUI' for  iOS projects.  
 
 To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 
@@ -107,25 +105,11 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 <img width="1052" alt="Screenshot 2022-11-11 at 21 24 59" src="https://user-images.githubusercontent.com/6302/201433001-e6c12438-ca8f-4b35-912c-c602b1f43da6.png">
 
 
-
-**watchOS (SwiftUI)**
-<br/>
-<img width="250" alt="watchOS Screenshot 1" src="https://user-images.githubusercontent.com/6302/139499100-dc5112b0-04b9-4bdc-9c30-9975f3608eb3.png">
-<img width="250" alt="watch0S Screenshot 2" src="https://user-images.githubusercontent.com/6302/139499115-944b241d-8e92-428b-b86c-f599b456c4bf.png">
-
-
-
 **Wear OS (Wear Compose)**
 <br/>
 <img width="250" alt="Wear Compose Screenshot 1" src="https://user-images.githubusercontent.com/6302/137623548-ac51ca72-572e-4009-8b34-315defdf93a5.png">
 <img width="250" alt="Wear Compose Screenshot 2" src="https://user-images.githubusercontent.com/6302/137640396-851489bb-e41d-47ef-badb-e2d22454eee4.png">
 <img width="250" alt="Wear Compose Screenshot 3" src="https://user-images.githubusercontent.com/6302/139468900-16ad4e95-41dc-427f-977c-b893b1751c78.png">
-
-
-**macOS (SwiftUI)**
-<br/>
-<img width="937" alt="Screenshot 2021-06-01 at 20 02 31" src="https://user-images.githubusercontent.com/6302/120376983-6ec37e80-c314-11eb-8279-7acc0c2d5206.png">
-
 
 
 **Compose for Desktop**

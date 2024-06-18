@@ -5,6 +5,8 @@ plugins {
     id("app.cash.sqldelight")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.2.2"
 }
 
@@ -24,10 +26,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64(),
-        watchosArm64(),
-        watchosSimulatorArm64(),
-        macosArm64()
+        iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
             baseName = "common"
@@ -52,9 +51,18 @@ kotlin {
             implementation(libs.sqldelight.coroutines.extensions)
 
             api(libs.koin.core)
+            implementation(libs.koin.compose.multiplatform)
             implementation(libs.koin.test)
 
             api(libs.kermit)
+
+            implementation(compose.ui)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.components.resources)
+            implementation(libs.androidx.lifecycle.compose.kmp)
+            implementation(libs.androidx.lifecycle.viewmodel.kmp)
         }
 
         commonTest.dependencies {
@@ -66,6 +74,8 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.sqldelight.android.driver)
+
+            implementation(libs.osmdroidAndroid)
         }
 
         jvmMain.dependencies {
@@ -98,11 +108,10 @@ multiplatformSwiftPackage {
     swiftToolsVersion("5.9")
     targetPlatforms {
         iOS { v("14") }
-        macOS { v("12")}
     }
 }
 
 kotlin.sourceSets.all {
+    languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
-
