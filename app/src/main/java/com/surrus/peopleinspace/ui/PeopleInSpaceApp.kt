@@ -1,83 +1,93 @@
 package com.surrus.peopleinspace.ui
 
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.activity.compose.BackHandler
+import androidx.annotation.StringRes
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationRail
-import androidx.compose.material3.NavigationRailItem
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffold
+import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole
+import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
+import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
+import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.surrus.peopleinspace.navigation.PeopleInSpaceNavHost
-import com.surrus.peopleinspace.navigation.TopLevelDestination
-import com.surrus.peopleinspace.ui.component.PeopleInSpaceBackground
+import com.surrus.common.remote.Assignment
+import com.surrus.peopleinspace.R
+import com.surrus.peopleinspace.issposition.ISSPositionRoute
+import com.surrus.peopleinspace.persondetails.PersonDetailsScreen
+import com.surrus.peopleinspace.personlist.PersonListRoute
 
-@Composable
-fun PeopleInSpaceApp(
-    windowSizeClass: WindowSizeClass,
-    appState: PeopleInSpaceAppState = rememberPeopleInSpaceAppState(windowSizeClass)
+enum class AppDestinations(
+    @StringRes val label: Int,
+    val icon: ImageVector,
+    @StringRes val contentDescription: Int
 ) {
-    val navController = rememberNavController()
+    PERSON_LIST(R.string.people, Icons.Default.Person, R.string.people),
+    ISS_POSITION(R.string.iss_position, Icons.Default.LocationOn, R.string.iss_position),
+}
+
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+@Composable
+fun PeopleInSpaceApp() {
+    var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.PERSON_LIST) }
+    val navigator = rememberListDetailPaneScaffoldNavigator<Assignment>()
+
+    BackHandler(navigator.canNavigateBack()) {
+        navigator.navigateBack()
+    }
 
     PeopleInSpaceTheme {
-        PeopleInSpaceBackground {
-            Scaffold(
-                containerColor = Color.Transparent,
-                contentColor = MaterialTheme.colorScheme.onBackground,
-                contentWindowInsets = WindowInsets(0, 0, 0, 0),
-                bottomBar = {
-                    if (appState.shouldShowBottomBar) {
-                        PeopleInSpaceBottomBar(
-                            navController = navController,
-                            destinations = appState.topLevelDestinations
-                        )
-                    }
-                }
-            ) { padding ->
-                Row(
-                    Modifier
-                        .fillMaxSize()
-                        .windowInsetsPadding(
-                            WindowInsets.safeDrawing.only(
-                                WindowInsetsSides.Horizontal
+        NavigationSuiteScaffold(
+            navigationSuiteItems = {
+                AppDestinations.entries.forEach {
+                    item(
+                        icon = {
+                            Icon(
+                                it.icon,
+                                contentDescription = stringResource(it.contentDescription)
                             )
-                        )
-                ) {
-                    if (appState.shouldShowNavRail) {
-                        PeopleInSpaceNavRail(
-                            navController = navController,
-                            destinations = appState.topLevelDestinations,
-                            modifier = Modifier.safeDrawingPadding()
-                        )
-                    }
-
-                    PeopleInSpaceNavHost(
-                        navController = navController,
-                        onBackClick = {  navController.popBackStack() },
-                        modifier = Modifier
-                            .padding(padding)
-                            .windowInsetsPadding(WindowInsets.statusBars)
+                        },
+                        label = { Text(stringResource(it.label)) },
+                        selected = it == currentDestination,
+                        onClick = { currentDestination = it }
                     )
+                }
+            }
+        ) {
+            when (currentDestination) {
+                AppDestinations.PERSON_LIST -> {
+                    ListDetailPaneScaffold(
+                        directive = navigator.scaffoldDirective,
+                        value = navigator.scaffoldValue,
+                        listPane = {
+                            PersonListRoute { person ->
+                                navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, person)
+                            }
+                        },
+                        detailPane = {
+                            navigator.currentDestination?.content?.let {
+                                PersonDetailsScreen(
+                                    person = it,
+                                    showBackButton = !navigator.isListPaneVisible(),
+                                    navigator::navigateBack
+                                )
+                            }
+                        }
+                    )
+                }
+                AppDestinations.ISS_POSITION -> {
+                    ISSPositionRoute()
                 }
             }
         }
@@ -85,69 +95,8 @@ fun PeopleInSpaceApp(
 }
 
 
-@Composable
-private fun PeopleInSpaceNavRail(
-    navController: NavController,
-    destinations: List<TopLevelDestination>,
-    modifier: Modifier = Modifier,
-) {
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+private fun <T> ThreePaneScaffoldNavigator<T>.isListPaneVisible(): Boolean =
+    scaffoldValue[ListDetailPaneScaffoldRole.List] == PaneAdaptedValue.Expanded
 
-    NavigationRail(
-        modifier = modifier,
-        containerColor = Color.Transparent,
-        contentColor = PeopleInSpaceNavigationDefaults.navigationContentColor(),
-    ) {
-        destinations.forEach { destination ->
-            val currentDestination = navController.currentBackStackEntryAsState().value?.destination
-            val selected = currentDestination?.route == destination.route::class.qualifiedName
-            NavigationRailItem(
-                selected = selected,
-                onClick = { navController.navigate(destination.route) },
-                icon = {
-                    val icon = if (selected) {
-                        destination.selectedIcon
-                    } else {
-                        destination.unselectedIcon
-                    }
-                    Icon(icon, contentDescription = stringResource(destination.iconTextId))
-                }
-            )
-        }
-    }
-}
-
-
-@Composable
-private fun PeopleInSpaceBottomBar(
-    navController: NavController,
-    destinations: List<TopLevelDestination>
-) {
-    NavigationBar(
-        contentColor = PeopleInSpaceNavigationDefaults.navigationContentColor(),
-        tonalElevation = 0.dp,
-    ) {
-        destinations.forEach { destination ->
-            val currentDestination = navController.currentBackStackEntryAsState().value?.destination
-            val selected = currentDestination?.route == destination.route::class.qualifiedName
-            NavigationBarItem(
-                selected = selected,
-                onClick = { navController.navigate(destination.route) },
-                icon = {
-                    val icon = if (selected) {
-                        destination.selectedIcon
-                    } else {
-                        destination.unselectedIcon
-                    }
-                    Icon(icon, contentDescription = stringResource(destination.iconTextId))
-                },
-                label = { Text(stringResource(destination.iconTextId)) }
-            )
-        }
-    }
-}
-
-object PeopleInSpaceNavigationDefaults {
-    @Composable
-    fun navigationContentColor() = MaterialTheme.colorScheme.onSurfaceVariant
-}
 
