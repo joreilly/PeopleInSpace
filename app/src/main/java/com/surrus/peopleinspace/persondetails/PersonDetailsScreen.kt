@@ -32,11 +32,11 @@ import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 
 
 @Composable
-fun PersonDetailsScreen(person: Assignment, popBack: () -> Unit) {
+fun PersonDetailsScreen(person: Assignment, showBackButton: Boolean, popBack: () -> Unit) {
     PeopleInSpaceGradientBackground {
         Scaffold(
             topBar = {
-                PersonDetailsTopAppBar(personName = person.name, popBack = popBack)
+                PersonDetailsTopAppBar(personName = person.name, showBackButton, popBack = popBack)
             },
             containerColor = Color.Transparent,
             contentWindowInsets = WindowInsets(0, 0, 0, 0)
@@ -47,12 +47,14 @@ fun PersonDetailsScreen(person: Assignment, popBack: () -> Unit) {
 }
 
 @Composable
-fun PersonDetailsTopAppBar(personName: String, popBack: () -> Unit) {
+fun PersonDetailsTopAppBar(personName: String, showBackButton: Boolean, popBack: () -> Unit) {
     CenterAlignedTopAppBar(
         title = { Text(personName) },
         navigationIcon = {
-            IconButton(onClick = { popBack() }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+            if (showBackButton) {
+                IconButton(onClick = { popBack() }) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                }
             }
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
