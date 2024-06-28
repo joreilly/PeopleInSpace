@@ -3,7 +3,7 @@
 ![kotlin-version](https://img.shields.io/badge/kotlin-2.0.0-blue?logo=kotlin)
 
 
-**Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose for Wear OS, Compose for Desktop, Compose for Web, and Kotlin/JS + React clients along with Ktor backend. Currently running on
+**Kotlin Multiplatform** project with SwiftUI, Jetpack Compose, Compose for Wear OS, Compose for Desktop and Compose for Web clients along with Ktor backend. Currently running on
 * Android (Jetpack Compose)
 * Android App Widget (Compose based Glance API - contributed by https://github.com/yschimke)
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
