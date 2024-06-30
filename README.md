@@ -136,5 +136,6 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 * [SQLDelight](https://github.com/cashapp/sqldelight)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [SwiftUI](https://developer.apple.com/documentation/swiftui)
+* [SKIE](https://skie.touchlab.co/intro)
 * [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
 * [Coil](https://coil-kt.github.io/coil/)
