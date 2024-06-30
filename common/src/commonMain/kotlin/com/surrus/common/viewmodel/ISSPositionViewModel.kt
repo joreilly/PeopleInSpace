@@ -2,7 +2,6 @@ package com.surrus.common.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,7 +12,6 @@ import org.koin.core.component.inject
 class ISSPositionViewModel : ViewModel(), KoinComponent {
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface by inject()
 
-    @NativeCoroutines
     val position = peopleInSpaceRepository.pollISSPosition()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), IssPosition(0.0, 0.0))
 }

@@ -182,3 +182,4 @@ sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+skie = { id = "co.touchlab.skie", version = "0.8.0" }

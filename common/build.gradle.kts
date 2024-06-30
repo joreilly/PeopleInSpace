@@ -7,6 +7,7 @@ plugins {
     id("com.rickclephas.kmp.nativecoroutines")
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.skie)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.2.2"
 }
 
@@ -114,4 +115,10 @@ multiplatformSwiftPackage {
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+}
+
+skie {
+    features {
+        enableSwiftUIObservingPreview = true
+    }
 }
