@@ -17,7 +17,6 @@ import org.koin.core.component.inject
 interface PeopleInSpaceRepositoryInterface {
     @NativeCoroutines
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
-    @NativeCoroutines
     fun pollISSPosition(): Flow<IssPosition>
     @NativeCoroutines
     suspend fun fetchPeople(): List<Assignment>
@@ -80,7 +79,6 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     @NativeCoroutines
     override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
-    @NativeCoroutines
     override fun pollISSPosition(): Flow<IssPosition> {
         return flow {
             while (true) {

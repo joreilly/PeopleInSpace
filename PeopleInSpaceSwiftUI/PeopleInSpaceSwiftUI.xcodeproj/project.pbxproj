@@ -9,28 +9,14 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		1A298F7F2A22940100437DE6 /* PeopleInSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */; };
 		1A3AB5DE2A22235F00296F07 /* PeopleInSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */; };
-		1A3AB5E02A22247A00296F07 /* ISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSMapView.swift */; };
+		1A3AB5E02A22247A00296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
 		1A3AB5E32A2224BC00296F07 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E22A2224BC00296F07 /* KMPNativeCoroutinesAsync */; };
 		1A3AB5E52A2224BC00296F07 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E42A2224BC00296F07 /* KMPNativeCoroutinesCombine */; };
 		1A3AB5E72A2224BC00296F07 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E62A2224BC00296F07 /* KMPNativeCoroutinesCore */; };
-		1A3AB64E2A225F8F00296F07 /* PeopleInSpaceWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB64D2A225F8F00296F07 /* PeopleInSpaceWatchApp.swift */; };
-		1A3AB6502A225F8F00296F07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB64F2A225F8F00296F07 /* ContentView.swift */; };
-		1A3AB6522A225F9000296F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3AB6512A225F9000296F07 /* Assets.xcassets */; };
-		1A3AB6552A225F9000296F07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3AB6542A225F9000296F07 /* Preview Assets.xcassets */; };
-		1A3AB6592A225F9000296F07 /* PeopleInSpaceWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1A3AB64B2A225F8F00296F07 /* PeopleInSpaceWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1A3AB6612A2261B200296F07 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB6602A2261B200296F07 /* KMPNativeCoroutinesCombine */; };
-		1A3AB6632A22629100296F07 /* PersonDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB6622A22629100296F07 /* PersonDetailsView.swift */; };
-		1A3AB66B2A2283BE00296F07 /* PeopleInSpaceMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB66A2A2283BE00296F07 /* PeopleInSpaceMacApp.swift */; };
-		1A3AB66D2A2283BE00296F07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB66C2A2283BE00296F07 /* ContentView.swift */; };
-		1A3AB66F2A2283BE00296F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3AB66E2A2283BE00296F07 /* Assets.xcassets */; };
-		1A3AB6722A2283BE00296F07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A3AB6712A2283BE00296F07 /* Preview Assets.xcassets */; };
 		1A3AB6792A22891C00296F07 /* PeopleInSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */; };
 		1A3AB67B2A22893200296F07 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB67A2A22893200296F07 /* KMPNativeCoroutinesAsync */; };
-		1A3AB67D2A22895A00296F07 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB67C2A22895A00296F07 /* MapView.swift */; };
-		1A3AB67E2A2289B700296F07 /* ISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSMapView.swift */; };
-		1AD02CA12A228ACC00CBF834 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1AD02CA02A228ACC00CBF834 /* KMPNativeCoroutinesAsync */; };
+		1A3AB67E2A2289B700296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
 		1AD02CA82A228CB200CBF834 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD02CA72A228CB200CBF834 /* WidgetKit.framework */; };
 		1AD02CAA2A228CB200CBF834 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD02CA92A228CB200CBF834 /* SwiftUI.framework */; };
 		1AD02CB12A228CB200CBF834 /* PeopleInSpaceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD02CB02A228CB200CBF834 /* PeopleInSpaceWidget.swift */; };
@@ -42,16 +28,11 @@
 		1AD02CC32A2290BA00CBF834 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 1AD02CC22A2290BA00CBF834 /* KMPNativeCoroutinesCombine */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */; };
+		DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1A3AB6562A225F9000296F07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7555FF73242A565900829871 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1A3AB64A2A225F8F00296F07;
-			remoteInfo = "PeopleInSpaceWatch Watch App";
-		};
 		1AD02CB82A228CB300CBF834 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7555FF73242A565900829871 /* Project object */;
@@ -68,7 +49,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1A3AB6592A225F9000296F07 /* PeopleInSpaceWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,20 +80,8 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInSpaceViewModel.swift; sourceTree = "<group>"; };
-		1A3AB5DF2A22247A00296F07 /* ISSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSMapView.swift; sourceTree = "<group>"; };
-		1A3AB64B2A225F8F00296F07 /* PeopleInSpaceWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PeopleInSpaceWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A3AB64D2A225F8F00296F07 /* PeopleInSpaceWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInSpaceWatchApp.swift; sourceTree = "<group>"; };
-		1A3AB64F2A225F8F00296F07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1A3AB6512A225F9000296F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A3AB6542A225F9000296F07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A3AB6622A22629100296F07 /* PersonDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsView.swift; sourceTree = "<group>"; };
+		1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSPositionScreen.swift; sourceTree = "<group>"; };
 		1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A3AB66A2A2283BE00296F07 /* PeopleInSpaceMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInSpaceMacApp.swift; sourceTree = "<group>"; };
-		1A3AB66C2A2283BE00296F07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1A3AB66E2A2283BE00296F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A3AB6712A2283BE00296F07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A3AB6732A2283BE00296F07 /* PeopleInSpaceMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeopleInSpaceMac.entitlements; sourceTree = "<group>"; };
-		1A3AB67C2A22895A00296F07 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeopleInSpaceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD02CA72A228CB200CBF834 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1AD02CA92A228CB200CBF834 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -125,18 +93,11 @@
 		7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeViewFactory.swift; sourceTree = "<group>"; };
+		DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeISSMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1A3AB6482A225F8F00296F07 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AD02CA12A228ACC00CBF834 /* KMPNativeCoroutinesAsync in Frameworks */,
-				1A3AB6612A2261B200296F07 /* KMPNativeCoroutinesCombine in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1A3AB6652A2283BD00296F07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,47 +138,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1A3AB64C2A225F8F00296F07 /* PeopleInSpaceWatch Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				1A3AB64D2A225F8F00296F07 /* PeopleInSpaceWatchApp.swift */,
-				1A3AB64F2A225F8F00296F07 /* ContentView.swift */,
-				1A3AB6512A225F9000296F07 /* Assets.xcassets */,
-				1A3AB6532A225F9000296F07 /* Preview Content */,
-				1A3AB6622A22629100296F07 /* PersonDetailsView.swift */,
-			);
-			path = "PeopleInSpaceWatch Watch App";
-			sourceTree = "<group>";
-		};
-		1A3AB6532A225F9000296F07 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1A3AB6542A225F9000296F07 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1A3AB6692A2283BD00296F07 /* PeopleInSpaceMac */ = {
-			isa = PBXGroup;
-			children = (
-				1A3AB66A2A2283BE00296F07 /* PeopleInSpaceMacApp.swift */,
-				1A3AB66C2A2283BE00296F07 /* ContentView.swift */,
-				1A3AB66E2A2283BE00296F07 /* Assets.xcassets */,
-				1A3AB6732A2283BE00296F07 /* PeopleInSpaceMac.entitlements */,
-				1A3AB6702A2283BE00296F07 /* Preview Content */,
-				1A3AB67C2A22895A00296F07 /* MapView.swift */,
-			);
-			path = PeopleInSpaceMac;
-			sourceTree = "<group>";
-		};
-		1A3AB6702A2283BE00296F07 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1A3AB6712A2283BE00296F07 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		1AD02CAB2A228CB200CBF834 /* PeopleInSpaceWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,8 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* PeopleInSpaceSwiftUI */,
-				1A3AB64C2A225F8F00296F07 /* PeopleInSpaceWatch Watch App */,
-				1A3AB6692A2283BD00296F07 /* PeopleInSpaceMac */,
 				1AD02CAB2A228CB200CBF834 /* PeopleInSpaceWidget */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
@@ -245,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */,
-				1A3AB64B2A225F8F00296F07 /* PeopleInSpaceWatch Watch App.app */,
 				1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */,
 				1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */,
 			);
@@ -261,7 +178,9 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */,
-				1A3AB5DF2A22247A00296F07 /* ISSMapView.swift */,
+				1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */,
+				DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */,
+				DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */,
 			);
 			path = PeopleInSpaceSwiftUI;
 			sourceTree = "<group>";
@@ -278,28 +197,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A3AB64A2A225F8F00296F07 /* PeopleInSpaceWatch Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1A3AB65A2A225F9000296F07 /* Build configuration list for PBXNativeTarget "PeopleInSpaceWatch Watch App" */;
-			buildPhases = (
-				1A3AB65D2A22603500296F07 /* ShellScript */,
-				1A3AB6472A225F8F00296F07 /* Sources */,
-				1A3AB6482A225F8F00296F07 /* Frameworks */,
-				1A3AB6492A225F8F00296F07 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "PeopleInSpaceWatch Watch App";
-			packageProductDependencies = (
-				1A3AB6602A2261B200296F07 /* KMPNativeCoroutinesCombine */,
-				1AD02CA02A228ACC00CBF834 /* KMPNativeCoroutinesAsync */,
-			);
-			productName = "PeopleInSpaceWatch Watch App";
-			productReference = 1A3AB64B2A225F8F00296F07 /* PeopleInSpaceWatch Watch App.app */;
-			productType = "com.apple.product-type.application";
-		};
 		1A3AB6672A2283BD00296F07 /* PeopleInSpaceMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A3AB6742A2283BE00296F07 /* Build configuration list for PBXNativeTarget "PeopleInSpaceMac" */;
@@ -358,7 +255,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				1A3AB6572A225F9000296F07 /* PBXTargetDependency */,
 				1AD02CB92A228CB300CBF834 /* PBXTargetDependency */,
 			);
 			name = PeopleInSpaceSwiftUI;
@@ -381,9 +277,6 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
-					1A3AB64A2A225F8F00296F07 = {
-						CreatedOnToolsVersion = 14.3;
-					};
 					1A3AB6672A2283BD00296F07 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -412,7 +305,6 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* PeopleInSpaceSwiftUI */,
-				1A3AB64A2A225F8F00296F07 /* PeopleInSpaceWatch Watch App */,
 				1A3AB6672A2283BD00296F07 /* PeopleInSpaceMac */,
 				1AD02CA52A228CB200CBF834 /* PeopleInSpaceWidgetExtension */,
 			);
@@ -420,21 +312,10 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1A3AB6492A225F8F00296F07 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A3AB6552A225F9000296F07 /* Preview Assets.xcassets in Resources */,
-				1A3AB6522A225F9000296F07 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1A3AB6662A2283BD00296F07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A3AB6722A2283BE00296F07 /* Preview Assets.xcassets in Resources */,
-				1A3AB66F2A2283BE00296F07 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,23 +339,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A3AB65D2A22603500296F07 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :common:embedAndSignAppleFrameworkForXcode\n";
-		};
 		1A3AB6772A22850300296F07 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,26 +393,12 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1A3AB6472A225F8F00296F07 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A3AB6502A225F8F00296F07 /* ContentView.swift in Sources */,
-				1A3AB6632A22629100296F07 /* PersonDetailsView.swift in Sources */,
-				1A3AB64E2A225F8F00296F07 /* PeopleInSpaceWatchApp.swift in Sources */,
-				1A298F7F2A22940100437DE6 /* PeopleInSpaceViewModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1A3AB6642A2283BD00296F07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1A3AB6792A22891C00296F07 /* PeopleInSpaceViewModel.swift in Sources */,
-				1A3AB67E2A2289B700296F07 /* ISSMapView.swift in Sources */,
-				1A3AB67D2A22895A00296F07 /* MapView.swift in Sources */,
-				1A3AB66D2A2283BE00296F07 /* ContentView.swift in Sources */,
-				1A3AB66B2A2283BE00296F07 /* PeopleInSpaceMacApp.swift in Sources */,
+				1A3AB67E2A2289B700296F07 /* ISSPositionScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,20 +417,17 @@
 			files = (
 				1A3AB5DE2A22235F00296F07 /* PeopleInSpaceViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */,
 				1AD02CB72A228CB300CBF834 /* PeopleInSpaceWidget.intentdefinition in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				1A3AB5E02A22247A00296F07 /* ISSMapView.swift in Sources */,
+				DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */,
+				1A3AB5E02A22247A00296F07 /* ISSPositionScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1A3AB6572A225F9000296F07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1A3AB64A2A225F8F00296F07 /* PeopleInSpaceWatch Watch App */;
-			targetProxy = 1A3AB6562A225F9000296F07 /* PBXContainerItemProxy */;
-		};
 		1AD02CB92A228CB300CBF834 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1AD02CA52A228CB200CBF834 /* PeopleInSpaceWidgetExtension */;
@@ -589,87 +436,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1A3AB65B2A225F9000296F07 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = NT77748GS8;
-				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWatch;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = orgIdentifier.PeopleInSpaceSwiftUI;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					common,
-					"-lsqlite3",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.PeopleInSpaceSwiftUI.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
-			};
-			name = Debug;
-		};
-		1A3AB65C2A225F9000296F07 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64_32;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PeopleInSpaceWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = NT77748GS8;
-				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWatch;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = orgIdentifier.PeopleInSpaceSwiftUI;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					common,
-					"-lsqlite3",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.PeopleInSpaceSwiftUI.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
-			};
-			name = Release;
-		};
 		1A3AB6752A2283BE00296F07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -867,7 +633,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -922,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -946,7 +712,7 @@
 					"$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -981,7 +747,7 @@
 					"$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1005,15 +771,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A3AB65A2A225F9000296F07 /* Build configuration list for PBXNativeTarget "PeopleInSpaceWatch Watch App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1A3AB65B2A225F9000296F07 /* Debug */,
-				1A3AB65C2A225F9000296F07 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1A3AB6742A2283BE00296F07 /* Build configuration list for PBXNativeTarget "PeopleInSpaceMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1079,17 +836,7 @@
 			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
 			productName = KMPNativeCoroutinesCore;
 		};
-		1A3AB6602A2261B200296F07 /* KMPNativeCoroutinesCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesCombine;
-		};
 		1A3AB67A2A22893200296F07 /* KMPNativeCoroutinesAsync */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesAsync;
-		};
-		1AD02CA02A228ACC00CBF834 /* KMPNativeCoroutinesAsync */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
 			productName = KMPNativeCoroutinesAsync;

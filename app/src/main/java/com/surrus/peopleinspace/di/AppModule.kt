@@ -1,11 +1,12 @@
 package com.surrus.peopleinspace.di
 
-import com.surrus.peopleinspace.issposition.ISSPositionViewModel
+import com.surrus.common.viewmodel.ISSPositionViewModel
 import com.surrus.peopleinspace.personlist.PersonListViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val appModule = module {
     viewModelOf(::PersonListViewModel)
-    viewModelOf(::ISSPositionViewModel)
+    viewModel { ISSPositionViewModel() }
 }
