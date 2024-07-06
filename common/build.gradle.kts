@@ -77,6 +77,7 @@ kotlin {
             implementation(libs.sqldelight.android.driver)
 
             implementation(libs.osmdroidAndroid)
+            implementation(libs.osm.android.compose)
         }
 
         jvmMain.dependencies {

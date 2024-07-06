@@ -1,43 +1,49 @@
 package com.surrus.common.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.viewinterop.AndroidView
 import com.surrus.common.viewmodel.ISSPositionViewModel
+import com.utsman.osmandcompose.CameraProperty
+import com.utsman.osmandcompose.CameraState
+import com.utsman.osmandcompose.DefaultMapProperties
+import com.utsman.osmandcompose.Marker
+import com.utsman.osmandcompose.MarkerState
+import com.utsman.osmandcompose.OpenStreetMap
 import org.osmdroid.util.GeoPoint
-import org.osmdroid.views.CustomZoomButtonsController
-import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.Marker
 
 
 @Composable
 actual fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel) {
     val position by viewModel.position.collectAsState()
 
-    val context = LocalContext.current
-    val map = remember {
-        MapView(context).apply {
-            clipToOutline = true
+    val cameraState by remember {
+        derivedStateOf {
+            CameraState(CameraProperty().apply {
+                geoPoint = GeoPoint(position.latitude, position.longitude)
+                zoom = 4.0
+            })
         }
     }
 
-    AndroidView({ map }, modifier = modifier) { map ->
-        map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
-        map.setMultiTouchControls(true)
+    val issPositionMarkerState by remember {
+        derivedStateOf {
+            val geoPoint = GeoPoint(position.latitude, position.longitude)
+            MarkerState(geoPoint, 0.0f)
+        }
+    }
 
-        val mapController = map.controller
-        mapController.setZoom(4.0)
-        val issPositionPoint = GeoPoint(position.latitude, position.longitude)
-        mapController.setCenter(issPositionPoint)
-
-        map.overlays.clear()
-        val stationMarker = Marker(map)
-        stationMarker.position = issPositionPoint
-        stationMarker.title = "ISS"
-        map.overlays.add(stationMarker)
+    Surface(modifier = modifier.fillMaxSize(),) {
+        OpenStreetMap(
+            cameraState = cameraState,
+            properties = DefaultMapProperties.copy(minZoomLevel = 4.0),
+        ) {
+            Marker(state = issPositionMarkerState, title = "ISS")
+        }
     }
 }
