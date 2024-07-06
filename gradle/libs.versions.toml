@@ -1,17 +1,17 @@
 [versions]
 kotlin = "2.0.0"
-ksp = "2.0.0-1.0.21"
+ksp = "2.0.0-1.0.22"
 
 compose-multiplatform = "1.6.11"
 composeUiTooling = "1.3.1"
 coroutines = "1.8.1"
-kotlinxSerialization = "1.6.3"
-kotlinxDateTime = "0.6.0"
-androidGradlePlugin = "8.4.1"
+kotlinxSerialization = "1.7.0"
+androidGradlePlugin = "8.4.2"
 koin = "3.6.0-Beta4"
 koinCompose = "3.6.0-Beta4"
 koinComposeMultiplatform = "1.2.0-Beta4"
 ktor = "2.3.11"
+osmdroidAndroid = "6.1.18"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.13"
 sqlDelight = "2.0.2"
@@ -24,12 +24,10 @@ material3-adaptive-navigation-suite = "1.3.0-beta04"
 androidxNavigationCompose = "2.8.0-beta04"
 uiToolingPreview = "1.6.8"
 wearCompose = "1.3.1"
-androidxLifecycle = "2.8.2"
+androidxLifecycle = "2.8.3"
 androidxLifecycleKMP = "2.8.0"
 imageLoader = "1.7.8"
-osmdroidAndroid = "6.1.18"
 
-accompanist = "0.32.0"
 coilCompose = "2.6.0"
 horologist = "0.6.12"
 glanceWearTiles = "1.0.0-alpha05"
@@ -37,41 +35,29 @@ glanceAppWidget = "1.0.0"
 okhttp = "5.0.0-alpha.14"
 
 junit = "4.13.2"
-androidxTestJUnit = "1.1.5"
+androidxTestJUnit = "1.2.1"
 robolectric = "4.12.2"
-androidxTestCore = "1.5.0"
+androidxTestCore = "1.6.1"
 mockito = "3.11.2"
 
-multiplatformSettings = "1.2.0"
 kermit = "2.0.3"
 
 gradleVersionsPlugin = "0.51.0"
 shadowPlugin = "7.0.0"
-kotlinterGradle = "3.4.5"
+skie = "0.8.1"
 
 minSdk = "24"
-minWearSdk = "26"
-targetSdk = "34"
-targetWearSdk = "33"
 compileSdk = "34"
-coreKtx = "1.13.1"
-espressoCore = "3.5.1"
-appcompat = "1.6.1"
-material = "1.12.0"
-constraintlayout = "2.1.4"
-lifecycleLivedataKtx = "2.8.0"
-navigationFragmentKtx = "2.7.7"
-navigationUiKtx = "2.7.7"
-
+targetSdk = "34"
+minWearSdk = "26"
+targetWearSdk = "33"
 
 [libraries]
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingPreview" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
-osm-android-compose = { module = "tech.utsmankece:osm-android-compose", version.ref = "osmAndroidCompose" }
 wear-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "composeUiTooling" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDateTime" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
@@ -79,11 +65,9 @@ androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", versi
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material" }
-androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-material3 =  { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "material3-adaptive" }
 androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "material3-adaptive" }
@@ -106,16 +90,14 @@ metrics = "androidx.metrics:metrics-performance:1.0.0-beta01"
 
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
+osm-android-compose = { module = "tech.utsmankece:osm-android-compose", version.ref = "osmAndroidCompose" }
 
 wear-compose-founndation = { module = "androidx.wear.compose:compose-foundation", version.ref = "wearCompose" }
 wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "wearCompose" }
 wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearCompose" }
 
 coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
-accompanist-swiperefresh = { group = "com.google.accompanist", name = "accompanist-swiperefresh", version.ref = "accompanist" }
-accompanist-placeholder = { group = "com.google.accompanist", name = "accompanist-placeholder-material3", version.ref = "accompanist" }
 horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
-horologist-composables = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
 
 glance-tiles = { module = "androidx.glance:glance-wear-tiles", version.ref = "glanceWearTiles" }
 glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glanceAppWidget" }
@@ -149,7 +131,6 @@ sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sq
 sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
 sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
-sqldelight-native-driver-macos = { module = "app.cash.sqldelight:native-driver-macosarm64", version.ref = "sqlDelight" }
 sqldelight-sqlite-driver = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
@@ -173,13 +154,11 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmp-nativecoroutines" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "gradleVersionsPlugin" }
 shadowPlugin = { id = "com.github.johnrengelman.shadow", version.ref = "shadowPlugin" }
-kotlinterGradle = { id = "org.jmailen.gradle:kotlinter-gradle", version.ref = "kotlinterGradle" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-skie = { id = "co.touchlab.skie", version = "0.8.0" }
+skie = { id = "co.touchlab.skie", version.ref = "skie" }

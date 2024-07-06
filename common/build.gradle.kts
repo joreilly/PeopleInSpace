@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform")
-    id("kotlinx-serialization")
-    id("com.android.library")
-    id("app.cash.sqldelight")
-    id("com.google.devtools.ksp")
-    id("com.rickclephas.kmp.nativecoroutines")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kmpNativeCoroutines)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.skie)
@@ -77,6 +77,7 @@ kotlin {
             implementation(libs.sqldelight.android.driver)
 
             implementation(libs.osmdroidAndroid)
+            implementation(libs.osm.android.compose)
         }
 
         jvmMain.dependencies {
