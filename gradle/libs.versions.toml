@@ -40,7 +40,7 @@ robolectric = "4.12.2"
 androidxTestCore = "1.6.1"
 mockito = "3.11.2"
 
-kermit = "2.0.3"
+kermit = "2.0.4"
 
 gradleVersionsPlugin = "0.51.0"
 shadowPlugin = "7.0.0"
