@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
 sealed class PersonListUiState {
@@ -16,10 +18,8 @@ sealed class PersonListUiState {
     data class Success(val result: List<Assignment>) : PersonListUiState()
 }
 
-
-class PersonListViewModel(
-    private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
-) : ViewModel() {
+class PersonListViewModel() : ViewModel(), KoinComponent {
+    private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface by inject()
 
     val uiState = peopleInSpaceRepository.fetchPeopleAsFlow()
         .map { PersonListUiState.Success(it) }

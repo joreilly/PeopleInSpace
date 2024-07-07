@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		1A3AB5DE2A22235F00296F07 /* PeopleInSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */; };
 		1A3AB5E02A22247A00296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
 		1A3AB5E32A2224BC00296F07 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E22A2224BC00296F07 /* KMPNativeCoroutinesAsync */; };
 		1A3AB5E52A2224BC00296F07 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E42A2224BC00296F07 /* KMPNativeCoroutinesCombine */; };
 		1A3AB5E72A2224BC00296F07 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E62A2224BC00296F07 /* KMPNativeCoroutinesCore */; };
-		1A3AB6792A22891C00296F07 /* PeopleInSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */; };
 		1A3AB67B2A22893200296F07 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB67A2A22893200296F07 /* KMPNativeCoroutinesAsync */; };
 		1A3AB67E2A2289B700296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
 		1AD02CA82A228CB200CBF834 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD02CA72A228CB200CBF834 /* WidgetKit.framework */; };
@@ -79,7 +77,6 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInSpaceViewModel.swift; sourceTree = "<group>"; };
 		1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSPositionScreen.swift; sourceTree = "<group>"; };
 		1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeopleInSpaceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +174,6 @@
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				1A3AB5DD2A22235F00296F07 /* PeopleInSpaceViewModel.swift */,
 				1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */,
 				DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */,
 				DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */,
@@ -397,7 +393,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A3AB6792A22891C00296F07 /* PeopleInSpaceViewModel.swift in Sources */,
 				1A3AB67E2A2289B700296F07 /* ISSPositionScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,7 +410,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A3AB5DE2A22235F00296F07 /* PeopleInSpaceViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */,
 				1AD02CB72A228CB300CBF834 /* PeopleInSpaceWidget.intentdefinition in Sources */,
