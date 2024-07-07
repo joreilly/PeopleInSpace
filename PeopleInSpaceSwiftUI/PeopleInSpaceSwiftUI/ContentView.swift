@@ -3,11 +3,9 @@ import common
 
 
 struct ContentView: View {
-    @StateObject var viewModel = PeopleInSpaceViewModel(repository: PeopleInSpaceRepository())
-
     var body: some View {
         TabView {
-            PeopleListScreen(viewModel: viewModel)
+            PeopleListScreen()
                 .tabItem {
                     Label("People", systemImage: "person")
                 }
@@ -20,15 +18,28 @@ struct ContentView: View {
 }
 
 struct PeopleListScreen: View {
-    @ObservedObject var viewModel: PeopleInSpaceViewModel
+    //@ObservedObject var viewModel: PeopleInSpaceViewModel
+    @State var viewModel = PersonListViewModel()
     
     @State private var path: [Assignment] = []
     
     var body: some View {
         NavigationStack(path: $path) {
-            List(viewModel.people, id: \.name) { person in
-                NavigationLink(value: person) {
-                    PersonView(person: person)
+            VStack {
+                Observing(viewModel.uiState) { playerListUIState in
+                    switch onEnum(of: playerListUIState) {
+                    case .loading:
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                    case .error(let error):
+                        Text("Error: \(error)")
+                    case .success(let success):
+                        List(success.result, id: \.name) { person in
+                            NavigationLink(value: person) {
+                                PersonView(person: person)
+                            }
+                        }
+                    }
                 }
             }
             .navigationDestination(for: Assignment.self) { person in
@@ -36,9 +47,6 @@ struct PeopleListScreen: View {
             }
             .navigationBarTitle(Text("People In Space"))
             .navigationBarTitleDisplayMode(.inline)
-            .task {
-                await viewModel.startObservingPeopleUpdates()
-            }
         }
     }
 }
