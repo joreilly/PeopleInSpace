@@ -28,21 +28,18 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.surrus.common.remote.Assignment
 import com.surrus.peopleinspace.ui.PurpleGray50
-import com.surrus.peopleinspace.ui.component.PeopleInSpaceGradientBackground
 
 
 @Composable
 fun PersonDetailsScreen(person: Assignment, showBackButton: Boolean, popBack: () -> Unit) {
-    PeopleInSpaceGradientBackground {
-        Scaffold(
-            topBar = {
-                PersonDetailsTopAppBar(personName = person.name, showBackButton, popBack = popBack)
-            },
-            containerColor = Color.Transparent,
-            contentWindowInsets = WindowInsets(0, 0, 0, 0)
-        ) { innerPadding ->
-            PersonDetailsContent(person, innerPadding)
-        }
+    Scaffold(
+        topBar = {
+            PersonDetailsTopAppBar(personName = person.name, showBackButton, popBack = popBack)
+        },
+        containerColor = Color.Transparent,
+        contentWindowInsets = WindowInsets(0, 0, 0, 0)
+    ) { innerPadding ->
+        PersonDetailsContent(person, innerPadding)
     }
 }
 

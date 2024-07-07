@@ -16,11 +16,9 @@ struct NativeISSMapView : View {
                     set: { _ in }
                 )
 
-                MapReader { reader in
-                    Map(coordinateRegion: regionBinding, showsUserLocation: true,
-                        annotationItems: [ Location(coordinate: issCoordinatePosition) ]) { (location) -> MapPin in
-                        MapPin(coordinate: location.coordinate)
-                    }
+                Map(coordinateRegion: regionBinding, showsUserLocation: true,
+                    annotationItems: [ Location(coordinate: issCoordinatePosition) ]) { (location) -> MapPin in
+                    MapPin(coordinate: location.coordinate)
                 }
             }
         }
