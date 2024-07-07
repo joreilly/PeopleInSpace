@@ -2,9 +2,9 @@ package com.surrus.peopleinspace
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import com.surrus.common.viewmodel.PersonListUiState
 import com.surrus.peopleinspace.personlist.PersonListScreen
 import com.surrus.peopleinspace.personlist.PersonListTag
-import com.surrus.peopleinspace.personlist.PersonListUiState
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,7 +17,7 @@ class PeopleInSpaceTest {
     @Test
     fun testPeopleListScreen() {
         composeTestRule.setContent {
-            PersonListScreen(uiState = PersonListUiState(peopleInSpaceRepository.peopleList), navigateToPerson = {}, onRefresh = {})
+            PersonListScreen(uiState = PersonListUiState.Success(peopleInSpaceRepository.peopleList), navigateToPerson = {}, onRefresh = {})
         }
 
         val peopleList = peopleInSpaceRepository.peopleList

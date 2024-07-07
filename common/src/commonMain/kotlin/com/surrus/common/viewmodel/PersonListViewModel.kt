@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.personlist
+package com.surrus.common.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,19 +10,20 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 
-data class PersonListUiState(
-    val items: List<Assignment> = emptyList(),
-    val isLoading: Boolean = false,
-    val userMessage: Int? = null
-)
+sealed class PersonListUiState {
+    object Loading : PersonListUiState()
+    data class Error(val message: String) : PersonListUiState()
+    data class Success(val result: List<Assignment>) : PersonListUiState()
+}
+
 
 class PersonListViewModel(
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
 ) : ViewModel() {
 
     val uiState = peopleInSpaceRepository.fetchPeopleAsFlow()
-        .map { PersonListUiState(it) }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PersonListUiState(isLoading = true))
+        .map { PersonListUiState.Success(it) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PersonListUiState.Loading)
 
     fun refresh() {
         viewModelScope.launch {
