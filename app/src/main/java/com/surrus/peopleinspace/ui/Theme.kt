@@ -10,12 +10,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
-import com.surrus.peopleinspace.ui.component.BackgroundTheme
-import com.surrus.peopleinspace.ui.component.LocalBackgroundTheme
 
 
 /**
@@ -140,26 +136,6 @@ val DarkAndroidColorScheme = darkColorScheme(
 )
 
 /**
- * Light default gradient colors
- */
-val LightDefaultGradientColors = GradientColors(
-    primary = Purple95,
-    secondary = Orange95,
-    tertiary = Blue95,
-    neutral = DarkPurpleGray95
-)
-
-/**
- * Light Android background theme
- */
-val LightAndroidBackgroundTheme = BackgroundTheme(color = DarkGreenGray95)
-
-/**
- * Dark Android background theme
- */
-val DarkAndroidBackgroundTheme = BackgroundTheme(color = Color.Black)
-
-/**
  * PeopleInSpace theme.
  *
  * The order of precedence for the color scheme is: Dynamic color > Android theme > Default theme.
@@ -186,33 +162,11 @@ fun PeopleInSpaceTheme(
         if (darkTheme) DarkDefaultColorScheme else LightDefaultColorScheme
     }
 
-    val defaultGradientColors = GradientColors()
-    val gradientColors = if (androidTheme || (!disableDynamicTheming && supportsDynamicTheming())) {
-        defaultGradientColors
-    } else {
-        if (darkTheme) defaultGradientColors else LightDefaultGradientColors
-    }
-
-    val defaultBackgroundTheme = BackgroundTheme(
-        color = colorScheme.surface,
-        tonalElevation = 2.dp
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = PeopleInSpaceTypography,
+        content = content
     )
-    val backgroundTheme = if (androidTheme) {
-        if (darkTheme) DarkAndroidBackgroundTheme else LightAndroidBackgroundTheme
-    } else {
-        defaultBackgroundTheme
-    }
-
-    CompositionLocalProvider(
-        LocalGradientColors provides gradientColors,
-        LocalBackgroundTheme provides backgroundTheme
-    ) {
-        MaterialTheme(
-            colorScheme = colorScheme,
-            typography = PeopleInSpaceTypography,
-            content = content
-        )
-    }
 }
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
