@@ -36,9 +36,9 @@ kotlin {
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.kotlinx.serialization)
 
-                implementation("io.ktor:ktor-client-core:3.0.0-wasm1")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0-wasm1")
-                implementation("io.ktor:ktor-client-content-negotiation:3.0.0-wasm1")
+                implementation("io.ktor:ktor-client-core:3.0.0-beta-2")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0-beta-2")
+                implementation("io.ktor:ktor-client-content-negotiation:3.0.0-beta-2")
             }
         }
     }
