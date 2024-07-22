@@ -31,7 +31,7 @@ kotlin {
                 implementation(compose.components.resources)
 
                 implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha05")
-                implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha05")
+                implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha08")
 
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.kotlinx.serialization)
