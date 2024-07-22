@@ -43,7 +43,7 @@ mockito = "3.11.2"
 kermit = "2.0.3"
 
 gradleVersionsPlugin = "0.51.0"
-shadowPlugin = "7.0.0"
+shadowPlugin = "7.1.2"
 skie = "0.8.1"
 
 minSdk = "24"
