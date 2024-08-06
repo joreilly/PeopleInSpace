@@ -44,7 +44,7 @@ kermit = "2.0.3"
 
 gradleVersionsPlugin = "0.51.0"
 shadowPlugin = "7.0.0"
-skie = "0.8.1"
+skie = "0.8.4"
 
 minSdk = "24"
 compileSdk = "34"
