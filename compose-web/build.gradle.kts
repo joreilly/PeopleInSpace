@@ -30,7 +30,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.components.resources)
 
-                implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha05")
+                implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha10")
                 implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha05")
 
                 implementation(libs.kotlinx.coroutines)
