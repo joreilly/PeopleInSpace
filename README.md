@@ -32,6 +32,7 @@ Related posts:
 * [Using Swift's new async/await when invoking Kotlin Multiplatform code](https://johnoreilly.dev/posts/swift_async_await_kotlin_coroutines/)
 * [Exploring new AWS SDK for Kotlin](https://johnoreilly.dev/posts/aws-sdk-kotlin/)
 * [Creating a Swift command line app that consumes Kotlin Multiplatform code](https://johnoreilly.dev/posts/swift-command-line-kotlin-multiplatform/)
+* [Exploring New Worlds of UI sharing possibilities in PeopleInSpace using Compose Multiplatform](https://johnoreilly.dev/posts/exploring-compose_multiplatform_sharing_ios/)
 
 
 Note that this repository very much errs on the side of minimalism to help more clearly illustrate key moving parts of a Kotlin
