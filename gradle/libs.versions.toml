@@ -13,7 +13,7 @@ koinComposeMultiplatform = "1.2.0-Beta4"
 ktor = "3.0.0-beta-2"
 osmdroidAndroid = "6.1.18"
 osmAndroidCompose = "0.0.5"
-slf4j = "2.0.13"
+slf4j = "2.0.16"
 sqlDelight = "2.0.2"
 kmp-nativecoroutines = "1.0.0-ALPHA-34"
 
