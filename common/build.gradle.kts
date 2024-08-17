@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.skie)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.2"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.3"
 }
 
 android {
