@@ -18,7 +18,6 @@ struct ContentView: View {
 }
 
 struct PeopleListScreen: View {
-    //@ObservedObject var viewModel: PeopleInSpaceViewModel
     @State var viewModel = PersonListViewModel()
     
     @State private var path: [Assignment] = []
