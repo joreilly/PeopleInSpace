@@ -3,42 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		1A3AB5E02A22247A00296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
-		1A3AB5E32A2224BC00296F07 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E22A2224BC00296F07 /* KMPNativeCoroutinesAsync */; };
-		1A3AB5E52A2224BC00296F07 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E42A2224BC00296F07 /* KMPNativeCoroutinesCombine */; };
-		1A3AB5E72A2224BC00296F07 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB5E62A2224BC00296F07 /* KMPNativeCoroutinesCore */; };
-		1A3AB67B2A22893200296F07 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3AB67A2A22893200296F07 /* KMPNativeCoroutinesAsync */; };
 		1A3AB67E2A2289B700296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
-		1AD02CA82A228CB200CBF834 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD02CA72A228CB200CBF834 /* WidgetKit.framework */; };
-		1AD02CAA2A228CB200CBF834 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD02CA92A228CB200CBF834 /* SwiftUI.framework */; };
-		1AD02CB12A228CB200CBF834 /* PeopleInSpaceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD02CB02A228CB200CBF834 /* PeopleInSpaceWidget.swift */; };
-		1AD02CB42A228CB300CBF834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD02CB32A228CB300CBF834 /* Assets.xcassets */; };
-		1AD02CB62A228CB300CBF834 /* PeopleInSpaceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1AD02CB22A228CB200CBF834 /* PeopleInSpaceWidget.intentdefinition */; };
-		1AD02CB72A228CB300CBF834 /* PeopleInSpaceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1AD02CB22A228CB200CBF834 /* PeopleInSpaceWidget.intentdefinition */; };
-		1AD02CBA2A228CB300CBF834 /* PeopleInSpaceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1AD02CC12A2290BA00CBF834 /* KMPNativeCoroutinesAsync in Frameworks */ = {isa = PBXBuildFile; productRef = 1AD02CC02A2290BA00CBF834 /* KMPNativeCoroutinesAsync */; };
-		1AD02CC32A2290BA00CBF834 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 1AD02CC22A2290BA00CBF834 /* KMPNativeCoroutinesCombine */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */; };
 		DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1AD02CB82A228CB300CBF834 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7555FF73242A565900829871 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AD02CA52A228CB200CBF834;
-			remoteInfo = PeopleInSpaceWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1A3AB6582A225F9000296F07 /* Embed Watch Content */ = {
@@ -57,7 +34,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1AD02CBA2A228CB300CBF834 /* PeopleInSpaceWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,13 +55,8 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSPositionScreen.swift; sourceTree = "<group>"; };
 		1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeopleInSpaceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD02CA72A228CB200CBF834 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1AD02CA92A228CB200CBF834 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		1AD02CB02A228CB200CBF834 /* PeopleInSpaceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInSpaceWidget.swift; sourceTree = "<group>"; };
-		1AD02CB22A228CB200CBF834 /* PeopleInSpaceWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = PeopleInSpaceWidget.intentdefinition; sourceTree = "<group>"; };
-		1AD02CB32A228CB300CBF834 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1AD02CB52A228CB300CBF834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,18 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A3AB67B2A22893200296F07 /* KMPNativeCoroutinesAsync in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AD02CA32A228CB200CBF834 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AD02CAA2A228CB200CBF834 /* SwiftUI.framework in Frameworks */,
-				1AD02CC32A2290BA00CBF834 /* KMPNativeCoroutinesCombine in Frameworks */,
-				1AD02CA82A228CB200CBF834 /* WidgetKit.framework in Frameworks */,
-				1AD02CC12A2290BA00CBF834 /* KMPNativeCoroutinesAsync in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,9 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A3AB5E32A2224BC00296F07 /* KMPNativeCoroutinesAsync in Frameworks */,
-				1A3AB5E52A2224BC00296F07 /* KMPNativeCoroutinesCombine in Frameworks */,
-				1A3AB5E72A2224BC00296F07 /* KMPNativeCoroutinesCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +91,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1AD02CAB2A228CB200CBF834 /* PeopleInSpaceWidget */ = {
-			isa = PBXGroup;
-			children = (
-				1AD02CB02A228CB200CBF834 /* PeopleInSpaceWidget.swift */,
-				1AD02CB22A228CB200CBF834 /* PeopleInSpaceWidget.intentdefinition */,
-				1AD02CB32A228CB300CBF834 /* Assets.xcassets */,
-				1AD02CB52A228CB300CBF834 /* Info.plist */,
-			);
-			path = PeopleInSpaceWidget;
-			sourceTree = "<group>";
-		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* PeopleInSpaceSwiftUI */,
-				1AD02CAB2A228CB200CBF834 /* PeopleInSpaceWidget */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
 			);
@@ -161,7 +105,6 @@
 			children = (
 				7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */,
 				1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */,
-				1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,33 +151,10 @@
 			);
 			name = PeopleInSpaceMac;
 			packageProductDependencies = (
-				1A3AB67A2A22893200296F07 /* KMPNativeCoroutinesAsync */,
 			);
 			productName = PeopleInSpaceMac;
 			productReference = 1A3AB6682A2283BD00296F07 /* PeopleInSpaceMac.app */;
 			productType = "com.apple.product-type.application";
-		};
-		1AD02CA52A228CB200CBF834 /* PeopleInSpaceWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AD02CBB2A228CB300CBF834 /* Build configuration list for PBXNativeTarget "PeopleInSpaceWidgetExtension" */;
-			buildPhases = (
-				1AD02CBF2A22900400CBF834 /* ShellScript */,
-				1AD02CA22A228CB200CBF834 /* Sources */,
-				1AD02CA32A228CB200CBF834 /* Frameworks */,
-				1AD02CA42A228CB200CBF834 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PeopleInSpaceWidgetExtension;
-			packageProductDependencies = (
-				1AD02CC02A2290BA00CBF834 /* KMPNativeCoroutinesAsync */,
-				1AD02CC22A2290BA00CBF834 /* KMPNativeCoroutinesCombine */,
-			);
-			productName = PeopleInSpaceWidgetExtension;
-			productReference = 1AD02CA62A228CB200CBF834 /* PeopleInSpaceWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		7555FF7A242A565900829871 /* PeopleInSpaceSwiftUI */ = {
 			isa = PBXNativeTarget;
@@ -251,13 +171,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				1AD02CB92A228CB300CBF834 /* PBXTargetDependency */,
 			);
 			name = PeopleInSpaceSwiftUI;
 			packageProductDependencies = (
-				1A3AB5E22A2224BC00296F07 /* KMPNativeCoroutinesAsync */,
-				1A3AB5E42A2224BC00296F07 /* KMPNativeCoroutinesCombine */,
-				1A3AB5E62A2224BC00296F07 /* KMPNativeCoroutinesCore */,
 			);
 			productName = PeopleInSpaceSwiftUI;
 			productReference = 7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */;
@@ -276,9 +192,6 @@
 					1A3AB6672A2283BD00296F07 = {
 						CreatedOnToolsVersion = 14.3;
 					};
-					1AD02CA52A228CB200CBF834 = {
-						CreatedOnToolsVersion = 14.3;
-					};
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -294,7 +207,6 @@
 			);
 			mainGroup = 7555FF72242A565900829871;
 			packageReferences = (
-				1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
 			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
@@ -302,7 +214,6 @@
 			targets = (
 				7555FF7A242A565900829871 /* PeopleInSpaceSwiftUI */,
 				1A3AB6672A2283BD00296F07 /* PeopleInSpaceMac */,
-				1AD02CA52A228CB200CBF834 /* PeopleInSpaceWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -312,14 +223,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AD02CA42A228CB200CBF834 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AD02CB42A228CB300CBF834 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,23 +239,6 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		1A3AB6772A22850300296F07 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :common:embedAndSignAppleFrameworkForXcode\n";
-		};
-		1AD02CBF2A22900400CBF834 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -397,22 +283,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1AD02CA22A228CB200CBF834 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AD02CB62A228CB300CBF834 /* PeopleInSpaceWidget.intentdefinition in Sources */,
-				1AD02CB12A228CB200CBF834 /* PeopleInSpaceWidget.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7555FF77242A565900829871 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */,
-				1AD02CB72A228CB300CBF834 /* PeopleInSpaceWidget.intentdefinition in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */,
 				1A3AB5E02A22247A00296F07 /* ISSPositionScreen.swift in Sources */,
@@ -420,14 +296,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1AD02CB92A228CB300CBF834 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AD02CA52A228CB200CBF834 /* PeopleInSpaceWidgetExtension */;
-			targetProxy = 1AD02CB82A228CB300CBF834 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1A3AB6752A2283BE00296F07 /* Debug */ = {
@@ -502,77 +370,6 @@
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		1AD02CBC2A228CB300CBF834 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NT77748GS8;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PeopleInSpaceWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 orgName. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					common,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.PeopleInSpaceSwiftUI.PeopleInSpaceWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1AD02CBD2A228CB300CBF834 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NT77748GS8;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PeopleInSpaceWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PeopleInSpaceWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 orgName. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					common,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.PeopleInSpaceSwiftUI.PeopleInSpaceWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -774,15 +571,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AD02CBB2A228CB300CBF834 /* Build configuration list for PBXNativeTarget "PeopleInSpaceWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AD02CBC2A228CB300CBF834 /* Debug */,
-				1AD02CBD2A228CB300CBF834 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		7555FF76242A565900829871 /* Build configuration list for PBXProject "PeopleInSpaceSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -802,50 +590,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
-			requirement = {
-				kind = exactVersion;
-				version = "1.0.0-ALPHA-31";
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1A3AB5E22A2224BC00296F07 /* KMPNativeCoroutinesAsync */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesAsync;
-		};
-		1A3AB5E42A2224BC00296F07 /* KMPNativeCoroutinesCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesCombine;
-		};
-		1A3AB5E62A2224BC00296F07 /* KMPNativeCoroutinesCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesCore;
-		};
-		1A3AB67A2A22893200296F07 /* KMPNativeCoroutinesAsync */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesAsync;
-		};
-		1AD02CC02A2290BA00CBF834 /* KMPNativeCoroutinesAsync */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesAsync;
-		};
-		1AD02CC22A2290BA00CBF834 /* KMPNativeCoroutinesCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A3AB5E12A2224BC00296F07 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
-			productName = KMPNativeCoroutinesCombine;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

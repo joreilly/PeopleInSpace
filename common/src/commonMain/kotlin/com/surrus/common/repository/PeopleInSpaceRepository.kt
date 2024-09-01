@@ -3,32 +3,27 @@ package com.surrus.common.repository
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import co.touchlab.kermit.Logger
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+
 
 interface PeopleInSpaceRepositoryInterface {
-    @NativeCoroutines
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
-    @NativeCoroutines
     suspend fun fetchPeople(): List<Assignment>
     suspend fun fetchAndStorePeople()
 }
 
-class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface {
-    private val peopleInSpaceApi: PeopleInSpaceApi by inject()
+class PeopleInSpaceRepository(
+    private val peopleInSpaceApi: PeopleInSpaceApi,
+    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
+) : PeopleInSpaceRepositoryInterface {
 
-    @NativeCoroutineScope
     val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper by inject()
     private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
 
     val logger = Logger.withTag("PeopleInSpaceRepository")
@@ -39,13 +34,17 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
         }
     }
 
-    @NativeCoroutines
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         // the main reason we need to do this check is that sqldelight isn't currently
         // setup for javascript client
         return peopleInSpaceQueries?.selectAll(
             mapper = { name, craft, personImageUrl, personBio ->
-                Assignment(name = name, craft = craft, personImageUrl = personImageUrl, personBio = personBio)
+                Assignment(
+                    name = name,
+                    craft = craft,
+                    personImageUrl = personImageUrl,
+                    personBio = personBio
+                )
             }
         )?.asFlow()?.mapToList(Dispatchers.Default) ?: flowOf(emptyList())
     }
@@ -76,7 +75,6 @@ class PeopleInSpaceRepository : KoinComponent, PeopleInSpaceRepositoryInterface 
     }
 
     // Used by web and apple clients atm
-    @NativeCoroutines
     override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
     override fun pollISSPosition(): Flow<IssPosition> {
