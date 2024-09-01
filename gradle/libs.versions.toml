@@ -15,7 +15,6 @@ osmdroidAndroid = "6.1.18"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.13"
 sqlDelight = "2.0.2"
-kmp-nativecoroutines = "1.0.0-ALPHA-34"
 
 androidxActivity = "1.9.1"
 androidxComposeBom = "2024.06.00"
@@ -155,7 +154,6 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmp-nativecoroutines" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "gradleVersionsPlugin" }
 shadowPlugin = { id = "com.github.johnrengelman.shadow", version.ref = "shadowPlugin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }

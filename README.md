@@ -8,7 +8,6 @@
 * Android App Widget (Compose based Glance API - contributed by https://github.com/yschimke)
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
 * iOS (SwiftUI)
-* iOS App Widget (SwiftUI)
 * Swift Executable Package
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - Wasm based)
@@ -138,5 +137,4 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [SwiftUI](https://developer.apple.com/documentation/swiftui)
 * [SKIE](https://skie.touchlab.co/intro)
-* [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
 * [Coil](https://coil-kt.github.io/coil/)
