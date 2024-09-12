@@ -2,7 +2,7 @@
 kotlin = "2.0.20"
 ksp = "2.0.20-1.0.24"
 
-compose-multiplatform = "1.6.11"
+compose-multiplatform = "1.7.0-beta02"
 composeUiTooling = "1.4.0"
 coroutines = "1.9.0-RC"
 kotlinxSerialization = "1.7.1"
@@ -10,24 +10,25 @@ androidGradlePlugin = "8.5.2"
 koin = "3.6.0-Beta4"
 koinCompose = "3.6.0-Beta4"
 koinComposeMultiplatform = "1.2.0-Beta4"
-ktor = "3.0.0-beta-2"
+ktor = "3.0.0-rc-1"
 osmdroidAndroid = "6.1.18"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.13"
 sqlDelight = "2.0.2"
 
-androidxActivity = "1.9.1"
-androidxComposeBom = "2024.09.00"
+androidxActivity = "1.9.2"
+androidxComposeBom = "2024.09.01"
 material3-adaptive = "1.0.0"
 material3-adaptive-navigation-suite = "1.3.0"
 androidxNavigationCompose = "2.8.0"
-uiToolingPreview = "1.7.0"
+uiToolingPreview = "1.7.1"
 wearCompose = "1.4.0"
 androidxLifecycle = "2.8.5"
-androidxLifecycleKMP = "2.8.0"
-imageLoader = "1.7.8"
+androidxLifecycleKMP = "2.8.2"
 
 coilCompose = "2.7.0"
+coilCompose3 = "3.0.0-alpha10"
+
 horologist = "0.6.12"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
@@ -87,7 +88,6 @@ androidx-tracing = "androidx.tracing:tracing:1.2.0"
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
 metrics = "androidx.metrics:metrics-performance:1.0.0-beta01"
 
-imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
 osm-android-compose = { module = "tech.utsmankece:osm-android-compose", version.ref = "osmAndroidCompose" }
 
@@ -96,6 +96,10 @@ wear-compose-material = { module = "androidx.wear.compose:compose-material", ver
 wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearCompose" }
 
 coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
+coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilCompose3" }
+coil3-network-ktor = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coilCompose3" }
+
+
 horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
 
 glance-tiles = { module = "androidx.glance:glance-wear-tiles", version.ref = "glanceWearTiles" }

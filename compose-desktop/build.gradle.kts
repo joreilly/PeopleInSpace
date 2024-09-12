@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     kotlin("jvm")
     alias(libs.plugins.compose.compiler)
@@ -12,7 +10,9 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation(libs.imageLoader)
+    implementation(libs.coil3.compose)
+    implementation(libs.coil3.network.ktor)
+
     implementation(project(":common"))
 }
 
