@@ -78,8 +78,9 @@ dependencies {
     implementation(libs.androidx.compose.material3.adaptive.navigation)
     implementation(libs.androidx.compose.material3.adaptive.navigation.suite)
 
+    implementation(libs.coil3.compose)
+    implementation(libs.coil3.network.ktor)
 
-    implementation(libs.coilCompose)
     implementation(libs.glance.appwidget)
 
     implementation(libs.koin.core)
