@@ -29,7 +29,7 @@ androidxLifecycleKMP = "2.8.2"
 coilCompose = "2.7.0"
 coilCompose3 = "3.0.0-alpha10"
 
-horologist = "0.6.12"
+horologist = "0.6.20"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
 okhttp = "5.0.0-alpha.14"
