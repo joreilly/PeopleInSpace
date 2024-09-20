@@ -1,8 +1,12 @@
 package com.surrus.common.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitViewController
+import androidx.compose.ui.viewinterop.UIKitInteropInteractionMode
+import androidx.compose.ui.viewinterop.UIKitInteropProperties
+import androidx.compose.ui.viewinterop.UIKitViewController
 import com.surrus.common.viewmodel.ISSPositionViewModel
 import kotlinx.cinterop.ExperimentalForeignApi
 
@@ -14,7 +18,7 @@ actual fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel) {
     )
 }
 
-@OptIn(ExperimentalForeignApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun MapKitView(
     modifier: Modifier,
@@ -23,9 +27,13 @@ internal fun MapKitView(
     val factory = LocalNativeViewFactory.current
 
     UIKitViewController(
-        modifier = modifier,
         factory = {
             factory.createISSMapView(viewModel)
-        }
+        },
+        modifier = modifier,
+        properties = UIKitInteropProperties(
+            interactionMode = UIKitInteropInteractionMode.NonCooperative,
+            isNativeAccessibilityEnabled = true
+        )
     )
 }
