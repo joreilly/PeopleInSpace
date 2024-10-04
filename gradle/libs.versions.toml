@@ -38,7 +38,7 @@ junit = "4.13.2"
 androidxTestJUnit = "1.2.1"
 robolectric = "4.13"
 androidxTestCore = "1.6.1"
-mockito = "3.11.2"
+mockito = "3.12.4"
 
 kermit = "2.0.4"
 
