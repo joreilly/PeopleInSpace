@@ -84,5 +84,5 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.tracing)
 
-    implementation(project(":common"))
+    implementation(projects.common)
 }

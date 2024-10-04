@@ -17,7 +17,7 @@ pluginManagement {
 }
 
 rootProject.name = "PeopleInSpace"
-
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":wearApp")
 include(":compose-desktop")

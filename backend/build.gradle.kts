@@ -24,7 +24,7 @@ kotlin {
 
             implementation("ch.qos.logback:logback-classic:1.4.14")
 
-            implementation(project(":common"))
+            implementation(projects.common)
         }
     }
 }

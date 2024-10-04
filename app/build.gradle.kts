@@ -103,6 +103,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 
-    implementation(project(":common"))
+    implementation(projects.common)
 }
 
