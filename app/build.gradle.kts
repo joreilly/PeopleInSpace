@@ -87,14 +87,6 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
-    testImplementation(libs.koin.test)
-    testImplementation(libs.koin.test.junit4)
-    testImplementation(libs.androidx.test.junit)
-    testImplementation(libs.androidx.test.core)
-    testImplementation(libs.mockito)
-    testImplementation(libs.robolectric)
-    testImplementation(libs.junit)
-
     // Compose testing dependencies
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test)
