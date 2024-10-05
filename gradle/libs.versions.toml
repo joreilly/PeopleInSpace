@@ -5,13 +5,13 @@ ksp = "2.0.20-1.0.25"
 compose-multiplatform = "1.7.0-rc01"
 composeUiTooling = "1.4.0"
 coroutines = "1.9.0"
-kotlinxSerialization = "1.7.2"
+kotlinxSerialization = "1.7.3"
 androidGradlePlugin = "8.7.0"
 koin = "4.0.0"
 koinCompose = "4.0.0"
 koinComposeMultiplatform = "4.0.0"
 ktor = "3.0.0-rc-1"
-osmdroidAndroid = "6.1.18"
+osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.16"
 sqlDelight = "2.0.2"
@@ -33,13 +33,6 @@ horologist = "0.6.20"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.0.0"
 okhttp = "5.0.0-alpha.14"
-
-junit = "4.13.2"
-androidxTestJUnit = "1.2.1"
-robolectric = "4.13"
-androidxTestCore = "1.6.1"
-mockito = "3.11.2"
-
 kermit = "2.0.4"
 
 gradleVersionsPlugin = "0.51.0"
@@ -138,11 +131,6 @@ sqldelight-sqlite-driver = { module = "app.cash.sqldelight:sqlite-driver", versi
 
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
-junit = { module = "junit:junit", version.ref = "junit" }
-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
-mockito = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
-androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestJUnit" }
-androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTestCore" }
 androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test" }
 androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }

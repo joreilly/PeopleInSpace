@@ -74,9 +74,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.loggingInterceptor)
 
-    testImplementation(libs.robolectric)
-    testImplementation(libs.junit)
-
     // Compose testing dependencies
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test)
