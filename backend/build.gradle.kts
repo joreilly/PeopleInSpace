@@ -22,7 +22,7 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
             implementation("io.ktor:ktor-server-content-negotiation:2.3.12")
 
-            implementation("ch.qos.logback:logback-classic:1.5.8")
+            implementation("ch.qos.logback:logback-classic:1.5.12")
 
             implementation(projects.common)
         }
