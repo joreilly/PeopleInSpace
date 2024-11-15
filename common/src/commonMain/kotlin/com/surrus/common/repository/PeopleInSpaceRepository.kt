@@ -9,6 +9,7 @@ import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import org.koin.core.annotation.Single
 
 
 interface PeopleInSpaceRepositoryInterface {
@@ -17,6 +18,7 @@ interface PeopleInSpaceRepositoryInterface {
     suspend fun fetchPeople(): List<Assignment>
     suspend fun fetchAndStorePeople()
 }
+
 
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
