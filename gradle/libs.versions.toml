@@ -1,14 +1,14 @@
 [versions]
 kotlin = "2.0.21"
-ksp = "2.0.21-1.0.26"
+ksp = "2.0.21-1.0.28"
 
 compose-multiplatform = "1.7.0"
 composeUiTooling = "1.4.0"
 coroutines = "1.9.0"
 kotlinxSerialization = "1.7.3"
 androidGradlePlugin = "8.7.2"
-koin = "4.0.0"
-koin-annotations = "2.0.0-Beta1"
+koin = "4.0.1-Beta1"
+koin-annotations = "2.0.0-Beta2"
 koinCompose = "4.0.0"
 koinComposeMultiplatform = "4.0.0"
 ktor = "3.0.0"
