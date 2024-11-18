@@ -1,9 +1,11 @@
 package com.surrus.common.di
 
+import app.cash.sqldelight.db.SqlDriver
 import com.surrus.common.remote.PeopleInSpaceApi
 import com.surrus.common.repository.PeopleInSpaceRepository
 import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
 import com.surrus.common.viewmodel.ISSPositionViewModel
+import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -51,8 +53,13 @@ class CommonModule {
 @Module
 expect class NativeModule() {
     @Single
-    fun httpClientEngine(): HttpClientEngine
+    fun getHttpClientEngine(): HttpClientEngine
 }
+
+expect class PeopleInSpaceDatabaseWrapper {
+    fun database() : PeopleInSpaceDatabase?
+}
+
 
 
 //fun commonModule(enableNetworkLogs: Boolean) = module {

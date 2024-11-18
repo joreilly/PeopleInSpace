@@ -26,7 +26,7 @@ class PeopleInSpaceRepository(
 ) : PeopleInSpaceRepositoryInterface {
 
     val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
+    private val peopleInSpaceQueries = peopleInSpaceDatabase.database()?.peopleInSpaceQueries
 
     val logger = Logger.withTag("PeopleInSpaceRepository")
 
