@@ -17,27 +17,20 @@ import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 import org.koin.core.context.startKoin
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.bind
-import org.koin.dsl.module
+import org.koin.dsl.includes
 import org.koin.ksp.generated.module
 
-
-fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration = {}) =
+fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
     startKoin {
-        appDeclaration()
-        //modules(commonModule(enableNetworkLogs = enableNetworkLogs), platformModule())
-        startKoin {
-            modules(
-                AppModule().module
-            )
-            appDeclaration.invoke(this)
-        }
+        modules(
+            AppModule().module
+        )
+        includes(appDeclaration)
     }
 
 // called by iOS etc
-fun initKoin() = initKoin(enableNetworkLogs = false) {}
+fun initKoin() = initKoin(enableNetworkLogs = false)
 
 
 @Module(includes = [CommonModule::class, NativeModule::class])

@@ -23,8 +23,7 @@ class PeopleInSpaceApplication : Application(), KoinComponent, ImageLoaderFactor
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@PeopleInSpaceApplication)
 
-            modules(wearImageLoader)
-            modules(wearAppModule)
+            modules(wearImageLoader, wearAppModule)
         }
 
         Logger.d { "PeopleInSpaceApplication" }

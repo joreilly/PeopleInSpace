@@ -19,7 +19,7 @@ interface PeopleInSpaceRepositoryInterface {
     suspend fun fetchAndStorePeople()
 }
 
-
+@Single
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
