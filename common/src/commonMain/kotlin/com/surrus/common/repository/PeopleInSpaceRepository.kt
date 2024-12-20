@@ -9,6 +9,7 @@ import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Single
 
 
@@ -22,7 +23,7 @@ interface PeopleInSpaceRepositoryInterface {
 @Single
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
-    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
+    @Provided private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
 ) : PeopleInSpaceRepositoryInterface {
 
     val coroutineScope: CoroutineScope = MainScope()

@@ -54,11 +54,18 @@ class CommonModule {
 expect class NativeModule() {
     @Single
     fun getHttpClientEngine(): HttpClientEngine
+
+    @Single
+    fun getPeopleInSpaceDatabaseWrapper(): PeopleInSpaceDatabaseWrapper
 }
 
-expect class PeopleInSpaceDatabaseWrapper {
-    fun database() : PeopleInSpaceDatabase?
-}
+
+class PeopleInSpaceDatabaseWrapper(val instance: PeopleInSpaceDatabase?)
+
+
+//expect class PeopleInSpaceDatabaseWrapper {
+//    fun database() : PeopleInSpaceDatabase?
+//}
 
 
 
