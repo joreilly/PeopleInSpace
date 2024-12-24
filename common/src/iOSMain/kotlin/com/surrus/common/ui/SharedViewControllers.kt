@@ -10,10 +10,9 @@ val LocalNativeViewFactory = staticCompositionLocalOf<NativeViewFactory> {
     error("LocalNativeViewFactory not provided")
 }
 
-object SharedViewControllers {
-    fun ISSPositionContentViewController(viewModel: ISSPositionViewModel, nativeViewFactory: NativeViewFactory) = ComposeUIViewController {
-        CompositionLocalProvider(LocalNativeViewFactory provides nativeViewFactory) {
-            ISSPositionContent(viewModel)
-        }
+
+fun ISSPositionContentViewController(viewModel: ISSPositionViewModel, nativeViewFactory: NativeViewFactory) = ComposeUIViewController {
+    CompositionLocalProvider(LocalNativeViewFactory provides nativeViewFactory) {
+        ISSPositionContent(viewModel)
     }
 }

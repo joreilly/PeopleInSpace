@@ -22,7 +22,7 @@ struct ISSPositionContentViewController: UIViewControllerRepresentable {
     let viewModel: ISSPositionViewModel
     
     func makeUIViewController(context: Context) -> UIViewController {
-        SharedViewControllers().ISSPositionContentViewController(
+        SharedViewControllersKt.ISSPositionContentViewController(
             viewModel: viewModel,
             nativeViewFactory: iOSNativeViewFactory.shared
         )
