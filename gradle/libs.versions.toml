@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.1.0"
-ksp = "2.1.0-1.0.28"
+ksp = "2.1.0-1.0.29"
 
 compose-multiplatform = "1.7.3"
 composeUiTooling = "1.4.0"
@@ -37,7 +37,7 @@ kermit = "2.0.5"
 
 gradleVersionsPlugin = "0.51.0"
 shadowPlugin = "7.1.2"
-skie = "0.9.5"
+skie = "0.10.0"
 
 minSdk = "24"
 compileSdk = "35"
