@@ -138,3 +138,4 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 * [SwiftUI](https://developer.apple.com/documentation/swiftui)
 * [SKIE](https://skie.touchlab.co/intro)
 * [Coil](https://coil-kt.github.io/coil/)
+✨ First open-source contribution by Ansh (GitHub: Anshjn1411)
