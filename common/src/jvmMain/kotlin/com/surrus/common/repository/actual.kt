@@ -10,7 +10,7 @@ actual fun platformModule() = module {
     single {
         val driver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
             .also { PeopleInSpaceDatabase.Schema.create(it) }
-        PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
+        PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
     single { Java.create() }
 }

@@ -1,4 +1,3 @@
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,7 +18,7 @@ import androidx.compose.ui.window.rememberWindowState
 import coil3.compose.AsyncImage
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.common.repository.PeopleInSpaceRepository
 
 private val koin = initKoin(enableNetworkLogs = true).koin
 
@@ -29,12 +28,8 @@ fun main() = application {
     var peopleState by remember { mutableStateOf(emptyList<Assignment>()) }
     var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
 
-    val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
-
-    LaunchedEffect(true) {
-        peopleState = peopleInSpaceApi.fetchPeople().people
-        selectedPerson = peopleState.first()
-    }
+    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepository>()
+    val people by peopleInSpaceRepository.fetchPeopleAsFlow().collectAsState(emptyList())
 
     Window(
         onCloseRequest = ::exitApplication,
@@ -45,7 +40,7 @@ fun main() = application {
         Row(Modifier.fillMaxSize()) {
 
             Box(Modifier.width(250.dp).fillMaxHeight().background(color = Color.LightGray)) {
-                PersonList(peopleState, selectedPerson) {
+                PersonList(people, selectedPerson) {
                     selectedPerson = it
                 }
             }

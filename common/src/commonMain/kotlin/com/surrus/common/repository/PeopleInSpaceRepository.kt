@@ -1,5 +1,6 @@
 package com.surrus.common.repository
 
+import app.cash.sqldelight.async.coroutines.awaitCreate
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import co.touchlab.kermit.Logger
@@ -7,6 +8,7 @@ import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
@@ -24,12 +26,14 @@ class PeopleInSpaceRepository(
 ) : PeopleInSpaceRepositoryInterface {
 
     val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase.instance?.peopleInSpaceQueries
+    private val peopleInSpaceQueries = peopleInSpaceDatabase.instance.peopleInSpaceQueries
 
     val logger = Logger.withTag("PeopleInSpaceRepository")
 
     init {
         coroutineScope.launch {
+            // TODO figure out cleaner place to invoke this
+            PeopleInSpaceDatabase.Schema.awaitCreate(peopleInSpaceDatabase.driver)
             fetchAndStorePeople()
         }
     }
