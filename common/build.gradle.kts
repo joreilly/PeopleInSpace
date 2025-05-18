@@ -1,3 +1,8 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.library)
@@ -36,10 +41,15 @@ kotlin {
     androidTarget()
     jvm()
 
-    js(IR) {
-        useCommonJs()
-        browser()
+    wasmJs {
+        moduleName = "peopleinspaceShared"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "peopleinspaceShared.js"
+            }
+        }
     }
+
 
     sourceSets {
         commonMain.dependencies {
@@ -83,6 +93,7 @@ kotlin {
             implementation(libs.ktor.client.java)
             implementation(libs.sqldelight.sqlite.driver)
             implementation(libs.slf4j)
+            implementation(libs.kotlinx.coroutines.swing)
         }
 
         appleMain.dependencies {
@@ -90,8 +101,11 @@ kotlin {
             implementation(libs.sqldelight.native.driver)
         }
 
-        jsMain.dependencies {
-            implementation(libs.ktor.client.js)
+        wasmJsMain.dependencies {
+            implementation(libs.sqldelight.web.driver)
+            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.1.0"))
+            implementation(npm("sql.js", libs.versions.sqlJs.get()))
+            implementation(devNpm("copy-webpack-plugin", libs.versions.webPackPlugin.get()))
         }
     }
 }
@@ -99,6 +113,7 @@ kotlin {
 sqldelight {
     databases {
         create("PeopleInSpaceDatabase") {
+            generateAsync = true
             packageName.set("com.surrus.peopleinspace.db")
         }
     }

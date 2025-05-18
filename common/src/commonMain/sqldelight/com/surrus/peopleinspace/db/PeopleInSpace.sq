@@ -1,4 +1,4 @@
-CREATE TABLE People(
+CREATE TABLE IF NOT EXISTS People(
   name TEXT NOT NULL PRIMARY KEY,
   craft TEXT NOT NULL,
   personImageUrl TEXT,
