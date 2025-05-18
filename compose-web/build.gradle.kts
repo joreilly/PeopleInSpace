@@ -1,3 +1,7 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -18,8 +22,8 @@ kotlin {
             }
         }
         binaries.executable()
-        //applyBinaryen()
     }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -31,12 +35,14 @@ kotlin {
                 implementation(libs.coil3.compose)
                 implementation(libs.coil3.network.ktor)
 
-                implementation(libs.kotlinx.coroutines)
-                implementation(libs.kotlinx.serialization)
+//                implementation(libs.kotlinx.coroutines)
+//                implementation(libs.kotlinx.serialization)
+//
+//                implementation(libs.ktor.client.core)
+//                implementation(libs.ktor.serialization.kotlinx.json)
+//                implementation(libs.ktor.client.content.negotiation)
 
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.serialization.kotlinx.json)
-                implementation(libs.ktor.client.content.negotiation)
+                implementation(projects.common)
             }
         }
     }

@@ -1,20 +1,16 @@
 package com.surrus.common.repository
 
-import app.cash.sqldelight.async.coroutines.synchronous
-import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import app.cash.sqldelight.driver.worker.createDefaultWebWorkerDriver
 import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.engine.darwin.*
+import io.ktor.client.engine.js.Js
 import org.koin.dsl.module
-
 
 actual fun platformModule() = module {
     single {
-        val driver = NativeSqliteDriver(
-            schema = PeopleInSpaceDatabase.Schema.synchronous(),
-            name = "peopleinspace.db")
+        val driver = createDefaultWebWorkerDriver()
         PeopleInSpaceDatabaseWrapper(PeopleInSpaceDatabase(driver))
     }
-    single<HttpClientEngine> { Darwin.create() }
+    single<HttpClientEngine>  { Js.create() }
 }
