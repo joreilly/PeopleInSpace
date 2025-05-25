@@ -10,7 +10,7 @@ androidGradlePlugin = "8.9.3"
 koin = "4.0.4"
 koinCompose = "4.0.4"
 koinComposeMultiplatform = "4.0.4"
-ktor = "3.1.2"
+ktor = "3.1.1"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
 slf4j = "2.0.16"
@@ -41,6 +41,8 @@ kermit = "2.0.5"
 gradleVersionsPlugin = "0.51.0"
 shadowPlugin = "7.1.2"
 skie = "0.10.0"
+
+mcp = "0.4.0"
 
 minSdk = "24"
 compileSdk = "35"
@@ -121,6 +123,10 @@ ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.r
 ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
 ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor" }
 
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
@@ -140,6 +146,7 @@ androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test" }
 androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
+mcp-kotlin = { group = "io.modelcontextprotocol", name = "kotlin-sdk", version.ref = "mcp" }
 
 [bundles]
 ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-serialization", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json"]
@@ -157,3 +164,4 @@ sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm" }
