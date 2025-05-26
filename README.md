@@ -12,6 +12,7 @@
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - Wasm based)
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
+* MCP server (using same shared KMP code)
 
 It makes use of [Open Notify PeopleInSpace API](http://open-notify.org/Open-Notify-API/People-In-Space/) to show list of people currently in
 space and also the position of the International Space Station (inspired by https://kousenit.org/2019/12/19/a-few-astronomical-examples-in-kotlin/)!  
@@ -122,6 +123,12 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 <img width="1156" alt="Screenshot 2024-03-02 at 21 03 23" src="https://github.com/joreilly/PeopleInSpace/assets/6302/8e4bfb36-e417-4db8-824b-563953e0d9ac">
 
 
+**MCP**
+
+The `mcp-server` module uses the [Kotlin MCP SDK](https://github.com/modelcontextprotocol/kotlin-sdk) to expose an MCP tools endpoint (returning list of people in space) that
+can for example be plugged in to Claude Desktop as shown below.  That module uses same KMP shared code (that uses for example Ktor, SQLDelight and Koin)
+
+![Gry_C3FXkAAxVvN](https://github.com/user-attachments/assets/74c210b9-9a0a-4de8-8845-81380f11e4a5)
 
 
 
