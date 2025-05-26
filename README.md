@@ -131,6 +131,24 @@ can for example be plugged in to Claude Desktop as shown below.  That module use
 ![Gry_C3FXkAAxVvN](https://github.com/user-attachments/assets/74c210b9-9a0a-4de8-8845-81380f11e4a5)
 
 
+To integrate the MCP server with Claude Desktop you need to firstly run gradle `shadowJar` task and then select "Edit Config" under Developer Settings and add something 
+like the following (update with your path)
+
+```
+{
+  "mcpServers": {
+    "kotlin-peopleinspace": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "/Users/john.oreilly/github/PeopleInSpace/mcp-server/build/libs/serverAll.jar",
+        "--stdio"
+      ]
+    }
+  }
+}
+```
+
 
 ### Languages, libraries and tools used
 
