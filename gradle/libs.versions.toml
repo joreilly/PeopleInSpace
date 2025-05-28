@@ -39,7 +39,7 @@ okhttp = "5.0.0-alpha.14"
 kermit = "2.0.5"
 
 gradleVersionsPlugin = "0.51.0"
-shadowPlugin = "7.1.2"
+shadowPlugin = "8.1.1"
 skie = "0.10.0"
 
 mcp = "0.4.0"
