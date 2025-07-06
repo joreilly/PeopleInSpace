@@ -16,7 +16,6 @@ version = "1.0-SNAPSHOT"
 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 kotlin {
     wasmJs {
-        moduleName = "peopleinspace"
         browser {
             commonWebpackConfig {
                 outputFileName = "peopleinspace.js"

@@ -18,6 +18,7 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -27,6 +28,7 @@ import com.surrus.peopleinspace.R
 import com.surrus.peopleinspace.issposition.ISSPositionRoute
 import com.surrus.peopleinspace.persondetails.PersonDetailsScreen
 import com.surrus.peopleinspace.personlist.PersonListRoute
+import kotlinx.coroutines.launch
 
 enum class AppDestinations(
     @StringRes val label: Int,
@@ -42,9 +44,12 @@ enum class AppDestinations(
 fun PeopleInSpaceApp() {
     var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.PERSON_LIST) }
     val navigator = rememberListDetailPaneScaffoldNavigator<Assignment>()
+    val scope = rememberCoroutineScope()
 
     BackHandler(navigator.canNavigateBack()) {
-        navigator.navigateBack()
+        scope.launch {
+            navigator.navigateBack()
+        }
     }
 
     PeopleInSpaceTheme {
@@ -72,15 +77,19 @@ fun PeopleInSpaceApp() {
                         value = navigator.scaffoldValue,
                         listPane = {
                             PersonListRoute { person ->
-                                navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, person)
+                                scope.launch {
+                                    navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, person)
+                                }
                             }
                         },
                         detailPane = {
-                            navigator.currentDestination?.content?.let {
+                            navigator.currentDestination?.contentKey?.let {
                                 PersonDetailsScreen(
                                     person = it,
                                     showBackButton = !navigator.isListPaneVisible(),
-                                    navigator::navigateBack
+                                    popBack = { // It's good practice to name lambda parameters
+                                        scope.launch { navigator.navigateBack() }
+                                    }
                                 )
                             }
                         }
