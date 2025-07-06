@@ -42,7 +42,6 @@ kotlin {
     jvm()
 
     wasmJs {
-        moduleName = "peopleinspaceShared"
         browser {
             commonWebpackConfig {
                 outputFileName = "peopleinspaceShared.js"
