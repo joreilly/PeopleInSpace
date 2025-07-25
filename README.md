@@ -54,11 +54,8 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 
 
 ### Building
-You need to use at least Android Studio Flamingo (**note: Java 17 is now the minimum version required**). Requires Xcode 13.2 or later (due to use of new Swift 5.5 concurrency APIs).
 
 Open `PeopleInSpaceSwiftUI' for  iOS projects.  
-
-To exercise (React based) web client run `./gradlew :web:browserDevelopmentRun`.
 
 To run backend you can either run `./gradlew :backend:run` or run `Server.kt` directly from Android Studio. After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
