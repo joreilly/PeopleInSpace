@@ -59,7 +59,7 @@ fun main() {
                     "success", 3,
                     listOf(
                         Assignment("ISS", "Chris Cassidy"),
-                        Assignment("ISS", "Anatoly Ivanishin"),
+                        Assignment("ISS", "Tracy Caldwell Dyson"),
                         Assignment("ISS", "Ivan Vagner")
                     )
                 )

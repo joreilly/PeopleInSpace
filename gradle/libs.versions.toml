@@ -6,7 +6,7 @@ compose-multiplatform = "1.8.2"
 composeUiTooling = "1.4.1"
 coroutines = "1.10.2"
 kotlinxSerialization = "1.9.0"
-androidGradlePlugin = "8.11.0"
+androidGradlePlugin = "8.11.1"
 koin = "4.1.0"
 koinCompose = "4.1.0"
 koinComposeMultiplatform = "4.1.0"
@@ -39,7 +39,7 @@ okhttp = "5.0.0"
 kermit = "2.0.6"
 
 gradleVersionsPlugin = "0.52.0"
-shadowPlugin = "8.1.1"
+shadowPlugin = "9.0.0-rc2"
 skie = "0.10.4"
 
 mcp = "0.5.0"
@@ -159,7 +159,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "gradleVersionsPlugin" }
-shadowPlugin = { id = "com.github.johnrengelman.shadow", version.ref = "shadowPlugin" }
+shadowPlugin = { id = "com.gradleup.shadow", version.ref = "shadowPlugin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
