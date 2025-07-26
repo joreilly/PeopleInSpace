@@ -1,14 +1,20 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
     kotlin("multiplatform")
-    application
     kotlin("plugin.serialization")
-    id("com.github.johnrengelman.shadow")
+    alias(libs.plugins.shadowPlugin)
 }
-
 
 kotlin {
     jvm() {
-        withJava()
+        binaries {
+            executable {
+                mainClass.set("ServerKt")
+            }
+        }
     }
 
     sourceSets {
@@ -16,11 +22,11 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.serialization)
 
-            implementation("io.ktor:ktor-server-core:2.3.12")
-            implementation("io.ktor:ktor-server-netty:2.3.12")
-            implementation("io.ktor:ktor-server-cors:2.3.12")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.12")
-            implementation("io.ktor:ktor-server-content-negotiation:2.3.12")
+            implementation("io.ktor:ktor-server-core:3.2.1")
+            implementation("io.ktor:ktor-server-netty:3.2.1")
+            implementation("io.ktor:ktor-server-cors:3.2.1")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.2.1")
+            implementation("io.ktor:ktor-server-content-negotiation:3.2.1")
 
             implementation("ch.qos.logback:logback-classic:1.5.8")
 
@@ -29,6 +35,9 @@ kotlin {
     }
 }
 
-application {
-    mainClass.set("ServerKt")
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+    manifest {
+        attributes["Main-Class"] = "ServerKt"
+    }
 }
+
