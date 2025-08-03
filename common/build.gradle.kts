@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import com.google.devtools.ksp.gradle.KspAATask
+import org.jetbrains.kotlin.gradle.swiftexport.ExperimentalSwiftExportDsl
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
@@ -29,25 +30,23 @@ android {
 kotlin {
     jvmToolchain(17)
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "common"
-        }
-    }
-
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
     androidTarget()
     jvm()
-
     wasmJs {
         browser {
             commonWebpackConfig {
                 outputFileName = "peopleinspaceShared.js"
             }
         }
+    }
+
+    @OptIn(ExperimentalSwiftExportDsl::class)
+    swiftExport {
+        moduleName = "common"
+        flattenPackage = "dev.johnoreilly.common"
     }
 
     sourceSets {
@@ -145,6 +144,7 @@ kotlin.sourceSets.all {
 }
 
 skie {
+    isEnabled = false
     features {
         enableSwiftUIObservingPreview = true
     }

@@ -7,6 +7,7 @@ pluginManagement {
             maven {
                 url = uri("https://androidx.dev/snapshots/builds/14637376/artifacts/repository")
             }
+            maven("https://redirector.kotlinlang.org/maven/dev")
         }
     }
 

@@ -1,6 +1,6 @@
 [versions]
-kotlin = "2.3.0"
-ksp = "2.3.2"
+kotlin = "2.4.0-dev-8268"
+ksp = "2.3.6"
 
 compose-multiplatform = "1.10.0"
 composeUiTooling = "1.5.6"
