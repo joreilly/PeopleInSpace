@@ -89,14 +89,18 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 
 ### Screenshots 
 
-**iOS (SwiftUI)**
+**iOS (SwiftUI + CMP)**
 <br/>
-<img width="546" alt="Screenshot 2021-02-27 at 12 09 02" src="https://user-images.githubusercontent.com/6302/109386736-ac1f0700-78f4-11eb-812e-4bf971a8c2a7.png">
+<img width="738" height="502" alt="Screenshot 2025-08-10 at 22 15 21" src="https://github.com/user-attachments/assets/2befb5b7-7308-409b-b83e-cc510fe72e41" />
 
-**Android (Jetpack Compose)**
+
+
+
+**Android (Jetpack Compose + CMP)**
 <br/>
 
-<img width="1052" alt="Screenshot 2022-11-11 at 21 24 59" src="https://user-images.githubusercontent.com/6302/201433001-e6c12438-ca8f-4b35-912c-c602b1f43da6.png">
+<img width="719" height="496" alt="Screenshot 2025-08-10 at 22 15 29" src="https://github.com/user-attachments/assets/4d97e95c-be6e-4913-a1a1-369bd7af5d7f" />
+
 
 
 **Wear OS (Wear Compose)**
@@ -108,12 +112,14 @@ There's a GraphQL module (`graphql-server`) which can be run locally using `./gr
 
 **Compose for Desktop**
 <br/>
-<img width="912" alt="Screenshot 2021-10-01 at 16 45 06" src="https://user-images.githubusercontent.com/6302/135652185-4ce9d8e3-f06e-4e9d-9930-3e900267f8bd.png">
+<img width="1134" height="881" alt="Screenshot 2025-08-10 at 22 51 15" src="https://github.com/user-attachments/assets/a1daab34-78b4-46b0-adbd-7841881843ed" />
+
 
 
 **Compose for Web (Wasm based)**
 <br/>
-<img width="1156" alt="Screenshot 2024-03-02 at 21 03 23" src="https://github.com/joreilly/PeopleInSpace/assets/6302/8e4bfb36-e417-4db8-824b-563953e0d9ac">
+<img width="1352" height="1010" alt="Screenshot 2025-08-10 at 22 58 45" src="https://github.com/user-attachments/assets/9fcf9fe8-7705-4268-aa2f-ec279ed2f2d9" />
+
 
 
 **MCP**
