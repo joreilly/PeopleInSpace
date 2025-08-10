@@ -15,22 +15,22 @@ import androidx.compose.ui.platform.LocalContext
 
 
 /**
- * Light default theme color scheme
+ * Light default theme color scheme - Space themed
  */
 @VisibleForTesting
 val LightDefaultColorScheme = lightColorScheme(
-    primary = Purple40,
+    primary = Blue40,
     onPrimary = Color.White,
-    primaryContainer = Purple90,
-    onPrimaryContainer = Purple10,
-    secondary = Orange40,
+    primaryContainer = Blue90,
+    onPrimaryContainer = Blue10,
+    secondary = Purple40,
     onSecondary = Color.White,
-    secondaryContainer = Orange90,
-    onSecondaryContainer = Orange10,
-    tertiary = Blue40,
+    secondaryContainer = Purple90,
+    onSecondaryContainer = Purple10,
+    tertiary = Orange40,
     onTertiary = Color.White,
-    tertiaryContainer = Blue90,
-    onTertiaryContainer = Blue10,
+    tertiaryContainer = Orange90,
+    onTertiaryContainer = Orange10,
     error = Red40,
     onError = Color.White,
     errorContainer = Red90,
@@ -41,27 +41,28 @@ val LightDefaultColorScheme = lightColorScheme(
     onSurface = DarkPurpleGray10,
     surfaceVariant = PurpleGray90,
     onSurfaceVariant = PurpleGray30,
-    outline = PurpleGray50
+    outline = PurpleGray50,
+    surfaceTint = Blue40
 )
 
 
 /**
- * Dark default theme color scheme
+ * Dark default theme color scheme - Space themed
  */
 @VisibleForTesting
 val DarkDefaultColorScheme = darkColorScheme(
-    primary = Purple80,
-    onPrimary = Purple20,
-    primaryContainer = Purple30,
-    onPrimaryContainer = Purple90,
-    secondary = Orange80,
-    onSecondary = Orange20,
-    secondaryContainer = Orange30,
-    onSecondaryContainer = Orange90,
-    tertiary = Blue80,
-    onTertiary = Blue20,
-    tertiaryContainer = Blue30,
-    onTertiaryContainer = Blue90,
+    primary = Blue80,
+    onPrimary = Blue20,
+    primaryContainer = Blue30,
+    onPrimaryContainer = Blue90,
+    secondary = Purple80,
+    onSecondary = Purple20,
+    secondaryContainer = Purple30,
+    onSecondaryContainer = Purple90,
+    tertiary = Orange80,
+    onTertiary = Orange20,
+    tertiaryContainer = Orange30,
+    onTertiaryContainer = Orange90,
     error = Red80,
     onError = Red20,
     errorContainer = Red30,
@@ -72,7 +73,8 @@ val DarkDefaultColorScheme = darkColorScheme(
     onSurface = DarkPurpleGray90,
     surfaceVariant = PurpleGray30,
     onSurfaceVariant = PurpleGray80,
-    outline = PurpleGray60
+    outline = PurpleGray60,
+    surfaceTint = Blue80
 )
 
 /**
