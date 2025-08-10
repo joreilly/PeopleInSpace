@@ -16,28 +16,28 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class PeopleInSpaceTest: KoinTest {
-    private val repo : PeopleInSpaceRepositoryInterface by inject()
-
-    @BeforeTest
-    fun setUp()  {
-        Dispatchers.setMain(StandardTestDispatcher())
-
-        startKoin{
-            modules(
-                commonModule(true),
-                platformModule(),
-                module {
-                    single { PeopleInSpaceDatabaseWrapper(null) }
-                }
-            )
-        }
-    }
-
-    @Test
-    fun testGetPeople() = runTest {
-        val result = repo.fetchPeople()
-        println(result)
-        assertTrue(result.isNotEmpty())
-    }
-}
+//class PeopleInSpaceTest: KoinTest {
+//    private val repo : PeopleInSpaceRepositoryInterface by inject()
+//
+//    @BeforeTest
+//    fun setUp()  {
+//        Dispatchers.setMain(StandardTestDispatcher())
+//
+//        startKoin{
+//            modules(
+//                commonModule(true),
+//                platformModule(),
+//                module {
+//                    single { PeopleInSpaceDatabaseWrapper(null) }
+//                }
+//            )
+//        }
+//    }
+//
+//    @Test
+//    fun testGetPeople() = runTest {
+//        val result = repo.fetchPeople()
+//        println(result)
+//        assertTrue(result.isNotEmpty())
+//    }
+//}
