@@ -81,11 +81,6 @@ Have tested this out in Google App Engine deployment.  Using shadowJar plugin to
 gcloud app deploy backend/build/libs/backend-all.jar --appyaml=backend/src/jvmMain/appengine/app.yaml
 ```
 
-### GraphQL backend
-
-There's a GraphQL module (`graphql-server`) which can be run locally using `./gradlew :graphql-server:bootRun` with "playground" then available at http://localhost:8080/playground
-
-
 
 ### Screenshots 
 
