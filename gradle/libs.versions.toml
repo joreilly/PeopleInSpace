@@ -1,12 +1,12 @@
 [versions]
-kotlin = "2.2.0"
-ksp = "2.2.0-2.0.2"
+kotlin = "2.2.10"
+ksp = "2.2.10-2.0.2"
 
 compose-multiplatform = "1.8.2"
 composeUiTooling = "1.4.1"
 coroutines = "1.10.2"
 kotlinxSerialization = "1.9.0"
-androidGradlePlugin = "8.12.0"
+androidGradlePlugin = "8.12.1"
 koin = "4.1.0"
 koinCompose = "4.1.0"
 koinComposeMultiplatform = "4.1.0"
@@ -20,14 +20,14 @@ webPackPlugin = "9.1.0"
 
 
 androidxActivity = "1.10.1"
-androidxComposeBom = "2025.07.00"
+androidxComposeBom = "2025.08.00"
 material3-adaptive = "1.1.0"
 material3-adaptive-navigation-suite = "1.3.2"
 androidxNavigationCompose = "2.9.3"
-uiToolingPreview = "1.8.3"
+uiToolingPreview = "1.9.0"
 wearCompose = "1.4.1"
 androidxLifecycle = "2.9.2"
-androidxLifecycleKMP = "2.9.1"
+androidxLifecycleKMP = "2.9.2"
 
 coilCompose = "2.7.0"
 coilCompose3 = "3.3.0"
@@ -36,11 +36,11 @@ horologist = "0.6.23"
 glanceWearTiles = "1.0.0-alpha05"
 glanceAppWidget = "1.1.1"
 okhttp = "5.1.0"
-kermit = "2.0.6"
+kermit = "2.0.8"
 
 gradleVersionsPlugin = "0.52.0"
-shadowPlugin = "9.0.0-rc3"
-skie = "0.10.5"
+shadowPlugin = "9.0.2"
+skie = "0.10.6"
 
 mcp = "0.6.0"
 
@@ -82,10 +82,10 @@ androidx-lifecycle-viewmodel-kmp = { module = "org.jetbrains.androidx.lifecycle:
 androidx-lifecycle-compose-kmp = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycleKMP" }
 
 
-androidx-tracing = "androidx.tracing:tracing:1.2.0"
+androidx-tracing = "androidx.tracing:tracing:1.3.0"
 
 splash-screen = "androidx.core:core-splashscreen:1.0.1"
-metrics = "androidx.metrics:metrics-performance:1.0.0-beta01"
+metrics = "androidx.metrics:metrics-performance:1.0.0-beta02"
 
 osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
 osm-android-compose = { module = "tech.utsmankece:osm-android-compose", version.ref = "osmAndroidCompose" }
