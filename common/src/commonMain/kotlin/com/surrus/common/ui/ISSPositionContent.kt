@@ -71,14 +71,15 @@ fun ISSPositionContent(viewModel: ISSPositionViewModel) {
             }
         }
         
-        Spacer(Modifier.height(16.dp))
+        //Spacer(Modifier.height(16.dp))
         
         // Map view takes the remaining space
         ISSMapView(
             Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
+                .padding(16.dp)
+                .clip(RoundedCornerShape(8.dp)),
             viewModel
         )
     }
@@ -89,7 +90,7 @@ fun CoordinateDisplay(label: String, value: String, modifier: Modifier = Modifie
     Box(
         modifier = modifier
             .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
+                color = MaterialTheme.colorScheme.background,
                 shape = RoundedCornerShape(8.dp)
             )
             .padding(12.dp),
@@ -99,7 +100,7 @@ fun CoordinateDisplay(label: String, value: String, modifier: Modifier = Modifie
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
+                color = MaterialTheme.colorScheme.onBackground
             )
             
             Spacer(Modifier.height(4.dp))
@@ -108,7 +109,7 @@ fun CoordinateDisplay(label: String, value: String, modifier: Modifier = Modifie
                 text = value,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
     }
