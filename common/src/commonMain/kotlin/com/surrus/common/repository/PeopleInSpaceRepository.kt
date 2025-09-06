@@ -32,16 +32,14 @@ class PeopleInSpaceRepository(
 
     init {
         coroutineScope.launch {
-            // TODO figure out cleaner place to invoke this
+            // TODO figure out cleaner place to invoke this (needed for web implementatin)
             PeopleInSpaceDatabase.Schema.awaitCreate(peopleInSpaceDatabase.driver)
             fetchAndStorePeople()
         }
     }
 
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
-        // the main reason we need to do this check is that sqldelight isn't currently
-        // setup for javascript client
-        return peopleInSpaceQueries?.selectAll(
+        return peopleInSpaceQueries.selectAll(
             mapper = { name, craft, personImageUrl, personBio ->
                 Assignment(
                     name = name,
@@ -50,7 +48,7 @@ class PeopleInSpaceRepository(
                     personBio = personBio
                 )
             }
-        )?.asFlow()?.mapToList(Dispatchers.Default) ?: flowOf(emptyList())
+        ).asFlow().mapToList(Dispatchers.Default)
     }
 
     override suspend fun fetchAndStorePeople() {
@@ -60,8 +58,7 @@ class PeopleInSpaceRepository(
 
             // this is very basic implementation for now that removes all existing rows
             // in db and then inserts results from api request
-            // using "transaction" accelerate the batch of queries, especially inserting
-            peopleInSpaceQueries?.transaction {
+            peopleInSpaceQueries.transaction {
                 peopleInSpaceQueries.deleteAll()
                 result.people.forEach {
                     peopleInSpaceQueries.insertItem(
@@ -84,9 +81,14 @@ class PeopleInSpaceRepository(
     override fun pollISSPosition(): Flow<IssPosition> {
         return flow {
             while (true) {
-                val position = peopleInSpaceApi.fetchISSPosition().iss_position
-                emit(position)
-                logger.d { position.toString() }
+                try {
+                    val position = peopleInSpaceApi.fetchISSPosition().iss_position
+                    emit(position)
+                    logger.d { position.toString() }
+                } catch (e: Exception) {
+                    // TODO report error up to UI
+                    logger.w(e) { "Exception during pollISSPosition: $e" }
+                }
                 delay(POLL_INTERVAL)
             }
         }
