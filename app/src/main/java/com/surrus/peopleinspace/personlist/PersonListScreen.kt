@@ -8,7 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
@@ -41,6 +41,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -59,8 +60,7 @@ const val PersonListTag = "PersonList"
 
 
 @Composable
-fun PersonListRoute(
-navigateToPerson: (Assignment) -> Unit, ) {
+fun PersonListRoute(navigateToPerson: (Assignment) -> Unit, ) {
     val viewModel: PersonListViewModel = koinViewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -184,8 +184,8 @@ fun PersonListScreen(
                                 .fillMaxSize()
                         ) {
                             if (!refreshing) {
-                                items(uiState.result) { person ->
-                                    PersonView(person, navigateToPerson)
+                                itemsIndexed(uiState.result) { index, person ->
+                                    PersonView(index, person, navigateToPerson)
                                 }
                             }
                         }
@@ -199,7 +199,7 @@ fun PersonListScreen(
 }
 
 @Composable
-fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit) {
+fun PersonView(index: Int, person: Assignment, personSelected: (person: Assignment) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -246,7 +246,9 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
                 Text(
                     text = person.name,
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.testTag("person$index")
+                        .semantics { testTagsAsResourceId = true}
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
@@ -263,6 +265,6 @@ fun PersonView(person: Assignment, personSelected: (person: Assignment) -> Unit)
 @Composable
 fun PersonViewPreview(@PreviewParameter(PersonProvider::class) person: Assignment) {
     MaterialTheme {
-        PersonView(person, personSelected = {})
+        PersonView(0, person, personSelected = {})
     }
 }
