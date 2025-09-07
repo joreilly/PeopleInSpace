@@ -1,8 +1,8 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.surrus.peopleinspace.issposition
+package dev.johnoreilly.peopleinspace.issposition
 
-import com.surrus.common.ui.ISSPositionContent
+import dev.johnoreilly.common.ui.ISSPositionContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.*
-import com.surrus.common.viewmodel.ISSPositionViewModel
-import com.surrus.peopleinspace.R
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.peopleinspace.R
 import org.koin.androidx.compose.koinViewModel
 
 

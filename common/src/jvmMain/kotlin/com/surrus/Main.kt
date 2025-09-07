@@ -1,7 +1,7 @@
-package com.surrus
+package dev.johnoreilly
 
-import com.surrus.common.di.initKoin
-import com.surrus.common.remote.PeopleInSpaceApi
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.remote.PeopleInSpaceApi
 
 suspend fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin

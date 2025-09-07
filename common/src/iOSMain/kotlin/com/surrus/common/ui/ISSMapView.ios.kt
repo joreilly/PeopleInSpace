@@ -1,4 +1,4 @@
-package com.surrus.common.ui
+package dev.johnoreilly.common.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -7,7 +7,7 @@ import androidx.compose.ui.interop.UIKitViewController
 import androidx.compose.ui.viewinterop.UIKitInteropInteractionMode
 import androidx.compose.ui.viewinterop.UIKitInteropProperties
 import androidx.compose.ui.viewinterop.UIKitViewController
-import com.surrus.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @Composable

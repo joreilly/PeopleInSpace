@@ -1,9 +1,9 @@
-package com.surrus.common.viewmodel
+package dev.johnoreilly.common.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.surrus.common.remote.Assignment
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn

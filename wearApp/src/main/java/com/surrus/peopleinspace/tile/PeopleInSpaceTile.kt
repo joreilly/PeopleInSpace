@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.tile
+package dev.johnoreilly.peopleinspace.tile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -12,9 +12,9 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import com.surrus.common.remote.Assignment
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.surrus.peopleinspace.tile.util.BaseGlanceTileService
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.peopleinspace.tile.util.BaseGlanceTileService
 import kotlinx.coroutines.flow.first
 import org.koin.core.component.inject
 

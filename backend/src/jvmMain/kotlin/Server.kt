@@ -1,7 +1,7 @@
-import com.surrus.common.di.initKoin
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.AstroResult
-import com.surrus.common.remote.PeopleInSpaceApi
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.remote.AstroResult
+import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.serialization.kotlinx.json.*

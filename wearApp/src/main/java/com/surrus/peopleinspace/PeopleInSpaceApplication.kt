@@ -1,12 +1,12 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
 import android.app.Application
 import co.touchlab.kermit.Logger
 import coil.ImageLoader
 import coil.ImageLoaderFactory
-import com.surrus.common.di.initKoin
-import com.surrus.peopleinspace.di.wearAppModule
-import com.surrus.peopleinspace.di.wearImageLoader
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.peopleinspace.di.wearAppModule
+import dev.johnoreilly.peopleinspace.di.wearImageLoader
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinComponent

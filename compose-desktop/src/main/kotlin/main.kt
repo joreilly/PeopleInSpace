@@ -19,9 +19,9 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import coil3.compose.AsyncImage
-import com.surrus.common.di.initKoin
-import com.surrus.common.remote.Assignment
-import com.surrus.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.repository.PeopleInSpaceRepository
 
 // Define custom colors for the app
 private val SpaceBlue = Color(0xFF1E88E5)

@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.ui
+package dev.johnoreilly.peopleinspace.ui
 
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast

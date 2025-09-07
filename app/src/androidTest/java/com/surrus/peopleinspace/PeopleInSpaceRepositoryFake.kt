@@ -1,8 +1,8 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

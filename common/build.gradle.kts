@@ -22,7 +22,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    namespace = "com.surrus.common"
+    namespace = "dev.johnoreilly.common"
 }
 
 kotlin {
@@ -113,7 +113,7 @@ sqldelight {
     databases {
         create("PeopleInSpaceDatabase") {
             generateAsync = true
-            packageName.set("com.surrus.peopleinspace.db")
+            packageName.set("dev.johnoreilly.peopleinspace.db")
         }
     }
 }

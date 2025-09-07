@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.map
+package dev.johnoreilly.peopleinspace.map
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -14,8 +14,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.horologist.compose.layout.ScreenScaffold
-import com.surrus.common.remote.IssPosition
-import com.surrus.peopleinspace.BuildConfig
+import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.peopleinspace.BuildConfig
 import org.koin.androidx.compose.koinViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory

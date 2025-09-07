@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.glance.util
+package dev.johnoreilly.peopleinspace.glance.util
 
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver

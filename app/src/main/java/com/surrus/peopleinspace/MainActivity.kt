@@ -1,11 +1,11 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.surrus.peopleinspace.ui.PeopleInSpaceApp
+import dev.johnoreilly.peopleinspace.ui.PeopleInSpaceApp
 
 
 class MainActivity : ComponentActivity() {

@@ -1,7 +1,7 @@
-package com.surrus.peopleinspace.ui
+package dev.johnoreilly.peopleinspace.ui
 
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
-import com.surrus.common.remote.Assignment
+import dev.johnoreilly.common.remote.Assignment
 
 class PersonProvider : CollectionPreviewParameterProvider<Assignment>(
     listOf(

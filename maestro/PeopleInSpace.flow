@@ -1,0 +1,14 @@
+appId: dev.johnoreilly.peopleinspace
+---
+- launchApp:
+    clearState: true
+
+- assertVisible: "People in Space"
+
+- tapOn: "ISS Position"
+- assertVisible: "ISS Position"
+
+- tapOn: "People"
+- assertVisible: "People in Space"
+
+- takeScreenshot: PeopleInSpace

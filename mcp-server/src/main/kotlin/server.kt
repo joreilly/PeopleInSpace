@@ -1,5 +1,5 @@
-import com.surrus.common.di.initKoin
-import com.surrus.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.repository.PeopleInSpaceRepository
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 import io.ktor.utils.io.streams.*

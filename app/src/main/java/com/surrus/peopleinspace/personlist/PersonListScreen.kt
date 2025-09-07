@@ -2,7 +2,7 @@
     ExperimentalMaterialApi::class
 )
 
-package com.surrus.peopleinspace.personlist
+package dev.johnoreilly.peopleinspace.personlist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -46,11 +46,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import com.surrus.common.remote.Assignment
-import com.surrus.common.viewmodel.PersonListUiState
-import com.surrus.common.viewmodel.PersonListViewModel
-import com.surrus.peopleinspace.R
-import com.surrus.peopleinspace.ui.PersonProvider
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.viewmodel.PersonListUiState
+import dev.johnoreilly.common.viewmodel.PersonListViewModel
+import dev.johnoreilly.peopleinspace.R
+import dev.johnoreilly.peopleinspace.ui.PersonProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel

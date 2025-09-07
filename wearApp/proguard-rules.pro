@@ -10,7 +10,7 @@
 # Add any project specific keep options here:
 
 # keep everything in this package from being removed or renamed
--keep class com.surrus.** { *; }
+-keep class dev.johnoreilly.** { *; }
 -keep class androidx.wear.** { *; }
 
 # okhttp

@@ -1,4 +1,4 @@
-package com.surrus.common.remote
+package dev.johnoreilly.common.remote
 
 import io.ktor.client.*
 import io.ktor.client.call.*

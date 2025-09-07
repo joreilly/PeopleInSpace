@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalHorologistApi::class)
 
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -14,9 +14,9 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.AppScaffold
-import com.surrus.peopleinspace.list.PersonListScreen
-import com.surrus.peopleinspace.map.IssMapScreen
-import com.surrus.peopleinspace.person.PersonDetailsScreen
+import dev.johnoreilly.peopleinspace.list.PersonListScreen
+import dev.johnoreilly.peopleinspace.map.IssMapScreen
+import dev.johnoreilly.peopleinspace.person.PersonDetailsScreen
 
 @Composable
 fun PeopleInSpaceApp(navController: NavHostController) {

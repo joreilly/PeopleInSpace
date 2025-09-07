@@ -1,10 +1,10 @@
-package com.surrus.common.di
+package dev.johnoreilly.common.di
 
-import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.common.repository.PeopleInSpaceRepository
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.surrus.common.repository.platformModule
-import com.surrus.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.remote.PeopleInSpaceApi
+import dev.johnoreilly.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.common.repository.platformModule
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.contentnegotiation.*

@@ -1,8 +1,8 @@
 package dev.johnoreilly.peopleinspace
 
-import com.surrus.common.di.commonModule
-import com.surrus.common.repository.platformModule
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import dev.johnoreilly.common.di.commonModule
+import dev.johnoreilly.common.repository.platformModule
+import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
 import org.koin.core.annotation.KoinExperimentalAPI

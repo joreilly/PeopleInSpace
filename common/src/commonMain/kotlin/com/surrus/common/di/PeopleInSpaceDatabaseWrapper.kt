@@ -1,6 +1,6 @@
-package com.surrus.common.di
+package dev.johnoreilly.common.di
 
 import app.cash.sqldelight.db.SqlDriver
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 
 class PeopleInSpaceDatabaseWrapper(val driver: SqlDriver, val instance: PeopleInSpaceDatabase)

@@ -1,9 +1,9 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
 import android.app.Application
 import co.touchlab.kermit.Logger
-import com.surrus.common.di.initKoin
-import com.surrus.peopleinspace.di.appModule
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.peopleinspace.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.osmdroid.config.Configuration

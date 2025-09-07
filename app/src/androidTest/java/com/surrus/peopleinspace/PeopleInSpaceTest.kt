@@ -1,10 +1,10 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.surrus.common.viewmodel.PersonListUiState
-import com.surrus.peopleinspace.personlist.PersonListScreen
-import com.surrus.peopleinspace.personlist.PersonListTag
+import dev.johnoreilly.common.viewmodel.PersonListUiState
+import dev.johnoreilly.peopleinspace.personlist.PersonListScreen
+import dev.johnoreilly.peopleinspace.personlist.PersonListTag
 import org.junit.Rule
 import org.junit.Test
 

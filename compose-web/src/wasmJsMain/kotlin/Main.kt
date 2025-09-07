@@ -41,9 +41,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
 import coil3.compose.AsyncImage
-import com.surrus.common.di.initKoin
-import com.surrus.common.remote.Assignment
-import com.surrus.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.repository.PeopleInSpaceRepository
 
 // Define colors for the application
 private val primaryColor = Color(0xFF1E88E5) // Blue
