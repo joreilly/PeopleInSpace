@@ -514,7 +514,7 @@
 					"-framework",
 					common,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.PeopleInSpaceSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.peopleinspace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -549,7 +549,7 @@
 					"-framework",
 					common,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.PeopleInSpaceSwiftUI;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.peopleinspace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

@@ -10,5 +10,7 @@ appId: dev.johnoreilly.peopleinspace
 
 - tapOn: "People"
 - assertVisible: "People in Space"
+- assertVisible:
+    id: "person0"
 
 - takeScreenshot: PeopleInSpace
