@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.glance.util
+package dev.johnoreilly.peopleinspace.glance.util
 
 import android.content.Context
 import androidx.compose.runtime.Composable

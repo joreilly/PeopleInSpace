@@ -1,6 +1,6 @@
-package com.surrus.common.ui
+package dev.johnoreilly.common.ui
 
-import com.surrus.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import platform.UIKit.UIViewController
 
 interface NativeViewFactory {

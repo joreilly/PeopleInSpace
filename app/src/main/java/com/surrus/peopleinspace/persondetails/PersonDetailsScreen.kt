@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.surrus.peopleinspace.persondetails
+package dev.johnoreilly.peopleinspace.persondetails
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -30,7 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.surrus.common.remote.Assignment
+import dev.johnoreilly.common.remote.Assignment
 
 
 @Composable

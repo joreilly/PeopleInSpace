@@ -1,12 +1,12 @@
-package com.surrus.peopleinspace.di
+package dev.johnoreilly.peopleinspace.di
 
 import android.util.Log
 import coil.ImageLoader
 import coil.util.DebugLogger
-import com.surrus.peopleinspace.BuildConfig
-import com.surrus.peopleinspace.list.PersonListViewModel
-import com.surrus.peopleinspace.map.MapViewModel
-import com.surrus.peopleinspace.person.PersonDetailsViewModel
+import dev.johnoreilly.peopleinspace.BuildConfig
+import dev.johnoreilly.peopleinspace.list.PersonListViewModel
+import dev.johnoreilly.peopleinspace.map.MapViewModel
+import dev.johnoreilly.peopleinspace.person.PersonDetailsViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

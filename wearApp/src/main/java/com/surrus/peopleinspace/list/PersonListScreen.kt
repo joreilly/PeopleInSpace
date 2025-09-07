@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalHorologistApi::class)
 
-package com.surrus.peopleinspace.list
+package dev.johnoreilly.peopleinspace.list
 
 import androidx.activity.compose.ReportDrawn
 import androidx.compose.foundation.Image
@@ -38,9 +38,9 @@ import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.google.android.horologist.compose.layout.ScalingLazyColumnState
 import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.google.android.horologist.compose.layout.rememberColumnState
-import com.surrus.common.remote.Assignment
-import com.surrus.peopleinspace.R
-import com.surrus.peopleinspace.person.AstronautImage
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.peopleinspace.R
+import dev.johnoreilly.peopleinspace.person.AstronautImage
 import org.koin.androidx.compose.koinViewModel
 
 const val PersonListTag = "PersonList"

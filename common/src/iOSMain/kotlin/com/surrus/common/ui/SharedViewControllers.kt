@@ -1,9 +1,9 @@
-package com.surrus.common.ui
+package dev.johnoreilly.common.ui
 
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.window.ComposeUIViewController
-import com.surrus.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 
 
 val LocalNativeViewFactory = staticCompositionLocalOf<NativeViewFactory> {

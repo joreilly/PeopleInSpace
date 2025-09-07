@@ -1,4 +1,4 @@
-package com.surrus.common.ui
+package dev.johnoreilly.common.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
@@ -8,7 +8,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.surrus.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import com.utsman.osmandcompose.CameraProperty
 import com.utsman.osmandcompose.CameraState
 import com.utsman.osmandcompose.DefaultMapProperties

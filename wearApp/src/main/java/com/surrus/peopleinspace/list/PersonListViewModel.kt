@@ -1,8 +1,8 @@
-package com.surrus.peopleinspace.list
+package dev.johnoreilly.peopleinspace.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 

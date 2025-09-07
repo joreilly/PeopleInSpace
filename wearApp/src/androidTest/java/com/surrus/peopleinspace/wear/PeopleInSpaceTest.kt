@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalHorologistApi::class)
 
-package com.surrus.peopleinspace.wear
+package dev.johnoreilly.peopleinspace.wear
 
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
@@ -10,9 +10,9 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
-import com.surrus.common.remote.Assignment
-import com.surrus.peopleinspace.list.PersonList
-import com.surrus.peopleinspace.list.PersonListTag
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.peopleinspace.list.PersonList
+import dev.johnoreilly.peopleinspace.list.PersonListTag
 import org.junit.Rule
 import org.junit.Test
 

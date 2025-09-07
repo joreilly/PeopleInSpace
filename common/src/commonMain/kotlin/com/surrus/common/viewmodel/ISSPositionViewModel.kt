@@ -1,9 +1,9 @@
-package com.surrus.common.viewmodel
+package dev.johnoreilly.common.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.KoinComponent

@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.tile.util
+package dev.johnoreilly.peopleinspace.tile.util
 
 import android.content.Context
 import androidx.compose.runtime.Composable

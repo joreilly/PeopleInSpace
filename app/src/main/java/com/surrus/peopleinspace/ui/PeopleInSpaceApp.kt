@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.ui
+package dev.johnoreilly.peopleinspace.ui
 
 
 import androidx.activity.compose.BackHandler
@@ -23,11 +23,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import com.surrus.common.remote.Assignment
-import com.surrus.peopleinspace.R
-import com.surrus.peopleinspace.issposition.ISSPositionRoute
-import com.surrus.peopleinspace.persondetails.PersonDetailsScreen
-import com.surrus.peopleinspace.personlist.PersonListRoute
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.peopleinspace.R
+import dev.johnoreilly.peopleinspace.issposition.ISSPositionRoute
+import dev.johnoreilly.peopleinspace.persondetails.PersonDetailsScreen
+import dev.johnoreilly.peopleinspace.personlist.PersonListRoute
 import kotlinx.coroutines.launch
 
 enum class AppDestinations(
@@ -87,7 +87,7 @@ fun PeopleInSpaceApp() {
                                 PersonDetailsScreen(
                                     person = it,
                                     showBackButton = !navigator.isListPaneVisible(),
-                                    popBack = { // It's good practice to name lambda parameters
+                                    popBack = {
                                         scope.launch { navigator.navigateBack() }
                                     }
                                 )

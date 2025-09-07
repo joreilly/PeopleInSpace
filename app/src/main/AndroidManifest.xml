@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.surrus.peopleinspace.glance.PeopleInSpaceWidgetReceiver"
+        <receiver android:name="dev.johnoreilly.peopleinspace.glance.PeopleInSpaceWidgetReceiver"
             android:label="People in Space"
             android:exported="true">
             <intent-filter>
@@ -39,7 +39,7 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
-        <receiver android:name="com.surrus.peopleinspace.glance.ISSMapWidgetReceiver"
+        <receiver android:name="dev.johnoreilly.peopleinspace.glance.ISSMapWidgetReceiver"
             android:label="ISS Map"
             android:exported="true">
             <intent-filter>

@@ -1,14 +1,14 @@
-package com.surrus.common.repository
+package dev.johnoreilly.common.repository
 
 import app.cash.sqldelight.async.coroutines.awaitCreate
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import co.touchlab.kermit.Logger
-import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
-import com.surrus.common.remote.Assignment
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
+import dev.johnoreilly.common.di.PeopleInSpaceDatabaseWrapper
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.common.remote.PeopleInSpaceApi
+import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 

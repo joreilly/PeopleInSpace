@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.ui
+package dev.johnoreilly.peopleinspace.ui
 
 import androidx.compose.ui.graphics.Color
 

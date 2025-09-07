@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -14,7 +14,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.surrus.peopleinspace"
+        applicationId = "dev.johnoreilly.peopleinspace"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
 
@@ -39,7 +39,7 @@ android {
         }
     }
 
-    namespace = "com.surrus.peopleinspace"
+    namespace = "dev.johnoreilly.peopleinspace"
 
     testOptions {
         managedDevices {

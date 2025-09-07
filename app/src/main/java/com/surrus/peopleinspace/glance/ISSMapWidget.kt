@@ -1,4 +1,4 @@
-package com.surrus.peopleinspace.glance
+package dev.johnoreilly.peopleinspace.glance
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -14,10 +14,10 @@ import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import androidx.glance.layout.Box
 import androidx.glance.layout.fillMaxSize
-import com.surrus.common.remote.IssPosition
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.surrus.peopleinspace.MainActivity
-import com.surrus.peopleinspace.R
+import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.peopleinspace.MainActivity
+import dev.johnoreilly.peopleinspace.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

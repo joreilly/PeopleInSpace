@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalHorologistApi::class)
 
-package com.surrus.peopleinspace.person
+package dev.johnoreilly.peopleinspace.person
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -28,9 +28,9 @@ import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
 import com.google.android.horologist.compose.layout.ScalingLazyColumnState
 import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.google.android.horologist.compose.layout.rememberColumnState
-import com.surrus.common.remote.Assignment
-import com.surrus.peopleinspace.R
-import com.surrus.peopleinspace.list.PersonListTag
+import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.peopleinspace.R
+import dev.johnoreilly.peopleinspace.list.PersonListTag
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 

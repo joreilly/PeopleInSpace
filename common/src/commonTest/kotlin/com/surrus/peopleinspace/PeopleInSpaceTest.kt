@@ -1,9 +1,9 @@
-package com.surrus.peopleinspace
+package dev.johnoreilly.peopleinspace
 
-import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
-import com.surrus.common.di.commonModule
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.surrus.common.repository.platformModule
+import dev.johnoreilly.common.di.PeopleInSpaceDatabaseWrapper
+import dev.johnoreilly.common.di.commonModule
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
+import dev.johnoreilly.common.repository.platformModule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
