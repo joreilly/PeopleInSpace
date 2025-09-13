@@ -1,0 +1,1 @@
+ALTER TABLE People ADD COLUMN nationality TEXT NOT NULL DEFAULT '';

@@ -134,6 +134,12 @@ struct PersonView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
+                if !person.nationality.isEmpty {
+                    Text(person.nationality)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                
                 // Add a subtle bio preview if available
                 if let bio = person.personBio, !bio.isEmpty {
                     Text(bio.prefix(50) + (bio.count > 50 ? "..." : ""))
@@ -160,6 +166,8 @@ struct PersonDetailsScreen: View {
     let person: Assignment
 
     var body: some View {
+        // Compose share text once for use in toolbar
+        let shareText = "Astronaut: \(person.name) — Craft: \(person.craft)\(person.nationality.isEmpty ? "" : " — Nationality: \(person.nationality)")"
         ScrollView {
             VStack(alignment: .center, spacing: 0) {
                 // Header with astronaut name and craft
@@ -190,19 +198,52 @@ struct PersonDetailsScreen: View {
                             .frame(height: 300)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     } placeholder: {
-                        VStack {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                            Text("Loading image...")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .padding(.top, 8)
+                        if (person.personImageUrl ?? "").isEmpty {
+                            VStack(spacing: 8) {
+                                Image(systemName: "person.crop.circle.fill")
+                                    .font(.system(size: 64))
+                                    .foregroundColor(.secondary)
+                                Text("No image available")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        } else {
+                            VStack {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                Text("Loading image...")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .padding(.top, 8)
+                            }
                         }
                     }
                     .frame(height: 300)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 24)
+                
+                // Nationality section (shown if available)
+                if !person.nationality.isEmpty {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Nationality")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                        Text(person.nationality)
+                            .font(.body)
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(24)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(.systemBackground))
+                            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 24)
+                }
                 
                 // Bio section with card styling
                 if let bio = person.personBio, !bio.isEmpty {
@@ -286,8 +327,16 @@ struct PersonDetailsScreen: View {
         }
         .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                ShareLink(item: shareText) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+            }
+        }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
