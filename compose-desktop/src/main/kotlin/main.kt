@@ -236,6 +236,17 @@ fun PersonView(
                         color = if (isSelected) SpaceDarkBlue.copy(alpha = 0.7f) else SpaceGray
                     )
                 )
+
+                val nationality = person.nationality
+                if (nationality.isNotBlank()) {
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = "Nationality: $nationality",
+                        style = MaterialTheme.typography.body2.copy(
+                            color = if (isSelected) SpaceDarkBlue.copy(alpha = 0.7f) else SpaceGray
+                        )
+                    )
+                }
             }
         }
     }
@@ -281,6 +292,25 @@ fun PersonDetailsView(person: Assignment) {
                                 fontSize = 16.sp
                             )
                         )
+                    }
+
+                    val nationality = person.nationality
+                    if (nationality.isNotBlank()) {
+                        Surface(
+                            color = SpaceLightBlue,
+                            shape = RoundedCornerShape(16.dp),
+                            modifier = Modifier.padding(vertical = 4.dp)
+                        ) {
+                            Text(
+                                "Nationality: $nationality",
+                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                                style = TextStyle(
+                                    color = SpaceDarkBlue,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 14.sp
+                                )
+                            )
+                        }
                     }
                 }
                 

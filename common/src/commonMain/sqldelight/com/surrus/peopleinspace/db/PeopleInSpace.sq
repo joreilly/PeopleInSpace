@@ -2,11 +2,12 @@ CREATE TABLE IF NOT EXISTS People(
   name TEXT NOT NULL PRIMARY KEY,
   craft TEXT NOT NULL,
   personImageUrl TEXT,
-  personBio TEXT
+  personBio TEXT,
+  nationality TEXT NOT NULL DEFAULT ''
 );
 
 insertItem:
-INSERT OR REPLACE INTO People(name, craft, personImageUrl, personBio) VALUES(?,?,?,?);
+INSERT OR REPLACE INTO People(name, craft, personImageUrl, personBio, nationality) VALUES(?,?,?,?,?);
 
 selectAll:
 SELECT * FROM People;

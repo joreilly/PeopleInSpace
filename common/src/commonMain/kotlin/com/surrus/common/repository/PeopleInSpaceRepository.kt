@@ -40,12 +40,13 @@ class PeopleInSpaceRepository(
 
     override fun fetchPeopleAsFlow(): Flow<List<Assignment>> {
         return peopleInSpaceQueries.selectAll(
-            mapper = { name, craft, personImageUrl, personBio ->
+            mapper = { name, craft, personImageUrl, personBio, nationality ->
                 Assignment(
                     name = name,
                     craft = craft,
                     personImageUrl = personImageUrl,
-                    personBio = personBio
+                    personBio = personBio,
+                    nationality = nationality
                 )
             }
         ).asFlow().mapToList(Dispatchers.Default)
@@ -65,7 +66,8 @@ class PeopleInSpaceRepository(
                         it.name,
                         it.craft,
                         it.personImageUrl,
-                        it.personBio
+                        it.personBio,
+                        it.nationality
                     )
                 }
             }

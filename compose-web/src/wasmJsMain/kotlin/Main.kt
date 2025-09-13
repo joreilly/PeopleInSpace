@@ -255,6 +255,17 @@ fun PersonView(
                     )
                 )
             }
+
+            if (person.nationality.isNotBlank()) {
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(
+                    text = person.nationality,
+                    style = TextStyle(
+                        color = Color.Gray,
+                        fontSize = 12.sp
+                    )
+                )
+            }
         }
     }
 }
@@ -331,7 +342,44 @@ fun PersonDetailsView(person: Assignment) {
             }
             
             Spacer(modifier = Modifier.height(32.dp))
-            
+
+            // Nationality section (if available)
+            if (person.nationality.isNotBlank()) {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFFF9F9F9)
+                    ),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            "Nationality",
+                            style = TextStyle(
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = primaryColor
+                            ),
+                            modifier = Modifier.padding(bottom = 8.dp)
+                        )
+
+                        Divider(color = Color.LightGray)
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        Text(
+                            person.nationality,
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                color = Color.DarkGray
+                            )
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+
             // Bio section
             Card(
                 modifier = Modifier.fillMaxWidth(),

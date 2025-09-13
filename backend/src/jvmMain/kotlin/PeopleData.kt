@@ -43,7 +43,7 @@ val currentPeopleInSpace = listOf(
         name = "Sergey Ryzhikov",
         personImageUrl = "https://images.squarespace-cdn.com/content/v1/580e44a7c534a53b3fc3bedf/ffb6609c-6adb-40c6-8c5f-670472072acb/WIIS_Ryzhikov.jpg?format=1000w",
         personBio = "Sergey Nikolayevich Ryzhiko born on August 19, 1974, lieutenant colonel of Russian Air Force, is a Russian cosmonaut, selected in 2006. Ryzhikov launched on his first spaceflight onboard the Soyuz MS-02 spacecraft. He spent approximately six months onboard the International Space Station taking part in Expedition 49/50, returning to Earth on April 10, 2017.",
-        nationality = "",
+        nationality = "Russian",
     ),
     Assignment(
         craft = "ISS",
