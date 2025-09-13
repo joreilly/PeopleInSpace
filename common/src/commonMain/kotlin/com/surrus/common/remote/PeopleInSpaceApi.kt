@@ -10,7 +10,13 @@ import org.koin.core.component.KoinComponent
 data class AstroResult(val message: String, val number: Int, val people: List<Assignment>)
 
 @Serializable
-data class Assignment(val craft: String, val name: String, var personImageUrl: String? = "", var personBio: String? = "")
+data class Assignment(
+    val craft: String,
+    val name: String,
+    var personImageUrl: String? = "",
+    var personBio: String? = "",
+    var nationality: String = "",
+)
 
 @Serializable
 data class IssPosition(val latitude: Double, val longitude: Double)

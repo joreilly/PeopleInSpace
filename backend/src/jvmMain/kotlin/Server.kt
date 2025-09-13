@@ -40,12 +40,7 @@ fun main() {
         routing {
 
             get("/astros.json") {
-                val ar = peopleInSpaceApi.fetchPeople()
-                val result = AstroResult(ar.message, ar.number, ar.people.map {
-                    val personImageUrl = personImages[it.name]
-                    val personBio = personBios[it.name]
-                    Assignment(it.craft, it.name, personImageUrl, personBio)
-                })
+                val result = AstroResult("success", currentPeopleInSpace.size, currentPeopleInSpace)
                 call.respond(result)
             }
 
