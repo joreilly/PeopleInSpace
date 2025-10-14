@@ -25,7 +25,7 @@ androidxNavigationCompose = "2.9.3"
 uiToolingPreview = "1.9.0"
 wearCompose = "1.4.1"
 androidxLifecycle = "2.9.3"
-androidxLifecycleKMP = "2.9.3"
+androidxLifecycleKMP = "2.9.5"
 
 coilCompose = "2.7.0"
 coilCompose3 = "3.3.0"
