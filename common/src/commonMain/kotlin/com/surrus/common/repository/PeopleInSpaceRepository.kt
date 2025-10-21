@@ -7,9 +7,9 @@ import com.surrus.common.di.PeopleInSpaceDatabaseWrapper
 import com.surrus.common.remote.Assignment
 import com.surrus.common.remote.IssPosition
 import com.surrus.common.remote.PeopleInSpaceApi
+import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Single
 
 
@@ -23,11 +23,11 @@ interface PeopleInSpaceRepositoryInterface {
 @Single
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
-    @Provided private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
+    private val wrapper: PeopleInSpaceDatabaseWrapper
 ) : PeopleInSpaceRepositoryInterface {
 
     val coroutineScope: CoroutineScope = MainScope()
-    private val peopleInSpaceQueries = peopleInSpaceDatabase.database()?.peopleInSpaceQueries
+    private val peopleInSpaceQueries = wrapper.instance?.peopleInSpaceQueries
 
     val logger = Logger.withTag("PeopleInSpaceRepository")
 

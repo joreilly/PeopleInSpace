@@ -1,3 +1,4 @@
+import com.google.devtools.ksp.gradle.KspAATask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
@@ -148,7 +149,12 @@ project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
     }
 }
 
+project.tasks.withType<KspAATask>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
 ksp {
-    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
     arg("KOIN_CONFIG_CHECK","true")
 }

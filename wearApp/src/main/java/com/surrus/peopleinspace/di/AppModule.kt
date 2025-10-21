@@ -8,7 +8,7 @@ import com.surrus.peopleinspace.list.PersonListViewModel
 import com.surrus.peopleinspace.map.MapViewModel
 import com.surrus.peopleinspace.person.PersonDetailsViewModel
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val wearAppModule = module {
