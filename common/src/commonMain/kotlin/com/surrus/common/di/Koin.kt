@@ -1,10 +1,5 @@
 package com.surrus.common.di
 
-import app.cash.sqldelight.db.SqlDriver
-import com.surrus.common.remote.PeopleInSpaceApi
-import com.surrus.common.repository.PeopleInSpaceRepository
-import com.surrus.common.repository.PeopleInSpaceRepositoryInterface
-import com.surrus.common.viewmodel.ISSPositionViewModel
 import com.surrus.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.*
 import io.ktor.client.engine.*
@@ -16,30 +11,32 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Configuration
+import org.koin.core.annotation.KoinApplication
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 import org.koin.core.context.startKoin
+import org.koin.core.scope.Scope
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
-import org.koin.ksp.generated.module
+import org.koin.ksp.generated.startKoin
+
+@KoinApplication
+object KoinApp
 
 fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
-    startKoin {
-        modules(
-            AppModule().module
-        )
+    KoinApp.startKoin {
         includes(appDeclaration)
     }
 
 // called by iOS etc
 fun initKoin() = initKoin(enableNetworkLogs = false)
 
-
-@Module(includes = [CommonModule::class, NativeModule::class])
+@Configuration
+@Module(includes = [CommonModule::class, ViewModelModule::class])
 class AppModule
 
-
-@Module
+@Module(includes = [NativeModule::class])
 @ComponentScan("com.surrus.common")
 class CommonModule {
     @Single
@@ -47,39 +44,30 @@ class CommonModule {
 
     @Single
     fun httpClient(httpClientEngine: HttpClientEngine, json : Json) = createHttpClient(httpClientEngine, json, true)
+
+    @Single
+    fun dispatcher() = CoroutineScope(Dispatchers.Default + SupervisorJob() )
 }
 
+class PeopleInSpaceDatabaseWrapper(val instance: PeopleInSpaceDatabase? = null)
+
+@Module
+expect class ViewModelModule()
+
+expect class ContextWrapper
 
 @Module
 expect class NativeModule() {
+
+    @Single
+    fun providesContextWrapper(scope : Scope) : ContextWrapper
+
     @Single
     fun getHttpClientEngine(): HttpClientEngine
 
     @Single
-    fun getPeopleInSpaceDatabaseWrapper(): PeopleInSpaceDatabaseWrapper
+    fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper
 }
-
-
-class PeopleInSpaceDatabaseWrapper(val instance: PeopleInSpaceDatabase?)
-
-
-//expect class PeopleInSpaceDatabaseWrapper {
-//    fun database() : PeopleInSpaceDatabase?
-//}
-
-
-
-//fun commonModule(enableNetworkLogs: Boolean) = module {
-//    singleOf(::createJson)
-//    single { createHttpClient(get(), get(), enableNetworkLogs = enableNetworkLogs) }
-//    singleOf(::PeopleInSpaceApi)
-//    singleOf(::PeopleInSpaceRepository).bind<PeopleInSpaceRepositoryInterface>()
-//
-//    single { CoroutineScope(Dispatchers.Default + SupervisorJob() ) }
-//}
-//
-//fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
-
 
 fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
     install(ContentNegotiation) {
