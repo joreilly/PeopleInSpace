@@ -4,6 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.serialization.Serializable
+import org.koin.core.annotation.Single
 import org.koin.core.component.KoinComponent
 
 @Serializable
@@ -24,6 +25,7 @@ data class IssPosition(val latitude: Double, val longitude: Double)
 @Serializable
 data class IssResponse(val message: String, val iss_position: IssPosition, val timestamp: Long)
 
+@Single
 class PeopleInSpaceApi(private val client: HttpClient) : KoinComponent {
     var baseUrl = "https://people-in-space-proxy.ew.r.appspot.com"
 

@@ -8,6 +8,7 @@ coroutines = "1.10.2"
 kotlinxSerialization = "1.9.0"
 androidGradlePlugin = "8.12.2"
 koin = "4.1.1"
+koin-annotations = "2.2.0"
 ktor = "3.2.3"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
@@ -110,6 +111,8 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
 koin-compose-multiplatform = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-annotations = {module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations"}
+koin-ksp-compiler = {module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations"}
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }

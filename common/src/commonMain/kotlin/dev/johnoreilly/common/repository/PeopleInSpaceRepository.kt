@@ -11,15 +11,16 @@ import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import org.koin.core.annotation.Single
 
 
 interface PeopleInSpaceRepositoryInterface {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
-    suspend fun fetchPeople(): List<Assignment>
     suspend fun fetchAndStorePeople()
 }
 
+@Single
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
@@ -76,9 +77,6 @@ class PeopleInSpaceRepository(
             logger.w(e) { "Exception during fetchAndStorePeople: $e" }
         }
     }
-
-    // Used by web and apple clients atm
-    override suspend fun fetchPeople(): List<Assignment> = peopleInSpaceApi.fetchPeople().people
 
     override fun pollISSPosition(): Flow<IssPosition> {
         return flow {

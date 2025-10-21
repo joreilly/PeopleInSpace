@@ -3,7 +3,6 @@ package dev.johnoreilly.peopleinspace
 import android.app.Application
 import co.touchlab.kermit.Logger
 import dev.johnoreilly.common.di.initKoin
-import dev.johnoreilly.peopleinspace.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.osmdroid.config.Configuration
@@ -23,7 +22,6 @@ class PeopleInSpaceApplication : Application() {
         initKoin {
             androidLogger()
             androidContext(this@PeopleInSpaceApplication)
-            modules(appModule)
         }
 
         Logger.d { "PeopleInSpaceApplication" }

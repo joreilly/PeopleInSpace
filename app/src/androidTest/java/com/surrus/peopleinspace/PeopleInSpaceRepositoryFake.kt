@@ -20,10 +20,6 @@ class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
         return flowOf(issPosition)
     }
 
-    override suspend fun fetchPeople(): List<Assignment> {
-        return emptyList()
-    }
-
     override suspend fun fetchAndStorePeople() {
     }
 }
