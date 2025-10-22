@@ -1,7 +1,8 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import com.google.devtools.ksp.gradle.KspAATask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -49,7 +50,6 @@ kotlin {
         }
     }
 
-
     sourceSets {
         commonMain.dependencies {
             implementation(libs.bundles.ktor.common)
@@ -62,6 +62,7 @@ kotlin {
             api(libs.koin.core)
             implementation(libs.koin.compose.multiplatform)
             implementation(libs.koin.test)
+            api(libs.koin.annotations)
 
             api(libs.kermit)
 
@@ -107,6 +108,12 @@ kotlin {
             implementation(devNpm("copy-webpack-plugin", libs.versions.webPackPlugin.get()))
         }
     }
+
+    // KSP Common sourceSet
+    sourceSets.named("commonMain").configure {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+    }
+
 }
 
 sqldelight {
@@ -135,4 +142,24 @@ skie {
     features {
         enableSwiftUIObservingPreview = true
     }
+}
+
+// KSP Tasks
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+    add("kspAndroid", libs.koin.ksp.compiler)
+    add("kspIosX64", libs.koin.ksp.compiler)
+    add("kspIosArm64", libs.koin.ksp.compiler)
+    add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
+    add("kspJvm", libs.koin.ksp.compiler)
+    add("kspWasmJs", libs.koin.ksp.compiler)
+}
+
+// KSP Metadata Trigger
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+ksp {
+    arg("KOIN_CONFIG_CHECK","true")
 }

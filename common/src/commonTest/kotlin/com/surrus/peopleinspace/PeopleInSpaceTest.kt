@@ -1,9 +1,7 @@
 package dev.johnoreilly.peopleinspace
 
 import dev.johnoreilly.common.di.PeopleInSpaceDatabaseWrapper
-import dev.johnoreilly.common.di.commonModule
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
-import dev.johnoreilly.common.repository.platformModule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
