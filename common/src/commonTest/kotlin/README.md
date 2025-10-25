@@ -22,11 +22,12 @@ Tests for ISS position display components:
 - Demonstrating data-driven testing patterns
 
 ### 3. `ViewModelUiTests.kt`
-Advanced tests showing ViewModel integration:
-- Testing UI components connected to ViewModels
+Advanced tests showing state-based UI testing:
+- Testing UI components with StateFlow (the pattern used by ViewModels)
 - Managing coroutine test dispatchers
-- Testing state flow updates
-- Verifying UI reflects ViewModel state changes
+- Testing state transitions (Loading → Success → Error)
+- Verifying UI reacts to state changes
+- Note: Uses StateFlow directly instead of actual ViewModels (which use Koin DI)
 
 ### 4. `TestTagExampleTests.kt`
 Best practices for using test tags:
@@ -230,9 +231,9 @@ fun testButtonClick() = runComposeUiTest {
 }
 ```
 
-## Testing ViewModels
+## Testing State-Based UI Components
 
-When testing components with ViewModels:
+The ViewModels in this project use Koin dependency injection and don't accept constructor parameters. Therefore, UI tests focus on testing components with StateFlow directly:
 
 1. **Setup test dispatcher**:
 ```kotlin
@@ -249,16 +250,31 @@ fun tearDown() {
 }
 ```
 
-2. **Advance time for coroutines**:
+2. **Create mock state flows**:
+```kotlin
+val uiStateFlow = MutableStateFlow(PersonListUiState.Success(fakeData))
+```
+
+3. **Test state transitions**:
+```kotlin
+// Start with loading
+val stateFlow = MutableStateFlow(UiState.Loading)
+setContent { MyComposable(stateFlow) }
+onNodeWithText("Loading...").assertIsDisplayed()
+
+// Transition to success
+stateFlow.value = UiState.Success(data)
+waitForIdle()
+onNodeWithText("Data").assertIsDisplayed()
+```
+
+4. **Advance time for coroutines**:
 ```kotlin
 testDispatcher.scheduler.advanceUntilIdle()
 waitForIdle()
 ```
 
-3. **Use fake repositories**:
-```kotlin
-val viewModel = MyViewModel(fakeRepository)
-```
+This approach tests the UI layer independently of ViewModel implementation details.
 
 ## Platform-Specific Considerations
 
@@ -311,10 +327,10 @@ class CoordinateDisplayTests {
 }
 ```
 
-### Testing with ViewModel
+### Testing with StateFlow (ViewModel Pattern)
 ```kotlin
 @OptIn(ExperimentalTestApi::class)
-class ViewModelIntegrationTests {
+class StateBasedUiTests {
     private val testDispatcher = StandardTestDispatcher()
 
     @BeforeTest
@@ -323,20 +339,38 @@ class ViewModelIntegrationTests {
     }
 
     @Test
-    fun testWithViewModel() = runComposeUiTest {
-        val viewModel = ISSPositionViewModel(fakeRepository)
+    fun testWithStateFlow() = runComposeUiTest {
+        // Create mock state flow
+        val positionFlow = MutableStateFlow(IssPosition(53.27, -9.05))
 
         setContent {
-            ISSPositionContent(viewModel)
+            // Composable that accepts StateFlow
+            ISSPositionContent(positionFlow)
         }
 
         testDispatcher.scheduler.advanceUntilIdle()
         waitForIdle()
 
-        onNodeWithText("53.2743394").assertIsDisplayed()
+        onNodeWithText("53.27").assertIsDisplayed()
+    }
+
+    @Test
+    fun testStateTransition() = runComposeUiTest {
+        val stateFlow = MutableStateFlow(UiState.Loading)
+        setContent { MyComposable(stateFlow) }
+
+        onNodeWithText("Loading...").assertExists()
+
+        stateFlow.value = UiState.Success(data)
+        waitForIdle()
+
+        onNodeWithText("Success").assertExists()
     }
 }
 ```
+
+**Why StateFlow instead of actual ViewModels?**
+The ViewModels in this project use Koin for dependency injection and don't accept constructor parameters. Testing with StateFlow allows us to test the UI layer independently without setting up complex Koin test modules.
 
 ## Resources
 
