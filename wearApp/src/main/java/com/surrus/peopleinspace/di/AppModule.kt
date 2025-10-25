@@ -8,7 +8,7 @@ import dev.johnoreilly.peopleinspace.list.PersonListViewModel
 import dev.johnoreilly.peopleinspace.map.MapViewModel
 import dev.johnoreilly.peopleinspace.person.PersonDetailsViewModel
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val wearAppModule = module {

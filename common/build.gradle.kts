@@ -98,6 +98,10 @@ kotlin {
             implementation(libs.kotlinx.coroutines.swing)
         }
 
+        jvmTest.dependencies {
+            implementation(compose.desktop.currentOs)
+        }
+
         appleMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqldelight.native.driver)
