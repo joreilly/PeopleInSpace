@@ -79,6 +79,8 @@ kotlin {
             implementation(libs.koin.test)
             implementation(libs.kotlinx.coroutines.test)
             implementation(kotlin("test"))
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            implementation(compose.uiTest)
         }
 
         androidMain.dependencies {
@@ -94,6 +96,10 @@ kotlin {
             implementation(libs.sqldelight.sqlite.driver)
             implementation(libs.slf4j)
             implementation(libs.kotlinx.coroutines.swing)
+        }
+
+        jvmTest.dependencies {
+            implementation(compose.desktop.currentOs)
         }
 
         appleMain.dependencies {
