@@ -16,6 +16,7 @@ import kotlin.test.Test
  * - Works with kotlin.test instead of JUnit
  * - Can be executed on multiple platforms
  */
+@OptIn(ExperimentalTestApi::class)
 class ComposeMultiplatformUiTests {
 
     @Test

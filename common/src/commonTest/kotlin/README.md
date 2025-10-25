@@ -56,6 +56,7 @@ class MyTest {
 
 ### Multiplatform Tests (common module)
 ```kotlin
+@OptIn(ExperimentalTestApi::class)
 class MyTest {
     @Test
     fun myTest() = runComposeUiTest {
@@ -64,6 +65,8 @@ class MyTest {
     }
 }
 ```
+
+**Note**: The `@OptIn(ExperimentalTestApi::class)` annotation is required because the Compose Multiplatform UI testing API is currently experimental. Add this annotation to your test classes to suppress experimental API warnings.
 
 ## Running the Tests
 
@@ -97,26 +100,33 @@ class MyTest {
 All tests follow this pattern:
 
 ```kotlin
-@Test
-fun testName() = runComposeUiTest {
-    // 1. Setup (if needed)
-    val viewModel = MyViewModel(fakeRepository)
+@OptIn(ExperimentalTestApi::class)
+class MyUiTests {
+    @Test
+    fun testName() = runComposeUiTest {
+        // 1. Setup (if needed)
+        val viewModel = MyViewModel(fakeRepository)
 
-    // 2. Set content
-    setContent {
-        MaterialTheme {
-            MyComposable(viewModel)
+        // 2. Set content
+        setContent {
+            MaterialTheme {
+                MyComposable(viewModel)
+            }
         }
+
+        // 3. Advance time (for async operations)
+        testDispatcher.scheduler.advanceUntilIdle()
+        waitForIdle()
+
+        // 4. Assert
+        onNodeWithText("Expected Text").assertIsDisplayed()
     }
-
-    // 3. Advance time (for async operations)
-    testDispatcher.scheduler.advanceUntilIdle()
-    waitForIdle()
-
-    // 4. Assert
-    onNodeWithText("Expected Text").assertIsDisplayed()
 }
 ```
+
+### Important: Experimental API
+
+The Compose Multiplatform UI testing framework is currently experimental. You must add the `@OptIn(ExperimentalTestApi::class)` annotation to your test classes to use `runComposeUiTest` and suppress experimental API warnings.
 
 ## Common Test Assertions
 
@@ -288,30 +298,43 @@ val viewModel = MyViewModel(fakeRepository)
 
 ### Testing CoordinateDisplay
 ```kotlin
-@Test
-fun testCoordinateDisplay() = runComposeUiTest {
-    setContent {
-        CoordinateDisplay(label = "Latitude", value = "53.27")
+@OptIn(ExperimentalTestApi::class)
+class CoordinateDisplayTests {
+    @Test
+    fun testCoordinateDisplay() = runComposeUiTest {
+        setContent {
+            CoordinateDisplay(label = "Latitude", value = "53.27")
+        }
+        onNodeWithText("Latitude").assertIsDisplayed()
+        onNodeWithText("53.27").assertIsDisplayed()
     }
-    onNodeWithText("Latitude").assertIsDisplayed()
-    onNodeWithText("53.27").assertIsDisplayed()
 }
 ```
 
 ### Testing with ViewModel
 ```kotlin
-@Test
-fun testWithViewModel() = runComposeUiTest {
-    val viewModel = ISSPositionViewModel(fakeRepository)
+@OptIn(ExperimentalTestApi::class)
+class ViewModelIntegrationTests {
+    private val testDispatcher = StandardTestDispatcher()
 
-    setContent {
-        ISSPositionContent(viewModel)
+    @BeforeTest
+    fun setup() {
+        Dispatchers.setMain(testDispatcher)
     }
 
-    testDispatcher.scheduler.advanceUntilIdle()
-    waitForIdle()
+    @Test
+    fun testWithViewModel() = runComposeUiTest {
+        val viewModel = ISSPositionViewModel(fakeRepository)
 
-    onNodeWithText("53.2743394").assertIsDisplayed()
+        setContent {
+            ISSPositionContent(viewModel)
+        }
+
+        testDispatcher.scheduler.advanceUntilIdle()
+        waitForIdle()
+
+        onNodeWithText("53.2743394").assertIsDisplayed()
+    }
 }
 ```
 
@@ -324,8 +347,9 @@ fun testWithViewModel() = runComposeUiTest {
 ## Contributing
 
 When adding new UI tests:
-1. Follow the existing naming conventions
-2. Add test tags to new composables
-3. Create test composables for complex scenarios
-4. Document any platform-specific limitations
-5. Keep tests fast and focused
+1. Add `@OptIn(ExperimentalTestApi::class)` to your test class
+2. Follow the existing naming conventions (e.g., `*UiTests.kt`)
+3. Add test tags to new composables
+4. Create test composables for complex scenarios
+5. Document any platform-specific limitations
+6. Keep tests fast and focused

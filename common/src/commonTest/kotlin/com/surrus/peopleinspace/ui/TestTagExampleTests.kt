@@ -20,6 +20,7 @@ import kotlin.test.Test
  * 3. Apply test tags to key interactive elements and containers
  * 4. Use test tags over text matching for better test stability
  */
+@OptIn(ExperimentalTestApi::class)
 class TestTagExampleTests {
 
     companion object {

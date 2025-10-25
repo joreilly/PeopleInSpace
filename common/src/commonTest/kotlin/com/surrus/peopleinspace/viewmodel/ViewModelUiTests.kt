@@ -24,6 +24,7 @@ import kotlin.test.Test
  * These tests show how to test Compose UI components that interact with ViewModels,
  * using a fake repository to provide test data.
  */
+@OptIn(ExperimentalTestApi::class)
 class ViewModelUiTests {
 
     private val testDispatcher = StandardTestDispatcher()

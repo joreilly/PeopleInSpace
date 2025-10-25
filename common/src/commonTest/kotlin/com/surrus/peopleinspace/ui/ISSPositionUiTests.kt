@@ -12,6 +12,7 @@ import kotlin.test.Test
  * These tests demonstrate testing Compose Multiplatform UI components
  * with realistic data from a fake repository.
  */
+@OptIn(ExperimentalTestApi::class)
 class ISSPositionUiTests {
 
     private val repository = PeopleInSpaceRepositoryFake()
