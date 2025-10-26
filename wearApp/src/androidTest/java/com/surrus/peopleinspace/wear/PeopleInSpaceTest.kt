@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalHorologistApi::class)
-
-package dev.johnoreilly.peopleinspace.wear
+package com.surrus.peopleinspace.wear
 
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
@@ -8,11 +6,9 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
-import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
+import com.surrus.peopleinspace.list.PersonList
+import com.surrus.peopleinspace.list.PersonListTag
 import dev.johnoreilly.common.remote.Assignment
-import dev.johnoreilly.peopleinspace.list.PersonList
-import dev.johnoreilly.peopleinspace.list.PersonListTag
 import org.junit.Rule
 import org.junit.Test
 
@@ -40,7 +36,6 @@ class PeopleInSpaceTest {
                 people = listOf(),
                 personSelected = {},
                 issMapClick = {},
-                columnState = ScalingLazyColumnDefaults.belowTimeText().create()
             )
         }
 
@@ -54,7 +49,6 @@ class PeopleInSpaceTest {
                 people = peopleList,
                 personSelected = {},
                 issMapClick = {},
-                columnState = ScalingLazyColumnDefaults.belowTimeText().create()
             )
         }
 

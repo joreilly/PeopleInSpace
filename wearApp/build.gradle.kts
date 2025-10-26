@@ -27,7 +27,10 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             // temporary hack for local testing of release builds
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -35,7 +38,10 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "benchmark-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "benchmark-rules.pro"
+            )
             // temporary hack for local testing of release builds
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.addAll(listOf("release", "debug"))
@@ -55,11 +61,15 @@ dependencies {
     implementation(libs.wear.compose.founndation)
     implementation(libs.wear.compose.material)
     implementation(libs.wear.compose.navigation)
+    implementation(libs.androidx.wear.compose.compose.material3)
+    implementation(libs.androidx.protolayout.material3)
 
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.horologist.compose.layout)
-    implementation(libs.glance.tiles)
-    implementation(libs.coilCompose)
+    implementation(libs.horologist.tiles)
+    implementation(libs.androidx.tiles.tooling.preview)
+    implementation(libs.androidx.tiles)
+    implementation(libs.coil3.compose)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -70,6 +80,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling)
     implementation(libs.wear.ui.tooling)
     debugImplementation(libs.androidx.ui.tooling.preview)
+    debugImplementation("androidx.wear.tiles:tiles-tooling:1.5.0")
 
     implementation(libs.okhttp)
     implementation(libs.loggingInterceptor)

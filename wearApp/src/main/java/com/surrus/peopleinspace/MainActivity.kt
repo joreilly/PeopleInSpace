@@ -1,9 +1,9 @@
-package dev.johnoreilly.peopleinspace
+package com.surrus.peopleinspace
 
+import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.LaunchedEffect
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
-        setTheme(android.R.style.Theme_DeviceDefault)
+        setTheme(R.style.Theme_DeviceDefault)
 
         setContent {
             navController = rememberSwipeDismissableNavController()

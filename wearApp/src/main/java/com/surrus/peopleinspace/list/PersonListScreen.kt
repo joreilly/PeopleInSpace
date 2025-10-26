@@ -1,16 +1,11 @@
-@file:OptIn(ExperimentalHorologistApi::class)
-
-package dev.johnoreilly.peopleinspace.list
+package com.surrus.peopleinspace.list
 
 import androidx.activity.compose.ReportDrawn
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -26,21 +21,22 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.wear.compose.material.Button
-import androidx.wear.compose.material.ButtonDefaults
-import androidx.wear.compose.material.Card
-import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.Text
+import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
+import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
+import androidx.wear.compose.material3.Card
+import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.IconButtonDefaults
+import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.OutlinedIconButton
+import androidx.wear.compose.material3.ScreenScaffold
+import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
-import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.layout.ScalingLazyColumn
-import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
-import com.google.android.horologist.compose.layout.ScalingLazyColumnState
-import com.google.android.horologist.compose.layout.ScreenScaffold
-import com.google.android.horologist.compose.layout.rememberColumnState
+import com.google.android.horologist.compose.layout.AppScaffold
+import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults.ItemType
+import com.google.android.horologist.compose.layout.rememberResponsiveColumnPadding
+import com.surrus.peopleinspace.person.AstronautImage
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.peopleinspace.R
-import dev.johnoreilly.peopleinspace.person.AstronautImage
 import org.koin.androidx.compose.koinViewModel
 
 const val PersonListTag = "PersonList"
@@ -51,7 +47,6 @@ fun PersonListScreen(
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
     modifier: Modifier = Modifier,
-    columnState: ScalingLazyColumnState = rememberColumnState(),
 ) {
     val viewModel = koinViewModel<PersonListViewModel>()
     val people by viewModel.peopleInSpace.collectAsStateWithLifecycle()
@@ -60,7 +55,6 @@ fun PersonListScreen(
         people = people,
         personSelected = personSelected,
         issMapClick = issMapClick,
-        columnState = columnState,
         modifier = modifier,
     )
 }
@@ -71,29 +65,28 @@ fun PersonList(
     personSelected: (person: Assignment) -> Unit,
     issMapClick: () -> Unit,
     modifier: Modifier = Modifier,
-    columnState: ScalingLazyColumnState = rememberColumnState(),
 ) {
-    ScreenScaffold(scrollState = columnState) {
-        ScalingLazyColumn(
+    val columnState = rememberTransformingLazyColumnState()
+    val contentPadding =
+        rememberResponsiveColumnPadding(first = ItemType.Icon, last = ItemType.BodyText)
+    ScreenScaffold(scrollState = columnState, contentPadding = contentPadding) { contentPadding ->
+        TransformingLazyColumn(
             modifier = modifier
                 .testTag(PersonListTag),
-            columnState = columnState,
+            contentPadding = contentPadding,
+            state = columnState,
         ) {
             item {
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                    Button(
-                        modifier = Modifier
-                            .size(ButtonDefaults.SmallButtonSize)
-                            .wrapContentSize(),
-                        onClick = issMapClick
-                    ) {
-                        // https://www.svgrepo.com/svg/170716/international-space-station
-                        Image(
-                            modifier = Modifier.scale(0.5f),
-                            painter = painterResource(id = R.drawable.ic_iss),
-                            contentDescription = "ISS Map"
-                        )
-                    }
+                OutlinedIconButton(
+                    onClick = issMapClick,
+                    modifier = Modifier.size(IconButtonDefaults.DefaultButtonSize)
+                ) {
+                    // https://www.svgrepo.com/svg/170716/international-space-station
+                    Icon(
+                        modifier = Modifier.scale(0.75f),
+                        painter = painterResource(id = R.drawable.ic_iss),
+                        contentDescription = "ISS Map"
+                    )
                 }
             }
             items(people.size) { offset ->
@@ -140,11 +133,11 @@ fun PersonView(
             Spacer(modifier = Modifier.size(12.dp))
 
             Column {
-                Text(text = person.name, maxLines = 2, style = MaterialTheme.typography.body1)
+                Text(text = person.name, maxLines = 2, style = MaterialTheme.typography.bodyLarge)
                 Text(
                     text = person.craft,
                     maxLines = 1,
-                    style = MaterialTheme.typography.body2.copy(color = Color.Gray)
+                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray)
                 )
             }
         }
@@ -153,45 +146,23 @@ fun PersonView(
 
 @WearPreviewDevices
 @Composable
-fun PersonViewPreview() {
-    PersonView(
-        person = Assignment(
-            "ISS",
-            "Megan McArthur",
-            personImageUrl = "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/jsc2021e010823.jpg"
-        ),
-        personSelected = {},
-    )
-}
-
-@WearPreviewDevices
-@Composable
 fun PersonListSquarePreview() {
-    PersonList(
-        people = listOf(
-            Assignment(
-                "Apollo 11",
-                "Neil Armstrong",
-                "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk0MjgyMzk5MTE0MzYy/gettyimages-150832381.jpg"
+    AppScaffold {
+        PersonList(
+            people = listOf(
+                Assignment(
+                    "Apollo 11",
+                    "Neil Armstrong",
+                    "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk0MjgyMzk5MTE0MzYy/gettyimages-150832381.jpg"
+                ),
+                Assignment(
+                    "Apollo 11",
+                    "Buzz Aldrin",
+                    "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
+                )
             ),
-            Assignment(
-                "Apollo 11",
-                "Buzz Aldrin",
-                "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
-            )
-        ),
-        personSelected = {},
-        issMapClick = {},
-        columnState = ScalingLazyColumnDefaults.belowTimeText().create()
-    )
-}
-
-@WearPreviewDevices
-@Composable
-fun PersonListSquareEmptyPreview() {
-    PersonList(
-        people = listOf(),
-        personSelected = {},
-        issMapClick = {},
-    )
+            personSelected = {},
+            issMapClick = {},
+        )
+    }
 }

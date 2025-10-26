@@ -3,7 +3,7 @@ kotlin = "2.2.10"
 ksp = "2.2.10-2.0.2"
 
 compose-multiplatform = "1.8.2"
-composeUiTooling = "1.4.1"
+composeUiTooling = "1.5.4"
 coroutines = "1.10.2"
 kotlinxSerialization = "1.9.0"
 androidGradlePlugin = "8.12.2"
@@ -12,6 +12,8 @@ koin-annotations = "2.2.0"
 ktor = "3.2.3"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
+tiles = "1.6.0-alpha02"
+protolayout = "1.4.0-alpha02"
 slf4j = "2.0.17"
 sqlDelight = "2.1.0"
 sqlJs = "1.8.0"
@@ -19,22 +21,21 @@ webPackPlugin = "9.1.0"
 
 
 androidxActivity = "1.10.1"
-androidxComposeBom = "2025.08.01"
-material3-adaptive = "1.1.0"
-material3-adaptive-navigation-suite = "1.3.2"
-androidxNavigationCompose = "2.9.3"
-uiToolingPreview = "1.9.0"
-wearCompose = "1.4.1"
-androidxLifecycle = "2.9.3"
-androidxLifecycleKMP = "2.9.3"
+androidxComposeBom = "2025.10.01"
+material3-adaptive = "1.2.0"
+material3-adaptive-navigation-suite = "1.4.0"
+androidxNavigationCompose = "2.9.5"
+uiToolingPreview = "1.9.4"
+wearCompose = "1.5.4"
+androidxLifecycle = "2.9.4"
+androidxLifecycleKMP = "2.9.5"
 
 coilCompose = "2.7.0"
 coilCompose3 = "3.3.0"
 
-horologist = "0.6.23"
-glanceWearTiles = "1.0.0-alpha05"
+horologist = "0.8.2-alpha"
 glanceAppWidget = "1.1.1"
-okhttp = "5.1.0"
+okhttp = "5.2.1"
 kermit = "2.0.8"
 
 gradleVersionsPlugin = "0.52.0"
@@ -50,8 +51,13 @@ minWearSdk = "26"
 targetWearSdk = "33"
 
 [libraries]
+androidx-protolayout-material3 = { module = "androidx.wear.protolayout:protolayout-material3", version.ref = "protolayout" }
+androidx-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "tiles" }
+androidx-tiles-tooling-preview = { module = "androidx.wear.tiles:tiles-tooling-preview", version.ref = "tiles" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingPreview" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-wear-compose-compose-material3 = { module = "androidx.wear.compose:compose-material3", version.ref = "wearCompose" }
+horologist-tiles = { module = "com.google.android.horologist:horologist-tiles", version.ref = "horologist" }
 wear-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "composeUiTooling" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
@@ -94,14 +100,12 @@ wear-compose-founndation = { module = "androidx.wear.compose:compose-foundation"
 wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "wearCompose" }
 wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearCompose" }
 
-coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilCompose3" }
 coil3-network-ktor = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coilCompose3" }
 
 
 horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
 
-glance-tiles = { module = "androidx.glance:glance-wear-tiles", version.ref = "glanceWearTiles" }
 glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glanceAppWidget" }
 
 androidx-navigation-compose-testing = { module = "androidx.navigation:navigation-testing", version.ref = "androidxNavigationCompose" }
