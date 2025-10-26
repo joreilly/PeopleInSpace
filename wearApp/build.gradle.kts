@@ -80,7 +80,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling)
     implementation(libs.wear.ui.tooling)
     debugImplementation(libs.androidx.ui.tooling.preview)
-    debugImplementation("androidx.wear.tiles:tiles-tooling:1.5.0")
+    implementation(libs.androidx.tiles.tooling)
 
     implementation(libs.okhttp)
     implementation(libs.loggingInterceptor)

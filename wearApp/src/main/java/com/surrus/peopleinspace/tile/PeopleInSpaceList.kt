@@ -101,7 +101,12 @@ fun peopleList(
             },
             bottomSlot = {
                 val clickable = with(protoLayoutScope) {
-                    clickable(id = "home", pendingIntent = homeIntent(context))
+                    val pendingIntent = homeIntent(context)
+                    if (pendingIntent != null) {
+                        clickable(id = "home", pendingIntent = pendingIntent)
+                    } else {
+                        clickable(id = "home")
+                    }
                 }
                 textEdgeButton(
                     onClick = clickable,
@@ -119,7 +124,12 @@ fun MaterialScope.peopleButton(
     context: Context
 ): LayoutElementBuilders.LayoutElement {
     val clickable = with(protoLayoutScope) {
-        clickable(id = person.name, pendingIntent = personIntent(person, context))
+        val pendingIntent = personIntent(person, context)
+        if (pendingIntent != null) {
+            clickable(id = person.name, pendingIntent = pendingIntent)
+        } else {
+            clickable(id = person.name)
+        }
     }
     return textButton(
         onClick = clickable,
@@ -160,7 +170,7 @@ internal fun namesPreview(context: Context): TilePreviewData {
     }
 }
 
-private fun personIntent(person: Assignment, context: Context): PendingIntent {
+private fun personIntent(person: Assignment, context: Context): PendingIntent? {
     val sessionDetailIntent = Intent(
         Intent.ACTION_VIEW,
         (DEEPLINK_URI + "personList/{${person.name}}").toUri()
@@ -174,7 +184,7 @@ private fun personIntent(person: Assignment, context: Context): PendingIntent {
     )
 }
 
-private fun homeIntent(context: Context): PendingIntent {
+private fun homeIntent(context: Context): PendingIntent? {
     val sessionDetailIntent = Intent(
         Intent.ACTION_VIEW,
         ("${DEEPLINK_URI}personList").toUri()
@@ -186,4 +196,38 @@ private fun homeIntent(context: Context): PendingIntent {
         sessionDetailIntent,
         FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT
     )
+}
+
+@MultiRoundDevicesWithFontScalePreviews
+internal fun twoRowsPreview(context: Context): TilePreviewData {
+    val contacts = Data(
+        people = listOf(
+            Assignment(
+                "Apollo 11",
+                "Neil Armstrong",
+                "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk0MjgyMzk5MTE0MzYy/gettyimages-150832381.jpg"
+            ),
+            Assignment(
+                "Apollo 11",
+                "Buzz Aldrin",
+                "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
+            ),
+            Assignment(
+                "Vostok 1",
+                "Yuri Gagarin",
+                "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
+            ),
+            Assignment(
+                "Sputnik 2",
+                "Laika",
+                "https://nypost.com/wp-content/uploads/sites/2/2018/06/buzz-aldrin.jpg?quality=80&strip=all"
+            )
+        ), mapOf()
+    )
+    return TilePreviewData {
+        TilePreviewHelper.singleTimelineEntryTileBuilder(
+            peopleList(context, it.deviceConfiguration, contacts, it.scope)
+        )
+            .build()
+    }
 }
