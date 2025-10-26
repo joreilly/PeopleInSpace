@@ -1,19 +1,21 @@
-package dev.johnoreilly.peopleinspace
+package com.surrus.peopleinspace
 
 import android.app.Application
 import co.touchlab.kermit.Logger
-import coil.ImageLoader
-import coil.ImageLoaderFactory
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.SingletonImageLoader
+import com.surrus.peopleinspace.di.wearAppModule
+import com.surrus.peopleinspace.di.wearImageLoader
 import dev.johnoreilly.common.di.initKoin
-import dev.johnoreilly.peopleinspace.di.wearAppModule
-import dev.johnoreilly.peopleinspace.di.wearImageLoader
+import dev.johnoreilly.peopleinspace.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.logger.Level
 
-class PeopleInSpaceApplication : Application(), KoinComponent, ImageLoaderFactory {
+class PeopleInSpaceApplication : Application(), KoinComponent, SingletonImageLoader.Factory {
 
     override fun onCreate() {
         super.onCreate()
@@ -30,6 +32,6 @@ class PeopleInSpaceApplication : Application(), KoinComponent, ImageLoaderFactor
         Logger.d { "PeopleInSpaceApplication" }
     }
 
-    override fun newImageLoader(): ImageLoader = get()
+    override fun newImageLoader(context: PlatformContext): ImageLoader = get()
 }
 

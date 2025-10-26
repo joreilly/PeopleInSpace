@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalHorologistApi::class)
-
-package dev.johnoreilly.peopleinspace.person
+package com.surrus.peopleinspace.person
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,22 +13,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.Text
+import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
+import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
+import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.ScreenScaffold
+import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
-import coil.compose.AsyncImage
-import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.layout.ScalingLazyColumn
-import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
-import com.google.android.horologist.compose.layout.ScalingLazyColumnState
-import com.google.android.horologist.compose.layout.ScreenScaffold
-import com.google.android.horologist.compose.layout.rememberColumnState
+import coil3.compose.AsyncImage
+import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults.ItemType
+import com.google.android.horologist.compose.layout.rememberResponsiveColumnPadding
+import com.surrus.peopleinspace.list.PersonListTag
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.peopleinspace.R
-import dev.johnoreilly.peopleinspace.list.PersonListTag
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -38,7 +34,6 @@ import org.koin.core.parameter.parametersOf
 fun PersonDetailsScreen(
     personName: String,
     modifier: Modifier = Modifier,
-    columnState: ScalingLazyColumnState = rememberColumnState(),
 ) {
     val peopleInSpaceViewModel = koinViewModel<PersonDetailsViewModel>(
         parameters = { parametersOf(personName) }
@@ -48,7 +43,6 @@ fun PersonDetailsScreen(
     PersonDetails(
         modifier = modifier,
         person = person,
-        columnState = columnState
     )
 }
 
@@ -56,13 +50,16 @@ fun PersonDetailsScreen(
 private fun PersonDetails(
     person: Assignment?,
     modifier: Modifier = Modifier,
-    columnState: ScalingLazyColumnState = rememberColumnState(),
 ) {
-    ScreenScaffold(scrollState = columnState) {
-        ScalingLazyColumn(
+    val columnState = rememberTransformingLazyColumnState()
+    val contentPadding =
+        rememberResponsiveColumnPadding(first = ItemType.Icon, last = ItemType.BodyText)
+    ScreenScaffold(scrollState = columnState, contentPadding = contentPadding) { contentPadding ->
+        TransformingLazyColumn(
             modifier = modifier
                 .testTag(PersonListTag),
-            columnState = columnState
+            contentPadding = contentPadding,
+            state = columnState
         ) {
             item {
                 AstronautImage(
@@ -76,7 +73,7 @@ private fun PersonDetails(
             item {
                 Text(
                     person?.name ?: "Astronaut not found.",
-                    style = MaterialTheme.typography.title1,
+                    style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center
                 )
             }
@@ -86,7 +83,7 @@ private fun PersonDetails(
                 item {
                     Text(
                         personBio,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Justify
                     )
                 }
@@ -123,7 +120,6 @@ fun PersonDetailsScreenPreview() {
     Box(modifier = Modifier.background(Color.Black)) {
         PersonDetails(
             person = person,
-            columnState = ScalingLazyColumnDefaults.belowTimeText().create(),
         )
     }
 }

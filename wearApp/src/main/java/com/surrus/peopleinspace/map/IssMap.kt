@@ -1,4 +1,4 @@
-package dev.johnoreilly.peopleinspace.map
+package com.surrus.peopleinspace.map
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -13,7 +13,7 @@ import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.android.horologist.compose.layout.ScreenScaffold
+import androidx.wear.compose.material3.ScreenScaffold
 import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.peopleinspace.BuildConfig
 import org.koin.androidx.compose.koinViewModel
@@ -60,7 +60,7 @@ private fun IssMap(
     AndroidView(
         factory = {
             mapView.apply {
-                setTileSource(TileSourceFactory.MAPNIK);
+                setTileSource(TileSourceFactory.MAPNIK)
                 zoomController.setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT)
                 setMultiTouchControls(false)
                 controller.setZoom(3.0)

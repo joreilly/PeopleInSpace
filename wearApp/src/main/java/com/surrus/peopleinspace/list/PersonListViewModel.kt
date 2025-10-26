@@ -1,4 +1,4 @@
-package dev.johnoreilly.peopleinspace.list
+package com.surrus.peopleinspace.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
