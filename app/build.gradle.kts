@@ -83,6 +83,12 @@ dependencies {
     implementation(libs.coil3.network.ktor)
 
     implementation(libs.glance.appwidget)
+    implementation(libs.androidx.remote.core)
+    implementation(libs.androidx.remote.creation)
+    implementation(libs.androidx.remote.creation.compose)
+    implementation(libs.androidx.remote.player.view)
+    implementation(libs.androidx.remote.player.core)
+    implementation(libs.androidx.remote.player.compose)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)

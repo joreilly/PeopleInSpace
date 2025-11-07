@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk tools:overrideLibrary="androidx.compose.remote.creation,androidx.compose.remote.player.compose,androidx.compose.remote.player.core,androidx.compose.remote.player.view,androidx.compose.remote.creation.compose"/>
 
     <application
             android:name=".PeopleInSpaceApplication"
