@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Boolean indicating if the library will work or not. Should be used to enable / disable app
+         widget receivers. -->
+    <bool name="remotecompose_appwidget_available">true</bool>
+</resources>

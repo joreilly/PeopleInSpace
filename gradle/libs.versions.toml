@@ -18,6 +18,7 @@ slf4j = "2.0.17"
 sqlDelight = "2.1.0"
 sqlJs = "1.8.0"
 webPackPlugin = "9.1.0"
+remoteCompose = "1.0.0-SNAPSHOT"
 
 
 androidxActivity = "1.10.1"
@@ -154,6 +155,14 @@ androidx-compose-ui-test-junit = { group = "androidx.compose.ui", name = "ui-tes
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
 mcp-kotlin = { group = "io.modelcontextprotocol", name = "kotlin-sdk", version.ref = "mcp" }
+
+androidx-remote-core = { module = "androidx.compose.remote:remote-core", version.ref = "remoteCompose" }
+androidx-remote-creation = { module = "androidx.compose.remote:remote-creation", version.ref = "remoteCompose" }
+androidx-remote-creation-compose = { module = "androidx.compose.remote:remote-creation-compose", version.ref = "remoteCompose" }
+androidx-remote-player-view = { module = "androidx.compose.remote:remote-player-view", version.ref = "remoteCompose" }
+androidx-remote-player-core = { module = "androidx.compose.remote:remote-player-core", version.ref = "remoteCompose" }
+androidx-remote-player-compose = { module = "androidx.compose.remote:remote-player-compose", version.ref = "remoteCompose" }
+androidx-wear-remote-material3 = { module = "androidx.wear.compose.remote:remote-material3", version.ref = "remoteCompose" }
 
 [bundles]
 ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-serialization", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json"]

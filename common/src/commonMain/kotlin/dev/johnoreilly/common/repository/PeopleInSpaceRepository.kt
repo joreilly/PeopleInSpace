@@ -72,6 +72,8 @@ class PeopleInSpaceRepository(
                     )
                 }
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             // TODO report error up to UI
             logger.w(e) { "Exception during fetchAndStorePeople: $e" }
@@ -83,8 +85,12 @@ class PeopleInSpaceRepository(
             while (true) {
                 try {
                     val position = peopleInSpaceApi.fetchISSPosition().iss_position
-                    emit(position)
+                    if (currentCoroutineContext().isActive) {
+                        emit(position)
+                    }
                     logger.d { position.toString() }
+                } catch (e: CancellationException) {
+                    throw e
                 } catch (e: Exception) {
                     // TODO report error up to UI
                     logger.w(e) { "Exception during pollISSPosition: $e" }
