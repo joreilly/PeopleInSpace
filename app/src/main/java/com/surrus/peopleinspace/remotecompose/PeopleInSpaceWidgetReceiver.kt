@@ -14,7 +14,7 @@ import okio.ByteString
 
 @RequiresApi(Build.VERSION_CODES.BAKLAVA)
 @SuppressLint("RestrictedApi")
-class RCMemberCardWidgetReceiver : AsyncAppWidgetReceiver() {
+class PeopleInSpaceWidgetReceiver : AsyncAppWidgetReceiver() {
     /** Called when widgets must provide remote views. */
 
     override suspend fun update(context: Context, wm: AppWidgetManager, widgetIds: IntArray) {
