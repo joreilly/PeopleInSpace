@@ -39,7 +39,7 @@ glanceAppWidget = "1.1.1"
 okhttp = "5.2.1"
 kermit = "2.0.8"
 
-gradleVersionsPlugin = "0.52.0"
+gradleVersionsPlugin = "0.53.0"
 shadowPlugin = "9.1.0"
 skie = "0.10.6"
 
