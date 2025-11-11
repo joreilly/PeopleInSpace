@@ -89,6 +89,7 @@ dependencies {
     implementation(libs.androidx.remote.player.view)
     implementation(libs.androidx.remote.player.core)
     implementation(libs.androidx.remote.player.compose)
+    implementation(libs.androidx.remote.tooling.preview)
     implementation(libs.androidx.wear.remote.material3)
 
     implementation(libs.koin.core)

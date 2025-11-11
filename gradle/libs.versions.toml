@@ -162,6 +162,7 @@ androidx-remote-creation-compose = { module = "androidx.compose.remote:remote-cr
 androidx-remote-player-view = { module = "androidx.compose.remote:remote-player-view", version.ref = "remoteCompose" }
 androidx-remote-player-core = { module = "androidx.compose.remote:remote-player-core", version.ref = "remoteCompose" }
 androidx-remote-player-compose = { module = "androidx.compose.remote:remote-player-compose", version.ref = "remoteCompose" }
+androidx-remote-tooling-preview = { module = "androidx.compose.remote:remote-tooling-preview", version.ref = "remoteCompose" }
 androidx-wear-remote-material3 = { module = "androidx.wear.compose.remote:remote-material3", version.ref = "remoteCompose" }
 
 [bundles]
