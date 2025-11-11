@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-sdk tools:overrideLibrary="androidx.compose.remote.creation,androidx.compose.remote.player.compose,androidx.compose.remote.player.core,androidx.compose.remote.player.view,androidx.compose.remote.creation.compose,androidx.wear.compose.remote.material3,androidx.wear.compose.material.core,androidx.wear.compose.foundation,androidx.wear.compose.material3"/>
+    <uses-sdk tools:overrideLibrary="androidx.compose.remote.creation,androidx.compose.remote.player.compose,androidx.compose.remote.player.core,androidx.compose.remote.player.view,androidx.compose.remote.creation.compose,androidx.compose.remote.tooling.preview,androidx.wear.compose.remote.material3,androidx.wear.compose.material.core,androidx.wear.compose.foundation,androidx.wear.compose.material3"/>
 
     <application
             android:name=".PeopleInSpaceApplication"
