@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.2.10"
+kotlin = "2.2.21"
 ksp = "2.2.10-2.0.2"
 
 compose-multiplatform = "1.8.2"
