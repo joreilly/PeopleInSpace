@@ -6,8 +6,14 @@ plugins {
 }
 
 dependencies {
+    implementation(platform("io.ktor:ktor-bom:3.2.3"))
     implementation(libs.mcp.kotlin)
     implementation(projects.common)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.java)
+    implementation("io.ktor:ktor-server-core")
+    implementation("io.ktor:ktor-server-cio")
+    implementation("io.ktor:ktor-server-sse")
 }
 
 java {

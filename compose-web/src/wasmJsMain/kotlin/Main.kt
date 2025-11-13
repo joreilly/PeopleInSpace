@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
+import androidx.compose.ui.window.ComposeViewport
 import coil3.compose.AsyncImage
 import dev.johnoreilly.common.di.initKoin
 import dev.johnoreilly.common.remote.Assignment
@@ -59,96 +60,96 @@ fun main() {
 
     val peopleInSpaceRepository = koin.get<PeopleInSpaceRepository>()
 
-    CanvasBasedWindow("PeopleInSpace", canvasElementId = "peopleInSpaceCanvas") {
+    ComposeViewport(content = {
 
-        val people by peopleInSpaceRepository.fetchPeopleAsFlow().collectAsState(emptyList())
-        var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
+            val people by peopleInSpaceRepository.fetchPeopleAsFlow().collectAsState(emptyList())
+            var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
 
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = backgroundColor
-        ) {
-            Column(Modifier.fillMaxSize()) {
-                // Header
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(primaryColor)
-                        .padding(16.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        "People In Space",
-                        color = Color.White,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-
-                // Content
-                Row(Modifier.fillMaxSize().padding(16.dp)) {
-                    // Left panel with list of people
-                    Card(
-                        modifier = Modifier.width(280.dp).fillMaxHeight(),
-                        colors = CardDefaults.cardColors(containerColor = cardColor),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                        shape = RoundedCornerShape(8.dp)
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = backgroundColor
+            ) {
+                Column(Modifier.fillMaxSize()) {
+                    // Header
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(primaryColor)
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Column(Modifier.fillMaxSize()) {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(primaryColor.copy(alpha = 0.8f))
-                                    .padding(12.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    "Astronauts",
-                                    color = Color.White,
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Medium
-                                )
-                            }
-                            PersonList(people, selectedPerson) {
-                                selectedPerson = it
-                            }
-                        }
+                        Text(
+                            "People In Space",
+                            color = Color.White,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     }
 
-                    Spacer(modifier = Modifier.width(16.dp))
-
-                    // Right panel with person details
-                    Card(
-                        modifier = Modifier.fillMaxSize(),
-                        colors = CardDefaults.cardColors(containerColor = cardColor),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Box(Modifier.fillMaxSize()) {
-                            selectedPerson?.let {
-                                PersonDetailsView(it)
-                            } ?: run {
-                                // Show a message when no person is selected
+                    // Content
+                    Row(Modifier.fillMaxSize().padding(16.dp)) {
+                        // Left panel with list of people
+                        Card(
+                            modifier = Modifier.width(280.dp).fillMaxHeight(),
+                            colors = CardDefaults.cardColors(containerColor = cardColor),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Column(Modifier.fillMaxSize()) {
                                 Box(
-                                    modifier = Modifier.fillMaxSize(),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(primaryColor.copy(alpha = 0.8f))
+                                        .padding(12.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Text(
-                                        "Select an astronaut to view details",
-                                        style = TextStyle(
-                                            color = Color.Gray,
-                                            fontSize = 18.sp,
-                                            textAlign = TextAlign.Center
-                                        )
+                                        "Astronauts",
+                                        color = Color.White,
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Medium
                                     )
+                                }
+                                PersonList(people, selectedPerson) {
+                                    selectedPerson = it
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(16.dp))
+
+                        // Right panel with person details
+                        Card(
+                            modifier = Modifier.fillMaxSize(),
+                            colors = CardDefaults.cardColors(containerColor = cardColor),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Box(Modifier.fillMaxSize()) {
+                                selectedPerson?.let {
+                                    PersonDetailsView(it)
+                                } ?: run {
+                                    // Show a message when no person is selected
+                                    Box(
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            "Select an astronaut to view details",
+                                            style = TextStyle(
+                                                color = Color.Gray,
+                                                fontSize = 18.sp,
+                                                textAlign = TextAlign.Center
+                                            )
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-    }
+        })
 }
 
 @Composable

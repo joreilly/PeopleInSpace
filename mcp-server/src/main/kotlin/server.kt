@@ -10,6 +10,7 @@ import io.modelcontextprotocol.kotlin.sdk.server.StdioServerTransport
 import io.modelcontextprotocol.kotlin.sdk.server.mcp
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.first
 import kotlinx.io.asSink
 import kotlinx.io.buffered
 
@@ -38,7 +39,7 @@ fun configureServer(): Server {
         name = "get-people-in-space",
         description = "The list of people in space endpoint returns the list of people in space right now"
     ) {
-        val people = peopleInSpaceRepository.fetchPeople()
+        val people = peopleInSpaceRepository.fetchPeopleAsFlow().first()
         CallToolResult(
             content =
                 people.map { TextContent(it.name) }
