@@ -9,7 +9,7 @@ kotlinxSerialization = "1.9.0"
 androidGradlePlugin = "8.13.1"
 koin = "4.1.1"
 koin-annotations = "2.3.1"
-ktor = "3.2.3"
+ktor = "3.3.2"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
 tiles = "1.6.0-alpha02"
@@ -129,7 +129,9 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
 ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
-ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor" }
+ktor-server-cio = { group = "io.ktor", name = "ktor-server-cio", version.ref = "ktor" }
+ktor-server-sse = { group = "io.ktor", name = "ktor-server-sse", version.ref = "ktor" }
+
 
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
