@@ -52,7 +52,7 @@ jobs:
 
       - name: Publish Test Report
         if: always()
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v6
         with:
           report_paths: 'common/build/test-results/jvmTest/*.xml'
           check_name: 'Compose UI Test Results'
