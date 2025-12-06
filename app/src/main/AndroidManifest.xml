@@ -55,7 +55,7 @@
         </receiver>
 
         <receiver
-            android:name="com.surrus.peopleinspace.remotecompose.PeopleInSpaceWidgetReceiver"
+            android:name=".peopleinspace.remotecompose.PeopleInSpaceWidgetReceiver"
             android:label="ISS Map"
             android:enabled="@bool/remotecompose_appwidget_available"
             android:exported="false"

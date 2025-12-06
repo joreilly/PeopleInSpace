@@ -1,0 +1,69 @@
+package dev.johnoreilly.peopleinspace.peopleinspace
+
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
+import androidx.wear.compose.material3.AppScaffold
+import androidx.wear.compose.navigation.SwipeDismissableNavHost
+import androidx.wear.compose.navigation.composable
+import dev.johnoreilly.peopleinspace.peopleinspace.list.PersonListScreen
+import dev.johnoreilly.peopleinspace.peopleinspace.map.IssMapScreen
+import dev.johnoreilly.peopleinspace.peopleinspace.person.PersonDetailsScreen
+
+@Composable
+fun PeopleInSpaceApp(navController: NavHostController) {
+    AppScaffold {
+        SwipeDismissableNavHost(
+            navController = navController,
+            startDestination = Screen.PersonList.route
+        ) {
+            composable(
+                route = Screen.PersonList.route,
+                deepLinks = listOf(navDeepLink { this.uriPattern = "${DEEPLINK_URI}personList" }),
+            ) {
+                PersonListScreen(
+                    modifier = Modifier.fillMaxSize(),
+                    personSelected = {
+                        navController.navigate(Screen.PersonDetails.route + "/${it.name}")
+                    },
+                    issMapClick = {
+                        navController.navigate(Screen.IssMap.route)
+                    },
+                )
+            }
+
+            composable(
+                route = Screen.PersonDetails.route + "/{${PERSON_NAME_NAV_ARGUMENT}}",
+                arguments = listOf(
+                    navArgument(PERSON_NAME_NAV_ARGUMENT, builder = {
+                        type = NavType.StringType
+                    })
+                ),
+                deepLinks = listOf(navDeepLink {
+                    uriPattern = DEEPLINK_URI + "personList/{${PERSON_NAME_NAV_ARGUMENT}}"
+                }),
+            ) {
+                val personName: String =
+                    it.arguments!!.getString(PERSON_NAME_NAV_ARGUMENT)!!
+
+                PersonDetailsScreen(
+                    modifier = Modifier.fillMaxSize(),
+                    personName = personName,
+                )
+            }
+
+            composable(
+                route = Screen.IssMap.route,
+                deepLinks = listOf(navDeepLink { uriPattern = "${DEEPLINK_URI}issMap" })
+            ) {
+                IssMapScreen(
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
+        }
+    }
+}
