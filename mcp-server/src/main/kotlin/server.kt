@@ -3,11 +3,14 @@ import dev.johnoreilly.common.repository.PeopleInSpaceRepository
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 import io.ktor.utils.io.streams.*
-import io.modelcontextprotocol.kotlin.sdk.*
+import io.modelcontextprotocol.kotlin.sdk.types.TextContent
 import io.modelcontextprotocol.kotlin.sdk.server.Server
 import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
 import io.modelcontextprotocol.kotlin.sdk.server.StdioServerTransport
 import io.modelcontextprotocol.kotlin.sdk.server.mcp
+import io.modelcontextprotocol.kotlin.sdk.types.CallToolResult
+import io.modelcontextprotocol.kotlin.sdk.types.Implementation
+import io.modelcontextprotocol.kotlin.sdk.types.ServerCapabilities
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.flow.first
@@ -64,7 +67,7 @@ fun `run mcp server using stdio`() {
     )
 
     runBlocking {
-        server.connect(transport)
+        server.createSession(transport)
         val done = Job()
         server.onClose {
             done.complete()
