@@ -20,7 +20,7 @@ data class Assignment(
 )
 
 @Serializable
-data class IssPosition(val latitude: Double, val longitude: Double)
+data class IssPosition(val latitude: Double, val longitude: Double, val timestamp: Long  = -1)
 
 @Serializable
 data class IssResponse(val message: String, val iss_position: IssPosition, val timestamp: Long)

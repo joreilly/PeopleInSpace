@@ -1,9 +1,11 @@
 package dev.johnoreilly.peopleinspace.peopleinspace.glance
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.graphics.Bitmap
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.core.content.ContextCompat.getDrawable
 import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import dev.johnoreilly.peopleinspace.R
@@ -11,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.MapTileProviderBasic
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -25,7 +28,6 @@ suspend fun fetchIssPosition(repository: PeopleInSpaceRepositoryInterface): GeoP
     val issPosition: IssPosition = repository.pollISSPosition().first()
 
     val issPositionPoint = GeoPoint(issPosition.latitude, issPosition.longitude)
-    println("ISS Position: $issPositionPoint")
     return issPositionPoint
 }
 
@@ -39,14 +41,20 @@ suspend fun fetchMapBitmap(
 ): ImageBitmap {
     val stationMarker = IconOverlay(
         issPositionPoint,
-        context.resources.getDrawable(R.drawable.ic_iss, context.theme)
+        getDrawable(context, R.drawable.ic_iss)
     )
 
     val source = TileSourceFactory.DEFAULT_TILE_SOURCE
     val projection = Projection(zoomLevel, pWidth, pHeight, issPositionPoint, 0f, true, false, 0, 0)
 
+    Configuration.getInstance().load(
+        context.applicationContext,
+        context.getSharedPreferences("osmdroid", MODE_PRIVATE)
+    )
+
+    val mapTileProvider = MapTileProviderBasic(context, source, null)
     val bitmap = withContext(Dispatchers.Main) {
-        suspendCoroutine<Bitmap> { cont ->
+        suspendCoroutine { cont ->
             val mapSnapshot = MapSnapshot(
                 {
                     if (it.status == MapSnapshot.Status.CANVAS_OK) {
@@ -55,7 +63,7 @@ suspend fun fetchMapBitmap(
                     }
                 },
                 MapSnapshot.INCLUDE_FLAG_UPTODATE or MapSnapshot.INCLUDE_FLAG_SCALED,
-                MapTileProviderBasic(context, source, null),
+                mapTileProvider,
                 if (includeStationMarker) listOf(stationMarker) else listOf(),
                 projection
             )

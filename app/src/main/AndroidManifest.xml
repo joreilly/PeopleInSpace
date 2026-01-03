@@ -56,7 +56,7 @@
 
         <receiver
             android:name=".peopleinspace.remotecompose.PeopleInSpaceWidgetReceiver"
-            android:label="ISS Map"
+            android:label="ISS Map (RC)"
             android:enabled="@bool/remotecompose_appwidget_available"
             android:exported="false"
             tools:targetApi="36">
