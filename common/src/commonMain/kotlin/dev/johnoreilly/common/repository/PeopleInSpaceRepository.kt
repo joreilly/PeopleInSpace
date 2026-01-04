@@ -6,7 +6,9 @@ import app.cash.sqldelight.coroutines.mapToList
 import co.touchlab.kermit.Logger
 import dev.johnoreilly.common.di.PeopleInSpaceDatabaseWrapper
 import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.remote.AstroviewerApi
 import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.common.remote.OrbitPoint
 import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
@@ -17,13 +19,15 @@ import org.koin.core.annotation.Single
 interface PeopleInSpaceRepositoryInterface {
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
+    suspend fun fetchISSFuturePosition(): List<OrbitPoint>
     suspend fun fetchAndStorePeople()
 }
 
 @Single
 class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
-    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper
+    private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper,
+    private val astroviewerApi: AstroviewerApi,
 ) : PeopleInSpaceRepositoryInterface {
 
     val coroutineScope: CoroutineScope = MainScope()
@@ -78,6 +82,10 @@ class PeopleInSpaceRepository(
             // TODO report error up to UI
             logger.w(e) { "Exception during fetchAndStorePeople: $e" }
         }
+    }
+
+    override suspend fun fetchISSFuturePosition(): List<OrbitPoint> {
+        return astroviewerApi.fetchISSFuturePositions().orbitData
     }
 
     override fun pollISSPosition(): Flow<IssPosition> {

@@ -91,6 +91,7 @@ dependencies {
     implementation(libs.androidx.remote.player.compose)
     implementation(libs.androidx.remote.tooling.preview)
     implementation(libs.androidx.wear.remote.material3)
+    implementation(libs.androidx.preference.ktx)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)
@@ -101,6 +102,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit)
     androidTestImplementation(libs.androidx.navigation.compose.testing)
+    androidTestImplementation(libs.androidx.truth)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
 

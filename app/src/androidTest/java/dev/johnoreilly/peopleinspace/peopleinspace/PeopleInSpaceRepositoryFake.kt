@@ -2,6 +2,7 @@ package dev.johnoreilly.peopleinspace
 
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.remote.IssPosition
+import dev.johnoreilly.common.remote.OrbitPoint
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -18,6 +19,10 @@ class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
 
     override fun pollISSPosition(): Flow<IssPosition> {
         return flowOf(issPosition)
+    }
+
+    override suspend fun fetchISSFuturePosition(): List<OrbitPoint> {
+        return listOf(OrbitPoint(System.currentTimeMillis() / 1000, issPosition.latitude, issPosition.longitude))
     }
 
     override suspend fun fetchAndStorePeople() {

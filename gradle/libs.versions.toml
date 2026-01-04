@@ -12,11 +12,13 @@ koin-annotations = "2.3.1"
 ktor = "3.3.3"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
-tiles = "1.6.0-alpha02"
-protolayout = "1.4.0-alpha02"
+preferenceKtx = "1.2.1"
+tiles = "1.6.0-alpha03"
+protolayout = "1.4.0-alpha03"
 slf4j = "2.0.17"
 sqlDelight = "2.2.1"
 sqlJs = "1.8.0"
+truth = "1.7.0"
 webPackPlugin = "9.1.0"
 remoteCompose = "1.0.0-SNAPSHOT"
 
@@ -35,7 +37,7 @@ coilCompose = "2.7.0"
 coilCompose3 = "3.3.0"
 
 horologist = "0.8.2-alpha"
-glanceAppWidget = "1.2.0-beta01"
+glanceAppWidget = "1.2.0-rc01"
 okhttp = "5.3.2"
 kermit = "2.0.8"
 
@@ -52,10 +54,12 @@ minWearSdk = "26"
 targetWearSdk = "33"
 
 [libraries]
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 androidx-protolayout-material3 = { module = "androidx.wear.protolayout:protolayout-material3", version.ref = "protolayout" }
 androidx-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "tiles" }
 androidx-tiles-tooling = { module = "androidx.wear.tiles:tiles-tooling", version.ref = "tiles" }
 androidx-tiles-tooling-preview = { module = "androidx.wear.tiles:tiles-tooling-preview", version.ref = "tiles" }
+androidx-truth = { module = "androidx.test.ext:truth", version.ref = "truth" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingPreview" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-wear-compose-compose-material3 = { module = "androidx.wear.compose:compose-material3", version.ref = "wearCompose" }
