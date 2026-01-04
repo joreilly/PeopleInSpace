@@ -53,25 +53,29 @@ suspend fun fetchMapBitmap(
     )
 
     val mapTileProvider = MapTileProviderBasic(context, source, null)
-    val bitmap = withContext(Dispatchers.Main) {
-        suspendCoroutine { cont ->
-            val mapSnapshot = MapSnapshot(
-                {
-                    if (it.status == MapSnapshot.Status.CANVAS_OK) {
-                        val bitmap = Bitmap.createBitmap(it.bitmap)
-                        cont.resume(bitmap)
-                    }
-                },
-                MapSnapshot.INCLUDE_FLAG_UPTODATE or MapSnapshot.INCLUDE_FLAG_SCALED,
-                mapTileProvider,
-                if (includeStationMarker) listOf(stationMarker) else listOf(),
-                projection
-            )
+    try {
+        val bitmap = withContext(Dispatchers.Main) {
+            suspendCoroutine { cont ->
+                val mapSnapshot = MapSnapshot(
+                    {
+                        if (it.status == MapSnapshot.Status.CANVAS_OK) {
+                            val bitmap = Bitmap.createBitmap(it.bitmap)
+                            cont.resume(bitmap)
+                        }
+                    },
+                    MapSnapshot.INCLUDE_FLAG_UPTODATE or MapSnapshot.INCLUDE_FLAG_SCALED,
+                    mapTileProvider,
+                    if (includeStationMarker) listOf(stationMarker) else listOf(),
+                    projection
+                )
 
-            launch(Dispatchers.IO) {
-                mapSnapshot.run()
+                launch(Dispatchers.IO) {
+                    mapSnapshot.run()
+                }
             }
         }
+        return bitmap.asImageBitmap()
+    } finally {
+        mapTileProvider.detach()
     }
-    return bitmap.asImageBitmap()
 }

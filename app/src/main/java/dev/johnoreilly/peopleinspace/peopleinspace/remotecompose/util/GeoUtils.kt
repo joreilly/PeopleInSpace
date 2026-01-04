@@ -125,24 +125,25 @@ suspend fun fetchMapBitmapInRange(
 
     val mapTileProvider = MapTileProviderBasic(context, TileSourceFactory.DEFAULT_TILE_SOURCE, null)
 
-    // Split the list of points into segments where they cross the dateline.
-    // This allows osmdroid's Polyline to draw separate lines instead of a single line wrapping
-    // across the globe.
-    val segments = mutableListOf<MutableList<GeoPoint>>()
-    if (geoPoints.isNotEmpty()) {
-        segments.add(mutableListOf(geoPoints.first()))
-        for (i in 1 until geoPoints.size) {
-            val prev = geoPoints[i - 1]
-            val curr = geoPoints[i]
-            // If the longitude jump is > 180, it's a dateline crossing.
-            if (kotlin.math.abs(curr.longitude - prev.longitude) > 180.0) {
-                segments.add(mutableListOf())
+    try {
+        // Split the list of points into segments where they cross the dateline.
+        // This allows osmdroid's Polyline to draw separate lines instead of a single line wrapping
+        // across the globe.
+        val segments = mutableListOf<MutableList<GeoPoint>>()
+        if (geoPoints.isNotEmpty()) {
+            segments.add(mutableListOf(geoPoints.first()))
+            for (i in 1 until geoPoints.size) {
+                val prev = geoPoints[i - 1]
+                val curr = geoPoints[i]
+                // If the longitude jump is > 180, it's a dateline crossing.
+                if (kotlin.math.abs(curr.longitude - prev.longitude) > 180.0) {
+                    segments.add(mutableListOf())
+                }
+                segments.last().add(curr)
             }
-            segments.last().add(curr)
         }
-    }
 
-    val pathSegments =
+        val pathSegments =
             points.map { op ->
                 val gp = op.toGeoPoint()
                 val point = Point()
@@ -150,7 +151,7 @@ suspend fun fetchMapBitmapInRange(
                 Pair(op.t, Offset(point.x.toFloat(), point.y.toFloat()))
             }
 
-    val overlays =
+        val overlays =
             segments.map { segment ->
                 Polyline().apply {
                     setPoints(segment)
@@ -159,29 +160,32 @@ suspend fun fetchMapBitmapInRange(
                 }
             }
 
-    val bitmap: Bitmap =
+        val bitmap: Bitmap =
             withContext(Dispatchers.Main) {
                 suspendCoroutine { cont ->
                     val mapSnapshot =
-                            MapSnapshot(
-                                    { snapshot ->
-                                        if (snapshot.status == Status.CANVAS_OK) {
-                                            val b: Bitmap = snapshot.bitmap
-                                            cont.resume(Bitmap.createBitmap(b))
-                                        }
-                                    },
-                                    MapSnapshot.INCLUDE_FLAG_UPTODATE or
-                                            MapSnapshot.INCLUDE_FLAG_SCALED,
-                                    mapTileProvider,
-                                    overlays,
-                                    projection
-                            )
+                        MapSnapshot(
+                            { snapshot ->
+                                if (snapshot.status == Status.CANVAS_OK) {
+                                    val b: Bitmap = snapshot.bitmap
+                                    cont.resume(Bitmap.createBitmap(b))
+                                }
+                            },
+                            MapSnapshot.INCLUDE_FLAG_UPTODATE or
+                                    MapSnapshot.INCLUDE_FLAG_SCALED,
+                            mapTileProvider,
+                            overlays,
+                            projection
+                        )
 
                     // Start the snapshot generation on a background thread.
                     launch(Dispatchers.IO) { mapSnapshot.run() }
                 }
             }
-    return MapResult(bitmap.asImageBitmap(), pathSegments)
+        return MapResult(bitmap.asImageBitmap(), pathSegments)
+    } finally {
+        mapTileProvider.detach()
+    }
 }
 
 fun filterRecent(positions: List<OrbitPoint>): List<OrbitPoint> {
