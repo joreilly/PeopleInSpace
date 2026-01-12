@@ -14,9 +14,9 @@ plugins {
 allprojects {
     configurations.all {
         resolutionStrategy {
-            force("org.jetbrains.kotlin:kotlin-test:2.2.21")
-            force("org.jetbrains.kotlin:kotlin-test-common:2.2.21")
-            force("org.jetbrains.kotlin:kotlin-test-annotations-common:2.2.21")
+            force("org.jetbrains.kotlin:kotlin-test:2.3.0")
+            force("org.jetbrains.kotlin:kotlin-test-common:2.3.0")
+            force("org.jetbrains.kotlin:kotlin-test-annotations-common:2.3.0")
         }
     }
 }
