@@ -67,7 +67,7 @@ jobs:
           disable-animations: true
           script: adb install ./app/build/outputs/apk/debug/app-debug.apk && maestro test maestro/PeopleInSpace.flow
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: screenshot
           path: PeopleInSpace.png
