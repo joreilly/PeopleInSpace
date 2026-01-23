@@ -1,17 +1,24 @@
 import dev.johnoreilly.common.di.initKoin
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.remote.AstroResult
+import dev.johnoreilly.common.remote.IssResponse
 import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import io.ktor.http.*
+import io.ktor.openapi.OpenApiInfo
+import io.ktor.openapi.jsonSchema
 import io.ktor.server.application.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.cors.routing.CORS
+import io.ktor.server.plugins.swagger.swaggerUI
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import io.ktor.server.routing.openapi.describe
+import io.ktor.utils.io.ExperimentalKtorApi
 
+@OptIn(ExperimentalKtorApi::class)
 fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin
     val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
@@ -38,15 +45,32 @@ fun main() {
         }
 
         routing {
+            swaggerUI("/docs") {
+                info = OpenApiInfo("PeopleinSpace API", "1.0.0")
+            }
 
             get("/astros.json") {
                 val result = AstroResult("success", currentPeopleInSpace.size, currentPeopleInSpace)
                 call.respond(result)
+            }.describe {
+                summary = "Get a list of people in space"
+                responses {
+                    HttpStatusCode.OK {
+                        schema = jsonSchema<AstroResult>()
+                    }
+                }
             }
 
             get("/iss-now.json") {
                 val result = peopleInSpaceApi.fetchISSPosition()
                 call.respond(result)
+            }.describe {
+                summary = "Get the position of the ISS"
+                responses {
+                    HttpStatusCode.OK {
+                        schema = jsonSchema<IssResponse>()
+                    }
+                }
             }
 
             get("/astros_local.json") {
