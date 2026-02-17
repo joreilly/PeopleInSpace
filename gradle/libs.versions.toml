@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.3.0"
+kotlin = "2.4.0-dev-3656"
 ksp = "2.3.2"
 
 compose-multiplatform = "1.10.0"
@@ -43,7 +43,6 @@ kermit = "2.0.8"
 
 gradleVersionsPlugin = "0.53.0"
 shadowPlugin = "9.3.1"
-skie = "0.10.9"
 
 mcp = "0.8.1"
 
@@ -186,5 +185,4 @@ shadowPlugin = { id = "com.gradleup.shadow", version.ref = "shadowPlugin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-skie = { id = "co.touchlab.skie", version.ref = "skie" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm" }

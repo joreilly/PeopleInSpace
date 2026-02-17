@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import com.google.devtools.ksp.gradle.KspAATask
+import org.jetbrains.kotlin.gradle.swiftexport.ExperimentalSwiftExportDsl
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
@@ -12,8 +13,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.skie)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
+    //id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
 }
 
 android {
@@ -29,18 +29,17 @@ android {
 kotlin {
     jvmToolchain(17)
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "common"
-        }
-    }
+    iosArm64()
+    iosSimulatorArm64()
 
     androidTarget()
     jvm()
+
+    @OptIn(ExperimentalSwiftExportDsl::class)
+    swiftExport {
+        moduleName = "common"
+        flattenPackage = "dev.johnoreilly.common"
+    }
 
     wasmJs {
         browser {
@@ -131,30 +130,23 @@ sqldelight {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("PeopleInSpaceKit")
-    swiftToolsVersion("5.9")
-    targetPlatforms {
-        iOS { v("14") }
-    }
-}
+//multiplatformSwiftPackage {
+//    packageName("PeopleInSpaceKit")
+//    swiftToolsVersion("5.9")
+//    targetPlatforms {
+//        iOS { v("14") }
+//    }
+//}
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
 
-skie {
-    features {
-        enableSwiftUIObservingPreview = true
-    }
-}
-
 // KSP Tasks
 dependencies {
     add("kspCommonMainMetadata", libs.koin.ksp.compiler)
     add("kspAndroid", libs.koin.ksp.compiler)
-    add("kspIosX64", libs.koin.ksp.compiler)
     add("kspIosArm64", libs.koin.ksp.compiler)
     add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
     add("kspJvm", libs.koin.ksp.compiler)
