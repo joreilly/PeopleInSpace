@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v5
@@ -19,7 +19,7 @@ jobs:
           java-version: 17
 
       - name: Build iOS app
-        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator
+        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator ARCHS=arm64 EXCLUDED_ARCHS=x86_64
 
 
 

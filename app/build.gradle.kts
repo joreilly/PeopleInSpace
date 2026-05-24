@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    kotlin("android")
     id("kotlinx-serialization")
     id("com.github.ben-manes.versions")
     alias(libs.plugins.compose.compiler)
@@ -43,8 +42,8 @@ android {
 
     testOptions {
         managedDevices {
-            devices {
-                create<com.android.build.api.dsl.ManagedVirtualDevice>("pixel5api32") {
+            localDevices {
+                create("pixel5api32") {
                     device = "Pixel 5"
                     apiLevel = 32
                     systemImageSource = "google"
