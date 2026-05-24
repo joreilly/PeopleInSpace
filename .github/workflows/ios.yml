@@ -19,7 +19,7 @@ jobs:
           java-version: 17
 
       - name: Build iOS app
-        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator
+        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -destination 'generic/platform=iOS Simulator,arch=arm64'
 
 
 
