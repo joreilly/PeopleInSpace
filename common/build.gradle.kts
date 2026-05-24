@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.ksp)
@@ -14,16 +14,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.skie)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
-}
-
-android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    namespace = "dev.johnoreilly.common"
 }
 
 kotlin {
@@ -39,7 +29,12 @@ kotlin {
         }
     }
 
-    androidTarget()
+    android {
+        namespace = "dev.johnoreilly.common"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+        androidResources { enable = true }
+    }
     jvm()
 
     wasmJs {
