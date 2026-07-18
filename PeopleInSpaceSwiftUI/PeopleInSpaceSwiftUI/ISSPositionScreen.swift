@@ -5,7 +5,7 @@ import common
 
 
 struct ISSPositionScreen: View {
-    @State var viewModel = ISSPositionViewModel()
+    @State var viewModel = KoinKt.issPositionViewModel()
         
     var body: some View {
         NavigationView {

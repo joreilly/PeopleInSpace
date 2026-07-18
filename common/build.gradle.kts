@@ -52,6 +52,7 @@ kotlin {
             implementation(libs.sqldelight.coroutines.extensions)
 
             api(libs.koin.core)
+            api(libs.koin.core.viewmodel)
             implementation(libs.koin.compose.multiplatform)
             implementation(libs.koin.test)
             api(libs.koin.annotations)
