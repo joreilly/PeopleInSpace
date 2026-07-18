@@ -5,11 +5,15 @@ import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.remote.OrbitPoint
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
+    override val initialSyncCompleted: StateFlow<Boolean> = MutableStateFlow(true)
+
     val peopleList = listOf(
         Assignment("ISS", "Chris Cassidy", "https://example.com/cassidy.jpg", "American astronaut", "USA"),
         Assignment("ISS", "Anatoly Ivanishin", "https://example.com/ivanishin.jpg", "Russian cosmonaut", "Russia"),

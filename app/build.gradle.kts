@@ -10,8 +10,8 @@ kotlin {
 }
 
 android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
 
+    compileSdk = 37
     defaultConfig {
         applicationId = "dev.johnoreilly.peopleinspace"
         minSdk = libs.versions.minSdk.get().toInt()
@@ -103,6 +103,13 @@ dependencies {
     androidTestImplementation(libs.androidx.navigation.compose.testing)
     androidTestImplementation(libs.androidx.truth)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    constraints {
+        // androidx.test.ext:truth 1.7.0 needs 1.2.0; align main variant so the
+        // androidTest classpath (pinned to main variant versions) can resolve
+        implementation("androidx.concurrent:concurrent-futures:1.2.0")
+        implementation("androidx.concurrent:concurrent-futures-ktx:1.2.0")
+    }
 
 
     implementation(projects.common)

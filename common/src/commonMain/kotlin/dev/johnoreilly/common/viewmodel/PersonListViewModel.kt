@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -21,9 +21,16 @@ sealed class PersonListUiState {
 class PersonListViewModel() : ViewModel(), KoinComponent {
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface by inject()
 
-    val uiState = peopleInSpaceRepository.fetchPeopleAsFlow()
-        .map { PersonListUiState.Success(it) }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PersonListUiState.Loading)
+    val uiState = combine(
+        peopleInSpaceRepository.fetchPeopleAsFlow(),
+        peopleInSpaceRepository.initialSyncCompleted
+    ) { people, initialSyncCompleted ->
+        if (people.isEmpty() && !initialSyncCompleted) {
+            PersonListUiState.Loading
+        } else {
+            PersonListUiState.Success(people)
+        }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PersonListUiState.Loading)
 
     fun refresh() {
         viewModelScope.launch {

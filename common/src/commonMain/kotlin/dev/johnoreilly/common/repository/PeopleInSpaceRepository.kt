@@ -17,6 +17,9 @@ import org.koin.core.annotation.Single
 
 
 interface PeopleInSpaceRepositoryInterface {
+    // false until the first network fetch has finished (successfully or not),
+    // letting the UI distinguish "not fetched yet" from a genuinely empty result
+    val initialSyncCompleted: StateFlow<Boolean>
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
     suspend fun fetchISSFuturePosition(): List<OrbitPoint>
@@ -35,11 +38,15 @@ class PeopleInSpaceRepository(
 
     val logger = Logger.withTag("PeopleInSpaceRepository")
 
+    private val _initialSyncCompleted = MutableStateFlow(false)
+    override val initialSyncCompleted: StateFlow<Boolean> = _initialSyncCompleted.asStateFlow()
+
     init {
         coroutineScope.launch {
             // TODO figure out cleaner place to invoke this (needed for web implementatin)
             PeopleInSpaceDatabase.Schema.awaitCreate(peopleInSpaceDatabase.driver)
             fetchAndStorePeople()
+            _initialSyncCompleted.value = true
         }
     }
 

@@ -1,15 +1,13 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import com.google.devtools.ksp.gradle.KspAATask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.koin.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.skie)
@@ -108,12 +106,6 @@ kotlin {
             implementation(devNpm("copy-webpack-plugin", libs.versions.webPackPlugin.get()))
         }
     }
-
-    // KSP Common sourceSet
-    sourceSets.named("commonMain").configure {
-        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-    }
-
 }
 
 sqldelight {
@@ -142,23 +134,4 @@ skie {
     features {
         enableSwiftUIObservingPreview = true
     }
-}
-
-// KSP Tasks
-dependencies {
-    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
-    add("kspAndroid", libs.koin.ksp.compiler)
-    add("kspIosArm64", libs.koin.ksp.compiler)
-    add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
-    add("kspJvm", libs.koin.ksp.compiler)
-    add("kspWasmJs", libs.koin.ksp.compiler)
-}
-
-// KSP Metadata Trigger
-tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
-    dependsOn("kspCommonMainKotlinMetadata")
-}
-
-ksp {
-    arg("KOIN_CONFIG_CHECK","true")
 }

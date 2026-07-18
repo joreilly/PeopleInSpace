@@ -1,16 +1,14 @@
 [versions]
-kotlin = "2.3.21"
-ksp = "2.3.2"
+kotlin = "2.4.0"
 
-compose-multiplatform = "1.11.0"
+compose-multiplatform = "1.11.1"
 composeUiTooling = "1.6.2"
 coroutines = "1.11.0"
 kotlinxSerialization = "1.11.0"
-androidGradlePlugin = "9.0.1"
-koin = "4.2.1"
-koin-annotations = "2.3.1"
-koin-ksp-compiler = "2.3.1"
-ktor = "3.5.0"
+androidGradlePlugin = "9.1.1"
+koin = "4.2.2"
+koin-compiler-plugin = "1.0.2"
+ktor = "3.5.1"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
 preferenceKtx = "1.2.1"
@@ -25,26 +23,26 @@ remoteCompose = "1.0.0-SNAPSHOT"
 
 
 androidxActivity = "1.13.0"
-androidxComposeBom = "2025.12.01"
-material3-adaptive = "1.3.0-alpha05"
-material3-adaptive-navigation-suite = "1.5.0-alpha11"
+androidxComposeBom = "2026.06.01"
+material3-adaptive = "1.3.0-rc01"
+material3-adaptive-navigation-suite = "1.5.0-alpha24"
 androidxNavigationCompose = "2.9.8"
-uiToolingPreview = "1.11.2"
+uiToolingPreview = "1.11.4"
 wearCompose = "1.6.2"
-androidxLifecycle = "2.10.0"
-androidxLifecycleKMP = "2.10.0"
+androidxLifecycle = "2.11.0"
+androidxLifecycleKMP = "2.11.0"
 
 coilCompose = "2.7.0"
-coilCompose3 = "3.4.0"
+coilCompose3 = "3.5.0"
 
 horologist = "0.8.2-alpha"
 glanceAppWidget = "1.2.0-rc01"
-okhttp = "5.3.2"
+okhttp = "5.4.0"
 kermit = "2.1.0"
 
 gradleVersionsPlugin = "0.54.0"
-shadowPlugin = "9.4.1"
-skie = "0.10.12"
+shadowPlugin = "9.6.0"
+skie = "0.10.13"
 
 mcp = "0.8.1"
 
@@ -98,7 +96,7 @@ androidx-lifecycle-compose-kmp = { module = "org.jetbrains.androidx.lifecycle:li
 androidx-tracing = "androidx.tracing:tracing:1.3.0"
 
 splash-screen = "androidx.core:core-splashscreen:1.2.0"
-metrics = "androidx.metrics:metrics-performance:1.0.0-beta02"
+metrics = "androidx.metrics:metrics-performance:1.0.0"
 
 osmdroidAndroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
 osm-android-compose = { module = "tech.utsmankece:osm-android-compose", version.ref = "osmAndroidCompose" }
@@ -121,10 +119,8 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
-koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koin" }
 koin-compose-multiplatform = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
-koin-annotations = {module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations"}
-koin-ksp-compiler = {module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-ksp-compiler"}
+koin-annotations = {module = "io.insert-koin:koin-annotations", version.ref = "koin"}
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }
@@ -179,7 +175,7 @@ ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "k
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-compiler-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "gradleVersionsPlugin" }
