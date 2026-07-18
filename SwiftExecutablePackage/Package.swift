@@ -7,7 +7,7 @@ let package = Package(
     name: "PeopleInSpace",
     platforms: [.macOS(.v13)],
     dependencies: [
-        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "1.0.0-ALPHA-18"),
+        .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "1.0.5"),
         .package(url: "https://github.com/joreilly/PeopleInSpacePackage", branch: "main")
     ],
     targets: [
