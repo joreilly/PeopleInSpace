@@ -16,17 +16,16 @@ import org.koin.core.annotation.Configuration
 import org.koin.core.annotation.KoinApplication
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
-import org.koin.core.context.startKoin
 import org.koin.core.scope.Scope
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
-import org.koin.ksp.generated.startKoin
+import org.koin.plugin.module.dsl.startKoin
 
 @KoinApplication
 object KoinApp
 
 fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
-    KoinApp.startKoin {
+    startKoin<KoinApp> {
         includes(appDeclaration)
     }
 

@@ -5,9 +5,13 @@ import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.remote.OrbitPoint
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOf
 
 class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
+    override val initialSyncCompleted: StateFlow<Boolean> = MutableStateFlow(true)
+
     val peopleList = listOf(Assignment("Apollo 11", "Neil Armstrong"),
         Assignment("Apollo 11", "Buzz Aldrin"))
 
