@@ -6,11 +6,12 @@ import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import org.koin.core.annotation.KoinViewModel
 
-class ISSPositionViewModel : ViewModel(), KoinComponent {
-    private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface by inject()
+@KoinViewModel
+class ISSPositionViewModel(
+    private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
+) : ViewModel() {
 
     val position = peopleInSpaceRepository.pollISSPosition()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), IssPosition(0.0, 0.0))
