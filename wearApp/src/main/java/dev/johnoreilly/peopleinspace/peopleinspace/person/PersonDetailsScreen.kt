@@ -3,7 +3,7 @@ package dev.johnoreilly.peopleinspace.peopleinspace.person
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -65,7 +65,7 @@ private fun PersonDetails(
                 AstronautImage(
                     modifier = Modifier
                         .size(120.dp)
-                        .clip(CutCornerShape(30.dp)),
+                        .clip(CircleShape),
                     person = person
                 )
             }
@@ -76,6 +76,17 @@ private fun PersonDetails(
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center
                 )
+            }
+
+            if (person != null) {
+                item {
+                    Text(
+                        listOfNotNull(person.craft, person.nationality).joinToString(" · "),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
 
             val personBio = person?.personBio
@@ -101,6 +112,7 @@ fun AstronautImage(
         modifier = modifier,
         model = person?.personImageUrl,
         contentDescription = person?.name,
+        placeholder = painterResource(id = R.drawable.ic_american_astronaut),
         fallback = painterResource(id = R.drawable.ic_american_astronaut),
         error = painterResource(id = R.drawable.ic_american_astronaut)
     )

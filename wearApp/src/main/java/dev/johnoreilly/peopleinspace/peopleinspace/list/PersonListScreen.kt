@@ -11,9 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -24,12 +24,15 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.Card
+import androidx.wear.compose.material3.EdgeButton
 import androidx.wear.compose.material3.Icon
-import androidx.wear.compose.material3.IconButtonDefaults
+import androidx.wear.compose.material3.ListHeader
 import androidx.wear.compose.material3.MaterialTheme
-import androidx.wear.compose.material3.OutlinedIconButton
 import androidx.wear.compose.material3.ScreenScaffold
+import androidx.wear.compose.material3.SurfaceTransformation
 import androidx.wear.compose.material3.Text
+import androidx.wear.compose.material3.lazy.rememberTransformationSpec
+import androidx.wear.compose.material3.lazy.transformedHeight
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import com.google.android.horologist.compose.layout.AppScaffold
 import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults.ItemType
@@ -68,8 +71,22 @@ fun PersonList(
 ) {
     val columnState = rememberTransformingLazyColumnState()
     val contentPadding =
-        rememberResponsiveColumnPadding(first = ItemType.Icon, last = ItemType.BodyText)
-    ScreenScaffold(scrollState = columnState, contentPadding = contentPadding) { contentPadding ->
+        rememberResponsiveColumnPadding(first = ItemType.Text, last = ItemType.Card)
+    ScreenScaffold(
+        scrollState = columnState,
+        contentPadding = contentPadding,
+        edgeButton = {
+            EdgeButton(onClick = issMapClick) {
+                // https://www.svgrepo.com/svg/170716/international-space-station
+                Icon(
+                    modifier = Modifier.scale(0.75f),
+                    painter = painterResource(id = R.drawable.ic_iss),
+                    contentDescription = "ISS Map"
+                )
+            }
+        }
+    ) { contentPadding ->
+        val transformationSpec = rememberTransformationSpec()
         TransformingLazyColumn(
             modifier = modifier
                 .testTag(PersonListTag),
@@ -77,20 +94,17 @@ fun PersonList(
             state = columnState,
         ) {
             item {
-                OutlinedIconButton(
-                    onClick = issMapClick,
-                    modifier = Modifier.size(IconButtonDefaults.DefaultButtonSize)
+                ListHeader(
+                    modifier = Modifier.transformedHeight(this, transformationSpec),
+                    transformation = SurfaceTransformation(transformationSpec)
                 ) {
-                    // https://www.svgrepo.com/svg/170716/international-space-station
-                    Icon(
-                        modifier = Modifier.scale(0.75f),
-                        painter = painterResource(id = R.drawable.ic_iss),
-                        contentDescription = "ISS Map"
-                    )
+                    Text("People in Space")
                 }
             }
             items(people.size) { offset ->
                 PersonView(
+                    modifier = Modifier.transformedHeight(this, transformationSpec),
+                    transformation = SurfaceTransformation(transformationSpec),
                     person = people[offset],
                     personSelected = personSelected
                 )
@@ -108,10 +122,12 @@ fun PersonList(
 fun PersonView(
     modifier: Modifier = Modifier,
     person: Assignment,
-    personSelected: (person: Assignment) -> Unit
+    personSelected: (person: Assignment) -> Unit,
+    transformation: SurfaceTransformation? = null,
 ) {
     Card(
         onClick = { personSelected(person) },
+        transformation = transformation,
         modifier = modifier
             .testTag(PersonTag)
             .semantics(mergeDescendants = true) {
@@ -126,7 +142,7 @@ fun PersonView(
             AstronautImage(
                 modifier = Modifier
                     .size(50.dp)
-                    .clip(MaterialTheme.shapes.medium),
+                    .clip(CircleShape),
                 person = person
             )
 
@@ -137,7 +153,8 @@ fun PersonView(
                 Text(
                     text = person.craft,
                     maxLines = 1,
-                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray)
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
