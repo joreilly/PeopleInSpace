@@ -47,7 +47,7 @@ skie = "0.10.13"
 mcp = "0.8.1"
 
 minSdk = "24"
-compileSdk = "36"
+compileSdk = "37"
 targetSdk = "36"
 minWearSdk = "26"
 targetWearSdk = "33"
