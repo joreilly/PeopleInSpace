@@ -11,7 +11,7 @@ kotlin {
 
 android {
 
-    compileSdk = 37
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "dev.johnoreilly.peopleinspace"
         minSdk = libs.versions.minSdk.get().toInt()
