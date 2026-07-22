@@ -21,9 +21,9 @@ plugins.withType<org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnPlugin> {
 allprojects {
     configurations.all {
         resolutionStrategy {
-            force("org.jetbrains.kotlin:kotlin-test:2.4.0")
-            force("org.jetbrains.kotlin:kotlin-test-common:2.4.0")
-            force("org.jetbrains.kotlin:kotlin-test-annotations-common:2.4.0")
+            force("org.jetbrains.kotlin:kotlin-test:2.4.10")
+            force("org.jetbrains.kotlin:kotlin-test-common:2.4.10")
+            force("org.jetbrains.kotlin:kotlin-test-annotations-common:2.4.10")
         }
     }
 }
