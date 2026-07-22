@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.0"
+kotlin = "2.4.10"
 
 compose-multiplatform = "1.11.1"
 composeUiTooling = "1.6.2"
