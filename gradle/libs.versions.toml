@@ -44,7 +44,7 @@ gradleVersionsPlugin = "0.54.0"
 shadowPlugin = "9.6.0"
 skie = "0.10.13"
 
-mcp = "0.8.1"
+mcp = "0.14.0"
 
 minSdk = "24"
 compileSdk = "37"
