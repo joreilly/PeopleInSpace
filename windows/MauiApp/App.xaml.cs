@@ -30,6 +30,10 @@ public partial class App : Application
     private async void OnWindowDestroying(object? sender, EventArgs eventArgs)
     {
         if (sender is Window window) window.Destroying -= OnWindowDestroying;
+        // MAUI 10.0.20 can deliver a Catalyst trait change after disposing the window's service
+        // scope. Disconnect page handlers synchronously so that callback cannot resolve services
+        // from an already-disposed provider during application termination.
+        _shell.DisconnectPageHandlers();
         await _viewModel.DisposeAsync();
     }
 }

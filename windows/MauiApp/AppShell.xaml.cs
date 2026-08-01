@@ -22,4 +22,11 @@ public partial class AppShell : TabbedPage
         Children.Add(peoplePage);
         Children.Add(issPage);
     }
+
+    public void DisconnectPageHandlers()
+    {
+        foreach (var page in Children)
+            page.Handler?.DisconnectHandler();
+        Handler?.DisconnectHandler();
+    }
 }
