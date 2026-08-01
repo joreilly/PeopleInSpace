@@ -42,14 +42,15 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
         while (true)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            Client.CaptureIss();
+            var client = Client;
+            client.CaptureIss();
             var snapshot = new IssSnapshot(
-                Client.CapturedIssLatitude(),
-                Client.CapturedIssLongitude(),
-                DateTimeOffset.FromUnixTimeSeconds(Client.CapturedIssTimestamp()),
-                Client.CapturedIssHasPosition(),
-                Client.CapturedIssLoading(),
-                Client.CapturedIssErrorMessage());
+                client.CapturedIssLatitude(),
+                client.CapturedIssLongitude(),
+                DateTimeOffset.FromUnixTimeSeconds(client.CapturedIssTimestamp()),
+                client.CapturedIssHasPosition(),
+                client.CapturedIssLoading(),
+                client.CapturedIssErrorMessage());
             if (snapshot != previous)
             {
                 previous = snapshot;
