@@ -1,11 +1,22 @@
 name: Wear OS CI
 
-on: pull_request
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+# Cancel superseded runs for the same PR/branch
+concurrency:
+  group: wearos-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-
   wearOSTest:
     runs-on: macos-26
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -16,10 +27,11 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
+      - uses: gradle/actions/setup-gradle@v6
+
 #      - name: Wear Instrumentation Tests
 #        uses: reactivecircus/android-emulator-runner@v2
 #        with:
 #          api-level: 26
 #          target: android-wear
 #          script: ./gradlew wearApp:connectedAndroidTest
-
