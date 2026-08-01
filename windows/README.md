@@ -135,8 +135,12 @@ rm -rf windows/obj/packages
 dotnet restore windows/Shared.Tests/PeopleInSpace.Windows.Shared.Tests.csproj --force --no-cache
 dotnet test windows/Shared.Tests/PeopleInSpace.Windows.Shared.Tests.csproj --configuration Release --no-restore
 dotnet restore windows/MauiApp/PeopleInSpace.Windows.MauiApp.csproj -p:TargetFramework=net10.0-maccatalyst --force --no-cache
-dotnet build windows/MauiApp/PeopleInSpace.Windows.MauiApp.csproj -t:Run -f net10.0-maccatalyst
+dotnet build windows/MauiApp/PeopleInSpace.Windows.MauiApp.csproj --configuration Debug --framework net10.0-maccatalyst --no-restore
+open -n "windows/MauiApp/bin/Debug/net10.0-maccatalyst/maccatalyst-arm64/People in Space.app"
 ```
+
+Build the application explicitly before opening it. Invoking only MSBuild's `Run` target can launch
+an existing app bundle without first rebuilding it.
 
 Mac Catalyst is an AOT-only environment. The managed adapter reads the exported Kotlin
 `StateFlow.Value` properties and projects snapshots on a short polling interval rather than using

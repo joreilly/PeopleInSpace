@@ -5,5 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- PeopleInSpace.Kotlin keeps a fixed local version. Keep its restore cache in the
+         repository so it can be cleared without touching the user's global NuGet cache. -->
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)obj/packages</RestorePackagesPath>
   </PropertyGroup>
 </Project>
