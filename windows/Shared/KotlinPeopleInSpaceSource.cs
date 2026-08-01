@@ -10,7 +10,8 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
 {
     // kotlin-native-nuget 0.2.0's generic flow collector uses runtime-generated
     // reverse-P/Invoke delegates, which Mac Catalyst cannot JIT in AOT-only mode.
-    // Reading StateFlow.Value keeps the same Kotlin-owned state and is AOT-safe.
+    // Reading a captured snapshot through scalar accessors avoids both reverse callbacks and the
+    // reflection used to create generated Kotlin object wrappers, neither of which is AOT-safe.
     private static readonly TimeSpan StatePollInterval = TimeSpan.FromMilliseconds(250);
     private PeopleInSpaceClient? _client;
 
@@ -20,13 +21,11 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
     public async IAsyncEnumerable<PeopleSnapshot> WatchPeopleAsync(
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        using var flow = Client.PeopleState;
         PeopleSnapshot? previous = null;
         while (true)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            using var state = flow.Value;
-            var snapshot = Project(state);
+            var snapshot = Project(Client);
             if (previous is null || !PeopleSnapshotsEqual(previous, snapshot))
             {
                 previous = snapshot;
@@ -39,19 +38,18 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
     public async IAsyncEnumerable<IssSnapshot> WatchIssAsync(
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        using var flow = Client.IssState;
         IssSnapshot? previous = null;
         while (true)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            using var state = flow.Value;
+            Client.CaptureIss();
             var snapshot = new IssSnapshot(
-                state.Latitude,
-                state.Longitude,
-                DateTimeOffset.FromUnixTimeSeconds(state.Timestamp),
-                state.HasPosition,
-                state.Loading,
-                state.ErrorMessage);
+                Client.CapturedIssLatitude(),
+                Client.CapturedIssLongitude(),
+                DateTimeOffset.FromUnixTimeSeconds(Client.CapturedIssTimestamp()),
+                Client.CapturedIssHasPosition(),
+                Client.CapturedIssLoading(),
+                Client.CapturedIssErrorMessage());
             if (snapshot != previous)
             {
                 previous = snapshot;
@@ -79,27 +77,23 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
 
     private PeopleInSpaceClient Client => _client ?? throw new ObjectDisposedException(nameof(KotlinPeopleInSpaceSource));
 
-    private static PeopleSnapshot Project(PeopleState state)
+    private static PeopleSnapshot Project(PeopleInSpaceClient client)
     {
-        var people = state.People;
-        try
-        {
-            return new PeopleSnapshot(
-                people.Select(person => new PersonInfo(
-                    person.Name,
-                    person.Craft,
-                    person.Nationality,
-                    person.PersonImageUrl,
-                    person.PersonBio)).ToArray(),
-                state.InitialLoading,
-                state.Refreshing,
-                state.ErrorMessage);
-        }
-        finally
-        {
-            foreach (var person in people)
-                person.Dispose();
-        }
+        var count = client.CapturePeople();
+        var people = new PersonInfo[count];
+        for (var index = 0; index < count; index++)
+            people[index] = new PersonInfo(
+                client.CapturedPersonName(index),
+                client.CapturedPersonCraft(index),
+                client.CapturedPersonNationality(index),
+                client.CapturedPersonImageUrl(index),
+                client.CapturedPersonBio(index));
+
+        return new PeopleSnapshot(
+            people,
+            client.CapturedPeopleInitialLoading(),
+            client.CapturedPeopleRefreshing(),
+            client.CapturedPeopleErrorMessage());
     }
 
     private static bool PeopleSnapshotsEqual(PeopleSnapshot left, PeopleSnapshot right) =>

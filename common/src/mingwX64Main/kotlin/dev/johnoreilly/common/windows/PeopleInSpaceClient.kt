@@ -59,6 +59,7 @@ class PeopleInSpaceClient(storageDirectory: String) {
 
     /** Continuously updated ISS data, including errors from the retrying poller. */
     val issState: StateFlow<IssState> = controller.issState
+    private val snapshotReader = PeopleInSpaceSnapshotReader(peopleState, issState)
 
     /** Requests a fresh people-list synchronisation. */
     suspend fun refresh() {
@@ -69,6 +70,24 @@ class PeopleInSpaceClient(storageDirectory: String) {
     fun requestRefresh() {
         scope.launch { controller.refresh() }
     }
+
+    /** Scalar projection for managed hosts that do not need generated Kotlin object wrappers. */
+    fun capturePeople() = snapshotReader.capturePeople()
+    fun capturedPersonName(index: Int) = snapshotReader.capturedPersonName(index)
+    fun capturedPersonCraft(index: Int) = snapshotReader.capturedPersonCraft(index)
+    fun capturedPersonNationality(index: Int) = snapshotReader.capturedPersonNationality(index)
+    fun capturedPersonImageUrl(index: Int) = snapshotReader.capturedPersonImageUrl(index)
+    fun capturedPersonBio(index: Int) = snapshotReader.capturedPersonBio(index)
+    fun capturedPeopleInitialLoading() = snapshotReader.capturedPeopleInitialLoading()
+    fun capturedPeopleRefreshing() = snapshotReader.capturedPeopleRefreshing()
+    fun capturedPeopleErrorMessage() = snapshotReader.capturedPeopleErrorMessage()
+    fun captureIss() = snapshotReader.captureIss()
+    fun capturedIssLatitude() = snapshotReader.capturedIssLatitude()
+    fun capturedIssLongitude() = snapshotReader.capturedIssLongitude()
+    fun capturedIssTimestamp() = snapshotReader.capturedIssTimestamp()
+    fun capturedIssHasPosition() = snapshotReader.capturedIssHasPosition()
+    fun capturedIssLoading() = snapshotReader.capturedIssLoading()
+    fun capturedIssErrorMessage() = snapshotReader.capturedIssErrorMessage()
 
     /** Releases all resources owned by this client. Safe to call more than once. */
     fun close() {
