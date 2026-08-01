@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application x:Class="PeopleInSpace.Windows.MauiApp.App"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PeopleInSpace.Windows.MauiApp">
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:NullToBoolConverter x:Key="NullToBoolConverter" />
+            <Color x:Key="BrandColor">#155E75</Color>
+            <Color x:Key="PageBackground">#F7FAFC</Color>
+            <Color x:Key="CardBackground">#FFFFFF</Color>
+            <Color x:Key="SecondaryText">#52606D</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

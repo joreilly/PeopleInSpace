@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PeopleInSpace.Windows.MauiApp.IssPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{StaticResource PageBackground}">
+    <Grid Padding="22" RowDefinitions="Auto,Auto,*" RowSpacing="14">
+        <VerticalStackLayout Spacing="3">
+            <Label Text="International Space Station" FontSize="28" FontAttributes="Bold" />
+            <Label Text="Live orbital position" TextColor="{StaticResource SecondaryText}" />
+        </VerticalStackLayout>
+        <Border Grid.Row="1" IsVisible="{Binding HasIssError}" BackgroundColor="#FDECEC" Stroke="#D64545" Padding="12" StrokeShape="RoundRectangle 8">
+            <Label Text="{Binding IssError}" TextColor="#8B1E1E" />
+        </Border>
+        <Border Grid.Row="2" BackgroundColor="{StaticResource CardBackground}" Stroke="#D9E2EC" Padding="32" StrokeShape="RoundRectangle 10">
+            <VerticalStackLayout Spacing="14">
+                <Label Text="◉" TextColor="{StaticResource BrandColor}" FontSize="50" />
+                <Label Text="COORDINATES" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource SecondaryText}" />
+                <Label Text="{Binding IssLocation}" FontSize="34" FontAttributes="Bold" />
+                <Label Text="{Binding IssTimestamp}" TextColor="{StaticResource SecondaryText}" />
+                <ActivityIndicator IsRunning="{Binding IssLoading}" IsVisible="{Binding IssLoading}" Color="{StaticResource BrandColor}" HorizontalOptions="Start" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>
