@@ -1,5 +1,6 @@
 [versions]
 kotlin = "2.4.0"
+kotlinNativeNuget = "0.2.0"
 
 compose-multiplatform = "1.11.1"
 composeUiTooling = "1.6.2"
@@ -7,7 +8,6 @@ coroutines = "1.11.0"
 kotlinxSerialization = "1.11.0"
 androidGradlePlugin = "9.1.1"
 koin = "4.2.2"
-koin-compiler-plugin = "1.0.2"
 ktor = "3.5.1"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
@@ -42,7 +42,7 @@ kermit = "2.1.0"
 
 gradleVersionsPlugin = "0.54.0"
 shadowPlugin = "9.6.1"
-skie = "0.10.13"
+skie = "0.10.14"
 
 mcp = "0.14.0"
 
@@ -121,7 +121,6 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-core-viewmodel = { module = "io.insert-koin:koin-core-viewmodel", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-compose-multiplatform = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
-koin-annotations = {module = "io.insert-koin:koin-annotations", version.ref = "koin"}
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }
@@ -131,6 +130,7 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
 ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
+ktor-client-winhttp = { group = "io.ktor", name = "ktor-client-winhttp", version.ref = "ktor" }
 ktor-server-cio = { group = "io.ktor", name = "ktor-server-cio", version.ref = "ktor" }
 ktor-server-sse = { group = "io.ktor", name = "ktor-server-sse", version.ref = "ktor" }
 
@@ -176,7 +176,6 @@ ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "k
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
-koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-compiler-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref  = "gradleVersionsPlugin" }
@@ -185,4 +184,5 @@ sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
+kotlin-native-nuget = { id = "io.github.xxfast.kotlin.native.nuget", version.ref = "kotlinNativeNuget" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm" }

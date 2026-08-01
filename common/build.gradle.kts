@@ -1,28 +1,42 @@
-@file:OptIn(ExperimentalWasmDsl::class)
+@file:OptIn(ExperimentalWasmDsl::class, ExperimentalKotlinGradlePluginApi::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.RELEASE
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    alias(libs.plugins.koin.compiler)
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.skie)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
+    alias(libs.plugins.kotlin.native.nuget)
 }
 
 kotlin {
     jvmToolchain(17)
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "common"
+    iosArm64()
+    iosSimulatorArm64()
+
+    mingwX64 {
+        binaries {
+            sharedLib(listOf(DEBUG, RELEASE)) {
+                baseName = "peopleinspace"
+                if (System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
+                    // Windows CI places the static MinGW SQLite archive here so the
+                    // packaged DLL has no extra SQLite runtime dependency.
+                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}")
+                }
+            }
+        }
+    }
+
+    macosArm64 {
+        binaries {
+            sharedLib(listOf(DEBUG, RELEASE)) {
+                baseName = "peopleinspace"
+            }
         }
     }
 
@@ -42,7 +56,28 @@ kotlin {
         }
     }
 
+    applyDefaultHierarchyTemplate {
+        common {
+            group("nonWindows") {
+                withAndroidTarget()
+                withJvm()
+                withWasmJs()
+                group("apple") {
+                    withIos()
+                    withMacos()
+                }
+            }
+        }
+    }
+
     sourceSets {
+        val nonWindowsMain by getting {
+            dependencies {
+                api(libs.koin.core.viewmodel)
+                implementation(libs.androidx.lifecycle.viewmodel.kmp)
+            }
+        }
+
         commonMain.dependencies {
             implementation(libs.bundles.ktor.common)
             implementation(libs.kotlinx.coroutines)
@@ -52,36 +87,18 @@ kotlin {
             implementation(libs.sqldelight.coroutines.extensions)
 
             api(libs.koin.core)
-            api(libs.koin.core.viewmodel)
-            implementation(libs.koin.compose.multiplatform)
-            implementation(libs.koin.test)
-            api(libs.koin.annotations)
-
             api(libs.kermit)
-
-            implementation(compose.ui)
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.components.resources)
-            implementation(libs.androidx.lifecycle.compose.kmp)
-            implementation(libs.androidx.lifecycle.viewmodel.kmp)
         }
 
         commonTest.dependencies {
             implementation(libs.koin.test)
             implementation(libs.kotlinx.coroutines.test)
             implementation(kotlin("test"))
-            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.sqldelight.android.driver)
-
-            implementation(libs.osmdroidAndroid)
-            implementation(libs.osm.android.compose)
         }
 
         jvmMain.dependencies {
@@ -91,12 +108,13 @@ kotlin {
             implementation(libs.kotlinx.coroutines.swing)
         }
 
-        jvmTest.dependencies {
-            implementation(compose.desktop.currentOs)
-        }
-
         appleMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native.driver)
+        }
+
+        mingwX64Main.dependencies {
+            implementation(libs.ktor.client.winhttp)
             implementation(libs.sqldelight.native.driver)
         }
 
@@ -118,21 +136,28 @@ sqldelight {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("PeopleInSpaceKit")
-    swiftToolsVersion("5.9")
-    targetPlatforms {
-        iOS { v("14") }
-    }
-}
-
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
 
-skie {
-    features {
-        enableSwiftUIObservingPreview = true
+nuget {
+    publish {
+        packageId = "PeopleInSpace.Kotlin"
+        version = "0.1.0"
+        authors = "xxfast"
+        description = "PeopleInSpace Kotlin Multiplatform library for Windows"
+        rootPackage = "dev.johnoreilly.common.windows"
+        include("dev.johnoreilly.common.windows")
+    }
+}
+
+// The MinGW NativeSqliteDriver needs a target SQLite archive. Windows CI
+// provisions it and links the final DLL; macOS packs the host-native dylib.
+if (!System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
+    tasks.matching { task ->
+        task.name.startsWith("link") && task.name.endsWith("MingwX64")
+    }.configureEach {
+        enabled = false
     }
 }

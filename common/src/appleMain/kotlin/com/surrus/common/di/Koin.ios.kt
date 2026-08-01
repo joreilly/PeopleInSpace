@@ -1,9 +1,10 @@
 package dev.johnoreilly.common.di
 
-import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
+import app.cash.sqldelight.async.coroutines.synchronous
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.engine.java.*
+import io.ktor.client.engine.darwin.Darwin
 import org.koin.dsl.module
 
 private class ContextWrapper
@@ -11,10 +12,9 @@ private class ContextWrapper
 actual fun nativeModule() = module {
     includes(viewModelsModule())
     single { ContextWrapper() }
-    single<HttpClientEngine> { Java.create() }
+    single<HttpClientEngine> { Darwin.create() }
     single {
-        val driver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
-            .also { PeopleInSpaceDatabase.Schema.create(it) }
+        val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), "peopleinspace.db")
         PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
 }

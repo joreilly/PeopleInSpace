@@ -5,25 +5,16 @@ import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase.Companion.invoke
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.js.Js
-import org.koin.core.annotation.Module
-import org.koin.core.annotation.Single
-import org.koin.core.scope.Scope
+import org.koin.dsl.module
 
-actual class ContextWrapper
+private class ContextWrapper
 
-@Module
-actual class NativeModule {
-
-    @Single
-    actual fun providesContextWrapper(scope : Scope) : ContextWrapper = ContextWrapper()
-
-    @Single
-    actual fun getHttpClientEngine(): HttpClientEngine = Js.create()
-
-    @Single
-    actual fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper {
+actual fun nativeModule() = module {
+    includes(viewModelsModule())
+    single { ContextWrapper() }
+    single<HttpClientEngine> { Js.create() }
+    single {
         val driver = createDefaultWebWorkerDriver()
-        return PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
+        PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
-
 }
