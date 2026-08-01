@@ -1,10 +1,22 @@
 name: Maestro UI tests
 
-on: pull_request
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+# Cancel superseded runs for the same PR/branch
+concurrency:
+  group: maestro-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   test:
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
 
@@ -15,7 +27,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Set up Gradle cache
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - uses: actions/setup-java@v5
         with:
