@@ -10,6 +10,8 @@
 * Swift Executable Package
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - Wasm based)
+* Windows (WinUI 3)
+* macOS (MAUI via Mac Catalyst)
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
 * MCP server (using same shared KMP code)
 
@@ -24,12 +26,17 @@ The project is included as sample in the official [Kotlin Multiplatform docs](ht
 
 | Module | Description |
 |---|---|
-| `common` | Shared KMP code (Ktor, SQLDelight, Koin, view models) and shared Compose Multiplatform UI |
+| `common` | Platform-neutral models, repository, Ktor, SQLDelight, Koin, lifecycle view models, and the MinGW/macOS NuGet API |
+| `common:ui` | Shared Compose Multiplatform UI, map implementations, resources, and UI tests; produces the iOS `common` framework |
 | `app` | Android client (Jetpack Compose), including Glance app widget |
 | `wearApp` | Wear OS client (Compose for Wear OS) |
 | `PeopleInSpaceSwiftUI` | iOS client (SwiftUI) |
 | `compose-desktop` | Desktop client (Compose for Desktop) |
 | `compose-web` | Web client (Compose for Web, Kotlin/Wasm) |
+| `windows/Shared` | UI-independent C# view models shared by the Windows and MAUI hosts; compiles the generated Kotlin interop source |
+| `windows/WinUiApp` | Windows client (WinUI 3) |
+| `windows/MauiApp` | UI-only .NET MAUI host for Mac Catalyst and Windows |
+| `windows/Shared.Tests` | C# tests for the shared view models |
 | `backend` | Ktor server providing the people/ISS data (deployable to Google App Engine) |
 | `mcp-server` | Model Context Protocol server exposing the shared KMP code |
 
@@ -42,9 +49,11 @@ Requirements: JDK 17, a recent version of Android Studio (for the Android/Wear c
 * **iOS**: open `PeopleInSpaceSwiftUI` in Xcode and run from there
 * **Desktop**: `./gradlew :compose-desktop:run`
 * **Web (Wasm)**: `./gradlew :compose-web:wasmJsBrowserDevelopmentRun`
+* **Windows and macOS (.NET)**: see the [WinUI 3 and MAUI client guide](windows/README.md) for prerequisites and build, test, and run instructions.
+
 * **Backend**: `./gradlew :backend:run` (or run `Server.kt` directly from Android Studio). After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
-Tests can be run with `./gradlew :common:jvmTest`, and there's also a [Maestro](https://maestro.mobile.dev/) UI test
+Shared JVM and Compose UI tests can be run with `./gradlew :common:jvmTest :common:ui:jvmTest`, and there's also a [Maestro](https://maestro.mobile.dev/) UI test
 flow for the Android client (`maestro test maestro/PeopleInSpace.flow`).
 
 ### Backend deployment
@@ -159,7 +168,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 * [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
 * [Ktor client library](https://github.com/ktorio/ktor)
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
-* [Koin](https://github.com/InsertKoinIO/koin) (using [Koin Annotations](https://insert-koin.io/docs/reference/koin-annotations/start) and the [Koin compiler plugin](https://insert-koin.io/docs/setup/compiler-plugin/))
+* [Koin](https://github.com/InsertKoinIO/koin) (using explicit multiplatform modules)
 * [SQLDelight](https://github.com/cashapp/sqldelight)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform/)

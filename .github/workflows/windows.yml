@@ -1,0 +1,84 @@
+name: Windows CI
+
+on: pull_request
+
+jobs:
+  build:
+    name: Build and test WinUI
+    runs-on: windows-latest
+    env:
+      # Keep restore packages inside the checkout so this job never touches the runner-wide cache.
+      NUGET_PACKAGES: ${{ github.workspace }}\windows\obj\packages
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+          cache: 'gradle'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Install static MinGW SQLite
+        uses: msys2/setup-msys2@v2
+        with:
+          install: mingw-w64-x86_64-sqlite3
+
+      - name: Stage static MinGW SQLite
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force common\build\mingw-sqlite | Out-Null
+          Copy-Item C:\msys64\mingw64\lib\libsqlite3.a common\build\mingw-sqlite\libsqlite3.a
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      # The solution also contains the MAUI host, which targets Windows on this runner.
+      - name: Install .NET MAUI workload
+        run: dotnet workload install maui-windows
+
+      - name: Pack shared NuGet package
+        run: .\gradlew.bat :common:packNuget --no-daemon --stacktrace
+
+      - name: Verify packaged Windows native library
+        shell: pwsh
+        run: |
+          $package = Get-ChildItem common\build\nuget\*.nupkg | Select-Object -First 1
+          $entries = tar -tf $package.FullName
+          if ($entries -notcontains 'runtimes/win-x64/native/peopleinspace.dll') {
+            throw 'peopleinspace.dll is missing from the NuGet package'
+          }
+
+      - name: Clear local NuGet package cache
+        shell: pwsh
+        run: Remove-Item -Recurse -Force windows\obj\packages -ErrorAction SilentlyContinue
+
+      - name: Restore WinUI solution
+        run: dotnet restore windows\PeopleInSpace.Windows.sln --force --no-cache
+
+      - name: Build WinUI solution
+        run: dotnet build windows\PeopleInSpace.Windows.sln --configuration Release -p:Platform=x64 --no-restore
+
+      - name: Run WinUI tests
+        run: dotnet test windows\Shared.Tests\PeopleInSpace.Windows.Shared.Tests.csproj --configuration Release -p:Platform=x64 --no-build
+
+      - name: Upload shared NuGet package
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: peopleinspace-nuget
+          path: common/build/nuget/*.nupkg
+
+      - name: Upload WinUI build output
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: winui-build-output
+          path: windows/WinUiApp/bin/x64/Release/

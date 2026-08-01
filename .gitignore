@@ -61,6 +61,11 @@ hs_err_pid*
 # gradle/wrapper/gradle-wrapper.properties
 
 ### Windows template
+# .NET/Visual Studio local build and restore state
+**/obj/
+.vs/
+windows/obj/packages/
+
 # Windows thumbnail cache files
 Thumbs.db
 Thumbs.db:encryptable

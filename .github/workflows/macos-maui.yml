@@ -1,0 +1,63 @@
+name: macOS MAUI CI
+
+on: pull_request
+
+jobs:
+  build:
+    name: Build Mac Catalyst MAUI host
+    runs-on: macos-26
+    env:
+      # Keep restore packages in the checkout; never touch the runner-wide NuGet cache.
+      NUGET_PACKAGES: ${{ github.workspace }}/windows/obj/packages
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+          cache: 'gradle'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install .NET MAUI workload
+        run: dotnet workload install maui-maccatalyst
+
+      - name: Pack shared NuGet package
+        run: ./gradlew :common:packNuget --no-daemon --stacktrace
+
+      - name: Verify packaged macOS native library
+        run: unzip -l common/build/nuget/*.nupkg | grep -F 'runtimes/osx-arm64/native/libpeopleinspace.dylib'
+
+      - name: Clear repository-local NuGet cache
+        run: rm -rf windows/obj/packages
+
+      - name: Restore C# shared tests
+        run: dotnet restore windows/Shared.Tests/PeopleInSpace.Windows.Shared.Tests.csproj --force --no-cache
+
+      - name: Run C# shared tests
+        run: dotnet test windows/Shared.Tests/PeopleInSpace.Windows.Shared.Tests.csproj --configuration Release --no-restore
+
+      - name: Restore MAUI app
+        run: dotnet restore windows/MauiApp/PeopleInSpace.Windows.MauiApp.csproj -p:TargetFramework=net10.0-maccatalyst --force --no-cache
+
+      - name: Build MAUI app for Mac Catalyst
+        run: dotnet build windows/MauiApp/PeopleInSpace.Windows.MauiApp.csproj --configuration Release --framework net10.0-maccatalyst --no-restore
+
+      - name: Upload NuGet package and MAUI build output
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: macos-maui-build
+          path: |
+            common/build/nuget/*.nupkg
+            windows/MauiApp/bin/Release/
