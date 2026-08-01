@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.flowOf
 
 class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
     override val initialSyncCompleted: StateFlow<Boolean> = MutableStateFlow(true)
+    override val peopleSyncLoading: StateFlow<Boolean> = MutableStateFlow(false)
+    override val peopleSyncError: StateFlow<Throwable?> = MutableStateFlow(null)
+    override val issPollLoading: StateFlow<Boolean> = MutableStateFlow(false)
+    override val issPollError: StateFlow<Throwable?> = MutableStateFlow(null)
 
     val peopleList = listOf(Assignment("Apollo 11", "Neil Armstrong"),
         Assignment("Apollo 11", "Buzz Aldrin"))
