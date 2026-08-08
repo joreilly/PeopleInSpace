@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "description": "AGP 9.3.x+ outruns what the locally installed Android Studio supports — sync fails with unsupported-AGP-version and \"could not find compile target\" errors. Hold AGP updates until Studio's bundled support catches up.",
+      "matchPackageNames": [
+        "agp",
+        "com.android.tools.build:gradle",
+        "/^com\\.android\\.(application|library|test|dynamic-feature|kotlin\\.multiplatform\\.library|lint)$/"
+      ],
+      "enabled": false
+    }
   ]
 }
