@@ -2,11 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>People In Space</title>
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <title>PeopleInSpace with Kotlin/Wasm</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #peopleInSpaceCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+    <script type="application/javascript" src="skiko.js"></script>
+    <script type="application/javascript" src="peopleinspace.js"></script>
 </head>
 <body>
-<div id="root"></div>
-<script src="web.js"></script>
+<canvas id="peopleInSpaceCanvas"></canvas>
 </body>
+
 </html>
