@@ -28,6 +28,12 @@ jobs:
       - name: Build web app
         run: ./gradlew :compose-web:wasmJsBrowserDistribution
 
+      - name: Fix absolute sql-wasm.wasm path for project-page subpath
+        # @cashapp/sqldelight-sqljs-worker bundles sql.js with a hardcoded
+        # locateFile: file => "/sql-wasm.wasm", which 404s once the site is
+        # served from a subpath like /PeopleInSpace/ instead of the domain root.
+        run: sed -i 's#"/sql-wasm.wasm"#"sql-wasm.wasm"#g' compose-web/build/dist/wasmJs/productionExecutable/*.js
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
