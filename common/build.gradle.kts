@@ -82,6 +82,18 @@ kotlin {
             }
         }
 
+        // The client exported through the NuGet package is identical on both targets apart from its
+        // ktor engine. macosArm64 keeps its place under apple as well; this is a second parent, not
+        // a replacement.
+        val nativeClientMain by creating {
+            dependsOn(commonMain.get())
+            dependencies {
+                implementation(libs.sqldelight.native.driver)
+            }
+        }
+        mingwX64Main.get().dependsOn(nativeClientMain)
+        macosArm64Main.get().dependsOn(nativeClientMain)
+
         commonMain.dependencies {
             implementation(libs.bundles.ktor.common)
             implementation(libs.kotlinx.coroutines)
@@ -120,7 +132,6 @@ kotlin {
 
         mingwX64Main.dependencies {
             implementation(libs.ktor.client.winhttp)
-            implementation(libs.sqldelight.native.driver)
         }
 
         wasmJsMain.dependencies {

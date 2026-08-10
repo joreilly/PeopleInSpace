@@ -9,7 +9,7 @@ import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import dev.johnoreilly.common.repository.PeopleInSpaceRepository
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.engine.HttpClientEngine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -17,16 +17,20 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
+/** The one platform difference between the Windows and macOS clients. */
+internal expect fun createPlatformHttpClientEngine(): HttpClientEngine
+
 /**
- * Self-contained macOS entry point for the shared data layer.
+ * Self-contained entry point for the shared data layer, exported through the NuGet package.
  *
- * It intentionally has the same exported package and API as the Windows
- * client, allowing the NuGet package to provide platform-specific native
- * assets behind one managed surface.
+ * The Windows and macOS builds deliberately share this class so both native assets sit behind one
+ * managed surface. [storageDirectory] must identify an existing directory writable by the caller.
+ * The client does not initialise Koin or expose AndroidX types; it owns its HTTP client, SQLite
+ * driver and coroutine scope instead.
  */
 class PeopleInSpaceClient(storageDirectory: String) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-    private val engine = Darwin.create()
+    private val engine = createPlatformHttpClientEngine()
     private val httpClient: HttpClient = createHttpClient(
         httpClientEngine = engine,
         json = Json { isLenient = true; ignoreUnknownKeys = true },
@@ -54,10 +58,14 @@ class PeopleInSpaceClient(storageDirectory: String) {
         driver.close()
     }
 
+    /** Continuously updated people data, loading state, and latest sync error. */
     val peopleState: StateFlow<PeopleState> = controller.peopleState
+
+    /** Continuously updated ISS data, including errors from the retrying poller. */
     val issState: StateFlow<IssState> = controller.issState
     private val snapshotReader = PeopleInSpaceSnapshotReader(peopleState, issState)
 
+    /** Requests a fresh people-list synchronisation. */
     suspend fun refresh() {
         controller.refresh()
     }
@@ -85,6 +93,7 @@ class PeopleInSpaceClient(storageDirectory: String) {
     fun capturedIssLoading() = snapshotReader.capturedIssLoading()
     fun capturedIssErrorMessage() = snapshotReader.capturedIssErrorMessage()
 
+    /** Releases all resources owned by this client. Safe to call more than once. */
     fun close() {
         controller.close()
     }
