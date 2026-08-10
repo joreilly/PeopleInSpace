@@ -59,7 +59,10 @@ kotlin {
     applyDefaultHierarchyTemplate {
         common {
             group("nonWindows") {
-                withAndroidTarget()
+                // com.android.kotlin.multiplatform.library creates its own target type, which
+                // withAndroidTarget() (the legacy KotlinAndroidTarget) never matches, so androidMain
+                // would silently sit outside this group and lose the shared sources.
+                withCompilations { it.target.name == "android" }
                 withJvm()
                 withWasmJs()
                 group("apple") {
