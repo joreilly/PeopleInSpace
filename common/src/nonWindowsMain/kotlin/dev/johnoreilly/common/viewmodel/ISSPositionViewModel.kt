@@ -6,7 +6,9 @@ import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import org.koin.core.annotation.KoinViewModel
 
+@KoinViewModel
 class ISSPositionViewModel(
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
 ) : ViewModel() {

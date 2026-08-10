@@ -4,17 +4,27 @@ import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.java.*
-import org.koin.dsl.module
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
+import org.koin.core.scope.Scope
 
-private class ContextWrapper
 
-actual fun nativeModule() = module {
-    includes(viewModelsModule())
-    single { ContextWrapper() }
-    single<HttpClientEngine> { Java.create() }
-    single {
+actual class ContextWrapper
+
+@Module
+actual class NativeModule {
+
+    @Single
+    actual fun providesContextWrapper(scope : Scope) : ContextWrapper = ContextWrapper()
+
+    @Single
+    actual fun getHttpClientEngine(): HttpClientEngine = Java.create()
+
+
+    @Single
+    actual fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper {
         val driver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
             .also { PeopleInSpaceDatabase.Schema.create(it) }
-        PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
+        return PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
 }

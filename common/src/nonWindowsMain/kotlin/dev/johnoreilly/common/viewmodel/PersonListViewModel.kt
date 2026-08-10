@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.koin.core.annotation.KoinViewModel
 
 
 sealed class PersonListUiState {
@@ -16,6 +17,7 @@ sealed class PersonListUiState {
     data class Success(val result: List<Assignment>) : PersonListUiState()
 }
 
+@KoinViewModel
 class PersonListViewModel(
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
 ) : ViewModel() {

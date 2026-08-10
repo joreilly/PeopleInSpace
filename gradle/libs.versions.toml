@@ -8,6 +8,7 @@ coroutines = "1.11.0"
 kotlinxSerialization = "1.11.0"
 androidGradlePlugin = "9.1.1"
 koin = "4.2.2"
+koin-compiler-plugin = "1.0.2"
 ktor = "3.5.1"
 osmdroidAndroid = "6.1.20"
 osmAndroidCompose = "0.0.5"
@@ -121,6 +122,7 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-core-viewmodel = { module = "io.insert-koin:koin-core-viewmodel", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-compose-multiplatform = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin" }
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }
@@ -185,4 +187,5 @@ jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multip
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
 kotlin-native-nuget = { id = "io.github.xxfast.kotlin.native.nuget", version.ref = "kotlinNativeNuget" }
+koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-compiler-plugin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm" }

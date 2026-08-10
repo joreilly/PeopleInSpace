@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.kotlin.native.nuget)
+    alias(libs.plugins.koin.compiler)
 }
 
 kotlin {
@@ -90,6 +91,7 @@ kotlin {
             implementation(libs.sqldelight.coroutines.extensions)
 
             api(libs.koin.core)
+            api(libs.koin.annotations)
             api(libs.kermit)
         }
 
@@ -154,6 +156,19 @@ nuget {
         include("dev.johnoreilly.common.windows")
     }
 }
+
+// Kotlin/Native's C adapter generation crashes on the IR the Koin compiler plugin generates
+// (NullPointerException in CAdapterCodegen.buildCAdapter, via a null klib module origin). It only
+// bites the two targets that link a sharedLib for the NuGet package, and neither of those uses
+// Koin: the exported PeopleInSpaceClient owns its own dependencies. So keep the compiler plugin off
+// their compilations and let every other target keep annotation-driven DI.
+val sharedLibTargets = listOf("MingwX64", "MacosArm64")
+configurations
+    .matching { configuration ->
+        configuration.name.startsWith("kotlinCompilerPluginClasspath") &&
+            sharedLibTargets.any { configuration.name.contains(it) }
+    }
+    .configureEach { exclude(group = "io.insert-koin") }
 
 // The MinGW NativeSqliteDriver needs a target SQLite archive. Windows CI
 // provisions it and links the final DLL; macOS packs the host-native dylib.

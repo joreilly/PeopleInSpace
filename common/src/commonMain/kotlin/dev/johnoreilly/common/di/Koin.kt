@@ -1,10 +1,6 @@
 package dev.johnoreilly.common.di
 
 import app.cash.sqldelight.db.SqlDriver
-import dev.johnoreilly.common.remote.AstroviewerApi
-import dev.johnoreilly.common.remote.PeopleInSpaceApi
-import dev.johnoreilly.common.repository.PeopleInSpaceRepository
-import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.*
 import io.ktor.client.engine.*
@@ -15,40 +11,63 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
-import org.koin.core.context.startKoin
-import org.koin.core.module.Module
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Configuration
+import org.koin.core.annotation.KoinApplication
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
+import org.koin.core.scope.Scope
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
-import org.koin.dsl.module
+import org.koin.plugin.module.dsl.startKoin
+
+@KoinApplication
+object KoinApp
 
 fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
-    startKoin {
+    startKoin<KoinApp> {
         includes(appDeclaration)
-        modules(commonModule(enableNetworkLogs), nativeModule())
     }
 
 // called by iOS etc
 fun initKoin() = initKoin(enableNetworkLogs = false)
 
-private fun commonModule(enableNetworkLogs: Boolean) = module {
-    single { Json { isLenient = true; ignoreUnknownKeys = true } }
-    single { createHttpClient(get(), get(), enableNetworkLogs) }
-    single { CoroutineScope(Dispatchers.Default + SupervisorJob()) }
-    single { PeopleInSpaceApi(get()) }
-    single { AstroviewerApi(get()) }
-    single<PeopleInSpaceRepositoryInterface> {
-        PeopleInSpaceRepository(
-            peopleInSpaceApi = get(),
-            peopleInSpaceDatabase = get(),
-            astroviewerApi = get(),
-            coroutineScope = get(),
-        )
-    }
+// the view model helpers for iOS/Swift clients live in KoinViewModels.kt, alongside the view models
+// themselves, since AndroidX lifecycle is excluded from the MinGW target
+
+@Configuration
+@Module(includes = [CommonModule::class])
+class AppModule
+
+@Module(includes = [NativeModule::class])
+@ComponentScan("dev.johnoreilly.common")
+class CommonModule {
+    @Single
+    fun json() = Json { isLenient = true; ignoreUnknownKeys = true }
+
+    @Single
+    fun httpClient(httpClientEngine: HttpClientEngine, json : Json) = createHttpClient(httpClientEngine, json, true)
+
+    @Single
+    fun dispatcher() = CoroutineScope(Dispatchers.Default + SupervisorJob() )
 }
 
 class PeopleInSpaceDatabaseWrapper(val driver: SqlDriver, val instance: PeopleInSpaceDatabase)
 
-expect fun nativeModule(): Module
+expect class ContextWrapper
+
+@Module
+expect class NativeModule() {
+
+    @Single
+    fun providesContextWrapper(scope : Scope) : ContextWrapper
+
+    @Single
+    fun getHttpClientEngine(): HttpClientEngine
+
+    @Single
+    fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper
+}
 
 fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
     install(ContentNegotiation) {
