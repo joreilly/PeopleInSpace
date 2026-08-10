@@ -76,19 +76,23 @@ public sealed class PeopleInSpaceViewModelTests
         var dispatcher = new RecordingDispatcher();
         var viewModel = new PeopleInSpaceViewModel(source, dispatcher);
         var canExecuteChanged = 0;
-        var propertyChangedOnDispatcher = true;
-        viewModel.PropertyChanged += (_, _) => propertyChangedOnDispatcher &= dispatcher.IsInvoking;
-        viewModel.RefreshCommand.CanExecuteChanged += (_, _) => canExecuteChanged++;
+        var propertyChangesOffDispatcher = 0;
+        // Both handlers are raised from either watch loop, so count without a read-modify-write race.
+        viewModel.PropertyChanged += (_, _) =>
+        {
+            if (!dispatcher.IsInvoking) Interlocked.Increment(ref propertyChangesOffDispatcher);
+        };
+        viewModel.RefreshCommand.CanExecuteChanged += (_, _) => Interlocked.Increment(ref canExecuteChanged);
         await StartAsync(source, viewModel);
         source.PublishPeople(People(false, true));
-        await WaitUntilAsync(() => viewModel.IsRefreshing && canExecuteChanged > 0);
+        await WaitUntilAsync(() => viewModel.IsRefreshing && Volatile.Read(ref canExecuteChanged) > 0);
         Assert.False(viewModel.RefreshCommand.CanExecute(null));
         source.PublishPeople(People());
         await WaitUntilAsync(() => dispatcher.InvocationCount >= 2);
         await viewModel.RefreshAsync();
 
         Assert.True(dispatcher.InvocationCount >= 4);
-        Assert.True(propertyChangedOnDispatcher);
+        Assert.Equal(0, Volatile.Read(ref propertyChangesOffDispatcher));
         Assert.Equal("Service unavailable", viewModel.PeopleError);
         Assert.Null(viewModel.IssError);
         await viewModel.DisposeAsync();
@@ -153,16 +157,24 @@ public sealed class PeopleInSpaceViewModelTests
 
     private sealed class RecordingDispatcher : IUiDispatcher
     {
-        public int InvocationCount { get; private set; }
-        public bool IsInvoking { get; private set; }
+        // The real dispatcher serialises onto the UI thread. This one runs the action inline on
+        // whichever thread called it, so the people and ISS watch loops can be inside InvokeAsync
+        // at the same time. Depth is therefore per-thread: a single shared flag would let one
+        // loop's exit report the other loop as "not dispatching".
+        [ThreadStatic] private static int _invocationDepth;
+        private int _invocationCount;
+
+        public int InvocationCount => Volatile.Read(ref _invocationCount);
+
+        public bool IsInvoking => _invocationDepth > 0;
 
         public Task InvokeAsync(Action action, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            InvocationCount++;
-            IsInvoking = true;
+            Interlocked.Increment(ref _invocationCount);
+            _invocationDepth++;
             try { action(); }
-            finally { IsInvoking = false; }
+            finally { _invocationDepth--; }
             return Task.CompletedTask;
         }
     }
