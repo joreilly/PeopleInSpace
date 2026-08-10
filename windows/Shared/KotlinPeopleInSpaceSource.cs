@@ -8,7 +8,7 @@ namespace PeopleInSpace.Windows.Shared;
 /// </summary>
 public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
 {
-    // kotlin-native-nuget 0.2.0's generic flow collector uses runtime-generated
+    // kotlin-native-nuget 0.3.0's generic flow collector uses runtime-generated
     // reverse-P/Invoke delegates, which Mac Catalyst cannot JIT in AOT-only mode.
     // Reading a captured snapshot through scalar accessors avoids both reverse callbacks and the
     // reflection used to create generated Kotlin object wrappers, neither of which is AOT-safe.
@@ -47,7 +47,7 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
             var snapshot = new IssSnapshot(
                 client.CapturedIssLatitude(),
                 client.CapturedIssLongitude(),
-                DateTimeOffset.FromUnixTimeSeconds(client.CapturedIssTimestamp()),
+                client.CapturedIssTimestamp(),
                 client.CapturedIssHasPosition(),
                 client.CapturedIssLoading(),
                 client.CapturedIssErrorMessage());

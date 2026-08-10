@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlin.time.Instant
 
 /**
  * Projects a repository into the small Windows-facing API. This is intentionally
@@ -48,7 +49,7 @@ internal class PeopleInSpaceClientController(
         IssState(
             latitude = position?.latitude ?: 0.0,
             longitude = position?.longitude ?: 0.0,
-            timestamp = position?.timestamp ?: 0,
+            timestamp = Instant.fromEpochSeconds(position?.timestamp ?: 0),
             hasPosition = position != null,
             loading = loading,
             errorMessage = error?.message ?: error?.toString(),

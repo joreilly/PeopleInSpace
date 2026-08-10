@@ -19,6 +19,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlin.time.Instant
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class PeopleInSpaceClientControllerTest {
@@ -105,6 +106,7 @@ class PeopleInSpaceClientControllerTest {
         runCurrent()
         assertTrue(controller.issState.value.hasPosition)
         assertEquals(1.5, controller.issState.value.latitude)
+        assertEquals(Instant.fromEpochSeconds(10), controller.issState.value.timestamp)
 
         repository.issPollErrorMutable.value = IllegalStateException("temporary failure")
         runCurrent()

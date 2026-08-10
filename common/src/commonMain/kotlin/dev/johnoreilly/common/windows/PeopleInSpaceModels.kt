@@ -1,5 +1,7 @@
 package dev.johnoreilly.common.windows
 
+import kotlin.time.Instant
+
 /** A person currently assigned to a spacecraft. */
 data class Person(
     val name: String,
@@ -28,7 +30,7 @@ data class PeopleState(
 data class IssState(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
-    val timestamp: Long = 0,
+    val timestamp: Instant = Instant.fromEpochSeconds(0),
     val hasPosition: Boolean = false,
     val loading: Boolean = true,
     val errorMessage: String? = null,
