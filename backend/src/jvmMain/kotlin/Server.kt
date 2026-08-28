@@ -1,7 +1,7 @@
 import dev.johnoreilly.common.di.initKoin
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.remote.AstroResult
-import dev.johnoreilly.common.remote.IssResponse
+import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import io.ktor.http.*
 import io.ktor.openapi.OpenApiInfo
@@ -68,7 +68,7 @@ fun main() {
                 summary = "Get the position of the ISS"
                 responses {
                     HttpStatusCode.OK {
-                        schema = jsonSchema<IssResponse>()
+                        schema = jsonSchema<IssPosition>()
                     }
                 }
             }
