@@ -99,7 +99,7 @@ class PeopleInSpaceRepository(
         return flow {
             while (true) {
                 try {
-                    val position = peopleInSpaceApi.fetchISSPosition().iss_position
+                    val position = peopleInSpaceApi.fetchISSPosition()
                     if (currentCoroutineContext().isActive) {
                         emit(position)
                     }
