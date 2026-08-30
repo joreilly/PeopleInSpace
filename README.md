@@ -32,9 +32,7 @@ The project is included as sample in the official [Kotlin Multiplatform docs](ht
 | `PeopleInSpaceSwiftUI` | iOS client (SwiftUI) |
 | `compose-desktop` | Desktop client (Compose for Desktop) |
 | `compose-web` | Web client (Compose for Web, Kotlin/Wasm) |
-| `windows/Shared` | UI-independent C# view models for the Windows client; compiles the generated Kotlin interop source |
 | `windows/WinUiApp` | Windows client (WinUI 3) |
-| `windows/Shared.Tests` | C# tests for the shared view models |
 | `backend` | Ktor server providing the people/ISS data (deployable to Google App Engine) |
 | `mcp-server` | Model Context Protocol server exposing the shared KMP code |
 

@@ -3,7 +3,6 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using PeopleInSpace.Windows.Shared;
 
 namespace PeopleInSpace.Windows.WinUiApp;
 
@@ -30,7 +29,7 @@ public sealed partial class MainPage : Page
         {
             _ = await _store.LoadLastOpenedAsync(_lifetime.Token);
             await _store.SaveLastOpenedAsync(DateTimeOffset.UtcNow, _lifetime.Token);
-            await ViewModel.StartAsync(_lifetime.Token);
+            ViewModel.Start();
         }
         catch (OperationCanceledException) { }
     }

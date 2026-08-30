@@ -27,12 +27,6 @@ interface PeopleInSpaceRepositoryInterface {
     /** The most recent people-list synchronisation failure, if any. */
     val peopleSyncError: StateFlow<Throwable?>
 
-    /** True while an ISS position request is in progress. */
-    val issPollLoading: StateFlow<Boolean>
-
-    /** The most recent ISS polling failure, if any. */
-    val issPollError: StateFlow<Throwable?>
-
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
     suspend fun fetchISSFuturePosition(): List<OrbitPoint>
@@ -59,12 +53,6 @@ class PeopleInSpaceRepository(
 
     private val _peopleSyncError = MutableStateFlow<Throwable?>(null)
     override val peopleSyncError: StateFlow<Throwable?> = _peopleSyncError.asStateFlow()
-
-    private val _issPollLoading = MutableStateFlow(false)
-    override val issPollLoading: StateFlow<Boolean> = _issPollLoading.asStateFlow()
-
-    private val _issPollError = MutableStateFlow<Throwable?>(null)
-    override val issPollError: StateFlow<Throwable?> = _issPollError.asStateFlow()
 
     init {
         coroutineScope.launch {
@@ -136,48 +124,26 @@ class PeopleInSpaceRepository(
     }
 
     override fun pollISSPosition(): Flow<IssPosition> {
-        return issPositionPollingFlow(
-            pollIntervalMillis = POLL_INTERVAL,
-            fetchPosition = { peopleInSpaceApi.fetchISSPosition() },
-            onLoadingChanged = { _issPollLoading.value = it },
-            onError = { error ->
-                _issPollError.value = error
-                if (error != null) {
-                    logger.w(error) { "Exception during pollISSPosition: $error" }
+        return flow {
+            while (true) {
+                try {
+                    val position = peopleInSpaceApi.fetchISSPosition()
+                    if (currentCoroutineContext().isActive) {
+                        emit(position)
+                    }
+                    logger.d { position.toString() }
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    // TODO report error up to UI
+                    logger.w(e) { "Exception during pollISSPosition: $e" }
                 }
-            },
-        ).onEach { position -> logger.d { position.toString() } }
+                delay(POLL_INTERVAL)
+            }
+        }
     }
 
     companion object {
         private const val POLL_INTERVAL = 10000L
-    }
-}
-
-/**
- * Retries an ISS position request indefinitely. Keeping the polling mechanics
- * separate from the repository makes the retry and observable loading/error
- * contract deterministic to test without a network client.
- */
-internal fun issPositionPollingFlow(
-    pollIntervalMillis: Long,
-    fetchPosition: suspend () -> IssPosition,
-    onLoadingChanged: (Boolean) -> Unit,
-    onError: (Throwable?) -> Unit,
-): Flow<IssPosition> = flow {
-    require(pollIntervalMillis >= 0) { "pollIntervalMillis must not be negative" }
-    while (true) {
-        onLoadingChanged(true)
-        onError(null)
-        try {
-            emit(fetchPosition())
-        } catch (e: CancellationException) {
-            throw e
-        } catch (e: Exception) {
-            onError(e)
-        } finally {
-            onLoadingChanged(false)
-        }
-        delay(pollIntervalMillis)
     }
 }

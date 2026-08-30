@@ -1,256 +1,62 @@
-# Windows and .NET limitations
-
-This document records the blockers encountered while adding the Kotlin/Native NuGet consumer and
-the constraints imposed by their current workarounds. It is intended as implementation guidance;
-the setup and run commands remain in [`README.md`](README.md).
-
-Verified against `kotlin-native-nuget` 0.3.0, Kotlin 2.4.10, .NET 10. Re-checked on 2026-08-30:
-0.3.0 is still the latest plugin release, and the version catalog's `kotlin = "2.4.0"` resolves to
-Kotlin Gradle plugin and Kotlin/Native 2.4.10 because the plugin depends on it.
-
-## What kotlin-native-nuget needs to change
-
-Everything below is a workaround for something the generator cannot express yet. This section is the
-consolidated list, so the plugin has one place to work from and this document can shrink as items
-land. Ordered by how much of this integration they delete.
-
-### 1. `[LibraryImport]` rather than `[DllImport]`
-
-Every native entry point is still `[DllImport]`. Not blocking on WinUI, but it is the trim/AOT-safe
-form and is named in ADR-038 alongside the `CSharpProfile` work that would make the output dialect a
-generation-time choice.
-
-### 2. Generated bindings as an assembly, not a content file
-
-The bindings ship as `contentFiles/cs/any/Interop.cs`, so exactly one project may compile them and
-every other consumer must reference the package for runtime assets only. Getting that wrong produces
-duplicate generated types rather than a clear error.
-
-**Costs here:** the `windows/Shared` project boundary is load-bearing and has to be explained to
-anyone adding a managed host. A compiled assembly, or a source generator, removes the failure mode.
-
-### 3. Local iteration without version collisions
-
-The local package stays at `0.1.0`, so NuGet cannot tell two successive local builds apart and every
-Kotlin change needs `packNuget`, delete `windows/obj/packages`, restore `--force --no-cache`. A
-generated snapshot version in `nuget { publish { } }` would remove the whole dance.
-
-### 4. Coexistence with other Kotlin compiler plugins
-
-This one is not in the generator, but it decides whether the plugin can be used in a normal KMP app,
-so it belongs on the list.
-
-Linking a `sharedLib` fails when another compiler plugin has generated IR into the same compilation:
-
-```text
-e: java.lang.NullPointerException
-    at ...KlibModuleOriginKt.getKlibModuleOrigin(KlibModuleOrigin.kt:32)
-    at ...cexport.CAdapterCodegen.buildCAdapter(CAdapterCodegen.kt:58)
-```
-
-Reproduced on 0.3.0 with the Koin compiler plugin 1.0.2 (`--rerun-tasks` on the shared-lib link
-task). Ordinary compilation of the target succeeds; only the C export crashes. Excluding
-`io.insert-koin` from the `kotlinCompilerPluginClasspath*` configurations fixes it, which is what
-`common/build.gradle.kts` does. Marking the annotated declarations `internal` does **not** help, so
-it is not about which declarations get C-exported.
-
-The root cause is in the Kotlin compiler, not in Koin and not in `kotlin-native-nuget`.
-`ModuleDescriptor.klibModuleOrigin` asserts a capability with `!!`, but under K2 the descriptor is a
-`FirModuleDescriptor`, whose `getCapability` is hard-coded to `return null`. The assertion cannot be
-satisfied, so no plugin can avoid it. Koin's only role is building an `IrFile` whose metadata is not
-`KonanMetadata`, which routes its declaration onto the branch that reads the module descriptor.
-Declarations from the normal Fir2Ir pipeline carry `KonanMetadata` and never reach it, which is why
-this is not hit constantly.
-
-This is [KT-62984](https://youtrack.jetbrains.com/issue/KT-62984), open since October 2023. It was
-filed against the Compose plugin, where it fired only for `public`/`protected` `@Composable`
-functions; Koin reaches the same crash site with no Compose involved, so it is not annotation-specific.
-A community PR that filtered `@Composable` out of C export was closed unmerged and would not have
-helped here.
-
-**Fixed upstream, not yet released.** [JetBrains/kotlin#7431](https://github.com/JetBrains/kotlin/pull/7431)
-("Do not assert klib origin capability on K2 module descriptors") was merged into `master` on
-2026-08-25. It splits the accessor into a nullable `klibModuleOriginOrNull`, keeps the strict one
-failing with a named error, and moves the callers with a null contract onto the nullable form. As of
-2026-08-30 the fix is not in any released Kotlin: 2.4.10 still crashes, the 2.4.20-RC2 changelog does
-not list it, and the YouTrack issue still shows State Backlog. It ships with the next release cut from
-`master` unless it is backported to 2.4.x. The exclusion stays until this project builds with a
-Kotlin that contains it; at that point, drop the `kotlinCompilerPluginClasspath*` exclusion in
-`common/build.gradle.kts` and re-run `packNuget` to confirm.
-
-A standalone reproducer and a write-up for that issue live in `kt-62984-repro` (sibling checkout),
-reduced to three Koin annotations and no custom compiler plugin.
-
-### 5. Nested classes (and therefore sealed hierarchies)
-
-Three independent bugs stop a sealed UI state from crossing the boundary on 0.3.0, all specific
-to nested classes; top-level classes take a different, working code path:
-
-- [#38](https://github.com/xxfast/kotlin-native-nuget/issues/38) nullable properties on a nested
-  class are exported as non-null, so `CNameExports.kt` fails to compile.
-- [#39](https://github.com/xxfast/kotlin-native-nuget/issues/39) a `List<T>` property on a sealed
-  subclass renders as an expression-bodied getter with a statement block, so `Interop.cs` fails to
-  compile.
-- [#40](https://github.com/xxfast/kotlin-native-nuget/issues/40) `NugetMarshal.FromHandle<T>`
-  falls through to `Activator.CreateInstance` on the abstract sealed base instead of the generated
-  `FromHandle` discriminator, so a `StateFlow<SealedType>` throws on the first element.
-
-**Costs here:** `ExportedState.kt` in `mingwX64Main` — flat `PeopleState` / `IssState` envelopes
-around the shared `PersonListUiState` / `IssPositionUiState`, and the corresponding mapping in
-`KotlinPeopleInSpaceSource`. Sealed hierarchies themselves export fine (all subtypes and the
-discriminator switch are generated), so fixing these three lets the envelopes go.
-
-### 6. Exporting more than one package
-
-The envelopes carry the shared `Assignment` and `IssPosition`, so `dev.johnoreilly.common.remote`
-is in the export set next to `dev.johnoreilly.common.windows`. Two more bugs follow from that:
-
-- [#41](https://github.com/xxfast/kotlin-native-nuget/issues/41) root-namespace classes refer to
-  sub-namespace types by bare name in property, constructor and list-element positions (only
-  `StateFlow<T>` arguments are `global::`-qualified), so `Interop.cs` fails with `CS0246`.
-- [#42](https://github.com/xxfast/kotlin-native-nuget/issues/42) `PeopleInSpaceApi` /
-  `AstroviewerApi` share that package and implement Koin's `KoinComponent`; the generated classes
-  declare an `IKoinComponent` supertype that is never generated. `include`/`exclude` are
-  package-level, so the classes cannot be left out.
-
-**Costs here:** `windows/Shared/GeneratedBindingShims.cs` — two `global using` aliases and an
-empty `IKoinComponent` marker interface. Nothing in the generated file is edited.
-
-### Previously on this list: AOT-safe generics and callbacks
-
-The generated `KotlinStateFlow<T>.Value` and Flow collection go through `Activator.CreateInstance`
-and `Marshal.GetFunctionPointerForDelegate`, neither of which works under Mono AOT-only mode. This
-project no longer targets an AOT-only host, so `KotlinPeopleInSpaceSource` collects the exported
-flows directly and the scalar-accessor workaround has been removed. Anyone adding an AOT-only host
-(Mac Catalyst, NativeAOT) will hit both again; upstream tracks them as ADR-038 and ADR-041.
-
-## Supported targets and deployment
-
-- WinUI 3 supports only `win-x64`. Other Windows architectures are not configured.
-- WinUI is unpackaged, framework-dependent, and not self-contained. A target machine must have the
-  matching Windows App SDK 1.8 runtime installed.
-- Because the WinUI process has no package identity, packaged-only Windows Runtime APIs such as
-  `Windows.Storage.ApplicationData` throw `0x80073D54` and take the app down at startup as a stowed
-  exception (`0xC000027B`). The WinUI project must use unpackaged-safe alternatives (`System.IO`
-  under `%LOCALAPPDATA%`), and `windows/Shared` must not assume package identity either.
-- MSIX packaging, installers, Store distribution, self-contained deployment, and a graphical ISS
-  map are outside the current scope.
-- The package and the WinUI app can only be built on Windows.
-
-## The NuGet surface is deliberately narrow
-
-`PeopleInSpaceClient` lives in `mingwX64Main`. It owns its HTTP client (WinHttp), SQLDelight driver,
-repository and coroutine scope, and exposes two `StateFlow`s plus `refresh()` and `close()`.
-
-The UI state it projects is the same one the other clients use: `PersonListUiState` and
-`IssPositionUiState` in `commonMain`, produced by `personListUiState()` / `issPositionUiState()` in
-`UiStateFlows.kt`, which the AndroidX ViewModels wrap for Compose and the Windows client wraps for
-.NET. The list items are the repository's own `Assignment` and `IssPosition`; the NuGet export
-includes `dev.johnoreilly.common.remote` for them.
-
-The only Windows-specific types left are `PeopleState` and `IssState` in `mingwX64Main`
-(`ExportedState.kt`): flat, top-level envelopes of the sealed UI state. They exist because
-kotlin-native-nuget 0.3.0 cannot export nested classes, and sealed subclasses are nested (items 5
-and 6 of "What kotlin-native-nuget needs to change" above). Once those bugs are fixed, delete the envelopes
-and expose the sealed `StateFlow`s directly.
-
-New exports should be added deliberately; the `include` list in `common/build.gradle.kts` is the
-whole surface.
-
-## MinGW requires a static SQLite archive
-
-SQLDelight's MinGW `NativeSqliteDriver` requires SQLite at native link time. The Windows build must
-stage the MSYS2 `mingw-w64-x86_64-sqlite3` archive at:
-
-```text
-common/build/mingw-sqlite/libsqlite3.a
-```
-
-Without that archive, linking `peopleinspace.dll` fails. This setup is specific to MinGW x64. The
-archive is linked into `peopleinspace.dll`, avoiding a separate SQLite runtime DLL in the app.
-
-Current MSYS2 builds SQLite with stack protection and fortified string functions, so the archive
-references `__stack_chk_fail`, `__stack_chk_guard`, and `__mem*_chk`. Modern mingw-w64 provides those
-in its CRT, but the Kotlin/Native MinGW toolchain still ships gcc 9.2 and does not link `libssp` on
-its own, and the MSYS2 `mingw-w64-x86_64-crt` `libssp.a` is an empty stub. The `link*MingwX64` tasks
-therefore copy `libssp.a` out of the toolchain under `~/.konan/dependencies` and link it with
-`-lssp`. This is coupled to the toolchain layout; a Kotlin/Native release that updates its bundled
-MinGW should be re-checked here.
-
-`PeopleInSpaceClient(storageDirectory)` also expects a non-blank, existing, writable directory. It
-uses that directory as SQLDelight's `basePath`; it does not create an arbitrary caller-provided
-directory.
-
-## Koin and Kotlin ViewModel boundary
-
-The annotation/compiler-plugin Koin setup is back, but it cannot run on the target that links a
-`sharedLib` for the NuGet package. The cause and its evidence are item 4 of
-"What kotlin-native-nuget needs to change" above; the compiler fix is merged upstream but not yet in
-a released Kotlin, so this section stays in force for now.
-
-`common/build.gradle.kts` therefore excludes `io.insert-koin` from the
-`kotlinCompilerPluginClasspath*` configurations of `MingwX64`. That target does not use Koin, so
-nothing is lost there, and every other target keeps annotation-driven DI with its compile-time graph
-check.
-
-Two consequences worth knowing:
-
-- Anything the exported native client needs must be constructed directly, never resolved from Koin.
-  `PeopleInSpaceClient` already owns its dependencies, which is what makes the exclusion safe.
-- The graph is only compile-verified on the targets the plugin runs on. `KoinGraphTest` (jvmTest)
-  resolves it at runtime so a broken annotation wiring cannot pass unnoticed.
-
-The compiler plugin is pinned to `1.0.2`. `1.1.0` rejects the `expect`/`actual` `@Module NativeModule`
-pattern, reporting `KOIN-D001 Missing dependency` for `HttpClientEngine` and
-`PeopleInSpaceDatabaseWrapper`: its graph verifier does not see providers declared on an `expect`
-class through to the `actual`. Upgrading needs that resolved or the platform modules restructured.
-`1.1.0` is still the latest release as of 2026-08-30.
-
-AndroidX lifecycle ViewModels remain in the `nonWindows` source set and are intentionally excluded
-from MinGW. The exported `PeopleInSpaceClient` does not start Koin or expose AndroidX types.
-
-Consequently, the .NET client does not consume the existing Kotlin UI ViewModels. WinUI uses the
-UI-independent C# `PeopleInSpaceViewModel` from `windows/Shared`; the UI project contains only
-platform-specific presentation and lifecycle code.
-
-## Generated bindings must be compiled once
-
-`windows/Shared` is the sole project that compiles the NuGet package's generated `Interop.cs`.
-`WinUiApp` references the same package only for its native runtime assets. Allowing an application
-project to compile the package content files would create duplicate generated types and interop
-declarations.
-
-Any additional managed host should keep this project boundary: reference `windows/Shared` for the
-managed API and include only the package's runtime/native assets itself.
-
-Shipping the bindings as an assembly instead would remove this rule entirely; item 2 of "What kotlin-native-nuget needs to change" above.
-
-## Fixed local NuGet versions can become stale
-
-The local package deliberately remains at version `0.1.0`. NuGet cannot tell two locally rebuilt
-packages with that version apart. After changing Kotlin or its exported API, the reliable sequence
-is:
-
-1. Run `:common:packNuget`.
-2. Delete `windows/obj/packages`.
-3. Restore with `--force --no-cache`.
-4. Rebuild the managed host.
-
-The repository-local `RestorePackagesPath` prevents this workflow from deleting or mutating the
-user's global NuGet cache. Restore must also discover `windows/NuGet.config`, which supplies
-`common/build/nuget` as the local feed.
-
-Generated NuGet packages, native binaries, restore caches, and staged SQLite archives are build
-products. They are neither committed nor published to an external feed.
-
-A generated snapshot version would remove steps 2 and 3; item 3 of "What kotlin-native-nuget needs to change" above.
-
-## Verification gaps
-
-The Windows workflow packs the native package, inspects the expected native asset, restores from a
-clean repository-local cache, builds the solution, and runs unit tests. The C# tests use a fake
-source and intentionally avoid live network calls, so the generated Flow collection in
-`KotlinPeopleInSpaceSource` is only exercised by launching the app.
-
-CI does not currently launch the UI or verify image/network behavior end-to-end. Those remain manual
-smoke tests. There are no automated WinUI UI tests.
+# Windows client: known constraints
+
+Verified against `kotlin-native-nuget` 0.3.0, Kotlin 2.4.10, .NET 10 on 2026-08-30. Setup and run
+commands are in [`README.md`](README.md).
+
+## What the Windows client shares
+
+`PeopleInSpaceClient` (`common/src/mingwX64Main`) owns its HTTP client (WinHttp), SQLDelight
+driver, repository and coroutine scope, and exposes two `StateFlow`s plus `refresh()` and
+`close()`. The state it emits is projected from the same `PersonListUiState` /
+`IssPositionUiState` that the Compose clients' ViewModels use (`personListUiState()` /
+`issPositionUiState()` in `common/src/commonMain/.../viewmodel/UiStateFlows.kt`), and the list
+items are the repository's own `Assignment` and `IssPosition`.
+
+The Windows client does not use Koin: the AndroidX ViewModels live in the `nonWindows` source set
+and Koin's compiler plugin is excluded from the MinGW compilations (see below), so the client
+constructs its dependencies directly.
+
+## Workarounds for kotlin-native-nuget 0.3.0
+
+Each of these is tracked upstream and can be removed when the fix ships.
+
+- **Sealed UI state cannot cross the boundary** — nested classes hit three separate generator
+  bugs: [#38](https://github.com/xxfast/kotlin-native-nuget/issues/38) (nullable properties
+  exported as non-null), [#39](https://github.com/xxfast/kotlin-native-nuget/issues/39) (list
+  getters on sealed subclasses don't compile) and
+  [#40](https://github.com/xxfast/kotlin-native-nuget/issues/40) (`FromHandle<T>` cannot
+  materialise an abstract base). `ExportedState.kt` flattens the sealed state into top-level
+  `PeopleState` / `IssState` envelopes for the export only.
+- **Two exported packages** — `dev.johnoreilly.common.remote` is exported for `Assignment` and
+  `IssPosition`, which triggers [#41](https://github.com/xxfast/kotlin-native-nuget/issues/41)
+  (bare cross-namespace type names) and
+  [#42](https://github.com/xxfast/kotlin-native-nuget/issues/42) (dangling `IKoinComponent`
+  supertype on the Api classes in that package). `windows/WinUiApp/GeneratedBindingShims.cs`
+  resolves both without editing the generated file.
+- **Fixed package version** — the local package stays at `0.1.0`, so after any Kotlin change:
+  `packNuget`, delete `windows/obj/packages`, restore `--force --no-cache`. The repository-local
+  `RestorePackagesPath` keeps this away from the global NuGet cache.
+- **Host-specific package** — the package contains only `runtimes/win-x64/native/peopleinspace.dll`
+  and can only be packed on Windows; the MinGW link tasks are disabled elsewhere.
+
+## Kotlin/Native and MinGW
+
+- **Koin compiler plugin on MinGW** — Kotlin/Native's C adapter generation crashes on IR the Koin
+  plugin generates ([KT-62984](https://youtrack.jetbrains.com/issue/KT-62984); fixed by
+  [JetBrains/kotlin#7431](https://github.com/JetBrains/kotlin/pull/7431), not yet in a release).
+  `common/build.gradle.kts` excludes `io.insert-koin` from the MinGW
+  `kotlinCompilerPluginClasspath*` configurations. Every other target keeps annotation-driven DI.
+  Drop the exclusion once the project builds on a Kotlin that contains the fix.
+- **Static SQLite** — SQLDelight's MinGW driver needs `libsqlite3.a` at link time, staged at
+  `common/build/mingw-sqlite/`. MSYS2 builds it with stack protection, and the Kotlin/Native MinGW
+  toolchain (gcc 9.2) does not link `libssp` on its own, so the `link*MingwX64` tasks copy the
+  toolchain's `libssp.a` alongside and link `-lssp`. Re-check when Kotlin/Native updates its bundled
+  MinGW.
+
+## Deployment
+
+- `win-x64` only; unpackaged and framework-dependent (Windows App SDK 1.8 runtime required).
+- No package identity, so packaged-only APIs such as `Windows.Storage.ApplicationData` throw
+  `0x80073D54`; `LocalAppDataStore` uses `System.IO` under `%LOCALAPPDATA%` instead.
+- CI packs the native library, restores from a clean cache and builds the app. There are no
+  automated UI tests; launching the app is the smoke test for the generated Flow bindings.

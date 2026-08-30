@@ -99,36 +99,19 @@ class UiStateFlowsTest {
     }
 
     @Test
-    fun issStateReportsAnErrorThenTheNextSuccessfulPoll() = runTest {
+    fun issStateIsLoadingUntilTheFirstPollThenFollowsEachPosition() = runTest {
         val repository = FakeRepository()
         val state = issState(repository)
         runCurrent()
         assertIs<IssPositionUiState.Loading>(state.value)
 
-        repository.issPollErrorMutable.value = IllegalStateException("first poll failed")
-        runCurrent()
-        assertEquals(IssPositionUiState.Error("first poll failed"), state.value)
-
-        repository.issPollLoadingMutable.value = true
-        repository.issPollErrorMutable.value = null
         repository.issPositions.emit(IssPosition(latitude = 1.5, longitude = 2.5, timestamp = 10))
-        repository.issPollLoadingMutable.value = false
         runCurrent()
-        val first = assertIs<IssPositionUiState.Success>(state.value)
-        assertEquals(IssPosition(1.5, 2.5, 10), first.position)
-        assertFalse(first.refreshing)
+        assertEquals(IssPositionUiState.Success(IssPosition(1.5, 2.5, 10)), state.value)
 
-        // A failed poll keeps the last position.
-        repository.issPollErrorMutable.value = IllegalStateException("temporary failure")
-        runCurrent()
-        val failed = assertIs<IssPositionUiState.Success>(state.value)
-        assertEquals(1.5, failed.position.latitude)
-
-        repository.issPollErrorMutable.value = null
         repository.issPositions.emit(IssPosition(latitude = 3.5, longitude = 4.5, timestamp = 20))
         runCurrent()
-        val recovered = assertIs<IssPositionUiState.Success>(state.value)
-        assertEquals(3.5, recovered.position.latitude)
+        assertEquals(IssPositionUiState.Success(IssPosition(3.5, 4.5, 20)), state.value)
     }
 
     private fun TestScope.peopleState(repository: FakeRepository) =
@@ -147,12 +130,6 @@ private class FakeRepository : PeopleInSpaceRepositoryInterface {
 
     val peopleSyncErrorMutable = MutableStateFlow<Throwable?>(null)
     override val peopleSyncError: StateFlow<Throwable?> = peopleSyncErrorMutable
-
-    val issPollLoadingMutable = MutableStateFlow(false)
-    override val issPollLoading: StateFlow<Boolean> = issPollLoadingMutable
-
-    val issPollErrorMutable = MutableStateFlow<Throwable?>(null)
-    override val issPollError: StateFlow<Throwable?> = issPollErrorMutable
 
     val peopleMutable = MutableStateFlow(emptyList<Assignment>())
     val issPositions = MutableSharedFlow<IssPosition>()

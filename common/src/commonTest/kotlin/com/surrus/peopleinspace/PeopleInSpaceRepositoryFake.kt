@@ -15,8 +15,6 @@ class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
     override val initialSyncCompleted: StateFlow<Boolean> = MutableStateFlow(true)
     override val peopleSyncLoading: StateFlow<Boolean> = MutableStateFlow(false)
     override val peopleSyncError: StateFlow<Throwable?> = MutableStateFlow(null)
-    override val issPollLoading: StateFlow<Boolean> = MutableStateFlow(false)
-    override val issPollError: StateFlow<Throwable?> = MutableStateFlow(null)
 
     val peopleList = listOf(
         Assignment("ISS", "Chris Cassidy", "https://example.com/cassidy.jpg", "American astronaut", "USA"),

@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PeopleInSpace.Windows.WinUiApp"
-    xmlns:shared="using:PeopleInSpace.Windows.Shared"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
         <local:ImageUrlConverter x:Key="ImageUrlConverter" />
@@ -49,7 +48,7 @@
                             <ListView ItemsSource="{x:Bind ViewModel.People, Mode=OneWay}"
                                       SelectedItem="{x:Bind ViewModel.SelectedPerson, Mode=TwoWay}" SelectionMode="Single">
                                 <ListView.ItemTemplate>
-                                    <DataTemplate x:DataType="shared:PersonViewModel">
+                                    <DataTemplate x:DataType="local:PersonViewModel">
                                         <Grid Padding="4,10" ColumnSpacing="12">
                                             <Grid.ColumnDefinitions><ColumnDefinition Width="56" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                                             <PersonPicture Width="48" Height="48" ProfilePicture="{Binding ImageUrl, Converter={StaticResource ImageUrlConverter}}" />
@@ -93,8 +92,6 @@
                     <TextBlock Text="International Space Station" Style="{StaticResource TitleTextBlockStyle}" />
                     <TextBlock Text="Live orbital position" Opacity="0.72" />
                 </StackPanel>
-                <InfoBar Grid.Row="1" IsOpen="{x:Bind ViewModel.HasIssError, Mode=OneWay}" Severity="Error"
-                         Title="Couldn’t update the ISS position" Message="{x:Bind ViewModel.IssError, Mode=OneWay}" IsClosable="False" />
                 <Border Grid.Row="2" Padding="32" CornerRadius="12" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
                     <StackPanel Spacing="16">
                         <FontIcon Glyph="&#xE709;" FontSize="48" Foreground="{ThemeResource AccentFillColorDefaultBrush}" />

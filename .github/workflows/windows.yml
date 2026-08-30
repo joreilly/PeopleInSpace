@@ -64,9 +64,6 @@ jobs:
       - name: Build WinUI solution
         run: dotnet build windows\PeopleInSpace.Windows.sln --configuration Release -p:Platform=x64 --no-restore
 
-      - name: Run WinUI tests
-        run: dotnet test windows\Shared.Tests\PeopleInSpace.Windows.Shared.Tests.csproj --configuration Release -p:Platform=x64 --no-build
-
       - name: Upload shared NuGet package
         if: always()
         uses: actions/upload-artifact@v7

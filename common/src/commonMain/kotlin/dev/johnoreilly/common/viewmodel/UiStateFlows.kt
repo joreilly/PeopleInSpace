@@ -28,20 +28,10 @@ internal fun PeopleInSpaceRepositoryInterface.personListUiState(): Flow<PersonLi
     }
 }
 
-/**
- * Projects the ISS polling flows into one UI state. Collecting this flow starts polling; the
- * last known position is retained across failed polls.
- */
-internal fun PeopleInSpaceRepositoryInterface.issPositionUiState(): Flow<IssPositionUiState> = combine(
-    pollISSPosition().map<IssPosition, IssPosition?> { it }.onStart { emit(null) },
-    issPollLoading,
-    issPollError,
-) { position, loading, error ->
-    when {
-        position == null && error != null -> IssPositionUiState.Error(error.describe())
-        position == null -> IssPositionUiState.Loading
-        else -> IssPositionUiState.Success(position = position, refreshing = loading)
-    }
-}
+/** Wraps ISS polling as UI state; collecting starts polling and the last position is retained. */
+internal fun PeopleInSpaceRepositoryInterface.issPositionUiState(): Flow<IssPositionUiState> =
+    pollISSPosition()
+        .map<IssPosition, IssPositionUiState> { IssPositionUiState.Success(it) }
+        .onStart { emit(IssPositionUiState.Loading) }
 
 private fun Throwable.describe() = message ?: toString()

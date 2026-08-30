@@ -15,10 +15,5 @@ sealed class PersonListUiState {
 
 sealed class IssPositionUiState {
     object Loading : IssPositionUiState()
-    data class Error(val message: String) : IssPositionUiState()
-    data class Success(
-        val position: IssPosition,
-        /** True while the next poll is in flight. */
-        val refreshing: Boolean = false,
-    ) : IssPositionUiState()
+    data class Success(val position: IssPosition) : IssPositionUiState()
 }

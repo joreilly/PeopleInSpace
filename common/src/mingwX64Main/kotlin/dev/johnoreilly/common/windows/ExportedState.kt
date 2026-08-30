@@ -22,8 +22,6 @@ data class PeopleState(
 data class IssState(
     val position: IssPosition,
     val hasPosition: Boolean,
-    val loading: Boolean,
-    val errorMessage: String?,
 )
 
 internal fun PersonListUiState.toExported(): PeopleState = when (this) {
@@ -36,12 +34,8 @@ internal fun PersonListUiState.toExported(): PeopleState = when (this) {
 }
 
 internal fun IssPositionUiState.toExported(): IssState = when (this) {
-    IssPositionUiState.Loading ->
-        IssState(position = NoPosition, hasPosition = false, loading = true, errorMessage = null)
-    is IssPositionUiState.Error ->
-        IssState(position = NoPosition, hasPosition = false, loading = false, errorMessage = message)
-    is IssPositionUiState.Success ->
-        IssState(position = position, hasPosition = true, loading = refreshing, errorMessage = null)
+    IssPositionUiState.Loading -> IssState(position = NoPosition, hasPosition = false)
+    is IssPositionUiState.Success -> IssState(position = position, hasPosition = true)
 }
 
 private val NoPosition = IssPosition(latitude = 0.0, longitude = 0.0)
