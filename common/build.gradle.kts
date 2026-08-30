@@ -12,13 +12,23 @@ plugins {
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.kotlin.native.nuget)
     alias(libs.plugins.koin.compiler)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.skie)
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
 }
 
 kotlin {
     jvmToolchain(17)
 
-    iosArm64()
-    iosSimulatorArm64()
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "common"
+        }
+    }
 
     mingwX64 {
         binaries {
@@ -66,10 +76,26 @@ kotlin {
     }
 
     sourceSets {
+        // Compose and the AndroidX ViewModels have no MinGW artifacts, so everything that needs
+        // them lives here rather than in commonMain.
         val nonWindowsMain by getting {
             dependencies {
                 api(libs.koin.core.viewmodel)
                 implementation(libs.androidx.lifecycle.viewmodel.kmp)
+
+                implementation(compose.ui)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
+                implementation(libs.androidx.lifecycle.compose.kmp)
+            }
+        }
+
+        val nonWindowsTest by getting {
+            dependencies {
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
             }
         }
 
@@ -95,6 +121,9 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.sqldelight.android.driver)
+
+            implementation(libs.osmdroidAndroid)
+            implementation(libs.osm.android.compose)
         }
 
         jvmMain.dependencies {
@@ -102,6 +131,10 @@ kotlin {
             implementation(libs.sqldelight.sqlite.driver)
             implementation(libs.slf4j)
             implementation(libs.kotlinx.coroutines.swing)
+        }
+
+        jvmTest.dependencies {
+            implementation(compose.desktop.currentOs)
         }
 
         appleMain.dependencies {
@@ -132,9 +165,23 @@ sqldelight {
     }
 }
 
+multiplatformSwiftPackage {
+    packageName("PeopleInSpaceKit")
+    swiftToolsVersion("5.9")
+    targetPlatforms {
+        iOS { v("14") }
+    }
+}
+
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+}
+
+skie {
+    features {
+        enableSwiftUIObservingPreview = true
+    }
 }
 
 nuget {

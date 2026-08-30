@@ -43,7 +43,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run Compose UI Tests
-        run: ./gradlew :common:ui:jvmTest --tests "*Ui*" --no-daemon --stacktrace
+        run: ./gradlew :common:jvmTest --tests "*Ui*" --no-daemon --stacktrace
 
       - name: Upload Test Results
         if: always()
@@ -51,15 +51,15 @@ jobs:
         with:
           name: compose-ui-test-results
           path: |
-            common/ui/build/reports/tests/jvmTest/
-            common/ui/build/test-results/jvmTest/*.xml
+            common/build/reports/tests/jvmTest/
+            common/build/test-results/jvmTest/*.xml
           retention-days: 7
 
       - name: Publish Test Report
         if: always()
         uses: mikepenz/action-junit-report@v6
         with:
-          report_paths: 'common/ui/build/test-results/jvmTest/*.xml'
+          report_paths: 'common/build/test-results/jvmTest/*.xml'
           check_name: 'Compose UI Test Results'
           detailed_summary: true
           include_passed: true

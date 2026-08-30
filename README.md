@@ -25,8 +25,7 @@ The project is included as sample in the official [Kotlin Multiplatform docs](ht
 
 | Module | Description |
 |---|---|
-| `common` | Platform-neutral models, repository, Ktor, SQLDelight, Koin, lifecycle view models, and the Windows NuGet API |
-| `common:ui` | Shared Compose Multiplatform UI, map implementations, resources, and UI tests; produces the iOS `common` framework |
+| `common` | Shared KMP code (Ktor, SQLDelight, Koin, view models), shared Compose Multiplatform UI, and the Windows NuGet API |
 | `app` | Android client (Jetpack Compose), including Glance app widget |
 | `wearApp` | Wear OS client (Compose for Wear OS) |
 | `PeopleInSpaceSwiftUI` | iOS client (SwiftUI) |
@@ -49,7 +48,7 @@ Requirements: JDK 17, a recent version of Android Studio (for the Android/Wear c
 
 * **Backend**: `./gradlew :backend:run` (or run `Server.kt` directly from Android Studio). After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
-Shared JVM and Compose UI tests can be run with `./gradlew :common:jvmTest :common:ui:jvmTest`, and there's also a [Maestro](https://maestro.mobile.dev/) UI test
+Tests can be run with `./gradlew :common:jvmTest`, and there's also a [Maestro](https://maestro.mobile.dev/) UI test
 flow for the Android client (`maestro test maestro/PeopleInSpace.flow`).
 
 ### Backend deployment
@@ -164,7 +163,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 * [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
 * [Ktor client library](https://github.com/ktorio/ktor)
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
-* [Koin](https://github.com/InsertKoinIO/koin) (using explicit multiplatform modules)
+* [Koin](https://github.com/InsertKoinIO/koin) (using [Koin Annotations](https://insert-koin.io/docs/reference/koin-annotations/start) and the [Koin compiler plugin](https://insert-koin.io/docs/setup/compiler-plugin/))
 * [SQLDelight](https://github.com/cashapp/sqldelight)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform/)
