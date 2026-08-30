@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.util.round
 
 @Composable
 fun ISSPositionContent(viewModel: ISSPositionViewModel) {
@@ -54,7 +55,7 @@ fun ISSPositionContent(viewModel: ISSPositionViewModel) {
                 ) {
                     CoordinateDisplay(
                         label = "Latitude",
-                        value = position.latitude.toString(),
+                        value = position.latitude.round(4).toString(),
                         modifier = Modifier.weight(1f)
                     )
                     
@@ -62,7 +63,7 @@ fun ISSPositionContent(viewModel: ISSPositionViewModel) {
                     
                     CoordinateDisplay(
                         label = "Longitude",
-                        value = position.longitude.toString(),
+                        value = position.longitude.round(4).toString(),
                         modifier = Modifier.weight(1f)
                     )
                 }

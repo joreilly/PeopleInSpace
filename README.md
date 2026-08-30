@@ -17,7 +17,7 @@
 
 The people data comes from [The Space Devs API](https://thespacedevs.com/llapi) (names, bios and images of the people
 currently in space) and the position of the International Space Station from the
-[Open Notify ISS-Now API](http://open-notify.org/Open-Notify-API/ISS-Location-Now/), both served through this
+[Where the ISS at? API](https://wheretheiss.at/w/developer), both served through this
 project's own small Ktor backend (see `backend` module below).
 
 The project is included as sample in the official [Kotlin Multiplatform docs](https://kotlinlang.org/docs/multiplatform-samples.html) and also the [Google Dev Library](https://devlibrary.withgoogle.com/products/android)

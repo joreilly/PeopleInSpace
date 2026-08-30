@@ -1,0 +1,42 @@
+name: Build and Publish Web
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-and-publish-web-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      - name: Build web app
+        run: ./gradlew :compose-web:wasmJsBrowserDistribution
+
+      - name: Fix absolute sql-wasm.wasm path for project-page subpath
+        # @cashapp/sqldelight-sqljs-worker bundles sql.js with a hardcoded
+        # locateFile: file => "/sql-wasm.wasm", which 404s once the site is
+        # served from a subpath like /PeopleInSpace/ instead of the domain root.
+        run: sed -i 's#"/sql-wasm.wasm"#"sql-wasm.wasm"#g' compose-web/build/dist/wasmJs/productionExecutable/*.js
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: compose-web/build/dist/wasmJs/productionExecutable

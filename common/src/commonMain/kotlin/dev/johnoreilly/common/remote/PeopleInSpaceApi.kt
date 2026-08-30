@@ -20,15 +20,13 @@ data class Assignment(
 )
 
 @Serializable
-data class IssPosition(val latitude: Double, val longitude: Double, val timestamp: Long  = -1)
-
-@Serializable
-data class IssResponse(val message: String, val iss_position: IssPosition, val timestamp: Long)
+data class IssPosition(val latitude: Double, val longitude: Double, val timestamp: Long = -1)
 
 @Single
 class PeopleInSpaceApi(private val client: HttpClient) : KoinComponent {
     var baseUrl = "https://people-in-space-proxy.ew.r.appspot.com"
+    var baseIssPositionUrl = "https://api.wheretheiss.at"
 
     suspend fun fetchPeople() = client.get("$baseUrl/astros.json").body<AstroResult>()
-    suspend fun fetchISSPosition() = client.get("$baseUrl/iss-now.json").body<IssResponse>()
+    suspend fun fetchISSPosition() = client.get("$baseIssPositionUrl/v1/satellites/25544").body<IssPosition>()
 }
