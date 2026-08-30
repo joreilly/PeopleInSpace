@@ -18,7 +18,7 @@ struct ContentView: View {
 }
 
 struct PeopleListScreen: View {
-    @State var viewModel = KoinKt.personListViewModel()
+    @State var viewModel = KoinViewModelsKt.personListViewModel()
 
     @State private var path: [Assignment] = []
     
@@ -51,7 +51,7 @@ struct PeopleListScreen: View {
                             
                             Button(action: {
                                 // Refresh action
-                                viewModel = KoinKt.personListViewModel()
+                                viewModel = KoinViewModelsKt.personListViewModel()
                             }) {
                                 Label("Try Again", systemImage: "arrow.clockwise")
                                     .padding()
@@ -92,7 +92,7 @@ struct PeopleListScreen: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         // Refresh action
-                        viewModel = KoinKt.personListViewModel()
+                        viewModel = KoinViewModelsKt.personListViewModel()
                     }) {
                         Image(systemName: "arrow.clockwise")
                     }
