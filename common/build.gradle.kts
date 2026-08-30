@@ -195,17 +195,22 @@ nuget {
     }
 }
 
-// Kotlin/Native's C adapter generation crashes on the IR the Koin compiler plugin generates
-// (NullPointerException in CAdapterCodegen.buildCAdapter, via a null klib module origin). It only
-// bites the target that links a sharedLib for the NuGet package, and that target does not use
-// Koin: the exported PeopleInSpaceClient owns its own dependencies. So keep the compiler plugin off
-// its compilations and let every other target keep annotation-driven DI.
+// Two compiler plugins must stay off the MinGW compilations:
+// - Compose: the Compose compiler refuses to run without the Compose runtime on the classpath,
+//   and Compose has no MinGW artifacts. Nothing in mingwX64Main is composable.
+// - Koin: Kotlin/Native's C adapter generation crashes on the IR the Koin plugin generates
+//   (NullPointerException in CAdapterCodegen.buildCAdapter, via a null klib module origin;
+//   KT-62984). The exported PeopleInSpaceClient owns its own dependencies and does not use Koin.
+// Every other target keeps both.
 configurations
     .matching { configuration ->
         configuration.name.startsWith("kotlinCompilerPluginClasspath") &&
             configuration.name.contains("MingwX64")
     }
-    .configureEach { exclude(group = "io.insert-koin") }
+    .configureEach {
+        exclude(group = "io.insert-koin")
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-compose-compiler-plugin-embeddable")
+    }
 
 // The MinGW NativeSqliteDriver needs a target SQLite archive. Windows CI provisions it and links
 // the final DLL; other hosts still configure this project, so they skip the MinGW link tasks.

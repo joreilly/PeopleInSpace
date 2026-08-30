@@ -12,9 +12,11 @@ public partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         var queue = DispatcherQueue.GetForCurrentThread();
-        var store = new LocalAppDataStore();
-        var viewModel = new PeopleInSpaceViewModel(store.StorageDirectory, queue);
-        _window = new MainWindow(viewModel, store);
+        // Unpackaged apps cannot use Windows.Storage.ApplicationData, so keep the database under %LOCALAPPDATA%.
+        var storageDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PeopleInSpace");
+        Directory.CreateDirectory(storageDirectory);
+        var viewModel = new PeopleInSpaceViewModel(storageDirectory, queue);
+        _window = new MainWindow(viewModel);
         _window.Activate();
     }
 }

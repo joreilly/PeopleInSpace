@@ -1,12 +1,9 @@
 package dev.johnoreilly.common.di
 
-import app.cash.sqldelight.db.SqlDriver
-import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
+import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
+import dev.johnoreilly.common.viewmodel.PersonListViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -19,6 +16,7 @@ import org.koin.core.annotation.Single
 import org.koin.core.scope.Scope
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
+import org.koin.mp.KoinPlatform
 import org.koin.plugin.module.dsl.startKoin
 
 @KoinApplication
@@ -32,8 +30,10 @@ fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclarat
 // called by iOS etc
 fun initKoin() = initKoin(enableNetworkLogs = false)
 
-// the view model helpers for iOS/Swift clients live in KoinViewModels.kt, alongside the view models
-// themselves, since AndroidX lifecycle is excluded from the MinGW target
+// helpers for iOS/Swift clients to resolve view models from Koin
+// (composition-root service location so view models can use constructor injection)
+fun personListViewModel(): PersonListViewModel = KoinPlatform.getKoin().get()
+fun issPositionViewModel(): ISSPositionViewModel = KoinPlatform.getKoin().get()
 
 @Configuration
 @Module(includes = [CommonModule::class])
@@ -52,8 +52,6 @@ class CommonModule {
     fun dispatcher() = CoroutineScope(Dispatchers.Default + SupervisorJob() )
 }
 
-class PeopleInSpaceDatabaseWrapper(val driver: SqlDriver, val instance: PeopleInSpaceDatabase)
-
 expect class ContextWrapper
 
 @Module
@@ -69,14 +67,3 @@ expect class NativeModule() {
     fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper
 }
 
-fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
-    install(ContentNegotiation) {
-        json(json)
-    }
-    if (enableNetworkLogs) {
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
-        }
-    }
-}

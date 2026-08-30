@@ -41,12 +41,14 @@ Each of these is tracked upstream and can be removed when the fix ships.
 
 ## Kotlin/Native and MinGW
 
-- **Koin compiler plugin on MinGW** — Kotlin/Native's C adapter generation crashes on IR the Koin
-  plugin generates ([KT-62984](https://youtrack.jetbrains.com/issue/KT-62984); fixed by
+- **Compiler plugins on MinGW** — the Compose compiler refuses to run without the Compose runtime
+  on the classpath, which has no MinGW artifacts, so it is excluded from the MinGW compilations
+  (nothing there is composable). Koin's plugin is excluded too: Kotlin/Native's C adapter
+  generation crashes on IR the Koin plugin generates ([KT-62984](https://youtrack.jetbrains.com/issue/KT-62984); fixed by
   [JetBrains/kotlin#7431](https://github.com/JetBrains/kotlin/pull/7431), not yet in a release).
-  `common/build.gradle.kts` excludes `io.insert-koin` from the MinGW
-  `kotlinCompilerPluginClasspath*` configurations. Every other target keeps annotation-driven DI.
-  Drop the exclusion once the project builds on a Kotlin that contains the fix.
+  Both exclusions live on the MinGW `kotlinCompilerPluginClasspath*` configurations in
+  `common/build.gradle.kts`; every other target keeps both plugins. The Koin one can go once the
+  project builds on a Kotlin that contains the fix.
 - **Static SQLite** — SQLDelight's MinGW driver needs `libsqlite3.a` at link time, staged at
   `common/build/mingw-sqlite/`. MSYS2 builds it with stack protection, and the Kotlin/Native MinGW
   toolchain (gcc 9.2) does not link `libssp` on its own, so the `link*MingwX64` tasks copy the

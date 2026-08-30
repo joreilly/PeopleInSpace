@@ -8,12 +8,12 @@ public sealed class MainWindow : Window
 {
     private readonly PeopleInSpaceViewModel _viewModel;
 
-    public MainWindow(PeopleInSpaceViewModel viewModel, LocalAppDataStore store)
+    public MainWindow(PeopleInSpaceViewModel viewModel)
     {
         _viewModel = viewModel;
         Title = "People in Space";
         SystemBackdrop = new MicaBackdrop { Kind = MicaKind.BaseAlt };
-        Content = new MainPage(viewModel, store);
+        Content = new MainPage(viewModel);
         Closed += OnClosed;
     }
 

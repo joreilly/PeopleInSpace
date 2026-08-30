@@ -8,39 +8,15 @@ namespace PeopleInSpace.Windows.WinUiApp;
 
 public sealed partial class MainPage : Page
 {
-    private readonly LocalAppDataStore _store;
-    private readonly CancellationTokenSource _lifetime = new();
-
-    public MainPage(PeopleInSpaceViewModel viewModel, LocalAppDataStore store)
+    public MainPage(PeopleInSpaceViewModel viewModel)
     {
         ViewModel = viewModel;
-        _store = store;
         DataContext = ViewModel;
         InitializeComponent();
-        Loaded += OnLoaded;
-        Unloaded += OnUnloaded;
+        Loaded += (_, _) => ViewModel.Start();
     }
 
     public PeopleInSpaceViewModel ViewModel { get; }
-
-    private async void OnLoaded(object sender, RoutedEventArgs args)
-    {
-        try
-        {
-            _ = await _store.LoadLastOpenedAsync(_lifetime.Token);
-            await _store.SaveLastOpenedAsync(DateTimeOffset.UtcNow, _lifetime.Token);
-            ViewModel.Start();
-        }
-        catch (OperationCanceledException) { }
-    }
-
-    private void OnUnloaded(object sender, RoutedEventArgs args)
-    {
-        Loaded -= OnLoaded;
-        Unloaded -= OnUnloaded;
-        _lifetime.Cancel();
-        _lifetime.Dispose();
-    }
 
     private void OnNavigationItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
