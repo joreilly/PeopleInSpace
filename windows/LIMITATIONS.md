@@ -4,7 +4,9 @@ This document records the blockers encountered while adding the Kotlin/Native Nu
 the constraints imposed by their current workarounds. It is intended as implementation guidance;
 the setup and run commands remain in [`README.md`](README.md).
 
-Verified against `kotlin-native-nuget` 0.3.0, Kotlin 2.4.10, .NET 10.
+Verified against `kotlin-native-nuget` 0.3.0, Kotlin 2.4.10, .NET 10. Re-checked on 2026-08-30:
+0.3.0 is still the latest plugin release, and the version catalog's `kotlin = "2.4.0"` resolves to
+Kotlin Gradle plugin and Kotlin/Native 2.4.10 because the plugin depends on it.
 
 ## What kotlin-native-nuget needs to change
 
@@ -95,11 +97,21 @@ satisfied, so no plugin can avoid it. Koin's only role is building an `IrFile` w
 Declarations from the normal Fir2Ir pipeline carry `KonanMetadata` and never reach it, which is why
 this is not hit constantly.
 
-This is [KT-62984](https://youtrack.jetbrains.com/issue/KT-62984), open since October 2023 and still
-unresolved (Severity Minor, State Backlog). It was filed against the Compose plugin, where it fired
-only for `public`/`protected` `@Composable` functions; Koin reaches the same crash site with no
-Compose involved, so it is not annotation-specific. A community PR that filtered `@Composable` out of
-C export was closed unmerged and would not have helped here.
+This is [KT-62984](https://youtrack.jetbrains.com/issue/KT-62984), open since October 2023. It was
+filed against the Compose plugin, where it fired only for `public`/`protected` `@Composable`
+functions; Koin reaches the same crash site with no Compose involved, so it is not annotation-specific.
+A community PR that filtered `@Composable` out of C export was closed unmerged and would not have
+helped here.
+
+**Fixed upstream, not yet released.** [JetBrains/kotlin#7431](https://github.com/JetBrains/kotlin/pull/7431)
+("Do not assert klib origin capability on K2 module descriptors") was merged into `master` on
+2026-08-25. It splits the accessor into a nullable `klibModuleOriginOrNull`, keeps the strict one
+failing with a named error, and moves the callers with a null contract onto the nullable form. As of
+2026-08-30 the fix is not in any released Kotlin: 2.4.10 still crashes, the 2.4.20-RC2 changelog does
+not list it, and the YouTrack issue still shows State Backlog. It ships with the next release cut from
+`master` unless it is backported to 2.4.x. The exclusion below stays until this project builds with a
+Kotlin that contains it; at that point, drop the `kotlinCompilerPluginClasspath*` exclusion in
+`common/build.gradle.kts` and re-run `packNuget` on both hosts to confirm.
 
 A standalone reproducer and a write-up for that issue live in `kt-62984-repro` (sibling checkout),
 reduced to three Koin annotations and no custom compiler plugin.
@@ -116,6 +128,10 @@ one, at link time, and it is still live on 0.3.0. `expect`/`actual` is not requi
   other Windows architectures, and a standalone AppKit host are not configured.
 - WinUI is unpackaged, framework-dependent, and not self-contained. A target machine must have the
   matching Windows App SDK 1.8 runtime installed.
+- Because the WinUI process has no package identity, packaged-only Windows Runtime APIs such as
+  `Windows.Storage.ApplicationData` throw `0x80073D54` and take the app down at startup as a stowed
+  exception (`0xC000027B`). The WinUI project must use unpackaged-safe alternatives (`System.IO`
+  under `%LOCALAPPDATA%`), and `windows/Shared` must not assume package identity either.
 - MSIX packaging, installers, Store distribution, self-contained deployment, and a graphical ISS
   map are outside the current scope.
 - WinUI cannot be built or launched on macOS. The MAUI Catalyst host exists partly to exercise the
@@ -157,6 +173,14 @@ common/build/mingw-sqlite/libsqlite3.a
 Without that archive, linking `peopleinspace.dll` fails. This setup is specific to MinGW x64. The
 archive is linked into `peopleinspace.dll`, avoiding a separate SQLite runtime DLL in the app.
 
+Current MSYS2 builds SQLite with stack protection and fortified string functions, so the archive
+references `__stack_chk_fail`, `__stack_chk_guard`, and `__mem*_chk`. Modern mingw-w64 provides those
+in its CRT, but the Kotlin/Native MinGW toolchain still ships gcc 9.2 and does not link `libssp` on
+its own, and the MSYS2 `mingw-w64-x86_64-crt` `libssp.a` is an empty stub. The `link*MingwX64` tasks
+therefore copy `libssp.a` out of the toolchain under `~/.konan/dependencies` and link it with
+`-lssp`. This is coupled to the toolchain layout; a Kotlin/Native release that updates its bundled
+MinGW should be re-checked here.
+
 `PeopleInSpaceClient(storageDirectory)` also expects a non-blank, existing, writable directory. It
 uses that directory as SQLDelight's `basePath`; it does not create an arbitrary caller-provided
 directory.
@@ -165,7 +189,8 @@ directory.
 
 The annotation/compiler-plugin Koin setup is back, but it cannot run on the two targets that link a
 `sharedLib` for the NuGet package. The cause and its evidence are item 7 of
-"What kotlin-native-nuget needs to change" above.
+"What kotlin-native-nuget needs to change" above; the compiler fix is merged upstream but not yet in
+a released Kotlin, so this section stays in force for now.
 
 `common/build.gradle.kts` therefore excludes `io.insert-koin` from the
 `kotlinCompilerPluginClasspath*` configurations of `MingwX64` and `MacosArm64`. Neither target uses
@@ -183,6 +208,7 @@ The compiler plugin is pinned to `1.0.2`. `1.1.0` rejects the `expect`/`actual` 
 pattern, reporting `KOIN-D001 Missing dependency` for `HttpClientEngine` and
 `PeopleInSpaceDatabaseWrapper`: its graph verifier does not see providers declared on an `expect`
 class through to the `actual`. Upgrading needs that resolved or the platform modules restructured.
+`1.1.0` is still the latest release as of 2026-08-30.
 
 AndroidX lifecycle ViewModels remain in the `nonWindows` source set and are intentionally excluded
 from MinGW. The exported Windows/macOS `PeopleInSpaceClient` does not start Koin or expose AndroidX
