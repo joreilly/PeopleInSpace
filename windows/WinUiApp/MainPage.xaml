@@ -72,6 +72,9 @@
                         <ScrollViewer>
                             <StackPanel Spacing="10">
                                 <TextBlock Text="CREW MEMBER" Style="{StaticResource SubtitleTextBlockStyle}" />
+                                <PersonPicture Width="120" Height="120" HorizontalAlignment="Left" Margin="0,8,0,4"
+                                               DisplayName="{Binding SelectedPerson.Name}"
+                                               ProfilePicture="{Binding SelectedPerson.ImageUrl, Converter={StaticResource ImageUrlConverter}}" />
                                 <TextBlock Text="{Binding SelectedPerson.Name}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" />
                                 <TextBlock Text="{Binding SelectedPerson.Craft}" Opacity="0.72" />
                                 <TextBlock Text="Nationality" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="0,12,0,0" />

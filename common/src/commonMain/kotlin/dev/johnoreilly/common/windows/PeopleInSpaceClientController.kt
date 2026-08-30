@@ -80,6 +80,9 @@ private fun Assignment.toPerson() = Person(
     name = name,
     craft = craft,
     personImageUrl = personImageUrl,
-    personBio = personBio,
+    personBio = personBio?.unescapeLineBreaks(),
     nationality = nationality,
 )
+
+/** Some upstream biographies contain literal `\r\n` sequences rather than line breaks. */
+private fun String.unescapeLineBreaks() = replace("\\r\\n", "\n").replace("\\n", "\n")

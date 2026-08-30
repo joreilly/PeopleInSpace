@@ -72,6 +72,21 @@ class PeopleInSpaceClientControllerTest {
     }
 
     @Test
+    fun peopleProjectionTurnsEscapedLineBreaksInBiographiesIntoRealOnes() = runTest {
+        val repository = FakeRepository().apply {
+            initialSyncCompletedMutable.value = true
+            peopleMutable.value = listOf(
+                Assignment(name = "Andrei Fedyaev", craft = "ISS", personBio = "Cosmonaut. \\r\\n\\r\\nFirst flight."),
+            )
+        }
+        val controller = PeopleInSpaceClientController(repository, CoroutineScope(backgroundScope.coroutineContext))
+        runCurrent()
+
+        assertEquals("Cosmonaut. \n\nFirst flight.", controller.peopleState.value.people.single().personBio)
+        controller.close()
+    }
+
+    @Test
     fun refreshFailureRetainsCachedPeopleAndProjectsTheError() = runTest {
         val repository = FakeRepository().apply {
             peopleMutable.value = listOf(Assignment(name = "Sally Ride", craft = "ISS"))

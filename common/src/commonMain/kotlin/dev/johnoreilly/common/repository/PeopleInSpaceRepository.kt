@@ -135,7 +135,10 @@ class PeopleInSpaceRepository(
     override fun pollISSPosition(): Flow<IssPosition> {
         return issPositionPollingFlow(
             pollIntervalMillis = POLL_INTERVAL,
-            fetchPosition = { peopleInSpaceApi.fetchISSPosition().iss_position },
+            // The API reports the sample time on the response, not on the position itself.
+            fetchPosition = {
+                peopleInSpaceApi.fetchISSPosition().let { it.iss_position.copy(timestamp = it.timestamp) }
+            },
             onLoadingChanged = { _issPollLoading.value = it },
             onError = { error ->
                 _issPollError.value = error
