@@ -21,6 +21,8 @@ kotlin {
         it.binaries.framework {
             baseName = "common"
             export(projects.common)
+            // SQLiter's -lsqlite3 does not carry over when the framework is linked from this module.
+            linkerOpts("-lsqlite3")
         }
     }
 

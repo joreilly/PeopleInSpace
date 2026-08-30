@@ -32,10 +32,10 @@ jobs:
       # Only libsqlite3.a needs staging. The MSYS2 build is stack protected, and the
       # link tasks copy libssp.a from the Kotlin/Native toolchain into the same directory.
       - name: Stage static MinGW SQLite
-        shell: pwsh
+        shell: msys2 {0}
         run: |
-          New-Item -ItemType Directory -Force common\build\mingw-sqlite | Out-Null
-          Copy-Item C:\msys64\mingw64\lib\libsqlite3.a common\build\mingw-sqlite\libsqlite3.a
+          mkdir -p common/build/mingw-sqlite
+          cp /mingw64/lib/libsqlite3.a common/build/mingw-sqlite/libsqlite3.a
 
       - name: Set up .NET 10
         uses: actions/setup-dotnet@v5
