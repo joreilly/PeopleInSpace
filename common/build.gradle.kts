@@ -144,7 +144,7 @@ nuget {
         authors = "xxfast"
         description = "PeopleInSpace Kotlin Multiplatform library for Windows"
         rootPackage = "dev.johnoreilly.common.windows"
-        include("dev.johnoreilly.common.windows")
+        include("dev.johnoreilly.common.windows", "dev.johnoreilly.common.remote")
     }
 }
 

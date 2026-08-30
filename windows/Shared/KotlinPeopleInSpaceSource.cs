@@ -1,4 +1,5 @@
 using PeopleInSpace.Kotlin;
+using PeopleInSpace.Kotlin.Dev.Johnoreilly.Common.Remote;
 
 namespace PeopleInSpace.Windows.Shared;
 
@@ -20,7 +21,7 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
         await foreach (var state in flow.WithCancellation(cancellationToken).ConfigureAwait(false))
         {
             using (state)
-                yield return Project(state);
+                yield return new PeopleSnapshot(Project(state.People), state.InitialLoading, state.Refreshing, state.ErrorMessage);
         }
     }
 
@@ -31,13 +32,7 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
         await foreach (var state in flow.WithCancellation(cancellationToken).ConfigureAwait(false))
         {
             using (state)
-                yield return new IssSnapshot(
-                    state.Latitude,
-                    state.Longitude,
-                    state.Timestamp,
-                    state.HasPosition,
-                    state.Loading,
-                    state.ErrorMessage);
+                yield return Project(state);
         }
     }
 
@@ -53,9 +48,20 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
 
     private PeopleInSpaceClient Client => _client ?? throw new ObjectDisposedException(nameof(KotlinPeopleInSpaceSource));
 
-    private static PeopleSnapshot Project(PeopleState state)
+    private static IssSnapshot Project(IssState state)
     {
-        var people = state.People;
+        using var position = state.Position;
+        return new IssSnapshot(
+            position.Latitude,
+            position.Longitude,
+            DateTimeOffset.FromUnixTimeSeconds(Math.Max(0, position.Timestamp)),
+            state.HasPosition,
+            state.Loading,
+            state.ErrorMessage);
+    }
+
+    private static PersonInfo[] Project(IReadOnlyList<Assignment> people)
+    {
         var projected = new PersonInfo[people.Count];
         for (var index = 0; index < people.Count; index++)
         {
@@ -67,7 +73,6 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
                 person.PersonImageUrl,
                 person.PersonBio);
         }
-
-        return new PeopleSnapshot(projected, state.InitialLoading, state.Refreshing, state.ErrorMessage);
+        return projected;
     }
 }

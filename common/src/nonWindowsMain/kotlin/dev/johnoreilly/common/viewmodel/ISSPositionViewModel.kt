@@ -15,4 +15,7 @@ class ISSPositionViewModel(
 
     val position = peopleInSpaceRepository.pollISSPosition()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), IssPosition(0.0, 0.0))
+
+    val uiState = peopleInSpaceRepository.issPositionUiState()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), IssPositionUiState.Loading)
 }

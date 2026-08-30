@@ -90,12 +90,15 @@ class PeopleInSpaceRepository(
                     name = name,
                     craft = craft,
                     personImageUrl = personImageUrl,
-                    personBio = personBio,
+                    personBio = personBio?.unescapeLineBreaks(),
                     nationality = nationality
                 )
             }
         ).asFlow().mapToList(Dispatchers.Default)
     }
+
+    /** Some upstream biographies contain literal `\r\n` sequences rather than line breaks. */
+    private fun String.unescapeLineBreaks() = replace("\\r\\n", "\n").replace("\\n", "\n")
 
     override suspend fun fetchAndStorePeople() {
         logger.d { "fetchAndStorePeople" }

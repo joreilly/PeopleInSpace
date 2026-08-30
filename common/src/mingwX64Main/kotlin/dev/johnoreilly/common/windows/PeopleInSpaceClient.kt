@@ -7,18 +7,27 @@ import dev.johnoreilly.common.di.createHttpClient
 import dev.johnoreilly.common.remote.AstroviewerApi
 import dev.johnoreilly.common.remote.PeopleInSpaceApi
 import dev.johnoreilly.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.viewmodel.IssPositionUiState
+import dev.johnoreilly.common.viewmodel.PersonListUiState
+import dev.johnoreilly.common.viewmodel.issPositionUiState
+import dev.johnoreilly.common.viewmodel.personListUiState
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.winhttp.WinHttp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.serialization.json.Json
 
 /**
  * Self-contained entry point for the shared data layer, exported through the NuGet package.
  *
+ * It projects the same UI state the other clients' ViewModels use (see ExportedState.kt).
  * [storageDirectory] must identify an existing directory writable by the caller. The client does
  * not initialise Koin or expose AndroidX types; it owns its HTTP client, SQLite driver and
  * coroutine scope instead.
@@ -47,25 +56,30 @@ class PeopleInSpaceClient(storageDirectory: String) {
         astroviewerApi = AstroviewerApi(httpClient),
         coroutineScope = scope,
     )
-    private val controller = PeopleInSpaceClientController(repository, scope) {
-        httpClient.close()
-        driver.close()
-    }
+    private var closed = false
 
-    /** Continuously updated people data, loading state, and latest sync error. */
-    val peopleState: StateFlow<PeopleState> = controller.peopleState
+    /** Continuously updated people list state. */
+    val peopleState: StateFlow<PeopleState> = repository.personListUiState()
+        .map { it.toExported() }
+        .stateIn(scope, SharingStarted.Eagerly, PersonListUiState.Loading.toExported())
 
-    /** Continuously updated ISS data, including errors from the retrying poller. */
-    val issState: StateFlow<IssState> = controller.issState
+    /** Continuously updated ISS position state; polling runs for the lifetime of the client. */
+    val issState: StateFlow<IssState> = repository.issPositionUiState()
+        .map { it.toExported() }
+        .stateIn(scope, SharingStarted.Eagerly, IssPositionUiState.Loading.toExported())
 
     /** Requests a fresh people-list synchronisation. */
     suspend fun refresh() {
-        controller.refresh()
+        repository.fetchAndStorePeople()
     }
 
     /** Releases all resources owned by this client. Safe to call more than once. */
     fun close() {
-        controller.close()
+        if (closed) return
+        closed = true
+        scope.cancel()
+        httpClient.close()
+        driver.close()
     }
 
     private fun databaseDirectory(storageDirectory: String): String {

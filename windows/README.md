@@ -13,9 +13,11 @@ The Windows client consumes the Kotlin Multiplatform data layer from a locally g
 references the package only for its native runtime assets, avoiding duplicate generated types.
 
 `KotlinPeopleInSpaceSource` collects the exported Kotlin `StateFlow`s directly through the generated
-bindings and awaits the exported `suspend fun refresh()`. The C# `PersonInfo`, `PeopleSnapshot`, and
-`IssSnapshot` records exist so `PeopleInSpaceViewModel` can be tested with a fake source and never
-holds a native handle.
+bindings and awaits the exported `suspend fun refresh()`. The state it receives is a flat projection
+of the same `PersonListUiState` / `IssPositionUiState` the Compose clients use, carrying the shared
+`Assignment` and `IssPosition` models (see `LIMITATIONS.md` for why it is flattened). The C#
+`PersonInfo`, `PeopleSnapshot`, and `IssSnapshot` records exist so `PeopleInSpaceViewModel` can be
+tested with a fake source and never holds a native handle.
 
 ## Supported targets
 

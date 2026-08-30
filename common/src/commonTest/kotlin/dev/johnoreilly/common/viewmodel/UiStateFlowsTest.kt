@@ -1,43 +1,40 @@
-package dev.johnoreilly.common.windows
+package dev.johnoreilly.common.viewmodel
 
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.remote.OrbitPoint
 import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.launch
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertNull
+import kotlin.test.assertIs
 import kotlin.test.assertTrue
-import kotlin.time.Instant
 
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
-class PeopleInSpaceClientControllerTest {
+class UiStateFlowsTest {
     @Test
-    fun initialStateIsLoadingUntilTheRepositoryCompletesItsFirstSync() = runTest {
+    fun peopleStateIsLoadingUntilTheRepositoryCompletesItsFirstSync() = runTest {
         val repository = FakeRepository()
-        val controller = PeopleInSpaceClientController(repository, CoroutineScope(backgroundScope.coroutineContext))
+        val state = peopleState(repository)
 
         runCurrent()
 
-        assertTrue(controller.peopleState.value.initialLoading)
-        assertFalse(controller.peopleState.value.refreshing)
-        assertTrue(controller.peopleState.value.people.isEmpty())
-        controller.close()
+        assertIs<PersonListUiState.Loading>(state.value)
     }
 
     @Test
-    fun refreshProjectsSuccessfulPeopleData() = runTest {
+    fun peopleStateReportsARefreshInProgressThenTheNewData() = runTest {
         val refreshStarted = CompletableDeferred<Unit>()
         val releaseRefresh = CompletableDeferred<Unit>()
         val repository = FakeRepository().apply {
@@ -46,48 +43,42 @@ class PeopleInSpaceClientControllerTest {
                 peopleSyncLoadingMutable.value = true
                 refreshStarted.complete(Unit)
                 releaseRefresh.await()
-                initialSyncCompletedMutable.value = true
                 peopleMutable.value = listOf(Assignment(name = "Mae Jemison", craft = "ISS"))
                 peopleSyncLoadingMutable.value = false
             }
         }
-        val controller = PeopleInSpaceClientController(repository, CoroutineScope(backgroundScope.coroutineContext))
+        val state = peopleState(repository)
 
-        val refreshJob = launch { controller.refresh() }
+        val refreshJob = launch { repository.fetchAndStorePeople() }
         refreshStarted.await()
         runCurrent()
 
-        assertFalse(controller.peopleState.value.initialLoading)
-        assertTrue(controller.peopleState.value.refreshing)
+        val refreshing = assertIs<PersonListUiState.Success>(state.value)
+        assertTrue(refreshing.refreshing)
 
         releaseRefresh.complete(Unit)
         refreshJob.join()
         runCurrent()
 
-        assertFalse(controller.peopleState.value.initialLoading)
-        assertFalse(controller.peopleState.value.refreshing)
-        assertEquals("Mae Jemison", controller.peopleState.value.people.single().name)
-        assertNull(controller.peopleState.value.errorMessage)
-        controller.close()
+        val done = assertIs<PersonListUiState.Success>(state.value)
+        assertFalse(done.refreshing)
+        assertEquals("Mae Jemison", done.result.single().name)
     }
 
     @Test
-    fun peopleProjectionTurnsEscapedLineBreaksInBiographiesIntoRealOnes() = runTest {
+    fun peopleStateIsAnErrorWhenTheFirstSyncFailsWithNothingCached() = runTest {
         val repository = FakeRepository().apply {
+            peopleSyncErrorMutable.value = IllegalStateException("offline")
             initialSyncCompletedMutable.value = true
-            peopleMutable.value = listOf(
-                Assignment(name = "Andrei Fedyaev", craft = "ISS", personBio = "Cosmonaut. \\r\\n\\r\\nFirst flight."),
-            )
         }
-        val controller = PeopleInSpaceClientController(repository, CoroutineScope(backgroundScope.coroutineContext))
+        val state = peopleState(repository)
         runCurrent()
 
-        assertEquals("Cosmonaut. \n\nFirst flight.", controller.peopleState.value.people.single().personBio)
-        controller.close()
+        assertEquals(PersonListUiState.Error("offline"), state.value)
     }
 
     @Test
-    fun refreshFailureRetainsCachedPeopleAndProjectsTheError() = runTest {
+    fun peopleStateRetainsCachedPeopleWhenARefreshFails() = runTest {
         val repository = FakeRepository().apply {
             peopleMutable.value = listOf(Assignment(name = "Sally Ride", craft = "ISS"))
             initialSyncCompletedMutable.value = true
@@ -97,63 +88,54 @@ class PeopleInSpaceClientControllerTest {
                 peopleSyncLoadingMutable.value = false
             }
         }
-        val controller = PeopleInSpaceClientController(repository, CoroutineScope(backgroundScope.coroutineContext))
+        val state = peopleState(repository)
 
-        controller.refresh()
+        repository.fetchAndStorePeople()
         runCurrent()
 
-        assertEquals("Sally Ride", controller.peopleState.value.people.single().name)
-        assertEquals("offline", controller.peopleState.value.errorMessage)
-        assertFalse(controller.peopleState.value.initialLoading)
-        assertFalse(controller.peopleState.value.refreshing)
-        controller.close()
+        val success = assertIs<PersonListUiState.Success>(state.value)
+        assertEquals("Sally Ride", success.result.single().name)
+        assertFalse(success.refreshing)
     }
 
     @Test
-    fun issStateProjectsAnErrorThenTheNextSuccessfulPoll() = runTest {
+    fun issStateReportsAnErrorThenTheNextSuccessfulPoll() = runTest {
         val repository = FakeRepository()
-        val controller = PeopleInSpaceClientController(repository, CoroutineScope(backgroundScope.coroutineContext))
-        runCurrent() // subscribe the controller's owned polling collector
+        val state = issState(repository)
+        runCurrent()
+        assertIs<IssPositionUiState.Loading>(state.value)
+
+        repository.issPollErrorMutable.value = IllegalStateException("first poll failed")
+        runCurrent()
+        assertEquals(IssPositionUiState.Error("first poll failed"), state.value)
 
         repository.issPollLoadingMutable.value = true
+        repository.issPollErrorMutable.value = null
         repository.issPositions.emit(IssPosition(latitude = 1.5, longitude = 2.5, timestamp = 10))
         repository.issPollLoadingMutable.value = false
         runCurrent()
-        assertTrue(controller.issState.value.hasPosition)
-        assertEquals(1.5, controller.issState.value.latitude)
-        assertEquals(Instant.fromEpochSeconds(10), controller.issState.value.timestamp)
+        val first = assertIs<IssPositionUiState.Success>(state.value)
+        assertEquals(IssPosition(1.5, 2.5, 10), first.position)
+        assertFalse(first.refreshing)
 
+        // A failed poll keeps the last position.
         repository.issPollErrorMutable.value = IllegalStateException("temporary failure")
         runCurrent()
-        assertEquals("temporary failure", controller.issState.value.errorMessage)
+        val failed = assertIs<IssPositionUiState.Success>(state.value)
+        assertEquals(1.5, failed.position.latitude)
 
-        // A retry clears the old error and replaces the last known position.
-        repository.issPollLoadingMutable.value = true
         repository.issPollErrorMutable.value = null
         repository.issPositions.emit(IssPosition(latitude = 3.5, longitude = 4.5, timestamp = 20))
-        repository.issPollLoadingMutable.value = false
         runCurrent()
-        assertEquals(3.5, controller.issState.value.latitude)
-        assertEquals(4.5, controller.issState.value.longitude)
-        assertNull(controller.issState.value.errorMessage)
-        controller.close()
+        val recovered = assertIs<IssPositionUiState.Success>(state.value)
+        assertEquals(3.5, recovered.position.latitude)
     }
 
-    @Test
-    fun closeIsIdempotentAndReleasesResourcesOnce() = runTest {
-        val repository = FakeRepository()
-        var closeCount = 0
-        val controller = PeopleInSpaceClientController(
-            repository = repository,
-            scope = CoroutineScope(backgroundScope.coroutineContext),
-            closeResources = { closeCount++ },
-        )
+    private fun TestScope.peopleState(repository: FakeRepository) =
+        repository.personListUiState().stateIn(backgroundScope, SharingStarted.Eagerly, PersonListUiState.Loading)
 
-        controller.close()
-        controller.close()
-
-        assertEquals(1, closeCount)
-    }
+    private fun TestScope.issState(repository: FakeRepository) =
+        repository.issPositionUiState().stateIn(backgroundScope, SharingStarted.Eagerly, IssPositionUiState.Loading)
 }
 
 private class FakeRepository : PeopleInSpaceRepositoryInterface {

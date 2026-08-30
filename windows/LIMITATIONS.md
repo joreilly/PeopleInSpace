@@ -81,6 +81,41 @@ Kotlin that contains it; at that point, drop the `kotlinCompilerPluginClasspath*
 A standalone reproducer and a write-up for that issue live in `kt-62984-repro` (sibling checkout),
 reduced to three Koin annotations and no custom compiler plugin.
 
+### 5. Nested classes (and therefore sealed hierarchies)
+
+Three independent bugs stop a sealed UI state from crossing the boundary on 0.3.0, all specific
+to nested classes; top-level classes take a different, working code path:
+
+- [#38](https://github.com/xxfast/kotlin-native-nuget/issues/38) nullable properties on a nested
+  class are exported as non-null, so `CNameExports.kt` fails to compile.
+- [#39](https://github.com/xxfast/kotlin-native-nuget/issues/39) a `List<T>` property on a sealed
+  subclass renders as an expression-bodied getter with a statement block, so `Interop.cs` fails to
+  compile.
+- [#40](https://github.com/xxfast/kotlin-native-nuget/issues/40) `NugetMarshal.FromHandle<T>`
+  falls through to `Activator.CreateInstance` on the abstract sealed base instead of the generated
+  `FromHandle` discriminator, so a `StateFlow<SealedType>` throws on the first element.
+
+**Costs here:** `ExportedState.kt` in `mingwX64Main` — flat `PeopleState` / `IssState` envelopes
+around the shared `PersonListUiState` / `IssPositionUiState`, and the corresponding mapping in
+`KotlinPeopleInSpaceSource`. Sealed hierarchies themselves export fine (all subtypes and the
+discriminator switch are generated), so fixing these three lets the envelopes go.
+
+### 6. Exporting more than one package
+
+The envelopes carry the shared `Assignment` and `IssPosition`, so `dev.johnoreilly.common.remote`
+is in the export set next to `dev.johnoreilly.common.windows`. Two more bugs follow from that:
+
+- [#41](https://github.com/xxfast/kotlin-native-nuget/issues/41) root-namespace classes refer to
+  sub-namespace types by bare name in property, constructor and list-element positions (only
+  `StateFlow<T>` arguments are `global::`-qualified), so `Interop.cs` fails with `CS0246`.
+- [#42](https://github.com/xxfast/kotlin-native-nuget/issues/42) `PeopleInSpaceApi` /
+  `AstroviewerApi` share that package and implement Koin's `KoinComponent`; the generated classes
+  declare an `IKoinComponent` supertype that is never generated. `include`/`exclude` are
+  package-level, so the classes cannot be left out.
+
+**Costs here:** `windows/Shared/GeneratedBindingShims.cs` — two `global using` aliases and an
+empty `IKoinComponent` marker interface. Nothing in the generated file is edited.
+
 ### Previously on this list: AOT-safe generics and callbacks
 
 The generated `KotlinStateFlow<T>.Value` and Flow collection go through `Activator.CreateInstance`
@@ -107,15 +142,20 @@ flows directly and the scalar-accessor workaround has been removed. Anyone addin
 `PeopleInSpaceClient` lives in `mingwX64Main`. It owns its HTTP client (WinHttp), SQLDelight driver,
 repository and coroutine scope, and exposes two `StateFlow`s plus `refresh()` and `close()`.
 
-The models it emits (`Person`, `PeopleState`, `IssState`) and the `PeopleInSpaceClientController`
-that produces them sit in `commonMain` under `dev.johnoreilly.common.windows`, which is also the
-package the NuGet plugin exports. They are in `commonMain` so their state transitions can be tested
-on the JVM against a fake repository, and they exist because the repository's own surface
-(`StateFlow<Throwable?>`, the `Assignment` wire DTO, Koin construction) is not something the
-generator can hand to C# usefully.
+The UI state it projects is the same one the other clients use: `PersonListUiState` and
+`IssPositionUiState` in `commonMain`, produced by `personListUiState()` / `issPositionUiState()` in
+`UiStateFlows.kt`, which the AndroidX ViewModels wrap for Compose and the Windows client wraps for
+.NET. The list items are the repository's own `Assignment` and `IssPosition`; the NuGet export
+includes `dev.johnoreilly.common.remote` for them.
 
-Generating bindings for the broad shared package surface caused Kotlin/Native C adapter generation
-failures. New exports should be added deliberately.
+The only Windows-specific types left are `PeopleState` and `IssState` in `mingwX64Main`
+(`ExportedState.kt`): flat, top-level envelopes of the sealed UI state. They exist because
+kotlin-native-nuget 0.3.0 cannot export nested classes, and sealed subclasses are nested (items 5
+and 6 of "What kotlin-native-nuget needs to change" above). Once those bugs are fixed, delete the envelopes
+and expose the sealed `StateFlow`s directly.
+
+New exports should be added deliberately; the `include` list in `common/build.gradle.kts` is the
+whole surface.
 
 ## MinGW requires a static SQLite archive
 
