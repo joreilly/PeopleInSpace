@@ -33,14 +33,6 @@ kotlin {
         }
     }
 
-    macosArm64 {
-        binaries {
-            sharedLib(listOf(DEBUG, RELEASE)) {
-                baseName = "peopleinspace"
-            }
-        }
-    }
-
     android {
         namespace = "dev.johnoreilly.common"
         compileSdk = libs.versions.compileSdk.get().toInt()
@@ -68,7 +60,6 @@ kotlin {
                 withWasmJs()
                 group("apple") {
                     withIos()
-                    withMacos()
                 }
             }
         }
@@ -81,18 +72,6 @@ kotlin {
                 implementation(libs.androidx.lifecycle.viewmodel.kmp)
             }
         }
-
-        // The client exported through the NuGet package is identical on both targets apart from its
-        // ktor engine. macosArm64 keeps its place under apple as well; this is a second parent, not
-        // a replacement.
-        val nativeClientMain by creating {
-            dependsOn(commonMain.get())
-            dependencies {
-                implementation(libs.sqldelight.native.driver)
-            }
-        }
-        mingwX64Main.get().dependsOn(nativeClientMain)
-        macosArm64Main.get().dependsOn(nativeClientMain)
 
         commonMain.dependencies {
             implementation(libs.bundles.ktor.common)
@@ -132,6 +111,7 @@ kotlin {
 
         mingwX64Main.dependencies {
             implementation(libs.ktor.client.winhttp)
+            implementation(libs.sqldelight.native.driver)
         }
 
         wasmJsMain.dependencies {
@@ -170,19 +150,18 @@ nuget {
 
 // Kotlin/Native's C adapter generation crashes on the IR the Koin compiler plugin generates
 // (NullPointerException in CAdapterCodegen.buildCAdapter, via a null klib module origin). It only
-// bites the two targets that link a sharedLib for the NuGet package, and neither of those uses
+// bites the target that links a sharedLib for the NuGet package, and that target does not use
 // Koin: the exported PeopleInSpaceClient owns its own dependencies. So keep the compiler plugin off
-// their compilations and let every other target keep annotation-driven DI.
-val sharedLibTargets = listOf("MingwX64", "MacosArm64")
+// its compilations and let every other target keep annotation-driven DI.
 configurations
     .matching { configuration ->
         configuration.name.startsWith("kotlinCompilerPluginClasspath") &&
-            sharedLibTargets.any { configuration.name.contains(it) }
+            configuration.name.contains("MingwX64")
     }
     .configureEach { exclude(group = "io.insert-koin") }
 
-// The MinGW NativeSqliteDriver needs a target SQLite archive. Windows CI
-// provisions it and links the final DLL; macOS packs the host-native dylib.
+// The MinGW NativeSqliteDriver needs a target SQLite archive. Windows CI provisions it and links
+// the final DLL; other hosts still configure this project, so they skip the MinGW link tasks.
 if (!System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
     tasks.matching { task ->
         task.name.startsWith("link") && task.name.endsWith("MingwX64")

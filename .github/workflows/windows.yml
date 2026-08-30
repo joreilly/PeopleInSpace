@@ -42,10 +42,6 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      # The solution also contains the MAUI host, which targets Windows on this runner.
-      - name: Install .NET MAUI workload
-        run: dotnet workload install maui-windows
-
       - name: Pack shared NuGet package
         run: .\gradlew.bat :common:packNuget --no-daemon --stacktrace
 

@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleInSpace.Windows.WinUi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleInSpace.Windows.Shared.Tests", "Shared.Tests\PeopleInSpace.Windows.Shared.Tests.csproj", "{26418C2B-77DB-47E4-812F-A4C459D611AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleInSpace.Windows.MauiApp", "MauiApp\PeopleInSpace.Windows.MauiApp.csproj", "{2EFD48D4-4541-4D64-8A59-9FF2F1A51804}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -29,9 +27,5 @@ Global
 		{26418C2B-77DB-47E4-812F-A4C459D611AF}.Debug|x64.Build.0 = Debug|x64
 		{26418C2B-77DB-47E4-812F-A4C459D611AF}.Release|x64.ActiveCfg = Release|x64
 		{26418C2B-77DB-47E4-812F-A4C459D611AF}.Release|x64.Build.0 = Release|x64
-		{2EFD48D4-4541-4D64-8A59-9FF2F1A51804}.Debug|x64.ActiveCfg = Debug|x64
-		{2EFD48D4-4541-4D64-8A59-9FF2F1A51804}.Debug|x64.Build.0 = Debug|x64
-		{2EFD48D4-4541-4D64-8A59-9FF2F1A51804}.Release|x64.ActiveCfg = Release|x64
-		{2EFD48D4-4541-4D64-8A59-9FF2F1A51804}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal

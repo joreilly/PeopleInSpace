@@ -3,16 +3,11 @@ using PeopleInSpace.Kotlin;
 namespace PeopleInSpace.Windows.Shared;
 
 /// <summary>
-/// Owns the generated Kotlin client and projects its StateFlows into managed snapshots. Generated
+/// Owns the generated Kotlin client and collects its StateFlows into managed snapshots. Generated
 /// objects are copied and disposed before they leave this boundary, preventing native-handle leaks.
 /// </summary>
 public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
 {
-    // kotlin-native-nuget 0.3.0's generic flow collector uses runtime-generated
-    // reverse-P/Invoke delegates, which Mac Catalyst cannot JIT in AOT-only mode.
-    // Reading a captured snapshot through scalar accessors avoids both reverse callbacks and the
-    // reflection used to create generated Kotlin object wrappers, neither of which is AOT-safe.
-    private static readonly TimeSpan StatePollInterval = TimeSpan.FromMilliseconds(250);
     private PeopleInSpaceClient? _client;
 
     public KotlinPeopleInSpaceSource(string storageDirectory) =>
@@ -21,85 +16,58 @@ public sealed class KotlinPeopleInSpaceSource : IPeopleInSpaceSource
     public async IAsyncEnumerable<PeopleSnapshot> WatchPeopleAsync(
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        PeopleSnapshot? previous = null;
-        while (true)
+        using var flow = Client.PeopleState;
+        await foreach (var state in flow.WithCancellation(cancellationToken).ConfigureAwait(false))
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            var snapshot = Project(Client);
-            if (previous is null || !PeopleSnapshotsEqual(previous, snapshot))
-            {
-                previous = snapshot;
-                yield return snapshot;
-            }
-            await Task.Delay(StatePollInterval, cancellationToken).ConfigureAwait(false);
+            using (state)
+                yield return Project(state);
         }
     }
 
     public async IAsyncEnumerable<IssSnapshot> WatchIssAsync(
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        IssSnapshot? previous = null;
-        while (true)
+        using var flow = Client.IssState;
+        await foreach (var state in flow.WithCancellation(cancellationToken).ConfigureAwait(false))
         {
-            cancellationToken.ThrowIfCancellationRequested();
-            var client = Client;
-            client.CaptureIss();
-            var snapshot = new IssSnapshot(
-                client.CapturedIssLatitude(),
-                client.CapturedIssLongitude(),
-                client.CapturedIssTimestamp(),
-                client.CapturedIssHasPosition(),
-                client.CapturedIssLoading(),
-                client.CapturedIssErrorMessage());
-            if (snapshot != previous)
-            {
-                previous = snapshot;
-                yield return snapshot;
-            }
-            await Task.Delay(StatePollInterval, cancellationToken).ConfigureAwait(false);
+            using (state)
+                yield return new IssSnapshot(
+                    state.Latitude,
+                    state.Longitude,
+                    state.Timestamp,
+                    state.HasPosition,
+                    state.Loading,
+                    state.ErrorMessage);
         }
     }
 
-    public Task RefreshAsync(CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        Client.RequestRefresh();
-        return Task.CompletedTask;
-    }
+    public Task RefreshAsync(CancellationToken cancellationToken) => Client.RefreshAsync(cancellationToken);
 
     public async ValueTask DisposeAsync()
     {
         var client = Interlocked.Exchange(ref _client, null);
         if (client is null) return;
         try { client.Close(); }
-        finally { client.Dispose(); }
-        await ValueTask.CompletedTask;
+        finally { await client.DisposeAsync().ConfigureAwait(false); }
     }
 
     private PeopleInSpaceClient Client => _client ?? throw new ObjectDisposedException(nameof(KotlinPeopleInSpaceSource));
 
-    private static PeopleSnapshot Project(PeopleInSpaceClient client)
+    private static PeopleSnapshot Project(PeopleState state)
     {
-        var count = client.CapturePeople();
-        var people = new PersonInfo[count];
-        for (var index = 0; index < count; index++)
-            people[index] = new PersonInfo(
-                client.CapturedPersonName(index),
-                client.CapturedPersonCraft(index),
-                client.CapturedPersonNationality(index),
-                client.CapturedPersonImageUrl(index),
-                client.CapturedPersonBio(index));
+        var people = state.People;
+        var projected = new PersonInfo[people.Count];
+        for (var index = 0; index < people.Count; index++)
+        {
+            using var person = people[index];
+            projected[index] = new PersonInfo(
+                person.Name,
+                person.Craft,
+                person.Nationality,
+                person.PersonImageUrl,
+                person.PersonBio);
+        }
 
-        return new PeopleSnapshot(
-            people,
-            client.CapturedPeopleInitialLoading(),
-            client.CapturedPeopleRefreshing(),
-            client.CapturedPeopleErrorMessage());
+        return new PeopleSnapshot(projected, state.InitialLoading, state.Refreshing, state.ErrorMessage);
     }
-
-    private static bool PeopleSnapshotsEqual(PeopleSnapshot left, PeopleSnapshot right) =>
-        left.IsInitialLoading == right.IsInitialLoading &&
-        left.IsRefreshing == right.IsRefreshing &&
-        left.Error == right.Error &&
-        left.People.SequenceEqual(right.People);
 }
