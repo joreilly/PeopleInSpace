@@ -29,6 +29,8 @@ jobs:
         with:
           install: mingw-w64-x86_64-sqlite3
 
+      # Only libsqlite3.a needs staging. The MSYS2 build is stack protected, and the
+      # link tasks copy libssp.a from the Kotlin/Native toolchain into the same directory.
       - name: Stage static MinGW SQLite
         shell: pwsh
         run: |

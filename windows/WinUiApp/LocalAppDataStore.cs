@@ -1,33 +1,38 @@
 using System.Text.Json;
-using Windows.Storage;
 
 namespace PeopleInSpace.Windows.WinUiApp;
 
+/// <summary>
+/// Stores window state under the user's local application data directory. The application is
+/// unpackaged, so it cannot use <c>Windows.Storage.ApplicationData</c>, which requires package
+/// identity.
+/// </summary>
 public sealed class LocalAppDataStore
 {
     private const string FileName = "people-in-space-window.json";
 
-    public string StorageDirectory => ApplicationData.Current.LocalFolder.Path;
+    public LocalAppDataStore()
+    {
+        StorageDirectory = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PeopleInSpace");
+        Directory.CreateDirectory(StorageDirectory);
+    }
+
+    public string StorageDirectory { get; }
+
+    private string FilePath => Path.Combine(StorageDirectory, FileName);
 
     public async Task SaveLastOpenedAsync(DateTimeOffset value, CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(
-            FileName, CreationCollisionOption.ReplaceExisting);
-        await FileIO.WriteTextAsync(file, JsonSerializer.Serialize(new WindowState(value)));
-        cancellationToken.ThrowIfCancellationRequested();
+        var json = JsonSerializer.Serialize(new WindowState(value));
+        await File.WriteAllTextAsync(FilePath, json, cancellationToken);
     }
 
     public async Task<DateTimeOffset?> LoadLastOpenedAsync(CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        try
-        {
-            var file = await ApplicationData.Current.LocalFolder.GetFileAsync(FileName);
-            var json = await FileIO.ReadTextAsync(file);
-            return JsonSerializer.Deserialize<WindowState>(json)?.LastOpened;
-        }
-        catch (FileNotFoundException) { return null; }
+        if (!File.Exists(FilePath)) return null;
+        var json = await File.ReadAllTextAsync(FilePath, cancellationToken);
+        return JsonSerializer.Deserialize<WindowState>(json)?.LastOpened;
     }
 
     private sealed record WindowState(DateTimeOffset LastOpened);

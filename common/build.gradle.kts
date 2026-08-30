@@ -27,7 +27,7 @@ kotlin {
                 if (System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
                     // Windows CI places the static MinGW SQLite archive here so the
                     // packaged DLL has no extra SQLite runtime dependency.
-                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}")
+                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}", "-lssp")
                 }
             }
         }
@@ -188,5 +188,24 @@ if (!System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
         task.name.startsWith("link") && task.name.endsWith("MingwX64")
     }.configureEach {
         enabled = false
+    }
+} else {
+    // MSYS2 builds SQLite with stack protection, but the Kotlin/Native MinGW toolchain does not
+    // link libssp on its own. Stage the toolchain's libssp.a next to libsqlite3.a so -lssp resolves.
+    tasks.matching { task ->
+        task.name.startsWith("link") && task.name.endsWith("MingwX64")
+    }.configureEach {
+        val sqliteDir = layout.buildDirectory.dir("mingw-sqlite").get().asFile
+        val konanDataDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+        doFirst {
+            val libssp = File(konanDataDir, "dependencies")
+                .listFiles { file -> file.isDirectory && file.name.startsWith("msys2-mingw-w64-x86_64") }
+                .orEmpty()
+                .flatMap { toolchain -> toolchain.resolve("lib/gcc/x86_64-w64-mingw32").listFiles().orEmpty().toList() }
+                .map { gcc -> gcc.resolve("libssp.a") }
+                .firstOrNull { it.isFile }
+                ?: error("libssp.a was not found under $konanDataDir/dependencies")
+            libssp.copyTo(sqliteDir.resolve("libssp.a"), overwrite = true)
+        }
     }
 }

@@ -54,8 +54,8 @@ package. This prevents NuGet from reusing an older package with the same version
 
 - JDK 17
 - .NET 10 SDK
-- Visual Studio 2022 with the Windows application development workload
-- Windows 10 SDK 10.0.19041.0 or newer
+- Windows 10 SDK 10.0.19041.0 or newer (Visual Studio is optional; the .NET SDK builds the solution
+  on its own)
 - Windows App SDK 1.8 runtime matching the version used by `WinUiApp`
 - MSYS2 with the `mingw-w64-x86_64-sqlite3` package
 - The MAUI Windows workload when building `MauiApp`
@@ -83,6 +83,10 @@ New-Item -ItemType Directory -Force common\build\mingw-sqlite | Out-Null
 Copy-Item C:\msys64\mingw64\lib\libsqlite3.a common\build\mingw-sqlite\libsqlite3.a
 ```
 
+MSYS2 compiles SQLite with stack protection, which the Kotlin/Native MinGW toolchain does not link
+automatically. The `link*MingwX64` tasks copy the toolchain's own `libssp.a` into
+`common/build/mingw-sqlite` and link it with `-lssp`, so no extra staging is needed.
+
 ### Pack, restore, build, and test
 
 ```powershell
@@ -95,14 +99,36 @@ dotnet test windows\Shared.Tests\PeopleInSpace.Windows.Shared.Tests.csproj --con
 
 The generated-binding warnings are treated as errors along with the rest of the managed solution.
 
+Restoring the solution requires the MAUI Windows workload because it includes `MauiApp`. To work on
+WinUI alone without that workload, restore and build the application project directly:
+
+```powershell
+dotnet restore windows\WinUiApp\PeopleInSpace.Windows.WinUiApp.csproj --force --no-cache
+dotnet build windows\WinUiApp\PeopleInSpace.Windows.WinUiApp.csproj --configuration Debug -p:Platform=x64 --no-restore
+```
+
 ### Run WinUI 3
 
 The WinUI application is unpackaged and framework-dependent. Install the matching Windows App SDK
-runtime before launching it:
+runtime before launching it. The restored `Microsoft.WindowsAppSDK.Runtime` package carries the
+runtime MSIX files, which can be registered for the current user without an installer:
+
+```powershell
+Get-ChildItem windows\obj\packages\microsoft.windowsappsdk.runtime\*\tools\MSIX\win10-x64\*.msix |
+    ForEach-Object { Add-AppxPackage $_.FullName }
+```
+
+Packages that are already registered at a newer version are rejected with `0x80073D06`; that is
+harmless.
+
+Then launch the application:
 
 ```powershell
 dotnet run --project windows\WinUiApp\PeopleInSpace.Windows.WinUiApp.csproj --configuration Debug -p:Platform=x64
 ```
+
+Because the application has no package identity, it cannot use `Windows.Storage.ApplicationData`.
+`LocalAppDataStore` keeps window state and the database under `%LOCALAPPDATA%\PeopleInSpace`.
 
 ### Run .NET MAUI on Windows
 
@@ -164,6 +190,23 @@ two successive local builds.
 
 Confirm that `common/build/mingw-sqlite/libsqlite3.a` exists and came from the MSYS2 MinGW x64
 package, then rerun `:common:packNuget`.
+
+### MinGW linking reports undefined `__stack_chk_fail` or `__memcpy_chk`
+
+The link task could not stage `libssp.a` from the Kotlin/Native toolchain. Confirm that
+`%USERPROFILE%\.konan\dependencies` contains a `msys2-mingw-w64-x86_64-*` directory (or set
+`KONAN_DATA_DIR` to the directory that does), then rerun `:common:packNuget`.
+
+### Solution restore fails with `NETSDK1147` for a MAUI workload
+
+`MauiApp` needs the MAUI Windows workload. Install it with `dotnet workload install maui-windows`, or
+restore and build `WinUiApp` directly as shown above.
+
+### WinUI exits at startup with `0xC000027B`
+
+The stowed exception usually wraps `0x80073D54` (the process has no package identity), raised by a
+packaged-only Windows Runtime API such as `ApplicationData.Current`. Keep unpackaged-safe
+alternatives such as `Environment.GetFolderPath` in the WinUI project.
 
 ### WinUI starts only on a development machine
 

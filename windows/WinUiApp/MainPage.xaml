@@ -57,7 +57,7 @@
                                                 <TextBlock Text="{x:Bind Name}" Style="{StaticResource BodyStrongTextBlockStyle}" />
                                                 <TextBlock Text="{x:Bind Craft}" Opacity="0.70" />
                                             </StackPanel>
-                                            <SymbolIcon Grid.Column="2" Symbol="ChevronRight" VerticalAlignment="Center" Opacity="0.55" />
+                                            <FontIcon Grid.Column="2" Glyph="&#xE76C;" FontSize="12" VerticalAlignment="Center" Opacity="0.55" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
