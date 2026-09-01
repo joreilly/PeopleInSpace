@@ -33,7 +33,7 @@ androidxLifecycle = "2.11.0"
 androidxLifecycleKMP = "2.11.0"
 
 coilCompose = "2.7.0"
-coilCompose3 = "3.5.0"
+coilCompose3 = "3.6.1"
 
 horologist = "0.8.2-alpha"
 glanceAppWidget = "1.2.0-rc01"
