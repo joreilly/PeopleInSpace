@@ -38,7 +38,7 @@ coilCompose3 = "3.5.0"
 
 horologist = "0.8.2-alpha"
 glanceAppWidget = "1.2.0-rc01"
-okhttp = "5.4.0"
+okhttp = "5.5.0"
 kermit = "2.1.0"
 
 gradleVersionsPlugin = "0.54.0"
