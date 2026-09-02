@@ -20,6 +20,13 @@ interface PeopleInSpaceRepositoryInterface {
     // false until the first network fetch has finished (successfully or not),
     // letting the UI distinguish "not fetched yet" from a genuinely empty result
     val initialSyncCompleted: StateFlow<Boolean>
+
+    /** True while the people list is being synchronised with the service. */
+    val peopleSyncLoading: StateFlow<Boolean>
+
+    /** The most recent people-list synchronisation failure, if any. */
+    val peopleSyncError: StateFlow<Throwable?>
+
     fun fetchPeopleAsFlow(): Flow<List<Assignment>>
     fun pollISSPosition(): Flow<IssPosition>
     suspend fun fetchISSFuturePosition(): List<OrbitPoint>
@@ -31,9 +38,9 @@ class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper,
     private val astroviewerApi: AstroviewerApi,
+    val coroutineScope: CoroutineScope,
 ) : PeopleInSpaceRepositoryInterface {
 
-    val coroutineScope: CoroutineScope = MainScope()
     private val peopleInSpaceQueries = peopleInSpaceDatabase.instance.peopleInSpaceQueries
 
     val logger = Logger.withTag("PeopleInSpaceRepository")
@@ -41,12 +48,26 @@ class PeopleInSpaceRepository(
     private val _initialSyncCompleted = MutableStateFlow(false)
     override val initialSyncCompleted: StateFlow<Boolean> = _initialSyncCompleted.asStateFlow()
 
+    private val _peopleSyncLoading = MutableStateFlow(false)
+    override val peopleSyncLoading: StateFlow<Boolean> = _peopleSyncLoading.asStateFlow()
+
+    private val _peopleSyncError = MutableStateFlow<Throwable?>(null)
+    override val peopleSyncError: StateFlow<Throwable?> = _peopleSyncError.asStateFlow()
+
     init {
         coroutineScope.launch {
-            // TODO figure out cleaner place to invoke this (needed for web implementatin)
-            PeopleInSpaceDatabase.Schema.awaitCreate(peopleInSpaceDatabase.driver)
-            fetchAndStorePeople()
-            _initialSyncCompleted.value = true
+            try {
+                // TODO figure out cleaner place to invoke this (needed for web implementatin)
+                PeopleInSpaceDatabase.Schema.awaitCreate(peopleInSpaceDatabase.driver)
+                fetchAndStorePeople()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                _peopleSyncError.value = e
+                logger.w(e) { "Exception while creating PeopleInSpace database: $e" }
+            } finally {
+                _initialSyncCompleted.value = true
+            }
         }
     }
 
@@ -57,15 +78,20 @@ class PeopleInSpaceRepository(
                     name = name,
                     craft = craft,
                     personImageUrl = personImageUrl,
-                    personBio = personBio,
+                    personBio = personBio?.unescapeLineBreaks(),
                     nationality = nationality
                 )
             }
         ).asFlow().mapToList(Dispatchers.Default)
     }
 
+    /** Some upstream biographies contain literal `\r\n` sequences rather than line breaks. */
+    private fun String.unescapeLineBreaks() = replace("\\r\\n", "\n").replace("\\n", "\n")
+
     override suspend fun fetchAndStorePeople() {
         logger.d { "fetchAndStorePeople" }
+        _peopleSyncLoading.value = true
+        _peopleSyncError.value = null
         try {
             val result = peopleInSpaceApi.fetchPeople()
 
@@ -86,8 +112,10 @@ class PeopleInSpaceRepository(
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            // TODO report error up to UI
+            _peopleSyncError.value = e
             logger.w(e) { "Exception during fetchAndStorePeople: $e" }
+        } finally {
+            _peopleSyncLoading.value = false
         }
     }
 

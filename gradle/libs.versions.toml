@@ -1,5 +1,6 @@
 [versions]
 kotlin = "2.4.10"
+kotlinNativeNuget = "0.4.0"
 
 compose-multiplatform = "1.11.1"
 composeUiTooling = "1.6.2"
@@ -131,6 +132,7 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
 ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref = "ktor" }
+ktor-client-winhttp = { group = "io.ktor", name = "ktor-client-winhttp", version.ref = "ktor" }
 ktor-server-cio = { group = "io.ktor", name = "ktor-server-cio", version.ref = "ktor" }
 ktor-server-sse = { group = "io.ktor", name = "ktor-server-sse", version.ref = "ktor" }
 
@@ -185,4 +187,5 @@ sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 skie = { id = "co.touchlab.skie", version.ref = "skie" }
+kotlin-native-nuget = { id = "io.github.xxfast.kotlin.native.nuget", version.ref = "kotlinNativeNuget" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm" }

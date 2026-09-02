@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.shadowPlugin) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.jetbrainsCompose) apply false
+    alias(libs.plugins.kotlin.native.nuget) apply false
 }
 
 // force patched versions of vulnerable transitive npm deps of the wasm webpack tooling

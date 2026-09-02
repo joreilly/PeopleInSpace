@@ -1,0 +1,16 @@
+<Project>
+  <!-- :common:packNuget mints a fresh PeopleInSpace.Kotlin snapshot version on every run and pins it
+       here, so a plain restore always resolves the latest pack. -->
+  <Import Project="$(MSBuildThisFileDirectory)../build/PeopleInSpace.KotlinVersions.props"
+          Condition="Exists('$(MSBuildThisFileDirectory)../build/PeopleInSpace.KotlinVersions.props')" />
+  <PropertyGroup>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Snapshot packages accumulate in the restore cache. Keep it in the repository so it goes
+         away with the checkout instead of filling the user's global NuGet cache. -->
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)obj/packages</RestorePackagesPath>
+  </PropertyGroup>
+</Project>

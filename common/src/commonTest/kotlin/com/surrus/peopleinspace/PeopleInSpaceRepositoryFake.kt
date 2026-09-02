@@ -13,6 +13,8 @@ import kotlin.time.ExperimentalTime
 
 class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
     override val initialSyncCompleted: StateFlow<Boolean> = MutableStateFlow(true)
+    override val peopleSyncLoading: StateFlow<Boolean> = MutableStateFlow(false)
+    override val peopleSyncError: StateFlow<Throwable?> = MutableStateFlow(null)
 
     val peopleList = listOf(
         Assignment("ISS", "Chris Cassidy", "https://example.com/cassidy.jpg", "American astronaut", "USA"),

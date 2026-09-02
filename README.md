@@ -10,6 +10,7 @@
 * Swift Executable Package
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - Wasm based)
+* Windows (WinUI 3)
 * JVM (small Ktor back end service + `Main.kt` in `common` module)
 * MCP server (using same shared KMP code)
 
@@ -24,12 +25,13 @@ The project is included as sample in the official [Kotlin Multiplatform docs](ht
 
 | Module | Description |
 |---|---|
-| `common` | Shared KMP code (Ktor, SQLDelight, Koin, view models) and shared Compose Multiplatform UI |
+| `common` | Shared KMP code (Ktor, SQLDelight, Koin, view models), shared Compose Multiplatform UI, and the Windows NuGet API |
 | `app` | Android client (Jetpack Compose), including Glance app widget |
 | `wearApp` | Wear OS client (Compose for Wear OS) |
 | `PeopleInSpaceSwiftUI` | iOS client (SwiftUI) |
 | `compose-desktop` | Desktop client (Compose for Desktop) |
 | `compose-web` | Web client (Compose for Web, Kotlin/Wasm) |
+| `windows/WinUiApp` | Windows client (WinUI 3) |
 | `backend` | Ktor server providing the people/ISS data (deployable to Google App Engine) |
 | `mcp-server` | Model Context Protocol server exposing the shared KMP code |
 
@@ -42,6 +44,8 @@ Requirements: JDK 17, a recent version of Android Studio (for the Android/Wear c
 * **iOS**: open `PeopleInSpaceSwiftUI` in Xcode and run from there
 * **Desktop**: `./gradlew :compose-desktop:run`
 * **Web (Wasm)**: `./gradlew :compose-web:wasmJsBrowserDevelopmentRun`
+* **Windows (.NET)**: see the [WinUI 3 client guide](windows/README.md) for prerequisites and build, test, and run instructions.
+
 * **Backend**: `./gradlew :backend:run` (or run `Server.kt` directly from Android Studio). After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
 Tests can be run with `./gradlew :common:jvmTest`, and there's also a [Maestro](https://maestro.mobile.dev/) UI test
