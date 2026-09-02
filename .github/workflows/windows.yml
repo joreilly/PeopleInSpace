@@ -54,12 +54,8 @@ jobs:
             throw 'peopleinspace.dll is missing from the NuGet package'
           }
 
-      - name: Clear local NuGet package cache
-        shell: pwsh
-        run: Remove-Item -Recurse -Force windows\obj\packages -ErrorAction SilentlyContinue
-
       - name: Restore WinUI solution
-        run: dotnet restore windows\PeopleInSpace.Windows.sln --force --no-cache
+        run: dotnet restore windows\PeopleInSpace.Windows.sln
 
       - name: Build WinUI solution
         run: dotnet build windows\PeopleInSpace.Windows.sln --configuration Release -p:Platform=x64 --no-restore

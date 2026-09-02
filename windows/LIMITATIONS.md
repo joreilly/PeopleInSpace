@@ -1,43 +1,40 @@
 # Windows client: known constraints
 
-Verified against `kotlin-native-nuget` 0.3.0, Kotlin 2.4.10, .NET 10 on 2026-08-30. Setup and run
+Verified against `kotlin-native-nuget` 0.4.0, Kotlin 2.4.10, .NET 10 on 2026-09-02. Setup and run
 commands are in [`README.md`](README.md).
 
 ## What the Windows client shares
 
 `PeopleInSpaceClient` (`common/src/mingwX64Main`) owns its HTTP client (WinHttp), SQLDelight
 driver, repository and coroutine scope, and exposes two `StateFlow`s plus `refresh()` and
-`close()`. The state it emits is projected from the same `PersonListUiState` /
-`IssPositionUiState` that the Compose clients' ViewModels use (`personListUiState()` /
-`issPositionUiState()` in `common/src/commonMain/.../viewmodel/UiStateFlows.kt`), and the list
-items are the repository's own `Assignment` and `IssPosition`.
+`close()`. The state it emits is the same sealed `PersonListUiState` / `IssPositionUiState` that
+the Compose clients' ViewModels use (`personListUiState()` / `issPositionUiState()` in
+`common/src/commonMain/.../viewmodel/UiStateFlows.kt`), and the list items are the repository's
+own `Assignment` and `IssPosition`. The generated C# renders each sealed class as an abstract class
+with its subtypes nested inside it, so the ViewModel pattern-matches on `Loading` / `Error` /
+`Success`.
 
 The Windows client does not use Koin: the AndroidX ViewModels live in the `nonWindows` source set
 and Koin's compiler plugin is excluded from the MinGW compilations (see below), so the client
 constructs its dependencies directly.
 
-## Workarounds for kotlin-native-nuget 0.3.0
+## kotlin-native-nuget
 
-Each of these is tracked upstream and can be removed when the fix ships.
-
-- **Sealed UI state cannot cross the boundary** — nested classes hit three separate generator
-  bugs: [#38](https://github.com/xxfast/kotlin-native-nuget/issues/38) (nullable properties
-  exported as non-null), [#39](https://github.com/xxfast/kotlin-native-nuget/issues/39) (list
-  getters on sealed subclasses don't compile) and
-  [#40](https://github.com/xxfast/kotlin-native-nuget/issues/40) (`FromHandle<T>` cannot
-  materialise an abstract base). `ExportedState.kt` flattens the sealed state into top-level
-  `PeopleState` / `IssState` envelopes for the export only.
-- **Two exported packages** — `dev.johnoreilly.common.remote` is exported for `Assignment` and
-  `IssPosition`, which triggers [#41](https://github.com/xxfast/kotlin-native-nuget/issues/41)
-  (bare cross-namespace type names) and
-  [#42](https://github.com/xxfast/kotlin-native-nuget/issues/42) (dangling `IKoinComponent`
-  supertype on the Api classes in that package). `windows/WinUiApp/GeneratedBindingShims.cs`
-  resolves both without editing the generated file.
-- **Fixed package version** — the local package stays at `0.1.0`, so after any Kotlin change:
-  `packNuget`, delete `windows/obj/packages`, restore `--force --no-cache`. The repository-local
-  `RestorePackagesPath` keeps this away from the global NuGet cache.
+- **Bare cross-namespace names on sealed subclasses**
+  ([#50](https://github.com/xxfast/kotlin-native-nuget/issues/50)) — 0.4.0 fixed
+  [#41](https://github.com/xxfast/kotlin-native-nuget/issues/41) for top-level classes, but a
+  property getter on a sealed subclass still names a type from another exported package without
+  its namespace (`PersonListUiState.Success.Result`, `IssPositionUiState.Success.Position` refer
+  to `Assignment` / `IssPosition` from the `Remote` namespace).
+  `windows/WinUiApp/GeneratedBindingShims.cs` aliases the two names globally so the generated
+  file compiles unedited.
 - **Host-specific package** — the package contains only `runtimes/win-x64/native/peopleinspace.dll`
   and can only be packed on Windows; the MinGW link tasks are disabled elsewhere.
+- **Snapshot versions** — `publish { snapshot = true }` gives every `packNuget` a fresh
+  `0.1.0-snapshot.<timestamp>` identity and pins it in `build/PeopleInSpace.KotlinVersions.props`,
+  which `windows/Directory.Build.props` imports. The .NET solution therefore cannot restore until
+  the package has been packed once, and old snapshots accumulate under `common/build/nuget`
+  (cleared by Gradle `clean`) and `windows/obj/packages` (delete it by hand).
 
 ## Kotlin/Native and MinGW
 
@@ -60,5 +57,5 @@ Each of these is tracked upstream and can be removed when the fix ships.
 - `win-x64` only; unpackaged and framework-dependent (Windows App SDK 1.8 runtime required).
 - No package identity, so packaged-only APIs such as `Windows.Storage.ApplicationData` throw
   `0x80073D54`; `LocalAppDataStore` uses `System.IO` under `%LOCALAPPDATA%` instead.
-- CI packs the native library, restores from a clean cache and builds the app. There are no
-  automated UI tests; launching the app is the smoke test for the generated Flow bindings.
+- CI packs the native library, restores and builds the app. There are no automated UI tests;
+  launching the app is the smoke test for the generated Flow bindings.

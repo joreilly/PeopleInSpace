@@ -3,9 +3,9 @@
 `windows/WinUiApp` consumes the Kotlin Multiplatform data layer from a locally generated
 `PeopleInSpace.Kotlin` NuGet package. `PeopleInSpaceViewModel` collects the exported Kotlin
 `StateFlow`s through the generated bindings and awaits the exported `suspend fun refresh()`; the
-state it receives is a flat projection of the same `PersonListUiState` / `IssPositionUiState` the
-Compose clients use, carrying the shared `Assignment` and `IssPosition` models. See
-[`LIMITATIONS.md`](LIMITATIONS.md) for why it is flattened and the other current constraints.
+state it receives is the same sealed `PersonListUiState` / `IssPositionUiState` the Compose clients
+use, carrying the shared `Assignment` and `IssPosition` models. See
+[`LIMITATIONS.md`](LIMITATIONS.md) for the current constraints.
 
 ## Prerequisites
 
@@ -32,13 +32,14 @@ Copy-Item C:\msys64\mingw64\lib\libsqlite3.a common\build\mingw-sqlite\libsqlite
 ## Pack, restore, build
 
 Run from the repository root. `packNuget` builds the native library, generates the C# bindings and
-writes `PeopleInSpace.Kotlin.0.1.0.nupkg` under `common/build/nuget`, which `windows/NuGet.config`
-adds as a local feed. The version is fixed, so clear the restore cache after repacking:
+writes `PeopleInSpace.Kotlin.0.1.0-snapshot.<timestamp>.nupkg` under `common/build/nuget`, which
+`windows/NuGet.config` adds as a local feed. Every pack mints a new snapshot version and pins it in
+`build/PeopleInSpace.KotlinVersions.props`, which `windows/Directory.Build.props` imports, so a
+plain restore always picks up the latest pack:
 
 ```powershell
 .\gradlew.bat :common:packNuget
-Remove-Item -Recurse -Force windows\obj\packages -ErrorAction SilentlyContinue
-dotnet restore windows\PeopleInSpace.Windows.sln --force --no-cache
+dotnet restore windows\PeopleInSpace.Windows.sln
 dotnet build windows\PeopleInSpace.Windows.sln --configuration Release -p:Platform=x64 --no-restore
 ```
 
@@ -58,10 +59,10 @@ Window state and the SQLDelight database live under `%LOCALAPPDATA%\PeopleInSpac
 
 ## Troubleshooting
 
-- **`PeopleInSpace.Kotlin` cannot be found** — run `:common:packNuget` and restore from the
-  repository root so `windows/NuGet.config` is discovered.
-- **Kotlin changes are not visible** — repack, delete `windows/obj/packages`, restore with
-  `--force --no-cache`.
+- **`PeopleInSpace.Kotlin` cannot be found or has an empty version** — run `:common:packNuget`
+  first (it writes `build/PeopleInSpace.KotlinVersions.props`) and restore from the repository
+  root so `windows/NuGet.config` is discovered.
+- **Kotlin changes are not visible** — repack and restore; each pack is a new snapshot version.
 - **Linking cannot find SQLite** — confirm `common/build/mingw-sqlite/libsqlite3.a` came from the
   MSYS2 MinGW x64 package.
 - **Undefined `__stack_chk_fail` / `__memcpy_chk`** — the link task could not stage `libssp.a`

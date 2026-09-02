@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Microsoft.UI.Dispatching;
 using PeopleInSpace.Kotlin;
+using PeopleInSpace.Kotlin.Dev.Johnoreilly.Common.Remote;
+using PeopleInSpace.Kotlin.Dev.Johnoreilly.Common.Viewmodel;
 
 namespace PeopleInSpace.Windows.WinUiApp;
 
@@ -16,6 +18,8 @@ public sealed record PersonViewModel(string Name, string Craft, string? National
 /// </summary>
 public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDisposable
 {
+    private static readonly List<PersonViewModel> NoPeople = [];
+
     private readonly PeopleInSpaceClient _client;
     private readonly DispatcherQueue _dispatcher;
     private readonly CancellationTokenSource _lifetime = new();
@@ -79,8 +83,12 @@ public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDispo
             {
                 using (state)
                 {
-                    var people = state.People.Select(Project).OrderBy(person => person.Name, StringComparer.OrdinalIgnoreCase).ToList();
-                    var (loading, refreshing, error) = (state.InitialLoading, state.Refreshing, state.ErrorMessage);
+                    (List<PersonViewModel> people, bool loading, bool refreshing, string? error) = state switch
+                    {
+                        PersonListUiState.Success success => (Project(success.Result), false, success.Refreshing, null),
+                        PersonListUiState.Error failure => (NoPeople, false, false, failure.Message),
+                        _ => (NoPeople, true, false, null),
+                    };
                     OnUi(() =>
                     {
                         ReplacePeople(people);
@@ -103,9 +111,9 @@ public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDispo
             await foreach (var state in flow.WithCancellation(_lifetime.Token).ConfigureAwait(false))
             {
                 using (state)
-                using (var position = state.Position)
                 {
-                    if (!state.HasPosition) continue;
+                    if (state is not IssPositionUiState.Success success) continue;
+                    using var position = success.Position;
                     var location = FormattableString.Invariant($"{position.Latitude:F3}°, {position.Longitude:F3}°");
                     var timestamp = DateTimeOffset.FromUnixTimeSeconds(Math.Max(0, position.Timestamp));
                     OnUi(() =>
@@ -121,7 +129,10 @@ public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDispo
         catch (Exception exception) { OnUi(() => { IssLoading = false; IssLocation = exception.Message; }); }
     }
 
-    private static PersonViewModel Project(global::PeopleInSpace.Kotlin.Dev.Johnoreilly.Common.Remote.Assignment person)
+    private static List<PersonViewModel> Project(IReadOnlyList<Assignment> people) =>
+        people.Select(Project).OrderBy(person => person.Name, StringComparer.OrdinalIgnoreCase).ToList();
+
+    private static PersonViewModel Project(Assignment person)
     {
         using (person)
             return new PersonViewModel(person.Name, person.Craft, person.Nationality, person.PersonImageUrl, person.PersonBio);

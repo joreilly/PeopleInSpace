@@ -191,7 +191,14 @@ nuget {
         authors = "xxfast"
         description = "PeopleInSpace Kotlin Multiplatform library for Windows"
         rootPackage = "dev.johnoreilly.common.windows"
-        include("dev.johnoreilly.common.windows", "dev.johnoreilly.common.remote")
+        include(
+            "dev.johnoreilly.common.windows",
+            "dev.johnoreilly.common.viewmodel",
+            "dev.johnoreilly.common.remote",
+        )
+        // Every packNuget mints a new package version and pins it in build/PeopleInSpace.KotlinVersions.props,
+        // so the .NET restore never serves a stale build (see windows/Directory.Build.props).
+        snapshot = true
     }
 }
 

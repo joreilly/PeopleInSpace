@@ -20,14 +20,13 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.serialization.json.Json
 
 /**
  * Self-contained entry point for the shared data layer, exported through the NuGet package.
  *
- * It projects the same UI state the other clients' ViewModels use (see ExportedState.kt).
+ * It exposes the same [PersonListUiState] / [IssPositionUiState] the other clients' ViewModels use.
  * [storageDirectory] must identify an existing directory writable by the caller. The client does
  * not initialise Koin or expose AndroidX types; it owns its HTTP client, SQLite driver and
  * coroutine scope instead.
@@ -59,14 +58,12 @@ class PeopleInSpaceClient(storageDirectory: String) {
     private var closed = false
 
     /** Continuously updated people list state. */
-    val peopleState: StateFlow<PeopleState> = repository.personListUiState()
-        .map { it.toExported() }
-        .stateIn(scope, SharingStarted.Eagerly, PersonListUiState.Loading.toExported())
+    val peopleState: StateFlow<PersonListUiState> = repository.personListUiState()
+        .stateIn(scope, SharingStarted.Eagerly, PersonListUiState.Loading)
 
     /** Continuously updated ISS position state; polling runs for the lifetime of the client. */
-    val issState: StateFlow<IssState> = repository.issPositionUiState()
-        .map { it.toExported() }
-        .stateIn(scope, SharingStarted.Eagerly, IssPositionUiState.Loading.toExported())
+    val issState: StateFlow<IssPositionUiState> = repository.issPositionUiState()
+        .stateIn(scope, SharingStarted.Eagerly, IssPositionUiState.Loading)
 
     /** Requests a fresh people-list synchronisation. */
     suspend fun refresh() {
