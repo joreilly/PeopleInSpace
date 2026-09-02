@@ -97,7 +97,6 @@
                         <FontIcon Glyph="&#xE709;" FontSize="48" Foreground="{ThemeResource AccentFillColorDefaultBrush}" />
                         <TextBlock Text="Coordinates" Style="{StaticResource SubtitleTextBlockStyle}" />
                         <TextBlock Text="{x:Bind ViewModel.IssLocation, Mode=OneWay}" Style="{StaticResource DisplayTextBlockStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.IssTimestamp, Mode=OneWay}" Opacity="0.72" />
                         <ProgressRing IsActive="{x:Bind ViewModel.IssLoading, Mode=OneWay}" Width="28" Height="28" HorizontalAlignment="Left" />
                     </StackPanel>
                 </Border>

@@ -188,7 +188,7 @@ nuget {
     publish {
         packageId = "PeopleInSpace.Kotlin"
         version = "0.1.0"
-        authors = "xxfast"
+        authors = "PeopleInSpace"
         description = "PeopleInSpace Kotlin Multiplatform library for Windows"
         rootPackage = "dev.johnoreilly.common.windows"
         include(

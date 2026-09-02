@@ -3,6 +3,7 @@ package dev.johnoreilly.peopleinspace.ui
 import androidx.compose.ui.test.*
 import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.ui.CoordinateDisplay
+import dev.johnoreilly.peopleinspace.PeopleInSpaceRepositoryFake
 import kotlin.test.Test
 
 /**
@@ -14,12 +15,12 @@ import kotlin.test.Test
 @OptIn(ExperimentalTestApi::class)
 class ISSPositionUiTests {
 
-    private val issPosition = IssPosition(53.2743394, -9.0514163)
+    private val repository = PeopleInSpaceRepositoryFake()
 
     @Test
     fun testCoordinateDisplay_withISSPosition_displaysLatitude() = runComposeUiTest {
         // Given
-        val position = issPosition
+        val position = repository.issPosition
 
         // When
         setContent {
@@ -37,7 +38,7 @@ class ISSPositionUiTests {
     @Test
     fun testCoordinateDisplay_withISSPosition_displaysLongitude() = runComposeUiTest {
         // Given
-        val position = issPosition
+        val position = repository.issPosition
 
         // When
         setContent {

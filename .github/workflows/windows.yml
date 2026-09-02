@@ -1,11 +1,23 @@
 name: Windows CI
 
-on: pull_request
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+# Cancel superseded runs for the same PR/branch
+concurrency:
+  group: windows-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   build:
     name: Build and test WinUI
     runs-on: windows-latest
+    timeout-minutes: 45
     env:
       # Keep restore packages inside the checkout so this job never touches the runner-wide cache.
       NUGET_PACKAGES: ${{ github.workspace }}\windows\obj\packages
@@ -19,10 +31,9 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-          cache: 'gradle'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Install static MinGW SQLite
         uses: msys2/setup-msys2@v2

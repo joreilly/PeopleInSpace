@@ -20,7 +20,7 @@ data class Assignment(
 )
 
 @Serializable
-data class IssPosition(val latitude: Double, val longitude: Double, val timestamp: Long = -1)
+data class IssPosition(val latitude: Double, val longitude: Double)
 
 @Single
 class PeopleInSpaceApi(private val client: HttpClient) : KoinComponent {

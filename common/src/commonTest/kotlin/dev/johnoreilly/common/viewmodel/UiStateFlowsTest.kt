@@ -105,13 +105,13 @@ class UiStateFlowsTest {
         runCurrent()
         assertIs<IssPositionUiState.Loading>(state.value)
 
-        repository.issPositions.emit(IssPosition(latitude = 1.5, longitude = 2.5, timestamp = 10))
+        repository.issPositions.emit(IssPosition(latitude = 1.5, longitude = 2.5))
         runCurrent()
-        assertEquals(IssPositionUiState.Success(IssPosition(1.5, 2.5, 10)), state.value)
+        assertEquals(IssPositionUiState.Success(IssPosition(1.5, 2.5)), state.value)
 
-        repository.issPositions.emit(IssPosition(latitude = 3.5, longitude = 4.5, timestamp = 20))
+        repository.issPositions.emit(IssPosition(latitude = 3.5, longitude = 4.5))
         runCurrent()
-        assertEquals(IssPositionUiState.Success(IssPosition(3.5, 4.5, 20)), state.value)
+        assertEquals(IssPositionUiState.Success(IssPosition(3.5, 4.5)), state.value)
     }
 
     private fun TestScope.peopleState(repository: FakeRepository) =

@@ -26,7 +26,6 @@ public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDispo
     private readonly RelayCommand _refreshCommand;
     private Task? _watchers;
     private string _issLocation = "Waiting for ISS position…";
-    private DateTimeOffset? _issTimestamp;
     private string? _peopleError;
     private bool _peopleLoading = true;
     private bool _issLoading = true;
@@ -43,7 +42,6 @@ public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDispo
     public ObservableCollection<PersonViewModel> People { get; } = [];
     public ICommand RefreshCommand => _refreshCommand;
     public string IssLocation { get => _issLocation; private set => SetField(ref _issLocation, value); }
-    public DateTimeOffset? IssTimestamp { get => _issTimestamp; private set => SetField(ref _issTimestamp, value); }
     public bool PeopleLoading { get => _peopleLoading; private set => SetField(ref _peopleLoading, value); }
     public bool IssLoading { get => _issLoading; private set => SetField(ref _issLoading, value); }
     public PersonViewModel? SelectedPerson { get => _selectedPerson; set => SetField(ref _selectedPerson, value); }
@@ -115,11 +113,9 @@ public sealed class PeopleInSpaceViewModel : INotifyPropertyChanged, IAsyncDispo
                     if (state is not IssPositionUiState.Success success) continue;
                     using var position = success.Position;
                     var location = FormattableString.Invariant($"{position.Latitude:F3}°, {position.Longitude:F3}°");
-                    var timestamp = DateTimeOffset.FromUnixTimeSeconds(Math.Max(0, position.Timestamp));
                     OnUi(() =>
                     {
                         IssLocation = location;
-                        IssTimestamp = timestamp;
                         IssLoading = false;
                     });
                 }
