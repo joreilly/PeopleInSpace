@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260710003" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260804001" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7705" PrivateAssets="all" />
     <!-- Compiles the package's generated Interop.cs (contentFiles) and ships peopleinspace.dll. -->
     <PackageReference Include="PeopleInSpace.Kotlin" Version="$(PeopleInSpaceKotlinVersion)" />
