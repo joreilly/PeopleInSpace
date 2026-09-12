@@ -35,8 +35,12 @@ fun initKoin() = initKoin(enableNetworkLogs = false)
 fun personListViewModel(): PersonListViewModel = KoinPlatform.getKoin().get()
 fun issPositionViewModel(): ISSPositionViewModel = KoinPlatform.getKoin().get()
 
+// NativeModule is already pulled in transitively by CommonModule, and Koin dedupes includes at
+// runtime. It is listed here as well because the Koin compiler plugin's full-graph validation
+// (1.1.0+) only collects modules reachable one level from the @Configuration entry point, so the
+// platform definitions would otherwise be reported as KOIN-D001 missing dependencies.
 @Configuration
-@Module(includes = [CommonModule::class])
+@Module(includes = [CommonModule::class, NativeModule::class])
 class AppModule
 
 @Module(includes = [NativeModule::class])
