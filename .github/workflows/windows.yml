@@ -49,7 +49,7 @@ jobs:
           cp /mingw64/lib/libsqlite3.a common/build/mingw-sqlite/libsqlite3.a
 
       - name: Set up .NET 10
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
 
