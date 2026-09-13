@@ -1,5 +1,5 @@
 import SwiftUI
-import common
+import Common
 
 
 struct ContentView: View {
@@ -18,9 +18,9 @@ struct ContentView: View {
 }
 
 struct PeopleListScreen: View {
-    @State var viewModel = KoinKt.personListViewModel()
+    @State var viewModel = di.personListViewModel()
 
-    @State private var path: [Assignment] = []
+    @State private var path: [remote.Assignment] = []
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -30,38 +30,7 @@ struct PeopleListScreen: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 Observing(viewModel.uiState) { playerListUIState in
-                    switch onEnum(of: playerListUIState) {
-                    case .loading:
-                        VStack(spacing: 16) {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                            Text("Loading astronauts...")
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                        }
-                    case .error(let error):
-                        VStack(spacing: 16) {
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.largeTitle)
-                                .foregroundColor(.orange)
-                            Text("Error: \(error)")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.center)
-                            
-                            Button(action: {
-                                // Refresh action
-                                viewModel = KoinKt.personListViewModel()
-                            }) {
-                                Label("Try Again", systemImage: "arrow.clockwise")
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                            }
-                        }
-                        .padding()
-                    case .success(let success):
+                    if let success = playerListUIState as? viewmodel.PersonListUiState.Success {
                         ScrollView {
                             LazyVStack(spacing: 12) {
                                 ForEach(success.result, id: \.name) { person in
@@ -80,10 +49,39 @@ struct PeopleListScreen: View {
                             }
                             .padding(.vertical)
                         }
+                    } else if let failure = playerListUIState as? viewmodel.PersonListUiState.Error {
+                        VStack(spacing: 16) {
+                            Image(systemName: "exclamationmark.triangle")
+                                .font(.largeTitle)
+                                .foregroundColor(.orange)
+                            Text("Error: \(failure.message)")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .multilineTextAlignment(.center)
+
+                            Button(action: {
+                                viewModel = di.personListViewModel()
+                            }) {
+                                Label("Try Again", systemImage: "arrow.clockwise")
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                        }
+                        .padding()
+                    } else {
+                        VStack(spacing: 16) {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                            Text("Loading astronauts...")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
             }
-            .navigationDestination(for: Assignment.self) { person in
+            .navigationDestination(for: remote.Assignment.self) { person in
                 PersonDetailsScreen(person: person)
             }
             .navigationBarTitle(Text("People In Space"))
@@ -92,7 +90,7 @@ struct PeopleListScreen: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         // Refresh action
-                        viewModel = KoinKt.personListViewModel()
+                        viewModel = di.personListViewModel()
                     }) {
                         Image(systemName: "arrow.clockwise")
                     }
@@ -103,7 +101,7 @@ struct PeopleListScreen: View {
 }
 
 struct PersonView: View {
-    let person: Assignment
+    let person: remote.Assignment
 
     var body: some View {
         HStack(spacing: 16) {
@@ -163,7 +161,7 @@ struct PersonView: View {
 
 
 struct PersonDetailsScreen: View {
-    let person: Assignment
+    let person: remote.Assignment
 
     var body: some View {
         // Compose share text once for use in toolbar

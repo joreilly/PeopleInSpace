@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 
 @Composable
-actual fun ISSMapView(
+public actual fun ISSMapView(
     modifier: Modifier,
     viewModel: ISSPositionViewModel
 ) {

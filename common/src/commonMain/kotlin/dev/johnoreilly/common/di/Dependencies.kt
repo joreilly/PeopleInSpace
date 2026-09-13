@@ -1,7 +1,5 @@
 package dev.johnoreilly.common.di
 
-import app.cash.sqldelight.db.SqlDriver
-import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -11,9 +9,7 @@ import kotlinx.serialization.json.Json
 
 // Shared by the Koin graph (nonWindows targets) and the Windows client, which builds its own graph.
 
-class PeopleInSpaceDatabaseWrapper(val driver: SqlDriver, val instance: PeopleInSpaceDatabase)
-
-fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
+internal fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
     install(ContentNegotiation) {
         json(json)
     }

@@ -16,25 +16,25 @@ import kotlinx.coroutines.flow.*
 import org.koin.core.annotation.Single
 
 
-interface PeopleInSpaceRepositoryInterface {
+public interface PeopleInSpaceRepositoryInterface {
     // false until the first network fetch has finished (successfully or not),
     // letting the UI distinguish "not fetched yet" from a genuinely empty result
-    val initialSyncCompleted: StateFlow<Boolean>
+    public val initialSyncCompleted: StateFlow<Boolean>
 
     /** True while the people list is being synchronised with the service. */
-    val peopleSyncLoading: StateFlow<Boolean>
+    public val peopleSyncLoading: StateFlow<Boolean>
 
     /** The most recent people-list synchronisation failure, if any. */
-    val peopleSyncError: StateFlow<Throwable?>
+    public val peopleSyncError: StateFlow<Throwable?>
 
-    fun fetchPeopleAsFlow(): Flow<List<Assignment>>
-    fun pollISSPosition(): Flow<IssPosition>
-    suspend fun fetchISSFuturePosition(): List<OrbitPoint>
-    suspend fun fetchAndStorePeople()
+    public fun fetchPeopleAsFlow(): Flow<List<Assignment>>
+    public fun pollISSPosition(): Flow<IssPosition>
+    public suspend fun fetchISSFuturePosition(): List<OrbitPoint>
+    public suspend fun fetchAndStorePeople()
 }
 
 @Single
-class PeopleInSpaceRepository(
+internal class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper,
     private val astroviewerApi: AstroviewerApi,
