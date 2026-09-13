@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.swiftexport.ExperimentalSwiftExportDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.RELEASE
 
@@ -14,20 +15,18 @@ plugins {
     alias(libs.plugins.koin.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.skie)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
 }
 
 kotlin {
     jvmToolchain(17)
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "common"
-        }
+    iosArm64()
+    iosSimulatorArm64()
+
+    @OptIn(ExperimentalSwiftExportDsl::class)
+    swiftExport {
+        moduleName = "Common"
+        flattenPackage = "dev.johnoreilly.common"
     }
 
     mingwX64 {
@@ -165,23 +164,9 @@ sqldelight {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("PeopleInSpaceKit")
-    swiftToolsVersion("5.9")
-    targetPlatforms {
-        iOS { v("14") }
-    }
-}
-
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
-}
-
-skie {
-    features {
-        enableSwiftUIObservingPreview = true
-    }
 }
 
 nuget {
