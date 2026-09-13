@@ -23,7 +23,7 @@ data class Assignment(
 data class IssPosition(val latitude: Double, val longitude: Double)
 
 @Single
-class PeopleInSpaceApi(private val client: HttpClient) : KoinComponent {
+class PeopleInSpaceApi internal constructor(private val client: HttpClient) : KoinComponent {
     var baseUrl = "https://people-in-space-proxy.ew.r.appspot.com"
     var baseIssPositionUrl = "https://api.wheretheiss.at"
 

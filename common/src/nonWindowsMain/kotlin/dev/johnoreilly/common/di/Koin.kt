@@ -20,7 +20,7 @@ import org.koin.mp.KoinPlatform
 import org.koin.plugin.module.dsl.startKoin
 
 @KoinApplication
-object KoinApp
+internal object KoinApp
 
 fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
     startKoin<KoinApp> {
@@ -41,11 +41,11 @@ fun issPositionViewModel(): ISSPositionViewModel = KoinPlatform.getKoin().get()
 // platform definitions would otherwise be reported as KOIN-D001 missing dependencies.
 @Configuration
 @Module(includes = [CommonModule::class, NativeModule::class])
-class AppModule
+internal class AppModule
 
 @Module(includes = [NativeModule::class])
 @ComponentScan("dev.johnoreilly.common")
-class CommonModule {
+internal class CommonModule {
     @Single
     fun json() = Json { isLenient = true; ignoreUnknownKeys = true }
 
@@ -56,10 +56,10 @@ class CommonModule {
     fun dispatcher() = CoroutineScope(Dispatchers.Default + SupervisorJob() )
 }
 
-expect class ContextWrapper
+internal expect class ContextWrapper
 
 @Module
-expect class NativeModule() {
+internal expect class NativeModule() {
 
     @Single
     fun providesContextWrapper(scope : Scope) : ContextWrapper

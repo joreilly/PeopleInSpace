@@ -34,7 +34,7 @@ interface PeopleInSpaceRepositoryInterface {
 }
 
 @Single
-class PeopleInSpaceRepository(
+internal class PeopleInSpaceRepository(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper,
     private val astroviewerApi: AstroviewerApi,

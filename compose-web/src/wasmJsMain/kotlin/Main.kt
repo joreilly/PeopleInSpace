@@ -43,7 +43,7 @@ import androidx.compose.ui.window.ComposeViewport
 import coil3.compose.AsyncImage
 import dev.johnoreilly.common.di.initKoin
 import dev.johnoreilly.common.remote.Assignment
-import dev.johnoreilly.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 
 // Define colors for the application
 private val primaryColor = Color(0xFF1E88E5) // Blue
@@ -57,7 +57,7 @@ private val koin = initKoin(enableNetworkLogs = true).koin
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
 
-    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepository>()
+    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepositoryInterface>()
 
     ComposeViewport(content = {
 

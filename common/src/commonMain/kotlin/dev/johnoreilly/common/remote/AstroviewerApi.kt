@@ -15,7 +15,7 @@ data class OrbitPoint(val t: Long, val lt: Double, val ln: Double, val h: Float 
 }
 
 @Single
-class AstroviewerApi(private val client: HttpClient) : KoinComponent {
+internal class AstroviewerApi(private val client: HttpClient) : KoinComponent {
     var baseUrl = "https://www.astroviewer.net/iss/ws"
 
     suspend fun fetchISSFuturePositions() = client.get("$baseUrl/orbit.php?sat=25544").body<OrbitResult>()
