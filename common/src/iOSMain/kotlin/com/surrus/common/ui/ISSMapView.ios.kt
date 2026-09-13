@@ -11,7 +11,7 @@ import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @Composable
-actual fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel) {
+public actual fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel) {
     MapKitView(
         modifier = modifier,
         viewModel = viewModel,

@@ -14,6 +14,8 @@ plugins {
 // which Swift Export cannot currently express) out of the exported surface. :common depends on
 // this module with `implementation` and touches it only from internal code.
 kotlin {
+    explicitApi()
+
     jvmToolchain(17)
 
     iosArm64()

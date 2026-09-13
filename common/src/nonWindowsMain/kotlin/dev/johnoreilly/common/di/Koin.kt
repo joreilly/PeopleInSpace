@@ -22,18 +22,18 @@ import org.koin.plugin.module.dsl.startKoin
 @KoinApplication
 internal object KoinApp
 
-fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null) =
+public fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppDeclaration? = null): org.koin.core.KoinApplication =
     startKoin<KoinApp> {
         includes(appDeclaration)
     }
 
 // called by iOS etc
-fun initKoin() = initKoin(enableNetworkLogs = false)
+public fun initKoin(): org.koin.core.KoinApplication = initKoin(enableNetworkLogs = false)
 
 // helpers for iOS/Swift clients to resolve view models from Koin
 // (composition-root service location so view models can use constructor injection)
-fun personListViewModel(): PersonListViewModel = KoinPlatform.getKoin().get()
-fun issPositionViewModel(): ISSPositionViewModel = KoinPlatform.getKoin().get()
+public fun personListViewModel(): PersonListViewModel = KoinPlatform.getKoin().get()
+public fun issPositionViewModel(): ISSPositionViewModel = KoinPlatform.getKoin().get()
 
 // NativeModule is already pulled in transitively by CommonModule, and Koin dedupes includes at
 // runtime. It is listed here as well because the Koin compiler plugin's full-graph validation
