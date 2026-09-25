@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.10"
+kotlin = "2.4.20"
 kotlinNativeNuget = "0.6.0"
 
 compose-multiplatform = "1.12.0"
@@ -43,7 +43,7 @@ kermit = "2.2.0"
 
 gradleVersionsPlugin = "0.62.0"
 shadowPlugin = "9.6.1"
-skie = "0.10.14"
+skie = "0.10.15"
 
 mcp = "0.15.0"
 
