@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.stateIn
 import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
-class ISSPositionViewModel(
+class ISSPositionViewModel internal constructor(
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
 ) : ViewModel() {
 

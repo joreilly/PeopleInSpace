@@ -176,6 +176,7 @@ multiplatformSwiftPackage {
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCRefinement")
 }
 
 skie {

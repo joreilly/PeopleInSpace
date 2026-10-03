@@ -8,9 +8,12 @@ import io.ktor.client.engine.darwin.Darwin
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 import org.koin.core.scope.Scope
+import kotlin.native.HiddenFromObjC
 
+@HiddenFromObjC
 actual class ContextWrapper
 
+@HiddenFromObjC
 @Module
 actual class NativeModule actual constructor(){
 

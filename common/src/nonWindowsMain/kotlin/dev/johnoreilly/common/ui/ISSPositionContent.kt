@@ -25,7 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import dev.johnoreilly.common.util.round
+import kotlin.native.HiddenFromObjC
 
+@HiddenFromObjC
 @Composable
 fun ISSPositionContent(viewModel: ISSPositionViewModel) {
     val position by viewModel.position.collectAsStateWithLifecycle()
@@ -85,7 +87,7 @@ fun ISSPositionContent(viewModel: ISSPositionViewModel) {
 }
 
 @Composable
-fun CoordinateDisplay(label: String, value: String, modifier: Modifier = Modifier) {
+internal fun CoordinateDisplay(label: String, value: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .background(

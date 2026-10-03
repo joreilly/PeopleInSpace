@@ -14,8 +14,10 @@ import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import org.koin.core.annotation.Single
+import kotlin.native.HiddenFromObjC
 
 
+@HiddenFromObjC
 interface PeopleInSpaceRepositoryInterface {
     // false until the first network fetch has finished (successfully or not),
     // letting the UI distinguish "not fetched yet" from a genuinely empty result
@@ -33,8 +35,9 @@ interface PeopleInSpaceRepositoryInterface {
     suspend fun fetchAndStorePeople()
 }
 
+@HiddenFromObjC
 @Single
-class PeopleInSpaceRepository(
+class PeopleInSpaceRepository internal constructor(
     private val peopleInSpaceApi: PeopleInSpaceApi,
     private val peopleInSpaceDatabase: PeopleInSpaceDatabaseWrapper,
     private val astroviewerApi: AstroviewerApi,
