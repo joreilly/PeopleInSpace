@@ -6,7 +6,7 @@ import androidx.compose.ui.window.ComposeUIViewController
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 
 
-val LocalNativeViewFactory = staticCompositionLocalOf<NativeViewFactory> {
+internal val LocalNativeViewFactory = staticCompositionLocalOf<NativeViewFactory> {
     error("LocalNativeViewFactory not provided")
 }
 

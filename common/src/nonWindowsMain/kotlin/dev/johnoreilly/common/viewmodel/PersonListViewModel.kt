@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
-class PersonListViewModel(
+class PersonListViewModel internal constructor(
     private val peopleInSpaceRepository: PeopleInSpaceRepositoryInterface
 ) : ViewModel() {
 

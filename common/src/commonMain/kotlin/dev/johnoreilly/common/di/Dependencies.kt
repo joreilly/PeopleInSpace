@@ -8,12 +8,14 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import kotlin.native.HiddenFromObjC
 
 // Shared by the Koin graph (nonWindows targets) and the Windows client, which builds its own graph.
 
+@HiddenFromObjC
 class PeopleInSpaceDatabaseWrapper(val driver: SqlDriver, val instance: PeopleInSpaceDatabase)
 
-fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
+internal fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json, enableNetworkLogs: Boolean) = HttpClient(httpClientEngine) {
     install(ContentNegotiation) {
         json(json)
     }
