@@ -77,9 +77,16 @@ jobs:
           avd-name: peopleinspace-api32
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: adb install ./app/build/outputs/apk/debug/app-debug.apk && maestro test maestro/PeopleInSpace.flow
+          script: adb install ./app/build/outputs/apk/debug/app-debug.apk && maestro test --debug-output maestro-debug maestro/PeopleInSpace.flow
 
       - uses: actions/upload-artifact@v7
         with:
           name: screenshot
           path: PeopleInSpace.png
+
+      # Maestro's logs, screenshots and view hierarchy, to diagnose failures
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: maestro-debug
+          path: maestro-debug
