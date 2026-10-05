@@ -5,8 +5,9 @@ on:
   push:
     branches: [ main ]
   # Weekly run keeps main's caches from being evicted (7 days unused) and catches runner/Xcode image changes
+  # Off the hour and staggered per repo: GitHub delays or drops scheduled runs at busy times, worst at :00
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: '7 5 * * 1'
   workflow_dispatch:
 
 # Cancel superseded runs for the same PR/branch
