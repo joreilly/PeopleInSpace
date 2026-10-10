@@ -29,8 +29,9 @@ kotlin {
                 baseName = "peopleinspace"
                 if (System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
                     // Windows CI places the static MinGW SQLite archive here so the
-                    // packaged DLL has no extra SQLite runtime dependency.
-                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}", "-lssp")
+                    // packaged DLL has no extra SQLite runtime dependency. -lsqlite3 is explicit
+                    // because the SQLDelight plugin (which adds it) now lives in :db.
+                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}", "-lsqlite3", "-lssp")
                 }
             }
         }
