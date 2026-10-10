@@ -4,9 +4,6 @@ on:
   pull_request:
   push:
     branches: [ main ]
-  # Weekly run keeps main's caches from being evicted (7 days unused) and catches runner/Xcode image changes
-  schedule:
-    - cron: '0 6 * * 1'
   workflow_dispatch:
 
 # Cancel superseded runs for the same PR/branch
