@@ -21,6 +21,83 @@ project's own small Ktor backend (see `backend` module below).
 
 The project is included as sample in the official [Kotlin Multiplatform docs](https://kotlinlang.org/docs/multiplatform-samples.html) and also the [Google Dev Library](https://devlibrary.withgoogle.com/products/android)
 
+### Architecture
+
+All of the clients are thin UI layers over the same `common` module: the shared view models expose
+`StateFlow`s of UI state, backed by a single repository that treats the local SQLDelight database as
+the source of truth and refreshes it from the network.
+
+```mermaid
+flowchart TB
+    subgraph clients["Clients"]
+        direction LR
+        android["<b>app</b><br/>Android · Jetpack Compose<br/>+ Glance / Remote Compose widgets"]
+        wear["<b>wearApp</b><br/>Wear OS · Compose + Tile"]
+        ios["<b>PeopleInSpaceSwiftUI</b><br/>iOS · SwiftUI (SKIE)<br/>+ SwiftExecutablePackage"]
+        desktop["<b>compose-desktop</b><br/>JVM · Compose for Desktop"]
+        web["<b>compose-web</b><br/>Kotlin/Wasm · Compose"]
+        winui["<b>windows/WinUiApp</b><br/>.NET · WinUI 3"]
+        mcp["<b>mcp-server</b><br/>JVM · Kotlin MCP SDK"]
+    end
+
+    subgraph common["common (Kotlin Multiplatform)"]
+        direction TB
+        cmpui["Compose Multiplatform UI<br/><i>PersonList / ISSPosition / ISSMapView</i><br/>(expect/actual map per platform)"]
+        vm["View models<br/><i>PersonListViewModel · ISSPositionViewModel</i><br/>StateFlow&lt;UiState&gt;"]
+        winclient["PeopleInSpaceClient<br/><i>mingwX64, exported via NuGet</i><br/>(no Koin / AndroidX)"]
+        repo["<b>PeopleInSpaceRepository</b><br/>offline-first: DB is source of truth,<br/>ISS position polled every 10s"]
+        db[("SQLDelight<br/>PeopleInSpaceDatabase")]
+        api["Ktor client APIs<br/><i>PeopleInSpaceApi · AstroviewerApi</i>"]
+        koin{{"Koin DI<br/>(annotations + compiler plugin)"}}
+
+        cmpui --> vm
+        vm --> repo
+        winclient --> repo
+        repo --> db
+        repo --> api
+        koin -.-> repo
+    end
+
+    subgraph remote["Remote"]
+        direction LR
+        backend["<b>backend</b><br/>Ktor / Netty on App Engine<br/><i>/astros.json</i>"]
+        spacedevs["The Space Devs API<br/><i>names, bios, images</i>"]
+        wheretheiss["wheretheiss.at<br/><i>current ISS position</i>"]
+        astroviewer["astroviewer.net<br/><i>predicted ISS orbit</i>"]
+    end
+
+    android --> cmpui
+    wear --> repo
+    ios --> cmpui
+    desktop --> cmpui
+    web --> cmpui
+    winui --> winclient
+    mcp --> repo
+
+    api --> backend
+    api --> wheretheiss
+    api --> astroviewer
+    backend --> spacedevs
+
+    classDef client fill:#e3f2fd,stroke:#1565c0,color:#0d1b2a
+    classDef shared fill:#ede7f6,stroke:#5e35b1,color:#0d1b2a
+    classDef data fill:#e8f5e9,stroke:#2e7d32,color:#0d1b2a
+    classDef service fill:#fff3e0,stroke:#ef6c00,color:#0d1b2a
+    class android,wear,ios,desktop,web,winui,mcp client
+    class cmpui,vm,winclient,koin shared
+    class repo,db,api data
+    class backend,spacedevs,wheretheiss,astroviewer service
+```
+
+Notes on a few of the edges above:
+
+* The Wear OS client and the MCP server talk to the repository directly (Wear has its own
+  Wear-specific view models, the MCP server just reads the people list).
+* The Windows client goes through `PeopleInSpaceClient`, a self-contained `mingwX64` entry point that
+  owns its own Ktor engine, SQLite driver and coroutine scope rather than using Koin.
+* Only the people list goes through this project's own Ktor backend; the ISS position and predicted
+  orbit are fetched from their services directly by the shared Ktor client code.
+
 ### Module overview
 
 | Module | Description |

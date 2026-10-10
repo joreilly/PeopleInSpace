@@ -1,5 +1,5 @@
 buildscript {
-    // kotlin-native-nuget 0.6.0 brings KSP 2.3.10, which calls KotlinNativeCompile.konanHome (removed in Kotlin 2.5)
+    // kotlin-native-nuget (0.8.0) brings KSP 2.3.10, which calls KotlinNativeCompile.konanHome (removed in Kotlin 2.5)
     configurations.classpath { resolutionStrategy.force("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.3.12") }
 }
 

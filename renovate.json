@@ -5,6 +5,13 @@
   ],
   "packageRules": [
     {
+      "description": "Pinned to Gradle 9.6.1 — the 9.7.x bump was reverted deliberately. Re-enable when we choose to move forward again.",
+      "matchManagers": [
+        "gradle-wrapper"
+      ],
+      "enabled": false
+    },
+    {
       "description": "AGP 9.3.x+ outruns what the locally installed Android Studio supports — sync fails with unsupported-AGP-version and \"could not find compile target\" errors. Hold AGP updates until Studio's bundled support catches up.",
       "matchPackageNames": [
         "agp",

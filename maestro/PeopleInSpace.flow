@@ -6,7 +6,10 @@ appId: dev.johnoreilly.peopleinspace
 - assertVisible: "People in Space"
 
 - tapOn: "ISS Position"
-- assertVisible: "ISS Position"
+# Allow for slow CI emulators (the default assertVisible wait occasionally times out)
+- extendedWaitUntil:
+    visible: "ISS Position"
+    timeout: 30000
 
 - tapOn: "People"
 - assertVisible: "People in Space"

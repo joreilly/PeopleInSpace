@@ -54,6 +54,35 @@ val currentPeopleInSpace = listOf(
         nationality = "Russian",
     ),
 
+    Assignment(
+        craft = "ISS",
+        name = "Jessica Watkins",
+        personImageUrl = "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190244.jpeg",
+        personBio = "Jessica Andrea Watkins is an American geologist, former international rugby player, and a NASA astronaut of the class of 2017.",
+        nationality = "American",
+    ),
+    Assignment(
+        craft = "ISS",
+        name = "Luke Delaney",
+        personImageUrl = "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190723.jpeg",
+        personBio = "Luke Delaney is a retired US Marine Corps major who grew up in Debary, Florida. He holds a degree in mechanical engineering from University of North Florida and a master’s degree in aerospace engineering from the Naval Postgraduate School. He is a distinguished naval aviator who participated in exercises throughout the Asia Pacific region and conducted combat missions in support of Operation Enduring Freedom. As a test pilot, he executed numerous flights evaluating weapon systems integration, and he served as a test pilot instructor. Delaney most recently worked as a research pilot at NASA’s Langley Research Center, in Hampton, Virginia, where he supported airborne science missions. Including his NASA career, Delaney logged more than 3,700 flight hours on 48 models of jet, propeller, and rotary wing aircraft.",
+        nationality = "American",
+    ),
+    Assignment(
+        craft = "ISS",
+        name = "Joshua Kutryk",
+        personImageUrl = "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185947.jpeg",
+        personBio = "Joshua Kutryk, a Royal Canadian Air Force lieutenant colonel, is from Beauvallon, Alberta. He has a bachelor’s degree in mechanical engineering, as well as master’s degrees in space studies, flight test engineering, and defense studies. Prior to joining CSA, Kutryk worked as an experimental test pilot and a fighter pilot in Cold Lake, Alberta, where he led the unit responsible for the operational flight-testing of fighter aircraft in Canada.",
+        nationality = "Canadian",
+    ),
+    Assignment(
+        craft = "ISS",
+        name = "Sergey Teteryatnikov",
+        personImageUrl = "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/sergey_teteryat_image_thumbnail_20260424073411.jpeg",
+        personBio = "Sergey Teteryatnikov graduated from the Naval Academy, St. Petersburg, Russia, in 2011 as an engineer specializing in ship power plant operations. Before his selection as a test cosmonaut, Teteryatnikov served in various naval engineering roles, including undersea vessels and specialized engine room operations. He was selected for the Gagarin Research and Test Cosmonaut Training Center Cosmonaut Corps in 2021 and has served as a test cosmonaut since 2023.",
+        nationality = "Russian",
+    ),
+
 
     Assignment(
         craft = "Tiangong",

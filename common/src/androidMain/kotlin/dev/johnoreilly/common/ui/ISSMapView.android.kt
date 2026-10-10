@@ -19,7 +19,7 @@ import org.osmdroid.util.GeoPoint
 
 
 @Composable
-public actual fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel) {
+internal actual fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel) {
     val position by viewModel.position.collectAsState()
 
     val cameraState by remember {

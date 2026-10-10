@@ -36,6 +36,12 @@ kotlin {
                 implementation(projects.common)
             }
         }
+        wasmJsMain {
+            dependencies {
+                // used by webpack.config.d/config.js; no longer hoisted into node_modules from Kotlin 2.4.20
+                implementation(devNpm("terser-webpack-plugin", "5.6.1"))
+            }
+        }
     }
 }
 

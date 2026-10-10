@@ -5,4 +5,4 @@ import androidx.compose.ui.Modifier
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 
 @Composable
-public expect fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel)
+internal expect fun ISSMapView(modifier: Modifier, viewModel: ISSPositionViewModel)

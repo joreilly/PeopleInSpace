@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 # Cancel superseded runs for the same PR/branch
 concurrency:
@@ -24,8 +25,10 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - uses: gradle/actions/setup-gradle@v6
-      - name: Cache Kotlin/Native (konan)
-        uses: actions/cache@v6
+      # Restore on every run, but only save from main so PR runs don't fill the repo's cache quota
+      - name: Restore Kotlin/Native (konan) cache
+        id: konan-cache
+        uses: actions/cache/restore@v6
         with:
           path: ~/.konan
           key: ${{ runner.os }}-konan-${{ hashFiles('**/libs.versions.toml') }}
@@ -34,3 +37,10 @@ jobs:
 
       - name: Build iOS app
         run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator ARCHS=arm64 EXCLUDED_ARCHS=x86_64
+
+      - name: Save Kotlin/Native (konan) cache
+        if: github.ref == 'refs/heads/main' && steps.konan-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
+        with:
+          path: ~/.konan
+          key: ${{ steps.konan-cache.outputs.cache-primary-key }}
