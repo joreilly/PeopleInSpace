@@ -27,8 +27,11 @@ public fun initKoin(enableNetworkLogs: Boolean = false, appDeclaration: KoinAppD
         includes(appDeclaration)
     }
 
-// called by iOS etc
-public fun initKoin(): org.koin.core.KoinApplication = initKoin(enableNetworkLogs = false)
+// called by iOS. Returns Unit so Swift never sees Koin's KoinApplication: koin-core is HIDDEN
+// from the Swift export, and a function returning a hidden type is generated as a fatalError() stub.
+public fun initKoin() {
+    initKoin(enableNetworkLogs = false)
+}
 
 // helpers for iOS/Swift clients to resolve view models from Koin
 // (composition-root service location so view models can use constructor injection)

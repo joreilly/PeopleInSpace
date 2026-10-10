@@ -15,9 +15,9 @@ internal val LocalNativeViewFactory: ProvidableCompositionLocal<NativeViewFactor
 
 public fun ISSPositionContentViewController(
     viewModel: ISSPositionViewModel,
-    createISSMapView: (ISSPositionViewModel) -> UIViewController,
+    nativeViewFactory: NativeViewFactory,
 ): UIViewController = ComposeUIViewController {
-    CompositionLocalProvider(LocalNativeViewFactory provides NativeViewFactory(createISSMapView)) {
+    CompositionLocalProvider(LocalNativeViewFactory provides nativeViewFactory) {
         ISSPositionContent(viewModel)
     }
 }

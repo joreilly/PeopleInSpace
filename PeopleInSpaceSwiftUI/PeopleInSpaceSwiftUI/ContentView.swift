@@ -30,10 +30,11 @@ struct PeopleListScreen: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 Observing(viewModel.uiState) { playerListUIState in
-                    if let success = playerListUIState as? viewmodel.PersonListUiState.Success {
+                    switch playerListUIState.sealedType() {
+                    case .success(let success):
                         ScrollView {
                             LazyVStack(spacing: 12) {
-                                ForEach(success.result, id: \.name) { person in
+                                ForEach(success.value.result, id: \.name) { person in
                                     NavigationLink(value: person) {
                                         PersonView(person: person)
                                             .padding(.horizontal)
@@ -49,12 +50,12 @@ struct PeopleListScreen: View {
                             }
                             .padding(.vertical)
                         }
-                    } else if let failure = playerListUIState as? viewmodel.PersonListUiState.Error {
+                    case .error(let failure):
                         VStack(spacing: 16) {
                             Image(systemName: "exclamationmark.triangle")
                                 .font(.largeTitle)
                                 .foregroundColor(.orange)
-                            Text("Error: \(failure.message)")
+                            Text("Error: \(failure.value.message)")
                                 .font(.headline)
                                 .foregroundColor(.primary)
                                 .multilineTextAlignment(.center)
@@ -70,7 +71,7 @@ struct PeopleListScreen: View {
                             }
                         }
                         .padding()
-                    } else {
+                    case .loading:
                         VStack(spacing: 16) {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle())

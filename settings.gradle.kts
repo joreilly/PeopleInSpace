@@ -4,6 +4,8 @@ pluginManagement {
             google()
             mavenCentral()
             gradlePluginPortal()
+            // Kotlin dev builds (2.5.0-Beta2-*) for Swift Export; drop once Beta2 is on Maven Central
+            maven("https://packages.jetbrains.team/maven/p/kt/dev")
             maven {
                 url = uri("https://androidx.dev/snapshots/builds/14637376/artifacts/repository")
             }
