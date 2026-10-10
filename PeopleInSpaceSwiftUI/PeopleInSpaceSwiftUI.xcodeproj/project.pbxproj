@@ -13,6 +13,7 @@
 		1A3AB67E2A2289B700296F07 /* ISSPositionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3AB5DF2A22247A00296F07 /* ISSPositionScreen.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		A1B2C3D4E5F6071829304151 /* Observing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6071829304152 /* Observing.swift */; };
 		DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */; };
 		DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* PeopleInSpaceSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeopleInSpaceSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6071829304152 /* Observing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observing.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB4B5B512C302841009CBB43 /* NativeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeViewFactory.swift; sourceTree = "<group>"; };
 		DB4B5B532C3028B5009CBB43 /* NativeISSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeISSMapView.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
+				A1B2C3D4E5F6071829304152 /* Observing.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
@@ -253,7 +256,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :common:embedAndSignAppleFrameworkForXcode";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :ios-export:embedSwiftExportForXcode";
 		};
 		7555FFB5242A651A00829871 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -270,7 +273,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :common:embedAndSignAppleFrameworkForXcode";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :ios-export:embedSwiftExportForXcode";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -290,6 +293,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				DB4B5B522C302841009CBB43 /* NativeViewFactory.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				A1B2C3D4E5F6071829304151 /* Observing.swift in Sources */,
 				DB4B5B542C3028B5009CBB43 /* NativeISSMapView.swift in Sources */,
 				1A3AB5E02A22247A00296F07 /* ISSPositionScreen.swift in Sources */,
 			);
@@ -316,7 +320,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)\n";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 orgName. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -325,8 +329,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					common,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly..PeopleInSpaceMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -353,7 +356,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)\n";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 orgName. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -362,8 +365,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					common,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly..PeopleInSpaceMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,7 +426,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -479,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -503,7 +505,7 @@
 					"$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -511,8 +513,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					common,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.peopleinspace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -538,7 +539,7 @@
 					"$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = PeopleInSpaceSwiftUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -546,8 +547,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					common,
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.peopleinspace;
 				PRODUCT_NAME = "$(TARGET_NAME)";

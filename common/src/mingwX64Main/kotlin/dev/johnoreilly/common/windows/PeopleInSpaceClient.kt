@@ -31,7 +31,7 @@ import kotlinx.serialization.json.Json
  * not initialise Koin or expose AndroidX types; it owns its HTTP client, SQLite driver and
  * coroutine scope instead.
  */
-class PeopleInSpaceClient(storageDirectory: String) {
+public class PeopleInSpaceClient(storageDirectory: String) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private val httpClient: HttpClient = createHttpClient(
         httpClientEngine = WinHttp.create(),
@@ -58,20 +58,20 @@ class PeopleInSpaceClient(storageDirectory: String) {
     private var closed = false
 
     /** Continuously updated people list state. */
-    val peopleState: StateFlow<PersonListUiState> = repository.personListUiState()
+    public val peopleState: StateFlow<PersonListUiState> = repository.personListUiState()
         .stateIn(scope, SharingStarted.Eagerly, PersonListUiState.Loading)
 
     /** Continuously updated ISS position state; polling runs for the lifetime of the client. */
-    val issState: StateFlow<IssPositionUiState> = repository.issPositionUiState()
+    public val issState: StateFlow<IssPositionUiState> = repository.issPositionUiState()
         .stateIn(scope, SharingStarted.Eagerly, IssPositionUiState.Loading)
 
     /** Requests a fresh people-list synchronisation. */
-    suspend fun refresh() {
+    public suspend fun refresh() {
         repository.fetchAndStorePeople()
     }
 
     /** Releases all resources owned by this client. Safe to call more than once. */
-    fun close() {
+    public fun close() {
         if (closed) return
         closed = true
         scope.cancel()

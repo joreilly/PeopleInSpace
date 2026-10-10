@@ -21,7 +21,7 @@ import androidx.compose.ui.window.rememberWindowState
 import coil3.compose.AsyncImage
 import dev.johnoreilly.common.di.initKoin
 import dev.johnoreilly.common.remote.Assignment
-import dev.johnoreilly.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 
 // Define custom colors for the app
 private val SpaceBlue = Color(0xFF1E88E5)
@@ -75,7 +75,7 @@ fun main() = application {
     var selectedPerson by remember { mutableStateOf<Assignment?>(null) }
     var isLoading by remember { mutableStateOf(true) }
 
-    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepository>()
+    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepositoryInterface>()
     val people by peopleInSpaceRepository.fetchPeopleAsFlow().collectAsState(emptyList())
     
     // Update loading state when people list changes

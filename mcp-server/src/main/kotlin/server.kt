@@ -1,5 +1,5 @@
 import dev.johnoreilly.common.di.initKoin
-import dev.johnoreilly.common.repository.PeopleInSpaceRepository
+import dev.johnoreilly.common.repository.PeopleInSpaceRepositoryInterface
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 import io.ktor.utils.io.streams.*
@@ -21,7 +21,7 @@ import kotlinx.io.buffered
 private val koin = initKoin(enableNetworkLogs = true).koin
 
 fun configureServer(): Server {
-    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepository>()
+    val peopleInSpaceRepository = koin.get<PeopleInSpaceRepositoryInterface>()
 
     val server = Server(
         Implementation(

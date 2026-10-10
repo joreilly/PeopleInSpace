@@ -9,26 +9,19 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.sqlDelight)
     alias(libs.plugins.kotlin.native.nuget)
     alias(libs.plugins.koin.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.skie)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
 }
 
 kotlin {
+    explicitApi()
+
     jvmToolchain(17)
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "common"
-        }
-    }
+    iosArm64()
+    iosSimulatorArm64()
 
     mingwX64 {
         binaries {
@@ -36,8 +29,9 @@ kotlin {
                 baseName = "peopleinspace"
                 if (System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
                     // Windows CI places the static MinGW SQLite archive here so the
-                    // packaged DLL has no extra SQLite runtime dependency.
-                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}", "-lssp")
+                    // packaged DLL has no extra SQLite runtime dependency. -lsqlite3 is explicit
+                    // because the SQLDelight plugin (which adds it) now lives in :db.
+                    linkerOpts("-L${layout.buildDirectory.dir("mingw-sqlite").get().asFile.invariantSeparatorsPath}", "-lsqlite3", "-lssp")
                 }
             }
         }
@@ -104,8 +98,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             api(libs.kotlinx.serialization)
 
-            implementation(libs.sqldelight.runtime)
-            implementation(libs.sqldelight.coroutines.extensions)
+            implementation(projects.db)
 
             api(libs.koin.core)
             api(libs.koin.annotations)
@@ -119,16 +112,16 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.ktor.client.android)
             implementation(libs.sqldelight.android.driver)
+            implementation(libs.ktor.client.android)
 
             implementation(libs.osmdroidAndroid)
             implementation(libs.osm.android.compose)
         }
 
         jvmMain.dependencies {
-            implementation(libs.ktor.client.java)
             implementation(libs.sqldelight.sqlite.driver)
+            implementation(libs.ktor.client.java)
             implementation(libs.slf4j)
             implementation(libs.kotlinx.coroutines.swing)
         }
@@ -138,51 +131,24 @@ kotlin {
         }
 
         appleMain.dependencies {
-            implementation(libs.ktor.client.darwin)
             implementation(libs.sqldelight.native.driver)
+            implementation(libs.ktor.client.darwin)
         }
 
         mingwX64Main.dependencies {
-            implementation(libs.ktor.client.winhttp)
             implementation(libs.sqldelight.native.driver)
+            implementation(libs.ktor.client.winhttp)
         }
 
         wasmJsMain.dependencies {
             implementation(libs.sqldelight.web.driver)
-            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.1.0"))
-            implementation(npm("sql.js", libs.versions.sqlJs.get()))
-            implementation(devNpm("copy-webpack-plugin", libs.versions.webPackPlugin.get()))
         }
-    }
-}
-
-sqldelight {
-    databases {
-        create("PeopleInSpaceDatabase") {
-            generateAsync = true
-            packageName.set("dev.johnoreilly.peopleinspace.db")
-        }
-    }
-}
-
-multiplatformSwiftPackage {
-    packageName("PeopleInSpaceKit")
-    swiftToolsVersion("5.9")
-    targetPlatforms {
-        iOS { v("14") }
     }
 }
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
-    languageSettings.optIn("kotlin.experimental.ExperimentalObjCRefinement")
-}
-
-skie {
-    features {
-        enableSwiftUIObservingPreview = true
-    }
 }
 
 nuget {

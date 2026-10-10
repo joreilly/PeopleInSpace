@@ -1,9 +1,9 @@
 import SwiftUI
-import common
+import Common
 import MapKit
 
 struct NativeISSMapView : View {
-    var viewModel: ISSPositionViewModel
+    var viewModel: viewmodel.ISSPositionViewModel
     
     var body: some View {
         VStack {
