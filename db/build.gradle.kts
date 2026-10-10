@@ -8,11 +8,11 @@ plugins {
     alias(libs.plugins.sqlDelight)
 }
 
-// The SQLDelight-generated database classes are public declarations, and Swift Export exports
-// every public declaration of the module it is applied to -- referenced or not. Keeping them
-// out of :common is what keeps app.cash.sqldelight (and its generic SqlSchema<T : QueryResult<Unit>>,
-// which Swift Export cannot currently express) out of the exported surface. :common depends on
-// this module with `implementation` and touches it only from internal code.
+// The SQLDelight-generated database classes are public declarations, and :common is exported to
+// Swift in full -- every public declaration, referenced or not. Keeping them out of :common keeps
+// app.cash.sqldelight out of the Swift export, which Swift never uses (it would add tens of
+// thousands of lines of generated Swift). :common depends on this module with `implementation`
+// and touches it only from internal code.
 kotlin {
     explicitApi()
 
