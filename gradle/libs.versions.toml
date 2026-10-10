@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.4.20"
-kotlinNativeNuget = "0.8.0"
+kotlinNativeNuget = "0.9.0"
 
 compose-multiplatform = "1.12.1"
 composeUiTooling = "1.6.2"
