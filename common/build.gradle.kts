@@ -2,7 +2,6 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.swiftexport.ExperimentalSwiftExportDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.RELEASE
 
@@ -23,12 +22,6 @@ kotlin {
 
     iosArm64()
     iosSimulatorArm64()
-
-    @OptIn(ExperimentalSwiftExportDsl::class)
-    swiftExport {
-        moduleName = "Common"
-        flattenPackage = "dev.johnoreilly.common"
-    }
 
     mingwX64 {
         binaries {
@@ -218,85 +211,5 @@ if (!System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
                 ?: error("libssp.a was not found under $konanDataDir/dependencies")
             libssp.copyTo(sqliteDir.resolve("libssp.a"), overwrite = true)
         }
-    }
-}
-
-// WORKAROUND (Swift Export alpha, Kotlin 2.4.20): an interface member behind a @RequiresOptIn
-// marker that ALSO has a Kotlin default body is generated twice in the same unconstrained Swift
-// extension -- once as an @_spi "must be implemented by Swift conformers" fatalError stub, once
-// as the real bridge -- which Swift rejects as `invalid redeclaration`. Hit here via
-// kotlinx-serialization-core, reachable from every @Serializable type's Companion.serializer(),
-// so it cannot be removed by narrowing the exported surface. Drop the stub wherever a same-named
-// twin exists in the same extension. Remove once the exporter stops emitting the pair.
-val swiftExportOutputDirs = listOf(
-    layout.buildDirectory.dir("SPMPackage"),
-    layout.buildDirectory.dir("SwiftExport"),
-).map { it.get().asFile }
-
-tasks.matching { it.name.endsWith("GenerateSPMPackage") }.configureEach {
-    val dirs = swiftExportOutputDirs
-    doLast {
-        var removed = 0
-        dirs.flatMap { root ->
-            if (root.exists()) root.walkTopDown().filter { it.name.endsWith(".swift") }.toList() else emptyList()
-        }.forEach { f ->
-            val lines = f.readText().split("\n")
-            val extStarts = lines.indices.filter { lines[it].startsWith("extension ") }
-            val blocks = extStarts.mapIndexed { i, s -> s to (extStarts.getOrNull(i + 1) ?: lines.size) }
-            val drop = sortedSetOf<Int>()
-            blocks.forEach { (start, end) ->
-                val counts = mutableMapOf<String, Int>()
-                for (i in start until end) {
-                    Regex("""\s+(?:public |package |open )?func (\w+)\(""").find(lines[i])
-                        ?.let { counts.merge(it.groupValues[1], 1, Int::plus) }
-                }
-                var i = start
-                while (i < end) {
-                    if (lines[i].trim().startsWith("@_spi(") && i + 1 < end) {
-                        var j = i + 1
-                        while (j < end && !lines[j].contains("{")) j++
-                        var e = j + 1
-                        while (e < end && lines[e].trim() != "}") e++
-                        val block = (i..minOf(e, end - 1)).joinToString("\n") { lines[it] }
-                        val name = Regex("""func (\w+)\(""").find(block)?.groupValues?.get(1)
-                        if (name != null && block.contains("is an @_spi requirement that must be implemented")
-                            && (counts[name] ?: 0) > 1
-                        ) {
-                            (i..e).forEach { drop.add(it) }
-                            removed++
-                            i = e + 1
-                            continue
-                        }
-                    }
-                    i++
-                }
-            }
-            // Second defect: when a declaration uses a type the exporter cannot express (here,
-            // Koin's generated `Module.module()` extensions whose receivers are internal), it
-            // erases the receiver to Swift.Never and marks the stub @available(*, unavailable).
-            // It does not deduplicate them, so N such declarations collide. They are unusable by
-            // construction, so keep only the first of each identical signature.
-            val kept = lines.filterIndexed { i, _ -> i !in drop }.toMutableList()
-            val seenUnavailable = mutableSetOf<String>()
-            val drop2 = sortedSetOf<Int>()
-            var k = 0
-            while (k < kept.size) {
-                if (kept[k].trim().startsWith("@available(*, unavailable")) {
-                    var e = k + 1
-                    while (e < kept.size && kept[e].trim() != "}") e++
-                    val sig = (k..minOf(e, kept.size - 1)).joinToString("\n") { kept[it] }
-                    if (!seenUnavailable.add(sig)) {
-                        (k..e).forEach { drop2.add(it) }
-                        removed++
-                    }
-                    k = e + 1
-                    continue
-                }
-                k++
-            }
-            val finalLines = kept.filterIndexed { i, _ -> i !in drop2 }
-            if (drop.isNotEmpty() || drop2.isNotEmpty()) f.writeText(finalLines.joinToString("\n"))
-        }
-        if (removed > 0) println("Swift Export: removed $removed duplicate @_spi stub(s)")
     }
 }

@@ -24,7 +24,7 @@ struct ISSPositionContentViewController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         ui.ISSPositionContentViewController(
             viewModel: viewModel,
-            nativeViewFactory: iOSNativeViewFactory.shared
+            createISSMapView: iOSNativeViewFactory.createISSMapView
         )
     }
 

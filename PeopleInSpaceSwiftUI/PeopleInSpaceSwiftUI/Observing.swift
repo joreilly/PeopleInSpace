@@ -24,9 +24,12 @@ struct Observing<Value, Content: View>: View {
     var body: some View {
         content(value)
             .task {
-                for await next in flow.asAsyncSequence() {
-                    value = next
-                }
+                // Throwing since Kotlin 2.5; a StateFlow never completes, so this only ends on cancellation.
+                do {
+                    for try await next in flow.asAsyncSequence() {
+                        value = next
+                    }
+                } catch {}
             }
     }
 }

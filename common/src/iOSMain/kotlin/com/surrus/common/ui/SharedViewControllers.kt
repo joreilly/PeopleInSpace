@@ -8,16 +8,16 @@ import androidx.compose.ui.window.ComposeUIViewController
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 
 
-public val LocalNativeViewFactory: ProvidableCompositionLocal<NativeViewFactory> = staticCompositionLocalOf {
+internal val LocalNativeViewFactory: ProvidableCompositionLocal<NativeViewFactory> = staticCompositionLocalOf {
     error("LocalNativeViewFactory not provided")
 }
 
 
 public fun ISSPositionContentViewController(
     viewModel: ISSPositionViewModel,
-    nativeViewFactory: NativeViewFactory,
+    createISSMapView: (ISSPositionViewModel) -> UIViewController,
 ): UIViewController = ComposeUIViewController {
-    CompositionLocalProvider(LocalNativeViewFactory provides nativeViewFactory) {
+    CompositionLocalProvider(LocalNativeViewFactory provides NativeViewFactory(createISSMapView)) {
         ISSPositionContent(viewModel)
     }
 }
