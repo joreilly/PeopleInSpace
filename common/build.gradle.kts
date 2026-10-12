@@ -96,7 +96,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.bundles.ktor.common)
             implementation(libs.kotlinx.coroutines)
-            api(libs.kotlinx.serialization)
+            api(libs.kotlinx.serialization.core)
 
             implementation(projects.db)
 

@@ -30,9 +30,9 @@ kotlin {
                     moduleName = "Common"
                     rootPackage = "dev.johnoreilly.common"
                 }
-                configure("io.insert-koin:koin-core", SwiftExportVisibility.HIDDEN)
-                configure("org.jetbrains.kotlinx:kotlinx-serialization-core", SwiftExportVisibility.HIDDEN)
-                configure("androidx.lifecycle:lifecycle-viewmodel", SwiftExportVisibility.HIDDEN)
+                configure(libs.koin.core, SwiftExportVisibility.HIDDEN)
+                configure(libs.kotlinx.serialization.core, SwiftExportVisibility.HIDDEN)
+                configure(libs.androidx.lifecycle.viewmodel, SwiftExportVisibility.HIDDEN)
             }
         }
     }
