@@ -8,9 +8,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlin.native.HiddenFromObjC
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
+// Must match the interface's @HiddenFromObjC, or the tests don't compile for Kotlin/Native.
+@HiddenFromObjC
 class PeopleInSpaceRepositoryFake: PeopleInSpaceRepositoryInterface {
     override val initialSyncCompleted: StateFlow<Boolean> = MutableStateFlow(true)
     override val peopleSyncLoading: StateFlow<Boolean> = MutableStateFlow(false)
