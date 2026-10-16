@@ -1,12 +1,15 @@
 import Foundation
 import SwiftUI
 import UIKit
-import common
+import Common
+import KotlinRuntime
 
-class iOSNativeViewFactory : NativeViewFactory {
+// Swift Export protocols for Kotlin interfaces require a KotlinBase subclass (Swift-side
+// subclassing of KotlinBase works from Kotlin 2.5.0-Beta2).
+class iOSNativeViewFactory : KotlinBase, ui.NativeViewFactory {
     static var shared = iOSNativeViewFactory()
 
-    func createISSMapView(viewModel: ISSPositionViewModel) -> UIViewController {
+    func createISSMapView(viewModel: viewmodel.ISSPositionViewModel) -> UIViewController {
         let mapView = NativeISSMapView(viewModel: viewModel)
         return UIHostingController(rootView: mapView)
     }

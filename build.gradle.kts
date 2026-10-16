@@ -1,3 +1,8 @@
+buildscript {
+    // kotlin-native-nuget (0.8.0) brings KSP 2.3.10, which calls KotlinNativeCompile.konanHome (removed in Kotlin 2.5)
+    configurations.classpath { resolutionStrategy.force("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.3.12") }
+}
+
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.kotlin.multiplatform.library) apply false
@@ -19,12 +24,13 @@ plugins.withType<org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnPlugin> {
     }
 }
 
+val kotlinVersion = libs.versions.kotlin.get()
 allprojects {
     configurations.all {
         resolutionStrategy {
-            force("org.jetbrains.kotlin:kotlin-test:2.4.20")
-            force("org.jetbrains.kotlin:kotlin-test-common:2.4.20")
-            force("org.jetbrains.kotlin:kotlin-test-annotations-common:2.4.20")
+            force("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+            force("org.jetbrains.kotlin:kotlin-test-common:$kotlinVersion")
+            force("org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlinVersion")
         }
     }
 }

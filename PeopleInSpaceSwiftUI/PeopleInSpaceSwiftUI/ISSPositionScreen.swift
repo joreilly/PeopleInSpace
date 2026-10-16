@@ -1,11 +1,11 @@
 import Foundation
 import SwiftUI
 import MapKit
-import common
+import Common
 
 
 struct ISSPositionScreen: View {
-    @State var viewModel = KoinKt.issPositionViewModel()
+    @State var viewModel = di.issPositionViewModel()
         
     var body: some View {
         NavigationView {
@@ -19,10 +19,10 @@ struct ISSPositionScreen: View {
 }
 
 struct ISSPositionContentViewController: UIViewControllerRepresentable {
-    let viewModel: ISSPositionViewModel
+    let viewModel: viewmodel.ISSPositionViewModel
     
     func makeUIViewController(context: Context) -> UIViewController {
-        SharedViewControllersKt.ISSPositionContentViewController(
+        ui.ISSPositionContentViewController(
             viewModel: viewModel,
             nativeViewFactory: iOSNativeViewFactory.shared
         )

@@ -25,11 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.johnoreilly.common.viewmodel.ISSPositionViewModel
 import dev.johnoreilly.common.util.round
-import kotlin.native.HiddenFromObjC
 
-@HiddenFromObjC
 @Composable
-fun ISSPositionContent(viewModel: ISSPositionViewModel) {
+public fun ISSPositionContent(viewModel: ISSPositionViewModel) {
     val position by viewModel.position.collectAsStateWithLifecycle()
 
     Column {

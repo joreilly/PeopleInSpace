@@ -23,7 +23,7 @@ kotlin {
     sourceSets {
         jvmMain.dependencies {
             implementation(libs.kotlinx.coroutines)
-            implementation(libs.kotlinx.serialization)
+            implementation(libs.kotlinx.serialization.core)
 
             implementation("io.ktor:ktor-server-core:3.6.0")
             implementation("io.ktor:ktor-server-netty:3.6.0")
