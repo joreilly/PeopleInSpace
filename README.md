@@ -213,6 +213,7 @@ like the following (update with your path)
 * [Exploring new AWS SDK for Kotlin](https://johnoreilly.dev/posts/aws-sdk-kotlin/)
 * [Creating a Swift command line app that consumes Kotlin Multiplatform code](https://johnoreilly.dev/posts/swift-command-line-kotlin-multiplatform/)
 * [Exploring New Worlds of UI sharing possibilities in PeopleInSpace using Compose Multiplatform](https://johnoreilly.dev/posts/exploring-compose_multiplatform_sharing_ios/)
+* [Moving from SKIE to Swift export in a Kotlin Multiplatform project](https://johnoreilly.dev/posts/peopleinspace-swift-export/)
 
 ### Related samples
 
