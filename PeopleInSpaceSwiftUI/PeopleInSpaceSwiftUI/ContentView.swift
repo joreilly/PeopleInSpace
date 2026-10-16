@@ -20,82 +20,123 @@ struct ContentView: View {
 struct PeopleListScreen: View {
     @State var viewModel = KoinKt.personListViewModel()
 
-    @State private var path: [Assignment] = []
-    
+    @State private var selectedPerson: Assignment?
+
+    // Which column sits on top once the split view collapses into a single
+    // stack, so folding the device keeps whatever the person was looking at.
+    @State private var preferredCompactColumn = NavigationSplitViewColumn.sidebar
+
     var body: some View {
-        NavigationStack(path: $path) {
-            ZStack {
-                // Background color to match details screen
-                Color(.systemGroupedBackground)
-                    .edgesIgnoringSafeArea(.all)
-                
-                Observing(viewModel.uiState) { playerListUIState in
-                    switch onEnum(of: playerListUIState) {
-                    case .loading:
-                        VStack(spacing: 16) {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                            Text("Loading astronauts...")
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                        }
-                    case .error(let error):
-                        VStack(spacing: 16) {
-                            Image(systemName: "exclamationmark.triangle")
-                                .font(.largeTitle)
-                                .foregroundColor(.orange)
-                            Text("Error: \(error)")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.center)
-                            
+        // The container width drives the sidebar's ideal width, so the list
+        // stretches toward the fold when the device is unfolded: list on the
+        // left screen, detail on the right. This tracks the width as the window
+        // resizes rather than assuming a fixed screen size, and stays a
+        // preference — SwiftUI caps the sidebar, and a fixed half width is
+        // over that cap, which makes it drop the sidebar altogether.
+        GeometryReader { proxy in
+            NavigationSplitView(preferredCompactColumn: $preferredCompactColumn) {
+                peopleList
+                    .navigationSplitViewColumnWidth(ideal: proxy.size.width / 2)
+                    .navigationBarTitle(Text("People In Space"))
+                    .navigationBarTitleDisplayMode(.large)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {
                                 // Refresh action
                                 viewModel = KoinKt.personListViewModel()
                             }) {
-                                Label("Try Again", systemImage: "arrow.clockwise")
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
+                                Image(systemName: "arrow.clockwise")
                             }
-                        }
-                        .padding()
-                    case .success(let success):
-                        ScrollView {
-                            LazyVStack(spacing: 12) {
-                                ForEach(success.result, id: \.name) { person in
-                                    NavigationLink(value: person) {
-                                        PersonView(person: person)
-                                            .padding(.horizontal)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 12)
-                                                    .fill(Color(.systemBackground))
-                                                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
-                                            )
-                                            .padding(.horizontal)
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                }
-                            }
-                            .padding(.vertical)
                         }
                     }
+            } detail: {
+                if let selectedPerson {
+                    PersonDetailsScreen(person: selectedPerson)
+                } else {
+                    ContentUnavailableView(
+                        "No Astronaut Selected",
+                        systemImage: "person.crop.circle",
+                        description: Text("Pick someone from the list to see their details.")
+                    )
+                    .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all))
                 }
             }
-            .navigationDestination(for: Assignment.self) { person in
-                PersonDetailsScreen(person: person)
+            .navigationSplitViewStyle(.balanced)
+            .onChange(of: selectedPerson) { _, person in
+                preferredCompactColumn = person == nil ? .sidebar : .detail
             }
-            .navigationBarTitle(Text("People In Space"))
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        // Refresh action
-                        viewModel = KoinKt.personListViewModel()
-                    }) {
-                        Image(systemName: "arrow.clockwise")
+        }
+    }
+
+    private var peopleList: some View {
+        ZStack {
+            // Background color to match details screen
+            Color(.systemGroupedBackground)
+                .edgesIgnoringSafeArea(.all)
+
+            Observing(viewModel.uiState) { playerListUIState in
+                switch onEnum(of: playerListUIState) {
+                case .loading:
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                        Text("Loading astronauts...")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
                     }
+                case .error(let error):
+                    VStack(spacing: 16) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.largeTitle)
+                            .foregroundColor(.orange)
+                        Text("Error: \(error)")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.center)
+
+                        Button(action: {
+                            // Refresh action
+                            viewModel = KoinKt.personListViewModel()
+                        }) {
+                            Label("Try Again", systemImage: "arrow.clockwise")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .padding()
+                case .success(let success):
+                    List(selection: $selectedPerson) {
+                        ForEach(success.result, id: \.name) { person in
+                            // A value-based link is what feeds the selection
+                            // binding: it updates the detail column when the
+                            // columns sit side by side, and pushes the detail
+                            // when the split view collapses.
+                            NavigationLink(value: person) {
+                                PersonView(person: person)
+                                    .padding(.horizontal)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            // Keep the current selection
+                                            // visible while the detail sits
+                                            // alongside it.
+                                            .fill(person == selectedPerson
+                                                  ? Color.accentColor.opacity(0.15)
+                                                  : Color(.systemBackground))
+                                            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+                                    )
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 6)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                        }
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
                 }
             }
         }
