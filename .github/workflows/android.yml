@@ -35,37 +35,6 @@ jobs:
       - name: Run Unit Tests
         run: ./gradlew :app:test
 
-  androidTest:
-    runs-on: ubuntu-26.04
-    timeout-minutes: 45
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v6
-        with:
-          distribution: 'zulu'
-          java-version: 17
-
-      - uses: gradle/actions/setup-gradle@v6
-
-      # Without this the runner user can't open /dev/kvm, so the emulator falls back to
-      # unaccelerated software emulation, which is slow and flaky (APK installs time out).
-      - name: Enable KVM
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-
-      - name: Android Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 26
-          arch: x86
-          disable-animations: true
-          script: ./gradlew app:connectedAndroidTest
-
   # Launch the app on an emulator and run the Maestro flow shared with the iOS app
   maestro:
     runs-on: ubuntu-26.04

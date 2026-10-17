@@ -18,7 +18,8 @@ protolayout = "1.4.0"
 slf4j = "2.0.20"
 sqlDelight = "2.4.1"
 sqlJs = "1.8.0"
-truth = "1.7.0"
+robolectric = "4.17"
+androidxTestCore = "1.7.0"
 webPackPlugin = "9.1.0"
 remoteCompose = "1.0.0-SNAPSHOT"
 
@@ -59,7 +60,8 @@ androidx-protolayout-material3 = { module = "androidx.wear.protolayout:protolayo
 androidx-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "tiles" }
 androidx-tiles-tooling = { module = "androidx.wear.tiles:tiles-tooling", version.ref = "tiles" }
 androidx-tiles-tooling-preview = { module = "androidx.wear.tiles:tiles-tooling-preview", version.ref = "tiles" }
-androidx-truth = { module = "androidx.test.ext:truth", version.ref = "truth" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTestCore" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingPreview" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-wear-compose-compose-material3 = { module = "androidx.wear.compose:compose-material3", version.ref = "wearCompose" }
