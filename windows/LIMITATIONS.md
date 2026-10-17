@@ -28,7 +28,7 @@ constructs its dependencies directly.
   to `Assignment` / `IssPosition` from the `Remote` namespace).
   `windows/WinUiApp/GeneratedBindingShims.cs` aliases the two names globally so the generated
   file compiles unedited.
-- **Host-specific package** — the package contains only `runtimes/win-x64/native/peopleinspace.dll`
+- **Host-specific package** — the package contains only `runtimes/win-x64/native/kn_peopleinspace_kotlin.dll`
   and can only be packed on Windows; the MinGW link tasks are disabled elsewhere.
 - **Snapshot versions** — `publish { snapshot = true }` gives every `packNuget` a fresh
   `0.1.0-snapshot.<timestamp>` identity and pins it in `build/PeopleInSpace.KotlinVersions.props`,
