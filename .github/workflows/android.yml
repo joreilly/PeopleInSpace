@@ -50,6 +50,14 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
+      # Without this the runner user can't open /dev/kvm, so the emulator falls back to
+      # unaccelerated software emulation, which is slow and flaky (APK installs time out).
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       - name: Android Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -57,3 +65,63 @@ jobs:
           arch: x86
           disable-animations: true
           script: ./gradlew app:connectedAndroidTest
+
+  # Launch the app on an emulator and run the Maestro flow shared with the iOS app
+  maestro:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - name: set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v6
+
+      # Without this the runner user can't open /dev/kvm, so the emulator falls back to
+      # unaccelerated software emulation, which is slow and flaky (APK installs time out).
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Build android app
+        run: ./gradlew :app:assembleDebug
+
+      - name: Install Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+        env:
+          MAESTRO_VERSION: 2.11.0
+
+      - name: Run Maestro tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 32
+          arch: x86_64
+          profile: Nexus 6
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            adb install app/build/outputs/apk/debug/app-debug.apk
+            maestro test --debug-output maestro-debug -e APP_ID=dev.johnoreilly.peopleinspace maestro/PeopleInSpace.flow
+
+      # takeScreenshot output: Maestro saves it under --debug-output's hidden .maestro directory
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: maestro-screenshot-android
+          path: maestro-debug/**/takeScreenshot/*.png
+          include-hidden-files: true
+
+      # Maestro's logs, screenshots and view hierarchy, to diagnose failures
+      # (Maestro writes under a hidden .maestro directory, hence include-hidden-files)
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: maestro-debug-android
+          path: maestro-debug
+          include-hidden-files: true
