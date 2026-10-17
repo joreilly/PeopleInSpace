@@ -57,6 +57,9 @@ jobs:
           MAESTRO_VERSION: 2.11.0
 
       - name: Run Maestro tests
+        env:
+          # Starting Maestro's iOS driver on a cold runner can take a few minutes (default limit ~2 min)
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: 300000
         run: |
           UDID=$(xcrun simctl list devices available -j | jq -r '[.devices[][] | select(.name | startswith("iPhone"))] | last | .udid')
           xcrun simctl boot "$UDID"
