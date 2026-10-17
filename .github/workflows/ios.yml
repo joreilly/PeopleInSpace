@@ -71,14 +71,20 @@ jobs:
           path: PeopleInSpace.png
           if-no-files-found: ignore
 
+      - name: Collect iOS crash reports
+        if: failure()
+        run: |
+          mkdir -p maestro-debug/crash-reports
+          find "$HOME/Library/Logs/DiagnosticReports" -name 'PeopleInSpaceSwiftUI*' -exec cp {} maestro-debug/crash-reports/ \; || true
+
       # Maestro's logs, screenshots and view hierarchy, plus the app's crash report, to diagnose failures
+      # (Maestro writes under a hidden .maestro directory, hence include-hidden-files)
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: maestro-debug-ios
-          path: |
-            maestro-debug
-            ~/Library/Logs/DiagnosticReports/PeopleInSpaceSwiftUI-*.ips
+          path: maestro-debug
+          include-hidden-files: true
 
       - name: Save Kotlin/Native (konan) cache
         if: github.ref == 'refs/heads/main' && steps.konan-cache.outputs.cache-hit != 'true'

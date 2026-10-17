@@ -117,8 +117,10 @@ jobs:
           if-no-files-found: ignore
 
       # Maestro's logs, screenshots and view hierarchy, to diagnose failures
+      # (Maestro writes under a hidden .maestro directory, hence include-hidden-files)
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: maestro-debug-android
           path: maestro-debug
+          include-hidden-files: true
