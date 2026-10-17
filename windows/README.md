@@ -17,7 +17,7 @@ use, carrying the shared `Assignment` and `IssPosition` models. See
 
 ### Stage static SQLite for Kotlin/Native
 
-The MinGW SQLDelight driver requires SQLite while linking `peopleinspace.dll`. Install it from an
+The MinGW SQLDelight driver requires SQLite while linking `kn_peopleinspace_kotlin.dll`. Install it from an
 MSYS2 shell, then copy the archive into place from PowerShell:
 
 ```bash
