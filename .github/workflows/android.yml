@@ -109,12 +109,13 @@ jobs:
             adb install app/build/outputs/apk/debug/app-debug.apk
             maestro test --debug-output maestro-debug -e APP_ID=dev.johnoreilly.peopleinspace maestro/PeopleInSpace.flow
 
+      # takeScreenshot output: Maestro saves it under --debug-output's hidden .maestro directory
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: maestro-screenshot-android
-          path: PeopleInSpace.png
-          if-no-files-found: ignore
+          path: maestro-debug/**/takeScreenshot/*.png
+          include-hidden-files: true
 
       # Maestro's logs, screenshots and view hierarchy, to diagnose failures
       # (Maestro writes under a hidden .maestro directory, hence include-hidden-files)

@@ -64,12 +64,13 @@ jobs:
           xcrun simctl install "$UDID" build/dd/Build/Products/Debug-iphonesimulator/PeopleInSpaceSwiftUI.app
           maestro --device "$UDID" test --debug-output maestro-debug -e APP_ID=dev.johnoreilly.peopleinspace maestro/PeopleInSpace.flow
 
+      # takeScreenshot output: Maestro saves it under --debug-output's hidden .maestro directory
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: maestro-screenshot-ios
-          path: PeopleInSpace.png
-          if-no-files-found: ignore
+          path: maestro-debug/**/takeScreenshot/*.png
+          include-hidden-files: true
 
       - name: Collect iOS crash reports
         if: failure()
