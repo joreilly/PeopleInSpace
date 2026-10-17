@@ -46,7 +46,39 @@ jobs:
           path: "**/build/reports/tests/"
 
       - name: Build iOS app
-        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator ARCHS=arm64 EXCLUDED_ARCHS=x86_64
+        run: xcodebuild -workspace PeopleInSpaceSwiftUI/PeopleInSpaceSwiftUI.xcodeproj/project.xcworkspace -configuration Debug -scheme PeopleInSpaceSwiftUI -sdk iphonesimulator ARCHS=arm64 EXCLUDED_ARCHS=x86_64 -derivedDataPath build/dd
+
+      # Launch the app on a simulator and run the Maestro flow shared with the Android app
+      - name: Install Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+        env:
+          MAESTRO_VERSION: 2.11.0
+
+      - name: Run Maestro tests
+        run: |
+          UDID=$(xcrun simctl list devices available -j | jq -r '[.devices[][] | select(.name | startswith("iPhone"))] | last | .udid')
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID"
+          xcrun simctl install "$UDID" build/dd/Build/Products/Debug-iphonesimulator/PeopleInSpaceSwiftUI.app
+          maestro --device "$UDID" test --debug-output maestro-debug -e APP_ID=dev.johnoreilly.peopleinspace maestro/PeopleInSpace.flow
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: maestro-screenshot-ios
+          path: PeopleInSpace.png
+          if-no-files-found: ignore
+
+      # Maestro's logs, screenshots and view hierarchy, plus the app's crash report, to diagnose failures
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: maestro-debug-ios
+          path: |
+            maestro-debug
+            ~/Library/Logs/DiagnosticReports/PeopleInSpaceSwiftUI-*.ips
 
       - name: Save Kotlin/Native (konan) cache
         if: github.ref == 'refs/heads/main' && steps.konan-cache.outputs.cache-hit != 'true'

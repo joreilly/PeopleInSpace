@@ -1,4 +1,5 @@
-appId: dev.johnoreilly.peopleinspace
+# Shared by the Android and iOS apps: CI passes APP_ID with -e
+appId: ${APP_ID}
 ---
 - launchApp:
     clearState: true
@@ -13,7 +14,10 @@ appId: dev.johnoreilly.peopleinspace
 
 - tapOn: "People"
 - assertVisible: "People in Space"
-- assertVisible:
-    id: "person0"
+# The people list comes from a live API
+- extendedWaitUntil:
+    visible:
+      id: "person0"
+    timeout: 30000
 
 - takeScreenshot: PeopleInSpace

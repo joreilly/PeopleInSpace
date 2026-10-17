@@ -126,7 +126,8 @@ Requirements: JDK 17, a recent version of Android Studio (for the Android/Wear c
 * **Backend**: `./gradlew :backend:run` (or run `Server.kt` directly from Android Studio). After doing that you should then for example be able to open `http://localhost:9090/astros_local.json` in a browser.
 
 Tests can be run with `./gradlew :common:jvmTest`, and there's also a [Maestro](https://maestro.mobile.dev/) UI test
-flow for the Android client (`maestro test maestro/PeopleInSpace.flow`).
+flow shared by the Android and iOS clients, run by CI on an emulator and a simulator
+(`maestro test -e APP_ID=dev.johnoreilly.peopleinspace maestro/PeopleInSpace.flow`).
 
 ### Backend deployment
 
