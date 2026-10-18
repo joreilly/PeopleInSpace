@@ -11,7 +11,14 @@ import dev.johnoreilly.peopleinspace.peopleinspace.list.PersonList
 import dev.johnoreilly.peopleinspace.peopleinspace.list.PersonListTag
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+// Compose UI tests run on the JVM with Robolectric (no emulator). A plain Application keeps the
+// app's Koin start-up out of it.
+@RunWith(RobolectricTestRunner::class)
+@Config(application = android.app.Application::class)
 class PeopleInSpaceTest {
     @get:Rule
     val composeTestRule = createComposeRule()

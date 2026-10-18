@@ -15,8 +15,8 @@ permissions:
 
 jobs:
   wearOSTest:
-    runs-on: macos-26
-    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -29,9 +29,16 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
-#      - name: Wear Instrumentation Tests
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: 26
-#          target: android-wear
-#          script: ./gradlew wearApp:connectedAndroidTest
+      - name: Build Wear app
+        run: ./gradlew :wearApp:assembleDebug
+
+      # Compose UI tests on the JVM with Robolectric, so no Wear emulator is needed
+      - name: Wear Compose UI tests
+        run: ./gradlew :wearApp:testDebugUnitTest
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: wear-test-reports
+          path: wearApp/build/reports/tests/

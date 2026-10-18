@@ -14,7 +14,18 @@ android {
         applicationId = "dev.johnoreilly.peopleinspace"
         minSdk = libs.versions.minWearSdk.get().toInt()
         targetSdk = libs.versions.targetWearSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    // Compose UI tests run on the JVM with Robolectric, which needs the merged resources
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        // Robolectric touches java.io.FileDescriptor internals, which newer JDKs (e.g. 25) close off
+        unitTests.all {
+            it.jvmArgs(
+                "--add-opens=java.base/java.io=ALL-UNNAMED",
+                "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+            )
+        }
     }
 
     buildFeatures {
@@ -86,9 +97,11 @@ dependencies {
     implementation(libs.loggingInterceptor)
 
     // Compose testing dependencies
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.compose.ui.test)
+    testImplementation(libs.androidx.compose.ui.test.junit)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.robolectric)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.tracing)
 
