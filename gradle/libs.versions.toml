@@ -20,7 +20,7 @@ sqlDelight = "2.4.1"
 sqlJs = "1.8.0"
 robolectric = "4.17"
 androidxTestCore = "1.7.0"
-webPackPlugin = "9.1.0"
+webPackPlugin = "14.0.0"
 remoteCompose = "1.0.0-SNAPSHOT"
 
 
