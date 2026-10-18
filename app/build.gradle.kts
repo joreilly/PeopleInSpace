@@ -19,7 +19,6 @@ android {
 
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -40,15 +39,15 @@ android {
 
     namespace = "dev.johnoreilly.peopleinspace"
 
+    // Compose UI tests run on the JVM with Robolectric, which needs the merged resources
     testOptions {
-        managedDevices {
-            localDevices {
-                create("pixel5api32") {
-                    device = "Pixel 5"
-                    apiLevel = 32
-                    systemImageSource = "google"
-                }
-            }
+        unitTests.isIncludeAndroidResources = true
+        // Robolectric touches java.io.FileDescriptor internals, which newer JDKs (e.g. 25) close off
+        unitTests.all {
+            it.jvmArgs(
+                "--add-opens=java.base/java.io=ALL-UNNAMED",
+                "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+            )
         }
     }
 }
@@ -97,11 +96,11 @@ dependencies {
     implementation(libs.koin.androidx.compose)
 
     // Compose testing dependencies
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit)
-    androidTestImplementation(libs.androidx.navigation.compose.testing)
-    androidTestImplementation(libs.androidx.truth)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.compose.ui.test)
+    testImplementation(libs.androidx.compose.ui.test.junit)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.robolectric)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     constraints {
