@@ -26,10 +26,6 @@ kotlin {
         swift {
             moduleName = "Shared"
             xcodeIntegration {
-                configure(projects.common) {
-                    moduleName = "Common"
-                    rootPackage = "dev.johnoreilly.common"
-                }
                 configure(libs.koin.core, SwiftExportVisibility.HIDDEN)
                 configure(libs.kotlinx.serialization.core, SwiftExportVisibility.HIDDEN)
                 configure(libs.androidx.lifecycle.viewmodel, SwiftExportVisibility.HIDDEN)
