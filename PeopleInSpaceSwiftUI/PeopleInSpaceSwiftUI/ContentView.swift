@@ -34,7 +34,7 @@ struct PeopleListScreen: View {
                     case .success(let success):
                         ScrollView {
                             LazyVStack(spacing: 12) {
-                                ForEach(success.value.result, id: \.name) { person in
+                                ForEach(Array(success.value.result.enumerated()), id: \.element.name) { index, person in
                                     NavigationLink(value: person) {
                                         PersonView(person: person)
                                             .padding(.horizontal)
@@ -46,6 +46,8 @@ struct PeopleListScreen: View {
                                             .padding(.horizontal)
                                     }
                                     .buttonStyle(PlainButtonStyle())
+                                    // Same id as the Android list rows, so the shared Maestro flow can find them
+                                    .accessibilityIdentifier("person\(index)")
                                 }
                             }
                             .padding(.vertical)

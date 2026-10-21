@@ -1,8 +1,8 @@
 [versions]
 kotlin = "2.5.0-Beta2"
-kotlinNativeNuget = "0.8.0"
+kotlinNativeNuget = "0.9.0"
 
-compose-multiplatform = "1.12.1"
+compose-multiplatform = "1.12.2"
 composeUiTooling = "1.6.2"
 coroutines = "1.11.0"
 kotlinxSerialization = "1.11.0"
@@ -16,10 +16,11 @@ preferenceKtx = "1.2.1"
 tiles = "1.6.0"
 protolayout = "1.4.0"
 slf4j = "2.0.20"
-sqlDelight = "2.4.0"
+sqlDelight = "2.4.1"
 sqlJs = "1.8.0"
-truth = "1.7.0"
-webPackPlugin = "9.1.0"
+robolectric = "4.17"
+androidxTestCore = "1.7.0"
+webPackPlugin = "14.0.0"
 remoteCompose = "1.0.0-SNAPSHOT"
 
 
@@ -41,7 +42,7 @@ glanceAppWidget = "1.2.0-rc01"
 okhttp = "5.5.0"
 kermit = "2.2.0"
 
-gradleVersionsPlugin = "0.64.0"
+gradleVersionsPlugin = "0.66.0"
 shadowPlugin = "9.6.1"
 
 mcp = "0.15.0"
@@ -58,7 +59,8 @@ androidx-protolayout-material3 = { module = "androidx.wear.protolayout:protolayo
 androidx-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "tiles" }
 androidx-tiles-tooling = { module = "androidx.wear.tiles:tiles-tooling", version.ref = "tiles" }
 androidx-tiles-tooling-preview = { module = "androidx.wear.tiles:tiles-tooling-preview", version.ref = "tiles" }
-androidx-truth = { module = "androidx.test.ext:truth", version.ref = "truth" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTestCore" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingPreview" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-wear-compose-compose-material3 = { module = "androidx.wear.compose:compose-material3", version.ref = "wearCompose" }

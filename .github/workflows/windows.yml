@@ -61,8 +61,8 @@ jobs:
         run: |
           $package = Get-ChildItem common\build\nuget\*.nupkg | Select-Object -First 1
           $entries = tar -tf $package.FullName
-          if ($entries -notcontains 'runtimes/win-x64/native/peopleinspace.dll') {
-            throw 'peopleinspace.dll is missing from the NuGet package'
+          if ($entries -notcontains 'runtimes/win-x64/native/kn_peopleinspace_kotlin.dll') {
+            throw 'kn_peopleinspace_kotlin.dll is missing from the NuGet package'
           }
 
       - name: Restore WinUI solution

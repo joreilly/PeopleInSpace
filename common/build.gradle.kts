@@ -25,8 +25,9 @@ kotlin {
 
     mingwX64 {
         binaries {
+            // No baseName: since kotlin-native-nuget 0.9.0 the plugin names the library from the
+            // NuGet packageId (PeopleInSpace.Kotlin -> kn_peopleinspace_kotlin.dll).
             sharedLib(listOf(DEBUG, RELEASE)) {
-                baseName = "peopleinspace"
                 if (System.getProperty("os.name").startsWith("Windows", ignoreCase = true)) {
                     // Windows CI places the static MinGW SQLite archive here so the
                     // packaged DLL has no extra SQLite runtime dependency. -lsqlite3 is explicit
