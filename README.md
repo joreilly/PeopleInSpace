@@ -7,7 +7,6 @@
 * Android App Widget (Compose based Glance API - contributed by https://github.com/yschimke)
 * Wear OS (Compose for Wear OS - primarily developed by https://github.com/yschimke)  
 * iOS (SwiftUI)
-* Swift Executable Package
 * Desktop (Compose for Desktop)
 * Web (Compose for Web - Wasm based)
 * Windows (WinUI 3)
@@ -33,7 +32,7 @@ flowchart TB
         direction LR
         android["<b>app</b><br/>Android · Jetpack Compose<br/>+ Glance / Remote Compose widgets"]
         wear["<b>wearApp</b><br/>Wear OS · Compose + Tile"]
-        ios["<b>PeopleInSpaceSwiftUI</b><br/>iOS · SwiftUI (SKIE)<br/>+ SwiftExecutablePackage"]
+        ios["<b>PeopleInSpaceSwiftUI</b><br/>iOS · SwiftUI (Swift Export)"]
         desktop["<b>compose-desktop</b><br/>JVM · Compose for Desktop"]
         web["<b>compose-web</b><br/>Kotlin/Wasm · Compose"]
         winui["<b>windows/WinUiApp</b><br/>.NET · WinUI 3"]
@@ -248,7 +247,7 @@ I also have the following samples that demonstrate the use of a variety of Kotli
 * [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform/)
 * [Compose for Wear OS](https://developer.android.com/training/wearables/compose)
 * [SwiftUI](https://developer.apple.com/documentation/swiftui)
-* [SKIE](https://skie.touchlab.co/intro)
+* [Swift Export](https://kotlinlang.org/docs/native-swift-export.html)
 * [Coil](https://coil-kt.github.io/coil/)
 * [Kermit](https://kermit.touchlab.co/)
 * [Maestro](https://maestro.mobile.dev/)
