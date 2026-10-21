@@ -3,17 +3,17 @@ package dev.johnoreilly.common.viewmodel
 import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.remote.IssPosition
 
-sealed class PersonListUiState {
-    object Loading : PersonListUiState()
-    data class Error(val message: String) : PersonListUiState()
-    data class Success(
-        val result: List<Assignment>,
+public sealed class PersonListUiState {
+    public object Loading : PersonListUiState()
+    public data class Error(val message: String) : PersonListUiState()
+    public data class Success(
+        public val result: List<Assignment>,
         /** True while a later synchronisation runs, so the cached list stays usable. */
-        val refreshing: Boolean = false,
+        public val refreshing: Boolean = false,
     ) : PersonListUiState()
 }
 
-sealed class IssPositionUiState {
-    object Loading : IssPositionUiState()
-    data class Success(val position: IssPosition) : IssPositionUiState()
+public sealed class IssPositionUiState {
+    public object Loading : IssPositionUiState()
+    public data class Success(public val position: IssPosition) : IssPositionUiState()
 }
