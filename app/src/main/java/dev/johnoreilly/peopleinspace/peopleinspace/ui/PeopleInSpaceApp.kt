@@ -23,10 +23,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.peopleinspace.R
 import dev.johnoreilly.peopleinspace.issposition.ISSPositionRoute
-import dev.johnoreilly.peopleinspace.persondetails.PersonDetailsScreen
+import dev.johnoreilly.peopleinspace.persondetails.PersonDetailsRoute
 import dev.johnoreilly.peopleinspace.personlist.PersonListRoute
 import kotlinx.coroutines.launch
 
@@ -43,7 +42,9 @@ enum class AppDestinations(
 @Composable
 fun PeopleInSpaceApp() {
     var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.PERSON_LIST) }
-    val navigator = rememberListDetailPaneScaffoldNavigator<Assignment>()
+    // Keyed by name, not Assignment: the key is saved to the Bundle on configuration changes
+    // (rotation, dark mode), and Assignment isn't Bundle-saveable.
+    val navigator = rememberListDetailPaneScaffoldNavigator<String>()
     val scope = rememberCoroutineScope()
 
     BackHandler(navigator.canNavigateBack()) {
@@ -78,14 +79,14 @@ fun PeopleInSpaceApp() {
                         listPane = {
                             PersonListRoute { person ->
                                 scope.launch {
-                                    navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, person)
+                                    navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, person.name)
                                 }
                             }
                         },
                         detailPane = {
                             navigator.currentDestination?.contentKey?.let {
-                                PersonDetailsScreen(
-                                    person = it,
+                                PersonDetailsRoute(
+                                    personName = it,
                                     showBackButton = !navigator.isListPaneVisible(),
                                     popBack = {
                                         scope.launch { navigator.navigateBack() }
