@@ -45,7 +45,7 @@ kermit = "2.2.0"
 gradleVersionsPlugin = "0.66.0"
 shadowPlugin = "9.6.1"
 
-mcp = "0.15.0"
+mcp = "0.16.0"
 
 minSdk = "24"
 compileSdk = "37"
