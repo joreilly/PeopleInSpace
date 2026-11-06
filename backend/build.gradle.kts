@@ -36,7 +36,16 @@ kotlin {
 
             implementation("ch.qos.logback:logback-classic:1.6.5")
 
+            implementation(libs.ktor.client.java)
+            implementation(libs.ktor.client.content.negotiation)
+
             implementation(projects.common)
+        }
+
+        jvmTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.ktor.client.mock)
         }
     }
 }
