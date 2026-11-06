@@ -3,6 +3,7 @@ import dev.johnoreilly.common.remote.Assignment
 import dev.johnoreilly.common.remote.AstroResult
 import dev.johnoreilly.common.remote.IssPosition
 import dev.johnoreilly.common.remote.PeopleInSpaceApi
+import io.ktor.client.engine.java.Java
 import io.ktor.http.*
 import io.ktor.openapi.OpenApiInfo
 import io.ktor.openapi.jsonSchema
@@ -23,6 +24,10 @@ fun main() {
     val koin = initKoin(enableNetworkLogs = true).koin
     val peopleInSpaceApi = koin.get<PeopleInSpaceApi>()
     peopleInSpaceApi.baseUrl = "http://api.open-notify.org"
+    val peopleRepository = SpaceDevsPeopleRepository(
+        client = createSpaceDevsHttpClient(Java.create()),
+        fallback = currentPeopleInSpace,
+    )
 
     val port = System.getenv().getOrDefault("PORT", "8080").toInt()
     embeddedServer(Netty, port) {
@@ -50,7 +55,8 @@ fun main() {
             }
 
             get("/astros.json") {
-                val result = AstroResult("success", currentPeopleInSpace.size, currentPeopleInSpace)
+                val people = peopleRepository.currentPeople()
+                val result = AstroResult("success", people.size, people)
                 call.respond(result)
             }.describe {
                 summary = "Get a list of people in space"
