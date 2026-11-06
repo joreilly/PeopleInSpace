@@ -23,15 +23,35 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import dev.johnoreilly.common.remote.Assignment
+import dev.johnoreilly.common.viewmodel.PersonListUiState
+import dev.johnoreilly.common.viewmodel.PersonListViewModel
+import org.koin.androidx.compose.koinViewModel
 
+
+/**
+ * Looks the person up by name in the same (activity-scoped) list the list pane shows, so only
+ * the name needs to survive a configuration change. The list is persisted locally, so it's
+ * available again straight after the activity is recreated.
+ */
+@Composable
+fun PersonDetailsRoute(personName: String, showBackButton: Boolean, popBack: () -> Unit) {
+    val viewModel: PersonListViewModel = koinViewModel()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val person = (uiState as? PersonListUiState.Success)?.result?.firstOrNull { it.name == personName }
+    if (person != null) {
+        PersonDetailsScreen(person, showBackButton, popBack)
+    }
+}
 
 @Composable
 fun PersonDetailsScreen(person: Assignment, showBackButton: Boolean, popBack: () -> Unit) {
