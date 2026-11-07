@@ -1,5 +1,6 @@
 package dev.johnoreilly.common.di
 
+import dev.johnoreilly.common.db.DATABASE_NAME
 import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import dev.johnoreilly.peopleinspace.db.PeopleInSpaceDatabase
@@ -22,7 +23,7 @@ internal actual class NativeModule actual constructor(){
 
     @Single
     actual fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper {
-        val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), "peopleinspace.db")
+        val driver = NativeSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), DATABASE_NAME)
         return PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
 }

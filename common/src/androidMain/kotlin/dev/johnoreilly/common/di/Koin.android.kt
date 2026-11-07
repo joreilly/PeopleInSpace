@@ -1,5 +1,7 @@
 package dev.johnoreilly.common.di
 
+import dev.johnoreilly.common.db.DATABASE_NAME
+import dev.johnoreilly.common.db.LEGACY_DATABASE_NAME
 import android.content.Context
 import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
@@ -24,7 +26,8 @@ internal actual class NativeModule {
 
     @Single
     actual fun getPeopleInSpaceDatabaseWrapper(ctx : ContextWrapper): PeopleInSpaceDatabaseWrapper {
-        val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), ctx.context, "peopleinspace.db")
+        ctx.context.deleteDatabase(LEGACY_DATABASE_NAME)
+        val driver = AndroidSqliteDriver(PeopleInSpaceDatabase.Schema.synchronous(), ctx.context, DATABASE_NAME)
         return PeopleInSpaceDatabaseWrapper(driver, PeopleInSpaceDatabase(driver))
     }
 
