@@ -34,7 +34,7 @@ kotlin {
             implementation("io.ktor:ktor-server-swagger:3.6.1")
             implementation("io.ktor:ktor-server-routing-openapi:3.6.1")
 
-            implementation("ch.qos.logback:logback-classic:1.6.5")
+            implementation("ch.qos.logback:logback-classic:1.6.6")
 
             implementation(libs.ktor.client.java)
             implementation(libs.ktor.client.content.negotiation)
