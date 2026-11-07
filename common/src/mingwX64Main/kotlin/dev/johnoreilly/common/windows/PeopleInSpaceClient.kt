@@ -1,5 +1,6 @@
 package dev.johnoreilly.common.windows
 
+import dev.johnoreilly.common.db.DATABASE_NAME
 import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import dev.johnoreilly.common.di.PeopleInSpaceDatabaseWrapper
@@ -40,7 +41,7 @@ public class PeopleInSpaceClient(storageDirectory: String) {
     )
     private val driver = NativeSqliteDriver(
         schema = PeopleInSpaceDatabase.Schema.synchronous(),
-        name = "peopleinspace.db",
+        name = DATABASE_NAME,
         onConfiguration = { configuration ->
             configuration.copy(
                 extendedConfig = configuration.extendedConfig.copy(
