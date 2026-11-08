@@ -59,9 +59,19 @@ jobs:
       - name: Build android app
         run: ./gradlew :app:assembleDebug
 
+      # Fetch the release zip directly rather than piping get.maestro.mobile.dev to bash: that
+      # script doesn't retry, and exits 0 when the download fails (GitHub Releases returned 504s
+      # for ~20 min on 2026-11-08), so the failure only surfaced later as "maestro: command not found"
       - name: Install Maestro
         run: |
-          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          curl --fail --location --silent --show-error \
+            --retry 6 --retry-delay 30 --retry-all-errors \
+            -o "$RUNNER_TEMP/maestro.zip" \
+            "https://github.com/mobile-dev-inc/maestro/releases/download/cli-$MAESTRO_VERSION/maestro.zip"
+          unzip -q "$RUNNER_TEMP/maestro.zip" -d "$RUNNER_TEMP"
+          mkdir -p "$HOME/.maestro"
+          cp -R "$RUNNER_TEMP/maestro/." "$HOME/.maestro/"
+          "$HOME/.maestro/bin/maestro" --version
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
         env:
           MAESTRO_VERSION: 2.11.0
