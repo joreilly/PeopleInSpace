@@ -51,7 +51,7 @@ jobs:
       - name: Set up .NET 10
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: '11.0.x'
 
       - name: Pack shared NuGet package
         run: .\gradlew.bat :common:packNuget --no-daemon --stacktrace
