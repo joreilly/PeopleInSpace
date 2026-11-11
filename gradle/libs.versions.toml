@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.5.0-Beta2"
+kotlin = "2.5.0-RC"
 kotlinNativeNuget = "0.10.0"
 
 compose-multiplatform = "1.12.2"
