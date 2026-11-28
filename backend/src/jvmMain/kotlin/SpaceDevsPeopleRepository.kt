@@ -95,7 +95,7 @@ class SpaceDevsPeopleRepository(
                 craft = stationByAstronautId[astronaut.id]?.let(::craftName) ?: astronaut.currentMissionName() ?: "Unknown",
                 name = astronaut.name,
                 personImageUrl = astronaut.profileImageThumbnail ?: astronaut.profileImage ?: "",
-                personBio = astronaut.bio ?: "",
+                personBio = bioFor(astronaut.name, astronaut.bio),
                 nationality = astronaut.nationality ?: "",
             )
         }
